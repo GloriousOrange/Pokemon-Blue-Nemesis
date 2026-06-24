@@ -17,15 +17,17 @@ _SSAnneBowCooltrainerMText::
 	done
 
 _SSAnneBowSailor2BattleText::
-	text "Hey matey!"
-
-	para "Let's do a little"
-	line "jig!"
+	text "Have you tried"
+	line "the Dratini"
+	cont "Shish-ka-bobs?"
 	done
 
 _SSAnneBowSailor2EndBattleText::
-	text "You're"
-	line "impressive!"
+	text "I've got a"
+	line "stomach ache"
+	cont "from too many"
+	line "BBQ Pidgey"
+	cont "Wings!"
 	prompt
 
 _SSAnneBowSailor2AfterBattleText::

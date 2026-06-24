@@ -130,6 +130,9 @@ DisplayListMenuIDLoop::
 	jr z, .pokemonList
 ; if it's an item menu
 	ASSERT wCurListMenuItem == wCurItem
+	ld a, [wCurItem]
+	and a
+	jp z, ExitListMenu  ; item ID 0 = terminator, stop rendering (prevents freeze from bag corruption)
 	push hl
 	call GetItemPrice
 	pop hl

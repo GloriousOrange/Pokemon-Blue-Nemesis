@@ -1507,3 +1507,12 @@ _VictreebelDexEntry::
 	next "has ever returned"
 	next "from there"
 	dex
+
+_TyranisDexEntry::
+	text "A legendary bird"
+	next "so large it has"
+	next "been known to"
+
+	page "carry off TAUROS"
+	next "in its talons."
+	dex

@@ -170,7 +170,9 @@
 	const SUPER_FANG   ; a2
 	const SLASH        ; a3
 	const SUBSTITUTE   ; a4
-	const STRUGGLE     ; a5
+	const DOUBLE_DRILL ; a5
+	const HYPER_BEAMS  ; a6
+	const STRUGGLE     ; a7
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

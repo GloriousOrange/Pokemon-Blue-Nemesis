@@ -200,6 +200,7 @@ EvosMovesPointerTable:
 	dw BellsproutEvosMoves
 	dw WeepinbellEvosMoves
 	dw VictreebelEvosMoves
+	dw TyranisEvosMoves
 	assert_table_length NUM_POKEMON_INDEXES
 
 RhydonEvosMoves:
@@ -489,6 +490,7 @@ ScytherEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 15, TWINEEDLE
 	db 17, LEER
 	db 20, FOCUS_ENERGY
 	db 24, DOUBLE_TEAM
@@ -527,10 +529,11 @@ PinsirEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 20, TWINEEDLE
 	db 25, SEISMIC_TOSS
 	db 30, GUILLOTINE
 	db 36, FOCUS_ENERGY
-	db 43, HARDEN
+	db 43, PIN_MISSILE
 	db 49, SLASH
 	db 54, SWORDS_DANCE
 	db 0
@@ -622,6 +625,7 @@ SlowpokeEvosMoves:
 KadabraEvosMoves:
 ; Evolutions
 	db EVOLVE_TRADE, 1, ALAKAZAM
+	db EVOLVE_LEVEL, 42, ALAKAZAM
 	db 0
 ; Learnset
 	db 16, CONFUSION
@@ -635,6 +639,7 @@ KadabraEvosMoves:
 GravelerEvosMoves:
 ; Evolutions
 	db EVOLVE_TRADE, 1, GOLEM
+	db EVOLVE_LEVEL, 42, GOLEM
 	db 0
 ; Learnset
 	db 11, DEFENSE_CURL
@@ -660,6 +665,7 @@ ChanseyEvosMoves:
 MachokeEvosMoves:
 ; Evolutions
 	db EVOLVE_TRADE, 1, MACHAMP
+	db EVOLVE_LEVEL, 42, MACHAMP
 	db 0
 ; Learnset
 	db 20, LOW_KICK
@@ -1556,11 +1562,11 @@ MewtwoEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 63, BARRIER
-	db 66, PSYCHIC_M
-	db 70, RECOVER
-	db 75, MIST
-	db 81, AMNESIA
+	db 63, RECOVER
+	db 67, ICE_BEAM
+	db 73, THUNDERBOLT
+	db 79, AMNESIA
+	db 85, PSYCHIC_M
 	db 0
 
 SnorlaxEvosMoves:
@@ -1694,6 +1700,7 @@ MissingNo92EvosMoves:
 HaunterEvosMoves:
 ; Evolutions
 	db EVOLVE_TRADE, 1, GENGAR
+	db EVOLVE_LEVEL, 42, GENGAR
 	db 0
 ; Learnset
 	db 29, HYPNOSIS
@@ -2140,4 +2147,13 @@ VictreebelEvosMoves:
 	db 13, WRAP
 	db 15, POISONPOWDER
 	db 18, SLEEP_POWDER
+	db 0
+
+TyranisEvosMoves:
+; Evolutions
+	db 0
+; Learnset
+	db 51, DOUBLE_TEAM
+	db 52, DOUBLE_DRILL
+	db 60, HYPER_BEAMS
 	db 0

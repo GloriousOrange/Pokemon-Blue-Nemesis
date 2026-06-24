@@ -161,13 +161,22 @@ _GameCornerGentlemanCloselyWatchTheReelsText::
 	done
 
 _GameCornerRocketImGuardingThisPosterText::
-	text "I'm guarding this"
-	line "poster!"
-	cont "Go away, or else!"
+	text "I've got a spicy"
+	line "JYNX in the back"
+	cont "if you're looking"
+	line "for a good time."
+	cont "She knows Lovely"
+	line "Kiss, and Lick."
+	cont "Wait a minute..."
+	line "You're too short"
+	cont "to ride this ride."
+	line "Beat it, kid!"
 	done
 
 _GameCornerRocketBattleEndText::
-	text "Dang!"
+	text "Just wait until"
+	line "my father hears"
+	cont "about this!"
 	prompt
 
 _GameCornerRocketAfterBattleText::

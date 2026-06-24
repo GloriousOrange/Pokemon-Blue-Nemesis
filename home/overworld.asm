@@ -37,7 +37,6 @@ EnterMap::
 	set BIT_CUR_MAP_LOADED_2, [hl]
 	xor a
 	ld [wJoyIgnore], a
-
 OverworldLoop::
 	call DelayFrame
 OverworldLoopLessDelay::
@@ -91,6 +90,10 @@ OverworldLoopLessDelay::
 	ldh a, [hItemAlreadyFound]
 	and a
 	jp z, OverworldLoop ; jump if a hidden event or bookshelf was found, but not if a card key door was found
+	farcall TryPlayerHMTileInteraction
+	ldh a, [hItemAlreadyFound]
+	and a
+	jp z, OverworldLoop
 	call IsSpriteOrSignInFrontOfPlayer
 	ldh a, [hTextID]
 	and a
@@ -278,7 +281,10 @@ OverworldLoopLessDelay::
 	res BIT_TURNING, [hl]
 	ld a, [wWalkBikeSurfState]
 	dec a ; riding a bike?
-	jr nz, .normalPlayerSpriteAdvancement
+	jr z, .biking
+	call AdvancePlayerSprite  ; extra call for walk/surf = 2x speed
+	jr .normalPlayerSpriteAdvancement
+.biking
 	ld a, [wMovementFlags]
 	bit BIT_LEDGE_OR_FISHING, a
 	jr nz, .normalPlayerSpriteAdvancement
@@ -498,6 +504,16 @@ WarpFound2::
 	jr nz, .notRockTunnel
 	ld a, $06
 	ld [wMapPalOffset], a
+	; Auto-Flash: if player has Boulder Badge + HM Flash in bag, keep cave lit
+	ld a, [wObtainedBadges]
+	bit BIT_BOULDERBADGE, a
+	jr z, .noAutoFlash
+	ld a, HM01 + 4          ; HM Flash ($C8)
+	call PlayerHMIsItemInBag
+	jr nc, .noAutoFlash
+	xor a
+	ld [wMapPalOffset], a
+.noAutoFlash:
 	call GBFadeOutToBlack
 .notRockTunnel
 	call PlayMapChangeSound
@@ -748,6 +764,19 @@ ExtraWarpCheck::
 
 MapEntryAfterBattle::
 	farcall IsPlayerStandingOnWarp ; for enabling warp testing after collisions
+	; Auto-Flash: if player has Boulder Badge + HM Flash, prevent darkness after battle
+	ld a, [wMapPalOffset]
+	and a
+	jr z, .doFade           ; already lit
+	ld a, [wObtainedBadges]
+	bit BIT_BOULDERBADGE, a
+	jr z, .doFade           ; no Boulder Badge
+	ld a, HM01 + 4          ; HM Flash ($C8)
+	call PlayerHMIsItemInBag
+	jr nc, .doFade          ; no HM Flash in bag
+	xor a
+	ld [wMapPalOffset], a
+.doFade:
 	ld a, [wMapPalOffset]
 	and a
 	jp z, GBFadeInFromWhite

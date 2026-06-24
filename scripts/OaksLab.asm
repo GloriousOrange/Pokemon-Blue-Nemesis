@@ -29,6 +29,7 @@ OaksLab_ScriptPointers:
 	dw_const OaksLabRivalArrivesAtOaksRequestScript, SCRIPT_OAKSLAB_RIVAL_ARRIVES_AT_OAKS_REQUEST
 	dw_const OaksLabOakGivesPokedexScript,           SCRIPT_OAKSLAB_OAK_GIVES_POKEDEX
 	dw_const OaksLabRivalLeavesWithPokedexScript,    SCRIPT_OAKSLAB_RIVAL_LEAVES_WITH_POKEDEX
+	dw_const OaksLabPickerLoopScript,                SCRIPT_OAKSLAB_PICKER_LOOP
 	dw_const OaksLabNoopScript,                      SCRIPT_OAKSLAB_NOOP
 
 OaksLabDefaultScript:
@@ -126,29 +127,18 @@ OaksLabFollowedOakScript:
 	ret
 
 OaksLabOakChooseMonSpeechScript:
-	ld a, PAD_SELECT | PAD_START | PAD_CTRL_PAD
-	ld [wJoyIgnore], a
-	ld a, TEXT_OAKSLAB_RIVAL_FED_UP_WITH_WAITING
-	ldh [hTextID], a
-	call DisplayTextID
-	call Delay3
 	ld a, TEXT_OAKSLAB_OAK_CHOOSE_MON
 	ldh [hTextID], a
 	call DisplayTextID
-	call Delay3
-	ld a, TEXT_OAKSLAB_RIVAL_WHAT_ABOUT_ME
-	ldh [hTextID], a
-	call DisplayTextID
-	call Delay3
-	ld a, TEXT_OAKSLAB_OAK_BE_PATIENT
-	ldh [hTextID], a
-	call DisplayTextID
 	SetEvent EVENT_OAK_ASKED_TO_CHOOSE_MON
-	xor a
-	ld [wJoyIgnore], a
-
-	ld a, SCRIPT_OAKSLAB_PLAYER_DONT_GO_AWAY_SCRIPT
+	ld a, SCRIPT_OAKSLAB_PICKER_LOOP
 	ld [wOaksLabCurScript], a
+	ret
+
+OaksLabPickerLoopScript:
+	ld a, TEXT_OAKSLAB_PICKER_LOOP
+	ldh [hTextID], a
+	call DisplayTextID
 	ret
 
 OaksLabPlayerDontGoAwayScript:
@@ -385,18 +375,16 @@ OaksLabRivalStartBattleScript:
 	ld a, OPP_RIVAL1
 	ld [wCurOpponent], a
 	ld a, [wRivalStarter]
-	cp STARTER2
-	jr nz, .not_squirtle
-	ld a, $1
-	jr .done
-.not_squirtle
-	cp STARTER3
-	jr nz, .not_bulbasaur
-	ld a, $2
-	jr .done
-.not_bulbasaur
-	ld a, $3
-.done
+	ld hl, RivalSpeciesTeamTable
+.searchTeam:
+	ld b, [hl]
+	inc hl
+	cp b
+	jr z, .foundTeam
+	inc hl
+	jr .searchTeam
+.foundTeam:
+	ld a, [hl]
 	ld [wTrainerNo], a
 	ld a, OAKSLAB_RIVAL
 	ld [wSpriteIndex], a
@@ -481,7 +469,7 @@ OaksLabPlayerWatchRivalExitScript:
 	xor a
 	ld [wJoyIgnore], a
 	call PlayDefaultMusic ; reset to map music
-	ld a, SCRIPT_OAKSLAB_NOOP
+	ld a, SCRIPT_OAKSLAB_RIVAL_ARRIVES_AT_OAKS_REQUEST
 	ld [wOaksLabCurScript], a
 	jr .done
 ; make the player keep facing the rival as he walks away
@@ -749,6 +737,7 @@ OaksLab_TextPointers:
 	dw_const OaksLabOakGotPokedexText,            TEXT_OAKSLAB_OAK_GOT_POKEDEX
 	dw_const OaksLabOakThatWasMyDreamText,        TEXT_OAKSLAB_OAK_THAT_WAS_MY_DREAM
 	dw_const OaksLabRivalLeaveItAllToMeText,      TEXT_OAKSLAB_RIVAL_LEAVE_IT_ALL_TO_ME
+	dw_const OaksLabPickerLoopText,               TEXT_OAKSLAB_PICKER_LOOP
 
 OaksLab_TextPointers2:
 	dw OaksLabRivalText
@@ -794,33 +783,35 @@ OaksLabRivalText:
 	text_far _OaksLabRivalMyPokemonLooksStrongerText
 	text_end
 
+OaksLabPickerLoopText:
+	text_asm
+	call OaksLabChooseAnyStarterMenu
+	call OaksLabSetRivalCounter
+	ld a, [wCurPartySpecies]
+	ld b, OAKSLAB_BULBASAUR_POKE_BALL
+	jr OaksLabSelectedPokeBallScript
+
 OaksLabCharmanderPokeBallText:
 	text_asm
-	ld a, STARTER2
-	ld [wRivalStarterTemp], a
-	ld a, OAKSLAB_SQUIRTLE_POKE_BALL
-	ld [wRivalStarterBallSpriteIndex], a
-	ld a, STARTER1
-	ld b, OAKSLAB_CHARMANDER_POKE_BALL
+	call OaksLabChooseAnyStarterMenu
+	call OaksLabSetRivalCounter
+	ld a, [wCurPartySpecies]
+	ld b, OAKSLAB_BULBASAUR_POKE_BALL
 	jr OaksLabSelectedPokeBallScript
 
 OaksLabSquirtlePokeBallText:
 	text_asm
-	ld a, STARTER3
-	ld [wRivalStarterTemp], a
-	ld a, OAKSLAB_BULBASAUR_POKE_BALL
-	ld [wRivalStarterBallSpriteIndex], a
-	ld a, STARTER2
-	ld b, OAKSLAB_SQUIRTLE_POKE_BALL
+	call OaksLabChooseAnyStarterMenu
+	call OaksLabSetRivalCounter
+	ld a, [wCurPartySpecies]
+	ld b, OAKSLAB_BULBASAUR_POKE_BALL
 	jr OaksLabSelectedPokeBallScript
 
 OaksLabBulbasaurPokeBallText:
 	text_asm
-	ld a, STARTER1
-	ld [wRivalStarterTemp], a
-	ld a, OAKSLAB_CHARMANDER_POKE_BALL
-	ld [wRivalStarterBallSpriteIndex], a
-	ld a, STARTER3
+	call OaksLabChooseAnyStarterMenu
+	call OaksLabSetRivalCounter
+	ld a, [wCurPartySpecies]
 	ld b, OAKSLAB_BULBASAUR_POKE_BALL
 
 OaksLabSelectedPokeBallScript:
@@ -831,13 +822,39 @@ OaksLabSelectedPokeBallScript:
 	CheckEvent EVENT_GOT_STARTER
 	jp nz, OaksLabLastMonScript
 	CheckEventReuseA EVENT_OAK_ASKED_TO_CHOOSE_MON
-	jr nz, OaksLabShowPokeBallPokemonScript
+	jr nz, OaksLabCustomShowAndChoose
 	ld hl, OaksLabThoseArePokeBallsText
 	call PrintText
 	jp TextScriptEnd
 
 OaksLabThoseArePokeBallsText:
 	text_far _OaksLabThoseArePokeBallsText
+	text_end
+
+OaksLabCustomShowAndChoose:
+	; Orient Oak and Rival sprites, reload map, then go straight to the
+	; "You want this MON?" prompt — skipping predef StarterDex (only works
+	; for the original 3 starters).
+	ld a, OAKSLAB_OAK1
+	ldh [hSpriteIndex], a
+	ld a, SPRITESTATEDATA1_FACINGDIRECTION
+	ldh [hSpriteDataOffset], a
+	call GetPointerWithinSpriteStateData1
+	ld [hl], SPRITE_FACING_DOWN
+	ld a, OAKSLAB_RIVAL
+	ldh [hSpriteIndex], a
+	ld a, SPRITESTATEDATA1_FACINGDIRECTION
+	ldh [hSpriteDataOffset], a
+	call GetPointerWithinSpriteStateData1
+	ld [hl], SPRITE_FACING_RIGHT
+	call ReloadMapData
+	ld c, 10
+	call DelayFrames
+	ld hl, OaksLabWantThisMonText
+	jr OaksLabMonChoiceMenu
+
+OaksLabWantThisMonText:
+	text_far _OaksLabWantThisMonText
 	text_end
 
 OaksLabShowPokeBallPokemonScript:
@@ -924,11 +941,13 @@ OaksLabMonChoiceMenu:
 	call PrintText
 	xor a ; PLAYER_PARTY_DATA
 	ld [wMonDataLocation], a
-	ld a, 5
+	ld a, 80
 	ld [wCurEnemyLevel], a
 	ld a, [wCurPartySpecies]
 	ld [wPokedexNum], a
 	call AddPartyMon
+	lb bc, MASTER_BALL, 5
+	call GiveItem
 	ld hl, wStatusFlags4
 	set BIT_GOT_STARTER, [hl]
 	ld a, PAD_SELECT | PAD_START | PAD_CTRL_PAD
@@ -1230,3 +1249,460 @@ OaksLabScientistText:
 .Text:
 	text_far _OaksLabScientistText
 	text_end
+
+
+; ============================================================
+; Picker constant — defined here before its first use below.
+def NUM_VALID_STARTERS equ 78
+
+; ============================================================
+; OaksLabChooseAnyStarterMenu
+; Scrollable picker for all 79 base-form Pokemon.
+; Returns: wCurPartySpecies = chosen internal species ID
+;          wPokedexNum      = absolute StarterSpeciesTable index (0-78)
+; ============================================================
+OaksLabChooseAnyStarterMenu:
+	; Single-spaced cursor (1 row per step); default is 2 rows which skips entries
+	ldh a, [hUILayoutFlags]
+	set BIT_DOUBLE_SPACED_MENU, a
+	ldh [hUILayoutFlags], a
+
+	; Hide OAM sprites (Oak, rival, player) so they don't show over the white picker
+	ldh a, [rLCDC]
+	res 1, a
+	ldh [rLCDC], a
+
+	xor a
+	ld [wListScrollOffset], a
+	ld [wCurrentMenuItem], a
+	ld [wLastMenuItem], a
+
+.redraw:
+	xor a
+	ldh [hAutoBGTransferEnabled], a
+
+	; Suppress PrintLetterDelay so names draw instantly (text engine sets BIT_TEXT_DELAY)
+	ld a, [wLetterPrintingDelayFlags]
+	res BIT_TEXT_DELAY, a
+	ld [wLetterPrintingDelayFlags], a
+
+	; Clear all 18 tile rows (including text box at bottom)
+	hlcoord 0, 0
+	lb bc, 18, 20
+	call ClearScreenArea
+
+	; Header "WHICH MON?"
+	hlcoord 1, 0
+	ld de, .HeaderText
+	call PlaceString
+
+	; Draw up to 7 names starting at wListScrollOffset
+	ld a, [wListScrollOffset]
+	ld b, 0                      ; B = rows drawn
+	hlcoord 2, 2                 ; HL = tile address of first list row
+
+.nameLoop:
+	cp NUM_VALID_STARTERS
+	jp nc, .nameDone
+	ld d, a                      ; D = current table index
+	ld a, b
+	cp 7
+	jp z, .nameDone
+	ld a, d                      ; restore table index
+
+	push hl                      ; [1] tile address
+	push bc                      ; [2] B=rows_drawn (GetMonName clobbers BC)
+
+	ld hl, StarterSpeciesTable
+	ld d, 0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld [wNamedObjectIndex], a
+	call GetMonName              ; -> wNameBuffer (clobbers BC)
+
+	pop bc                       ; [2] restore B=rows_drawn
+	pop hl                       ; [1] restore tile address
+
+	push bc                      ; [3] PlaceString returns BC=last tile addr (clobbers B)
+	ld de, wNameBuffer
+	call PlaceString             ; clobbers BC, preserves HL
+	pop bc                       ; [3] restore B=rows_drawn
+
+	ld de, SCREEN_WIDTH
+	add hl, de                   ; advance to next tile row
+
+	ld a, [wListScrollOffset]
+	add b
+	inc a                        ; table index for next iteration
+	inc b                        ; rows drawn++
+	jp .nameLoop
+
+.nameDone:
+	; wMaxMenuItem = rows_drawn - 1
+	ld a, b
+	and a
+	jr nz, .setMax
+	ld a, 1
+.setMax:
+	dec a
+	ld [wMaxMenuItem], a
+
+	; Clamp cursor to wMaxMenuItem
+	ld a, [wCurrentMenuItem]
+	ld b, a
+	ld a, [wMaxMenuItem]
+	cp b
+	jr nc, .cursorOK
+	ld [wCurrentMenuItem], a
+.cursorOK:
+
+	ld a, 2
+	ld [wTopMenuItemY], a
+	ld a, 1
+	ld [wTopMenuItemX], a
+
+	ld a, 1
+	ldh [hAutoBGTransferEnabled], a
+	call Delay3
+	call PlaceMenuCursor
+
+.waitInput:
+	call JoypadLowSensitivity
+	ldh a, [hJoy5]
+	and a
+	jr z, .waitInput
+
+	; A button: confirm
+	bit B_PAD_A, a
+	jr z, .checkB
+	ld a, [wListScrollOffset]
+	ld b, a
+	ld a, [wCurrentMenuItem]
+	add b
+	ld [wPokedexNum], a
+	ld hl, StarterSpeciesTable
+	ld d, 0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld [wCurPartySpecies], a
+	; Restore default cursor spacing before returning (YES/NO menu needs 2-row spacing)
+	ldh a, [hUILayoutFlags]
+	res BIT_DOUBLE_SPACED_MENU, a
+	ldh [hUILayoutFlags], a
+	; Restore sprite layer
+	ldh a, [rLCDC]
+	set 1, a
+	ldh [rLCDC], a
+	xor a
+	ld [wLastMenuItem], a
+	ret
+
+.checkB:
+	bit B_PAD_B, a
+	jr nz, .pageBack
+	bit B_PAD_LEFT, a
+	jr z, .checkRight
+.pageBack:
+	ld a, [wListScrollOffset]
+	sub 7
+	jr nc, .setBackScroll
+	xor a
+.setBackScroll:
+	ld [wListScrollOffset], a
+	xor a
+	ld [wCurrentMenuItem], a
+	ld [wLastMenuItem], a
+	jp .redraw
+
+.checkRight:
+	bit B_PAD_RIGHT, a
+	jr z, .checkUp
+	ld a, [wListScrollOffset]
+	add 7
+	cp NUM_VALID_STARTERS
+	jr c, .setForwardScroll
+	ld a, NUM_VALID_STARTERS - 7
+.setForwardScroll:
+	ld [wListScrollOffset], a
+	xor a
+	ld [wCurrentMenuItem], a
+	ld [wLastMenuItem], a
+	jp .redraw
+
+.checkUp:
+	bit B_PAD_UP, a
+	jr z, .checkDown
+	ld a, [wCurrentMenuItem]
+	and a
+	jr z, .upFromTop
+	dec a
+	ld [wCurrentMenuItem], a
+	call PlaceMenuCursor
+	call Delay3
+	jp .waitInput
+.upFromTop:
+	ld a, [wListScrollOffset]
+	and a
+	jp z, .waitInput
+	dec a
+	ld [wListScrollOffset], a
+	ld a, 6
+	ld [wCurrentMenuItem], a
+	xor a
+	ld [wLastMenuItem], a
+	jp .redraw
+
+.checkDown:
+	bit B_PAD_DOWN, a
+	jp z, .waitInput
+	ld a, [wCurrentMenuItem]
+	ld b, a
+	ld a, [wMaxMenuItem]
+	cp b
+	jr z, .downFromBottom
+	ld a, b
+	inc a
+	ld [wCurrentMenuItem], a
+	call PlaceMenuCursor
+	call Delay3
+	jp .waitInput
+.downFromBottom:
+	ld a, [wListScrollOffset]
+	add b
+	inc a
+	cp NUM_VALID_STARTERS
+	jp nc, .waitInput
+	ld a, [wListScrollOffset]
+	inc a
+	ld [wListScrollOffset], a
+	jp .redraw
+
+.HeaderText:
+	db "WHICH MON?@"
+
+; ============================================================
+; OaksLabSetRivalCounter
+; Input:  wPokedexNum = absolute StarterSpeciesTable index (0-78)
+; Output: wRivalStarterTemp = rival's internal species ID
+; ============================================================
+OaksLabSetRivalCounter:
+	ld a, [wPokedexNum]
+	ld hl, RivalCounterTable
+	ld d, 0
+	ld e, a
+	add hl, de
+	ld a, [hl]
+	ld [wRivalStarterTemp], a
+	ret
+
+; ============================================================
+; ============================================================
+; GENERATED BY scripts/gen_tables.py — do not edit manually
+; Re-run to regenerate after changing pools or base-form list
+; ============================================================
+
+; NUM_VALID_STARTERS = 78 (defined via 'def' in the code section above)
+
+StarterSpeciesTable:
+	db BULBASAUR        ; #001 BULBASAUR
+	db CHARMANDER       ; #004 CHARMANDER
+	db SQUIRTLE         ; #007 SQUIRTLE
+	db CATERPIE         ; #010 CATERPIE
+	db WEEDLE           ; #013 WEEDLE
+	db PIDGEY           ; #016 PIDGEY
+	db RATTATA          ; #019 RATTATA
+	db SPEAROW          ; #021 SPEAROW
+	db EKANS            ; #023 EKANS
+	db PIKACHU          ; #025 PIKACHU
+	db SANDSHREW        ; #027 SANDSHREW
+	db NIDORAN_F        ; #029 NIDORANF
+	db NIDORAN_M        ; #032 NIDORANM
+	db CLEFAIRY         ; #035 CLEFAIRY
+	db VULPIX           ; #037 VULPIX
+	db JIGGLYPUFF       ; #039 JIGGLYPUFF
+	db ZUBAT            ; #041 ZUBAT
+	db ODDISH           ; #043 ODDISH
+	db PARAS            ; #046 PARAS
+	db VENONAT          ; #048 VENONAT
+	db DIGLETT          ; #050 DIGLETT
+	db MEOWTH           ; #052 MEOWTH
+	db PSYDUCK          ; #054 PSYDUCK
+	db MANKEY           ; #056 MANKEY
+	db GROWLITHE        ; #058 GROWLITHE
+	db POLIWAG          ; #060 POLIWAG
+	db ABRA             ; #063 ABRA
+	db MACHOP           ; #066 MACHOP
+	db BELLSPROUT       ; #069 BELLSPROUT
+	db TENTACOOL        ; #072 TENTACOOL
+	db GEODUDE          ; #074 GEODUDE
+	db PONYTA           ; #077 PONYTA
+	db SLOWPOKE         ; #079 SLOWPOKE
+	db MAGNEMITE        ; #081 MAGNEMITE
+	db FARFETCHD        ; #083 FARFETCHD
+	db DODUO            ; #084 DODUO
+	db SEEL             ; #086 SEEL
+	db GRIMER           ; #088 GRIMER
+	db SHELLDER         ; #090 SHELLDER
+	db ONIX             ; #095 ONIX
+	db DROWZEE          ; #096 DROWZEE
+	db KRABBY           ; #098 KRABBY
+	db VOLTORB          ; #100 VOLTORB
+	db EXEGGCUTE        ; #102 EXEGGCUTE
+	db CUBONE           ; #104 CUBONE
+	db HITMONLEE        ; #106 HITMONLEE
+	db HITMONCHAN       ; #107 HITMONCHAN
+	db LICKITUNG        ; #108 LICKITUNG
+	db KOFFING          ; #109 KOFFING
+	db RHYHORN          ; #111 RHYHORN
+	db CHANSEY          ; #113 CHANSEY
+	db TANGELA          ; #114 TANGELA
+	db KANGASKHAN       ; #115 KANGASKHAN
+	db HORSEA           ; #116 HORSEA
+	db GOLDEEN          ; #118 GOLDEEN
+	db STARYU           ; #120 STARYU
+	db MR_MIME          ; #122 MRMIME
+	db SCYTHER          ; #123 SCYTHER
+	db JYNX             ; #124 JYNX
+	db ELECTABUZZ       ; #125 ELECTABUZZ
+	db MAGMAR           ; #126 MAGMAR
+	db PINSIR           ; #127 PINSIR
+	db TAUROS           ; #128 TAUROS
+	db MAGIKARP         ; #129 MAGIKARP
+	db LAPRAS           ; #131 LAPRAS
+	db DITTO            ; #132 DITTO
+	db EEVEE            ; #133 EEVEE
+	db PORYGON          ; #137 PORYGON
+	db OMANYTE          ; #138 OMANYTE
+	db KABUTO           ; #140 KABUTO
+	db AERODACTYL       ; #142 AERODACTYL
+	db SNORLAX          ; #143 SNORLAX
+	db ARTICUNO         ; #144 ARTICUNO
+	db ZAPDOS           ; #145 ZAPDOS
+	db MOLTRES          ; #146 MOLTRES
+	db DRATINI          ; #147 DRATINI
+	db MEWTWO           ; #150 MEWTWO
+	db MEW              ; #151 MEW
+
+RivalCounterTable:
+	db CHARMANDER       ; #001 BULBASAUR (GRASS)
+	db SQUIRTLE         ; #004 CHARMANDER (FIRE)
+	db PIKACHU          ; #007 SQUIRTLE (WATER)
+	db GROWLITHE        ; #010 CATERPIE (BUG)
+	db CHARMANDER       ; #013 WEEDLE (BUG)
+	db MANKEY           ; #016 PIDGEY (NORMAL)
+	db MACHOP           ; #019 RATTATA (NORMAL)
+	db HITMONLEE        ; #021 SPEAROW (NORMAL)
+	db SANDSHREW        ; #023 EKANS (POISON)
+	db SANDSHREW        ; #025 PIKACHU (ELECTRIC)
+	db BULBASAUR        ; #027 SANDSHREW (GROUND)
+	db ABRA             ; #029 NIDORANF (POISON)
+	db DROWZEE          ; #032 NIDORANM (POISON)
+	db HITMONCHAN       ; #035 CLEFAIRY (NORMAL)
+	db PSYDUCK          ; #037 VULPIX (FIRE)
+	db PRIMEAPE         ; #039 JIGGLYPUFF (NORMAL)
+	db PSYDUCK          ; #041 ZUBAT (POISON)
+	db GROWLITHE        ; #043 ODDISH (GRASS)
+	db PONYTA           ; #046 PARAS (BUG)
+	db GROWLITHE        ; #048 VENONAT (BUG)
+	db ODDISH           ; #050 DIGLETT (GROUND)
+	db MANKEY           ; #052 MEOWTH (NORMAL)
+	db VOLTORB          ; #054 PSYDUCK (WATER)
+	db DROWZEE          ; #056 MANKEY (FIGHTING)
+	db POLIWAG          ; #058 GROWLITHE (FIRE)
+	db MAGNEMITE        ; #060 POLIWAG (WATER)
+	db CATERPIE         ; #063 ABRA (PSYCHIC_TYPE)
+	db ABRA             ; #066 MACHOP (FIGHTING)
+	db PONYTA           ; #069 BELLSPROUT (GRASS)
+	db ELECTABUZZ       ; #072 TENTACOOL (WATER)
+	db SQUIRTLE         ; #074 GEODUDE (ROCK)
+	db STARYU           ; #077 PONYTA (FIRE)
+	db JOLTEON          ; #079 SLOWPOKE (WATER)
+	db DIGLETT          ; #081 MAGNEMITE (ELECTRIC)
+	db MACHOP           ; #083 FARFETCHD (NORMAL)
+	db HITMONLEE        ; #084 DODUO (NORMAL)
+	db PIKACHU          ; #086 SEEL (WATER)
+	db SANDSHREW        ; #088 GRIMER (POISON)
+	db VOLTORB          ; #090 SHELLDER (WATER)
+	db POLIWAG          ; #095 ONIX (ROCK)
+	db WEEDLE           ; #096 DROWZEE (PSYCHIC_TYPE)
+	db MAGNEMITE        ; #098 KRABBY (WATER)
+	db GEODUDE          ; #100 VOLTORB (ELECTRIC)
+	db MAGMAR           ; #102 EXEGGCUTE (GRASS)
+	db BELLSPROUT       ; #104 CUBONE (GROUND)
+	db JYNX             ; #106 HITMONLEE (FIGHTING)
+	db DROWZEE          ; #107 HITMONCHAN (FIGHTING)
+	db HITMONCHAN       ; #108 LICKITUNG (NORMAL)
+	db ABRA             ; #109 KOFFING (POISON)
+	db EXEGGCUTE        ; #111 RHYHORN (GROUND)
+	db PRIMEAPE         ; #113 CHANSEY (NORMAL)
+	db CHARMANDER       ; #114 TANGELA (GRASS)
+	db MANKEY           ; #115 KANGASKHAN (NORMAL)
+	db ELECTABUZZ       ; #116 HORSEA (WATER)
+	db JOLTEON          ; #118 GOLDEEN (WATER)
+	db PIKACHU          ; #120 STARYU (WATER)
+	db VENONAT          ; #122 MRMIME (PSYCHIC_TYPE)
+	db CHARMANDER       ; #123 SCYTHER (BUG)
+	db GROWLITHE        ; #124 JYNX (ICE)
+	db CUBONE           ; #125 ELECTABUZZ (ELECTRIC)
+	db SEEL             ; #126 MAGMAR (FIRE)
+	db PONYTA           ; #127 PINSIR (BUG)
+	db MACHOP           ; #128 TAUROS (NORMAL)
+	db VOLTORB          ; #129 MAGIKARP (WATER)
+	db MAGNEMITE        ; #131 LAPRAS (WATER)
+	db HITMONLEE        ; #132 DITTO (NORMAL)
+	db HITMONCHAN       ; #133 EEVEE (NORMAL)
+	db PRIMEAPE         ; #137 PORYGON (NORMAL)
+	db HORSEA           ; #138 OMANYTE (ROCK)
+	db MACHOP           ; #140 KABUTO (ROCK)
+	db SQUIRTLE         ; #142 AERODACTYL (ROCK)
+	db MANKEY           ; #143 SNORLAX (NORMAL)
+	db PONYTA           ; #144 ARTICUNO (ICE)
+	db SANDSHREW        ; #145 ZAPDOS (ELECTRIC)
+	db HORSEA           ; #146 MOLTRES (FIRE)
+	db DRATINI          ; #147 DRATINI (DRAGON)
+	db SCYTHER          ; #150 MEWTWO (PSYCHIC_TYPE)
+	db PINSIR           ; #151 MEW (PSYCHIC_TYPE)
+
+RivalSpeciesTeamTable:
+	db SQUIRTLE, 1
+	db BULBASAUR, 2
+	db CHARMANDER, 3
+	db PIKACHU, 10
+	db GROWLITHE, 11
+	db MANKEY, 12
+	db MACHOP, 13
+	db HITMONLEE, 14
+	db SANDSHREW, 15
+	db ABRA, 16
+	db DROWZEE, 17
+	db HITMONCHAN, 18
+	db PSYDUCK, 19
+	db PRIMEAPE, 20
+	db PONYTA, 21
+	db ODDISH, 22
+	db VOLTORB, 23
+	db POLIWAG, 24
+	db MAGNEMITE, 25
+	db CATERPIE, 26
+	db ELECTABUZZ, 27
+	db STARYU, 28
+	db JOLTEON, 29
+	db DIGLETT, 30
+	db WEEDLE, 31
+	db GEODUDE, 32
+	db MAGMAR, 33
+	db BELLSPROUT, 34
+	db JYNX, 35
+	db EXEGGCUTE, 36
+	db VENONAT, 37
+	db CUBONE, 38
+	db SEEL, 39
+	db HORSEA, 40
+	db DRATINI, 41
+	db SCYTHER, 42
+	db PINSIR, 43
+	db 0  ; terminator
+
+; End of generated tables

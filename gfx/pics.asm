@@ -324,6 +324,10 @@ WeepinbellPicBack::    INCBIN "gfx/pokemon/back/weepinbellb.pic"
 VictreebelPicFront::   INCBIN "gfx/pokemon/front/victreebel.pic"
 VictreebelPicBack::    INCBIN "gfx/pokemon/back/victreebelb.pic"
 
+SECTION "Pics 6", ROMX
+TyranisPicFront::      INCBIN "gfx/pokemon/front/tyranis.pic"
+TyranisPicBack::       INCBIN "gfx/pokemon/back/tyranisb.pic"
+
 
 SECTION "Trainer Pics", ROMX
 

@@ -29,6 +29,8 @@ GetItemName::
 	push hl
 	push bc
 	ld a, [wNamedObjectIndex]
+	and a
+	jr z, .Finish  ; item ID 0 = no item, avoid infinite loop in GetName
 	cp HM01 ; is this a TM/HM?
 	jr nc, .Machine
 

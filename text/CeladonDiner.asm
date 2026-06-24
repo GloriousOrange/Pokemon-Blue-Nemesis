@@ -27,18 +27,10 @@ _CeladonDinerFisherText::
 	done
 
 _CeladonDinerGymGuideImFlatOutBustedText::
-	text "Go ahead! Laugh!"
-
-	para "I'm flat out"
-	line "busted!"
-
-	para "No more slots for"
-	line "me! I'm going"
-	cont "straight!"
-
-	para "Here! I won't be"
-	line "needing this any-"
-	cont "more!"
+	text "I'm never going"
+	line "back to that"
+	cont "casino. I caught"
+	line "a disease!"
 	prompt
 
 _CeladonDinerGymGuideReceivedCoinCaseText::
