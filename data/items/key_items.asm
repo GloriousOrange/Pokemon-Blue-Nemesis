@@ -44,7 +44,7 @@ KeyItemFlags:
 	dbit TRUE  ; HELIX_FOSSIL
 	dbit TRUE  ; SECRET_KEY
 	dbit TRUE  ; ITEM_2C
-	dbit TRUE  ; BIKE_VOUCHER
+	dbit FALSE ; MONSTER_MEAT (not a key item — can be discarded)
 	dbit FALSE ; X_ACCURACY
 	dbit FALSE ; LEAF_STONE
 	dbit TRUE  ; CARD_KEY

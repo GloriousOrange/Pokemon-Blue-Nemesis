@@ -122,7 +122,10 @@ ItemUseBall:
 	jr nz, .canUseBall
 	ld a, [wBoxCount] ; is box full?
 	cp MONS_PER_BOX
-	jp z, BoxFullCannotThrowBall
+	jr nz, .canUseBall
+	; box is full — try to auto-switch to next available box
+	farcall AutoSwitchBox
+	jp nc, BoxFullCannotThrowBall
 
 .canUseBall
 	xor a

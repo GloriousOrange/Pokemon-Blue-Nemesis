@@ -164,7 +164,10 @@ StartBattle:
 	ld a, [wBattleType]
 	and a ; is it a normal battle?
 	jp z, .playerSendOutFirstMon ; if so, send out player mon
-; safari zone battle
+; safari zone battle — reset shot/bait counters for this encounter
+	xor a
+	ld [wSafariEscapeFactor], a
+	ld [wSafariBaitFactor], a
 .displaySafariZoneBattleMenu
 	call DisplayBattleMenu
 	ret c ; return if the player ran from battle
@@ -178,13 +181,41 @@ StartBattle:
 	ld hl, .outOfSafariBallsText
 	jp PrintText
 .notOutOfSafariBalls
+	; get species-specific shot threshold
+	ld a, [wEnemyMonSpecies]
+	call .getSafariShotThreshold
+	ld b, a                          ; B = threshold for this species
 	ld a, [wSafariEscapeFactor]
-	cp 3
+	cp b                             ; escape_factor < threshold → not yet
 	jr c, .checkFlee
 	ld hl, .monsterCollapsedText
 	call PrintText
 	ld hl, wSafariKillCount
 	inc [hl]
+	ret
+
+.getSafariShotThreshold:
+; Input: A = enemy species
+; Output: A = shots needed to capture (1, 2, or 3)
+	cp NIDORAN_M
+	jr z, .shot1
+	cp NIDORAN_F
+	jr z, .shot1
+	cp PARAS
+	jr z, .shot1
+	cp NIDORINA
+	jr z, .shot2
+	cp NIDORINO
+	jr z, .shot2
+	cp EXEGGCUTE
+	jr z, .shot2
+	ld a, 3
+	ret
+.shot1
+	ld a, 1
+	ret
+.shot2
+	ld a, 2
 	ret
 .checkFlee
 	ld a, [wEnemyMonSpeed + 1]
@@ -211,7 +242,7 @@ StartBattle:
 .compareWithRandomValue
 	call Random
 	cp b
-	jr nc, .checkAnyPartyAlive
+	jp nc, .checkAnyPartyAlive
 	jr EnemyRan ; if b was greater than the random value, the enemy runs
 
 .outOfSafariBallsText

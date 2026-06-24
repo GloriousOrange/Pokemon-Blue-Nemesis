@@ -9,7 +9,10 @@ _GivePokemon::
 	jr c, .addToParty
 	ld a, [wBoxCount]
 	cp MONS_PER_BOX
+	jr c, .addToBox
+	farcall AutoSwitchBox
 	jr nc, .boxFull
+.addToBox
 ; add to box
 	xor a
 	ld [wEnemyBattleStatus3], a

@@ -652,6 +652,92 @@ CheckPreviousSaveFile:
 	ld [rRAMG], a
 	ret
 
+AutoSwitchBox::
+; Automatically switch to the next non-full Pokemon box.
+; Saves the current (full) box to SRAM and loads the next available one.
+; carry SET = successfully switched to a new box.
+; carry CLEAR = all boxes are full.
+
+	; Initialise SRAM box slots on first use
+	ld hl, wCurrentBoxNum
+	bit BIT_HAS_CHANGED_BOXES, [hl]
+	call z, EmptyAllSRAMBoxes
+
+	; Store original box index in wBuffer[0]
+	ld a, [wCurrentBoxNum]
+	and BOX_NUM_MASK
+	ld [wBuffer], a
+	ld b, a          ; B = candidate start (current box)
+	ld c, NUM_BOXES  ; C = tries remaining
+
+.asbScanLoop
+	; Advance candidate
+	ld a, b
+	inc a
+	cp NUM_BOXES
+	jr c, .asbNoWrap
+	xor a
+.asbNoWrap
+	ld b, a
+	dec c
+	jr z, .asbAllFull
+
+	; Peek at SRAM count byte for box B
+	push bc
+	ld a, b
+	ld [wCurrentBoxNum], a
+	call GetBoxSRAMLocation  ; b=SRAM bank, hl=SRAM ptr
+	ld a, RAMG_SRAM_ENABLE
+	ld [rRAMG], a
+	ld a, BMODE_ADVANCED
+	ld [rBMODE], a
+	ld a, b
+	ld [rRAMB], a
+	ld a, [hl]               ; box count byte from SRAM
+	ld d, a
+	xor a
+	ld [rBMODE], a
+	ld [rRAMG], a
+	; Restore original wCurrentBoxNum
+	ld a, [wBuffer]
+	ld [wCurrentBoxNum], a
+	pop bc
+
+	; Skip if this SRAM box is also full
+	ld a, d
+	cp MONS_PER_BOX
+	jr nc, .asbScanLoop
+
+	; Found box B with space — save target index
+	ld a, b
+	ld [wBuffer + 1], a
+
+	; Save current (full) box to SRAM
+	call GetBoxSRAMLocation
+	ld e, l
+	ld d, h
+	ld hl, wBoxDataStart
+	call CopyBoxToOrFromSRAM
+
+	; Switch to target box
+	ld a, [wBuffer + 1]
+	set BIT_HAS_CHANGED_BOXES, a
+	ld [wCurrentBoxNum], a
+
+	; Load target box from SRAM
+	call GetBoxSRAMLocation
+	ld de, wBoxDataStart
+	call CopyBoxToOrFromSRAM
+
+	scf
+	ret
+
+.asbAllFull
+	ld a, [wBuffer]
+	ld [wCurrentBoxNum], a
+	and a  ; clear carry
+	ret
+
 SaveHallOfFameTeams:
 	ld a, [wNumHoFTeams]
 	dec a
