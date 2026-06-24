@@ -68,21 +68,9 @@ ChampionsRoomRivalReadyToBattleScript:
 	ld a, OPP_RIVAL3
 	ld [wCurOpponent], a
 
-	; select which team to use during the encounter
-	ld a, [wRivalStarter]
-	cp STARTER2
-	jr nz, .NotStarter2
-	ld a, $1
-	jr .saveTrainerId
-.NotStarter2
-	cp STARTER3
-	jr nz, .NotStarter3
-	ld a, $2
-	jr .saveTrainerId
-.NotStarter3
-	ld a, $3
-.saveTrainerId
-	ld [wTrainerNo], a
+	; select which team to use — table scan by rival's actual starter species
+	ld hl, Rival3StarterTable
+	call ChampionsRoomGetRivalTrainerNo
 
 	xor a
 	ldh [hJoyHeld], a
@@ -298,3 +286,56 @@ ChampionsRoomOakDisappointedWithRivalText:
 ChampionsRoomOakComeWithMeText:
 	text_far _ChampionsRoomOakComeWithMeText
 	text_end
+
+ChampionsRoomGetRivalTrainerNo:
+	ld a, [wRivalStarter]
+	ld b, a
+.scan:
+	ld a, [hli]
+	cp b
+	jr z, .found
+	inc hl
+	jr .scan
+.found:
+	ld a, [hl]
+	ld [wTrainerNo], a
+	ret
+
+Rival3StarterTable:
+	db SQUIRTLE, 1
+	db BULBASAUR, 2
+	db CHARMANDER, 3
+	db PIKACHU, 4
+	db GROWLITHE, 5
+	db MANKEY, 6
+	db MACHOP, 7
+	db HITMONLEE, 8
+	db SANDSHREW, 9
+	db ABRA, 10
+	db DROWZEE, 11
+	db HITMONCHAN, 12
+	db PSYDUCK, 13
+	db PRIMEAPE, 14
+	db PONYTA, 15
+	db ODDISH, 16
+	db VOLTORB, 17
+	db POLIWAG, 18
+	db MAGNEMITE, 19
+	db CATERPIE, 20
+	db ELECTABUZZ, 21
+	db STARYU, 22
+	db JOLTEON, 23
+	db DIGLETT, 24
+	db WEEDLE, 25
+	db GEODUDE, 26
+	db MAGMAR, 27
+	db BELLSPROUT, 28
+	db JYNX, 29
+	db EXEGGCUTE, 30
+	db VENONAT, 31
+	db CUBONE, 32
+	db SEEL, 33
+	db HORSEA, 34
+	db DRATINI, 35
+	db SCYTHER, 36
+	db PINSIR, 37

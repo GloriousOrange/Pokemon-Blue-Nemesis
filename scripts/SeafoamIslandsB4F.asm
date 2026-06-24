@@ -145,7 +145,7 @@ SeafoamIslandsB4F_TextPointers:
 ; trainer headers were not stored by ExecuteCurMapScriptInTable.
 	def_trainers 2
 ArticunoTrainerHeader:
-	trainer EVENT_BEAT_ARTICUNO, 0, SeafoamIslandsB4FArticunoBattleText, SeafoamIslandsB4FArticunoBattleText, SeafoamIslandsB4FArticunoBattleText
+	trainer EVENT_BEAT_ARTICUNO, 0, SeafoamIslandsB4FHikerPreBattleText, SeafoamIslandsB4FHikerEndBattleText, SeafoamIslandsB4FHikerEndBattleText
 	db -1 ; end
 
 SeafoamIslandsB4FArticunoText:
@@ -156,13 +156,13 @@ SeafoamIslandsB4FArticunoText:
 	ld [wSeafoamIslandsB4FCurScript], a
 	jp TextScriptEnd
 
-SeafoamIslandsB4FArticunoBattleText:
-	text_far _SeafoamIslandsB4FArticunoBattleText
-	text_asm
-	ld a, ARTICUNO
-	call PlayCry
-	call WaitForSoundToFinish
-	jp TextScriptEnd
+SeafoamIslandsB4FHikerPreBattleText:
+	text_far _SeafoamIslandsB4FHikerPreBattleText
+	text_end
+
+SeafoamIslandsB4FHikerEndBattleText:
+	text_far _SeafoamIslandsB4FHikerEndBattleText
+	text_end
 
 SeafoamIslandsB4FBouldersSignText:
 	text_far _SeafoamIslandsB4FBouldersSignText

@@ -1,7 +1,8 @@
 _BluesHouseDaisyRivalAtLabText::
-	text "Hi <PLAYER>!"
-	line "<RIVAL> is out at"
-	cont "Grandpa's lab."
+	text "Hello neighbor."
+	line "Your brother is"
+	cont "waiting for you"
+	cont "in the lab."
 	done
 
 _BluesHouseDaisyOfferMapText::
@@ -24,9 +25,11 @@ _BluesHouseDaisyBagFullText::
 	done
 
 _BluesHouseDaisyUseMapText::
-	text "Use the TOWN MAP"
-	line "to find out where"
-	cont "you are."
+	text "I heard you and"
+	line "your brother"
+	cont "intend to leave."
+
+	para "Be safe, please."
 	done
 
 _BluesHouseDaisyWalkingText::
@@ -37,6 +40,11 @@ _BluesHouseDaisyWalkingText::
 	done
 
 _BluesHouseTownMapText::
-	text "It's a big map!"
-	line "This is useful!"
+	text "Sometimes I dream"
+	line "of leaving this"
+	cont "place."
+
+	para "But grandfather"
+	line "won't let people"
+	cont "leave..."
 	done

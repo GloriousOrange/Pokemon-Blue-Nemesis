@@ -207,3 +207,19 @@ _SilphCo7FRivalGoodLuckToYouText::
 	cont "Don't sweat it!"
 	cont "Smell ya!"
 	done
+
+_SilphCo7FRivalStarterDeathText::
+	text "..."
+
+	para "Wait."
+	line "What's wrong?"
+
+	para "Hey! Come on!"
+	line "Get up!"
+
+	para "..."
+	line "No..."
+	cont "Don't do this."
+
+	para "..."
+	done

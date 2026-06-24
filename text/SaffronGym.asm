@@ -31,10 +31,20 @@ _SaffronGymSabrinaReceivedMarshBadgeText::
 	text_end
 
 _SaffronGymSabrinaPostBattleAdviceText::
-	text "Everyone has"
-	line "psychic power!"
-	cont "People just don't"
-	cont "realize it!"
+	text "I see things you"
+	line "cannot. The past"
+	cont "is clear to me."
+
+	para "Your father stood"
+	line "surrounded by the"
+	cont "fallen. Defiant."
+
+	para "The Dragon faced"
+	line "him on that field."
+
+	para "Enough about the"
+	line "past. Focus on"
+	cont "your future."
 	done
 
 _SaffronGymSabrinaMarshBadgeInfoText::

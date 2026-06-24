@@ -80,6 +80,16 @@ SafariZoneGateLeavingSafariScript:
 	jr z, .leaving_early
 	ResetEventReuseHL EVENT_IN_SAFARI_ZONE
 	call UpdateSprites
+	; Give Monster Meat based on kill count
+	ld a, [wSafariKillCount]
+	and a
+	jr z, .noKills
+	ld b, MONSTER_MEAT
+	ld c, a
+	call GiveItem
+.noKills
+	xor a
+	ld [wSafariKillCount], a
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a
 	ld a, TEXT_SAFARIZONEGATE_SAFARI_ZONE_WORKER1_GOOD_HAUL_COME_AGAIN
@@ -185,6 +195,8 @@ SafariZoneGateSafariZoneWorker1WouldYouLikeToJoinText:
 	call PrintText
 	ld a, 30
 	ld [wNumSafariBalls], a
+	xor a
+	ld [wSafariKillCount], a
 	ld a, HIGH(502)
 	ld [wSafariSteps], a
 	ld a, LOW(502)

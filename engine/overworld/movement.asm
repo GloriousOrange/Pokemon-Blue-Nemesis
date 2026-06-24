@@ -353,10 +353,10 @@ UpdateSpriteInWalkingAnimation:
 	add $8
 	ld l, a
 	ldh a, [hRandomAdd]
-	and $7f
+	and $0F
+	inc a
 	ld [hl], a                       ; x#SPRITESTATEDATA2_MOVEMENTDELAY:
-	                                 ; set next movement delay to a random value in [0,$7f]
-	                                 ; note that value 0 actually makes the delay $100 (bug?)
+	                                 ; set next movement delay to a random value in [1,$10]
 	dec h ; HIGH(wSpriteStateData1)
 	ldh a, [hCurrentSpriteOffset]
 	inc a
@@ -759,28 +759,28 @@ DoScriptedNPCMovement:
 	jr nz, .checkIfMovingDown
 	call GetSpriteScreenYPointer
 	ld c, SPRITE_FACING_UP
-	ld a, -2
+	ld a, -1
 	jr .move
 .checkIfMovingDown
 	cp NPC_MOVEMENT_DOWN
 	jr nz, .checkIfMovingLeft
 	call GetSpriteScreenYPointer
 	ld c, SPRITE_FACING_DOWN
-	ld a, 2
+	ld a, 1
 	jr .move
 .checkIfMovingLeft
 	cp NPC_MOVEMENT_LEFT
 	jr nz, .checkIfMovingRight
 	call GetSpriteScreenXPointer
 	ld c, SPRITE_FACING_LEFT
-	ld a, -2
+	ld a, -1
 	jr .move
 .checkIfMovingRight
 	cp NPC_MOVEMENT_RIGHT
 	jr nz, .noMatch
 	call GetSpriteScreenXPointer
 	ld c, SPRITE_FACING_RIGHT
-	ld a, 2
+	ld a, 1
 	jr .move
 .noMatch
 	cp $ff
@@ -799,7 +799,7 @@ DoScriptedNPCMovement:
 	ld hl, wScriptedNPCWalkCounter
 	dec [hl]
 	ret nz
-	ld a, 8
+	ld a, 16
 	ld [wScriptedNPCWalkCounter], a
 	ld hl, wNPCMovementDirections2Index
 	inc [hl]
@@ -808,7 +808,7 @@ DoScriptedNPCMovement:
 InitScriptedNPCMovement:
 	xor a
 	ld [wNPCMovementDirections2Index], a
-	ld a, 8
+	ld a, 16
 	ld [wScriptedNPCWalkCounter], a
 	jp AnimScriptedNPCMovement
 

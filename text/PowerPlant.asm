@@ -2,6 +2,13 @@ _PowerPlantVoltorbBattleText::
 	text "Bzzzt!"
 	done
 
-_PowerPlantZapdosBattleText::
-	text "Gyaoo!@"
-	text_end
+_PowerPlantJugglerPreBattleText::
+	text "This is my"
+	line "domain. Be gone!"
+	done
+
+_PowerPlantJugglerEndBattleText::
+	text "My slaves are"
+	line "grounded for"
+	cont "a week!"
+	prompt

@@ -1,39 +1,29 @@
 _LoreleisRoomLoreleiBeforeBattleText::
-	text "Welcome to"
-	line "#MON LEAGUE!"
+	text "So you made it"
+	line "this far."
 
-	para "I am LORELEI of"
-	line "the ELITE FOUR!"
+	para "Ask yourself:"
+	line "why are you here?"
+	cont "Revenge? Truth?"
 
-	para "No one can best"
-	line "me when it comes"
-	cont "to icy #MON!"
-
-	para "Freezing moves"
-	line "are powerful!"
-
-	para "Your #MON will"
-	line "be at my mercy"
-	cont "when they are"
-	cont "frozen solid!"
-
-	para "Hahaha!"
-	line "Are you ready?"
+	para "Beat me. Then"
+	line "we'll talk about"
+	cont "the war."
 	done
 
 _LoreleisRoomLoreleiEndBattleText::
-	text "How"
-	line "dare you!"
+	text "You won. Now"
+	line "hear me out."
 	prompt
 
 _LoreleisRoomLoreleiAfterBattleText::
-	text "You're better"
-	line "than I thought!"
-	cont "Go on ahead!"
+	text "Ask yourself who"
+	line "gave the orders"
+	cont "to use Monsters"
+	cont "against humans."
 
-	para "You only got a"
-	line "taste of #MON"
-	cont "LEAGUE power!"
+	para "Deep down I"
+	line "think you know."
 	done
 
 _LoreleisRoomLoreleiDontRunAwayText::

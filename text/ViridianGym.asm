@@ -28,19 +28,22 @@ _ViridianGymGiovanniReceivedEarthBadgeText::
 	text_end
 
 _ViridianGymGiovanniPostBattleAdviceText::
-	text "Having lost, I"
-	line "cannot face my"
-	cont "underlings!"
-	cont "TEAM ROCKET is"
-	cont "finished forever!"
+	text "Enough. You want"
+	line "the truth."
 
-	para "I will dedicate my"
-	line "life to the study"
-	cont "of #MON!"
+	para "Lance the Dragon"
+	line "Trainer killed"
+	cont "your father in"
+	cont "battle."
 
-	para "Let us meet again"
-	line "some day!"
-	cont "Farewell!@"
+	para "Your father led"
+	line "Oak's Army. Lance"
+	cont "led the Rebellion."
+
+	para "Lance stopped it."
+	line "Now ask yourself:"
+	cont "are you any"
+	cont "different?@"
 	text_end
 
 _ViridianGymGiovanniEarthBadgeInfoText::

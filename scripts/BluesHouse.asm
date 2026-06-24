@@ -35,17 +35,9 @@ BluesHouseDaisySittingText:
 	jr .done
 
 .give_town_map
-	ld hl, BluesHouseDaisyOfferMapText
-	call PrintText
-	lb bc, TOWN_MAP, 1
-	call GiveItem
-	jr nc, .bag_full
-	ld a, TOGGLE_TOWN_MAP
-	ld [wToggleableObjectIndex], a
-	predef HideObject
-	ld hl, GotMapText
-	call PrintText
 	SetEvent EVENT_GOT_TOWN_MAP
+	ld hl, BluesHouseDaisyUseMapText
+	call PrintText
 	jr .done
 
 .got_town_map

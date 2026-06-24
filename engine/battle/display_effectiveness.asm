@@ -1,4 +1,5 @@
 DisplayEffectiveness:
+	ret
 	ld a, [wDamageMultipliers]
 	and $7F
 	cp EFFECTIVE

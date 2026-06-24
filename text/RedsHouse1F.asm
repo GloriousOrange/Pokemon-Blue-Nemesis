@@ -1,12 +1,9 @@
 _RedsHouse1FMomWakeUpText::
-	text "MOM: Right."
-	line "All boys leave"
-	cont "home some day."
-	cont "It said so on TV."
-
-	para "PROF.OAK, next"
-	line "door, is looking"
-	cont "for you."
+	text "MOM: Please don't"
+	line "leave! I don't"
+	cont "want to lose you"
+	cont "two like I lost"
+	cont "your father."
 	done
 
 _RedsHouse1FMomYouShouldRestText::
@@ -18,18 +15,14 @@ _RedsHouse1FMomYouShouldRestText::
 _RedsHouse1FMomLookingGreatText::
 	text "MOM: Oh good!"
 	line "You and your"
-	cont "#MON are"
-	cont "looking great!"
-	cont "Take care now!"
+	cont "slave look"
+	cont "great! Take"
+	cont "care now!"
 	done
 
 _RedsHouse1FTVStandByMeMovieText::
-	text "There's a movie"
-	line "on TV. Four boys"
-	cont "are walking on"
-	cont "railroad tracks."
-
-	para "I better go too."
+	text "It's a commercial"
+	line "for TAUROS JERKY."
 	done
 
 _RedsHouse1FTVWrongSideText::

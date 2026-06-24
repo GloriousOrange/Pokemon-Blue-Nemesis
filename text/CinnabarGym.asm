@@ -22,12 +22,20 @@ _CinnabarGymBlaineReceivedVolcanoBadgeText::
 	text_end
 
 _CinnabarGymBlainePostBattleAdviceText::
-	text "FIRE BLAST is the"
-	line "ultimate fire"
-	cont "technique!"
+	text "Oak and I were"
+	line "colleagues once."
+	cont "I watched him"
+	cont "change."
 
-	para "Don't waste it on"
-	line "water #MON!"
+	para "He armed trainers"
+	line "with #MON as"
+	cont "weapons of war."
+
+	para "Your father led"
+	line "his forces. Lance"
+	cont "was sent to"
+	cont "end it. By any"
+	cont "means."
 	done
 
 _CinnabarGymBlaineVolcanoBadgeInfoText::

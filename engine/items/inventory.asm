@@ -61,17 +61,17 @@ AddItemToInventory_::
 	ld b, a ; b = quantity to add
 	ld a, [hl] ; a = existing item quantity
 	add b ; a = new item quantity
-	cp 100
-	jp c, .storeNewQuantity ; if the new quantity is less than 100, store it
-; if the new quantity is greater than or equal to 100,
+	cp 81
+	jp c, .storeNewQuantity ; if the new quantity is less than 81, store it
+; if the new quantity is greater than or equal to 81,
 ; try to max out the current slot and add the rest in a new slot
-	sub 99
+	sub 80
 	ld [wItemQuantity], a ; a = amount left over (to put in the new slot)
 	ld a, d
 	and a ; is there room for a new item slot?
 	jr z, .increaseItemQuantityFailed
-; if so, store 99 in the current slot and store the rest in a new slot
-	ld a, 99
+; if so, store 80 in the current slot and store the rest in a new slot
+	ld a, 80
 	ld [hli], a
 	jp .notAtEndOfInventory
 .increaseItemQuantityFailed

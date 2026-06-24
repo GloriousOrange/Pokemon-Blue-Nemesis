@@ -1,12 +1,15 @@
 _FuchsiaGymKogaPostBattleAdviceText::
-	text "When afflicted by"
-	line "TOXIC, #MON"
-	cont "suffer more and"
-	cont "more as battle"
-	cont "progresses!"
+	text "The Dragon found a"
+	line "commander still"
+	cont "fighting after the"
+	cont "war had ended."
 
-	para "It will surely"
-	line "terrorize foes!"
+	para "A soldier with a"
+	line "family. A son"
+	cont "waiting at home."
+
+	para "I have said"
+	line "enough."
 	done
 
 _FuchsiaGymKogaSoulBadgeInfoText::

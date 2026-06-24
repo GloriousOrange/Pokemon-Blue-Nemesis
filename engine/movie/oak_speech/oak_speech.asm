@@ -51,117 +51,134 @@ OakSpeech:
 	call PrepareOakSpeech
 	predef InitPlayerData2
 	ld hl, wNumBoxItems
-	ld a, POTION
+	ld a, HP_UP
+	ld [wCurItem], a
+	ld a, 10
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, PROTEIN
+	ld [wCurItem], a
+	ld a, 10
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, IRON
+	ld [wCurItem], a
+	ld a, 10
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, CALCIUM
+	ld [wCurItem], a
+	ld a, 10
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, CARBOS
+	ld [wCurItem], a
+	ld a, 10
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, RARE_CANDY
+	ld [wCurItem], a
+	ld a, 99
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, SUPER_REPEL
+	ld [wCurItem], a
+	ld a, 99
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, TM_THUNDERBOLT
 	ld [wCurItem], a
 	ld a, 1
 	ld [wItemQuantity], a
 	call AddItemToInventory
+	ld a, TM_BODY_SLAM
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, TM_HYPER_BEAM
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, TM_PSYCHIC_M
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, TM_ICE_BEAM
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, TM_FIRE_BLAST
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, TM_EARTHQUAKE
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld hl, wNumBagItems
+	ld a, HM_CUT
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, HM_FLY
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, HM_SURF
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, HM_STRENGTH
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, HM_FLASH
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	ld a, TOWN_MAP
+	ld [wCurItem], a
+	ld a, 1
+	ld [wItemQuantity], a
+	call AddItemToInventory
+	; All 8 badges unlocked from the start
+	ld a, $ff
+	ld [wObtainedBadges], a
+	ld [wBeatGymFlags], a
+	; All cities visited — enables full fly destination list
+	ld [wTownVisitedFlag], a
+	ld [wTownVisitedFlag + 1], a
+	; Max money: $99,$99,$99 = 999,999 (BCD)
+	ld hl, wPlayerMoney
+	ld [hl], $99
+	inc hl
+	ld [hl], $99
+	inc hl
+	ld [hl], $99
+	; 255 repel steps so wilds are suppressed immediately
+	ld a, 255
+	ld [wRepelRemainingSteps], a
 	ld a, [wDefaultMap]
 	ld [wDestinationMap], a
 	call PrepareForSpecialWarp
 	xor a
 	ldh [hTileAnimations], a
-	ld a, [wStatusFlags6]
-	bit BIT_DEBUG_MODE, a
-	jp nz, .skipSpeech
-	ld de, ProfOakPic
-	lb bc, BANK(ProfOakPic), $00
-	call IntroDisplayPicCenteredOrUpperRight
-	call FadeInIntroPic
-	ld hl, OakSpeechText1
-	call PrintText
-	call GBFadeOutToWhite
-	call ClearScreen
-	ld a, NIDORINO
-	ld [wCurSpecies], a
-	ld [wCurPartySpecies], a
-	call GetMonHeader
-	hlcoord 6, 4
-	call LoadFlippedFrontSpriteByMonIndex
-	call MovePicLeft
-	ld hl, OakSpeechText2
-	call PrintText
-	call GBFadeOutToWhite
-	call ClearScreen
-	ld de, RedPicFront
-	lb bc, BANK(RedPicFront), $00
-	call IntroDisplayPicCenteredOrUpperRight
-	call MovePicLeft
-	ld hl, IntroducePlayerText
-	call PrintText
-	call ChoosePlayerName
-	call GBFadeOutToWhite
-	call ClearScreen
-	ld de, Rival1Pic
-	lb bc, BANK(Rival1Pic), $00
-	call IntroDisplayPicCenteredOrUpperRight
-	call FadeInIntroPic
-	ld hl, IntroduceRivalText
-	call PrintText
-	call ChooseRivalName
 .skipSpeech
-	call GBFadeOutToWhite
-	call ClearScreen
-	ld de, RedPicFront
-	lb bc, BANK(RedPicFront), $00
-	call IntroDisplayPicCenteredOrUpperRight
-	call GBFadeInFromWhite
-	ld a, [wStatusFlags3]
-	and a ; ???
-	jr nz, .next
-	ld hl, OakSpeechText3
-	call PrintText
-.next
-	ldh a, [hLoadedROMBank]
-	push af
-	ld a, SFX_SHRINK
-	call PlaySound
-	pop af
-; bug: switching ROM Bank should not happen outside of Home Bank
-; This code does nothing, as PlaySound does all necessary Bank switch
-; It looks like a leftover from an early development stage
-	ldh [hLoadedROMBank], a
-	ld [rROMB], a
-	ld c, 4
-	call DelayFrames
-	ld de, RedSprite
-	ld hl, vSprites
-	lb bc, BANK(RedSprite), $0C
-	call CopyVideoData
-	ld de, ShrinkPic1
-	lb bc, BANK(ShrinkPic1), $00
-	call IntroDisplayPicCenteredOrUpperRight
-	ld c, 4
-	call DelayFrames
-	ld de, ShrinkPic2
-	lb bc, BANK(ShrinkPic2), $00
-	call IntroDisplayPicCenteredOrUpperRight
 	call ResetPlayerSpriteData
-	ldh a, [hLoadedROMBank]
-	push af
-	ld a, BANK(Music_PalletTown)
-	ld [wAudioROMBank], a
-	ld [wAudioSavedROMBank], a
-	ld a, 10
-	ld [wAudioFadeOutControl], a
-	ld a, SFX_STOP_ALL_MUSIC
-	ld [wNewSoundID], a
-	call PlaySound
-	pop af
-; bug: switching ROM Bank should not happen outside of Home Bank
-	ldh [hLoadedROMBank], a
-	ld [rROMB], a
-	ld c, 20
-	call DelayFrames
-	hlcoord 6, 5
-	ld b, 7
-	ld c, 7
-	call ClearScreenArea
 	call LoadTextBoxTilePatterns
 	ld a, 1
 	ld [wUpdateSpritesEnabled], a
-	ld c, 50
-	call DelayFrames
 	call GBFadeOutToWhite
 	jp ClearScreen
 

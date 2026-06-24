@@ -502,17 +502,8 @@ WarpFound2::
 	ld [wCurMap], a
 	cp ROCK_TUNNEL_1F
 	jr nz, .notRockTunnel
-	ld a, $06
-	ld [wMapPalOffset], a
-	; Auto-Flash: if player has Boulder Badge + HM Flash in bag, keep cave lit
-	ld a, [wObtainedBadges]
-	bit BIT_BOULDERBADGE, a
-	jr z, .noAutoFlash
-	ld a, HM01 + 4          ; HM Flash ($C8)
-	call PlayerHMIsItemInBag
-	jr nc, .noAutoFlash
 	xor a
-	ld [wMapPalOffset], a
+	ld [wMapPalOffset], a ; Rock Tunnel always lit
 .noAutoFlash:
 	call GBFadeOutToBlack
 .notRockTunnel

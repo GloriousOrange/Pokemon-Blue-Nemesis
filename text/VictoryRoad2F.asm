@@ -1,6 +1,11 @@
-_VictoryRoad2FMoltresBattleText::
-	text "Gyaoo!@"
-	text_end
+_VictoryRoad2FPokemaniacPreBattleText::
+	text "You think you're"
+	line "hot stuff?"
+	done
+
+_VictoryRoad2FPokemaniacEndBattleText::
+	text "That got heated!"
+	prompt
 
 _VictoryRoad2FHikerBattleText::
 	text "VICTORY ROAD is"

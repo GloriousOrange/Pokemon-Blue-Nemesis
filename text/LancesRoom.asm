@@ -1,62 +1,49 @@
 _LancesRoomLanceBeforeBattleText::
-	text "Ah! I heard about"
-	line "you <PLAYER>!"
+	text "So. You've come"
+	line "this far, <PLAYER>."
 
-	para "I lead the ELITE"
-	line "FOUR! You can"
-	cont "call me LANCE the"
-	cont "dragon trainer!"
+	para "Then you know the"
+	line "truth."
 
-	para "You know that"
-	line "dragons are"
-	cont "mythical #MON!"
+	para "Your father and"
+	line "Oak built an army"
+	cont "and killed"
+	cont "thousands."
 
-	para "They're hard to"
-	line "catch and raise,"
-	cont "but their powers"
-	cont "are superior!"
+	para "I had no choice."
+	line "I stopped them."
 
-	para "They're virtually"
-	line "indestructible!"
+	para "Now I see you"
+	line "fighting with that"
+	cont "same cruel fire."
 
-	para "Well, are you"
-	line "ready to lose?"
-
-	para "Your LEAGUE"
-	line "challenge ends"
-	cont "with me, <PLAYER>!"
+	para "You fight like"
+	line "them. This ends"
+	cont "here."
 	done
 
 _LancesRoomLanceEndBattleText::
-	text "That's it!"
+	text "I concede."
 
-	para "I hate to admit"
-	line "it, but you are a"
-	cont "#MON master!"
+	para "You fight with"
+	line "vicious authority."
+
+	para "Perhaps you are"
+	line "more like Oak than"
+	cont "your father."
 	prompt
 
 _LancesRoomLanceAfterBattleText::
 	text "I still can't"
 	line "believe my"
-	cont "dragons lost to"
-	cont "you, <PLAYER>!"
+	cont "dragons fell."
 
-	para "You are now the"
-	line "#MON LEAGUE"
-	cont "champion!"
+	para "You have one more"
+	line "challenge ahead."
 
-	para "...Or, you would"
-	line "have been, but"
-	cont "you have one more"
-	cont "challenge ahead."
-
-	para "You have to face"
-	line "another trainer!"
-	cont "His name is..."
-
-	para "<RIVAL>!"
-	line "He beat the ELITE"
-	cont "FOUR before you!"
+	para "<RIVAL> beat the"
+	line "ELITE FOUR before"
+	cont "you."
 
 	para "He is the real"
 	line "#MON LEAGUE"

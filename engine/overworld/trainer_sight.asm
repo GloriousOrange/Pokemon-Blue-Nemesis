@@ -162,6 +162,7 @@ GetSpriteDataPointer:
 
 ; tests if this trainer is in the right position to engage the player and do so if she is.
 TrainerEngage:
+	ret ; trainer auto-sight disabled — battles only via A press
 	push hl
 	push de
 	ld a, [wTrainerSpriteOffset]

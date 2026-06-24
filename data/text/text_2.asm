@@ -813,7 +813,7 @@ _ElevatorText::
 	done
 
 _TownMapText::
-	text "A TOWN MAP.@"
+	text "Where to?@"
 	text_end
 
 _PokemonStuffText::
@@ -825,11 +825,11 @@ _OutOfSafariBallsText::
 	text "PA: Ding-dong!"
 
 	para "You are out of"
-	line "SAFARI BALLs!"
+	line "BALLS!"
 	prompt
 
 _WildRanText::
-	text "Wild @"
+	text "Monster @"
 	text_ram wEnemyMonNick
 	text_start
 	line "ran!"
@@ -1234,7 +1234,7 @@ _GrewLevelText::
 	text_end
 
 _WildMonAppearedText::
-	text "Wild @"
+	text "Monster @"
 	text_ram wEnemyMonNick
 	text_start
 	line "appeared!"
@@ -1326,17 +1326,25 @@ _NotVeryEffectiveText::
 	prompt
 
 _SafariZoneEatingText::
-	text "Wild @"
+	text "Monster @"
 	text_ram wEnemyMonNick
 	text_start
 	line "is eating!"
 	prompt
 
 _SafariZoneAngryText::
-	text "Wild @"
+	text "Monster @"
 	text_ram wEnemyMonNick
 	text_start
-	line "is angry!"
+	line "is wounded!"
+	prompt
+
+_MonsterCollapsedText::
+	text "Monster @"
+	text_ram wEnemyMonNick
+	text_start
+	line "collapsed!"
+	cont "<PLAYER> tagged it."
 	prompt
 
 ; money related

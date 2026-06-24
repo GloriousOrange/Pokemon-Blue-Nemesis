@@ -17,21 +17,17 @@ _SafariZoneGateSafariZoneWorker1ThatllBe500PleaseText::
 	text "That'll be ¥500"
 	line "please!"
 
-	para "We only use a"
-	line "special # BALL"
-	cont "here."
-
-	para "<PLAYER> received"
-	line "30 SAFARI BALLs!@"
+	para "Here is your"
+	line "rifle.@"
 	text_end
 
 _SafariZoneGateSafariZoneWorker1CallYouOnThePAText::
 	text_start
 
-	para "We'll call you on"
-	line "the PA when you"
-	cont "run out of time"
-	cont "or SAFARI BALLs!"
+	para "Tag any Monsters"
+	line "you shoot and"
+	cont "we'll package"
+	line "the meat."
 	done
 
 _SafariZoneGateSafariZoneWorker1PleaseComeAgainText::
@@ -49,9 +45,8 @@ _SafariZoneGateSafariZoneWorker1LeavingEarlyText::
 	text_end
 
 _SafariZoneGateSafariZoneWorker1ReturnSafariBallsText::
-	text "Please return any"
-	line "SAFARI BALLs you"
-	cont "have left."
+	text "Return your"
+	line "rifle please."
 	done
 
 _SafariZoneGateSafariZoneWorker1GoodLuckText::
@@ -59,9 +54,8 @@ _SafariZoneGateSafariZoneWorker1GoodLuckText::
 	done
 
 _SafariZoneGateSafariZoneWorker1GoodHaulComeAgainText::
-	text "Did you get a"
-	line "good haul?"
-	cont "Come again!"
+	text "We packaged your"
+	line "meat. Good haul!"
 	done
 
 _SafariZoneGateSafariZoneWorker2FirstTimeHereText::

@@ -1074,6 +1074,9 @@ ItemUseMedicine:
 	jr .addHealAmount
 .notUsingSoftboiled2
 	ld a, [wCurItem]
+	cp MONSTER_MEAT
+	ld b, 30
+	jr z, .addHealAmount
 	cp SODA_POP
 	ld b, 60 ; Soda Pop heal amount
 	jr z, .addHealAmount
@@ -1446,16 +1449,21 @@ ItemUseBait:
 ItemUseRock:
 	ld hl, ThrewRockText
 	call PrintText
-	ld hl, wEnemyMonActualCatchRate
-	ld a, [hl]
-	add a ; double catch rate
-	jr nc, .noCarry
-	ld a, $ff
-.noCarry
-	ld [hl], a
-	ld a, ROCK_ANIM
+	; Increment shot counter by exactly 1
 	ld hl, wSafariEscapeFactor
-	ld de, wSafariBaitFactor
+	inc [hl]
+	; Zero bait factor
+	xor a
+	ld [wSafariBaitFactor], a
+	; Play animation
+	ld a, ROCK_ANIM
+	ld [wAnimationID], a
+	xor a
+	ld [wAnimationType], a
+	ldh [hWhoseTurn], a
+	predef MoveAnimation
+	ld c, 70
+	jp DelayFrames
 
 BaitRockCommon:
 	ld [wAnimationID], a

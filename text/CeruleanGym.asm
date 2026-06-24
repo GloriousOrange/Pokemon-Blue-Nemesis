@@ -18,11 +18,16 @@ _CeruleanGymMistyPreBattleText::
 	done
 
 _CeruleanGymMistyTM11ExplanationText::
-	text "TM11 teaches"
-	line "BUBBLEBEAM!"
+	text "After the war, one"
+	line "man kept his oath."
 
-	para "Use it on an"
-	line "aquatic #MON!"
+	para "A Dragon Trainer."
+	line "He faced a rogue"
+	cont "commander alone."
+
+	para "Hero or murderer."
+	line "Depends who you"
+	cont "ask."
 	done
 
 _CeruleanGymMistyCascadeBadgeInfoText::

@@ -69,3 +69,39 @@ _PokemonTower5FPurifiedZoneText::
 	para "<PLAYER>'s #MON"
 	line "are fully healed!"
 	done
+
+_PokemonTower5FChanneler1NormalText::
+	text "I feel the weight"
+	line "of loss upon you."
+	cont "The spirits here"
+	line "grow restless..."
+	done
+
+_PokemonTower5FChanneler1SensesAshesText::
+	text "A lost spirit"
+	line "calls out to me."
+	cont "But where are"
+	line "its remains...?"
+	done
+
+_PokemonTower5FChanneler1PartyFullText::
+	text "The spirits sense"
+	line "no room for more."
+	cont "Return when your"
+	line "team has space."
+	done
+
+_PokemonTower5FPurificationText::
+	text "The ashes stir..."
+	cont "A spirit reborn"
+	line "between two worlds."
+	cont "It learned secrets"
+	line "of the dark."
+	done
+
+_PokemonTower5FChanneler1AfterText::
+	text "The reborn spirit"
+	line "walks with you."
+	cont "Between the living"
+	line "and the dead."
+	done

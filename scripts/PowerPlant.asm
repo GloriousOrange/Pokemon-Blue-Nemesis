@@ -49,7 +49,7 @@ Voltorb6TrainerHeader:
 Voltorb7TrainerHeader:
 	trainer EVENT_BEAT_POWER_PLANT_VOLTORB_7, 0, PowerPlantVoltorbBattleText, PowerPlantVoltorbBattleText, PowerPlantVoltorbBattleText
 ZapdosTrainerHeader:
-	trainer EVENT_BEAT_ZAPDOS, 0, PowerPlantZapdosBattleText, PowerPlantZapdosBattleText, PowerPlantZapdosBattleText
+	trainer EVENT_BEAT_ZAPDOS, 0, PowerPlantJugglerPreBattleText, PowerPlantJugglerEndBattleText, PowerPlantJugglerEndBattleText
 	db -1 ; end
 
 PowerPlantInitBattleScript:
@@ -107,10 +107,10 @@ PowerPlantVoltorbBattleText:
 	text_far _PowerPlantVoltorbBattleText
 	text_end
 
-PowerPlantZapdosBattleText:
-	text_far _PowerPlantZapdosBattleText
-	text_asm
-	ld a, ZAPDOS
-	call PlayCry
-	call WaitForSoundToFinish
-	jp TextScriptEnd
+PowerPlantJugglerPreBattleText:
+	text_far _PowerPlantJugglerPreBattleText
+	text_end
+
+PowerPlantJugglerEndBattleText:
+	text_far _PowerPlantJugglerEndBattleText
+	text_end

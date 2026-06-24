@@ -129,18 +129,15 @@ ReadTrainer:
 	ld a, SKY_ATTACK
 	ld [wEnemyMon1Moves + 2], a
 
-; starter
-	ld a, [wRivalStarter]
-	cp STARTER3
-	ld b, MEGA_DRAIN
-	jr z, .GiveStarterMove
-	cp STARTER1
-	ld b, FIRE_BLAST
-	jr z, .GiveStarterMove
-	ld b, BLIZZARD ; must be squirtle
-.GiveStarterMove
-	ld a, b
-	ld [wEnemyMon6Moves + 2], a
+; ghost starter — patch TYPE2 to GHOST so type matchups work correctly
+	ld a, MON_TYPE2
+	ld hl, wEnemyMon6
+	add l
+	ld l, a
+	jr nc, .nc_rival3_type2
+	inc h
+.nc_rival3_type2:
+	ld [hl], GHOST
 .FinishUp
 ; clear wAmountMoneyWon addresses
 	xor a

@@ -26,9 +26,20 @@ _BrunoEndBattleText::
 	prompt
 
 _BrunoAfterBattleText::
-	text "My job is done!"
-	line "Go face your next"
-	cont "challenge!"
+	text "Raw power alone"
+	line "won't uncover"
+	cont "the truth."
+
+	para "Your father served"
+	line "Oak without"
+	cont "question."
+
+	para "Oak is still out"
+	line "there. Watching."
+	cont "Planning."
+
+	para "You walk into a"
+	line "trap for Lance."
 	done
 
 _BrunosRoomBrunoDontRunAwayText::

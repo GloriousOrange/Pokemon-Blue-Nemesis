@@ -178,7 +178,15 @@ StartBattle:
 	ld hl, .outOfSafariBallsText
 	jp PrintText
 .notOutOfSafariBalls
-	callfar PrintSafariZoneBattleText
+	ld a, [wSafariEscapeFactor]
+	cp 3
+	jr c, .checkFlee
+	ld hl, .monsterCollapsedText
+	call PrintText
+	ld hl, wSafariKillCount
+	inc [hl]
+	ret
+.checkFlee
 	ld a, [wEnemyMonSpeed + 1]
 	add a
 	ld b, a ; init b (which is later compared with random value) to (enemy speed % 256) * 2
@@ -208,6 +216,10 @@ StartBattle:
 
 .outOfSafariBallsText
 	text_far _OutOfSafariBallsText
+	text_end
+
+.monsterCollapsedText
+	text_far _MonsterCollapsedText
 	text_end
 
 .playerSendOutFirstMon
@@ -3225,8 +3237,8 @@ MirrorMoveCheck:
 	jp ExecutePlayerMoveDone ; otherwise, we're done if the move missed
 .moveDidNotMiss
 	call ApplyAttackToEnemyPokemon
-	call PrintCriticalOHKOText
-	callfar DisplayEffectiveness
+;	call PrintCriticalOHKOText
+;	callfar DisplayEffectiveness
 	ld a, 1
 	ld [wMoveDidntMiss], a
 .notDone
@@ -5625,8 +5637,8 @@ EnemyCheckIfMirrorMoveEffect:
 	jp ExecuteEnemyMoveDone
 .moveDidNotMiss
 	call ApplyAttackToPlayerPokemon
-	call PrintCriticalOHKOText
-	callfar DisplayEffectiveness
+;	call PrintCriticalOHKOText
+;	callfar DisplayEffectiveness
 	ld a, 1
 	ld [wMoveDidntMiss], a
 .handleExplosionMiss

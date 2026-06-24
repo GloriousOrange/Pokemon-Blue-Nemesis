@@ -1,52 +1,33 @@
 _ChampionsRoomRivalIntroText::
-	text "<RIVAL>: Hey!"
+	text "You made it..."
+	line "Even past MEWTWO."
 
-	para "I was looking"
-	line "forward to seeing"
-	cont "you, <PLAYER>!"
+	para "I've had time"
+	line "to think."
 
-	para "My rival should"
-	line "be strong to keep"
-	cont "me sharp!"
+	para "And so has"
+	line "my partner."
 
-	para "While working on"
-	line "#DEX, I looked"
-	cont "all over for"
-	cont "powerful #MON!"
+	para "They came back."
+	line "Changed. Darker."
 
-	para "Not only that, I"
-	line "assembled teams"
-	cont "that would beat"
-	cont "any #MON type!"
-
-	para "And now!"
-
-	para "I'm the #MON"
-	line "LEAGUE champion!"
-
-	para "<PLAYER>! Do you"
-	line "know what that"
-	cont "means?"
-
-	para "I'll tell you!"
-
-	para "I am the most"
-	line "powerful trainer"
-	cont "in the world!"
+	para "Now face us both!"
 	done
 
 _RivalDefeatedText::
-	text "NO!"
-	line "That can't be!"
-	cont "You beat my best!"
+	text "I can't deny it."
+	line "You're the world's"
+	cont "greatest trainer."
 
-	para "After all that"
-	line "work to become"
-	cont "LEAGUE champ?"
+	para "You should be the"
+	line "one to defeat Oak."
 
-	para "My reign is over"
-	line "already?"
-	cont "It's not fair!"
+	para "The Gym Leaders"
+	line "know where Oak"
+	cont "is hiding."
+
+	para "Go beat it out"
+	line "of them!"
 	prompt
 
 _RivalVictoryText::

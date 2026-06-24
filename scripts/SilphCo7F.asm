@@ -220,6 +220,13 @@ SilphCo7FRivalAfterBattleScript:
 	ld a, TEXT_SILPHCO7F_RIVAL_GOOD_LUCK_TO_YOU
 	ldh [hTextID], a
 	call DisplayTextID
+	; Show rival's starter death scene once
+	CheckEvent EVENT_RIVAL_STARTER_DIED
+	jr nz, .skip_death_scene
+	ld hl, SilphCo7FRivalStarterDeathText
+	call PrintText
+	SetEvent EVENT_RIVAL_STARTER_DIED
+.skip_death_scene:
 	ld a, SFX_STOP_ALL_MUSIC
 	ld [wNewSoundID], a
 	call PlaySound
@@ -500,4 +507,8 @@ SilphCo7FRivalVictoryText:
 
 SilphCo7FRivalGoodLuckToYouText:
 	text_far _SilphCo7FRivalGoodLuckToYouText
+	text_end
+
+SilphCo7FRivalStarterDeathText:
+	text_far _SilphCo7FRivalStarterDeathText
 	text_end

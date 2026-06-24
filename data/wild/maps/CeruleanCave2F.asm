@@ -1,5 +1,5 @@
 CeruleanCave2FWildMons:
-	def_grass_wildmons 15 ; encounter rate
+	def_grass_wildmons 3 ; encounter rate
 	db 51, DODRIO
 	db 51, VENOMOTH
 	db 51, KADABRA

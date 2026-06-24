@@ -1,39 +1,46 @@
+_PalletTownPlayerThoughtText::
+	text "<PLAYER>: This is"
+	line "it. One more step"
+	cont "and this is the"
+	cont "farthest from"
+	cont "home I've ever"
+	cont "been."
+	done
+
 _PalletTownOakHeyWaitDontGoOutText::
-	text "OAK: Hey! Wait!"
-	line "Don't go out!@"
+	text "OAK: Stop!@"
 	text_end
 
 _PalletTownOakItsUnsafeText::
-	text "OAK: It's unsafe!"
-	line "Wild #MON live"
-	cont "in tall grass!"
+	text "OAK: You know"
+	line "there's monsters"
+	cont "out there!"
 
-	para "You need your own"
-	line "#MON for your"
-	cont "protection."
-	cont "I know!"
-
-	para "Here, come with"
-	line "me!"
+	para "If you must"
+	line "venture out, you"
+	cont "need a slave."
+	cont "Follow me."
 	done
 
 _PalletTownGirlText::
-	text "I'm raising"
-	line "#MON too!"
+	text "Don't go past the"
+	line "tall grass. The"
+	cont "Monsters will"
+	cont "get you."
 
-	para "When they get"
-	line "strong, they can"
-	cont "protect me!"
+	para "Thank OAK we"
+	line "have walls."
 	done
 
 _PalletTownFisherText::
-	text "Technology is"
-	line "incredible!"
+	text "I've seen what's"
+	line "out there. We"
+	cont "stay inside"
+	cont "for a reason."
 
-	para "You can now store"
-	line "and recall items"
-	cont "and #MON as"
-	cont "data via PC!"
+	para "OAK built this"
+	line "town to keep us"
+	cont "safe. Good man."
 	done
 
 _PalletTownOaksLabSignText::
@@ -52,5 +59,5 @@ _PalletTownPlayersHouseSignText::
 	done
 
 _PalletTownRivalsHouseSignText::
-	text "<RIVAL>'s house "
+	text "Daisy's house "
 	done

@@ -47,24 +47,17 @@ _Route22Rival1VictoryText::
 	prompt
 
 _Route22RivalBeforeBattleText2::
-	text "<RIVAL>: What?"
-	line "<PLAYER>! What a"
-	cont "surprise to see"
-	cont "you here!"
+	text "My partner is"
+	line "gone. But Prof"
+	cont "OAK lent me his"
+	cont "secret weapon."
 
-	para "So you're going to"
-	line "#MON LEAGUE?"
+	para "An experimental"
+	line "#MON unlike"
+	cont "anything you've"
+	cont "seen before!"
 
-	para "You collected all"
-	line "the BADGEs too?"
-	cont "That's cool!"
-
-	para "Then I'll whip you"
-	line "<PLAYER> as a"
-	cont "warm up for"
-	cont "#MON LEAGUE!"
-
-	para "Come on!"
+	para "Face THIS!"
 	done
 
 _Route22RivalAfterBattleText2::
@@ -81,24 +74,28 @@ _Route22RivalAfterBattleText2::
 	done
 
 _Route22Rival2DefeatedText::
-	text "What!?"
-
-	para "I was just"
-	line "careless!"
+	text "Even MEWTWO..."
+	line "You're the real"
+	cont "deal, <PLAYER>."
 	prompt
 
 _Route22Rival2VictoryText::
-	text "<RIVAL>: Hahaha!"
-	line "<PLAYER>! That's"
-	cont "your best? You're"
-	cont "nowhere near as"
-	cont "good as me, pal!"
+	text "Ha! Not even"
+	line "close, <PLAYER>."
 
-	para "Go train some"
-	line "more! You loser!"
+	para "See you at the"
+	line "top. If you"
+	cont "even make it."
 	prompt
 
 _Route22PokemonLeagueSignText::
 	text "#MON LEAGUE"
 	line "Front Gate"
+	done
+
+_Route22StarterAshesText::
+	text "Your partner"
+	line "fell in battle..."
+	cont "You gather their"
+	line "ashes into an urn."
 	done

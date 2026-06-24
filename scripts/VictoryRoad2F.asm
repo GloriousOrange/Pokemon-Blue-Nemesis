@@ -97,7 +97,7 @@ VictoryRoad2TrainerHeader3:
 VictoryRoad2TrainerHeader4:
 	trainer EVENT_BEAT_VICTORY_ROAD_2_TRAINER_4, 3, VictoryRoad2FSuperNerd3BattleText, VictoryRoad2FSuperNerd3EndBattleText, VictoryRoad2FSuperNerd3AfterBattleText
 MoltresTrainerHeader:
-	trainer EVENT_BEAT_MOLTRES, 0, VictoryRoad2FMoltresBattleText, VictoryRoad2FMoltresBattleText, VictoryRoad2FMoltresBattleText
+	trainer EVENT_BEAT_MOLTRES, 0, VictoryRoad2FPokemaniacPreBattleText, VictoryRoad2FPokemaniacEndBattleText, VictoryRoad2FPokemaniacEndBattleText
 	db -1 ; end
 
 VictoryRoad2FHikerText:
@@ -136,13 +136,13 @@ VictoryRoad2FMoltresText:
 	call TalkToTrainer
 	jp TextScriptEnd
 
-VictoryRoad2FMoltresBattleText:
-	text_far _VictoryRoad2FMoltresBattleText
-	text_asm
-	ld a, MOLTRES
-	call PlayCry
-	call WaitForSoundToFinish
-	jp TextScriptEnd
+VictoryRoad2FPokemaniacPreBattleText:
+	text_far _VictoryRoad2FPokemaniacPreBattleText
+	text_end
+
+VictoryRoad2FPokemaniacEndBattleText:
+	text_far _VictoryRoad2FPokemaniacEndBattleText
+	text_end
 
 VictoryRoad2FHikerBattleText:
 	text_far _VictoryRoad2FHikerBattleText

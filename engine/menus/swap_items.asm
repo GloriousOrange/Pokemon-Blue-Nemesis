@@ -101,12 +101,12 @@ HandleItemListSwapping::
 	ld b, a
 	ld a, [de]
 	add b ; a = sum of both item quantities
-	cp 100 ; is the sum too big for one item slot?
+	cp 81 ; is the sum too big for one item slot?
 	jr c, .combineItemSlots
 ; swap enough items from the first slot to max out the second slot if they can't be combined
-	sub 99
+	sub 80
 	ld [de], a
-	ld a, 99
+	ld a, 80
 	ld [hl], a
 	jr .done
 .combineItemSlots

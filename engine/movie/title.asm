@@ -411,7 +411,7 @@ IF DEF(_BLUE)
 ENDC
 
 DebugNewGamePlayerName:
-	db "NINTEN@"
+	db "Hiro@"
 
 DebugNewGameRivalName:
-	db "SONY@"
+	db "Kataki@"

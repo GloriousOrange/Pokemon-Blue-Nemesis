@@ -71,14 +71,17 @@ DisplayTownMap:
 	call JoypadLowSensitivity
 	ldh a, [hJoy5]
 	ld b, a
-	and PAD_A | PAD_B | PAD_UP | PAD_DOWN
+	and PAD_A | PAD_B | PAD_UP | PAD_DOWN | PAD_LEFT | PAD_RIGHT
 	jr z, .inputLoop
 	ld a, SFX_TINK
 	call PlaySound
-	bit B_PAD_UP, b
-	jr nz, .pressedUp
-	bit B_PAD_DOWN, b
-	jr nz, .pressedDown
+	ld a, b
+	and PAD_UP | PAD_DOWN | PAD_LEFT | PAD_RIGHT
+	jr z, .exitTownMap
+	ld b, a
+	call FindTownMapNeighbor
+	jp .townMapLoop
+.exitTownMap
 	xor a
 	ld [wTownMapSpriteBlinkingEnabled], a
 	ldh [hJoy7], a
@@ -88,24 +91,170 @@ DisplayTownMap:
 	pop af
 	ld [hl], a
 	ret
-.pressedUp
+
+; Finds the nearest TownMapOrder entry in direction B and updates wWhichTownMapLocation.
+; B = direction bitmask (PAD_UP / PAD_DOWN / PAD_LEFT / PAD_RIGHT)
+; Uses wBuffer[0..4]: cur_packed, direction, best_dist, best_idx, scan_idx
+FindTownMapNeighbor:
+	ld a, b
+	ld [wBuffer + 1], a        ; save direction
+
+	; Get current location's packed coords
 	ld a, [wWhichTownMapLocation]
-	inc a
-	cp TownMapOrderEnd - TownMapOrder ; number of list items + 1
-	jr nz, .noOverflow
+	ld hl, TownMapOrder
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hl]                 ; A = current map number
+	ld de, wTownMapCoords
+	call LoadTownMapEntry      ; [wTownMapCoords] = packed coords (y<<4 | x)
+	ld a, [wTownMapCoords]
+	ld [wBuffer + 0], a        ; cur_packed
+
+	; Init: best_dist=$FF (infinity), best_idx=$FF (none), scan_idx=0
+	ld a, $FF
+	ld [wBuffer + 2], a
+	ld [wBuffer + 3], a
 	xor a
-.noOverflow
+	ld [wBuffer + 4], a
+
+.ftnScanLoop:
+	ld a, [wBuffer + 4]
+	cp TownMapOrderEnd - TownMapOrder
+	jp z, .ftnScanDone
+
+	; Get TownMapOrder[scan_idx]
+	ld hl, TownMapOrder
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hl]                 ; A = candidate map number
+	ld de, wTownMapCoords
+	call LoadTownMapEntry      ; [wTownMapCoords] = candidate packed coords
+	ld a, [wTownMapCoords]
+	ld b, a                    ; B = cand_packed
+
+	; Extract cur coords: H = cur_y, L = cur_x
+	ld a, [wBuffer + 0]
+	and $F
+	ld l, a                    ; L = cur_x
+	ld a, [wBuffer + 0]
+	and $F0
+	swap a
+	ld h, a                    ; H = cur_y
+
+	; Extract cand coords: D = cand_y, E = cand_x
+	ld a, b
+	and $F
+	ld e, a                    ; E = cand_x
+	ld a, b
+	and $F0
+	swap a
+	ld d, a                    ; D = cand_y
+
+	; Branch on direction
+	ld a, [wBuffer + 1]
+	bit B_PAD_RIGHT, a
+	jp nz, .ftnRight
+	bit B_PAD_LEFT, a
+	jp nz, .ftnLeft
+	bit B_PAD_UP, a
+	jp nz, .ftnUp
+	; else DOWN
+
+.ftnDown:
+	ld a, d
+	cp h
+	jr z, .ftnNotBetter        ; cand_y == cur_y: skip
+	jr c, .ftnNotBetter        ; cand_y < cur_y: going wrong way, skip
+	sub h                      ; A = D - H (primary delta)
+	add a                      ; A = (D-H)*2
+	ld b, a
+	ld a, e
+	sub l                      ; A = cand_x - cur_x
+	jr nc, .ftnAbsDown
+	cpl
+	inc a                      ; abs(cand_x - cur_x)
+.ftnAbsDown:
+	add b                      ; total dist
+	jr .ftnCompare
+
+.ftnUp:
+	ld a, d
+	cp h
+	jr nc, .ftnNotBetter       ; cand_y >= cur_y: skip
+	ld a, h
+	sub d                      ; A = H - D
+	add a
+	ld b, a
+	ld a, e
+	sub l
+	jr nc, .ftnAbsUp
+	cpl
+	inc a
+.ftnAbsUp:
+	add b
+	jr .ftnCompare
+
+.ftnRight:
+	ld a, e
+	cp l
+	jr z, .ftnNotBetter        ; cand_x == cur_x: skip
+	jr c, .ftnNotBetter        ; cand_x < cur_x: wrong direction, skip
+	sub l                      ; A = E - L
+	add a
+	ld b, a
+	ld a, d
+	sub h
+	jr nc, .ftnAbsRight
+	cpl
+	inc a
+.ftnAbsRight:
+	add b
+	jr .ftnCompare
+
+.ftnLeft:
+	ld a, e
+	cp l
+	jr nc, .ftnNotBetter       ; cand_x >= cur_x: skip
+	ld a, l
+	sub e                      ; A = L - E
+	add a
+	ld b, a
+	ld a, d
+	sub h
+	jr nc, .ftnAbsLeft
+	cpl
+	inc a
+.ftnAbsLeft:
+	add b
+	; fall through to ftnCompare
+
+.ftnCompare:
+	; A = candidate total distance
+	ld b, a                    ; B = cand_dist
+	ld a, [wBuffer + 2]        ; A = best_dist so far
+	cp b
+	jr c, .ftnNotBetter        ; best_dist < cand_dist: not better
+	jr z, .ftnNotBetter        ; equal: keep first found
+	; New best!
+	ld a, b
+	ld [wBuffer + 2], a        ; update best_dist
+	ld a, [wBuffer + 4]
+	ld [wBuffer + 3], a        ; update best_idx
+
+.ftnNotBetter:
+	ld a, [wBuffer + 4]
+	inc a
+	ld [wBuffer + 4], a
+	jp .ftnScanLoop
+
+.ftnScanDone:
+	ld a, [wBuffer + 3]
+	cp $FF
+	ret z                      ; no neighbor in this direction
 	ld [wWhichTownMapLocation], a
-	jp .townMapLoop
-.pressedDown
-	ld a, [wWhichTownMapLocation]
-	dec a
-	cp -1
-	jr nz, .noUnderflow
-	ld a, TownMapOrderEnd - TownMapOrder - 1 ; number of list items
-.noUnderflow
-	ld [wWhichTownMapLocation], a
-	jp .townMapLoop
+	ret
 
 INCLUDE "data/maps/town_map_order.asm"
 

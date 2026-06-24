@@ -6,7 +6,7 @@ _CeladonMartRoofLittleGirlGiveHerWhichDrinkText::
 _CeladonMartRoofLittleGirlYayFreshWaterText::
 	text "Yay!"
 
-	para "FRESH WATER!"
+	para "SLOWPOKETAIL!"
 
 	para "Thank you!"
 
@@ -36,7 +36,7 @@ _CeladonMartRoofLittleGirlTM13ExplanationText::
 _CeladonMartRoofLittleGirlYaySodaPopText::
 	text "Yay!"
 
-	para "SODA POP!"
+	para "SARDINES!"
 
 	para "Thank you!"
 
@@ -66,7 +66,7 @@ _CeladonMartRoofLittleGirlTM48ExplanationText::
 _CeladonMartRoofLittleGirlYayLemonadeText::
 	text "Yay!"
 
-	para "LEMONADE!"
+	para "KANG STEAK!"
 
 	para "Thank you!"
 
@@ -98,13 +98,11 @@ _CeladonMartRoofLittleGirlImNotThirstyText::
 	text_end
 
 _CeladonMartRoofSuperNerdText::
-	text "My sister is a"
-	line "trainer, believe"
-	cont "it or not."
+	text "Have you tried"
+	line "the Sardines?"
 
-	para "But, she's so"
-	line "immature, she"
-	cont "drives me nuts!"
+	para "They're made from"
+	line "Poliwag!"
 	done
 
 _CeladonMartRoofLittleGirlImThirstyText::

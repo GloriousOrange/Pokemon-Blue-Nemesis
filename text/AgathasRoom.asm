@@ -29,13 +29,19 @@ _AgathaEndBattleText::
 	prompt
 
 _AgathaAfterBattleText::
-	text "You win! I see"
-	line "what the old duff"
-	cont "sees in you now!"
+	text "I have seen true"
+	line "evil, child."
+	cont "I know its face."
 
-	para "I have nothing"
-	line "else to say! Run"
-	cont "along now, child!"
+	para "I knew Oak before"
+	line "the war twisted"
+	cont "him."
+
+	para "Lance tried to"
+	line "stop what Oak had"
+	cont "made."
+
+	para "Don't be deceived."
 	done
 
 _AgathasRoomAgathaDontRunAwayText::

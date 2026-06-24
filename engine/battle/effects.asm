@@ -964,7 +964,7 @@ TwoToFiveAttacksEffect:
 	ld [bc], a
 	ret
 .twineedle
-	ld a, POISON_SIDE_EFFECT1
+	ld a, POISON_SIDE_EFFECT2
 	ld [hl], a ; set Twineedle's effect to poison effect
 	jr .saveNumberOfHits
 

@@ -20,16 +20,26 @@ _PokemonMansion2FDiary1Text::
 	line "Guyana,"
 	cont "South America"
 
-	para "A new #MON was"
-	line "discovered deep"
-	cont "in the jungle."
+	para "Something fell"
+	line "from the sky into"
+	cont "the jungle."
+
+	para "Not of this Earth."
+	line "We called it MEW."
 	done
 
 _PokemonMansion2FDiary2Text::
 	text "Diary: July 10"
-	line "We christened the"
-	cont "newly discovered"
-	cont "#MON, MEW."
+	line "OAK arrived that"
+	cont "same day."
+
+	para "He called MEW a"
+	line "blueprint. Said"
+	cont "its DNA holds the"
+	cont "code for all life."
+
+	para "He saw something"
+	line "we didn't."
 	done
 
 _PokemonMansion2FSwitchText::

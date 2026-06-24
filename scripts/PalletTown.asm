@@ -164,6 +164,8 @@ PalletTownOakText:
 	ld a, [wOakWalkedToPlayer]
 	and a
 	jr nz, .next
+	ld hl, .PlayerThoughtText
+	call PrintText
 	ld a, 1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
 	ld hl, .HeyWaitDontGoOutText
@@ -173,6 +175,10 @@ PalletTownOakText:
 .done
 	call PrintText
 	jp TextScriptEnd
+
+.PlayerThoughtText:
+	text_far _PalletTownPlayerThoughtText
+	text_end
 
 .HeyWaitDontGoOutText:
 	text_far _PalletTownOakHeyWaitDontGoOutText
@@ -213,4 +219,8 @@ PalletTownPlayersHouseSignText:
 
 PalletTownRivalsHouseSignText:
 	text_far _PalletTownRivalsHouseSignText
+	text_end
+
+PalletTownPlayerThoughtText:
+	text_far _PalletTownPlayerThoughtText
 	text_end

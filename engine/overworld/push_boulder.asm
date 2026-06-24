@@ -1,7 +1,15 @@
 TryPushingBoulder::
 	ld a, [wStatusFlags1]
 	bit BIT_STRENGTH_ACTIVE, a
-	ret z
+	jr nz, .hasStrength     ; Strength active via Pokemon move
+	; Also allow if player has Rainbow Badge + HM Strength in bag
+	ld a, [wObtainedBadges]
+	bit BIT_RAINBOWBADGE, a
+	ret z                   ; no Rainbow Badge
+	ld a, HM01 + 3          ; HM Strength ($C7)
+	call PlayerHMIsItemInBag
+	ret nc                  ; HM Strength not in bag
+.hasStrength:
 	ld a, [wMiscFlags]
 	bit BIT_BOULDER_DUST, a
 	ret nz

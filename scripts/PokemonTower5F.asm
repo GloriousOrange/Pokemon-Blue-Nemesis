@@ -72,7 +72,60 @@ PokemonTower5TrainerHeader3:
 	db -1 ; end
 
 PokemonTower5FChanneler1Text:
-	text_far _PokemonTower5FChanneler1Text
+	text_asm
+	CheckEvent EVENT_STARTER_RESURRECTED
+	jr nz, .after_ritual
+	CheckEvent EVENT_STARTER_BECAME_ASHES
+	jr z, .no_ashes
+	ld b, URN_OF_ASHES
+	call IsItemInBag
+	jr z, .has_flag_no_urn         ; Z set = NOT in bag
+	; Has urn — check party has room
+	ld a, [wPartyCount]
+	cp PARTY_LENGTH
+	jr z, .party_full
+	; Perform ritual
+	call GBFadeOutToWhite
+	farcall RestoreStarterAsGhost
+	call GBFadeInFromWhite
+	ld hl, PokemonTower5FPurificationText
+	call PrintText
+	jp TextScriptEnd
+.party_full:
+	ld hl, PokemonTower5FChanneler1PartyFullText
+	call PrintText
+	jp TextScriptEnd
+.has_flag_no_urn:
+	ld hl, PokemonTower5FChanneler1SensesAshesText
+	call PrintText
+	jp TextScriptEnd
+.after_ritual:
+	ld hl, PokemonTower5FChanneler1AfterText
+	call PrintText
+	jp TextScriptEnd
+.no_ashes:
+	ld hl, PokemonTower5FChanneler1NormalText
+	call PrintText
+	jp TextScriptEnd
+
+PokemonTower5FChanneler1NormalText:
+	text_far _PokemonTower5FChanneler1NormalText
+	text_end
+
+PokemonTower5FChanneler1SensesAshesText:
+	text_far _PokemonTower5FChanneler1SensesAshesText
+	text_end
+
+PokemonTower5FChanneler1PartyFullText:
+	text_far _PokemonTower5FChanneler1PartyFullText
+	text_end
+
+PokemonTower5FPurificationText:
+	text_far _PokemonTower5FPurificationText
+	text_end
+
+PokemonTower5FChanneler1AfterText:
+	text_far _PokemonTower5FChanneler1AfterText
 	text_end
 
 PokemonTower5FChanneler2Text:

@@ -1,13 +1,15 @@
 _VermilionGymLTSurgePostBattleAdviceText::
-	text "A little word of"
-	line "advice, kid!"
+	text "I fought in that"
+	line "war. The beasts"
+	cont "were just tools."
 
-	para "Electricity is"
-	line "sure powerful!"
+	para "The generals were"
+	line "the real weapons."
+	cont "One in particular."
 
-	para "But, it's useless"
-	line "against ground-"
-	cont "type #MON!"
+	para "He had a kid."
+	line "About your age."
+	cont "Funny thing, that."
 	done
 
 _VermilionGymLTSurgeThunderBadgeInfoText::

@@ -37,14 +37,18 @@ _CeladonGymErikaReceivedRainbowBadgeText::
 	prompt
 
 _CeladonGymErikaPostBattleAdviceText::
-	text "You are cataloging"
-	line "#MON? I must"
-	cont "say I'm impressed."
+	text "The Dragon Trainer"
+	line "faced those who"
+	cont "refused to stop."
 
-	para "I would never"
-	line "collect #MON"
-	cont "if they were"
-	cont "unattractive."
+	para "He stood over a"
+	line "commander who kept"
+	cont "fighting past the"
+	cont "ceasefire."
+
+	para "Some called it"
+	line "justice. Some"
+	cont "called it murder."
 	done
 
 _CeladonGymRainbowBadgeInfoText::

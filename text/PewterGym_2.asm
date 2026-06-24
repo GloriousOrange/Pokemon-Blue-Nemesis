@@ -1,15 +1,14 @@
 _PewterGymBrockPostBattleAdviceText::
-	text "There are all"
-	line "kinds of trainers"
-	cont "in the world!"
+	text "The war left scars"
+	line "on all of us."
 
-	para "You appear to be"
-	line "very gifted as a"
-	cont "#MON trainer!"
+	para "Trainers who could"
+	line "dominate #MON"
+	cont "became weapons."
 
-	para "Go to the GYM in"
-	line "CERULEAN and test"
-	cont "your abilities!"
+	para "Some crossed lines"
+	line "no one came back"
+	cont "from."
 	done
 
 _PewterGymBrockWaitTakeThisText::

@@ -292,6 +292,34 @@ Route22Rival2StartBattleScript:
 	ld [wCurOpponent], a
 	ld hl, .StarterTable
 	call Route22GetRivalTrainerNoByStarterScript
+	; Record whether starter is alive entering this battle
+	CheckEvent EVENT_STARTER_BECAME_ASHES
+	jr nz, .skip_pre_alive_check
+	ld a, [wPlayerStarter]
+	ld b, a
+	ld hl, wPartySpecies
+	ld c, 0
+.find_starter_pre:
+	ld a, [hli]
+	cp $FF
+	jr z, .skip_pre_alive_check
+	cp b
+	jr z, .found_starter_pre
+	inc c
+	jr .find_starter_pre
+.found_starter_pre:
+	push bc
+	ld a, c
+	ld hl, wPartyMons
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	pop bc
+	inc hl                         ; MON_HP at +$01
+	ld a, [hli]
+	or [hl]
+	jr z, .skip_pre_alive_check    ; HP already 0, don't set flag
+	SetEvent EVENT_STARTER_ALIVE_BEFORE_RIVAL2
+.skip_pre_alive_check:
 	ld a, SCRIPT_ROUTE22_RIVAL2_AFTER_BATTLE
 	ld [wRoute22CurScript], a
 	ret
@@ -331,6 +359,53 @@ Route22Rival2AfterBattleScript:
 	ld [wNewSoundID], a
 	call PlaySound
 	farcall Music_RivalAlternateStartAndTempo
+	; Check if starter died in this battle — give urn if so
+	CheckEvent EVENT_STARTER_ALIVE_BEFORE_RIVAL2
+	jr z, .skip_ashes_check
+	CheckEvent EVENT_STARTER_BECAME_ASHES
+	jr nz, .skip_ashes_check
+	ld a, [wPlayerStarter]
+	ld b, a
+	ld hl, wPartySpecies
+	ld c, 0
+.find_starter_post:
+	ld a, [hli]
+	cp $FF
+	jr z, .skip_ashes_check
+	cp b
+	jr z, .found_starter_post
+	inc c
+	jr .find_starter_post
+.found_starter_post:
+	push bc
+	ld a, c
+	ld hl, wPartyMons
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	pop bc
+	; Save base in DE; check TYPE2 — ghost starters skip the ashes mechanic
+	ld d, h
+	ld e, l
+	ld a, e
+	add MON_TYPE2
+	ld l, a
+	jr nc, .nc_type2_post
+	inc h
+.nc_type2_post:
+	ld a, [hl]
+	cp GHOST
+	jr z, .skip_ashes_check        ; already ghost — can't become ashes
+	; restore base, then check HP
+	ld h, d
+	ld l, e
+	inc hl                         ; MON_HP at +$01
+	ld a, [hli]
+	or [hl]
+	jr nz, .skip_ashes_check       ; HP > 0, starter survived
+	farcall SaveStarterToAshes
+	ld hl, Route22StarterAshesText
+	call PrintText
+.skip_ashes_check:
 	ld a, [wSavedCoordIndex]
 	cp 1 ; index of second, lower entry in Route22DefaultScript.Route22RivalBattleCoords
 	jr nz, .exit_movement_2
@@ -443,4 +518,8 @@ Route22Rival2VictoryText:
 
 Route22PokemonLeagueSignText:
 	text_far _Route22PokemonLeagueSignText
+	text_end
+
+Route22StarterAshesText:
+	text_far _Route22StarterAshesText
 	text_end

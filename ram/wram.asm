@@ -2058,6 +2058,7 @@ wTownVisitedFlag:: flag_array NUM_CITY_MAPS
 
 ; starts at 502
 wSafariSteps:: dw
+wSafariKillCount:: db
 
 ; item given to cinnabar lab
 wFossilItem:: db
@@ -2215,6 +2216,11 @@ wDayCareMonName:: ds NAME_LENGTH
 wDayCareMonOT::   ds NAME_LENGTH
 
 wDayCareMon:: box_struct wDayCareMon
+
+wStarterAshesSpecies:: db                      ; saved starter species
+wStarterAshesLevel::   db                      ; saved starter level
+wStarterAshesOTID::    dw                      ; saved starter OT ID (2 bytes)
+wStarterAshesNick::    ds NAME_LENGTH          ; saved starter nickname (11 bytes)
 
 wMainDataEnd::
 

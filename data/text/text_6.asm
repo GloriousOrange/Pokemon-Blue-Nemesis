@@ -87,8 +87,10 @@ _ThrewBaitText::
 	done
 
 _ThrewRockText::
-	text "<PLAYER> threw a"
-	line "ROCK."
+	text "Monster @"
+	text_ram wEnemyMonNick
+	text_start
+	line "was hit!"
 	done
 
 _PlayedFluteNoEffectText::
