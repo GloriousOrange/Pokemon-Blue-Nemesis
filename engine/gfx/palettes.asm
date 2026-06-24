@@ -34,10 +34,20 @@ SetPal_Battle:
 	ld hl, wBattleMonSpecies
 	call DeterminePaletteID
 	ld b, a
+	ld a, [wBattleMonType2]
+	cp GHOST
+	jr nz, .not_player_ghost
+	ld b, PAL_PURPLEMON
+.not_player_ghost:
 	ld a, [wEnemyBattleStatus3]
 	ld hl, wEnemyMonSpecies2
 	call DeterminePaletteID
 	ld c, a
+	ld a, [wEnemyMonType2]
+	cp GHOST
+	jr nz, .not_enemy_ghost
+	ld c, PAL_PURPLEMON
+.not_enemy_ghost:
 	ld hl, wPalPacket + 1
 	ld a, [wPlayerHPBarColor]
 	add PAL_GREENBAR
@@ -75,6 +85,13 @@ SetPal_StatusScreen:
 	ld a, $1 ; not pokemon
 .pokemon
 	call DeterminePaletteIDOutOfBattle
+	push af
+	ld a, [wCurPartySpecies]
+	call CheckIsGhostPartyMon
+	pop af
+	jr nc, .not_ghost_status
+	ld a, PAL_PURPLEMON
+.not_ghost_status:
 	push af
 	ld hl, wPalPacket + 1
 	ld a, [wStatusScreenHPBarColor]
@@ -630,6 +647,47 @@ CopySGBBorderTiles:
 
 	dec b
 	jr nz, .tileLoop
+	ret
+
+CheckIsGhostPartyMon:
+; In:  a = internal species to search for
+; Out: carry set if any party mon with this species has TYPE2=GHOST
+;      carry clear otherwise
+; Clobbers: b, c, hl
+	ld b, a
+	ld a, [wPartyCount]
+	and a
+	ret z
+	ld c, a
+	ld hl, wPartyMons
+.loop:
+	ld a, [hl]
+	cp b
+	jr nz, .skip
+	push hl
+	ld a, l
+	add MON_TYPE2
+	ld l, a
+	jr nc, .nc_type
+	inc h
+.nc_type:
+	ld a, [hl]
+	pop hl
+	cp GHOST
+	jr z, .found
+.skip:
+	ld a, l
+	add PARTYMON_STRUCT_LENGTH
+	ld l, a
+	jr nc, .nc_next
+	inc h
+.nc_next:
+	dec c
+	jr nz, .loop
+	or a
+	ret
+.found:
+	scf
 	ret
 
 INCLUDE "data/sgb/sgb_packets.asm"
