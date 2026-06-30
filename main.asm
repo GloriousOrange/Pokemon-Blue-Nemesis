@@ -213,6 +213,10 @@ SECTION "Megan", ROMX
 ; girlfriend interaction shared by every Megan NPC; reached only via farcall MeganTalk
 INCLUDE "engine/overworld/megan.asm"
 
+SECTION "Item Descriptions", ROMX
+; bag INFO option; reached only via farcall PrintItemDescription
+INCLUDE "engine/items/item_descriptions.asm"
+
 
 SECTION "Battle Core", ROMX
 

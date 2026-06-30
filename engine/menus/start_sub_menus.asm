@@ -352,8 +352,8 @@ StartMenu_Item::
 	xor a
 	ld [hli], a ; current menu item ID
 	inc hl
-	inc a ; a = 1
-	ld [hli], a ; max menu item ID
+	ld a, 2
+	ld [hli], a ; max menu item ID (USE/TOSS/INFO)
 	ld a, PAD_A | PAD_B
 	ld [hli], a ; menu watched keys
 	xor a
@@ -380,8 +380,11 @@ StartMenu_Item::
 .notBicycle
 	ld a, [wCurrentMenuItem]
 	and a
-	jr nz, .tossItem
-; use item
+	jr z, .useItem
+	cp 2
+	jp z, .infoItem
+	jr .tossItem
+.useItem
 	ld [wPseudoItemID], a ; a must be 0 due to above conditional jump
 	ld a, [wCurItem]
 	cp HM01
@@ -436,6 +439,9 @@ StartMenu_Item::
 	ld hl, wNumBagItems
 	call TossItem
 .tossZeroItems
+	jp ItemMenuLoop
+.infoItem
+	farcall PrintItemDescription
 	jp ItemMenuLoop
 
 CannotUseItemsHereText:
