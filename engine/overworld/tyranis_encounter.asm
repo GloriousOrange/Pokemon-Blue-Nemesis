@@ -8,8 +8,6 @@ CheckTyranisEncounter::
 	CheckEvent EVENT_BEAT_MOLTRES
 	ret z
 	ld a, [wLastMap]
-	cp REDS_HOUSE_1F ; speed-test: exit your Pallet house to trigger Tyranis without a PokeCenter trip
-	jr z, .triggerEncounter
 	cp VIRIDIAN_POKECENTER
 	jr z, .triggerEncounter
 	cp PEWTER_POKECENTER

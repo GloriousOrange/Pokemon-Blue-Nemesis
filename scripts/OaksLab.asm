@@ -941,27 +941,11 @@ OaksLabMonChoiceMenu:
 	call PrintText
 	xor a ; PLAYER_PARTY_DATA
 	ld [wMonDataLocation], a
-	ld a, 80
+	ld a, 5
 	ld [wCurEnemyLevel], a
 	ld a, [wCurPartySpecies]
 	ld [wPokedexNum], a
 	call AddPartyMon
-	; Speedtest: Pidgey L15 with Fly in move slot 4
-	ld a, $10 ; player party, but skip the nickname prompt (only the starter is named)
-	ld [wMonDataLocation], a
-	ld a, 15
-	ld [wCurEnemyLevel], a
-	ld a, PIDGEY
-	ld [wPokedexNum], a
-	call AddPartyMon
-	ld a, FLY
-	ld [wPartyMon2Moves + 3], a
-	ld a, 15 ; Fly PP
-	ld [wPartyMon2PP + 3], a
-	lb bc, MASTER_BALL, 5
-	call GiveItem
-	lb bc, LEVEL_STONE, 5 ; speedtest: test stones for the Pallet level-machine
-	call GiveItem
 	ld hl, wStatusFlags4
 	set BIT_GOT_STARTER, [hl]
 	SetEvent EVENT_GOT_POKEDEX ; start the game with the Pokedex (skips the parcel-return give-scene)

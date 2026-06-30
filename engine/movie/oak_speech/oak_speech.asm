@@ -74,32 +74,8 @@ OakSpeech:
 	ld hl, wUnusedPlayerDataByte
 	set BIT_CHALLENGE_NO_ITEMS, [hl]
 .challengeOptionsDone
+	; Starting PC stash — temporary playtest aids; strip before final ship.
 	ld hl, wNumBoxItems
-	ld a, HP_UP
-	ld [wCurItem], a
-	ld a, 10
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, PROTEIN
-	ld [wCurItem], a
-	ld a, 10
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, IRON
-	ld [wCurItem], a
-	ld a, 10
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, CALCIUM
-	ld [wCurItem], a
-	ld a, 10
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, CARBOS
-	ld [wCurItem], a
-	ld a, 10
-	ld [wItemQuantity], a
-	call AddItemToInventory
 	ld a, RARE_CANDY
 	ld [wCurItem], a
 	ld a, 99
@@ -120,79 +96,6 @@ OakSpeech:
 	ld a, 1
 	ld [wItemQuantity], a
 	call AddItemToInventory
-	ld a, TM_HYPER_BEAM
-	ld [wCurItem], a
-	ld a, 1
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, TM_PSYCHIC_M
-	ld [wCurItem], a
-	ld a, 1
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, TM_ICE_BEAM
-	ld [wCurItem], a
-	ld a, 1
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, TM_FIRE_BLAST
-	ld [wCurItem], a
-	ld a, 1
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, TM_EARTHQUAKE
-	ld [wCurItem], a
-	ld a, 1
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld hl, wNumBagItems
-	ld a, HM_CUT
-	ld [wCurItem], a
-	ld a, 1
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, HM_FLY
-	ld [wCurItem], a
-	ld a, 1
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, HM_SURF
-	ld [wCurItem], a
-	ld a, 1
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, HM_STRENGTH
-	ld [wCurItem], a
-	ld a, 1
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, HM_FLASH
-	ld [wCurItem], a
-	ld a, 1
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, TOWN_MAP
-	ld [wCurItem], a
-	ld a, 1
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	; All 8 badges unlocked from the start
-	ld a, $ff
-	ld [wObtainedBadges], a
-	ld [wBeatGymFlags], a
-	; All cities visited — enables full fly destination list
-	ld [wTownVisitedFlag], a
-	ld [wTownVisitedFlag + 1], a
-	; Max money: $99,$99,$99 = 999,999 (BCD)
-	ld hl, wPlayerMoney
-	ld [hl], $99
-	inc hl
-	ld [hl], $99
-	inc hl
-	ld [hl], $99
-	; 255 repel steps so wilds are suppressed immediately
-	ld a, 255
-	ld [wRepelRemainingSteps], a
 	ld a, [wDefaultMap]
 	ld [wDestinationMap], a
 	call PrepareForSpecialWarp

@@ -33,7 +33,7 @@ DEF START_MONEY EQU $3000
 	ld [wMonDataLocation], a
 
 	ld hl, wObtainedBadges
-	ld [hl], $ff      ; all 8 badges (speedtest)
+	ld [hl], a        ; no badges (a = 0)
 	inc hl
 	ASSERT wObtainedBadges + 1 == wUnusedObtainedBadges
 	ld [hl], a
