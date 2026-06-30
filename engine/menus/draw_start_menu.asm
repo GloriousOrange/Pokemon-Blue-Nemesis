@@ -1,15 +1,17 @@
 ; function that displays the start menu
 DrawStartMenu::
+	hlcoord 10, 0
+	ld c, $08
+	ld b, $0c ; base height (no POKéDEX, no CALL MEGAN)
 	CheckEvent EVENT_GOT_POKEDEX
-; menu with pokedex
-	hlcoord 10, 0
-	ld b, $0e
-	ld c, $08
-	jr nz, .drawTextBoxBorder
-; shorter menu if the player doesn't have the pokedex
-	hlcoord 10, 0
-	ld b, $0c
-	ld c, $08
+	jr z, .checkMeganBox
+	ld b, $0e ; +2 rows for the POKéDEX entry
+.checkMeganBox
+	ld a, [wPostGameMisc]
+	bit BIT_GOT_GIRLFRIEND, a
+	jr z, .drawTextBoxBorder
+	inc b
+	inc b ; +2 rows for the CALL MEGAN entry
 .drawTextBoxBorder
 	call TextBoxBorder
 	ld a, PAD_DOWN | PAD_UP | PAD_START | PAD_B | PAD_A
@@ -29,12 +31,19 @@ DrawStartMenu::
 	CheckEvent EVENT_GOT_POKEDEX
 ; case for not having pokedex
 	ld a, $06
-	jr z, .storeMenuItemCount
+	jr z, .countMegan
 ; case for having pokedex
 	ld de, StartMenuPokedexText
 	call PrintStartMenuItem
 	ld a, $07
+.countMegan
+	ld b, a
+	ld a, [wPostGameMisc]
+	bit BIT_GOT_GIRLFRIEND, a
+	jr z, .storeMenuItemCount
+	inc b ; +1 menu item for CALL MEGAN
 .storeMenuItemCount
+	ld a, b
 	ld [wMaxMenuItem], a ; number of menu items
 	ld de, StartMenuPokemonText
 	call PrintStartMenuItem
@@ -53,6 +62,12 @@ DrawStartMenu::
 	call PrintStartMenuItem
 	ld de, StartMenuOptionText
 	call PrintStartMenuItem
+	ld a, [wPostGameMisc]
+	bit BIT_GOT_GIRLFRIEND, a
+	jr z, .noMegan
+	ld de, StartMenuMeganText
+	call PrintStartMenuItem
+.noMegan
 	ld de, StartMenuExitText
 	call PlaceString
 	ld hl, wStatusFlags5
@@ -79,6 +94,9 @@ StartMenuExitText:
 
 StartMenuOptionText:
 	db "OPTION@"
+
+StartMenuMeganText:
+	db "MEGAN@"
 
 PrintStartMenuItem:
 	push hl

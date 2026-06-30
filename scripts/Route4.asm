@@ -60,17 +60,13 @@ Route4SignText:
 	text_far _Route4SignText
 	text_end
 
-; --- Megan (girlfriend): talk -> battle her -> earn the CALL MEGAN keepsake, just outside Mt. Moon ---
-DEF BIT_GOT_GIRLFRIEND EQU 1 ; wPostGameMisc bit
-
+; --- Megan (girlfriend): talk -> battle her -> unlock CALL MEGAN in the Start menu, just outside Mt. Moon ---
 Route4MeganDefeatedScript:
 	ld a, [wIsInBattle]
 	cp $ff
-	jr z, .reset ; battle aborted/lost-load, give nothing
+	jr z, .reset ; battle aborted/lost-load, unlock nothing
 	ld hl, wPostGameMisc
-	set BIT_GOT_GIRLFRIEND, [hl]
-	lb bc, GF_KEEPSAKE, 1
-	call GiveItem ; love text is the end-battle text; give keepsake silently here
+	set BIT_GOT_GIRLFRIEND, [hl] ; love text is the end-battle text; this adds CALL MEGAN to the Start menu
 .reset
 	xor a ; SCRIPT_ROUTE4_DEFAULT
 	ld [wJoyIgnore], a

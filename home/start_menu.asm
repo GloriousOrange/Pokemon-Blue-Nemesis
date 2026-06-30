@@ -24,11 +24,8 @@ RedisplayStartMenu::
 	and a
 	jr nz, .loop
 ; if the player pressed tried to go past the top item, wrap around to the bottom
-	CheckEvent EVENT_GOT_POKEDEX
-	ld a, 6 ; there are 7 menu items with the pokedex, so the max index is 6
-	jr nz, .wrapMenuItemId
-	dec a ; there are only 6 menu items without the pokedex
-.wrapMenuItemId
+	ld a, [wMaxMenuItem] ; item count; the highest index is one less
+	dec a
 	ld [wCurrentMenuItem], a
 	call EraseMenuCursor
 	jr .loop
@@ -36,12 +33,9 @@ RedisplayStartMenu::
 	bit B_PAD_DOWN, a
 	jr z, .buttonPressed
 ; if the player pressed tried to go past the bottom item, wrap around to the top
-	CheckEvent EVENT_GOT_POKEDEX
+	ld a, [wMaxMenuItem] ; item count (EXIT's index + 1 = the past-bottom sentinel)
+	ld c, a
 	ld a, [wCurrentMenuItem]
-	ld c, 7 ; there are 7 menu items with the pokedex
-	jr nz, .checkIfPastBottom
-	dec c ; there are only 6 menu items without the pokedex
-.checkIfPastBottom
 	cp c
 	jr nz, .loop
 ; the player went past the bottom, so wrap to the top
@@ -74,6 +68,12 @@ RedisplayStartMenu::
 	jp z, StartMenu_SaveReset
 	cp 5
 	jp z, StartMenu_Option
+	cp 6
+	jr nz, CloseStartMenu ; index 7 = EXIT (when CALL MEGAN is present)
+; canonical index 6 is CALL MEGAN if Megan has been met, otherwise EXIT
+	ld a, [wPostGameMisc]
+	bit BIT_GOT_GIRLFRIEND, a
+	jp nz, StartMenu_Megan
 
 ; EXIT falls through to here
 CloseStartMenu::

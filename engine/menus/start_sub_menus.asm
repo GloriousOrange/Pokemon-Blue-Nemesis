@@ -6,6 +6,27 @@ StartMenu_Pokedex::
 	call UpdateSprites
 	jp RedisplayStartMenu
 
+; CALL MEGAN: phone the girlfriend -> she greets you, opens the full PC (items +
+; Pokémon storage), says a brief goodbye, then drops you back in the overworld.
+StartMenu_Megan::
+	ld hl, MeganCallGreetingText
+	call PrintText
+	farcall ActivatePC
+	ld hl, MeganCallGoodbyeText
+	call PrintText
+	jp CloseStartMenu
+MeganCallGreetingText:
+	text "MEGAN: Hi, sweetie!"
+	line "Need your PC? Here"
+	cont "you go--anything"
+	cont "for you, love!"
+	prompt
+MeganCallGoodbyeText:
+	text "MEGAN: Love you!"
+	line "Call me anytime,"
+	cont "okay? Stay safe!"
+	prompt
+
 StartMenu_Pokemon::
 	ld a, [wPartyCount]
 	and a

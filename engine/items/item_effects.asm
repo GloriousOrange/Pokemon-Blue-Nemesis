@@ -103,7 +103,7 @@ ItemUsePtrTable:
 	dw ItemUseLevelStoneFromBag ; LEVEL_STONE -> only works when a machine has set BIT_LEVEL_MACHINE_READY
 	dw ItemUseNotTime    ; LAB_KEY (used on the lab door)
 	dw ItemUseNotTime    ; BATTLE_ISLAND_DEED
-	dw ItemUseKeepsake   ; GF_KEEPSAKE -> open the PC anywhere
+	dw ItemUseNotTime    ; GF_KEEPSAKE (reserved; CALL MEGAN now lives in the Start menu)
 
 ItemUseBall:
 
@@ -650,30 +650,6 @@ ItemUseLevelStoneFromBag:
 	bit BIT_LEVEL_MACHINE_READY, a
 	jp nz, ItemUseMedicine
 	jp ItemUseNotTime
-
-; CALL MEGAN: phone the girlfriend -> she greets you, opens the full PC (items +
-; Pokémon storage), then says a brief goodbye.
-ItemUseKeepsake:
-	ld a, [wIsInBattle]
-	and a
-	jp nz, ItemUseNotTime
-	ld hl, MeganCallGreetingText
-	call PrintText
-	farcall ActivatePC
-	ld hl, MeganCallGoodbyeText
-	call PrintText
-	ret
-MeganCallGreetingText:
-	text "MEGAN: Hi, sweetie!"
-	line "Need your PC? Here"
-	cont "you go--anything"
-	cont "for you, love!"
-	prompt
-MeganCallGoodbyeText:
-	text "MEGAN: Love you!"
-	line "Call me anytime,"
-	cont "okay? Stay safe!"
-	prompt
 
 ItemUseBicycle:
 	ld a, [wIsInBattle]

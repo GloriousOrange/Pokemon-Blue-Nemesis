@@ -962,8 +962,6 @@ OaksLabMonChoiceMenu:
 	call GiveItem
 	lb bc, LEVEL_STONE, 5 ; speedtest: test stones for the Pallet level-machine
 	call GiveItem
-	lb bc, GF_KEEPSAKE, 1 ; speedtest: the CALL MEGAN item (phone -> greeting/PC/goodbye)
-	call GiveItem
 	ld hl, wStatusFlags4
 	set BIT_GOT_STARTER, [hl]
 	SetEvent EVENT_GOT_POKEDEX ; start the game with the Pokedex (skips the parcel-return give-scene)
