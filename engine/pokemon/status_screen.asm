@@ -410,7 +410,7 @@ StatusScreen2:
 	ld a, $1
 	ldh [hAutoBGTransferEnabled], a
 	call Delay3
-	call WaitForTextScrollButtonPress
+	call StatusScreen2_MoveInfo
 	pop af
 	ldh [hTileAnimations], a
 	ld hl, wStatusFlags2
@@ -419,6 +419,157 @@ StatusScreen2:
 	ldh [rAUDVOL], a
 	call GBPalWhiteOut
 	jp ClearScreen
+
+StatusScreen2_MoveInfo:
+; Interactive move viewer on the status screen's move page: a cursor sits next to
+; the moves; pressing A opens a box with the selected move's TYPE/POWER/ACCURACY,
+; and B leaves the status screen (preserving the original "press a button to exit"
+; behaviour). The clean move page is snapshotted so each popup can be erased.
+; Disabled in battle: this screen is reached from the in-battle party menu, and
+; .showMoveInfo overwrites the live wPlayerMove* block, so there we just wait for a
+; button like before.
+	ld a, [wIsInBattle]
+	and a
+	jp nz, WaitForTextScrollButtonPress
+	call SaveScreenTilesToBuffer2
+; count the mon's moves (0-terminated, up to NUM_MOVES) for the menu's max index
+	ld hl, wLoadedMonMoves
+	ld b, 0
+.countLoop
+	ld a, [hli]
+	and a
+	jr z, .counted
+	inc b
+	ld a, b
+	cp NUM_MOVES
+	jr c, .countLoop
+.counted
+	ld a, b
+	and a
+	ret z ; no moves: nothing to view, just exit
+	dec a
+	ld [wMaxMenuItem], a
+	xor a
+	ld [wCurrentMenuItem], a
+	ld [wLastMenuItem], a
+	ld [wMenuWatchMovingOutOfBounds], a
+	ld [wMenuWrappingEnabled], a
+	ld a, 9
+	ld [wTopMenuItemY], a
+	ld a, 1
+	ld [wTopMenuItemX], a
+	ld a, PAD_A | PAD_B
+	ld [wMenuWatchedKeys], a
+	ldh a, [hUILayoutFlags]
+	res BIT_DOUBLE_SPACED_MENU, a ; moves are listed single-spaced
+	ldh [hUILayoutFlags], a
+.loop
+	xor a
+	ld [wMenuJoypadPollCount], a ; wait indefinitely for a keypress
+	call HandleMenuInput
+	bit B_PAD_B, a
+	jr nz, .exit
+	call .showMoveInfo
+	call LoadScreenTilesFromBuffer2 ; erase the popup, restore the clean move page
+	jr .loop
+.exit
+	call LoadScreenTilesFromBuffer2 ; leave the clean page for the white-out
+	ret
+
+.showMoveInfo:
+	ld a, [wCurrentMenuItem]
+	ld e, a
+	ld d, 0
+	ld hl, wLoadedMonMoves
+	add hl, de
+	ld a, [hl]
+	and a
+	ret z
+; copy this move's Moves-table entry into the wPlayerMove* block (identical layout:
+; num/effect/power/type/accuracy/maxpp), so PrintMoveType and the fields work as-is
+	dec a
+	ld hl, Moves
+	ld bc, MOVE_LENGTH
+	call AddNTimes
+	ld de, wPlayerMoveNum
+	ld a, BANK(Moves)
+	call FarCopyData
+	hlcoord 1, 4
+	lb bc, 5, 16
+	call TextBoxBorder
+	hlcoord 2, 5
+	ld de, MoveInfoTypeText
+	call PlaceString
+	hlcoord 2, 7
+	ld de, MoveInfoPowerText
+	call PlaceString
+	hlcoord 2, 9
+	ld de, MoveInfoAccText
+	call PlaceString
+	hlcoord 10, 5
+	predef PrintMoveType
+; power (--- when 0, e.g. status moves)
+	ld a, [wPlayerMovePower]
+	and a
+	jr z, .noPower
+	hlcoord 14, 7
+	ld de, wPlayerMovePower
+	lb bc, 1, 3
+	call PrintNumber
+	jr .doAccuracy
+.noPower
+	hlcoord 15, 7
+	ld de, MoveInfoDashes
+	call PlaceString
+.doAccuracy
+	ld a, [wPlayerMoveAccuracy]
+	and a
+	jr z, .noAccuracy
+; accuracy is stored as percent * $ff / 100; recover the percentage:
+; percent = (accuracy * 100 + 127) / 255
+	xor a
+	ldh [hMultiplicand], a
+	ldh [hMultiplicand + 1], a
+	ld a, [wPlayerMoveAccuracy]
+	ldh [hMultiplicand + 2], a
+	ld a, 100
+	ldh [hMultiplier], a
+	call Multiply
+	ldh a, [hProduct + 3]
+	add 127
+	ldh [hProduct + 3], a
+	ldh a, [hProduct + 2]
+	adc 0
+	ldh [hProduct + 2], a
+	ld a, 255
+	ldh [hDivisor], a
+	ld b, 4
+	call Divide
+	ldh a, [hQuotient + 3]
+	ld [wStatusScreenCurrentPP], a ; scratch: PP was already drawn for this page
+	hlcoord 14, 9
+	ld de, wStatusScreenCurrentPP
+	lb bc, 1, 3
+	call PrintNumber
+	jr .infoWait
+.noAccuracy
+	hlcoord 15, 9
+	ld de, MoveInfoDashes
+	call PlaceString
+.infoWait
+	ld a, $1
+	ldh [hAutoBGTransferEnabled], a
+	call Delay3
+	jp WaitForTextScrollButtonPress
+
+MoveInfoTypeText:
+	db "TYPE/@"
+MoveInfoPowerText:
+	db "POWER/@"
+MoveInfoAccText:
+	db "ACCURACY/@"
+MoveInfoDashes:
+	db "---@"
 
 CalcExpToLevelUp:
 	ld a, [wLoadedMonLevel]
