@@ -1258,7 +1258,7 @@ VictreebelDexEntry:
 	text_end
 
 TyranisDexEntry:
-	db "EAGLE@"
+	db "GIANTEAGLE@"
 	db 10,0
 	dw 4000
 	text_far _TyranisDexEntry
@@ -1272,7 +1272,7 @@ MiasmaDexEntry:
 	text_end
 
 NocturnDexEntry:
-	db "RAVEN@"
+	db "HELL RAVEN@"
 	db 4,0
 	dw 300
 	text_far _NocturnDexEntry

@@ -1509,28 +1509,30 @@ _VictreebelDexEntry::
 	dex
 
 _TyranisDexEntry::
-	text "A legendary bird"
-	next "so large it has"
-	next "been known to"
+	text "An ancient symbol"
+	next "of order and chaos"
+	next "it watches over"
 
-	page "carry off TAUROS"
-	next "in its talons."
+	page "the land, crushing"
+	next "evil and testing"
+	next "heroes."
 	dex
 
 _MiasmaDexEntry::
-	text "A six-foot vulture"
-	next "wreathed in toxic"
-	next "fumes. Its shadow"
+	text "It once brought"
+	next "humanity to its"
+	next "knees with plague,"
 
-	page "is said to spread"
-	next "blight and plague."
+	page "until the other"
+	next "legendary birds"
+	next "subdued it."
 	dex
 
 _NocturnDexEntry::
-	text "A four-foot raven"
-	next "from the spirit"
-	next "world. Its cry is"
+	text "A mysterious"
+	next "entity from the"
+	next "underworld. Little"
 
-	page "said to summon"
-	next "the restless dead."
+	page "is known of this"
+	next "ghostly raven."
 	dex
