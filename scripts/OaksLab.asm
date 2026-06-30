@@ -457,6 +457,9 @@ OaksLabRivalStartsExitScript:
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN ; walk all the way to the lab door (y=3 -> y=11) and exit
 	db -1 ; end
 
 OaksLabPlayerWatchRivalExitScript:
@@ -469,7 +472,9 @@ OaksLabPlayerWatchRivalExitScript:
 	xor a
 	ld [wJoyIgnore], a
 	call PlayDefaultMusic ; reset to map music
-	ld a, SCRIPT_OAKSLAB_RIVAL_ARRIVES_AT_OAKS_REQUEST
+	; skip the rival-walks-back-in POKéDEX ceremony (you already have the dex);
+	; go straight to the leaves-with-pokedex bookkeeping
+	ld a, SCRIPT_OAKSLAB_RIVAL_LEAVES_WITH_POKEDEX
 	ld [wOaksLabCurScript], a
 	jr .done
 ; make the player keep facing the rival as he walks away
@@ -621,6 +626,20 @@ OaksLabRivalLeavesWithPokedexScript:
 	ld a, TOGGLE_OAKS_LAB_RIVAL
 	ld [wToggleableObjectIndex], a
 	predef HideObject
+	; the walk-back-in POKéDEX ceremony is cut; apply its lingering visual side
+	; effects here so the lab table and the Viridian old man end up correct
+	ld a, TOGGLE_POKEDEX_1
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	ld a, TOGGLE_POKEDEX_2
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	ld a, TOGGLE_LYING_OLD_MAN
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	ld a, TOGGLE_OLD_MAN
+	ld [wToggleableObjectIndex], a
+	predef ShowObject
 	SetEvent EVENT_1ST_ROUTE22_RIVAL_BATTLE
 	ResetEventReuseHL EVENT_2ND_ROUTE22_RIVAL_BATTLE
 	SetEventReuseHL EVENT_ROUTE22_RIVAL_WANTS_BATTLE
