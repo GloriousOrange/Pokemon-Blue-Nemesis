@@ -394,7 +394,7 @@ LoadTownMap_Fly::
 	jr z, .pressedDown ; skip past unvisited towns
 	jp .townMapFlyLoop
 .wrapToEndOfList
-	ld hl, wFlyLocationsList + NUM_CITY_MAPS + 1
+	ld hl, wFlyLocationsList + NUM_CITY_MAPS + 2
 	jr .pressedDown
 
 ToText:
@@ -428,6 +428,15 @@ BuildFlyLocationsList:
 	jr nz, .seafoamDiscovered
 	ld a, NOT_VISITED
 .seafoamDiscovered
+	ld [hl], a
+	inc hl
+; append Mt. Moon's entrance if discovered (wTownVisitedFlag bit 13)
+	ld a, [wTownVisitedFlag + 1]
+	bit 5, a
+	ld a, MT_MOON_1F
+	jr nz, .mtMoonDiscovered
+	ld a, NOT_VISITED
+.mtMoonDiscovered
 	ld [hl], a
 	inc hl
 	ld [hl], $ff

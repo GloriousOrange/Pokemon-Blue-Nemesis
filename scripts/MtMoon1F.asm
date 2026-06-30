@@ -1,5 +1,7 @@
 MtMoon1F_Script:
 	call EnableAutoTextBoxDrawing
+	ld hl, wTownVisitedFlag + 1
+	set 5, [hl] ; bit 13: Mt. Moon entrance discovered -> unlocks flying here
 	ld hl, MtMoon1TrainerHeaders
 	ld de, MtMoon1F_ScriptPointers
 	ld a, [wMtMoon1FCurScript]

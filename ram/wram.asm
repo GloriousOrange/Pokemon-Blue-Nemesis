@@ -679,7 +679,7 @@ wRivalStarterBallSpriteIndex:: db
 NEXTU
 wFlyAnimUsingCoordList:: db
 ; $ff sentinel values at each end
-wFlyLocationsList:: ds NUM_CITY_MAPS + 2
+wFlyLocationsList:: ds NUM_CITY_MAPS + 3 ; 12 cities + Seafoam + Mt. Moon + $ff terminator
 
 NEXTU
 wWhichTownMapLocation:: db

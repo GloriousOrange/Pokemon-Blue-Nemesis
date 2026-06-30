@@ -77,6 +77,7 @@ FlyWarpDataPtr:
 	fly_warp_spec ROUTE_4,         .Route4
 	fly_warp_spec ROUTE_10,        .Route10
 	fly_warp_spec SEAFOAM_ISLANDS_1F, .SeafoamIslands
+	fly_warp_spec MT_MOON_1F,      .MtMoon1F
 
 .PalletTown:     fly_warp PALLET_TOWN,      5,  6
 .ViridianCity:   fly_warp VIRIDIAN_CITY,   23, 26
@@ -93,3 +94,4 @@ FlyWarpDataPtr:
 .Route4:         fly_warp ROUTE_4,         11,  6
 .Route10:        fly_warp ROUTE_10,        11, 20
 .SeafoamIslands: fly_warp SEAFOAM_ISLANDS_1F, 5, 16
+.MtMoon1F:       fly_warp MT_MOON_1F, 14, 33 ; entrance corridor, just above the Route 4 exit warp
