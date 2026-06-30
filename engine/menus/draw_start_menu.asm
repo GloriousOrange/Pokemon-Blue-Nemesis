@@ -96,7 +96,7 @@ StartMenuOptionText:
 	db "OPTION@"
 
 StartMenuMeganText:
-	db "MEGAN@"
+	db "PHONE@"
 
 PrintStartMenuItem:
 	push hl
