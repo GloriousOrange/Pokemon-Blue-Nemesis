@@ -18,7 +18,16 @@ PrintItemDescription::
 	ld l, a
 	jp PrintText
 .machine
-	ld hl, MachineDesc
+; HMs and TMs are contiguous item IDs from HM01 up; index by (id - HM01).
+	sub HM01
+	ld e, a
+	ld d, 0
+	ld hl, MachineDescriptionPointers
+	add hl, de
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 	jp PrintText
 
 ItemDescriptionPointers:
@@ -473,7 +482,349 @@ CallMeganDesc:
 	line "your PC anywhere."
 	prompt
 
-MachineDesc:
-	text "Teaches a move to"
-	line "a POKéMON."
+; Indexed by (item ID - HM01): the 6 HMs first, then TM01..TM52, in item-ID order.
+MachineDescriptionPointers:
+	dw MachineCutDesc         ; HM CUT
+	dw MachineFlyDesc         ; HM FLY
+	dw MachineSurfDesc        ; HM SURF
+	dw MachineStrengthDesc    ; HM STRENGTH
+	dw MachineFlashDesc       ; HM FLASH
+	dw MachineMetronome2Desc  ; HM METRONOME2
+	dw MachineMegaPunchDesc   ; TM01 MEGA_PUNCH
+	dw MachineRazorWindDesc   ; TM02 RAZOR_WIND
+	dw MachineSwordsDanceDesc ; TM03 SWORDS_DANCE
+	dw MachineWhirlwindDesc   ; TM04 WHIRLWIND
+	dw MachineMegaKickDesc    ; TM05 MEGA_KICK
+	dw MachineToxicDesc       ; TM06 TOXIC
+	dw MachineHornDrillDesc   ; TM07 HORN_DRILL
+	dw MachineBodySlamDesc    ; TM08 BODY_SLAM
+	dw MachineTakeDownDesc    ; TM09 TAKE_DOWN
+	dw MachineDoubleEdgeDesc  ; TM10 DOUBLE_EDGE
+	dw MachineBubblebeamDesc  ; TM11 BUBBLEBEAM
+	dw MachineWaterGunDesc    ; TM12 WATER_GUN
+	dw MachineIceBeamDesc     ; TM13 ICE_BEAM
+	dw MachineBlizzardDesc    ; TM14 BLIZZARD
+	dw MachineHyperBeamDesc   ; TM15 HYPER_BEAM
+	dw MachinePayDayDesc      ; TM16 PAY_DAY
+	dw MachineSubmissionDesc  ; TM17 SUBMISSION
+	dw MachineCounterDesc     ; TM18 COUNTER
+	dw MachineSeismicTossDesc ; TM19 SEISMIC_TOSS
+	dw MachineRageDesc        ; TM20 RAGE
+	dw MachineMegaDrainDesc   ; TM21 MEGA_DRAIN
+	dw MachineSolarbeamDesc   ; TM22 SOLARBEAM
+	dw MachineDragonRageDesc  ; TM23 DRAGON_RAGE
+	dw MachineThunderboltDesc ; TM24 THUNDERBOLT
+	dw MachineThunderDesc     ; TM25 THUNDER
+	dw MachineEarthquakeDesc  ; TM26 EARTHQUAKE
+	dw MachineFissureDesc     ; TM27 FISSURE
+	dw MachineDigDesc         ; TM28 DIG
+	dw MachinePsychicDesc     ; TM29 PSYCHIC_M
+	dw MachineTeleportDesc    ; TM30 TELEPORT
+	dw MachineMimicDesc       ; TM31 MIMIC
+	dw MachineDoubleTeamDesc  ; TM32 DOUBLE_TEAM
+	dw MachineReflectDesc     ; TM33 REFLECT
+	dw MachineBideDesc        ; TM34 BIDE
+	dw MachineMetronomeDesc   ; TM35 METRONOME
+	dw MachineSelfdestructDesc; TM36 SELFDESTRUCT
+	dw MachineEggBombDesc     ; TM37 EGG_BOMB
+	dw MachineFireBlastDesc   ; TM38 FIRE_BLAST
+	dw MachineSwiftDesc       ; TM39 SWIFT
+	dw MachineSkullBashDesc   ; TM40 SKULL_BASH
+	dw MachineSoftboiledDesc  ; TM41 SOFTBOILED
+	dw MachineDreamEaterDesc  ; TM42 DREAM_EATER
+	dw MachineSkyAttackDesc   ; TM43 SKY_ATTACK
+	dw MachineRestDesc        ; TM44 REST
+	dw MachineThunderWaveDesc ; TM45 THUNDER_WAVE
+	dw MachinePsywaveDesc     ; TM46 PSYWAVE
+	dw MachineExplosionDesc   ; TM47 EXPLOSION
+	dw MachineRockSlideDesc   ; TM48 ROCK_SLIDE
+	dw MachineTriAttackDesc   ; TM49 TRI_ATTACK
+	dw MachineSubstituteDesc  ; TM50 SUBSTITUTE
+	dw MachineNightShadeDesc  ; TM51 NIGHT_SHADE
+	dw MachineConfuseRayDesc  ; TM52 CONFUSE_RAY
+
+MachineCutDesc:
+	text "CUT"
+	line "Slashes the foe;"
+	cont "fells small trees."
+	prompt
+MachineFlyDesc:
+	text "FLY"
+	line "Strikes from the"
+	cont "sky. Travels fast."
+	prompt
+MachineSurfDesc:
+	text "SURF"
+	line "A wave hits the"
+	cont "foe. Crosses water."
+	prompt
+MachineStrengthDesc:
+	text "STRENGTH"
+	line "A strong tackle."
+	cont "Moves boulders."
+	prompt
+MachineFlashDesc:
+	text "FLASH"
+	line "Lowers the foe's"
+	cont "accuracy. Lights up."
+	prompt
+MachineMetronome2Desc:
+	text "METRONOME2"
+	line "Unleashes a random"
+	cont "powerful move."
+	prompt
+MachineMegaPunchDesc:
+	text "MEGA PUNCH"
+	line "A strong punch."
+	prompt
+MachineRazorWindDesc:
+	text "RAZOR WIND"
+	line "Charges, then cuts"
+	cont "the foe next turn."
+	prompt
+MachineSwordsDanceDesc:
+	text "SWORDS DANCE"
+	line "Sharply raises the"
+	cont "user's ATTACK."
+	prompt
+MachineWhirlwindDesc:
+	text "WHIRLWIND"
+	line "A FLYING-type"
+	cont "gust attack."
+	prompt
+MachineMegaKickDesc:
+	text "MEGA KICK"
+	line "A powerful kick."
+	prompt
+MachineToxicDesc:
+	text "TOXIC"
+	line "Badly poisons; the"
+	cont "damage grows."
+	prompt
+MachineHornDrillDesc:
+	text "HORN DRILL"
+	line "A one-hit KO if it"
+	cont "connects."
+	prompt
+MachineBodySlamDesc:
+	text "BODY SLAM"
+	line "A full-body tackle;"
+	cont "may paralyze."
+	prompt
+MachineTakeDownDesc:
+	text "TAKE DOWN"
+	line "A strong hit; user"
+	cont "takes recoil."
+	prompt
+MachineDoubleEdgeDesc:
+	text "DOUBLE-EDGE"
+	line "Very strong; heavy"
+	cont "recoil to user."
+	prompt
+MachineBubblebeamDesc:
+	text "BUBBLEBEAM"
+	line "Water jet; may cut"
+	cont "the foe's SPEED."
+	prompt
+MachineWaterGunDesc:
+	text "WATER GUN"
+	line "Squirts water at"
+	cont "the foe."
+	prompt
+MachineIceBeamDesc:
+	text "ICE BEAM"
+	line "An icy beam; may"
+	cont "freeze the foe."
+	prompt
+MachineBlizzardDesc:
+	text "BLIZZARD"
+	line "A fierce storm; may"
+	cont "freeze the foe."
+	prompt
+MachineHyperBeamDesc:
+	text "HYPER BEAM"
+	line "Huge damage; must"
+	cont "recharge after."
+	prompt
+MachinePayDayDesc:
+	text "PAY DAY"
+	line "Throws coins; you"
+	cont "collect them after."
+	prompt
+MachineSubmissionDesc:
+	text "SUBMISSION"
+	line "A tackle; user"
+	cont "takes some recoil."
+	prompt
+MachineCounterDesc:
+	text "COUNTER"
+	line "Returns double a"
+	cont "physical hit."
+	prompt
+MachineSeismicTossDesc:
+	text "SEISMIC TOSS"
+	line "Damage equals the"
+	cont "user's level."
+	prompt
+MachineRageDesc:
+	text "RAGE"
+	line "ATTACK rises each"
+	cont "time user is hit."
+	prompt
+MachineMegaDrainDesc:
+	text "MEGA DRAIN"
+	line "Drains HP from the"
+	cont "foe to heal user."
+	prompt
+MachineSolarbeamDesc:
+	text "SOLARBEAM"
+	line "Absorbs light, then"
+	cont "fires next turn."
+	prompt
+MachineDragonRageDesc:
+	text "DRAGON RAGE"
+	line "Always deals 40"
+	cont "damage."
+	prompt
+MachineThunderboltDesc:
+	text "THUNDERBOLT"
+	line "A bolt; may"
+	cont "paralyze the foe."
+	prompt
+MachineThunderDesc:
+	text "THUNDER"
+	line "A huge bolt; may"
+	cont "paralyze the foe."
+	prompt
+MachineEarthquakeDesc:
+	text "EARTHQUAKE"
+	line "A powerful GROUND"
+	cont "attack."
+	prompt
+MachineFissureDesc:
+	text "FISSURE"
+	line "A one-hit KO if it"
+	cont "connects."
+	prompt
+MachineDigDesc:
+	text "DIG"
+	line "Burrows turn 1,"
+	cont "strikes turn 2."
+	prompt
+MachinePsychicDesc:
+	text "PSYCHIC"
+	line "Strong; may lower"
+	cont "the foe's SPECIAL."
+	prompt
+MachineTeleportDesc:
+	text "TELEPORT"
+	line "Flees wild battles;"
+	cont "warps outside."
+	prompt
+MachineMimicDesc:
+	text "MIMIC"
+	line "Copies one of the"
+	cont "foe's moves."
+	prompt
+MachineDoubleTeamDesc:
+	text "DOUBLE TEAM"
+	line "Raises the user's"
+	cont "evasion."
+	prompt
+MachineReflectDesc:
+	text "REFLECT"
+	line "Halves physical"
+	cont "damage taken."
+	prompt
+MachineBideDesc:
+	text "BIDE"
+	line "Waits, then returns"
+	cont "double the damage."
+	prompt
+MachineMetronomeDesc:
+	text "METRONOME"
+	line "Uses a random move."
+	prompt
+MachineSelfdestructDesc:
+	text "SELFDESTRUCT"
+	line "Big damage; the"
+	cont "user faints."
+	prompt
+MachineEggBombDesc:
+	text "EGG BOMB"
+	line "Hurls a large egg"
+	cont "at the foe."
+	prompt
+MachineFireBlastDesc:
+	text "FIRE BLAST"
+	line "A blast; may burn"
+	cont "the foe."
+	prompt
+MachineSwiftDesc:
+	text "SWIFT"
+	line "Star rays that"
+	cont "never miss."
+	prompt
+MachineSkullBashDesc:
+	text "SKULL BASH"
+	line "Lowers head turn 1,"
+	cont "rams turn 2."
+	prompt
+MachineSoftboiledDesc:
+	text "SOFTBOILED"
+	line "Restores half the"
+	cont "user's max HP."
+	prompt
+MachineDreamEaterDesc:
+	text "DREAM EATER"
+	line "Drains HP from a"
+	cont "sleeping foe."
+	prompt
+MachineSkyAttackDesc:
+	text "SKY ATTACK"
+	line "Charges turn 1,"
+	cont "strikes turn 2."
+	prompt
+MachineRestDesc:
+	text "REST"
+	line "User sleeps and"
+	cont "fully heals."
+	prompt
+MachineThunderWaveDesc:
+	text "THUNDER WAVE"
+	line "Paralyzes the foe."
+	prompt
+MachinePsywaveDesc:
+	text "PSYWAVE"
+	line "Deals random"
+	cont "damage."
+	prompt
+MachineExplosionDesc:
+	text "EXPLOSION"
+	line "Huge damage; the"
+	cont "user faints."
+	prompt
+MachineRockSlideDesc:
+	text "ROCK SLIDE"
+	line "Drops boulders on"
+	cont "the foe."
+	prompt
+MachineTriAttackDesc:
+	text "TRI ATTACK"
+	line "A three-beam"
+	cont "attack."
+	prompt
+MachineSubstituteDesc:
+	text "SUBSTITUTE"
+	line "Makes a decoy from"
+	cont "the user's HP."
+	prompt
+MachineNightShadeDesc:
+	text "NIGHT SHADE"
+	line "Damage equals the"
+	cont "user's level."
+	prompt
+MachineConfuseRayDesc:
+	text "CONFUSE RAY"
+	line "Confuses the foe."
 	prompt
