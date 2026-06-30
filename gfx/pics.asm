@@ -325,8 +325,8 @@ VictreebelPicFront::   INCBIN "gfx/pokemon/front/victreebel.pic"
 VictreebelPicBack::    INCBIN "gfx/pokemon/back/victreebelb.pic"
 
 SECTION "Pics 6", ROMX
-TyranisPicFront::      INCBIN "gfx/pokemon/front/tyranis.pic"
-TyranisPicBack::       INCBIN "gfx/pokemon/back/tyranisb.pic"
+TyranisPicFront::      INCBIN "gfx/pokemon/front/zapdos.pic"  ; PLACEHOLDER sprite (Zapdos) — recolor later
+TyranisPicBack::       INCBIN "gfx/pokemon/back/zapdosb.pic"  ; PLACEHOLDER sprite (Zapdos) — recolor later
 
 
 SECTION "Trainer Pics", ROMX
