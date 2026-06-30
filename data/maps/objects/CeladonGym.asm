@@ -7,6 +7,7 @@
 	const_export CELADONGYM_COOLTRAINER_F3
 	const_export CELADONGYM_BEAUTY3
 	const_export CELADONGYM_COOLTRAINER_F4
+	const_export CELADONGYM_MEGAN
 
 CeladonGym_Object:
 	db $3 ; border block
@@ -26,5 +27,6 @@ CeladonGym_Object:
 	object_event  6,  3, SPRITE_COOLTRAINER_F, STAY, DOWN, TEXT_CELADONGYM_COOLTRAINER_F3, OPP_LASS, 18
 	object_event  3,  3, SPRITE_BEAUTY, STAY, DOWN, TEXT_CELADONGYM_BEAUTY3, OPP_BEAUTY, 3
 	object_event  5,  3, SPRITE_COOLTRAINER_F, STAY, DOWN, TEXT_CELADONGYM_COOLTRAINER_F4, OPP_COOLTRAINER_F, 1
+	object_event 5, 10, SPRITE_GIRL, STAY, DOWN, TEXT_CELADONGYM_MEGAN ; girlfriend Megan (collision-verified)
 
 	def_warps_to CELADON_GYM

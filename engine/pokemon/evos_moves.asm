@@ -458,7 +458,7 @@ WriteMonMoves:
 
 ; shift PP as well if learning moves from day care
 	push de
-	ld bc, MON_PP - (MON_MOVES + 3)
+	ld bc, MON_PP - (MON_MOVES + NUM_MOVES - 1) ; last move slot -> PP region
 	add hl, bc
 	ld d, h
 	ld e, l

@@ -152,4 +152,6 @@ MonPartyData:
 	nybble ICON_MON       ; Mewtwo
 	nybble ICON_MON       ; Mew
 	nybble ICON_BIRD      ; Tyranis
+	nybble ICON_BIRD      ; Miasma
+	nybble ICON_BIRD      ; Nocturn
 	end_nybble_array NUM_POKEMON

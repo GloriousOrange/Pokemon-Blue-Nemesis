@@ -2,6 +2,10 @@
 	const_export PALLETTOWN_OAK
 	const_export PALLETTOWN_GIRL
 	const_export PALLETTOWN_FISHER
+	const_export PALLETTOWN_BIRD1 ; speed-test: Zapdos keeper
+	const_export PALLETTOWN_BIRD2 ; speed-test: Articuno keeper
+	const_export PALLETTOWN_BIRD3 ; speed-test: Moltres keeper
+	const_export PALLETTOWN_MACHINE ; speed-test: level-up machine operator
 
 PalletTown_Object:
 	db $b ; border block
@@ -21,5 +25,9 @@ PalletTown_Object:
 	object_event  8,  5, SPRITE_OAK, STAY, NONE, TEXT_PALLETTOWN_OAK
 	object_event  3,  8, SPRITE_GIRL, WALK, ANY_DIR, TEXT_PALLETTOWN_GIRL
 	object_event 11, 14, SPRITE_FISHER, WALK, ANY_DIR, TEXT_PALLETTOWN_FISHER
+	object_event  4, 10, SPRITE_ROCKER, STAY, DOWN, TEXT_PALLETTOWN_BIRD1 ; Zapdos keeper (verify walkable)
+	object_event  6, 10, SPRITE_HIKER, STAY, DOWN, TEXT_PALLETTOWN_BIRD2 ; Articuno keeper (verify walkable)
+	object_event  8, 10, SPRITE_SUPER_NERD, STAY, DOWN, TEXT_PALLETTOWN_BIRD3 ; Moltres keeper (verify walkable)
+	object_event 10, 10, SPRITE_SCIENTIST, STAY, DOWN, TEXT_PALLETTOWN_MACHINE ; level-machine (verify walkable)
 
 	def_warps_to PALLET_TOWN

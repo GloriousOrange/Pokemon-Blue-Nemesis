@@ -10,6 +10,7 @@ MtMoonPokecenter_TextPointers:
 	dw_const MtMoonPokecenterMagikarpSalesmanText, TEXT_MTMOONPOKECENTER_MAGIKARP_SALESMAN
 	dw_const MtMoonPokecenterClipboardText,        TEXT_MTMOONPOKECENTER_CLIPBOARD
 	dw_const MtMoonPokecenterLinkReceptionistText, TEXT_MTMOONPOKECENTER_LINK_RECEPTIONIST
+	dw_const MtMoonPokecenterMeganText, TEXT_MTMOONPOKECENTER_MEGAN
 
 MtMoonPokecenterNurseText:
 	script_pokecenter_nurse
@@ -93,3 +94,10 @@ MtMoonPokecenterClipboardText:
 
 MtMoonPokecenterLinkReceptionistText:
 	script_cable_club_receptionist
+
+MtMoonPokecenterMeganText:
+	text_asm
+	ld a, 9 ; Megan location index
+	ld [wMeganLocIndex], a
+	farcall MeganTalk
+	jp TextScriptEnd

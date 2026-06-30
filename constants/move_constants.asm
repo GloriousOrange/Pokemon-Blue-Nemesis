@@ -172,7 +172,12 @@
 	const SUBSTITUTE   ; a4
 	const DOUBLE_DRILL ; a5
 	const HYPER_BEAMS  ; a6
-	const STRUGGLE     ; a7
+	const METRONOME2   ; a7 - HM move: rolls a random move from a fixed 21-move list
+	const CARRION_WIND ; a8 - Poison, badly-poison status (Miasma)
+	const BLIGHT_VOMIT ; a9 - Poison, dmg + paralyze (Miasma)
+	const MIND_FEVER   ; aa - Ghost, confusion 'curse' (Nocturn)
+	const PHANTOM_WING ; ab - Ghost, dmg + lower Special (Nocturn)
+	const STRUGGLE     ; a8
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

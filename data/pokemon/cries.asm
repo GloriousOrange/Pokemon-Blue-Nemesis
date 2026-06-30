@@ -197,4 +197,6 @@ CryData::
 	mon_cry SFX_CRY_25, $44, $20 ; Weepinbell
 	mon_cry SFX_CRY_25, $66, $CC ; Victreebel
 	mon_cry SFX_CRY_18, $40, $A0 ; Tyranis (Fearow's cry)
+	mon_cry SFX_CRY_18, $20, $C0 ; Miasma (placeholder cry)
+	mon_cry SFX_CRY_18, $60, $80 ; Nocturn (placeholder cry)
 	assert_table_length NUM_POKEMON_INDEXES

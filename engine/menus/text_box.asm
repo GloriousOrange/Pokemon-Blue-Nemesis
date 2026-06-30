@@ -382,11 +382,11 @@ INCLUDE "data/yes_no_menu_strings.asm"
 DisplayFieldMoveMonMenu:
 	xor a
 	ld hl, wFieldMoves
-	ld [hli], a ; wFieldMoves
-	ld [hli], a ; wFieldMoves + 1
-	ld [hli], a ; wFieldMoves + 2
-	ld [hli], a ; wFieldMoves + 3
-	ld [hli], a ; wNumFieldMoves
+	ld b, NUM_MOVES + 1 ; clear all field-move slots + wNumFieldMoves
+.clearFieldMoves
+	ld [hli], a
+	dec b
+	jr nz, .clearFieldMoves
 	ld [hl], 12 ; wFieldMovesLeftmostXCoord
 	call GetMonFieldMoves
 	ld a, [wNumFieldMoves]

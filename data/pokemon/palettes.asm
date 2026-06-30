@@ -153,4 +153,6 @@ MonsterPalettes:
 	db PAL_MEWMON    ; MEWTWO
 	db PAL_MEWMON    ; MEW
 	db PAL_MEWMON    ; TYRANIS
+	db PAL_MEWMON    ; MIASMA
+	db PAL_MEWMON    ; NOCTURN
 	assert_table_length NUM_POKEMON + 1

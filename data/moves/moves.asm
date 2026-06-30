@@ -22,7 +22,7 @@ Moves:
 	move THUNDERPUNCH, PARALYZE_SIDE_EFFECT1,       75, ELECTRIC,     100, 15
 	move SCRATCH,      NO_ADDITIONAL_EFFECT,        40, NORMAL,       100, 35
 	move VICEGRIP,     NO_ADDITIONAL_EFFECT,        55, BUG,          100, 30
-	move GUILLOTINE,   NO_ADDITIONAL_EFFECT,        130, NORMAL,        50,  5
+	move GUILLOTINE,   NO_ADDITIONAL_EFFECT,        130, BUG,           50,  5
 	move RAZOR_WIND,   CHARGE_EFFECT,               80, NORMAL,        75, 10
 	move SWORDS_DANCE, ATTACK_UP2_EFFECT,            0, NORMAL,       100, 30
 	move CUT,          NO_ADDITIONAL_EFFECT,        60, BUG,           95, 30
@@ -175,7 +175,12 @@ Moves:
 	move SUPER_FANG,   SUPER_FANG_EFFECT,            1, NORMAL,        90, 10
 	move SLASH,        NO_ADDITIONAL_EFFECT,        70, NORMAL,       100, 20
 	move SUBSTITUTE,   SUBSTITUTE_EFFECT,            0, NORMAL,       100, 10
-	move DOUBLE_DRILL, ATTACK_TWICE_EFFECT,         40, NORMAL,       100, 20
+	move DOUBLE_DRILL, DEFENSE_DOWN_SIDE_EFFECT,    80, FLYING,      100, 20
 	move HYPER_BEAMS,  HYPER_BEAM_EFFECT,          255, NORMAL,       100,  1
+	move METRONOME2,   METRONOME_EFFECT,             0, NORMAL,       100, 10
+	move CARRION_WIND, POISON_EFFECT,                0, POISON,        85,  1
+	move BLIGHT_VOMIT, PARALYZE_SIDE_EFFECT2,       80, POISON,       100, 15
+	move MIND_FEVER,   CONFUSION_EFFECT,             0, GHOST,        100,  1
+	move PHANTOM_WING, SPECIAL_DOWN_SIDE_EFFECT,    80, GHOST,        100, 10
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
 	assert_table_length NUM_ATTACKS

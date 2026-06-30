@@ -17,5 +17,7 @@ ClearVariablesOnEnterMap::
 	ld hl, wWhichTrade
 	ld bc, wStandingOnWarpPadOrHole - wWhichTrade
 	call FillMemory
+	ld hl, wPostGameMisc ; level machines only stay armed while you're on their map
+	res BIT_LEVEL_MACHINE_READY, [hl]
 	call CheckTyranisEncounter
 	ret

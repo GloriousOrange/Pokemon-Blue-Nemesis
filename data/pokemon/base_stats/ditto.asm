@@ -1,7 +1,7 @@
 	db DEX_DITTO ; pokedex id
 
-	db  48,  48,  48,  48,  48
-	;   hp  atk  def  spd  spc
+	db 250, 150, 150, 150, 200
+	;   hp  atk  def  spd  spc  ; Ditto buffed: HP 250, Atk/Def/Spd 150, Spc 200
 
 	db NORMAL, NORMAL ; type
 	db 35 ; catch rate

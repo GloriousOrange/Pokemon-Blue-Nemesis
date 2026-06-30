@@ -198,6 +198,8 @@
 	const WEEPINBELL         ; $BD
 	const VICTREEBEL         ; $BE
 	const TYRANIS            ; $BF
+	const MIASMA             ; $C0
+	const NOCTURN            ; $C1
 
 DEF NUM_POKEMON_INDEXES EQU const_value - 1
 

@@ -96,7 +96,7 @@ VermilionGym_TextPointers:
 	dw_const VermilionGymGentlemanText,               TEXT_VERMILIONGYM_GENTLEMAN
 	dw_const VermilionGymSuperNerdText,               TEXT_VERMILIONGYM_SUPER_NERD
 	dw_const VermilionGymSailorText,                  TEXT_VERMILIONGYM_SAILOR
-	dw_const VermilionGymGymGuideText,                TEXT_VERMILIONGYM_GYM_GUIDE
+	dw_const VermilionGymMeganText,                TEXT_VERMILIONGYM_GYM_GUIDE
 	dw_const VermilionGymLTSurgeThunderBadgeInfoText, TEXT_VERMILIONGYM_LT_SURGE_THUNDER_BADGE_INFO
 	dw_const VermilionGymLTSurgeReceivedTM24Text,     TEXT_VERMILIONGYM_LT_SURGE_RECEIVED_TM24
 	dw_const VermilionGymLTSurgeTM24NoRoomText,       TEXT_VERMILIONGYM_LT_SURGE_TM24_NO_ROOM
@@ -226,6 +226,13 @@ VermilionGymSailorEndBattleText:
 VermilionGymSailorAfterBattleText:
 	text_far _VermilionGymSailorAfterBattleText
 	text_end
+
+VermilionGymMeganText:
+	text_asm
+	ld a, 14 ; Megan location index
+	ld [wMeganLocIndex], a
+	farcall MeganTalk
+	jp TextScriptEnd
 
 VermilionGymGymGuideText:
 	text_asm

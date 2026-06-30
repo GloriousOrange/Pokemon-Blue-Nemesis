@@ -2,6 +2,7 @@
 	const_export CERULEANCAVE1F_FULL_RESTORE
 	const_export CERULEANCAVE1F_MAX_ELIXER
 	const_export CERULEANCAVE1F_NUGGET
+	const_export CERULEANCAVE1F_MEGAN
 
 CeruleanCave1F_Object:
 	db $7d ; border block
@@ -23,5 +24,6 @@ CeruleanCave1F_Object:
 	object_event  7, 13, SPRITE_POKE_BALL, STAY, NONE, TEXT_CERULEANCAVE1F_FULL_RESTORE, FULL_RESTORE
 	object_event 19,  3, SPRITE_POKE_BALL, STAY, NONE, TEXT_CERULEANCAVE1F_MAX_ELIXER, MAX_ELIXER
 	object_event  5,  0, SPRITE_POKE_BALL, STAY, NONE, TEXT_CERULEANCAVE1F_NUGGET, NUGGET
+	object_event 13, 9, SPRITE_GIRL, STAY, DOWN, TEXT_CERULEANCAVE1F_MEGAN ; girlfriend Megan (collision-verified)
 
 	def_warps_to CERULEAN_CAVE_1F

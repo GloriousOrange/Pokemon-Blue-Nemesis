@@ -76,7 +76,7 @@ CeruleanGym_TextPointers:
 	dw_const CeruleanGymMistyText,                 TEXT_CERULEANGYM_MISTY
 	dw_const CeruleanGymCooltrainerFText,          TEXT_CERULEANGYM_COOLTRAINER_F
 	dw_const CeruleanGymSwimmerText,               TEXT_CERULEANGYM_SWIMMER
-	dw_const CeruleanGymGymGuideText,              TEXT_CERULEANGYM_GYM_GUIDE
+	dw_const CeruleanGymMeganText,              TEXT_CERULEANGYM_GYM_GUIDE
 	dw_const CeruleanGymMistyCascadeBadgeInfoText, TEXT_CERULEANGYM_MISTY_CASCADE_BADGE_INFO
 	dw_const CeruleanGymMistyReceivedTM11Text,     TEXT_CERULEANGYM_MISTY_RECEIVED_TM11
 	dw_const CeruleanGymMistyTM11NoRoomText,       TEXT_CERULEANGYM_MISTY_TM11_NO_ROOM
@@ -186,6 +186,13 @@ CeruleanGymEndBattleText2:
 CeruleanGymAfterBattleText2:
 	text_far _CeruleanGymAfterBattleText2
 	text_end
+
+CeruleanGymMeganText:
+	text_asm
+	ld a, 13 ; Megan location index
+	ld [wMeganLocIndex], a
+	farcall MeganTalk
+	jp TextScriptEnd
 
 CeruleanGymGymGuideText:
 	text_asm

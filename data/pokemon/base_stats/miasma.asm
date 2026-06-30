@@ -1,0 +1,22 @@
+	db DEX_MIASMA ; pokedex id
+
+	db  85, 105,  75, 110, 100
+	;   hp  atk  def  spd  spc
+
+	db POISON, FLYING ; type
+	db 3   ; catch rate
+	db 220 ; base exp
+
+	INCBIN "gfx/pokemon/front/articuno.pic", 0, 1 ; PLACEHOLDER sprite (Articuno) — recolor later
+	dw ArticunoPicFront, ArticunoPicBack
+
+	db CARRION_WIND, BLIGHT_VOMIT, SMOKESCREEN, DRILL_PECK ; level 1 learnset
+	db GROWTH_SLOW ; growth rate
+
+	; tm/hm learnset
+	tmhm RAZOR_WIND,   WHIRLWIND,    TOXIC,        TAKE_DOWN,    DOUBLE_EDGE,  \
+	     HYPER_BEAM,   RAGE,         MIMIC,        DOUBLE_TEAM,  BIDE,         \
+	     SWIFT,        SKY_ATTACK,   REST,         SUBSTITUTE,   FLY
+	; end
+
+	db 0 ; padding

@@ -100,6 +100,10 @@ ItemUsePtrTable:
 	dw ItemUsePPRestore  ; MAX_ETHER
 	dw ItemUsePPRestore  ; ELIXER
 	dw ItemUsePPRestore  ; MAX_ELIXER
+	dw ItemUseLevelStoneFromBag ; LEVEL_STONE -> only works when a machine has set BIT_LEVEL_MACHINE_READY
+	dw ItemUseNotTime    ; LAB_KEY (used on the lab door)
+	dw ItemUseNotTime    ; BATTLE_ISLAND_DEED
+	dw ItemUseKeepsake   ; GF_KEEPSAKE -> open the PC anywhere
 
 ItemUseBall:
 
@@ -638,6 +642,39 @@ ItemUseTownMap:
 	jp nz, ItemUseNotTime
 	farjp DisplayTownMap
 
+; LEVEL STONE: only usable while standing at an active level machine (which sets
+; BIT_LEVEL_MACHINE_READY); otherwise inert. When active, route through the normal
+; medicine flow (party menu -> .useLevelStone sets the chosen mon to L100).
+ItemUseLevelStoneFromBag:
+	ld a, [wPostGameMisc]
+	bit BIT_LEVEL_MACHINE_READY, a
+	jp nz, ItemUseMedicine
+	jp ItemUseNotTime
+
+; CALL MEGAN: phone the girlfriend -> she greets you, opens the full PC (items +
+; Pokémon storage), then says a brief goodbye.
+ItemUseKeepsake:
+	ld a, [wIsInBattle]
+	and a
+	jp nz, ItemUseNotTime
+	ld hl, MeganCallGreetingText
+	call PrintText
+	farcall ActivatePC
+	ld hl, MeganCallGoodbyeText
+	call PrintText
+	ret
+MeganCallGreetingText:
+	text "MEGAN: Hi, sweetie!"
+	line "Need your PC? Here"
+	cont "you go--anything"
+	cont "for you, love!"
+	prompt
+MeganCallGoodbyeText:
+	text "MEGAN: Love you!"
+	line "Call me anytime,"
+	cont "okay? Stay safe!"
+	prompt
+
 ItemUseBicycle:
 	ld a, [wIsInBattle]
 	and a
@@ -859,6 +896,8 @@ ItemUseMedicine:
 	jr z, ItemUseMedicine ; if so, force another choice
 .checkItemType
 	ld a, [wCurItem]
+	cp LEVEL_STONE
+	jp z, .useLevelStone ; lab machine stone: set the chosen mon to L100
 	cp REVIVE
 	jr nc, .healHP ; if it's a Revive or Max Revive
 	cp FULL_HEAL
@@ -1335,13 +1374,64 @@ ItemUseMedicine:
 	add hl, bc ; hl now points to LSB of experience
 	ld b, 1
 	jp CalcStats ; recalculate stats
+.useLevelStone
+; lab machine: jump the chosen party mon straight to level 100, recalc its
+; stats, and refill HP. Modeled on .useRareCandy but sets level to MAX_LEVEL.
+	push hl
+	ld bc, MON_LEVEL
+	add hl, bc ; hl -> level
+	ld a, [hl]
+	cp MAX_LEVEL
+	jp z, .vitaminNoEffect ; already level 100
+	ld a, MAX_LEVEL
+	ld [hl], a
+	ld [wCurEnemyLevel], a
+	push hl
+	push de
+	ld d, a
+	callfar CalcExperience ; exp floor for level 100 -> hExperience
+	pop de
+	pop hl
+	ld bc, MON_EXP - MON_LEVEL
+	add hl, bc ; hl -> MSB of experience
+	ldh a, [hExperience]
+	ld [hli], a
+	ldh a, [hExperience + 1]
+	ld [hli], a
+	ldh a, [hExperience + 2]
+	ld [hl], a
+	pop hl ; hl -> mon struct start
+	push hl
+	call .recalculateStats
+	pop hl
+	push hl
+	ld bc, MON_MAXHP
+	add hl, bc ; hl -> MSB of max HP
+	ld a, [hli]
+	ld d, a
+	ld e, [hl] ; de = max HP
+	pop hl
+	ld bc, MON_HP
+	add hl, bc ; hl -> MSB of current HP
+	ld a, d
+	ld [hli], a
+	ld [hl], e ; current HP = max HP
+	ld a, SFX_HEAL_AILMENT
+	call PlaySound
+	ld hl, .levelStoneRoseText
+	call PrintText
+	jp RemoveUsedItem
+.levelStoneRoseText
+	text "Its level shot"
+	line "up to 100!"
+	prompt
 .useRareCandy
 	push hl
 	ld bc, MON_LEVEL
 	add hl, bc ; hl now points to level
 	ld a, [hl] ; a = level
 	cp MAX_LEVEL
-	jr z, .vitaminNoEffect ; can't raise level above 100
+	jp z, .vitaminNoEffect ; can't raise level above 100
 	inc a
 	ld [hl], a ; store incremented level
 	ld [wCurEnemyLevel], a
@@ -2006,6 +2096,24 @@ ItemUsePPRestore:
 	ld a, [wPPRestoreItem]
 	cp ETHER
 	jr nc, .useEther ; if Ether or Max Ether
+; reject PP Up on a move whose base PP is 1 (e.g. Hyper Beams / Carrion Wind / Mind Fever)
+	ld a, [hl] ; move id
+	dec a
+	push hl
+	ld hl, Moves
+	ld bc, MOVE_LENGTH
+	call AddNTimes
+	ld de, wMoveData
+	ld a, BANK(Moves)
+	call FarCopyData
+	ld a, [wMoveData + MOVE_PP]
+	pop hl
+	cp 1
+	jr nz, .ppUpAllowed
+	ld hl, VitaminNoEffectText ; "It won't have any effect!"
+	call PrintText
+	jp .chooseMove
+.ppUpAllowed
 ; use PP Up
 	ld bc, MON_PP - MON_MOVES
 	add hl, bc
@@ -2014,7 +2122,7 @@ ItemUsePPRestore:
 	jr c, .PPNotMaxedOut
 	ld hl, PPMaxedOutText
 	call PrintText
-	jr .chooseMove
+	jp .chooseMove
 .PPNotMaxedOut
 	ld a, [hl]
 	add 1 << 6 ; increase PP Up count by 1
@@ -2104,7 +2212,7 @@ ItemUsePPRestore:
 	ld hl, wCurrentMenuItem
 	ld [hli], a
 	ld [hl], a ; zero the counter for number of moves that had their PP restored
-	ld b, 4
+	ld b, NUM_MOVES
 ; loop through each move and restore PP
 .elixirLoop
 	push bc

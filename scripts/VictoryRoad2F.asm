@@ -83,6 +83,7 @@ VictoryRoad2F_TextPointers:
 	dw_const BoulderText,                   TEXT_VICTORYROAD2F_BOULDER1
 	dw_const BoulderText,                   TEXT_VICTORYROAD2F_BOULDER2
 	dw_const BoulderText,                   TEXT_VICTORYROAD2F_BOULDER3
+	dw_const VictoryRoad2FMeganText, TEXT_VICTORYROAD2F_MEGAN
 
 VictoryRoad2TrainerHeaders:
 	def_trainers
@@ -203,3 +204,10 @@ VictoryRoad2FSuperNerd3EndBattleText:
 VictoryRoad2FSuperNerd3AfterBattleText:
 	text_far _VictoryRoad2FSuperNerd3AfterBattleText
 	text_end
+
+VictoryRoad2FMeganText:
+	text_asm
+	ld a, 25 ; Megan location index
+	ld [wMeganLocIndex], a
+	farcall MeganTalk
+	jp TextScriptEnd

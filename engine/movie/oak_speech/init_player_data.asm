@@ -33,16 +33,20 @@ DEF START_MONEY EQU $3000
 	ld [wMonDataLocation], a
 
 	ld hl, wObtainedBadges
-	ld [hli], a
+	ld [hl], $ff      ; all 8 badges (speedtest)
+	inc hl
 	ASSERT wObtainedBadges + 1 == wUnusedObtainedBadges
 	ld [hl], a
+
+	ld hl, wTownVisitedFlag + 1
+	set 3, [hl]              ; bit 11 = BATTLE_ISLAND always flyable
 
 	ld hl, wPlayerCoins
 	ld [hli], a
 	ld [hl], a
 
 	ld hl, wGameProgressFlags
-	ld bc, wGameProgressFlagsEnd - wGameProgressFlags
+	ld bc, wPostGameFlagsEnd - wGameProgressFlags ; also clears wPostGameFlags (arena/post-game state)
 	call FillMemory ; clear all game progress flags
 
 	jp InitializeToggleableObjectsFlags

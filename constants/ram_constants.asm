@@ -157,3 +157,7 @@ DEF NUM_BADGES EQU const_value
 
 ; rLCDC
 DEF LCDC_DEFAULT EQU LCDC_ON | LCDC_WIN_9C00 | LCDC_WIN_ON | LCDC_BLOCK21 | LCDC_BG_9800 | LCDC_OBJ_8 | LCDC_OBJ_ON | LCDC_BG_ON
+
+; wPostGameMisc bits (bit 0 = arena Giovanni defeated, bit 1 = got girlfriend; those are DEF'd in their own scripts)
+DEF BIT_LEVEL_MACHINE_READY EQU 2 ; a level machine sets this; lets a LEVEL STONE work from the bag. Cleared on every map load.
+DEF BIT_POST_GAME_STARTED EQU 3 ; set when the Champion is beaten; unlocks gym-leader rematches

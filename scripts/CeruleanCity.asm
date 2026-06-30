@@ -14,11 +14,11 @@ CeruleanCityClearScripts:
 
 CeruleanCity_ScriptPointers:
 	def_script_pointers
-	dw_const CeruleanCityDefaultScript,        SCRIPT_CERULEANCITY_DEFAULT
-	dw_const CeruleanCityRivalBattleScript,    SCRIPT_CERULEANCITY_RIVAL_BATTLE
-	dw_const CeruleanCityRivalDefeatedScript,  SCRIPT_CERULEANCITY_RIVAL_DEFEATED
-	dw_const CeruleanCityRivalCleanupScript,   SCRIPT_CERULEANCITY_RIVAL_CLEANUP
-	dw_const CeruleanCityRocketDefeatedScript, SCRIPT_CERULEANCITY_ROCKET_DEFEATED
+	dw_const CeruleanCityDefaultScript,             SCRIPT_CERULEANCITY_DEFAULT
+	dw_const CeruleanCityRivalBattleScript,          SCRIPT_CERULEANCITY_RIVAL_BATTLE
+	dw_const CeruleanCityRivalDefeatedScript,        SCRIPT_CERULEANCITY_RIVAL_DEFEATED
+	dw_const CeruleanCityRivalCleanupScript,         SCRIPT_CERULEANCITY_RIVAL_CLEANUP
+	dw_const CeruleanCityRocketDefeatedScript,       SCRIPT_CERULEANCITY_ROCKET_DEFEATED
 
 CeruleanCityRocketDefeatedScript:
 	ld a, [wIsInBattle]
@@ -458,3 +458,4 @@ CeruleanCityBikeShopSign:
 CeruleanCityGymSign:
 	text_far _CeruleanCityGymSign
 	text_end
+

@@ -233,3 +233,4 @@ _CeruleanCityGymSign::
 	para "The Tomboyish"
 	line "Mermaid!"
 	done
+

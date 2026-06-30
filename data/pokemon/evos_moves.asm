@@ -201,6 +201,8 @@ EvosMovesPointerTable:
 	dw WeepinbellEvosMoves
 	dw VictreebelEvosMoves
 	dw TyranisEvosMoves
+	dw MiasmaEvosMoves
+	dw NocturnEvosMoves
 	assert_table_length NUM_POKEMON_INDEXES
 
 RhydonEvosMoves:
@@ -1946,6 +1948,9 @@ PorygonEvosMoves:
 	db 28, RECOVER
 	db 35, AGILITY
 	db 42, TRI_ATTACK
+	db 45, SPORE
+	db 50, DREAM_EATER
+	db 55, FLY
 	db 0
 
 AerodactylEvosMoves:
@@ -2153,7 +2158,15 @@ TyranisEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 51, DOUBLE_TEAM
-	db 52, DOUBLE_DRILL
-	db 60, HYPER_BEAMS
+	db 5, FLASH
+	db 0
+
+MiasmaEvosMoves:
+	db 0
+	db 50, ACID_ARMOR
+	db 0
+
+NocturnEvosMoves:
+	db 0
+	db 50, MIRROR_MOVE
 	db 0

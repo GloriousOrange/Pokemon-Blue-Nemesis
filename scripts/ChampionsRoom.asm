@@ -84,6 +84,8 @@ ChampionsRoomRivalDefeatedScript:
 	jp z, ResetRivalScript
 	call UpdateSprites
 	SetEvent EVENT_BEAT_CHAMPION_RIVAL
+	ld hl, wPostGameMisc
+	set BIT_POST_GAME_STARTED, [hl] ; unlock post-game gym rematches
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a
 	ld a, TEXT_CHAMPIONSROOM_RIVAL

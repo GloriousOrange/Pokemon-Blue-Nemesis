@@ -1,7 +1,7 @@
 	db DEX_PORYGON ; pokedex id
 
-	db  65,  60,  70,  40,  75
-	;   hp  atk  def  spd  spc
+	db  90,  60,  70,  40, 110
+	;   hp  atk  def  spd  spc  ; HP 90, Spc 110 (Oak's buffed Porygon)
 
 	db NORMAL, NORMAL ; type
 	db 45 ; catch rate
@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/porygon.pic", 0, 1 ; sprite dimensions
 	dw PorygonPicFront, PorygonPicBack
 
-	db TACKLE, SHARPEN, CONVERSION, NO_MOVE ; level 1 learnset
+	db MIMIC, SHARPEN, CONVERSION, NO_MOVE ; level 1 learnset (Mimic instead of Tackle)
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

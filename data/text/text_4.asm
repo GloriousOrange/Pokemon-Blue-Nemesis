@@ -122,7 +122,7 @@ _TryingToLearnText::
 	text_ram wLearnMoveMonName
 	text_start
 	line "can't learn more"
-	cont "than 4 moves!"
+	cont "than 5 moves!"
 
 	para "Delete an older"
 	line "move to make room"

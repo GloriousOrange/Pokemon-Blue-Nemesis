@@ -184,10 +184,19 @@ _AddPartyMon::
 	ld a, [hli]
 	inc de
 	ld [de], a
+	; clear the extra held-move slot(s) beyond the NUM_BASE_MOVES copied from
+	; base stats, so WriteMonMoves sees them empty and the struct walk stays aligned
+	ld c, NUM_MOVES - NUM_BASE_MOVES
+	xor a
+.clearExtraMoveSlots
+	inc de
+	ld [de], a
+	dec c
+	jr nz, .clearExtraMoveSlots
 	push de
+	REPT NUM_MOVES - 1
 	dec de
-	dec de
-	dec de
+	ENDR
 	xor a
 	ld [wLearningMovesFromDayCare], a
 	predef WriteMonMoves

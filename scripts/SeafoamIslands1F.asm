@@ -1,6 +1,8 @@
 SeafoamIslands1F_Script:
 	call EnableAutoTextBoxDrawing
 	SetEvent EVENT_IN_SEAFOAM_ISLANDS
+	ld hl, wTownVisitedFlag + 1
+	set 4, [hl] ; bit 12: Seafoam discovered -> unlocks flying here
 	ld hl, wMiscFlags
 	bit BIT_PUSHED_BOULDER, [hl]
 	res BIT_PUSHED_BOULDER, [hl]
@@ -46,3 +48,11 @@ SeafoamIslands1F_TextPointers:
 	def_text_pointers
 	dw_const BoulderText, TEXT_SEAFOAMISLANDS1F_BOULDER1
 	dw_const BoulderText, TEXT_SEAFOAMISLANDS1F_BOULDER2
+	dw_const SeafoamIslands1FMeganText, TEXT_SEAFOAMISLANDS1F_MEGAN
+
+SeafoamIslands1FMeganText:
+	text_asm
+	ld a, 24 ; Megan location index
+	ld [wMeganLocIndex], a
+	farcall MeganTalk
+	jp TextScriptEnd

@@ -156,5 +156,7 @@
 	const DEX_MEWTWO     ; 150
 	const DEX_MEW        ; 151
 	const DEX_TYRANIS    ; 152
+	const DEX_MIASMA     ; 153
+	const DEX_NOCTURN    ; 154
 
 DEF NUM_POKEMON EQU const_value - 1

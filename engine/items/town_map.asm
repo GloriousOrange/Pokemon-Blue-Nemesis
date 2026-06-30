@@ -394,7 +394,7 @@ LoadTownMap_Fly::
 	jr z, .pressedDown ; skip past unvisited towns
 	jp .townMapFlyLoop
 .wrapToEndOfList
-	ld hl, wFlyLocationsList + NUM_CITY_MAPS
+	ld hl, wFlyLocationsList + NUM_CITY_MAPS + 1
 	jr .pressedDown
 
 ToText:
@@ -421,6 +421,15 @@ BuildFlyLocationsList:
 	inc b
 	dec c
 	jr nz, .loop
+; append Seafoam Islands as a fly destination if discovered (wTownVisitedFlag bit 12)
+	ld a, [wTownVisitedFlag + 1]
+	bit 4, a
+	ld a, SEAFOAM_ISLANDS_1F
+	jr nz, .seafoamDiscovered
+	ld a, NOT_VISITED
+.seafoamDiscovered
+	ld [hl], a
+	inc hl
 	ld [hl], $ff
 	ret
 

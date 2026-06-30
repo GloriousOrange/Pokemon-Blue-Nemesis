@@ -1,6 +1,17 @@
 ; tests if mon [wCurPartySpecies] can learn move [wMoveNum]
 CanLearnTM:
+	; The ghost-move TMs (Night Shade / Confuse Ray) can be taught to any
+	; species, since the resurrected starter may be any of them.
+	ld a, [wMoveNum]
+	cp NIGHT_SHADE
+	jr z, .ghostMoveAlwaysLearnable
+	cp CONFUSE_RAY
+	jr z, .ghostMoveAlwaysLearnable
+	cp METRONOME2 ; Oak's reward HM is learnable by every species
+	jr z, .ghostMoveAlwaysLearnable
 	ld a, [wCurPartySpecies]
+	cp DITTO ; Ditto can learn every TM/HM (it mimics everything anyway)
+	jr z, .ghostMoveAlwaysLearnable
 	ld [wCurSpecies], a
 	call GetMonHeader
 	ld hl, wMonHLearnset
@@ -19,6 +30,10 @@ CanLearnTM:
 	pop hl
 	ld b, FLAG_TEST
 	predef_jump FlagActionPredef
+
+.ghostMoveAlwaysLearnable
+	ld c, 1 ; nonzero = can learn (callers test [c] != 0)
+	ret
 
 ; converts TM/HM number in [wTempTMHM] into move number
 ; HMs start at 51

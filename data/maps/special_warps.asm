@@ -73,8 +73,10 @@ FlyWarpDataPtr:
 	fly_warp_spec CINNABAR_ISLAND, .CinnabarIsland
 	fly_warp_spec INDIGO_PLATEAU,  .IndigoPlateau
 	fly_warp_spec SAFFRON_CITY,    .SaffronCity
+	fly_warp_spec BATTLE_ISLAND,   .BattleIsland
 	fly_warp_spec ROUTE_4,         .Route4
 	fly_warp_spec ROUTE_10,        .Route10
+	fly_warp_spec SEAFOAM_ISLANDS_1F, .SeafoamIslands
 
 .PalletTown:     fly_warp PALLET_TOWN,      5,  6
 .ViridianCity:   fly_warp VIRIDIAN_CITY,   23, 26
@@ -87,5 +89,7 @@ FlyWarpDataPtr:
 .CinnabarIsland: fly_warp CINNABAR_ISLAND, 11, 12
 .IndigoPlateau:  fly_warp INDIGO_PLATEAU,   9,  6
 .SaffronCity:    fly_warp SAFFRON_CITY,     9, 30
+.BattleIsland:   fly_warp BATTLE_ISLAND,    8,  5
 .Route4:         fly_warp ROUTE_4,         11,  6
 .Route10:        fly_warp ROUTE_10,        11, 20
+.SeafoamIslands: fly_warp SEAFOAM_ISLANDS_1F, 5, 16

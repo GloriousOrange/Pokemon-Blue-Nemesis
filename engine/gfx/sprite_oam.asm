@@ -161,10 +161,12 @@ PrepareOAMData::
 
 .clear
 	cp l
-	ret z
+	jr z, .drawFollower
 	ld [hl], b
 	add hl, de
 	jr .clear
+.drawFollower
+	ret
 
 GetSpriteScreenXY:
 	inc e

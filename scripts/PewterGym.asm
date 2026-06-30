@@ -35,6 +35,7 @@ PewterGym_ScriptPointers:
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_PEWTERGYM_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_PEWTERGYM_END_BATTLE
 	dw_const PewterGymBrockPostBattle,              SCRIPT_PEWTERGYM_BROCK_POST_BATTLE
+	dw_const PewterGymRematchDefeated,              SCRIPT_PEWTERGYM_REMATCH_DEFEATED
 
 PewterGymBrockPostBattle:
 	ld a, [wIsInBattle]
@@ -80,11 +81,25 @@ PewterGymScriptReceiveTM34:
 
 	jp PewterGymResetScripts
 
+PewterGymRematchDefeated:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld hl, wGymRematchFlags
+	set 0, [hl] ; Brock re-beaten
+	farcall PostGameCheckAllGymsRebeaten
+.reset
+	xor a
+	ld [wJoyIgnore], a
+	ld [wPewterGymCurScript], a
+	ld [wCurMapScript], a
+	ret
+
 PewterGym_TextPointers:
 	def_text_pointers
 	dw_const PewterGymBrockText,             TEXT_PEWTERGYM_BROCK
 	dw_const PewterGymCooltrainerMText,      TEXT_PEWTERGYM_COOLTRAINER_M
-	dw_const PewterGymGuideText,             TEXT_PEWTERGYM_GYM_GUIDE
+	dw_const PewterGymMeganText,             TEXT_PEWTERGYM_GYM_GUIDE
 	dw_const PewterGymBrockWaitTakeThisText, TEXT_PEWTERGYM_BROCK_WAIT_TAKE_THIS
 	dw_const PewterGymReceivedTM34Text,      TEXT_PEWTERGYM_RECEIVED_TM34
 	dw_const PewterGymTM34NoRoomText,        TEXT_PEWTERGYM_TM34_NO_ROOM
@@ -105,6 +120,22 @@ PewterGymBrockText:
 	call DisableWaitingAfterTextDisplay
 	jr .done
 .afterBeat
+	ld hl, wPostGameMisc
+	bit BIT_POST_GAME_STARTED, [hl]
+	jr z, .normalAdvice
+	ld a, [wGymRematchFlags]
+	bit 0, a ; Brock = bit 0
+	jr nz, .normalAdvice
+	ld a, OPP_BROCK
+	ld [wCurOpponent], a
+	ld a, 2 ; rematch party
+	ld [wTrainerNo], a
+	farcall GymLeaderRematchInit
+	ld a, SCRIPT_PEWTERGYM_REMATCH_DEFEATED
+	ld [wPewterGymCurScript], a
+	ld [wCurMapScript], a
+	jr .done
+.normalAdvice
 	ld hl, .PostBattleAdviceText
 	call PrintText
 	jr .done
@@ -176,6 +207,13 @@ PewterGymCooltrainerMEndBattleText:
 PewterGymCooltrainerMAfterBattleText:
 	text_far _PewterGymCooltrainerMAfterBattleText
 	text_end
+
+PewterGymMeganText:
+	text_asm
+	ld a, 12 ; Megan location index
+	ld [wMeganLocIndex], a
+	farcall MeganTalk
+	jp TextScriptEnd
 
 PewterGymGuideText:
 	text_asm

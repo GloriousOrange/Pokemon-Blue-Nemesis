@@ -83,6 +83,10 @@ ItemNames::
 	li "MAX ETHER"
 	li "ELIXER"
 	li "MAX ELIXER"
+	li "LEVEL STONE"
+	li "LAB KEY"
+	li "ISLAND DEED"
+	li "CALL MEGAN"
 	assert_list_length NUM_ITEMS
 	li "B2F"
 	li "B1F"

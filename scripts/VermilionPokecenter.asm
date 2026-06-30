@@ -8,6 +8,7 @@ VermilionPokecenter_TextPointers:
 	dw_const VermilionPokecenterFishingGuruText,      TEXT_VERMILIONPOKECENTER_FISHING_GURU
 	dw_const VermilionPokecenterSailorText,           TEXT_VERMILIONPOKECENTER_SAILOR
 	dw_const VermilionPokecenterLinkReceptionistText, TEXT_VERMILIONPOKECENTER_LINK_RECEPTIONIST
+	dw_const VermilionPokecenterMeganText, TEXT_VERMILIONPOKECENTER_MEGAN
 
 VermilionPokecenterNurseText:
 	script_pokecenter_nurse
@@ -22,3 +23,10 @@ VermilionPokecenterSailorText:
 
 VermilionPokecenterLinkReceptionistText:
 	script_cable_club_receptionist
+
+VermilionPokecenterMeganText:
+	text_asm
+	ld a, 3 ; Megan location index
+	ld [wMeganLocIndex], a
+	farcall MeganTalk
+	jp TextScriptEnd

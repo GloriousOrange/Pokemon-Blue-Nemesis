@@ -410,6 +410,34 @@ MainInBattleLoop:
 .specialMoveNotUsed
 	callfar SwitchEnemyMon
 .noLinkBattle
+; custom move priority: CARRION_WIND always moves first, HYPER_BEAMS always last
+; (pri 2 = first, 1 = normal, 0 = last). Equal priority falls through to vanilla order.
+	ld a, [wPlayerSelectedMove]
+	cp CARRION_WIND
+	ld b, 2
+	jr z, .gotPlayerPri
+	cp HYPER_BEAMS
+	ld b, 0
+	jr z, .gotPlayerPri
+	ld b, 1
+.gotPlayerPri
+	ld a, [wEnemySelectedMove]
+	cp CARRION_WIND
+	ld c, 2
+	jr z, .gotEnemyPri
+	cp HYPER_BEAMS
+	ld c, 0
+	jr z, .gotEnemyPri
+	ld c, 1
+.gotEnemyPri
+	ld a, c
+	cp b
+	jr z, .noPriorityDifference
+	jr c, .priorityPlayerFirst ; enemy priority < player priority
+	jp .enemyMovesFirst
+.priorityPlayerFirst
+	jp .playerMovesFirst
+.noPriorityDifference
 	ld a, [wPlayerSelectedMove]
 	cp QUICK_ATTACK
 	jr nz, .playerDidNotUseQuickAttack
@@ -1900,9 +1928,10 @@ DrawPlayerHUDAndHPBar:
 	ld a, [wLowHealthAlarmDisabled]
 	and a ; has the alarm been disabled because the player has already won?
 	ret nz ; if so, return
-	ld a, [wPlayerHPBarColor]
-	cp HP_BAR_RED
-	jr z, .setLowHealthAlarm
+; Low-health alarm removed per user request. Vanilla set BIT_LOW_HEALTH_ALARM here
+; when wPlayerHPBarColor was HP_BAR_RED; now we always fall through to the clear
+; path, so the alarm bit is never set and the alarm never sounds. (The HP bar still
+; turns red visually; only the beep is gone.)
 .fainted
 	ld hl, wLowHealthAlarm
 	bit BIT_LOW_HEALTH_ALARM, [hl]
@@ -1910,10 +1939,6 @@ DrawPlayerHUDAndHPBar:
 	ret z
 	xor a
 	ld [wChannelSoundIDs + CHAN5], a
-	ret
-.setLowHealthAlarm
-	ld hl, wLowHealthAlarm
-	set BIT_LOW_HEALTH_ALARM, [hl]
 	ret
 
 DrawEnemyHUDAndHPBar:
@@ -2533,7 +2558,8 @@ MoveSelectionMenu:
 	ld hl, wBattleMonMoves
 	call .loadmoves
 	hlcoord 4, 12
-	ld b, 4
+	ld b, 4 ; keep the vanilla 4-tall box (row 11 belongs to the player HUD); a 5th
+	        ; move, when present, simply prints over the box's bottom border row
 	ld c, 14
 	di ; out of pure coincidence, it is possible for vblank to occur between the di and ei
 	   ; so it is necessary to put the di ei block to not cause tearing
@@ -2552,7 +2578,7 @@ MoveSelectionMenu:
 	ld hl, wEnemyMonMoves
 	call .loadmoves
 	hlcoord 0, 7
-	ld b, 4
+	ld b, NUM_MOVES
 	ld c, 14
 	call TextBoxBorder
 	hlcoord 2, 8
@@ -2567,7 +2593,7 @@ MoveSelectionMenu:
 	call AddNTimes
 	call .loadmoves
 	hlcoord 4, 7
-	ld b, 4
+	ld b, NUM_MOVES
 	ld c, 14
 	call TextBoxBorder
 	hlcoord 6, 8
@@ -2968,7 +2994,7 @@ SelectEnemyMove:
 	jp z, .linkedOpponentUsedStruggle
 	cp LINKBATTLE_NO_ACTION
 	jr z, .unableToSelectMove
-	cp 4
+	cp NUM_MOVES
 	ret nc
 	ld [wEnemyMoveListIndex], a
 	ld c, a
@@ -4081,6 +4107,8 @@ GetDamageVarsForPlayerAttack:
 	ld d, a ; d = move power
 	ret z ; return if move power is zero
 	ld a, [hl] ; a = [wPlayerMoveType]
+	cp GHOST ; GHOST is a SPECIAL type in this hack (physical in vanilla)
+	jr z, .specialAttack
 	cp SPECIAL ; types >= SPECIAL are all special
 	jr nc, .specialAttack
 ; physical attack
@@ -4194,6 +4222,8 @@ GetDamageVarsForEnemyAttack:
 	and a
 	ret z ; return if move power is zero
 	ld a, [hl] ; a = [wEnemyMoveType]
+	cp GHOST ; GHOST is a SPECIAL type in this hack (physical in vanilla)
+	jr z, .specialAttack
 	cp SPECIAL ; types >= SPECIAL are all special
 	jr nc, .specialAttack
 ; physical attack
@@ -5063,10 +5093,14 @@ MetronomePickMove:
 	ld hl, wPlayerSelectedMove
 	ldh a, [hWhoseTurn]
 	and a
-	jr z, .pickMoveLoop
+	jr z, .gotTurn
 ; values for enemy turn
 	ld de, wEnemyMoveNum
 	ld hl, wEnemySelectedMove
+.gotTurn
+	ld a, [hl] ; the move being used (METRONOME or the METRONOME2 HM)
+	cp METRONOME2
+	jr z, .metronome2 ; METRONOME2 rolls only from a fixed 21-move list
 ; loop to pick a random number in the range of valid moves used by Metronome
 .pickMoveLoop
 	call BattleRandom
@@ -5077,8 +5111,28 @@ MetronomePickMove:
 	jr nc, .pickMoveLoop
 	cp METRONOME
 	jr z, .pickMoveLoop
+	cp METRONOME2
+	jr z, .pickMoveLoop ; regular Metronome never rolls Metronome2
 	ld [hl], a
 	jr ReloadMoveData
+.metronome2
+	call BattleRandom
+	cp 21 ; number of entries in Metronome2MoveList
+	jr nc, .metronome2
+	ld c, a
+	ld b, 0
+	push hl
+	ld hl, Metronome2MoveList
+	add hl, bc
+	ld a, [hl]
+	pop hl
+	ld [hl], a
+	jr ReloadMoveData
+
+Metronome2MoveList:
+	db ICE_BEAM, HYPER_BEAM, MEGA_DRAIN, WING_ATTACK, DIG, RAZOR_LEAF, THUNDERBOLT
+	db SPORE, ACID_ARMOR, MEDITATE, HYDRO_PUMP, SURF, SAND_ATTACK, FIRE_BLAST
+	db FLAMETHROWER, TRANSFORM, SLASH, SLUDGE, BODY_SLAM, PSYCHIC_M, TOXIC
 
 ; this function increments the current move's PP
 ; it's used to prevent moves that run another move within the same turn
@@ -5511,7 +5565,7 @@ ExecuteEnemyMove:
 	ld a, [wSerialExchangeNybbleReceiveData]
 	cp LINKBATTLE_STRUGGLE
 	jr z, .executeEnemyMove
-	cp 4
+	cp NUM_MOVES
 	ret nc
 .executeEnemyMove
 	ld hl, wAILayer2Encouragement

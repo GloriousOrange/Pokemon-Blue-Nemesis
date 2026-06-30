@@ -46,6 +46,7 @@ RocketHideoutB1F_TextPointers:
 	dw_const RocketHideoutB1FRocket5Text, TEXT_ROCKETHIDEOUTB1F_ROCKET5
 	dw_const PickUpItemText,              TEXT_ROCKETHIDEOUTB1F_ESCAPE_ROPE
 	dw_const PickUpItemText,              TEXT_ROCKETHIDEOUTB1F_HYPER_POTION
+	dw_const RocketHideoutB1FMeganText, TEXT_ROCKETHIDEOUTB1F_MEGAN
 
 RocketHideout1TrainerHeaders:
 	def_trainers
@@ -157,3 +158,10 @@ RocketHideoutB1FRocket5BattleText:
 RocketHideoutB1FRocket5AfterBattleText:
 	text_far _RocketHideoutB1FRocket5AfterBattleText
 	text_end
+
+RocketHideoutB1FMeganText:
+	text_asm
+	ld a, 20 ; Megan location index
+	ld [wMeganLocIndex], a
+	farcall MeganTalk
+	jp TextScriptEnd

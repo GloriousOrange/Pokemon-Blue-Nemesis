@@ -1516,3 +1516,21 @@ _TyranisDexEntry::
 	page "carry off TAUROS"
 	next "in its talons."
 	dex
+
+_MiasmaDexEntry::
+	text "A six-foot vulture"
+	next "wreathed in toxic"
+	next "fumes. Its shadow"
+
+	page "is said to spread"
+	next "blight and plague."
+	dex
+
+_NocturnDexEntry::
+	text "A four-foot raven"
+	next "from the spirit"
+	next "world. Its cry is"
+
+	page "said to summon"
+	next "the restless dead."
+	dex

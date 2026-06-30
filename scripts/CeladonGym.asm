@@ -81,6 +81,7 @@ CeladonGym_TextPointers:
 	dw_const CeladonGymCooltrainerF3Text,    TEXT_CELADONGYM_COOLTRAINER_F3
 	dw_const CeladonGymBeauty3Text,          TEXT_CELADONGYM_BEAUTY3
 	dw_const CeladonGymCooltrainerF4Text,    TEXT_CELADONGYM_COOLTRAINER_F4
+	dw_const CeladonGymMeganText, TEXT_CELADONGYM_MEGAN
 	dw_const CeladonGymRainbowBadgeInfoText, TEXT_CELADONGYM_RAINBOWBADGE_INFO
 	dw_const CeladonGymReceivedTM21Text,     TEXT_CELADONGYM_RECEIVED_TM21
 	dw_const CeladonGymTM21NoRoomText,       TEXT_CELADONGYM_TM21_NO_ROOM
@@ -288,3 +289,10 @@ CeladonGymEndBattleText8:
 CeladonGymAfterBattleText8:
 	text_far _CeladonGymAfterBattleText8
 	text_end
+
+CeladonGymMeganText:
+	text_asm
+	ld a, 15 ; Megan location index
+	ld [wMeganLocIndex], a
+	farcall MeganTalk
+	jp TextScriptEnd

@@ -178,7 +178,7 @@ ViridianGym_TextPointers:
 	dw_const ViridianGymHiker3Text,                 TEXT_VIRIDIANGYM_HIKER3
 	dw_const ViridianGymRocker2Text,                TEXT_VIRIDIANGYM_ROCKER2
 	dw_const ViridianGymCooltrainerM3Text,          TEXT_VIRIDIANGYM_COOLTRAINER_M3
-	dw_const ViridianGymGymGuideText,               TEXT_VIRIDIANGYM_GYM_GUIDE
+	dw_const ViridianGymMeganText,               TEXT_VIRIDIANGYM_GYM_GUIDE
 	dw_const PickUpItemText,                        TEXT_VIRIDIANGYM_REVIVE
 	dw_const ViridianGymGiovanniEarthBadgeInfoText, TEXT_VIRIDIANGYM_GIOVANNI_EARTH_BADGE_INFO
 	dw_const ViridianGymGiovanniReceivedTM27Text,   TEXT_VIRIDIANGYM_GIOVANNI_RECEIVED_TM27
@@ -419,6 +419,13 @@ ViridianGymCooltrainerM3EndBattleText:
 ViridianGymCooltrainerM3AfterBattleText:
 	text_far _ViridianGymCooltrainerM3AfterBattleText
 	text_end
+
+ViridianGymMeganText:
+	text_asm
+	ld a, 19 ; Megan location index
+	ld [wMeganLocIndex], a
+	farcall MeganTalk
+	jp TextScriptEnd
 
 ViridianGymGymGuideText:
 	text_asm

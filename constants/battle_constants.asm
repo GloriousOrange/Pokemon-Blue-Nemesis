@@ -1,7 +1,13 @@
 DEF MAX_LEVEL EQU 100
 
 ; maximum moves known per mon
-DEF NUM_MOVES EQU 4
+DEF NUM_MOVES EQU 5
+
+; number of initial moves stored in each species' base stats (decoupled from
+; NUM_MOVES so bumping held-move capacity doesn't require editing every
+; base_stats file). New mons start with up to this many moves; the extra
+; held-move slot(s) begin empty.
+DEF NUM_BASE_MOVES EQU 4
 
 ; significant stat values
 DEF BASE_STAT_LEVEL EQU 7

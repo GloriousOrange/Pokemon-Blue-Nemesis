@@ -34,9 +34,10 @@ ENDM
 	map_const CINNABAR_ISLAND,               10,  9 ; $08
 	map_const INDIGO_PLATEAU,                10,  9 ; $09
 	map_const SAFFRON_CITY,                  20, 18 ; $0A
-DEF NUM_CITY_MAPS EQU const_value
 
-	map_const UNUSED_MAP_0B,                  0,  0 ; $0B
+	map_const BATTLE_ISLAND,                 10, 18 ; $0B
+
+DEF NUM_CITY_MAPS EQU const_value
 
 DEF FIRST_ROUTE_MAP EQU const_value
 	map_const ROUTE_1,                       10, 18 ; $0C
@@ -274,7 +275,7 @@ DEF FIRST_INDOOR_MAP EQU const_value
 	map_const CINNABAR_LAB_FOSSIL_ROOM,       4,  4 ; $AA
 	map_const CINNABAR_POKECENTER,            7,  4 ; $AB
 	map_const CINNABAR_MART,                  4,  4 ; $AC
-	map_const CINNABAR_MART_COPY,             4,  4 ; $AD
+	map_const BATTLE_ISLAND_HOUSE,            4,  4 ; $AD
 	end_indoor_group CINNABAR_ISLAND
 
 	map_const INDIGO_PLATEAU_LOBBY,           8,  6 ; $AE

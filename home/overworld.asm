@@ -90,14 +90,14 @@ OverworldLoopLessDelay::
 	ldh a, [hItemAlreadyFound]
 	and a
 	jp z, OverworldLoop ; jump if a hidden event or bookshelf was found, but not if a card key door was found
-	farcall TryPlayerHMTileInteraction
-	ldh a, [hItemAlreadyFound]
-	and a
-	jp z, OverworldLoop
+; check for an NPC/sign to talk to BEFORE attempting an HM tile action, so an
+; NPC standing on a cuttable/surfable tile gets talked to instead of cut/surfed
 	call IsSpriteOrSignInFrontOfPlayer
 	ldh a, [hTextID]
 	and a
-	jp z, OverworldLoop
+	jr nz, .displayDialogue
+	farcall TryPlayerHMTileInteraction
+	jp OverworldLoop
 .displayDialogue
 	predef GetTileAndCoordsInFrontOfPlayer
 	call UpdateSprites
@@ -282,6 +282,9 @@ OverworldLoopLessDelay::
 	ld a, [wWalkBikeSurfState]
 	dec a ; riding a bike?
 	jr z, .biking
+	ld a, [wStatusFlags5]
+	bit BIT_SCRIPTED_MOVEMENT_STATE, a
+	jr nz, .normalPlayerSpriteAdvancement ; scripted/simulated movement: stay 1x so NPC cutscenes stay in sync
 	call AdvancePlayerSprite  ; extra call for walk/surf = 2x speed
 	jr .normalPlayerSpriteAdvancement
 .biking

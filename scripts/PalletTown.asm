@@ -17,6 +17,9 @@ PalletTown_ScriptPointers:
 	dw_const PalletTownPlayerFollowsOakScript,     SCRIPT_PALLETTOWN_PLAYER_FOLLOWS_OAK
 	dw_const PalletTownDaisyScript,                SCRIPT_PALLETTOWN_DAISY
 	dw_const PalletTownNoopScript,                 SCRIPT_PALLETTOWN_NOOP
+	dw_const PalletTownBird1DefeatedScript,        SCRIPT_PALLETTOWN_BIRD1_DEFEATED
+	dw_const PalletTownBird2DefeatedScript,        SCRIPT_PALLETTOWN_BIRD2_DEFEATED
+	dw_const PalletTownBird3DefeatedScript,        SCRIPT_PALLETTOWN_BIRD3_DEFEATED
 
 PalletTownDefaultScript:
 	CheckEvent EVENT_FOLLOWED_OAK_INTO_LAB
@@ -154,6 +157,10 @@ PalletTown_TextPointers:
 	dw_const PalletTownOakText,              TEXT_PALLETTOWN_OAK
 	dw_const PalletTownGirlText,             TEXT_PALLETTOWN_GIRL
 	dw_const PalletTownFisherText,           TEXT_PALLETTOWN_FISHER
+	dw_const PalletTownBird1Text,            TEXT_PALLETTOWN_BIRD1
+	dw_const PalletTownBird2Text,            TEXT_PALLETTOWN_BIRD2
+	dw_const PalletTownBird3Text,            TEXT_PALLETTOWN_BIRD3
+	dw_const PalletTownMachineText,          TEXT_PALLETTOWN_MACHINE
 	dw_const PalletTownOaksLabSignText,      TEXT_PALLETTOWN_OAKSLAB_SIGN
 	dw_const PalletTownSignText,             TEXT_PALLETTOWN_SIGN
 	dw_const PalletTownPlayersHouseSignText, TEXT_PALLETTOWN_PLAYERSHOUSE_SIGN
@@ -223,4 +230,136 @@ PalletTownRivalsHouseSignText:
 
 PalletTownPlayerThoughtText:
 	text_far _PalletTownPlayerThoughtText
+	text_end
+
+; --- speed-test: 3 legendary-bird keeper trainers (beat all 3 -> Tyranis at next PokeCenter) ---
+PalletTownBird1DefeatedScript:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	SetEvent EVENT_BEAT_ZAPDOS
+.reset
+	xor a
+	ld [wJoyIgnore], a
+	ld [wPalletTownCurScript], a
+	ld [wCurMapScript], a
+	ret
+
+PalletTownBird2DefeatedScript:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	SetEvent EVENT_BEAT_ARTICUNO
+.reset
+	xor a
+	ld [wJoyIgnore], a
+	ld [wPalletTownCurScript], a
+	ld [wCurMapScript], a
+	ret
+
+PalletTownBird3DefeatedScript:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	SetEvent EVENT_BEAT_MOLTRES
+.reset
+	xor a
+	ld [wJoyIgnore], a
+	ld [wPalletTownCurScript], a
+	ld [wCurMapScript], a
+	ret
+
+PalletTownBird1Text:
+	text_asm
+	CheckEvent EVENT_BEAT_ZAPDOS
+	jr nz, .beaten
+	ld hl, PalletTownBirdZapdosText
+	ld a, OPP_JUGGLER
+	ld b, 9
+	ld c, SCRIPT_PALLETTOWN_BIRD1_DEFEATED
+	jr PalletTownBirdEngage
+.beaten
+	ld hl, PalletTownBirdBeatenText
+	call PrintText
+	jp TextScriptEnd
+
+PalletTownBird2Text:
+	text_asm
+	CheckEvent EVENT_BEAT_ARTICUNO
+	jr nz, .beaten
+	ld hl, PalletTownBirdArticunoText
+	ld a, OPP_HIKER
+	ld b, 15
+	ld c, SCRIPT_PALLETTOWN_BIRD2_DEFEATED
+	jr PalletTownBirdEngage
+.beaten
+	ld hl, PalletTownBirdBeatenText
+	call PrintText
+	jp TextScriptEnd
+
+PalletTownBird3Text:
+	text_asm
+	CheckEvent EVENT_BEAT_MOLTRES
+	jr nz, .beaten
+	ld hl, PalletTownBirdMoltresText
+	ld a, OPP_POKEMANIAC
+	ld b, 8
+	ld c, SCRIPT_PALLETTOWN_BIRD3_DEFEATED
+	jr PalletTownBirdEngage
+.beaten
+	ld hl, PalletTownBirdBeatenText
+	call PrintText
+	jp TextScriptEnd
+
+; hl = pre-battle text, a = OPP class, b = party#, c = defeated map-script id
+PalletTownBirdEngage:
+	push af
+	push bc
+	call PrintText
+	pop bc
+	pop af
+	ld [wCurOpponent], a
+	ld a, b
+	ld [wTrainerNo], a
+	ld a, c
+	ld [wPalletTownCurScript], a
+	ld [wCurMapScript], a
+	ld hl, wStatusFlags3
+	set BIT_TALKED_TO_TRAINER, [hl]
+	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld hl, PalletTownBirdDefeatedText
+	ld de, PalletTownBirdVictoryText
+	call SaveEndBattleTextPointers
+	jp TextScriptEnd
+
+PalletTownBirdZapdosText:
+	text_far _PalletTownBirdZapdosText
+	text_end
+PalletTownBirdArticunoText:
+	text_far _PalletTownBirdArticunoText
+	text_end
+PalletTownBirdMoltresText:
+	text_far _PalletTownBirdMoltresText
+	text_end
+PalletTownBirdDefeatedText:
+	text_far _PalletTownBirdDefeatedText
+	text_end
+PalletTownBirdVictoryText:
+	text_far _PalletTownBirdVictoryText
+	text_end
+PalletTownBirdBeatenText:
+	text_far _PalletTownBirdBeatenText
+	text_end
+
+; speed-test level machine: arms the LEVEL STONE (cleared on map exit). The real one
+; lives in the burned lab, gated on all 6 scientists. Talk -> use a STONE on a POKeMON.
+PalletTownMachineText:
+	text_asm
+	ld hl, wPostGameMisc
+	set BIT_LEVEL_MACHINE_READY, [hl]
+	ld hl, .text
+	call PrintText
+	jp TextScriptEnd
+.text:
+	text_far _PalletTownMachineText
 	text_end

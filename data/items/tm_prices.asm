@@ -51,4 +51,6 @@ TechnicalMachinePrices:
 	nybble 4 ; TM48
 	nybble 4 ; TM49
 	nybble 2 ; TM50
+	nybble 5 ; TM51 (NIGHT_SHADE)
+	nybble 5 ; TM52 (CONFUSE_RAY)
 	end_nybble_array NUM_TMS

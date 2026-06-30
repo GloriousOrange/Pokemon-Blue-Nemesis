@@ -83,6 +83,10 @@ ItemPrices::
 	bcd3 0     ; MAX_ETHER
 	bcd3 0     ; ELIXER
 	bcd3 0     ; MAX_ELIXER
+	bcd3 0     ; LEVEL_STONE
+	bcd3 0     ; LAB_KEY
+	bcd3 0     ; BATTLE_ISLAND_DEED
+	bcd3 0     ; GF_KEEPSAKE
 	assert_table_length NUM_ITEMS
 	bcd3 0     ; FLOOR_B2F
 	bcd3 0     ; FLOOR_B1F

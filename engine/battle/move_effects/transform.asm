@@ -66,8 +66,7 @@ TransformEffect_:
 	inc de
 	inc de
 	inc de
-	inc bc
-	inc bc
+	ld bc, 3 + NUM_MOVES ; type 1, type 2, catch rate, and all NUM_MOVES moves
 	call CopyData
 	ldh a, [hWhoseTurn]
 	and a
@@ -101,11 +100,24 @@ TransformEffect_:
 	add hl, bc ; ld hl, wBattleMonMoves
 	ld b, NUM_MOVES
 .copyPPLoop
-; 5 PP for all moves
+; full (base) PP for all transformed moves
 	ld a, [hli]
 	and a
 	jr z, .lessThanFourMoves
-	ld a, 5
+	push hl
+	push de
+	push bc
+	dec a
+	ld hl, Moves
+	ld bc, MOVE_LENGTH
+	call AddNTimes
+	ld de, wMoveData
+	ld a, BANK(Moves)
+	call FarCopyData
+	pop bc
+	pop de
+	pop hl
+	ld a, [wMoveData + MOVE_PP] ; the move's base PP
 	ld [de], a
 	inc de
 	dec b

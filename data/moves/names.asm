@@ -167,5 +167,10 @@ MoveNames::
 	li "SUBSTITUTE"
 	li "DOUBLE DRIL"
 	li "HYPER BEAMS"
+	li "METRONOME2"
+	li "CARRION WIND"
+	li "BLIGHT VOMIT"
+	li "MIND FEVER"
+	li "PHANTOM WING"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS

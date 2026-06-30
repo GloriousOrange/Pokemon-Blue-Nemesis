@@ -193,11 +193,25 @@ INCLUDE "engine/battle/unused_stats_functions.asm"
 INCLUDE "engine/battle/scroll_draw_trainer_pic.asm"
 INCLUDE "engine/battle/trainer_ai.asm"
 INCLUDE "engine/battle/draw_hud_pokeball_gfx.asm"
-INCLUDE "gfx/trade.asm"
 INCLUDE "engine/pokemon/evos_moves.asm"
 INCLUDE "engine/battle/move_effects/heal.asm"
 INCLUDE "engine/battle/move_effects/transform.asm"
 INCLUDE "engine/battle/move_effects/reflect_light_screen.asm"
+
+
+SECTION "Trade Animation GFX", ROMX
+
+; moved out of Battle Engine 7 to make room for the post-game trainer parties;
+; accessed only via BANK(TradingAnimationGraphics) so it can float to any bank
+INCLUDE "gfx/trade.asm"
+
+
+SECTION "GymRematch", ROMX
+INCLUDE "engine/events/gym_rematch.asm"
+
+SECTION "Megan", ROMX
+; girlfriend interaction shared by every Megan NPC; reached only via farcall MeganTalk
+INCLUDE "engine/overworld/megan.asm"
 
 
 SECTION "Battle Core", ROMX

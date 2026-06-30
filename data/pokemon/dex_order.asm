@@ -191,4 +191,6 @@ PokedexOrder:
 	db DEX_WEEPINBELL
 	db DEX_VICTREEBEL
 	db DEX_TYRANIS
+	db DEX_MIASMA
+	db DEX_NOCTURN
 	assert_table_length NUM_POKEMON_INDEXES

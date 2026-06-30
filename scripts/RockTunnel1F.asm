@@ -22,6 +22,7 @@ RockTunnel1F_TextPointers:
 	dw_const RockTunnel1FCooltrainerF1Text, TEXT_ROCKTUNNEL1F_COOLTRAINER_F1
 	dw_const RockTunnel1FCooltrainerF2Text, TEXT_ROCKTUNNEL1F_COOLTRAINER_F2
 	dw_const RockTunnel1FCooltrainerF3Text, TEXT_ROCKTUNNEL1F_COOLTRAINER_F3
+	dw_const RockTunnel1FMeganText, TEXT_ROCKTUNNEL1F_MEGAN
 	dw_const RockTunnel1FSignText,          TEXT_ROCKTUNNEL1F_SIGN
 
 RockTunnel1TrainerHeaders:
@@ -166,3 +167,10 @@ RockTunnel1FCooltrainerF3AfterBattleText:
 RockTunnel1FSignText:
 	text_far _RockTunnel1FSignText
 	text_end
+
+RockTunnel1FMeganText:
+	text_asm
+	ld a, 23 ; Megan location index
+	ld [wMeganLocIndex], a
+	farcall MeganTalk
+	jp TextScriptEnd

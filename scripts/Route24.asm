@@ -53,7 +53,6 @@ Route24PlayerMovingScript:
 	ld a, [wSimulatedJoypadStatesIndex]
 	and a
 	ret nz
-	call Delay3
 	ld a, SCRIPT_ROUTE24_DEFAULT
 	ld [wRoute24CurScript], a
 	ld [wCurMapScript], a

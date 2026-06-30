@@ -77,6 +77,10 @@ INCLUDE "data/maps/headers/CinnabarIsland.asm"
 INCLUDE "data/maps/objects/CinnabarIsland.asm"
 CinnabarIsland_Blocks: INCBIN "maps/CinnabarIsland.blk"
 
+INCLUDE "data/maps/headers/BattleIsland.asm"
+INCLUDE "data/maps/objects/BattleIsland.asm"
+BattleIsland_Blocks: INCBIN "maps/BattleIsland.blk"
+
 INCLUDE "data/maps/headers/Route1.asm"
 INCLUDE "data/maps/objects/Route1.asm"
 Route1_Blocks: INCBIN "maps/Route1.blk"
@@ -110,6 +114,8 @@ DiglettsCaveRoute2_Blocks: INCBIN "maps/DiglettsCaveRoute2.blk"
 SECTION "Maps 4", ROMX
 
 INCLUDE "scripts/CinnabarIsland.asm"
+
+INCLUDE "scripts/BattleIsland.asm"
 
 INCLUDE "scripts/Route1.asm"
 
@@ -1195,6 +1201,11 @@ INCLUDE "data/maps/objects/CinnabarPokecenter.asm"
 INCLUDE "data/maps/headers/CinnabarMart.asm"
 INCLUDE "scripts/CinnabarMart.asm"
 INCLUDE "data/maps/objects/CinnabarMart.asm"
+
+INCLUDE "data/maps/headers/BattleIslandHouse.asm"
+INCLUDE "scripts/BattleIslandHouse.asm"
+INCLUDE "data/maps/objects/BattleIslandHouse.asm"
+BattleIslandHouse_Blocks: INCBIN "maps/BattleIslandHouse.blk"
 
 INCLUDE "data/maps/headers/CopycatsHouse1F.asm"
 INCLUDE "scripts/CopycatsHouse1F.asm"

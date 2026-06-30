@@ -166,6 +166,11 @@ AttackAnimationPointers:
 	dw SubstituteAnim
 	dw DrillPeckAnim    ; DOUBLE_DRILL — reuse drill peck visuals
 	dw HyperBeamAnim    ; HYPER_BEAMS — reuse hyper beam visuals
+	dw MetronomeAnim    ; METRONOME2 — reuse metronome visuals
+	dw ToxicAnim        ; CARRION_WIND
+	dw SludgeAnim       ; BLIGHT_VOMIT
+	dw ConfuseRayAnim   ; MIND_FEVER
+	dw WingAttackAnim   ; PHANTOM_WING
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim

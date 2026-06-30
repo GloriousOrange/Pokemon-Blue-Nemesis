@@ -913,7 +913,7 @@ OaksLabMonChoiceMenu:
 	call YesNoChoice ; yes/no menu
 	ld a, [wCurrentMenuItem]
 	and a
-	jr nz, OaksLabMonChoiceEnd
+	jp nz, OaksLabMonChoiceEnd
 	ld a, [wCurPartySpecies]
 	ld [wPlayerStarter], a
 	ld [wNamedObjectIndex], a
@@ -946,10 +946,28 @@ OaksLabMonChoiceMenu:
 	ld a, [wCurPartySpecies]
 	ld [wPokedexNum], a
 	call AddPartyMon
+	; Speedtest: Pidgey L15 with Fly in move slot 4
+	ld a, $10 ; player party, but skip the nickname prompt (only the starter is named)
+	ld [wMonDataLocation], a
+	ld a, 15
+	ld [wCurEnemyLevel], a
+	ld a, PIDGEY
+	ld [wPokedexNum], a
+	call AddPartyMon
+	ld a, FLY
+	ld [wPartyMon2Moves + 3], a
+	ld a, 15 ; Fly PP
+	ld [wPartyMon2PP + 3], a
 	lb bc, MASTER_BALL, 5
+	call GiveItem
+	lb bc, LEVEL_STONE, 5 ; speedtest: test stones for the Pallet level-machine
+	call GiveItem
+	lb bc, GF_KEEPSAKE, 1 ; speedtest: the CALL MEGAN item (phone -> greeting/PC/goodbye)
 	call GiveItem
 	ld hl, wStatusFlags4
 	set BIT_GOT_STARTER, [hl]
+	SetEvent EVENT_GOT_POKEDEX ; start the game with the Pokedex (skips the parcel-return give-scene)
+	SetEvent EVENT_OAK_GOT_PARCEL
 	ld a, PAD_SELECT | PAD_START | PAD_CTRL_PAD
 	ld [wJoyIgnore], a
 	ld a, SCRIPT_OAKSLAB_CHOSE_STARTER_SCRIPT

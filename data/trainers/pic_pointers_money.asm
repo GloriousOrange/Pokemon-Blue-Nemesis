@@ -31,7 +31,7 @@ TrainerPicAndMoneyPointers::
 	pic_money TamerPic,        4000
 	pic_money BirdKeeperPic,   2500
 	pic_money BlackbeltPic,    2500
-	pic_money Rival1Pic,       3500
+	pic_money RedPicFront,      3500 ; rival = Red's front sprite (identity swap)
 	pic_money ProfOakPic,      9900
 	pic_money ChiefPic,        3000
 	pic_money ScientistPic,    5000
@@ -48,8 +48,8 @@ TrainerPicAndMoneyPointers::
 	pic_money BlainePic,       9900
 	pic_money SabrinaPic,      9900
 	pic_money GentlemanPic,    7000
-	pic_money Rival2Pic,       6500
-	pic_money Rival3Pic,       9900
+	pic_money RedPicFront,      6500 ; rival = Red's front sprite
+	pic_money RedPicFront,      9900 ; rival = Red's front sprite
 	pic_money LoreleiPic,      9900
 	pic_money ChannelerPic,    3000
 	pic_money AgathaPic,       9900

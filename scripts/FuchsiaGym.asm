@@ -82,7 +82,7 @@ FuchsiaGym_TextPointers:
 	dw_const FuchsiaGymRocker4Text,           TEXT_FUCHSIAGYM_ROCKER4
 	dw_const FuchsiaGymRocker5Text,           TEXT_FUCHSIAGYM_ROCKER5
 	dw_const FuchsiaGymRocker6Text,           TEXT_FUCHSIAGYM_ROCKER6
-	dw_const FuchsiaGymGymGuideText,          TEXT_FUCHSIAGYM_GYM_GUIDE
+	dw_const FuchsiaGymMeganText,          TEXT_FUCHSIAGYM_GYM_GUIDE
 	dw_const FuchsiaGymKogaSoulBadgeInfoText, TEXT_FUCHSIAGYM_KOGA_SOUL_BADGE_INFO
 	dw_const FuchsiaGymKogaReceivedTM06Text,  TEXT_FUCHSIAGYM_KOGA_RECEIVED_TM06
 	dw_const FuchsiaGymKogaTM06NoRoomText,    TEXT_FUCHSIAGYM_KOGA_TM06_NO_ROOM
@@ -271,6 +271,13 @@ FuchsiaGymRocker6EndBattleText:
 FuchsiaGymRocker6AfterBattleText:
 	text_far _FuchsiaGymRocker6AfterBattleText
 	text_end
+
+FuchsiaGymMeganText:
+	text_asm
+	ld a, 16 ; Megan location index
+	ld [wMeganLocIndex], a
+	farcall MeganTalk
+	jp TextScriptEnd
 
 FuchsiaGymGymGuideText:
 	text_asm

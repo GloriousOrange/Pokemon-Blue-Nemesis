@@ -191,4 +191,6 @@ MonsterNames::
 	dname "WEEPINBELL"
 	dname "VICTREEBEL"
 	dname "TYRANIS"
+	dname "MIASMA"
+	dname "NOCTURN"
 	assert_table_length NUM_POKEMON_INDEXES

@@ -1537,7 +1537,7 @@ wMonHBaseEXP:: db
 wMonHSpriteDim:: db
 wMonHFrontSprite:: dw
 wMonHBackSprite:: dw
-wMonHMoves:: ds NUM_MOVES
+wMonHMoves:: ds NUM_BASE_MOVES ; mirrors base-stats moves (4), NOT held-move capacity (5)
 wMonHGrowthRate:: db
 wMonHLearnset:: flag_array NUM_TMS + NUM_HMS
 	ds 1
@@ -1831,7 +1831,7 @@ wWarpEntries:: ds MAX_WARP_EVENTS * 4 ; Y, X, warp ID, map ID
 ; if $ff, the player's coordinates are not updated when entering the map
 wDestinationWarpID:: db
 
-	ds 128
+	ds 24 ; was ds 128; reclaimed 104 bytes for the 5-move struct growth
 
 ; number of signs in the current map (up to MAX_BG_EVENTS)
 wNumSigns:: db
@@ -2016,15 +2016,11 @@ wBrunosRoomCurScript:: db
 wAgathasRoomCurScript:: db
 wCeruleanCaveB1FCurScript:: db
 wVictoryRoad1FCurScript:: db
-	ds 1
 wLancesRoomCurScript:: db
-	ds 4
 wSilphCo10FCurScript:: db
 wSilphCo11FCurScript:: db
-	ds 1
 wFuchsiaGymCurScript:: db
 wSaffronGymCurScript:: db
-	ds 1
 wCinnabarGymCurScript:: db
 wGameCornerCurScript:: db
 wRoute16Gate1FCurScript:: db
@@ -2041,7 +2037,19 @@ wRoute18Gate1FCurScript:: db
 	ds 78
 wGameProgressFlagsEnd::
 
-	ds 56
+; post-game / endgame state (carved from the reserved slack below; saved with Main Data)
+wPostGameFlags::
+wArenaChallengersDefeated:: ds 26 ; one byte per arena challenger (0 = unbeaten, 1 = beaten)
+wGymRematchFlags::          db   ; bitfield: gym leaders re-beaten (post-game rematch)
+wScientistsDefeated::       db   ; bitfield: burned-lab scientists defeated
+wPostGameMisc::             db   ; OAK_DEFEATED / GIOVANNI_DEFEATED / LAB_KEY / DEED bits
+wBattleIslandCurScript::    db   ; Battle Island arena map-script state
+wCurArenaChallenger::       db   ; index (0-25) of the arena challenger being fought ($ff = Giovanni)
+wMeganVisitedFlags::        ds 4 ; bit per Megan location (PokeCenters/gyms/caves/etc.) = first-visit-gift given
+wMeganLocIndex::            db   ; scratch: Megan location index across a HealParty predef
+wPostGameFlagsEnd::
+
+	ds 20 ; was ds 56; 36 bytes carved out above for wPostGameFlags
 
 wObtainedHiddenItemsFlags:: flag_array MAX_HIDDEN_ITEMS
 

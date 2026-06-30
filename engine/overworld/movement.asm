@@ -759,7 +759,7 @@ DoScriptedNPCMovement:
 	jr nz, .checkIfMovingDown
 	call GetSpriteScreenYPointer
 	ld c, SPRITE_FACING_UP
-	ld a, -1
+	ld a, -1 ; vanilla 1px/frame (2px broke trainer-approach/sync arrival checks -> freeze)
 	jr .move
 .checkIfMovingDown
 	cp NPC_MOVEMENT_DOWN
@@ -799,7 +799,7 @@ DoScriptedNPCMovement:
 	ld hl, wScriptedNPCWalkCounter
 	dec [hl]
 	ret nz
-	ld a, 16
+	ld a, 16 ; vanilla: 16 frames * 1px = 16px = 1 tile
 	ld [wScriptedNPCWalkCounter], a
 	ld hl, wNPCMovementDirections2Index
 	inc [hl]
@@ -808,7 +808,7 @@ DoScriptedNPCMovement:
 InitScriptedNPCMovement:
 	xor a
 	ld [wNPCMovementDirections2Index], a
-	ld a, 16
+	ld a, 16 ; vanilla: 16 frames * 1px = 16px = 1 tile
 	ld [wScriptedNPCWalkCounter], a
 	jp AnimScriptedNPCMovement
 

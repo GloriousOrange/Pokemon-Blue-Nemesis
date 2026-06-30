@@ -1,6 +1,7 @@
 	object_const_def
 	const_export SEAFOAMISLANDS1F_BOULDER1
 	const_export SEAFOAMISLANDS1F_BOULDER2
+	const_export SEAFOAMISLANDS1F_MEGAN
 
 SeafoamIslands1F_Object:
 	db $7d ; border block
@@ -19,6 +20,7 @@ SeafoamIslands1F_Object:
 	def_object_events
 	object_event 18, 10, SPRITE_BOULDER, STAY, BOULDER_MOVEMENT_BYTE_2, TEXT_SEAFOAMISLANDS1F_BOULDER1
 	object_event 26,  7, SPRITE_BOULDER, STAY, BOULDER_MOVEMENT_BYTE_2, TEXT_SEAFOAMISLANDS1F_BOULDER2
+	object_event 15, 9, SPRITE_GIRL, STAY, DOWN, TEXT_SEAFOAMISLANDS1F_MEGAN ; girlfriend Megan (collision-verified)
 
 	def_warps_to SEAFOAM_ISLANDS_1F
 

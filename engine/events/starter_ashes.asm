@@ -91,8 +91,10 @@ SaveStarterToAshes::
 
 
 RestoreStarterAsGhost::
-; Adds the starter back at its original level with Ghost secondary type,
-; Night Shade and Confuse Ray as moves 3+4, and restores its nickname/OTID.
+; Adds the starter back at its original level with Ghost secondary type and
+; restores its nickname/OTID. The ghost's signature moves (Night Shade and
+; Confuse Ray) are no longer injected here; instead the player is handed the
+; TMs for those moves (the only source of them), so they choose to teach them.
 ; Caller must verify party is not full before calling.
 
 	; Set up species and level for AddPartyMon
@@ -129,30 +131,6 @@ RestoreStarterAsGhost::
 .nc_type2:
 	ld [hl], GHOST
 
-	; -- Patch MON_MOVES[2] (+$0A) = NIGHT_SHADE, MON_MOVES[3] (+$0B) = CONFUSE_RAY --
-	ld a, e
-	add MON_MOVES + 2
-	ld l, a
-	ld h, d
-	jr nc, .nc_move3
-	inc h
-.nc_move3:
-	ld a, NIGHT_SHADE
-	ld [hli], a
-	ld [hl], CONFUSE_RAY
-
-	; -- Patch MON_PP[2] (+$1F) = 15, MON_PP[3] (+$20) = 10 --
-	ld a, e
-	add MON_PP + 2
-	ld l, a
-	ld h, d
-	jr nc, .nc_pp3
-	inc h
-.nc_pp3:
-	ld [hl], 15                     ; NIGHT_SHADE base PP
-	inc hl
-	ld [hl], 10                     ; CONFUSE_RAY base PP
-
 	; -- Overwrite OT ID (MON_OTID = +$0C) with saved value --
 	ld a, e
 	add MON_OTID
@@ -186,6 +164,13 @@ RestoreStarterAsGhost::
 	ld a, URN_OF_ASHES
 	ldh [hItemToRemoveID], a
 	call RemoveItemByID
+
+	; -- Hand over the ghost-move TMs: the only way to teach Night Shade and
+	;    Confuse Ray. The player chooses to teach them to the revived starter. --
+	lb bc, TM_NIGHT_SHADE, 1
+	call GiveItem
+	lb bc, TM_CONFUSE_RAY, 1
+	call GiveItem
 
 	SetEvent EVENT_STARTER_RESURRECTED
 	ret

@@ -306,31 +306,20 @@ StatusScreen2:
 	hlcoord 19, 3
 	ld [hl], $78
 	hlcoord 0, 8
-	ld b, 8
+	ld b, 6
 	ld c, 18
-	call TextBoxBorder ; Draw move container
+	call TextBoxBorder ; Draw move container (sized for up to NUM_MOVES single-spaced)
 	hlcoord 2, 9
 	ld de, wMovesString
-	call PlaceString ; Print moves
-	ld a, [wNumMovesMinusOne]
-	inc a
-	ld c, a ; number of known moves
-	ld a, NUM_MOVES
-	sub c
-	ld b, a ; number of blank moves
-	hlcoord 11, 10
-	ld de, SCREEN_WIDTH * 2
-	ld a, '<BOLD_P>'
-	call StatusScreen_PrintPP ; Print "PP"
-	ld a, b
-	and a
-	jr z, .InitPP
-	ld c, a
-	ld a, '-'
-	call StatusScreen_PrintPP ; Fill the rest with --
-.InitPP
+	ldh a, [hUILayoutFlags]
+	set BIT_SINGLE_SPACED_LINES, a
+	ldh [hUILayoutFlags], a
+	call PlaceString ; Print moves single-spaced so all NUM_MOVES fit
+	ldh a, [hUILayoutFlags]
+	res BIT_SINGLE_SPACED_LINES, a
+	ldh [hUILayoutFlags], a
 	ld hl, wLoadedMonMoves
-	decoord 14, 10
+	decoord 14, 9 ; each move's PP shares its row (right-aligned)
 	ld b, 0
 .PrintPP
 	ld a, [hli]
@@ -369,7 +358,7 @@ StatusScreen2:
 	lb bc, 1, 2
 	call PrintNumber
 	pop hl
-	ld de, SCREEN_WIDTH * 2
+	ld de, SCREEN_WIDTH ; single-spaced: next move's PP one row down
 	add hl, de
 	ld d, h
 	ld e, l

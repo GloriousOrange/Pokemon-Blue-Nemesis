@@ -81,7 +81,7 @@ SaffronGym_TextPointers:
 	dw_const SaffronGymChanneler3Text,            TEXT_SAFFRONGYM_CHANNELER3
 	dw_const SaffronGymYoungster3Text,            TEXT_SAFFRONGYM_YOUNGSTER3
 	dw_const SaffronGymYoungster4Text,            TEXT_SAFFRONGYM_YOUNGSTER4
-	dw_const SaffronGymGymGuideText,              TEXT_SAFFRONGYM_GYM_GUIDE
+	dw_const SaffronGymMeganText,              TEXT_SAFFRONGYM_GYM_GUIDE
 	dw_const SaffronGymSabrinaMarshBadgeInfoText, TEXT_SAFFRONGYM_SABRINA_MARSH_BADGE_INFO
 	dw_const SaffronGymSabrinaReceivedTM46Text,   TEXT_SAFFRONGYM_SABRINA_RECEIVED_TM46
 	dw_const SaffronGymSabrinaTM46NoRoomText,     TEXT_SAFFRONGYM_SABRINA_TM46_NO_ROOM
@@ -205,6 +205,13 @@ SaffronGymYoungster4Text:
 	text_asm
 	ld hl, SaffronGymTrainerHeader6
 	call TalkToTrainer
+	jp TextScriptEnd
+
+SaffronGymMeganText:
+	text_asm
+	ld a, 17 ; Megan location index
+	ld [wMeganLocIndex], a
+	farcall MeganTalk
 	jp TextScriptEnd
 
 SaffronGymGymGuideText:

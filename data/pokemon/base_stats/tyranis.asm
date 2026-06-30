@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/tyranis.pic", 0, 1 ; sprite dimensions
 	dw TyranisPicFront, TyranisPicBack
 
-	db WING_ATTACK, SCREECH, BODY_SLAM, SLASH ; level 1 learnset
+	db DOUBLE_DRILL, HYPER_BEAMS, BODY_SLAM, SAND_ATTACK ; level 1 learnset
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

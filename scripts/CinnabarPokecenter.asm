@@ -8,6 +8,7 @@ CinnabarPokecenter_TextPointers:
 	dw_const CinnabarPokecenterCooltrainerFText,     TEXT_CINNABARPOKECENTER_COOLTRAINER_F
 	dw_const CinnabarPokecenterGentlemanText,        TEXT_CINNABARPOKECENTER_GENTLEMAN
 	dw_const CinnabarPokecenterLinkReceptionistText, TEXT_CINNABARPOKECENTER_LINK_RECEPTIONIST
+	dw_const CinnabarPokecenterMeganText, TEXT_CINNABARPOKECENTER_MEGAN
 
 CinnabarPokecenterNurseText:
 	script_pokecenter_nurse
@@ -22,3 +23,10 @@ CinnabarPokecenterGentlemanText:
 
 CinnabarPokecenterLinkReceptionistText:
 	script_cable_club_receptionist
+
+CinnabarPokecenterMeganText:
+	text_asm
+	ld a, 7 ; Megan location index
+	ld [wMeganLocIndex], a
+	farcall MeganTalk
+	jp TextScriptEnd

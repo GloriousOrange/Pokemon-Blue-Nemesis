@@ -191,6 +191,8 @@ PokedexEntryPointers:
 	dw WeepinbellDexEntry
 	dw VictreebelDexEntry
 	dw TyranisDexEntry
+	dw MiasmaDexEntry
+	dw NocturnDexEntry
 	assert_table_length NUM_POKEMON_INDEXES
 
 ; string: species name
@@ -1260,6 +1262,20 @@ TyranisDexEntry:
 	db 10,0
 	dw 4000
 	text_far _TyranisDexEntry
+	text_end
+
+MiasmaDexEntry:
+	db "VULTURE@"
+	db 6,0
+	dw 1100
+	text_far _MiasmaDexEntry
+	text_end
+
+NocturnDexEntry:
+	db "RAVEN@"
+	db 4,0
+	dw 300
+	text_far _NocturnDexEntry
 	text_end
 
 MissingNoDexEntry:

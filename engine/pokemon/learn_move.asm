@@ -121,7 +121,7 @@ TryingToLearn:
 	ld hl, WhichMoveToForgetText
 	call PrintText
 	hlcoord 4, 7
-	ld b, 4
+	ld b, NUM_MOVES
 	ld c, 14
 	call TextBoxBorder
 	hlcoord 6, 8

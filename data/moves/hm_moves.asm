@@ -7,4 +7,5 @@
 	db SURF
 	db STRENGTH
 	db FLASH
+	db METRONOME2
 	db -1 ; end

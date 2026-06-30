@@ -167,6 +167,11 @@ MoveSoundTable:
 	db SFX_BATTLE_2C,          $d8, $04 ; SUBSTITUTE
 	db SFX_BATTLE_13,          $f0, $20 ; DOUBLE_DRILL — reuse drill peck sfx
 	db SFX_BATTLE_36,          $00, $80 ; HYPER_BEAMS — reuse hyper beam sfx
+	db SFX_BATTLE_0B,          $00, $80 ; METRONOME2
+	db SFX_BATTLE_0B,          $00, $80 ; CARRION_WIND
+	db SFX_BATTLE_0B,          $00, $80 ; BLIGHT_VOMIT
+	db SFX_BATTLE_0B,          $00, $80 ; MIND_FEVER
+	db SFX_BATTLE_13,          $f0, $20 ; PHANTOM_WING
 	db SFX_BATTLE_0B,          $00, $80 ; STRUGGLE
 	assert_table_length NUM_ATTACKS
 	db SFX_BATTLE_0B,          $00, $80

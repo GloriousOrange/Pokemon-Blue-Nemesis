@@ -1,3 +1,6 @@
+	object_const_def
+	const_export DIGLETTSCAVE_MEGAN
+
 DiglettsCave_Object:
 	db $19 ; border block
 
@@ -8,5 +11,6 @@ DiglettsCave_Object:
 	def_bg_events
 
 	def_object_events
+	object_event 20, 17, SPRITE_GIRL, STAY, DOWN, TEXT_DIGLETTSCAVE_MEGAN ; girlfriend Megan (collision-verified)
 
 	def_warps_to DIGLETTS_CAVE

@@ -8,6 +8,7 @@ PewterPokecenter_TextPointers:
 	dw_const PewterPokecenterGentlemanText,        TEXT_PEWTERPOKECENTER_GENTLEMAN
 	dw_const PewterPokecenterJigglypuffText,       TEXT_PEWTERPOKECENTER_JIGGLYPUFF
 	dw_const PewterPokecenterLinkReceptionistText, TEXT_PEWTERPOKECENTER_LINK_RECEPTIONIST
+	dw_const PewterPokecenterMeganText, TEXT_PEWTERPOKECENTER_MEGAN
 
 PewterPokecenterNurseText:
 	script_pokecenter_nurse
@@ -85,3 +86,10 @@ PewterPokecenterJigglypuffText:
 
 PewterPokecenterLinkReceptionistText:
 	script_cable_club_receptionist
+
+PewterPokecenterMeganText:
+	text_asm
+	ld a, 1 ; Megan location index
+	ld [wMeganLocIndex], a
+	farcall MeganTalk
+	jp TextScriptEnd

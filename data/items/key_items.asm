@@ -43,8 +43,8 @@ KeyItemFlags:
 	dbit TRUE  ; DOME_FOSSIL
 	dbit TRUE  ; HELIX_FOSSIL
 	dbit TRUE  ; SECRET_KEY
-	dbit TRUE  ; ITEM_2C
-	dbit FALSE ; MONSTER_MEAT (not a key item — can be discarded)
+	dbit FALSE ; MONSTER_MEAT
+	dbit TRUE  ; BIKE_VOUCHER
 	dbit FALSE ; X_ACCURACY
 	dbit FALSE ; LEAF_STONE
 	dbit TRUE  ; CARD_KEY
@@ -83,4 +83,8 @@ KeyItemFlags:
 	dbit FALSE ; MAX_ETHER
 	dbit FALSE ; ELIXER
 	dbit FALSE ; MAX_ELIXER
+	dbit TRUE  ; LEVEL_STONE
+	dbit TRUE  ; LAB_KEY
+	dbit TRUE  ; BATTLE_ISLAND_DEED
+	dbit TRUE  ; GF_KEEPSAKE
 	end_bit_array NUM_ITEMS
