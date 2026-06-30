@@ -86,6 +86,23 @@ GainExperience:
 	ld a, [wIsInBattle]
 	dec a ; is it a trainer battle?
 	call nz, BoostExp ; if so, boost exp
+; challenge: double trainer-battle EXP (wUnusedPlayerDataByte bit BIT_CHALLENGE_DOUBLE_XP)
+	ld a, [wIsInBattle]
+	dec a
+	jr z, .noDoubleXp ; wild battle
+	ld a, [wUnusedPlayerDataByte]
+	bit BIT_CHALLENGE_DOUBLE_XP, a
+	jr z, .noDoubleXp
+	ldh a, [hQuotient + 3]
+	add a
+	ldh [hQuotient + 3], a
+	ldh a, [hQuotient + 2]
+	rla
+	ldh [hQuotient + 2], a
+	ldh a, [hQuotient + 1]
+	rla
+	ldh [hQuotient + 1], a
+.noDoubleXp
 	inc hl
 	inc hl
 	inc hl

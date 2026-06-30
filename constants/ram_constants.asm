@@ -161,3 +161,6 @@ DEF LCDC_DEFAULT EQU LCDC_ON | LCDC_WIN_9C00 | LCDC_WIN_ON | LCDC_BLOCK21 | LCDC
 ; wPostGameMisc bits (bit 0 = arena Giovanni defeated, bit 1 = got girlfriend; those are DEF'd in their own scripts)
 DEF BIT_LEVEL_MACHINE_READY EQU 2 ; a level machine sets this; lets a LEVEL STONE work from the bag. Cleared on every map load.
 DEF BIT_POST_GAME_STARTED EQU 3 ; set when the Champion is beaten; unlocks gym-leader rematches
+; wChallengeFlags = wUnusedPlayerDataByte ($ff before the new-game prompt is answered)
+DEF BIT_CHALLENGE_DOUBLE_XP EQU 0 ; 2x EXP from trainer battles
+DEF BIT_CHALLENGE_NO_ITEMS  EQU 1 ; cannot use items in battle

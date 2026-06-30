@@ -2231,7 +2231,7 @@ DisplayBattleMenu::
 .throwSafariBallWasSelected
 	ld a, SAFARI_BALL
 	ld [wCurItem], a
-	jr UseBagItem
+	jp UseBagItem
 
 .upperLeftMenuItemWasNotSelected ; a menu item other than the upper left item was selected
 	cp $2
@@ -2248,6 +2248,17 @@ DisplayBattleMenu::
 	jp DisplayBattleMenu
 
 .notLinkBattle
+; challenge: forbid items in battle (Safari bait still allowed)
+	ld a, [wBattleType]
+	cp BATTLE_TYPE_SAFARI
+	jr z, .challengeItemsOk
+	ld a, [wUnusedPlayerDataByte]
+	bit BIT_CHALLENGE_NO_ITEMS, a
+	jr z, .challengeItemsOk
+	ld hl, ItemsCantBeUsedHereText
+	call PrintText
+	jp DisplayBattleMenu
+.challengeItemsOk
 	call SaveScreenTilesToBuffer2
 	ld a, [wBattleType]
 	cp BATTLE_TYPE_SAFARI
@@ -2256,7 +2267,7 @@ DisplayBattleMenu::
 ; bait was selected
 	ld a, SAFARI_BAIT
 	ld [wCurItem], a
-	jr UseBagItem
+	jp UseBagItem
 
 BagWasSelected:
 	call LoadScreenTilesFromBuffer1
