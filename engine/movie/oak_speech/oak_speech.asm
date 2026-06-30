@@ -50,6 +50,30 @@ OakSpeech:
 	call LoadTextBoxTilePatterns
 	call PrepareOakSpeech
 	predef InitPlayerData2
+; one-time challenge options, asked here (LCD is on, so the prompts render)
+; rather than in the RedsHouse2F map tick where PrintText is unreliable.
+; wUnusedPlayerDataByte was set to $ff (all bits) by InitPlayerData2; clear it to
+; 0 first so both challenges default off, then set a bit per YES answer.
+	xor a
+	ld [wUnusedPlayerDataByte], a
+	ld hl, ChallengeDoubleXpText
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a ; 0 = YES
+	jr nz, .askChallengeNoItems
+	ld hl, wUnusedPlayerDataByte
+	set BIT_CHALLENGE_DOUBLE_XP, [hl]
+.askChallengeNoItems
+	ld hl, ChallengeNoItemsText
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a ; 0 = YES
+	jr nz, .challengeOptionsDone
+	ld hl, wUnusedPlayerDataByte
+	set BIT_CHALLENGE_NO_ITEMS, [hl]
+.challengeOptionsDone
 	ld hl, wNumBoxItems
 	ld a, HP_UP
 	ld [wCurItem], a
@@ -181,6 +205,18 @@ OakSpeech:
 	ld [wUpdateSpritesEnabled], a
 	call GBFadeOutToWhite
 	jp ClearScreen
+
+ChallengeDoubleXpText:
+	text "CHALLENGE: earn"
+	line "DOUBLE EXP from"
+	cont "TRAINER battles?"
+	prompt
+
+ChallengeNoItemsText:
+	text "CHALLENGE: forbid"
+	line "ITEMS during"
+	cont "battle?"
+	prompt
 
 OakSpeechText1:
 	text_far _OakSpeechText1
