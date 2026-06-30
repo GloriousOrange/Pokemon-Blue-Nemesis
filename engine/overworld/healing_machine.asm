@@ -1,4 +1,4 @@
-AnimateHealingMachine:
+AnimateHealingMachine::
 	ld de, PokeCenterFlashingMonitorAndHealBall
 	ld hl, vChars0 tile $7c
 	lb bc, BANK(PokeCenterFlashingMonitorAndHealBall), 3 ; should be 2
