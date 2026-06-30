@@ -36,4 +36,5 @@ UsableItems_PartyMenu:
 	db MAX_ETHER
 	db ELIXER
 	db MAX_ELIXER
+	db LEVEL_STONE ; opens the party menu (lab machine) -> needs the party-menu return path
 	db -1 ; end
