@@ -288,7 +288,13 @@ INCLUDE "data/trainers/special_moves.asm"
 INCLUDE "data/trainers/parties.asm"
 
 TrainerAI:
+; Disabled per user request: enemy trainers never use items on themselves
+; (this is also what was causing the deterministic freeze in Erika's fight
+; via ErikaAI -> AIUseSuperPotion) and never switch mid-battle (rarely
+; benefited them anyway). Always return immediately with no carry set,
+; same as GenericAI's no-op.
 	and a
+	ret
 	ld a, [wIsInBattle]
 	dec a
 	ret z ; if not a trainer, we're done here
