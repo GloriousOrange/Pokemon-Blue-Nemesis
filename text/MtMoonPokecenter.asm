@@ -7,13 +7,13 @@ _MtMoonPokecenterYoungsterText::
 	done
 
 _MtMoonPokecenterGentlemanText::
-	text "TEAM ROCKET"
-	line "attacks CERULEAN"
-	cont "citizens..."
+	text "TEAM ROCKET is"
+	line "all over the"
+	cont "news these days."
 
-	para "TEAM ROCKET is"
-	line "always in the"
-	cont "news!"
+	para "So common. I only"
+	line "read the food"
+	cont "column, myself."
 	done
 
 _MtMoonPokecenterMagikarpSalesmanIGotADealText::

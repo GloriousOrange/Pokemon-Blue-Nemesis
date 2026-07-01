@@ -60,8 +60,8 @@ _SaffronCityGentlemanText::
 	cont "read about SILPH."
 
 	para "It's already over?"
-	line "I missed the"
-	cont "media action."
+	line "I missed my"
+	cont "reservation!"
 	done
 
 _SaffronCityPidgeotText::

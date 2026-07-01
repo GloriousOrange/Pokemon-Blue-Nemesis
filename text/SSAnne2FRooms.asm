@@ -9,10 +9,13 @@ _SSAnne2FRoomsGentleman3Text::
 	prompt
 
 _SSAnne2FRoomsGentleman4Text::
-	text "Ah yes, I have"
-	line "seen some #MON"
-	cont "ferry people"
-	cont "across the water!"
+	text "Ah yes, I've had"
+	line "some #MON"
+	cont "ferry my luggage"
+	cont "across the water."
+
+	para "Tipped them in"
+	line "kibble, of course."
 	done
 
 _SSAnne2FRoomsGrampsText::
@@ -25,8 +28,9 @@ _SSAnne2FRoomsGentleman5Text::
 	line "the SAFARI ZONE"
 	cont "in FUCHSIA CITY?"
 
-	para "It had many rare"
-	line "kinds of #MON!!"
+	para "Best tasting"
+	line "menu in the"
+	cont "region, frankly."
 	done
 
 _SSAnne2FRoomsLittleBoyText::
@@ -49,20 +53,22 @@ _SSAnne2FRoomsBeautyText::
 	done
 
 _SSAnne2FRoomsGentleman1BattleText::
-	text "Competing against"
-	line "the young keeps"
-	cont "me youthful."
+	text "My #MON dine"
+	line "on truffles. Yours"
+	cont "look... store-"
+	cont "bought."
 	done
 
 _SSAnne2FRoomsGentleman1EndBattleText::
 	text "Good"
-	line "fight! Ah, I feel"
-	cont "young again!"
+	line "fight! Still, I"
+	cont "smell better!"
 	prompt
 
 _SSAnne2FRoomsGentleman1AfterBattleText::
-	text "15 years ago, I"
-	line "would have won!"
+	text "15 years and a"
+	line "finer diet, and"
+	cont "I still lost."
 	done
 
 _SSAnne2FRoomsFisherBattleText::
@@ -84,19 +90,20 @@ _SSAnne2FRoomsFisherAfterBattleText::
 	done
 
 _SSAnne2FRoomsGentleman2BattleText::
-	text "Which do you like,"
-	line "a strong or a"
-	cont "rare #MON?"
+	text "Do you take your"
+	line "#MON strong,"
+	cont "or rare?"
 	done
 
 _SSAnne2FRoomsGentleman2EndBattleText::
 	text "I must"
-	line "salute you!"
+	line "salute the chef!"
 	prompt
 
 _SSAnne2FRoomsGentleman2AfterBattleText::
-	text "I prefer strong"
-	line "and rare #MON."
+	text "I prefer mine"
+	line "strong, seared,"
+	cont "and rare."
 	done
 
 _SSAnne2FRoomsCooltrainerFBattleText::

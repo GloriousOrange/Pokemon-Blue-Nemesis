@@ -1,8 +1,11 @@
 _CeladonPokecenterGentlemanText::
-	text "# FLUTE awakens"
-	line "#MON with a"
-	cont "sound that only"
-	cont "they can hear!"
+	text "The # FLUTE"
+	line "has such a lovely"
+	cont "bouquet of tone."
+
+	para "Pairs beautifully"
+	line "with a dry white"
+	cont "wine, I find."
 	done
 
 _CeladonPokecenterBeautyText::

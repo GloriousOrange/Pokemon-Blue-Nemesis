@@ -68,6 +68,17 @@ _BattleIslandTamerDefeatedText::
 	cont "with you."
 	prompt
 
+_BattleIslandGentlemanApproachesText::
+	text "My #MON were"
+	line "raised on the"
+	cont "finest cuisine."
+	done
+
+_BattleIslandGentlemanDefeatedText::
+	text "How positively"
+	line "gauche of you."
+	prompt
+
 _BattleIslandChallengerDefeatedText::
 	text "Incredible!"
 	line "You're too strong!"

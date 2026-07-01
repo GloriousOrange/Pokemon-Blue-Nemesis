@@ -7,8 +7,11 @@ _SaffronPokecenterBeautyText::
 	done
 
 _SaffronPokecenterGentlemanText::
-	text "SILPH CO. is very"
-	line "famous. That's"
-	cont "why it attracted"
-	cont "TEAM ROCKET!"
+	text "SILPH CO. attracts"
+	line "such riffraff"
+	cont "these days."
+
+	para "It used to be a"
+	line "respectable"
+	cont "establishment."
 	done

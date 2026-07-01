@@ -9,13 +9,11 @@ _CinnabarPokecenterCooltrainerFText::
 	done
 
 _CinnabarPokecenterGentlemanText::
-	text "Do you have any"
-	line "friends?"
+	text "The MAGMAR here"
+	line "is grilled table-"
+	cont "side. Exquisite."
 
-	para "#MON you get"
-	line "in trades grow"
-	cont "very quickly."
-
-	para "I think it's"
-	line "worth a try!"
+	para "A common palate"
+	line "wouldn't appre-"
+	cont "ciate it."
 	done

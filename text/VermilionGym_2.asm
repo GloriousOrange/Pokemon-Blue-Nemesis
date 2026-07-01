@@ -60,12 +60,13 @@ _VermilionGymLTSurgeReceivedThunderBadgeText::
 _VermilionGymGentlemanBattleText::
 	text "When I was in the"
 	line "Army, LT.SURGE"
-	cont "was my strict CO!"
+	cont "ate WORSE than"
+	cont "my #MON do!"
 	done
 
 _VermilionGymGentlemanEndBattleText::
 	text "Stop!"
-	line "You're very good!"
+	line "How uncouth!"
 	prompt
 
 _VermilionGymGentlemanAfterBattleText::

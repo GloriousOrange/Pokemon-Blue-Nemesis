@@ -8,15 +8,13 @@ _CeruleanPokecenterSuperNerdText::
 	done
 
 _CeruleanPokecenterGentlemanText::
-	text "Have you heard"
-	line "about BILL?"
+	text "Have you tried"
+	line "the Slowpoke"
+	cont "tail here?"
 
-	para "Everyone calls"
-	line "him a #MANIAC!"
-
-	para "I think people"
-	line "are just jealous"
-	cont "of BILL, though."
+	para "A delicacy. Best"
+	line "served rare, with"
+	cont "a bold red wine."
 
 	para "Who wouldn't want"
 	line "to boast about"

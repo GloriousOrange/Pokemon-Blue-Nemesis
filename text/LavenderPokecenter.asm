@@ -1,7 +1,10 @@
 _LavenderPokecenterGentlemanText::
-	text "TEAM ROCKET will"
-	line "do anything for"
-	cont "the sake of gold!"
+	text "TEAM ROCKET has"
+	line "such poor taste."
+
+	para "Gold is gauche."
+	line "One should crave"
+	cont "a fine wine."
 	done
 
 _LavenderPokecenterLittleGirlText::

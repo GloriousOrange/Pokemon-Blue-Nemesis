@@ -4,36 +4,37 @@ _SSAnne1FRoomsWigglytuffText::
 	text_end
 
 _SSAnne1FRoomsGentleman1BattleText::
-	text "I travel alone"
-	line "on my journeys!"
+	text "I dine alone."
 
-	para "My #MON are my"
-	line "only friends!"
+	para "My #MON are the"
+	line "only company"
+	cont "worth keeping."
 	done
 
 _SSAnne1FRoomsGentleman1EndBattleText::
 	text "My, my"
-	line "friends..."
+	line "reputation..."
 	prompt
 
 _SSAnne1FRoomsGentleman1AfterBattleText::
-	text "You should be"
-	line "nice to friends!"
+	text "One should never"
+	line "lose to the help."
 	done
 
 _SSAnne1FRoomsGentleman2BattleText::
-	text "You pup! How dare"
-	line "you barge in!"
+	text "You pup! This"
+	line "is first class!"
 	done
 
 _SSAnne1FRoomsGentleman2EndBattleText::
 	text "Humph!"
-	line "You rude child!"
+	line "Unspeakable!"
 	prompt
 
 _SSAnne1FRoomsGentleman2AfterBattleText::
 	text "I wish to be left"
-	line "alone! Get out!"
+	line "alone with my"
+	cont "caviar. Get out!"
 	done
 
 _SSAnne1FRoomsYoungsterBattleText::
