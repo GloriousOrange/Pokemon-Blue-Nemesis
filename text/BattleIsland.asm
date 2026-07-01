@@ -31,6 +31,19 @@ _BattleIslandSuperNerdDefeatedText::
 	text "You turd!"
 	prompt
 
+_BattleIslandGamblerApproachesText::
+	text "I heard this"
+	line "island gets"
+	cont "freaky."
+	done
+
+_BattleIslandGamblerDefeatedText::
+	text "Everyone has"
+	line "their price."
+
+	para "What's yours?"
+	prompt
+
 _BattleIslandChallengerDefeatedText::
 	text "Incredible!"
 	line "You're too strong!"

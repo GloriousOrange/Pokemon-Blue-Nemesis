@@ -80,8 +80,13 @@ BattleIslandGatekeeperText:
 .startBattle
 	ld a, [wCurArenaChallenger]
 	cp 22 ; ARENA #23, the Super Nerd looking for a Yoshi
-	jr nz, .printApproachText
+	jr nz, .checkGamblerApproach
 	ld hl, BattleIslandSuperNerdApproachesText
+	jr .printApproachText
+.checkGamblerApproach
+	cp 16 ; ARENA #17, the sleazy Gambler
+	jr nz, .printApproachText
+	ld hl, BattleIslandGamblerApproachesText
 .printApproachText
 	call PrintText
 	ld hl, wStatusFlags3
@@ -90,8 +95,13 @@ BattleIslandGatekeeperText:
 	ld hl, BattleIslandChallengerDefeatedText
 	ld a, [wCurArenaChallenger]
 	cp 22 ; ARENA #23, the Super Nerd looking for a Yoshi
-	jr nz, .notSuperNerdWinText
+	jr nz, .checkGamblerWinText
 	ld hl, BattleIslandSuperNerdDefeatedText
+	jr .notSuperNerdWinText
+.checkGamblerWinText
+	cp 16 ; ARENA #17, the sleazy Gambler
+	jr nz, .notSuperNerdWinText
+	ld hl, BattleIslandGamblerDefeatedText
 .notSuperNerdWinText
 	ld de, BattleIslandChallengerVictoryText
 	call SaveEndBattleTextPointers
@@ -200,6 +210,14 @@ BattleIslandSuperNerdApproachesText:
 
 BattleIslandSuperNerdDefeatedText:
 	text_far _BattleIslandSuperNerdDefeatedText
+	text_end
+
+BattleIslandGamblerApproachesText:
+	text_far _BattleIslandGamblerApproachesText
+	text_end
+
+BattleIslandGamblerDefeatedText:
+	text_far _BattleIslandGamblerDefeatedText
 	text_end
 
 BattleIslandChallengerDefeatedText:
