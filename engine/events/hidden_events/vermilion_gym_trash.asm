@@ -77,21 +77,8 @@ GymTrashScript:
 	jr .done
 
 .trySecondLock
-	ld a, [wSecondLockTrashCanIndex]
-	ld b, a
-	ld a, [wGymTrashCanIndex]
-	cp b
-	jr z, .openSecondLock
-
-; Reset the cans.
-	ResetEvent EVENT_1ST_LOCK_OPENED
-	call Random
-
-	and $e
-	ld [wFirstLockTrashCanIndex], a
-
-	tx_pre_id VermilionGymTrashFailText
-	jr .done
+; Once the first lock is open, ANY trash can opens the second lock too
+; (per user request — the vanilla "guess the second can" step was too tedious).
 
 .openSecondLock
 ; Completed the trash can puzzle.
