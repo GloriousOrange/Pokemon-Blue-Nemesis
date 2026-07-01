@@ -110,8 +110,13 @@ BattleIslandGatekeeperText:
 	jr .printApproachText
 .checkFisherApproach
 	cp 7 ; ARENA #8, the seafood-loving Fisher
-	jr nz, .printApproachText
+	jr nz, .checkBurglarApproach
 	ld hl, BattleIslandFisherApproachesText
+	jr .printApproachText
+.checkBurglarApproach
+	cp 8 ; ARENA #9, the black-market Burglar
+	jr nz, .printApproachText
+	ld hl, BattleIslandBurglarApproachesText
 .printApproachText
 	call PrintText
 	ld hl, wStatusFlags3
@@ -150,8 +155,13 @@ BattleIslandGatekeeperText:
 	jr .notSuperNerdWinText
 .checkFisherWinText
 	cp 7 ; ARENA #8, the seafood-loving Fisher
-	jr nz, .notSuperNerdWinText
+	jr nz, .checkBurglarWinText
 	ld hl, BattleIslandFisherDefeatedText
+	jr .notSuperNerdWinText
+.checkBurglarWinText
+	cp 8 ; ARENA #9, the black-market Burglar
+	jr nz, .notSuperNerdWinText
+	ld hl, BattleIslandBurglarDefeatedText
 .notSuperNerdWinText
 	ld de, BattleIslandChallengerVictoryText
 	call SaveEndBattleTextPointers
@@ -308,6 +318,14 @@ BattleIslandFisherApproachesText:
 
 BattleIslandFisherDefeatedText:
 	text_far _BattleIslandFisherDefeatedText
+	text_end
+
+BattleIslandBurglarApproachesText:
+	text_far _BattleIslandBurglarApproachesText
+	text_end
+
+BattleIslandBurglarDefeatedText:
+	text_far _BattleIslandBurglarDefeatedText
 	text_end
 
 BattleIslandChallengerDefeatedText:

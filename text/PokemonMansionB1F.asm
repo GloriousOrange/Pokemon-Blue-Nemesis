@@ -1,6 +1,7 @@
 _PokemonMansionB1FBurglarBattleText::
-	text "Uh-oh. Where am"
-	line "I now?"
+	text "Uh-oh. You're not"
+	line "here for my ration"
+	cont "cards, are you?"
 	done
 
 _PokemonMansionB1FBurglarEndBattleText::
@@ -8,8 +9,10 @@ _PokemonMansionB1FBurglarEndBattleText::
 	prompt
 
 _PokemonMansionB1FBurglarAfterBattleText::
-	text "You can find stuff"
-	line "lying around."
+	text "I move meat rations"
+	line "nobody's supposed"
+	cont "to have. War's"
+	cont "good for business."
 	done
 
 _PokemonMansionB1FScientistBattleText::

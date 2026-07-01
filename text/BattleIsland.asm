@@ -103,6 +103,19 @@ _BattleIslandFisherDefeatedText::
 	line "Utterly filleted."
 	prompt
 
+_BattleIslandBurglarApproachesText::
+	text "I've got rations"
+	line "that fell off a"
+	cont "truck. Wanna spar"
+	cont "for 'em?"
+	done
+
+_BattleIslandBurglarDefeatedText::
+	text "Take it! It's not"
+	line "like it's mine"
+	cont "anyway."
+	prompt
+
 _BattleIslandChallengerDefeatedText::
 	text "Incredible!"
 	line "You're too strong!"
