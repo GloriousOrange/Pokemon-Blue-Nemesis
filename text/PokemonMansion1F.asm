@@ -14,6 +14,12 @@ _PokemonMansion1FScientistAfterBattleText::
 	cont "talking about."
 	done
 
+_PokemonMansion1FLabScientistAfterBeatText::
+	text "Our research"
+	line "continues thanks"
+	cont "to you."
+	done
+
 _PokemonMansion1FSwitchText::
 	text "A secret switch!"
 

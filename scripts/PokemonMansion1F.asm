@@ -60,12 +60,28 @@ PokemonMansion1F_ScriptPointers:
 	dw_const CheckFightingMapTrainers,              SCRIPT_POKEMONMANSION1F_DEFAULT
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_POKEMONMANSION1F_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_POKEMONMANSION1F_END_BATTLE
+	dw_const PokemonMansion1FLabScientistPostBattle, SCRIPT_POKEMONMANSION1F_LAB_SCIENTIST_POST_BATTLE
+
+PokemonMansion1FLabScientistPostBattle:
+	ld a, [wIsInBattle]
+	cp $ff
+	jp z, PokemonMansion1FResetScripts
+	ld hl, wScientistsDefeated
+	set 0, [hl] ; lab scientist 1 (Porygon)
+	farcall LabScientistGiveStone
+PokemonMansion1FResetScripts:
+	xor a
+	ld [wJoyIgnore], a
+	ld [wPokemonMansion1FCurScript], a
+	ld [wCurMapScript], a
+	ret
 
 PokemonMansion1F_TextPointers:
 	def_text_pointers
 	dw_const PokemonMansion1FScientistText, TEXT_POKEMONMANSION1F_SCIENTIST
 	dw_const PickUpItemText,                TEXT_POKEMONMANSION1F_ESCAPE_ROPE
 	dw_const PickUpItemText,                TEXT_POKEMONMANSION1F_CARBOS
+	dw_const PokemonMansion1FLabScientistText, TEXT_POKEMONMANSION1F_LAB_SCIENTIST
 	dw_const PokemonMansion1FSwitchText,    TEXT_POKEMONMANSION1F_SWITCH
 
 Mansion1TrainerHeaders:
@@ -90,6 +106,30 @@ PokemonMansion1FScientistEndBattleText:
 
 PokemonMansion1FScientistAfterBattleText:
 	text_far _PokemonMansion1FScientistAfterBattleText
+	text_end
+
+PokemonMansion1FLabScientistText:
+	text_asm
+	ld a, [wScientistsDefeated]
+	bit 0, a
+	jr nz, .afterBeat
+	farcall LabScientistBattleInit
+	ldh a, [hSpriteIndex]
+	ld [wSpriteIndex], a
+	call EngageMapTrainer
+	call InitBattleEnemyParameters
+	ld a, SCRIPT_POKEMONMANSION1F_LAB_SCIENTIST_POST_BATTLE
+	ld [wPokemonMansion1FCurScript], a
+	ld [wCurMapScript], a
+	jr .done
+.afterBeat
+	ld hl, .AfterBeatText
+	call PrintText
+.done
+	jp TextScriptEnd
+
+.AfterBeatText:
+	text_far _PokemonMansion1FLabScientistAfterBeatText
 	text_end
 
 PokemonMansion1FSwitchText:

@@ -42,3 +42,8 @@ _PokemonMansion3FDiaryText::
 	para "Total control."
 	line "That was step one."
 	done
+
+_PokemonMansion3FLabScientistAfterBeatText::
+	text "Your strength is"
+	line "already logged."
+	done

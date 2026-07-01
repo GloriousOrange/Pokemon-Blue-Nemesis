@@ -58,6 +58,33 @@ PokemonMansionB1F_ScriptPointers:
 	dw_const CheckFightingMapTrainers,              SCRIPT_POKEMONMANSIONB1F_DEFAULT
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_POKEMONMANSIONB1F_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_POKEMONMANSIONB1F_END_BATTLE
+	dw_const PokemonMansionB1FLabScientist1PostBattle, SCRIPT_POKEMONMANSIONB1F_LAB_SCIENTIST_1_POST_BATTLE
+	dw_const PokemonMansionB1FLabScientist2PostBattle, SCRIPT_POKEMONMANSIONB1F_LAB_SCIENTIST_2_POST_BATTLE
+
+PokemonMansionB1FResetScripts:
+	xor a
+	ld [wJoyIgnore], a
+	ld [wPokemonMansionB1FCurScript], a
+	ld [wCurMapScript], a
+	ret
+
+PokemonMansionB1FLabScientist1PostBattle:
+	ld a, [wIsInBattle]
+	cp $ff
+	jp z, PokemonMansionB1FResetScripts
+	ld hl, wScientistsDefeated
+	set 4, [hl] ; lab scientist 5 (Gengar)
+	farcall LabScientistGiveStone
+	jp PokemonMansionB1FResetScripts
+
+PokemonMansionB1FLabScientist2PostBattle:
+	ld a, [wIsInBattle]
+	cp $ff
+	jp z, PokemonMansionB1FResetScripts
+	ld hl, wScientistsDefeated
+	set 5, [hl] ; lab scientist 6 (Ditto)
+	farcall LabScientistGiveStone
+	jp PokemonMansionB1FResetScripts
 
 PokemonMansionB1F_TextPointers:
 	def_text_pointers
@@ -69,6 +96,9 @@ PokemonMansionB1F_TextPointers:
 	dw_const PickUpItemText,                 TEXT_POKEMONMANSIONB1F_TM_SOLARBEAM
 	dw_const PokemonMansionB1FDiaryText,     TEXT_POKEMONMANSIONB1F_DIARY
 	dw_const PickUpItemText,                 TEXT_POKEMONMANSIONB1F_SECRET_KEY
+	dw_const PokemonMansionB1FLabScientist1Text, TEXT_POKEMONMANSIONB1F_LAB_SCIENTIST_1
+	dw_const PokemonMansionB1FLabScientist2Text, TEXT_POKEMONMANSIONB1F_LAB_SCIENTIST_2
+	dw_const PokemonMansionB1FLevelMachineText,  TEXT_POKEMONMANSIONB1F_LEVEL_MACHINE
 	dw_const PokemonMansion2FSwitchText,     TEXT_POKEMONMANSIONB1F_SWITCH ; This switch uses the text script from the 2F.
 
 Mansion4TrainerHeaders:
@@ -117,4 +147,100 @@ PokemonMansionB1FScientistAfterBattleText:
 
 PokemonMansionB1FDiaryText:
 	text_far _PokemonMansionB1FDiaryText
+	text_end
+
+PokemonMansionB1FLabScientist1Text:
+	text_asm
+	ld a, [wScientistsDefeated]
+	bit 4, a
+	jr nz, .afterBeat
+	farcall LabScientistBattleInit
+	ldh a, [hSpriteIndex]
+	ld [wSpriteIndex], a
+	call EngageMapTrainer
+	call InitBattleEnemyParameters
+	ld a, SCRIPT_POKEMONMANSIONB1F_LAB_SCIENTIST_1_POST_BATTLE
+	ld [wPokemonMansionB1FCurScript], a
+	ld [wCurMapScript], a
+	jr .done
+.afterBeat
+	ld hl, .AfterBeatText
+	call PrintText
+.done
+	jp TextScriptEnd
+
+.AfterBeatText:
+	text_far _PokemonMansionB1FLabScientist1AfterBeatText
+	text_end
+
+PokemonMansionB1FLabScientist2Text:
+	text_asm
+	ld a, [wScientistsDefeated]
+	bit 5, a
+	jr nz, .afterBeat
+	farcall LabScientistBattleInit
+	ldh a, [hSpriteIndex]
+	ld [wSpriteIndex], a
+	call EngageMapTrainer
+	call InitBattleEnemyParameters
+	ld a, SCRIPT_POKEMONMANSIONB1F_LAB_SCIENTIST_2_POST_BATTLE
+	ld [wPokemonMansionB1FCurScript], a
+	ld [wCurMapScript], a
+	jr .done
+.afterBeat
+	ld hl, .AfterBeatText
+	call PrintText
+.done
+	jp TextScriptEnd
+
+.AfterBeatText:
+	text_far _PokemonMansionB1FLabScientist2AfterBeatText
+	text_end
+
+PokemonMansionB1FLevelMachineText:
+	text_asm
+	ld a, [wScientistsDefeated]
+	cp %00111111 ; all 6 lab scientists beaten?
+	jr z, .machineReady
+	ld hl, .NotReadyText
+	call PrintText
+	jp TextScriptEnd
+.machineReady
+	ld a, [wPartyCount]
+	and a
+	jr nz, .hasParty
+	jp TextScriptEnd ; guard: AnimateHealingMachine loops on wPartyCount
+.hasParty
+	ld hl, .OfferText
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr nz, .declined
+	farcall AnimateHealingMachine
+	call PlayDefaultMusic
+	ld hl, wPostGameMisc
+	set BIT_LEVEL_MACHINE_READY, [hl]
+	ld hl, .ReadyText
+	call PrintText
+	jp TextScriptEnd
+.declined
+	ld hl, .DeclinedText
+	call PrintText
+	jp TextScriptEnd
+
+.NotReadyText:
+	text_far _PokemonMansionB1FLevelMachineNotReadyText
+	text_end
+
+.OfferText:
+	text_far _PokemonMansionB1FLevelMachineOfferText
+	text_end
+
+.ReadyText:
+	text_far _PokemonMansionB1FLevelMachineReadyText
+	text_end
+
+.DeclinedText:
+	text_far _PokemonMansionB1FLevelMachineDeclinedText
 	text_end

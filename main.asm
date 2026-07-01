@@ -209,6 +209,9 @@ INCLUDE "gfx/trade.asm"
 SECTION "GymRematch", ROMX
 INCLUDE "engine/events/gym_rematch.asm"
 
+SECTION "LabScientists", ROMX
+INCLUDE "engine/events/lab_scientists.asm"
+
 SECTION "Megan", ROMX
 ; girlfriend interaction shared by every Megan NPC; reached only via farcall MeganTalk
 INCLUDE "engine/overworld/megan.asm"

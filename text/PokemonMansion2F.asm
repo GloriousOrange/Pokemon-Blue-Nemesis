@@ -42,6 +42,17 @@ _PokemonMansion2FDiary2Text::
 	line "we didn't."
 	done
 
+_PokemonMansion2FLabScientist1AfterBeatText::
+	text "The data you gave"
+	line "us was invaluable."
+	done
+
+_PokemonMansion2FLabScientist2AfterBeatText::
+	text "Every trainer we"
+	line "test brings us"
+	cont "closer to L.100."
+	done
+
 _PokemonMansion2FSwitchText::
 	text "A secret switch!"
 
