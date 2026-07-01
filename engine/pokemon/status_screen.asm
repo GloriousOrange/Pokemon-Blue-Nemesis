@@ -461,7 +461,7 @@ StatusScreen2_MoveInfo:
 	ld a, PAD_A | PAD_B
 	ld [wMenuWatchedKeys], a
 	ldh a, [hUILayoutFlags]
-	res BIT_DOUBLE_SPACED_MENU, a ; moves are listed single-spaced
+	set BIT_DOUBLE_SPACED_MENU, a ; despite the name, SET here means 1-row cursor steps (moves are listed single-spaced); CLEAR means 2-row steps
 	ldh [hUILayoutFlags], a
 .loop
 	xor a
