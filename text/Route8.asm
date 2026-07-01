@@ -14,8 +14,10 @@ _Route8SuperNerd1AfterBattleText::
 	done
 
 _Route8Gambler1BattleText::
-	text "All right! Let's"
-	line "roll the dice!"
+	text "Ever bet on a"
+	line "#MON fight?"
+	cont "Real money, real"
+	cont "thrills!"
 	done
 
 _Route8Gambler1EndBattleText::
@@ -24,8 +26,8 @@ _Route8Gambler1EndBattleText::
 	prompt
 
 _Route8Gambler1AfterBattleText::
-	text "Lady Luck's not"
-	line "with me today!"
+	text "That's how I"
+	line "lost my teeth."
 	done
 
 _Route8SuperNerd2BattleText::
@@ -108,8 +110,8 @@ _Route8CooltrainerF3AfterBattleText::
 	done
 
 _Route8Gambler2BattleText::
-	text "I'm a rambling,"
-	line "gambling dude!"
+	text "Can't a fella"
+	line "drink in peace?"
 	done
 
 _Route8Gambler2EndBattleText::
@@ -118,10 +120,8 @@ _Route8Gambler2EndBattleText::
 	prompt
 
 _Route8Gambler2AfterBattleText::
-	text "Gambling and"
-	line "#MON are like"
-	cont "eating peanuts!"
-	cont "Just can't stop!"
+	text "Water? You drink"
+	line "WATER?"
 	done
 
 _Route8CooltrainerF4BattleText::

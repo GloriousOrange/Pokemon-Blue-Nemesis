@@ -1,5 +1,8 @@
 _Route11Gambler1BattleText::
-	text "Win, lose or draw!"
+	text "How about we get"
+	line "some ice cream and"
+	cont "then hit the"
+	cont "casino?"
 	done
 
 _Route11Gambler1EndBattleText::
@@ -8,14 +11,15 @@ _Route11Gambler1EndBattleText::
 	prompt
 
 _Route11Gambler1AfterBattleText::
-	text "#MON is life!"
-	line "And to live is to"
-	cont "gamble!"
+	text "My, what a"
+	line "treat you are."
 	done
 
 _Route11Gambler2BattleText::
-	text "Competition! I"
-	line "can't get enough!"
+	text "They won't let me"
+	line "back into the"
+	cont "GAME CORNER in"
+	cont "CELADON."
 	done
 
 _Route11Gambler2EndBattleText::
@@ -24,9 +28,8 @@ _Route11Gambler2EndBattleText::
 	prompt
 
 _Route11Gambler2AfterBattleText::
-	text "You can't be a"
-	line "coward in the"
-	cont "world of #MON!"
+	text "Don't tell anyone"
+	line "I was here."
 	done
 
 _Route11Youngster1BattleText::
@@ -77,8 +80,8 @@ _Route11Youngster2AfterBattleText5::
 	done
 
 _Route11Gambler3BattleText::
-	text "Fwahaha! I have"
-	line "never lost!"
+	text "Wanna be in a"
+	line "little movie?"
 	done
 
 _Route11Gambler3EndBattleText::
@@ -87,13 +90,16 @@ _Route11Gambler3EndBattleText::
 	prompt
 
 _Route11Gambler3AfterBattleText::
-	text "Luck of the draw!"
-	line "Just luck!"
+	text "If you ever need"
+	line "someone to buy"
+	cont "your drinks, I'm"
+	cont "your guy!"
 	done
 
 _Route11Gambler4BattleText::
-	text "I have never won"
-	line "before..."
+	text "Lost the mortgage"
+	line "on a game of"
+	cont "HI-LOW."
 	done
 
 _Route11Gambler4EndBattleText::
@@ -102,8 +108,8 @@ _Route11Gambler4EndBattleText::
 	prompt
 
 _Route11Gambler4AfterBattleText::
-	text "It's just luck."
-	line "Luck of the draw."
+	text "Don't tell my"
+	line "wife."
 	done
 
 _Route11Youngster3BattleText::
