@@ -2,6 +2,9 @@ PrintBeginningBattleText:
 	ld a, [wIsInBattle]
 	dec a
 	jr nz, .trainerBattle
+	ld a, [wEnemyMonSpecies2]
+	cp TYRANIS
+	call z, .tyranisScreech ; herald the legendary bird before it appears
 	ld a, [wCurMap]
 	cp POKEMON_TOWER_3F
 	jr c, .notPokemonTower
@@ -70,9 +73,19 @@ PrintBeginningBattleText:
 .done
 	ret
 
+.tyranisScreech
+	ld hl, TyranisScreechText
+	jp PrintText
+
 WildMonAppearedText:
 	text_far _WildMonAppearedText
 	text_end
+
+TyranisScreechText:
+	text "A deafening"
+	line "screech fills the"
+	cont "sky!"
+	prompt
 
 HookedMonAttackedText:
 	text_far _HookedMonAttackedText
