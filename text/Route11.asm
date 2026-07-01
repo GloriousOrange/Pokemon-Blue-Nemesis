@@ -34,7 +34,9 @@ _Route11Gambler2AfterBattleText::
 
 _Route11Youngster1BattleText::
 	text "Let's go, but"
-	line "don't cheat!"
+	line "don't cheat! I"
+	cont "heard cheaters get"
+	cont "cursed by MEW."
 	done
 
 _Route11Youngster1EndBattleText::
@@ -65,8 +67,9 @@ _Route11SuperNerd1AfterBattleText::
 
 _Route11Youngster2BattleText::
 	text "I just became a"
-	line "trainer! But, I"
-	cont "think I can win!"
+	line "trainer! My friend"
+	cont "says the Elite"
+	cont "Four eat kids!"
 	done
 
 _Route11Youngster2EndBattleText::
@@ -114,7 +117,9 @@ _Route11Gambler4AfterBattleText::
 
 _Route11Youngster3BattleText::
 	text "I'm the best in"
-	line "my class!"
+	line "my class! My"
+	cont "teacher used to"
+	cont "work for OAK!"
 	done
 
 _Route11Youngster3EndBattleText::

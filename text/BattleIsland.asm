@@ -16,6 +16,19 @@ _BattleIslandBugCatcherDefeatedText::
 	cont "after you!"
 	prompt
 
+_BattleIslandYoungsterApproachesText::
+	text "I heard this"
+	line "island is built"
+	cont "on an old #MON"
+	cont "graveyard!"
+	done
+
+_BattleIslandYoungsterDefeatedText::
+	text "I heard losers"
+	line "get sent there"
+	cont "too!"
+	prompt
+
 _BattleIslandHikerApproachesText::
 	text "Give me a sec,"
 	line "my back's acting"

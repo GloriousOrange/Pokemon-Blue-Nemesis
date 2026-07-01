@@ -1,7 +1,9 @@
 _Route25Youngster1BattleText::
 	text "Local trainers"
 	line "come here to"
-	cont "practice!"
+	cont "practice! I heard"
+	cont "BILL used to be"
+	cont "a #MON!"
 	done
 
 _Route25Youngster1EndBattleText::
@@ -67,7 +69,10 @@ _Route25CooltrainerF1AfterBattleText::
 
 _Route25Youngster3BattleText::
 	text "I knew I had to"
-	line "fight you!"
+	line "fight you! My"
+	cont "friend says GHOSTs"
+	cont "aren't real, but"
+	cont "I've seen one!"
 	done
 
 _Route25Youngster3EndBattleText::

@@ -18,7 +18,9 @@ _MtMoon1FHikerAfterBattleText::
 
 _MtMoon1FYoungster1BattleText::
 	text "Did you come to"
-	line "explore too?"
+	line "explore too? My"
+	cont "brother saw a"
+	cont "ghost in here!"
 	done
 
 _MtMoon1FYoungster1EndBattleText::

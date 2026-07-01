@@ -39,7 +39,10 @@ _SSAnne1FRoomsGentleman2AfterBattleText::
 
 _SSAnne1FRoomsYoungsterBattleText::
 	text "I love #MON!"
-	line "Do you?"
+	line "Do you? My friend"
+	cont "says this ship"
+	cont "has a monster"
+	cont "in the basement!"
 	done
 
 _SSAnne1FRoomsYoungsterEndBattleText::
