@@ -165,13 +165,16 @@ _GameCornerRocketImGuardingThisPosterText::
 	text "I've got a spicy"
 	line "JYNX in the back"
 	cont "if you're looking"
-	line "for a good time."
-	cont "She knows Lovely"
+	cont "for a good time."
+
+	para "She knows Lovely"
 	line "Kiss, and Lick."
-	cont "Wait a minute..."
+
+	para "Wait a minute..."
 	line "You're too short"
 	cont "to ride this ride."
-	line "Beat it, kid!"
+
+	para "Beat it, kid!"
 	done
 
 _GameCornerRocketBattleEndText::
