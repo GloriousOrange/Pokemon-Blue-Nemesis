@@ -25,6 +25,23 @@ _RedsHouse1FTVStandByMeMovieText::
 	line "for TAUROS JERKY."
 	done
 
+_RedsHouse1FTVCloysterSoupText::
+	text "It's a commercial"
+	line "for CLOYSTER SOUP."
+
+	para "Now with more"
+	line "shell than ever!"
+	done
+
+_RedsHouse1FTVDittoJelloText::
+	text "It's a commercial"
+	line "for DITTO JELLO."
+
+	para "Tastes like"
+	line "whatever you"
+	cont "want it to!"
+	done
+
 _RedsHouse1FTVWrongSideText::
 	text "Oops, wrong side."
 	done

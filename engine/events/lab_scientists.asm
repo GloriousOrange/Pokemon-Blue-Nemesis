@@ -31,22 +31,33 @@ LabScientistGiveStone::
 	jp PrintText
 
 LabScientistChallengeText:
-	text "You'll need to"
-	line "beat me to prove"
-	cont "you're worthy of"
-	cont "our research!"
+	text "A perfected"
+	line "#MON never"
+	cont "tires, never ages,"
+	cont "never disobeys."
+
+	para "Let's see how"
+	line "close to perfect"
+	cont "yours can get."
 	prompt
 
 LabScientistWinText:
-	text "Incredible power!"
-	line "Our data was"
-	cont "right about you."
+	text "Fascinating! Your"
+	line "#MON pushed past"
+	cont "every model we"
+	cont "had for it."
+
+	para "OAK will want"
+	line "this data."
 	prompt
 
 LabScientistLoseText:
-	text "Hmph. Come back"
-	line "when you're"
-	cont "stronger."
+	text "Not yet perfect,"
+	line "I'm afraid."
+
+	para "Come back when"
+	line "there's more of"
+	cont "it to measure."
 	prompt
 
 LabScientistReceivedStoneText:

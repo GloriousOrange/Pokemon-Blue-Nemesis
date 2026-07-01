@@ -36,9 +36,10 @@ _PokemonFanClubSeelText::
 
 _PokemonFanClubChairmanIntroText::
 	text "I chair the"
-	line "#MON Fan Club!"
+	line "#MON Cuisine"
+	cont "Society!"
 
-	para "I have collected"
+	para "I've sampled"
 	line "over 100 #MON!"
 
 	para "I'm very fussy"
@@ -56,26 +57,25 @@ _PokemonFanClubChairmanStoryText::
 	text "Good!"
 	line "Then listen up!"
 
-	para "My favorite"
-	line "RAPIDASH..."
+	para "My favorite dish"
+	line "is FRIED DRAGON..."
 
-	para "It...cute..."
-	line "lovely...smart..."
-	cont "plus...amazing..."
+	para "It...crispy..."
+	line "tender...smoky..."
+	cont "plus...juicy..."
 	cont "you think so?..."
 	cont "oh yes...it..."
-	cont "stunning..."
-	cont "kindly..."
+	cont "melts...kindly..."
 	cont "love it!"
 
-	para "Hug it...when..."
-	cont "sleeping...warm"
-	cont "and cuddly..."
-	cont "spectacular..."
-	cont "ravishing..."
-	cont "...Oops! Look at"
-	cont "the time! I kept"
-	cont "you too long!"
+	para "Best...when it's"
+	cont "still...warm from"
+	cont "the pan...spec-"
+	cont "tacular...ravish-"
+	cont "ing...Oops! Look"
+	cont "at the time! I"
+	cont "kept you too"
+	cont "long!"
 
 	para "Thanks for hearing"
 	line "me out! I want"
@@ -99,11 +99,12 @@ _PokemonFanClubExplainBikeVoucherText::
 	line "FEAROW will FLY"
 	cont "me anywhere!"
 
-	para "So, I don't need a"
-	line "BICYCLE!"
+	para "Besides, after a"
+	line "big bowl of"
+	cont "DITTO JELLO..."
 
-	para "I hope you like"
-	line "cycling!"
+	para "...I couldn't"
+	line "pedal if I tried!"
 	done
 
 _PokemonFanClubNoStoryText::
@@ -130,7 +131,7 @@ _PokemonFanClubBagFullText::
 _PokemonFanClubReceptionistText::
 	text "Our Chairman is"
 	line "very vocal about"
-	cont "#MON."
+	cont "#MON cuisine."
 	done
 
 _PokemonFanClubSign1Text::

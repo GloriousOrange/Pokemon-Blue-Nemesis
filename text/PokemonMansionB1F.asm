@@ -40,40 +40,49 @@ _PokemonMansionB1FDiaryText::
 
 _PokemonMansionB1FLabScientist1AfterBeatText::
 	text "Ghosts, machines,"
-	line "it's all data to"
-	cont "us now."
+	line "living things..."
+
+	para "it's all just"
+	line "data, once you"
+	cont "stop flinching."
 	done
 
 _PokemonMansionB1FLabScientist2AfterBeatText::
-	text "You've got what"
-	line "it takes for"
-	cont "L.100."
+	text "Take the stone."
+
+	para "You've earned the"
+	line "right to make"
+	cont "something perfect."
 	done
 
 _PokemonMansionB1FLevelMachineNotReadyText::
-	text "This machine is"
-	line "dark."
+	text "This thing hasn't"
+	line "run since the"
+	cont "war."
 
-	para "Perhaps our"
-	line "scientists know"
-	cont "how to wake it."
+	para "Our scientists"
+	line "still remember"
+	cont "how to feed it."
 	done
 
 _PokemonMansionB1FLevelMachineOfferText::
-	text "The L.100 machine"
-	line "hums to life."
+	text "It hums awake,"
+	line "hungry for years"
+	cont "it didn't get."
 
-	para "Use it on a"
-	line "#MON now?"
+	para "Force a #MON to"
+	line "its final shape?"
 	done
 
 _PokemonMansionB1FLevelMachineReadyText::
-	text "It's ready. Use a"
-	line "LEVEL STONE on a"
-	cont "#MON now!"
+	text "It's fed. Use a"
+	line "LEVEL STONE and"
+	cont "it'll finish the"
+	cont "rest for you."
 	done
 
 _PokemonMansionB1FLevelMachineDeclinedText::
-	text "Come back when"
-	line "you're ready."
+	text "It goes quiet"
+	line "again. It can"
+	cont "wait."
 	done

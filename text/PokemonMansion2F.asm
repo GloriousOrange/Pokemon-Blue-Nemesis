@@ -43,14 +43,19 @@ _PokemonMansion2FDiary2Text::
 	done
 
 _PokemonMansion2FLabScientist1AfterBeatText::
-	text "The data you gave"
-	line "us was invaluable."
+	text "You didn't even"
+	line "flinch. Good."
+
+	para "OAK has no use"
+	line "for #MON that"
+	cont "flinch."
 	done
 
 _PokemonMansion2FLabScientist2AfterBeatText::
 	text "Every trainer we"
-	line "test brings us"
-	cont "closer to L.100."
+	line "break down here"
+	cont "gets us closer"
+	cont "to L.100."
 	done
 
 _PokemonMansion2FSwitchText::

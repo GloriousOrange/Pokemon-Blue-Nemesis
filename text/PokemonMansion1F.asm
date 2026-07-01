@@ -15,9 +15,13 @@ _PokemonMansion1FScientistAfterBattleText::
 	done
 
 _PokemonMansion1FLabScientistAfterBeatText::
-	text "Our research"
-	line "continues thanks"
-	cont "to you."
+	text "Every #MON is"
+	line "just a rough"
+	cont "draft of MEW."
+
+	para "We're only here"
+	line "to finish the"
+	cont "final copy."
 	done
 
 _PokemonMansion1FSwitchText::

@@ -56,13 +56,38 @@ RedsHouse1FTVText:
 	cp SPRITE_FACING_UP
 	ld hl, .WrongSideText
 	jr nz, .got_text
-	ld hl, .StandByMeMovieText
+.rerollCommercial
+	call Random
+	and %11
+	cp 3
+	jr z, .rerollCommercial
+	add a
+	ld c, a
+	ld b, 0
+	ld hl, .CommercialTable
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 .got_text
 	call PrintText
 	jp TextScriptEnd
 
+.CommercialTable:
+	dw .StandByMeMovieText
+	dw .CloysterSoupText
+	dw .DittoJelloText
+
 .StandByMeMovieText:
 	text_far _RedsHouse1FTVStandByMeMovieText
+	text_end
+
+.CloysterSoupText:
+	text_far _RedsHouse1FTVCloysterSoupText
+	text_end
+
+.DittoJelloText:
+	text_far _RedsHouse1FTVDittoJelloText
 	text_end
 
 .WrongSideText:

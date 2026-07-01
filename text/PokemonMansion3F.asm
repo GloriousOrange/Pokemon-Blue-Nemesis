@@ -44,6 +44,11 @@ _PokemonMansion3FDiaryText::
 	done
 
 _PokemonMansion3FLabScientistAfterBeatText::
-	text "Your strength is"
-	line "already logged."
+	text "Logged, timed,"
+	line "and filed."
+
+	para "MEWTWO was our"
+	line "masterpiece. Your"
+	cont "#MON is just"
+	cont "another draft."
 	done
