@@ -40,13 +40,15 @@ _RocketHideoutB4FRocket1EndBattleText::
 _RocketHideoutB4FRocket1AfterBattleText::
 	text "Do you have"
 	line "something against"
-	cont "TEAM ROCKET?"
+	cont "people who lost"
+	cont "everything in the"
+	cont "war?"
 	done
 
 _RocketHideoutB4FRocket2BattleText::
 	text "How can you not"
-	line "see the beauty of"
-	cont "our evil?"
+	line "see we're the"
+	cont "real victims here?"
 	done
 
 _RocketHideoutB4FRocket2EndBattleText::

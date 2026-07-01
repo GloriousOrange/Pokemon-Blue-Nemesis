@@ -116,6 +116,19 @@ _BattleIslandBurglarDefeatedText::
 	cont "anyway."
 	prompt
 
+_BattleIslandRocketApproachesText::
+	text "TEAM ROCKET fights"
+	line "for people the"
+	cont "GYMs left behind."
+	cont "Prove me wrong."
+	done
+
+_BattleIslandRocketDefeatedText::
+	text "The cause"
+	line "will remember"
+	cont "this."
+	prompt
+
 _BattleIslandChallengerDefeatedText::
 	text "Incredible!"
 	line "You're too strong!"

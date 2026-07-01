@@ -1,7 +1,7 @@
 _RocketHideoutB3FRocket1BattleText::
 	text "Stop meddling in"
 	line "TEAM ROCKET's"
-	cont "affairs!"
+	cont "affairs, OAK dog!"
 	done
 
 _RocketHideoutB3FRocket1EndBattleText::
@@ -18,8 +18,9 @@ _RocketHideoutB3FRocket1AfterBattleText::
 
 _RocketHideout3BattleText::
 	text "We got word from"
-	line "upstairs that you"
-	cont "were coming!"
+	line "upstairs. The"
+	cont "cause needs you"
+	cont "stopped."
 	done
 
 _RocketHideout3EndBattleText3::

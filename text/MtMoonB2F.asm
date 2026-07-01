@@ -57,9 +57,10 @@ _MtMoonB2FSuperNerdThenThisIsMineText::
 
 _MtMoonB2FRocket1BattleText::
 	text "TEAM ROCKET will"
-	line "find the fossils,"
-	cont "revive and sell"
-	cont "them for cash!"
+	line "revive these"
+	cont "fossils to feed"
+	cont "families OAK"
+	cont "forgot about!"
 	done
 
 _MtMoonB2FRocket1EndBattleText::
@@ -75,8 +76,9 @@ _MtMoonB2FRocket1AfterBattleText::
 
 _MtMoonB2FRocket2BattleText::
 	text "We, TEAM ROCKET,"
-	line "are #MON"
-	cont "gangsters!"
+	line "fight for people"
+	cont "the GYMs left"
+	cont "behind!"
 	done
 
 _MtMoonB2FRocket2EndBattleText::

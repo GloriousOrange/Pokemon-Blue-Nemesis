@@ -115,8 +115,13 @@ BattleIslandGatekeeperText:
 	jr .printApproachText
 .checkBurglarApproach
 	cp 8 ; ARENA #9, the black-market Burglar
-	jr nz, .printApproachText
+	jr nz, .checkRocketApproach
 	ld hl, BattleIslandBurglarApproachesText
+	jr .printApproachText
+.checkRocketApproach
+	cp 10 ; ARENA #11, the true-believer Rocket
+	jr nz, .printApproachText
+	ld hl, BattleIslandRocketApproachesText
 .printApproachText
 	call PrintText
 	ld hl, wStatusFlags3
@@ -160,8 +165,13 @@ BattleIslandGatekeeperText:
 	jr .notSuperNerdWinText
 .checkBurglarWinText
 	cp 8 ; ARENA #9, the black-market Burglar
-	jr nz, .notSuperNerdWinText
+	jr nz, .checkRocketWinText
 	ld hl, BattleIslandBurglarDefeatedText
+	jr .notSuperNerdWinText
+.checkRocketWinText
+	cp 10 ; ARENA #11, the true-believer Rocket
+	jr nz, .notSuperNerdWinText
+	ld hl, BattleIslandRocketDefeatedText
 .notSuperNerdWinText
 	ld de, BattleIslandChallengerVictoryText
 	call SaveEndBattleTextPointers
@@ -326,6 +336,14 @@ BattleIslandBurglarApproachesText:
 
 BattleIslandBurglarDefeatedText:
 	text_far _BattleIslandBurglarDefeatedText
+	text_end
+
+BattleIslandRocketApproachesText:
+	text_far _BattleIslandRocketApproachesText
+	text_end
+
+BattleIslandRocketDefeatedText:
+	text_far _BattleIslandRocketDefeatedText
 	text_end
 
 BattleIslandChallengerDefeatedText:

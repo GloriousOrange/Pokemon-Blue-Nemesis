@@ -35,7 +35,9 @@ _PokemonTower7FRocket1EndBattleText::
 
 _PokemonTower7FRocket1AfterBattleText::
 	text "I'm not going to"
-	line "forget this!"
+	line "forget this! The"
+	cont "cause remembers"
+	cont "its enemies."
 	done
 
 _PokemonTower7FRocket2BattleText::

@@ -14,4 +14,6 @@ _RocketHideoutB2FRocketAfterBattleText::
 	line "HQ has 4 basement"
 	cont "floors. Can you"
 	cont "reach the BOSS?"
+	cont "He fought in the"
+	cont "war. He gets it."
 	done
