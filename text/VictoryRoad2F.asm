@@ -30,7 +30,8 @@ _VictoryRoad2FHikerAfterBattleText::
 _VictoryRoad2FSuperNerd1BattleText::
 	text "Ah, so you wish"
 	line "to challenge the"
-	cont "ELITE FOUR?"
+	cont "ELITE FOUR? Pick"
+	cont "a card, any card!"
 	done
 
 _VictoryRoad2FSuperNerd1EndBattleText::
@@ -81,7 +82,9 @@ _VictoryRoad2FSuperNerd2AfterBattleText::
 
 _VictoryRoad2FSuperNerd3BattleText::
 	text "Is VICTORY ROAD"
-	line "too tough?"
+	line "too tough? Watch"
+	cont "me juggle three"
+	cont "#MON at once!"
 	done
 
 _VictoryRoad2FSuperNerd3EndBattleText::

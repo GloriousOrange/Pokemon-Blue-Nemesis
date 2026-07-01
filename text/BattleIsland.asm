@@ -127,6 +127,20 @@ _BattleIslandFisherDefeatedText::
 	line "Utterly filleted."
 	prompt
 
+_BattleIslandJugglerApproachesText::
+	text "Watch closely!"
+	line "Now you see my"
+	cont "#MON, now you"
+	cont "don't! Wait, where"
+	cont "did it go?"
+	done
+
+_BattleIslandJugglerDefeatedText::
+	text "That wasn't"
+	line "supposed to"
+	cont "happen either."
+	prompt
+
 _BattleIslandBurglarApproachesText::
 	text "I've got rations"
 	line "that fell off a"

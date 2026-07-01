@@ -48,4 +48,5 @@ _SilphCo5FRockerBattleText::
 	text "Whaaat? There"
 	line "shouldn't be any"
 	cont "children here?"
+	cont "Watch this trick!"
 	done

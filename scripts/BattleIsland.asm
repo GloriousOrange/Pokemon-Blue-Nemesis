@@ -120,8 +120,13 @@ BattleIslandGatekeeperText:
 	jr .printApproachText
 .checkFisherApproach
 	cp 7 ; ARENA #8, the seafood-loving Fisher
-	jr nz, .checkBurglarApproach
+	jr nz, .checkJugglerApproach
 	ld hl, BattleIslandFisherApproachesText
+	jr .printApproachText
+.checkJugglerApproach
+	cp 6 ; ARENA #7, the failed-magician Juggler
+	jr nz, .checkBurglarApproach
+	ld hl, BattleIslandJugglerApproachesText
 	jr .printApproachText
 .checkBurglarApproach
 	cp 8 ; ARENA #9, the black-market Burglar
@@ -185,8 +190,13 @@ BattleIslandGatekeeperText:
 	jr .notSuperNerdWinText
 .checkFisherWinText
 	cp 7 ; ARENA #8, the seafood-loving Fisher
-	jr nz, .checkBurglarWinText
+	jr nz, .checkJugglerWinText
 	ld hl, BattleIslandFisherDefeatedText
+	jr .notSuperNerdWinText
+.checkJugglerWinText
+	cp 6 ; ARENA #7, the failed-magician Juggler
+	jr nz, .checkBurglarWinText
+	ld hl, BattleIslandJugglerDefeatedText
 	jr .notSuperNerdWinText
 .checkBurglarWinText
 	cp 8 ; ARENA #9, the black-market Burglar
@@ -374,6 +384,14 @@ BattleIslandFisherApproachesText:
 
 BattleIslandFisherDefeatedText:
 	text_far _BattleIslandFisherDefeatedText
+	text_end
+
+BattleIslandJugglerApproachesText:
+	text_far _BattleIslandJugglerApproachesText
+	text_end
+
+BattleIslandJugglerDefeatedText:
+	text_far _BattleIslandJugglerDefeatedText
 	text_end
 
 BattleIslandBurglarApproachesText:
