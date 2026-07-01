@@ -43,7 +43,9 @@ _SSAnne2FRoomsBrunetteGirlText::
 
 _SSAnne2FRoomsBeautyText::
 	text "I hear many people"
-	line "get seasick!"
+	line "get seasick! I"
+	cont "just get sea-"
+	cont "flirty, wink."
 	done
 
 _SSAnne2FRoomsGentleman1BattleText::

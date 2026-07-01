@@ -95,36 +95,38 @@ _Route13CooltrainerM2AfterBattleText::
 	done
 
 _Route13Beauty1BattleText::
-	text "Sure, I'll play"
-	line "with you!"
+	text "Sure, cutie, I'll"
+	line "play with you!"
 	done
 
 _Route13Beauty1EndBattleText::
-	text "Oh!"
-	line "You little brute!"
+	text "Ooh!"
+	line "Rough much?"
 	prompt
 
 _Route13Beauty1AfterBattleText::
-	text "I wonder which is"
-	line "stronger, male or"
-	cont "female #MON?"
+	text "Boys who beat me"
+	line "always ask for my"
+	cont "number after."
 	done
 
 _Route13Beauty2BattleText::
-	text "Do you want to"
-	line "#MON with me?"
+	text "Wanna #MON"
+	line "with me, hot"
+	cont "stuff?"
 	done
 
 _Route13Beauty2EndBattleText::
-	text "It's over"
-	line "already?"
+	text "Already?"
+	line "Aw, cute."
 	prompt
 
 _Route13Beauty2AfterBattleText::
 	text "I don't know"
 	line "anything about"
 	cont "#MON. I just"
-	cont "like cool ones!"
+	cont "like cute"
+	cont "trainers!"
 	done
 
 _Route13BikerBattleText::

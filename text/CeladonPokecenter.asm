@@ -8,5 +8,7 @@ _CeladonPokecenterGentlemanText::
 _CeladonPokecenterBeautyText::
 	text "I rode uphill on"
 	line "CYCLING ROAD from"
-	cont "FUCHSIA!"
+	cont "FUCHSIA! My legs"
+	cont "are so sore now,"
+	cont "hehe."
 	done

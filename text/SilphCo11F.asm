@@ -51,11 +51,11 @@ _SilphCo11FSilphPresidentNoRoomText::
 
 _SilphCo11FBeautyText::
 	text "SECRETARY: Thank"
-	line "you for rescuing"
-	cont "all of us!"
+	line "you for saving us!"
 
-	para "We admire your"
-	line "courage."
+	para "I was so scared I"
+	line "forgot my own"
+	cont "name, teehee."
 	done
 
 _SilphCo11FGiovanniText::

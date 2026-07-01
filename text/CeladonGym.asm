@@ -108,23 +108,23 @@ _CeladonGymAfterBattleText2::
 	done
 
 _CeladonGymBattleText3::
-	text "I was getting"
-	line "bored."
+	text "Ohmigod, don't"
+	line "mess up my hair!"
 	done
 
 _CeladonGymEndBattleText3::
 	text "My"
-	line "makeup!"
+	line "extensions!"
 	prompt
 
 _CeladonGymAfterBattleText3::
-	text "Grass-type #MON"
-	line "are tough against"
-	cont "the water-type!"
+	text "I dated a GYM"
+	line "trainer once."
 
-	para "They also have an"
-	line "edge on rock and"
-	cont "ground #MON!"
+	para "He said he liked"
+	line "that I was dumb."
+	cont "I think that was"
+	cont "a compliment?"
 	done
 
 _CeladonGymBattleText4::
@@ -144,11 +144,10 @@ _CeladonGymAfterBattleText4::
 	done
 
 _CeladonGymBattleText5::
-	text "Look at my grass"
-	line "#MON!"
-
-	para "They're so easy"
-	line "to raise!"
+	text "I use grass"
+	line "#MON 'cause"
+	cont "they match my"
+	cont "eyes, duh!"
 	done
 
 _CeladonGymEndBattleText5::
@@ -156,13 +155,10 @@ _CeladonGymEndBattleText5::
 	prompt
 
 _CeladonGymAfterBattleText5::
-	text "We only use grass-"
-	line "type #MON at"
-	cont "our GYM!"
-
-	para "We also use them"
-	line "for making flower"
-	cont "arrangements!"
+	text "ERIKA's, like,"
+	line "so smart. I just"
+	cont "stand here and"
+	cont "look cute!"
 	done
 
 _CeladonGymBattleText6::
@@ -184,21 +180,22 @@ _CeladonGymAfterBattleText6::
 	done
 
 _CeladonGymBattleText7::
-	text "Pleased to meet"
-	line "you. My hobby is"
-	cont "#MON training."
+	text "Hey cutie, wanna"
+	line "battle... or"
+	cont "something?"
 	done
 
 _CeladonGymEndBattleText7::
-	text "Oh!"
-	line "Splendid!"
+	text "Ooh!"
+	line "Feisty!"
 	prompt
 
 _CeladonGymAfterBattleText7::
 	text "I have a blind"
-	line "date coming up."
-	cont "I have to learn"
-	cont "to be polite."
+	line "date later."
+
+	para "Hope he's not,"
+	line "like, SMART. Ew."
 	done
 
 _CeladonGymBattleText8::

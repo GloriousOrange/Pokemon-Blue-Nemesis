@@ -1,10 +1,10 @@
 _GameCornerBeauty1Text::
-	text "Welcome!"
+	text "Welcome, cutie!"
 
-	para "You can exchange"
-	line "your coins for"
-	cont "fabulous prizes"
-	cont "next door."
+	para "Coins for prizes"
+	line "next door. I'd"
+	cont "give you my"
+	cont "number too."
 	done
 
 _GameCornerClerk1DoYouNeedSomeGameCoinsText::
@@ -54,8 +54,9 @@ _GameCornerMiddleAgedMan1Text::
 
 _GameCornerBeauty2Text::
 	text "I think these"
-	line "machines have"
-	cont "different odds."
+	line "machines flirt"
+	cont "back if you're"
+	cont "cute enough."
 	done
 
 _GameCornerFishingGuruWantToPlayText::

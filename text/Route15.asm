@@ -82,13 +82,15 @@ _Route15Beauty1EndBattleText::
 
 _Route15Beauty1AfterBattleText::
 	text "I forgive you!"
-	line "I can take it!"
+	line "Cuties get a"
+	cont "pass from me!"
 	done
 
 _Route15Beauty2BattleText::
-	text "I raise #MON"
-	line "because I live"
-	cont "alone!"
+	text "I live alone, so"
+	line "I need someone"
+	cont "strong... you,"
+	cont "or a #MON!"
 	done
 
 _Route15Beauty2EndBattleText::
@@ -99,7 +101,8 @@ _Route15Beauty2EndBattleText::
 _Route15Beauty2AfterBattleText::
 	text "I just like going"
 	line "home to be with"
-	cont "my #MON!"
+	cont "my #MON! And"
+	cont "maybe you too."
 	done
 
 _Route15Biker1BattleText::
