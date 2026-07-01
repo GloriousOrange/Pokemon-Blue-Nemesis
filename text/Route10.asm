@@ -61,6 +61,8 @@ _Route10CooltrainerF1BattleText::
 	line "#MON GYM a few"
 	cont "times. But, I"
 	cont "lost each time."
+	cont "Still looked"
+	cont "great doing it."
 	done
 
 _Route10CooltrainerF1EndBattleText::
@@ -92,7 +94,9 @@ _Route10Hiker2AfterBattleText::
 _Route10CooltrainerF2BattleText::
 	text "I'm feeling a bit"
 	line "faint from this"
-	cont "tough hike."
+	cont "tough hike. Must"
+	cont "be all the eyes"
+	cont "on me."
 	done
 
 _Route10CooltrainerF2EndBattleText::

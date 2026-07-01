@@ -12,6 +12,8 @@ _Route24CooltrainerM2AfterBattleText::
 _Route24CooltrainerM3BattleText::
 	text "OK! I'm No. 5!"
 	line "I'll stomp you!"
+	cont "Obviously the"
+	cont "best of the 5."
 	done
 
 _Route24CooltrainerM3EndBattleText::

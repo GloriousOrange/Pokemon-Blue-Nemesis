@@ -2,6 +2,8 @@ _Route15CooltrainerF1BattleText::
 	text "Let me try out the"
 	line "#MON I just"
 	cont "got in a trade!"
+	cont "It'll look great"
+	cont "next to me."
 	done
 
 _Route15CooltrainerF1EndBattleText::
@@ -22,7 +24,8 @@ _Route15CooltrainerF1AfterBattleText::
 _Route15CooltrainerF2BattleText::
 	text "You look gentle,"
 	line "so I think I can"
-	cont "beat you!"
+	cont "beat you! I'm"
+	cont "just built different."
 	done
 
 _Route15CooltrainerF2EndBattleText::
@@ -138,7 +141,8 @@ _Route15Biker2AfterBattleText::
 
 _Route15CooltrainerF3BattleText::
 	text "What's cool?"
-	line "Trading #MON!"
+	line "Me. What else"
+	cont "is cool? Also me."
 	done
 
 _Route15CooltrainerF3EndBattleText::
@@ -153,7 +157,9 @@ _Route15CooltrainerF3AfterBattleText::
 
 _Route15CooltrainerF4BattleText::
 	text "Want to play with"
-	line "my #MON?"
+	line "my #MON? They're"
+	cont "as cool as I am,"
+	cont "which is very."
 	done
 
 _Route15CooltrainerF4EndBattleText::

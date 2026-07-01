@@ -1,6 +1,8 @@
 _RockTunnelB1FCooltrainerF1BattleText::
 	text "Hikers leave twigs"
 	line "as trail markers."
+	cont "I leave people"
+	cont "starstruck."
 	done
 
 _RockTunnelB1FCooltrainerF1EndBattleText::
@@ -92,8 +94,9 @@ _RockTunnelB1FHiker2AfterBattleText::
 
 _RockTunnelB1FCooltrainerF2BattleText::
 	text "I don't often"
-	line "come here, but I"
-	cont "will fight you."
+	line "come here, it's"
+	cont "bad for my"
+	cont "complexion."
 	done
 
 _RockTunnelB1FCooltrainerF2EndBattleText::

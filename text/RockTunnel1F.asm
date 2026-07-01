@@ -87,7 +87,8 @@ _RockTunnel1FCooltrainerF1AfterBattleText::
 
 _RockTunnel1FCooltrainerF2BattleText::
 	text "I came this far"
-	line "for #MON!"
+	line "for #MON! And to"
+	cont "be admired, mostly."
 	done
 
 _RockTunnel1FCooltrainerF2EndBattleText::
@@ -102,7 +103,9 @@ _RockTunnel1FCooltrainerF2AfterBattleText::
 
 _RockTunnel1FCooltrainerF3BattleText::
 	text "You have #MON!"
-	line "Let's start!"
+	line "Let's start! I"
+	cont "look good even"
+	cont "underground."
 	done
 
 _RockTunnel1FCooltrainerF3EndBattleText::

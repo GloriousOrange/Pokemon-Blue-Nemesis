@@ -1,7 +1,9 @@
 _Route6CooltrainerM1BattleText::
 	text "Who's there?"
 	line "Quit listening in"
-	cont "on us!"
+	cont "on us! People are"
+	cont "always eavesdropping"
+	cont "on my greatness."
 	done
 
 _Route6CooltrainerM1EndBattleText::
@@ -17,7 +19,8 @@ _Route6CooltrainerAfterBattleText::
 _Route6CooltrainerF1BattleText::
 	text "Excuse me! This"
 	line "is a private"
-	cont "conversation!"
+	cont "conversation about"
+	cont "how great I am!"
 	done
 
 _Route6CooltrainerF1EndBattleText::

@@ -1,7 +1,8 @@
 _Route9CooltrainerF1BattleText::
 	text "You have #MON"
 	line "with you!"
-	cont "You're mine!"
+	cont "You're mine! I"
+	cont "collect losers."
 	done
 
 _Route9CooltrainerF1EndBattleText::

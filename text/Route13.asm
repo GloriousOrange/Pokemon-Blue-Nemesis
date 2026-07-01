@@ -16,7 +16,9 @@ _Route13CooltrainerM1AfterBattleText::
 
 _Route13CooltrainerF1BattleText::
 	text "I'm told I'm good"
-	line "for a kid!"
+	line "for a kid! Actually"
+	cont "I'm just good,"
+	cont "period."
 	done
 
 _Route13CooltrainerF1EndBattleText::
@@ -33,6 +35,8 @@ _Route13CooltrainerF1AfterBattleText::
 _Route13CooltrainerF2BattleText::
 	text "Wow! Your BADGEs"
 	line "are too cool!"
+	cont "Not as cool as"
+	cont "mine, though."
 	done
 
 _Route13CooltrainerF2EndBattleText::
@@ -47,9 +51,10 @@ _Route13CooltrainerF2AfterBattleText::
 	done
 
 _Route13CooltrainerF3BattleText::
-	text "My cute #MON"
+	text "My gorgeous #MON"
 	line "wish to make your"
-	cont "acquaintance."
+	cont "acquaintance. As"
+	cont "do I, obviously."
 	done
 
 _Route13CooltrainerF3EndBattleText::
@@ -65,7 +70,9 @@ _Route13CooltrainerF3AfterBattleText::
 
 _Route13CooltrainerF4BattleText::
 	text "I found CARBOS in"
-	line "a cave once."
+	line "a cave once. I'm"
+	cont "basically an"
+	cont "explorer now."
 	done
 
 _Route13CooltrainerF4EndBattleText::
