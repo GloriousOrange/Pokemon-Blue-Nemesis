@@ -1932,6 +1932,7 @@ wBluesHouseCurScript:: db
 wViridianCityCurScript:: db
 	ds 2
 wPewterCityCurScript:: db
+wRoute1CurScript:: db
 wRoute3CurScript:: db
 wRoute4CurScript:: db
 	ds 1

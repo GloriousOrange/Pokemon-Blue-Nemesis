@@ -1,11 +1,58 @@
 Route1_Script:
-	jp EnableAutoTextBoxDrawing
+	call EnableAutoTextBoxDrawing
+	ld hl, Route1TrainerHeaders
+	ld de, Route1_ScriptPointers
+	ld a, [wRoute1CurScript]
+	call ExecuteCurMapScriptInTable
+	ld [wRoute1CurScript], a
+	ret
+
+Route1_ScriptPointers:
+	def_script_pointers
+	dw_const CheckFightingMapTrainers,              SCRIPT_ROUTE1_DEFAULT
+	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_ROUTE1_START_BATTLE
+	dw_const Route1EndTrainerBattle,                SCRIPT_ROUTE1_END_BATTLE
+
+; Megan is the only trainer on this route, so any battle ending here is hers.
+Route1EndTrainerBattle:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .noWin ; battle aborted/lost-load, don't unlock anything
+	ld hl, wPostGameMisc
+	set BIT_GOT_GIRLFRIEND, [hl] ; love text is the end-battle text; this adds MEGAN to the Start menu
+.noWin
+	jp EndTrainerBattle
 
 Route1_TextPointers:
 	def_text_pointers
 	dw_const Route1Youngster1Text, TEXT_ROUTE1_YOUNGSTER1
 	dw_const Route1Youngster2Text, TEXT_ROUTE1_YOUNGSTER2
+	dw_const Route1MeganText,      TEXT_ROUTE1_MEGAN
 	dw_const Route1SignText,       TEXT_ROUTE1_SIGN
+
+Route1TrainerHeaders:
+	def_trainers 1
+Route1TrainerHeader0:
+	trainer EVENT_BEAT_ROUTE1_MEGAN, 4, Route1MeganChallengeText, Route1MeganLoveText, Route1MeganAfterText
+	db -1 ; end
+
+Route1MeganText:
+	text_asm
+	ld hl, Route1TrainerHeader0
+	call TalkToTrainer
+	jp TextScriptEnd
+
+Route1MeganChallengeText:
+	text_far _Route1MeganChallengeText
+	text_end
+
+Route1MeganLoveText:
+	text_far _Route1MeganLoveText
+	text_end
+
+Route1MeganAfterText:
+	text_far _Route1MeganAfterText
+	text_end
 
 Route1Youngster1Text:
 	text_asm

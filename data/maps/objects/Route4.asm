@@ -2,7 +2,6 @@
 	const_export ROUTE4_COOLTRAINER_F1
 	const_export ROUTE4_COOLTRAINER_F2
 	const_export ROUTE4_TM_WHIRLWIND
-	const_export ROUTE4_MEGAN
 
 Route4_Object:
 	db $2c ; border block
@@ -21,6 +20,5 @@ Route4_Object:
 	object_event  9,  8, SPRITE_COOLTRAINER_F, WALK, ANY_DIR, TEXT_ROUTE4_COOLTRAINER_F1
 	object_event 63,  3, SPRITE_COOLTRAINER_F, STAY, RIGHT, TEXT_ROUTE4_COOLTRAINER_F2, OPP_LASS, 4
 	object_event 57,  3, SPRITE_POKE_BALL, STAY, NONE, TEXT_ROUTE4_TM_WHIRLWIND, TM_WHIRLWIND
-	object_event 16,  6, SPRITE_GIRL, STAY, DOWN, TEXT_ROUTE4_MEGAN ; Megan: battle to earn her love (just outside Mt. Moon)
 
 	def_warps_to ROUTE_4

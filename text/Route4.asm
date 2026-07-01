@@ -33,38 +33,3 @@ _Route4SignText::
 	line "MT.MOON -"
 	cont "CERULEAN CITY"
 	done
-
-_Route4MeganChallengeText::
-	text "Hi! You're kinda"
-	line "cute. But I only"
-	cont "date STRONG"
-	cont "trainers!"
-
-	para "Beat me and I'm"
-	line "all yours!"
-	done
-
-_Route4MeganBattleDefeatedText::
-	text "Wow... you really"
-	line "ARE strong!"
-	prompt
-
-_Route4MeganBattleVictoryText::
-	text "Hmph! Come back"
-	line "when you're"
-	cont "tougher!"
-	prompt
-
-_Route4MeganLoveText::
-	text "You won my heart!"
-
-	para "Here's my cell"
-	line "number. Call me"
-	cont "any time!"
-	done
-
-_Route4MeganAfterText::
-	text "Go get 'em, champ!"
-	line "I'm always"
-	cont "cheering for you!"
-	done

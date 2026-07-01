@@ -43,6 +43,29 @@ _Route1Youngster2Text::
 	cont "quicker that way."
 	done
 
+_Route1MeganChallengeText::
+	text "Hey! Watch where"
+	line "you're walking!"
+
+	para "...Actually,"
+	line "never mind. Let's"
+	cont "battle!"
+	done
+
+_Route1MeganLoveText::
+	text "I'll be your"
+	line "girlfriend!"
+
+	para "Here's my number."
+	line "Call any time!"
+	prompt
+
+_Route1MeganAfterText::
+	text "Don't keep a girl"
+	line "waiting too long,"
+	cont "okay?"
+	done
+
 _Route1SignText::
 	text "ROUTE 1"
 	line "PALLET TOWN -"
