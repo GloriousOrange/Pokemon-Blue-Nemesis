@@ -89,7 +89,8 @@ _SSAnneB1FRoomsFisherBattleText::
 	line "Stop and chat!"
 
 	para "All my #MON"
-	line "are from the sea!"
+	line "are fresh catch"
+	cont "from the sea!"
 	done
 
 _SSAnneB1FRoomsFisherEndBattleText::

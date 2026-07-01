@@ -19,11 +19,10 @@ _CeladonDinerMiddleAgedManText::
 	done
 
 _CeladonDinerFisherText::
-	text "Munch..."
-
-	para "The man at that"
-	line "table lost it all"
-	cont "at the slots."
+	text "Munch... this"
+	line "MAGIKARP soup is"
+	cont "the best thing"
+	cont "I've ever caught."
 	done
 
 _CeladonDinerGymGuideImFlatOutBustedText::

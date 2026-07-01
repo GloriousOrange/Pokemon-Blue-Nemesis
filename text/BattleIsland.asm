@@ -91,6 +91,18 @@ _BattleIslandBirdKeeperDefeatedText::
 	cont "my #MON."
 	prompt
 
+_BattleIslandFisherApproachesText::
+	text "My #MON are"
+	line "fresh off the"
+	cont "boat! Let's grill"
+	cont "this out!"
+	done
+
+_BattleIslandFisherDefeatedText::
+	text "Filleted."
+	line "Utterly filleted."
+	prompt
+
 _BattleIslandChallengerDefeatedText::
 	text "Incredible!"
 	line "You're too strong!"

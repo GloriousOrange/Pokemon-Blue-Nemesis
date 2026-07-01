@@ -18,8 +18,8 @@ _Route12SnorlaxCalmedDownText::
 	done
 
 _Route12Fisher1BattleText::
-	text "Yeah! I got a"
-	line "bite, here!"
+	text "Yeah! Dinner's"
+	line "on the line!"
 	done
 
 _Route12Fisher1EndBattleText::
@@ -28,13 +28,13 @@ _Route12Fisher1EndBattleText::
 	prompt
 
 _Route12Fisher1AfterBattleText::
-	text "Hang on! My line's"
-	line "snagged!"
+	text "Hang on! My"
+	line "lunch is snagged!"
 	done
 
 _Route12Fisher2BattleText::
-	text "Be patient!"
-	line "Fishing is a"
+	text "Patience! Good"
+	line "eating takes a"
 	cont "waiting game!"
 	done
 
@@ -46,7 +46,7 @@ _Route12Fisher2EndBattleText::
 _Route12Fisher2AfterBattleText::
 	text "With a better ROD,"
 	line "I could catch"
-	cont "better #MON!"
+	cont "tastier #MON!"
 	done
 
 _Route12CooltrainerMBattleText::
@@ -92,13 +92,13 @@ _Route12Fisher3EndBattleText::
 
 _Route12Fisher3AfterBattleText::
 	text "You beat me at"
-	line "#MON, but I'm"
-	cont "good at fishing!"
+	line "#MON, but I"
+	cont "fillet mine best!"
 	done
 
 _Route12Fisher4BattleText::
 	text "I'd rather be"
-	line "working!"
+	line "gutting fish!"
 	done
 
 _Route12Fisher4EndBattleText::
@@ -109,13 +109,13 @@ _Route12Fisher4EndBattleText::
 _Route12Fisher4AfterBattleText::
 	text "It's all right."
 	line "Losing doesn't"
-	cont "bug me any more."
+	cont "spoil my appetite."
 	done
 
 _Route12Fisher5BattleText::
 	text "You never know"
 	line "what you could"
-	cont "catch!"
+	cont "catch or eat!"
 	done
 
 _Route12Fisher5EndBattleText::
@@ -125,7 +125,7 @@ _Route12Fisher5EndBattleText::
 
 _Route12Fisher5AfterBattleText::
 	text "I catch MAGIKARP"
-	line "all the time, but"
+	line "all the time. Raw,"
 	cont "they're so weak!"
 	done
 

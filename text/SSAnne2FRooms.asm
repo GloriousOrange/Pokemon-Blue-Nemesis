@@ -73,7 +73,8 @@ _SSAnne2FRoomsGentleman1AfterBattleText::
 
 _SSAnne2FRoomsFisherBattleText::
 	text "Check out what I"
-	line "fished up!"
+	line "fished up! Fresh"
+	cont "sashimi tonight!"
 	done
 
 _SSAnne2FRoomsFisherEndBattleText::

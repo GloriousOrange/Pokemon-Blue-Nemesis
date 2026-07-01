@@ -1,7 +1,7 @@
 _Route21Fisher1BattleText::
 	text "You want to know"
 	line "if the fish are"
-	cont "biting?"
+	cont "biting? Or edible?"
 	done
 
 _Route21Fisher1EndBattleText::
@@ -10,12 +10,13 @@ _Route21Fisher1EndBattleText::
 
 _Route21Fisher1AfterBattleText::
 	text "I can't catch"
-	line "anything good!"
+	line "anything worth"
+	cont "grilling!"
 	done
 
 _Route21Fisher2BattleText::
 	text "I got a big haul!"
-	line "Wanna go for it?"
+	line "Fry-up tonight!"
 	done
 
 _Route21Fisher2EndBattleText::
@@ -26,6 +27,7 @@ _Route21Fisher2EndBattleText::
 _Route21Fisher2AfterBattleText::
 	text "I seem to only"
 	line "catch MAGIKARP!"
+	cont "Bony, but edible."
 	done
 
 _Route21Swimmer1BattleText::
@@ -107,7 +109,7 @@ _Route21Swimmer5AfterBattleText::
 
 _Route21Fisher3BattleText::
 	text "Hey, don't scare"
-	line "away the fish!"
+	line "off my supper!"
 	done
 
 _Route21Fisher3EndBattleText::
@@ -116,14 +118,14 @@ _Route21Fisher3EndBattleText::
 	prompt
 
 _Route21Fisher3AfterBattleText::
-	text "I was just angry"
-	line "that I couldn't"
+	text "I was just hungry"
+	line "and couldn't"
 	cont "catch anything."
 	done
 
 _Route21Fisher4BattleText::
 	text "Keep me company"
-	line "'til I get a hit!"
+	line "'til dinner bites!"
 	done
 
 _Route21Fisher4EndBattleText::
