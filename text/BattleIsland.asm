@@ -23,13 +23,12 @@ _BattleIslandGiovanniArrivesText::
 	done
 
 _BattleIslandSuperNerdApproachesText::
-	text "I'm looking for a"
-	line "YOSHI!"
+	text "You seem to be at"
+	line "least 35 COURICS."
 	done
 
 _BattleIslandSuperNerdDefeatedText::
-	text "YOSHI is an OG"
-	line "POCKET MONSTER!"
+	text "You turd!"
 	prompt
 
 _BattleIslandChallengerDefeatedText::
