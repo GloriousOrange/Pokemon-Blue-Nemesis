@@ -31,7 +31,7 @@ Route1_TextPointers:
 	dw_const Route1SignText,       TEXT_ROUTE1_SIGN
 
 Route1TrainerHeaders:
-	def_trainers 1
+	def_trainers 3
 Route1TrainerHeader0:
 	trainer EVENT_BEAT_ROUTE1_MEGAN, 4, Route1MeganChallengeText, Route1MeganLoveText, Route1MeganAfterText
 	db -1 ; end
