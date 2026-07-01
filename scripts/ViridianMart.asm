@@ -1,6 +1,14 @@
 ViridianMart_Script:
 	call ViridianMartCheckParcelDeliveredScript
 	call EnableAutoTextBoxDrawing
+	ld a, [wViridianMartCurScript]
+	and a
+	jr nz, .dispatch
+	CheckEvent EVENT_OAK_GOT_PARCEL
+	jr z, .dispatch
+	ld a, SCRIPT_VIRIDIANMART_NOOP
+	ld [wViridianMartCurScript], a
+.dispatch
 	ld hl, ViridianMart_ScriptPointers
 	ld a, [wViridianMartCurScript]
 	jp CallFunctionInTable
