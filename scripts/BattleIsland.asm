@@ -90,8 +90,13 @@ BattleIslandGatekeeperText:
 	jp .printApproachText
 .checkYoshiApproach
 	cp 21 ; ARENA #22, the rumor-spreading Youngster
-	jr nz, .checkSuperNerd23Approach
+	jr nz, .checkPsychicApproach
 	ld hl, BattleIslandYoungsterApproachesText
+	jp .printApproachText
+.checkPsychicApproach
+	cp 19 ; ARENA #20, the dark-visions Psychic
+	jr nz, .checkSuperNerd23Approach
+	ld hl, BattleIslandPsychicApproachesText
 	jp .printApproachText
 .checkSuperNerd23Approach
 	cp 22 ; ARENA #23, the Super Nerd looking for a Yoshi
@@ -183,8 +188,13 @@ BattleIslandGatekeeperText:
 	jp .notSuperNerdWinText
 .checkYoshiWinText
 	cp 21 ; ARENA #22, the rumor-spreading Youngster
-	jr nz, .checkSuperNerd23WinText
+	jr nz, .checkPsychicWinText
 	ld hl, BattleIslandYoungsterDefeatedText
+	jp .notSuperNerdWinText
+.checkPsychicWinText
+	cp 19 ; ARENA #20, the dark-visions Psychic
+	jr nz, .checkSuperNerd23WinText
+	ld hl, BattleIslandPsychicDefeatedText
 	jp .notSuperNerdWinText
 .checkSuperNerd23WinText
 	cp 22 ; ARENA #23, the Super Nerd looking for a Yoshi
@@ -366,6 +376,14 @@ BattleIslandYoungsterApproachesText:
 
 BattleIslandYoungsterDefeatedText:
 	text_far _BattleIslandYoungsterDefeatedText
+	text_end
+
+BattleIslandPsychicApproachesText:
+	text_far _BattleIslandPsychicApproachesText
+	text_end
+
+BattleIslandPsychicDefeatedText:
+	text_far _BattleIslandPsychicDefeatedText
 	text_end
 
 BattleIslandHikerApproachesText:

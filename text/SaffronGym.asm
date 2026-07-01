@@ -135,6 +135,8 @@ _SaffronGymChanneler1AfterBattleText::
 _SaffronGymYoungster1BattleText::
 	text "Does our unseen"
 	line "power scare you?"
+	cont "I see a war in"
+	cont "your family's past."
 	done
 
 _SaffronGymYoungster1EndBattleText::
@@ -171,7 +173,8 @@ _SaffronGymChanneler2AfterBattleText::
 _SaffronGymYoungster2BattleText::
 	text "You know that"
 	line "power alone isn't"
-	cont "enough!"
+	cont "enough! I see"
+	cont "someone you lost."
 	done
 
 _SaffronGymYoungster2EndBattleText::
@@ -207,8 +210,9 @@ _SaffronGymYoungster3BattleText::
 	line "but she's also"
 	cont "our LEADER!"
 
-	para "You won't reach"
-	line "her easily!"
+	para "I see a battlefield"
+	line "in your future."
+	cont "Not this one."
 	done
 
 _SaffronGymYoungster3EndBattleText::
@@ -233,9 +237,10 @@ _SaffronGymYoungster4BattleText::
 	line "GYM is famous for"
 	cont "its psychics!"
 
-	para "You want to see"
-	line "SABRINA!"
-	cont "I can tell!"
+	para "You're looking for"
+	line "the truth about"
+	cont "your father. I"
+	cont "can tell!"
 	done
 
 _SaffronGymYoungster4EndBattleText::

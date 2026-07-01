@@ -29,6 +29,18 @@ _BattleIslandYoungsterDefeatedText::
 	cont "too!"
 	prompt
 
+_BattleIslandPsychicApproachesText::
+	text "I already saw"
+	line "how this ends."
+	cont "I'm fighting"
+	cont "anyway."
+	done
+
+_BattleIslandPsychicDefeatedText::
+	text "Yes. Just as"
+	line "I foresaw."
+	prompt
+
 _BattleIslandHikerApproachesText::
 	text "Give me a sec,"
 	line "my back's acting"
