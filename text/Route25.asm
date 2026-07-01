@@ -101,8 +101,9 @@ _Route25CooltrainerF2AfterBattleText::
 
 _Route25Hiker1BattleText::
 	text "I just got down"
-	line "from MT.MOON,"
-	cont "but I'm ready!"
+	line "from MT.MOON, my"
+	cont "knees are killing"
+	cont "me, but I'm ready!"
 	done
 
 _Route25Hiker1EndBattleText::

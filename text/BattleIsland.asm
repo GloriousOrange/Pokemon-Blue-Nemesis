@@ -16,6 +16,18 @@ _BattleIslandBugCatcherDefeatedText::
 	cont "after you!"
 	prompt
 
+_BattleIslandHikerApproachesText::
+	text "Give me a sec,"
+	line "my back's acting"
+	cont "up again."
+	done
+
+_BattleIslandHikerDefeatedText::
+	text "Beaten by a kid."
+	line "I'll tell everyone"
+	cont "it was a landslide."
+	prompt
+
 _BattleIslandChallengerApproachesText::
 	text "A new challenger"
 	line "steps into the"

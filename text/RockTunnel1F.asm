@@ -36,6 +36,8 @@ _RockTunnel1FHiker3BattleText::
 	text "Outsiders like"
 	line "you need to show"
 	cont "me some respect!"
+	cont "I've hiked this"
+	cont "tunnel 40 times!"
 	done
 
 _RockTunnel1FHiker3EndBattleText::

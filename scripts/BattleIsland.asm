@@ -84,6 +84,11 @@ BattleIslandGatekeeperText:
 	ld hl, BattleIslandBugCatcherApproachesText
 	jr .printApproachText
 .checkSuperNerdApproach
+	cp 1 ; ARENA #2, the dad-energy Hiker
+	jr nz, .checkYoshiApproach
+	ld hl, BattleIslandHikerApproachesText
+	jr .printApproachText
+.checkYoshiApproach
 	cp 22 ; ARENA #23, the Super Nerd looking for a Yoshi
 	jr nz, .checkGamblerApproach
 	ld hl, BattleIslandSuperNerdApproachesText
@@ -144,6 +149,11 @@ BattleIslandGatekeeperText:
 	ld hl, BattleIslandBugCatcherDefeatedText
 	jr .notSuperNerdWinText
 .checkSuperNerdWinText
+	cp 1 ; ARENA #2, the dad-energy Hiker
+	jr nz, .checkYoshiWinText
+	ld hl, BattleIslandHikerDefeatedText
+	jr .notSuperNerdWinText
+.checkYoshiWinText
 	cp 22 ; ARENA #23, the Super Nerd looking for a Yoshi
 	jr nz, .checkGamblerWinText
 	ld hl, BattleIslandSuperNerdDefeatedText
@@ -292,6 +302,14 @@ BattleIslandBugCatcherApproachesText:
 
 BattleIslandBugCatcherDefeatedText:
 	text_far _BattleIslandBugCatcherDefeatedText
+	text_end
+
+BattleIslandHikerApproachesText:
+	text_far _BattleIslandHikerApproachesText
+	text_end
+
+BattleIslandHikerDefeatedText:
+	text_far _BattleIslandHikerDefeatedText
 	text_end
 
 BattleIslandChallengerApproachesText:

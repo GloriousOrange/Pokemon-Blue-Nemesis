@@ -1,7 +1,7 @@
 _MtMoon1FHikerBattleText::
 	text "WHOA! You shocked"
-	line "me! Oh, you're"
-	cont "just a kid!"
+	line "me! My back's not"
+	cont "what it used to be!"
 	done
 
 _MtMoon1FHikerEndBattleText::
@@ -10,9 +10,10 @@ _MtMoon1FHikerEndBattleText::
 	prompt
 
 _MtMoon1FHikerAfterBattleText::
-	text "Kids like you"
-	line "shouldn't be"
-	cont "here!"
+	text "I know a shortcut"
+	line "through here. Been"
+	cont "looking for it"
+	cont "since '04."
 	done
 
 _MtMoon1FYoungster1BattleText::

@@ -16,6 +16,8 @@ _RockTunnelB1FCooltrainerF1AfterBattleText::
 _RockTunnelB1FHiker1BattleText::
 	text "Hahaha! Can you"
 	line "beat my power?"
+	cont "I did 3 push-ups"
+	cont "this morning!"
 	done
 
 _RockTunnelB1FHiker1EndBattleText::
@@ -107,7 +109,9 @@ _RockTunnelB1FCooltrainerF2AfterBattleText::
 
 _RockTunnelB1FHiker3BattleText::
 	text "Hit me with your"
-	line "best shot!"
+	line "best shot! My"
+	cont "knees can take it,"
+	cont "probably."
 	done
 
 _RockTunnelB1FHiker3EndBattleText::
