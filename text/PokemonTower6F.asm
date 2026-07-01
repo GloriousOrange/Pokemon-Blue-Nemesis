@@ -52,7 +52,10 @@ _PokemonTower6FChanneler3EndBattleText::
 
 _PokemonTower6FChanneler3AfterBattleText::
 	text "What's going on"
-	line "here?"
+	line "here? I saw a"
+	cont "man in a general's"
+	cont "coat give the"
+	cont "order."
 	done
 
 _PokemonTower6FBeGoneText::

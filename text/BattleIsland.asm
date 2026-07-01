@@ -117,6 +117,18 @@ _BattleIslandTamerDefeatedText::
 	cont "with you."
 	prompt
 
+_BattleIslandChannelerApproachesText::
+	text "The dead don't"
+	line "rest on this"
+	cont "island either."
+	done
+
+_BattleIslandChannelerDefeatedText::
+	text "They're pleased"
+	line "with your win."
+	cont "I can feel it."
+	prompt
+
 _BattleIslandSwimmerApproachesText::
 	text "Feel these"
 	line "muscles first,"

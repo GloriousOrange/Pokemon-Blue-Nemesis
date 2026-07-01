@@ -10,7 +10,9 @@ _PokemonTower4FChanneler1EndBattleText::
 
 _PokemonTower4FChanneler1AfterBattleText::
 	text "I must have been"
-	line "dreaming..."
+	line "dreaming... I saw"
+	cont "GENERAL MATHUS."
+	cont "He was crying."
 	done
 
 _PokemonTower4FChanneler2BattleText::
@@ -42,4 +44,6 @@ _PokemonTower4FChanneler3AfterBattleText::
 	text "May the departed"
 	line "souls of #MON"
 	cont "rest in peace..."
+	cont "so many, from"
+	cont "just one battle."
 	done

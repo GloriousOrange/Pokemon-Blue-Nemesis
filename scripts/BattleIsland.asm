@@ -102,7 +102,7 @@ BattleIslandGatekeeperText:
 	cp 22 ; ARENA #23, the Super Nerd looking for a Yoshi
 	jr nz, .checkGamblerApproach
 	ld hl, BattleIslandSuperNerdApproachesText
-	jr .printApproachText
+	jp .printApproachText
 .checkGamblerApproach
 	cp 16 ; ARENA #17, the sleazy Gambler
 	jr nz, .checkEngineerApproach
@@ -115,8 +115,13 @@ BattleIslandGatekeeperText:
 	jr .printApproachText
 .checkTamerApproach
 	cp 24 ; ARENA #25, the livestock Tamer
-	jr nz, .checkSwimmerApproach
+	jr nz, .checkChannelerApproach
 	ld hl, BattleIslandTamerApproachesText
+	jr .printApproachText
+.checkChannelerApproach
+	cp 14 ; ARENA #15, the war-dead Channeler
+	jr nz, .checkSwimmerApproach
+	ld hl, BattleIslandChannelerApproachesText
 	jr .printApproachText
 .checkSwimmerApproach
 	cp 23 ; ARENA #24, the himbo Swimmer
@@ -200,7 +205,7 @@ BattleIslandGatekeeperText:
 	cp 22 ; ARENA #23, the Super Nerd looking for a Yoshi
 	jr nz, .checkGamblerWinText
 	ld hl, BattleIslandSuperNerdDefeatedText
-	jr .notSuperNerdWinText
+	jp .notSuperNerdWinText
 .checkGamblerWinText
 	cp 16 ; ARENA #17, the sleazy Gambler
 	jr nz, .checkEngineerWinText
@@ -213,8 +218,13 @@ BattleIslandGatekeeperText:
 	jr .notSuperNerdWinText
 .checkTamerWinText
 	cp 24 ; ARENA #25, the livestock Tamer
-	jr nz, .checkSwimmerWinText
+	jr nz, .checkChannelerWinText
 	ld hl, BattleIslandTamerDefeatedText
+	jr .notSuperNerdWinText
+.checkChannelerWinText
+	cp 14 ; ARENA #15, the war-dead Channeler
+	jr nz, .checkSwimmerWinText
+	ld hl, BattleIslandChannelerDefeatedText
 	jr .notSuperNerdWinText
 .checkSwimmerWinText
 	cp 23 ; ARENA #24, the himbo Swimmer
@@ -432,6 +442,14 @@ BattleIslandTamerApproachesText:
 
 BattleIslandTamerDefeatedText:
 	text_far _BattleIslandTamerDefeatedText
+	text_end
+
+BattleIslandChannelerApproachesText:
+	text_far _BattleIslandChannelerApproachesText
+	text_end
+
+BattleIslandChannelerDefeatedText:
+	text_far _BattleIslandChannelerDefeatedText
 	text_end
 
 BattleIslandSwimmerApproachesText:

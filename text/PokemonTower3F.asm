@@ -26,7 +26,10 @@ _PokemonTower3FChanneler2EndBattleText::
 
 _PokemonTower3FChanneler2AfterBattleText::
 	text "Sorry! I was"
-	line "possessed!"
+	line "possessed! I saw"
+	cont "soldiers, and a"
+	cont "general's #MON"
+	cont "killing them."
 	done
 
 _PokemonTower3FChanneler3BattleText::
@@ -41,5 +44,8 @@ _PokemonTower3FChanneler3EndBattleText::
 
 _PokemonTower3FChanneler3AfterBattleText::
 	text "My friends were"
-	line "possessed too!"
+	line "possessed too."
+	cont "They died in"
+	cont "the war. They're"
+	cont "still angry."
 	done

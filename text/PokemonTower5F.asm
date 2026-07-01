@@ -17,7 +17,9 @@ _PokemonTower5FChanneler2EndBattleText::
 
 _PokemonTower5FChanneler2AfterBattleText::
 	text "I was under"
-	line "possession!"
+	line "possession! They"
+	cont "were soldiers."
+	cont "Drafted kids."
 	done
 
 _PokemonTower5FChanneler3BattleText::
@@ -32,6 +34,9 @@ _PokemonTower5FChanneler3EndBattleText::
 
 _PokemonTower5FChanneler3AfterBattleText::
 	text "I was possessed!"
+	line "They asked why"
+	cont "no one came back"
+	cont "for them."
 	done
 
 _PokemonTower5FChanneler4BattleText::
