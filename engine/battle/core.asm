@@ -2248,10 +2248,14 @@ DisplayBattleMenu::
 	jp DisplayBattleMenu
 
 .notLinkBattle
-; challenge: forbid items in battle (Safari bait still allowed)
+; challenge: forbid items in TRAINER battles only (Safari bait and wild
+; encounters still allow items, since catching wild mons requires Poke Balls)
 	ld a, [wBattleType]
 	cp BATTLE_TYPE_SAFARI
 	jr z, .challengeItemsOk
+	ld a, [wIsInBattle]
+	cp $2 ; is it a trainer battle?
+	jr nz, .challengeItemsOk
 	ld a, [wUnusedPlayerDataByte]
 	bit BIT_CHALLENGE_NO_ITEMS, a
 	jr z, .challengeItemsOk
