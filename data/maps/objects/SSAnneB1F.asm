@@ -1,3 +1,6 @@
+	object_const_def
+	const_export SSANNEB1F_DETECTIVE
+
 SSAnneB1F_Object:
 	db $c ; border block
 
@@ -12,5 +15,6 @@ SSAnneB1F_Object:
 	def_bg_events
 
 	def_object_events
+	object_event  5,  4, SPRITE_GENTLEMAN, STAY, DOWN, TEXT_SSANNEB1F_DETECTIVE
 
 	def_warps_to SS_ANNE_B1F

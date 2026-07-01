@@ -3,5 +3,8 @@ SSAnneB1F_Script:
 
 SSAnneB1F_TextPointers:
 	def_text_pointers
+	dw_const SSAnneB1FDetectiveText, TEXT_SSANNEB1F_DETECTIVE
 
-	text_end ; unused
+SSAnneB1FDetectiveText:
+	text_far _SSAnneB1FDetectiveText
+	text_end
