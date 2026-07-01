@@ -1,5 +1,6 @@
 _Route16Biker1BattleText::
-	text "What do you want?"
+	text "Move it,"
+	line "walker."
 	done
 
 _Route16Biker1EndBattleText::
@@ -8,9 +9,8 @@ _Route16Biker1EndBattleText::
 	prompt
 
 _Route16Biker1AfterBattleText::
-	text "We like just"
-	line "hanging here,"
-	cont "what's it to you?"
+	text "You'll live."
+	line "Probably."
 	done
 
 _Route16Biker2BattleText::
@@ -44,8 +44,9 @@ _Route16Biker3AfterBattleText::
 	done
 
 _Route16biker4BattleText::
-	text "Hey, you just"
-	line "bumped me!"
+	text "Cute #MON. Did"
+	line "you find it in a"
+	cont "cereal box?"
 	done
 
 _Route16Biker4EndBattleText::
@@ -53,10 +54,8 @@ _Route16Biker4EndBattleText::
 	prompt
 
 _Route16Biker4AfterBattleText::
-	text "You can also get"
-	line "to FUCHSIA from"
-	cont "VERMILION using a"
-	cont "coastal road."
+	text "Should've stayed"
+	line "there."
 	done
 
 _Route16Biker5BattleText::
@@ -76,7 +75,8 @@ _Route16Biker5AfterBattleText::
 	done
 
 _Route16Biker6BattleText::
-	text "Sure, I'll go!"
+	text "Watch it,"
+	line "weirdo."
 	done
 
 _Route16Biker6EndBattleText::
@@ -85,9 +85,8 @@ _Route16Biker6EndBattleText::
 	prompt
 
 _Route16Biker6AfterBattleText::
-	text "I like harassing"
-	line "people with my"
-	cont "vicious #MON!"
+	text "Whatever,"
+	line "dork."
 	done
 
 _Route16Text7::

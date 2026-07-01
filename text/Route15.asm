@@ -103,8 +103,8 @@ _Route15Beauty2AfterBattleText::
 	done
 
 _Route15Biker1BattleText::
-	text "Hey kid! C'mon!"
-	line "I just got these!"
+	text "Get a real"
+	line "hobby, loser."
 	done
 
 _Route15Biker1EndBattleText::
@@ -113,16 +113,15 @@ _Route15Biker1EndBattleText::
 	prompt
 
 _Route15Biker1AfterBattleText::
-	text "You only live"
-	line "once, so I live"
-	cont "as an outlaw!"
-	cont "TEAM ROCKET RULES!"
+	text "Get a"
+	line "personality."
 	done
 
 _Route15Biker2BattleText::
-	text "Fork over all your"
-	line "cash when you"
-	cont "lose to me, kid!"
+	text "That's a weak"
+	line "team. Did you"
+	cont "steal it from a"
+	cont "kid?"
 	done
 
 _Route15Biker2EndBattleText::
@@ -131,8 +130,7 @@ _Route15Biker2EndBattleText::
 	prompt
 
 _Route15Biker2AfterBattleText::
-	text "I was just joking"
-	line "about the money!"
+	text "Yeah, you."
 	done
 
 _Route15CooltrainerF3BattleText::

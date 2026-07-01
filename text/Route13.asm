@@ -128,8 +128,9 @@ _Route13Beauty2AfterBattleText::
 	done
 
 _Route13BikerBattleText::
-	text "What're you"
-	line "lookin' at?"
+	text "Nice shoes, dork."
+	line "You buy those at"
+	cont "the dollar store?"
 	done
 
 _Route13BikerEndBattleText::
@@ -138,7 +139,9 @@ _Route13BikerEndBattleText::
 	prompt
 
 _Route13BikerAfterBattleText::
-	text "Get lost!"
+	text "Shut it. At least"
+	line "I don't dress"
+	cont "like you."
 	done
 
 _Route13CooltrainerM3BattleText::

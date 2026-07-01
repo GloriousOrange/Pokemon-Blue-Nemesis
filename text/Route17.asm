@@ -30,8 +30,9 @@ _Route17Biker2AfterBattleText::
 	done
 
 _Route17Biker3BattleText::
-	text "You heading to"
-	line "FUCHSIA?"
+	text "You ride a bike,"
+	line "or fall off one"
+	cont "for a living?"
 	done
 
 _Route17Biker3EndBattleText::
@@ -40,13 +41,13 @@ _Route17Biker3EndBattleText::
 	prompt
 
 _Route17Biker3AfterBattleText::
-	text "I love racing"
-	line "downhill!"
+	text "Guess we'll"
+	line "never know."
 	done
 
 _Route17Biker4BattleText::
-	text "We're BIKERs!"
-	line "Highway stars!"
+	text "Get lost,"
+	line "kid."
 	done
 
 _Route17Biker4EndBattleText::
@@ -54,13 +55,12 @@ _Route17Biker4EndBattleText::
 	prompt
 
 _Route17Biker4AfterBattleText::
-	text "Are you looking"
-	line "for adventure?"
+	text "Don't wait up."
 	done
 
 _Route17Biker5BattleText::
-	text "Let VOLTORB"
-	line "electrify you!"
+	text "That outfit's"
+	line "a crime."
 	done
 
 _Route17Biker5EndBattleText::
@@ -69,9 +69,8 @@ _Route17Biker5EndBattleText::
 	prompt
 
 _Route17Biker5AfterBattleText::
-	text "I got my VOLTORB"
-	line "at the abandoned"
-	cont "POWER PLANT."
+	text "So is"
+	line "your face."
 	done
 
 _Route17Biker6BattleText::
@@ -119,8 +118,8 @@ _Route17Biker8AfterBattleText::
 	done
 
 _Route17Biker9BattleText::
-	text "Nice BIKE!"
-	line "How's it handle?"
+	text "You're wasting"
+	line "my time."
 	done
 
 _Route17Biker9EndBattleText::
@@ -128,13 +127,13 @@ _Route17Biker9EndBattleText::
 	prompt
 
 _Route17Biker9AfterBattleText::
-	text "The slope makes"
-	line "it hard to steer!"
+	text "You waste"
+	line "everyone's."
 	done
 
 _Route17Biker10BattleText::
-	text "Get lost kid!"
-	line "I'm bushed!"
+	text "Nobody asked,"
+	line "wannabe."
 	done
 
 _Route17Biker10EndBattleText::
@@ -143,8 +142,8 @@ _Route17Biker10EndBattleText::
 	prompt
 
 _Route17Biker10AfterBattleText::
-	text "I need to catch"
-	line "a few Zs!"
+	text "Nobody cares,"
+	line "either."
 	done
 
 _Route17NoticeSign1Text::

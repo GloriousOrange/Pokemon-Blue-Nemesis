@@ -101,9 +101,9 @@ _Route14CooltrainerM6AfterBattleText::
 	done
 
 _Route14Biker1BattleText::
-	text "C'mon, c'mon."
-	line "Let's go, let's"
-	cont "go, let's go!"
+	text "Get out of my"
+	line "way before I run"
+	cont "you over."
 	done
 
 _Route14Biker1EndBattleText::
@@ -112,13 +112,12 @@ _Route14Biker1EndBattleText::
 	prompt
 
 _Route14Biker1AfterBattleText::
-	text "What, what, what?"
-	line "What do you want?"
+	text "Cry about it."
 	done
 
 _Route14Biker2BattleText::
-	text "Perfect! I need to"
-	line "burn some time!"
+	text "You smell like a"
+	line "GRIMER's armpit."
 	done
 
 _Route14Biker2EndBattleText::
@@ -127,14 +126,14 @@ _Route14Biker2EndBattleText::
 	prompt
 
 _Route14Biker2AfterBattleText::
-	text "Raising #MON"
-	line "is a drag, man."
+	text "Bet you still"
+	line "lost to it too."
 	done
 
 _Route14Biker3BattleText::
-	text "We ride out here"
-	line "because there's"
-	cont "more room!"
+	text "Nice bike."
+	line "Did your mom"
+	cont "pick it out?"
 	done
 
 _Route14Biker3EndBattleText::
@@ -142,17 +141,14 @@ _Route14Biker3EndBattleText::
 	prompt
 
 _Route14Biker3AfterBattleText::
-	text "It's cool you"
-	line "made your #MON"
-	cont "so strong!"
-
-	para "Might is right!"
-	line "And you know it!"
+	text "At least I"
+	line "have one."
 	done
 
 _Route14Biker4BattleText::
-	text "#MON fight?"
-	line "Cool! Rumble!"
+	text "Who let you"
+	line "outside looking"
+	cont "like that?"
 	done
 
 _Route14Biker4EndBattleText::
@@ -161,9 +157,8 @@ _Route14Biker4EndBattleText::
 	prompt
 
 _Route14Biker4AfterBattleText::
-	text "You know who'd"
-	line "win, you and me"
-	cont "one on one!"
+	text "Better than"
+	line "looking like you."
 	done
 
 _Route14SignText::
