@@ -30,9 +30,10 @@ _RockTunnelB1FHiker1AfterBattleText::
 	done
 
 _RockTunnelB1FSuperNerd1BattleText::
-	text "You have a"
-	line "#DEX?"
-	cont "I want one too!"
+	text "That #DEX logs"
+	line "everywhere you've"
+	cont "been. Who do you"
+	cont "think reads that?"
 	done
 
 _RockTunnelB1FSuperNerd1EndBattleText::
@@ -41,9 +42,11 @@ _RockTunnelB1FSuperNerd1EndBattleText::
 	prompt
 
 _RockTunnelB1FSuperNerd1AfterBattleText::
-	text "When you finish"
-	line "your #DEX, can"
-	cont "I have it?"
+	text "OAK gave it to"
+	line "you for free."
+
+	para "Nothing's free."
+	line "Think about it."
 	done
 
 _RockTunnelB1FSuperNerd2BattleText::

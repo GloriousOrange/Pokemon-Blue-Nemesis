@@ -48,8 +48,12 @@ _RockTunnel1FHiker3AfterBattleText::
 	done
 
 _RockTunnel1FSuperNerdBattleText::
-	text "#MON fight!"
-	line "Ready, go!"
+	text "Don't you get it?"
+	line "TEAM ROCKET, the"
+	cont "science community,"
+	cont "the police -"
+	cont "they're all"
+	cont "connected!"
 	done
 
 _RockTunnel1FSuperNerdEndBattleText::
@@ -58,8 +62,9 @@ _RockTunnel1FSuperNerdEndBattleText::
 	prompt
 
 _RockTunnel1FSuperNerdAfterBattleText::
-	text "Oh well, I'll get"
-	line "a ZUBAT as I go!"
+	text "You're one of"
+	line "them too, aren't"
+	cont "you?!"
 	done
 
 _RockTunnel1FCooltrainerF1BattleText::
