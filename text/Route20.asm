@@ -1,6 +1,8 @@
 _Route20Swimmer1BattleText::
 	text "The water is"
 	line "shallow here."
+	cont "Deep like me,"
+	cont "though."
 	done
 
 _Route20Swimmer1EndBattleText::

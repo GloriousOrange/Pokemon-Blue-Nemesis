@@ -1,6 +1,8 @@
 _Route19CooltrainerM1BattleText::
 	text "Have to warm up"
 	line "before my swim!"
+	cont "Check out these"
+	cont "abs while I do!"
 	done
 
 _Route19CooltrainerM1EndBattleText::
@@ -16,6 +18,8 @@ _Route19CooltrainerM1AfterBattleText::
 _Route19CooltrainerM2BattleText::
 	text "Wait! You'll have"
 	line "a heart attack!"
+	cont "Only I'm built"
+	cont "for cold water!"
 	done
 
 _Route19CooltrainerM2EndBattleText::
@@ -31,6 +35,8 @@ _Route19CooltrainerM2AfterBattleText::
 _Route19Swimmer1BattleText::
 	text "I love swimming!"
 	line "What about you?"
+	cont "I also love my"
+	cont "own reflection."
 	done
 
 _Route19Swimmer1EndBattleText::
@@ -45,7 +51,9 @@ _Route19Swimmer1AfterBattleText::
 
 _Route19Swimmer2BattleText::
 	text "What's beyond the"
-	line "horizon?"
+	line "horizon? Probably"
+	cont "someone as tan"
+	cont "as me."
 	done
 
 _Route19Swimmer2EndBattleText::
@@ -60,7 +68,8 @@ _Route19Swimmer2AfterBattleText::
 _Route19Swimmer3BattleText::
 	text "I tried diving"
 	line "for #MON, but"
-	cont "it was a no go!"
+	cont "it messed up my"
+	cont "hair, so I stopped."
 	done
 
 _Route19Swimmer3EndBattleText::
@@ -74,7 +83,8 @@ _Route19Swimmer3AfterBattleText::
 
 _Route19Swimmer4BattleText::
 	text "I look at the"
-	line "sea to forget!"
+	line "sea to forget how"
+	cont "good-looking I am."
 	done
 
 _Route19Swimmer4EndBattleText::
@@ -121,7 +131,9 @@ _Route19Swimmer6AfterBattleText::
 
 _Route19Swimmer7BattleText::
 	text "These waters are"
-	line "treacherous!"
+	line "treacherous! Good"
+	cont "thing I float"
+	cont "naturally."
 	done
 
 _Route19Swimmer7EndBattleText::

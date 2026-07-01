@@ -105,6 +105,18 @@ _BattleIslandTamerDefeatedText::
 	cont "with you."
 	prompt
 
+_BattleIslandSwimmerApproachesText::
+	text "Feel these"
+	line "muscles first,"
+	cont "then let's fight!"
+	done
+
+_BattleIslandSwimmerDefeatedText::
+	text "Lost the match,"
+	line "still won at"
+	cont "looking good."
+	prompt
+
 _BattleIslandGentlemanApproachesText::
 	text "My #MON were"
 	line "raised on the"

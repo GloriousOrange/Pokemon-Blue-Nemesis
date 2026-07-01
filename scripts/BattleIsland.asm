@@ -110,8 +110,13 @@ BattleIslandGatekeeperText:
 	jr .printApproachText
 .checkTamerApproach
 	cp 24 ; ARENA #25, the livestock Tamer
-	jr nz, .checkGentlemanApproach
+	jr nz, .checkSwimmerApproach
 	ld hl, BattleIslandTamerApproachesText
+	jr .printApproachText
+.checkSwimmerApproach
+	cp 23 ; ARENA #24, the himbo Swimmer
+	jr nz, .checkGentlemanApproach
+	ld hl, BattleIslandSwimmerApproachesText
 	jr .printApproachText
 .checkGentlemanApproach
 	cp 17 ; ARENA #18, the food-snob Gentleman
@@ -185,8 +190,13 @@ BattleIslandGatekeeperText:
 	jr .notSuperNerdWinText
 .checkTamerWinText
 	cp 24 ; ARENA #25, the livestock Tamer
-	jr nz, .checkGentlemanWinText
+	jr nz, .checkSwimmerWinText
 	ld hl, BattleIslandTamerDefeatedText
+	jr .notSuperNerdWinText
+.checkSwimmerWinText
+	cp 23 ; ARENA #24, the himbo Swimmer
+	jr nz, .checkGentlemanWinText
+	ld hl, BattleIslandSwimmerDefeatedText
 	jr .notSuperNerdWinText
 .checkGentlemanWinText
 	cp 17 ; ARENA #18, the food-snob Gentleman
@@ -378,6 +388,14 @@ BattleIslandTamerApproachesText:
 
 BattleIslandTamerDefeatedText:
 	text_far _BattleIslandTamerDefeatedText
+	text_end
+
+BattleIslandSwimmerApproachesText:
+	text_far _BattleIslandSwimmerApproachesText
+	text_end
+
+BattleIslandSwimmerDefeatedText:
+	text_far _BattleIslandSwimmerDefeatedText
 	text_end
 
 BattleIslandGentlemanApproachesText:

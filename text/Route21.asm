@@ -33,6 +33,8 @@ _Route21Fisher2AfterBattleText::
 _Route21Swimmer1BattleText::
 	text "The sea cleanses"
 	line "my body and soul!"
+	cont "Both already"
+	cont "flawless, though."
 	done
 
 _Route21Swimmer1EndBattleText::
@@ -78,6 +80,8 @@ _Route21Swimmer3AfterBattleText::
 _Route21Swimmer4BattleText::
 	text "Right now, I'm in"
 	line "a triathlon meet!"
+	cont "Mostly for the"
+	cont "photo ops."
 	done
 
 _Route21Swimmer4EndBattleText::

@@ -94,7 +94,9 @@ _CeruleanGymBattleText2::
 	text "Splash!"
 
 	para "I'm first up!"
-	line "Let's do it!"
+	line "Let's do it! Try"
+	cont "not to stare too"
+	cont "much."
 	done
 
 _CeruleanGymEndBattleText2::
