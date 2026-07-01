@@ -44,6 +44,20 @@ _EndNPCMovementScript::
 	ld [wSimulatedJoypadStatesEnd], a
 	ret
 
+; moved out of home/npc_movement.asm's DebugPressedOrHeldB (farjp'd only when
+; _DEBUG is defined) -- the Home bank has almost no free space, and this
+; debug-only body was tipping the _DEBUG build over the ROM0 limit
+_DebugPressedOrHeldB::
+	ld a, [wStatusFlags6]
+	bit BIT_DEBUG_MODE, a
+	ret z
+	ldh a, [hJoyHeld]
+	bit B_PAD_B, a
+	ret nz
+	ldh a, [hJoyPressed]
+	bit B_PAD_B, a
+	ret
+
 PalletMovementScriptPointerTable::
 	dw PalletMovementScript_OakMoveLeft
 	dw PalletMovementScript_PlayerMoveLeft

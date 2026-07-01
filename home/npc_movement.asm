@@ -54,13 +54,6 @@ DebugPressedOrHeldB:: ; dummy except in _DEBUG
 ; This is used to skip Trainer battles, the
 ; Safari Game step counter, and some NPC scripts.
 IF DEF(_DEBUG)
-	ld a, [wStatusFlags6]
-	bit BIT_DEBUG_MODE, a
-	ret z
-	ldh a, [hJoyHeld]
-	bit B_PAD_B, a
-	ret nz
-	ldh a, [hJoyPressed]
-	bit B_PAD_B, a
+	farjp _DebugPressedOrHeldB
 ENDC
 	ret
