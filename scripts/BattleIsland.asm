@@ -82,7 +82,7 @@ BattleIslandGatekeeperText:
 	cp 0 ; ARENA #1, the weird bug-obsessed kid
 	jr nz, .checkSuperNerdApproach
 	ld hl, BattleIslandBugCatcherApproachesText
-	jr .printApproachText
+	jp .printApproachText
 .checkSuperNerdApproach
 	cp 1 ; ARENA #2, the dad-energy Hiker
 	jr nz, .checkYoshiApproach
@@ -115,8 +115,13 @@ BattleIslandGatekeeperText:
 	jr .printApproachText
 .checkSwimmerApproach
 	cp 23 ; ARENA #24, the himbo Swimmer
-	jr nz, .checkGentlemanApproach
+	jr nz, .checkRockerApproach
 	ld hl, BattleIslandSwimmerApproachesText
+	jr .printApproachText
+.checkRockerApproach
+	cp 25 ; ARENA #26, the garage-band Rocker
+	jr nz, .checkGentlemanApproach
+	ld hl, BattleIslandRockerApproachesText
 	jr .printApproachText
 .checkGentlemanApproach
 	cp 17 ; ARENA #18, the food-snob Gentleman
@@ -162,7 +167,7 @@ BattleIslandGatekeeperText:
 	cp 0 ; ARENA #1, the weird bug-obsessed kid
 	jr nz, .checkSuperNerdWinText
 	ld hl, BattleIslandBugCatcherDefeatedText
-	jr .notSuperNerdWinText
+	jp .notSuperNerdWinText
 .checkSuperNerdWinText
 	cp 1 ; ARENA #2, the dad-energy Hiker
 	jr nz, .checkYoshiWinText
@@ -195,8 +200,13 @@ BattleIslandGatekeeperText:
 	jr .notSuperNerdWinText
 .checkSwimmerWinText
 	cp 23 ; ARENA #24, the himbo Swimmer
-	jr nz, .checkGentlemanWinText
+	jr nz, .checkRockerWinText
 	ld hl, BattleIslandSwimmerDefeatedText
+	jr .notSuperNerdWinText
+.checkRockerWinText
+	cp 25 ; ARENA #26, the garage-band Rocker
+	jr nz, .checkGentlemanWinText
+	ld hl, BattleIslandRockerDefeatedText
 	jr .notSuperNerdWinText
 .checkGentlemanWinText
 	cp 17 ; ARENA #18, the food-snob Gentleman
@@ -396,6 +406,14 @@ BattleIslandSwimmerApproachesText:
 
 BattleIslandSwimmerDefeatedText:
 	text_far _BattleIslandSwimmerDefeatedText
+	text_end
+
+BattleIslandRockerApproachesText:
+	text_far _BattleIslandRockerApproachesText
+	text_end
+
+BattleIslandRockerDefeatedText:
+	text_far _BattleIslandRockerDefeatedText
 	text_end
 
 BattleIslandGentlemanApproachesText:

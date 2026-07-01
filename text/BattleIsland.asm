@@ -117,6 +117,17 @@ _BattleIslandSwimmerDefeatedText::
 	cont "looking good."
 	prompt
 
+_BattleIslandRockerApproachesText::
+	text "My band broke up,"
+	line "so now I break"
+	cont "#MON instead."
+	done
+
+_BattleIslandRockerDefeatedText::
+	text "Booed off the"
+	line "stage again."
+	prompt
+
 _BattleIslandGentlemanApproachesText::
 	text "My #MON were"
 	line "raised on the"

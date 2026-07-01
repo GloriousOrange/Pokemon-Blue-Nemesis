@@ -80,7 +80,10 @@ _VermilionGymGentlemanAfterBattleText::
 _VermilionGymSuperNerdBattleText::
 	text "I'm a lightweight,"
 	line "but I'm good with"
-	cont "electricity!"
+	cont "electricity! My"
+	cont "band's got a gig"
+	cont "we never rehearsed"
+	cont "for!"
 	done
 
 _VermilionGymSuperNerdEndBattleText::

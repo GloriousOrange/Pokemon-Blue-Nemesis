@@ -66,7 +66,9 @@ _Route12CooltrainerMAfterBattleText::
 
 _Route12SuperNerdBattleText::
 	text "Electricity is my"
-	line "specialty!"
+	line "specialty! My band"
+	cont "needed an amp, so"
+	cont "I became one."
 	done
 
 _Route12SuperNerdEndBattleText::
