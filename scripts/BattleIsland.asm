@@ -87,12 +87,12 @@ BattleIslandGatekeeperText:
 	cp 1 ; ARENA #2, the dad-energy Hiker
 	jr nz, .checkYoshiApproach
 	ld hl, BattleIslandHikerApproachesText
-	jr .printApproachText
+	jp .printApproachText
 .checkYoshiApproach
 	cp 21 ; ARENA #22, the rumor-spreading Youngster
 	jr nz, .checkSuperNerd23Approach
 	ld hl, BattleIslandYoungsterApproachesText
-	jr .printApproachText
+	jp .printApproachText
 .checkSuperNerd23Approach
 	cp 22 ; ARENA #23, the Super Nerd looking for a Yoshi
 	jr nz, .checkGamblerApproach
@@ -120,8 +120,16 @@ BattleIslandGatekeeperText:
 	jr .printApproachText
 .checkRockerApproach
 	cp 25 ; ARENA #26, the garage-band Rocker
-	jr nz, .checkGentlemanApproach
+	jr nz, .checkCooltrainerApproach
 	ld hl, BattleIslandRockerApproachesText
+	jr .printApproachText
+.checkCooltrainerApproach
+	cp 3 ; ARENA #4, cringe Cooltrainer
+	jr z, .cooltrainerApproach
+	cp 15 ; ARENA #16, cringe Cooltrainer
+	jr nz, .checkGentlemanApproach
+.cooltrainerApproach
+	ld hl, BattleIslandCooltrainerApproachesText
 	jr .printApproachText
 .checkGentlemanApproach
 	cp 17 ; ARENA #18, the food-snob Gentleman
@@ -172,12 +180,12 @@ BattleIslandGatekeeperText:
 	cp 1 ; ARENA #2, the dad-energy Hiker
 	jr nz, .checkYoshiWinText
 	ld hl, BattleIslandHikerDefeatedText
-	jr .notSuperNerdWinText
+	jp .notSuperNerdWinText
 .checkYoshiWinText
 	cp 21 ; ARENA #22, the rumor-spreading Youngster
 	jr nz, .checkSuperNerd23WinText
 	ld hl, BattleIslandYoungsterDefeatedText
-	jr .notSuperNerdWinText
+	jp .notSuperNerdWinText
 .checkSuperNerd23WinText
 	cp 22 ; ARENA #23, the Super Nerd looking for a Yoshi
 	jr nz, .checkGamblerWinText
@@ -205,8 +213,16 @@ BattleIslandGatekeeperText:
 	jr .notSuperNerdWinText
 .checkRockerWinText
 	cp 25 ; ARENA #26, the garage-band Rocker
-	jr nz, .checkGentlemanWinText
+	jr nz, .checkCooltrainerWinText
 	ld hl, BattleIslandRockerDefeatedText
+	jr .notSuperNerdWinText
+.checkCooltrainerWinText
+	cp 3 ; ARENA #4, cringe Cooltrainer
+	jr z, .cooltrainerWinText
+	cp 15 ; ARENA #16, cringe Cooltrainer
+	jr nz, .checkGentlemanWinText
+.cooltrainerWinText
+	ld hl, BattleIslandCooltrainerDefeatedText
 	jr .notSuperNerdWinText
 .checkGentlemanWinText
 	cp 17 ; ARENA #18, the food-snob Gentleman
@@ -414,6 +430,14 @@ BattleIslandRockerApproachesText:
 
 BattleIslandRockerDefeatedText:
 	text_far _BattleIslandRockerDefeatedText
+	text_end
+
+BattleIslandCooltrainerApproachesText:
+	text_far _BattleIslandCooltrainerApproachesText
+	text_end
+
+BattleIslandCooltrainerDefeatedText:
+	text_far _BattleIslandCooltrainerDefeatedText
 	text_end
 
 BattleIslandGentlemanApproachesText:

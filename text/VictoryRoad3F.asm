@@ -1,6 +1,8 @@
 _VictoryRoad3FCooltrainerM1BattleText::
 	text "I heard rumors of"
 	line "a child prodigy!"
+	cont "Not as prodigious"
+	cont "as me, though."
 	done
 
 _VictoryRoad3FCooltrainerM1EndBattleText::
@@ -16,6 +18,8 @@ _VictoryRoad3FCooltrainerM1AfterBattleText::
 _VictoryRoad3FCooltrainerF1BattleText::
 	text "I'll show you just"
 	line "how good you are!"
+	cont "Compared to me,"
+	cont "obviously."
 	done
 
 _VictoryRoad3FCooltrainerF1EndBattleText::
@@ -31,6 +35,8 @@ _VictoryRoad3FCooltrainerF1AfterBattleText::
 _VictoryRoad3FCooltrainerM2BattleText::
 	text "Only the chosen"
 	line "can pass here!"
+	cont "I passed years"
+	cont "ago, obviously."
 	done
 
 _VictoryRoad3FCooltrainerM2EndBattleText::
@@ -48,7 +54,8 @@ _VictoryRoad3FCooltrainerM2AfterBattleText::
 _VictoryRoad3FCooltrainerF2BattleText::
 	text "Trainers live to"
 	line "seek stronger"
-	cont "opponents!"
+	cont "opponents! I"
+	cont "haven't found one."
 	done
 
 _VictoryRoad3FCooltrainerF2EndBattleText::

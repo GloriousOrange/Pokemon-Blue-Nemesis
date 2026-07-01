@@ -91,6 +91,8 @@ _ViridianGymCooltrainerM1BattleText::
 	text "Heh! You must be"
 	line "running out of"
 	cont "steam by now!"
+	cont "I never run out"
+	cont "of style, though."
 	done
 
 _ViridianGymCooltrainerM1EndBattleText::

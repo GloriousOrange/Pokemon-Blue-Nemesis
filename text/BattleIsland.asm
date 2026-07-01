@@ -128,6 +128,17 @@ _BattleIslandRockerDefeatedText::
 	line "stage again."
 	prompt
 
+_BattleIslandCooltrainerApproachesText::
+	text "I don't lose."
+	line "It's just not"
+	cont "who I am."
+	done
+
+_BattleIslandCooltrainerDefeatedText::
+	text "I'll allow this"
+	line "one exception."
+	prompt
+
 _BattleIslandGentlemanApproachesText::
 	text "My #MON were"
 	line "raised on the"
