@@ -3,6 +3,14 @@ _CinnabarIslandDoorIsLockedText::
 	line "locked..."
 	done
 
+_CinnabarIslandMansionLockedText::
+	text "The burned MAN-"
+	line "SION is sealed."
+
+	para "Only the LAB KEY"
+	line "can open it."
+	done
+
 _CinnabarIslandGirlText::
 	text "CINNABAR GYM's"
 	line "BLAINE is an odd"

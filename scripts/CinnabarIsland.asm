@@ -16,17 +16,30 @@ CinnabarIsland_ScriptPointers:
 CinnabarIslandDefaultScript:
 	ld b, SECRET_KEY
 	call IsItemInBag
+	jr nz, .checkMansionDoor
+	ld a, [wYCoord]
+	cp 4
+	jr nz, .checkMansionDoor
+	ld a, [wXCoord]
+	cp 18
+	jr nz, .checkMansionDoor
+	ld a, TEXT_CINNABARISLAND_DOOR_IS_LOCKED
+	jr .blockDoor
+.checkMansionDoor
+	ld b, LAB_KEY
+	call IsItemInBag
 	ret nz
 	ld a, [wYCoord]
 	cp 4
 	ret nz
 	ld a, [wXCoord]
-	cp 18
+	cp 6
 	ret nz
+	ld a, TEXT_CINNABARISLAND_MANSION_LOCKED
+.blockDoor
+	ldh [hTextID], a
 	ld a, PLAYER_DIR_UP
 	ld [wPlayerMovingDirection], a
-	ld a, TEXT_CINNABARISLAND_DOOR_IS_LOCKED
-	ldh [hTextID], a
 	call DisplayTextID
 	xor a
 	ldh [hJoyHeld], a
@@ -61,9 +74,14 @@ CinnabarIsland_TextPointers:
 	dw_const CinnabarIslandPokemonLabSignText, TEXT_CINNABARISLAND_POKEMONLAB_SIGN
 	dw_const CinnabarIslandGymSignText,        TEXT_CINNABARISLAND_GYM_SIGN
 	dw_const CinnabarIslandDoorIsLockedText,   TEXT_CINNABARISLAND_DOOR_IS_LOCKED
+	dw_const CinnabarIslandMansionLockedText,  TEXT_CINNABARISLAND_MANSION_LOCKED
 
 CinnabarIslandDoorIsLockedText:
 	text_far _CinnabarIslandDoorIsLockedText
+	text_end
+
+CinnabarIslandMansionLockedText:
+	text_far _CinnabarIslandMansionLockedText
 	text_end
 
 CinnabarIslandGirlText:
