@@ -44,6 +44,17 @@ _BattleIslandGamblerDefeatedText::
 	para "What's yours?"
 	prompt
 
+_BattleIslandEngineerApproachesText::
+	text "Sorry, I've been"
+	line "in crunch. Let's"
+	cont "ship this fight."
+	done
+
+_BattleIslandEngineerDefeatedText::
+	text "It's not a bug,"
+	line "it's a feature!"
+	prompt
+
 _BattleIslandChallengerDefeatedText::
 	text "Incredible!"
 	line "You're too strong!"

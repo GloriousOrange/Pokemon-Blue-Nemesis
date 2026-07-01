@@ -85,8 +85,13 @@ BattleIslandGatekeeperText:
 	jr .printApproachText
 .checkGamblerApproach
 	cp 16 ; ARENA #17, the sleazy Gambler
-	jr nz, .printApproachText
+	jr nz, .checkEngineerApproach
 	ld hl, BattleIslandGamblerApproachesText
+	jr .printApproachText
+.checkEngineerApproach
+	cp 11 ; ARENA #12, the crunch-mode Engineer
+	jr nz, .printApproachText
+	ld hl, BattleIslandEngineerApproachesText
 .printApproachText
 	call PrintText
 	ld hl, wStatusFlags3
@@ -100,8 +105,13 @@ BattleIslandGatekeeperText:
 	jr .notSuperNerdWinText
 .checkGamblerWinText
 	cp 16 ; ARENA #17, the sleazy Gambler
-	jr nz, .notSuperNerdWinText
+	jr nz, .checkEngineerWinText
 	ld hl, BattleIslandGamblerDefeatedText
+	jr .notSuperNerdWinText
+.checkEngineerWinText
+	cp 11 ; ARENA #12, the crunch-mode Engineer
+	jr nz, .notSuperNerdWinText
+	ld hl, BattleIslandEngineerDefeatedText
 .notSuperNerdWinText
 	ld de, BattleIslandChallengerVictoryText
 	call SaveEndBattleTextPointers
@@ -218,6 +228,14 @@ BattleIslandGamblerApproachesText:
 
 BattleIslandGamblerDefeatedText:
 	text_far _BattleIslandGamblerDefeatedText
+	text_end
+
+BattleIslandEngineerApproachesText:
+	text_far _BattleIslandEngineerApproachesText
+	text_end
+
+BattleIslandEngineerDefeatedText:
+	text_far _BattleIslandEngineerDefeatedText
 	text_end
 
 BattleIslandChallengerDefeatedText:
