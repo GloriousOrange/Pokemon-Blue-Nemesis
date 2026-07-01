@@ -7,9 +7,9 @@ _ViridianForestYoungster1Text::
 	done
 
 _ViridianForestYoungster2BattleText::
-	text "Hey! You have"
-	line "#MON! Come on!"
-	cont "Let's battle'em!"
+	text "Whoa, a #MON!"
+	line "I have SEVENTEEN"
+	cont "kinds of bug spit!"
 	done
 
 _ViridianForestYoungster2EndBattleText::
@@ -20,13 +20,16 @@ _ViridianForestYoungster2EndBattleText::
 
 _ViridianForestYoungster2AfterBattleText::
 	text "Ssh! You'll scare"
-	line "the bugs away!"
+	line "the bugs away! I"
+	cont "was gonna name"
+	cont "that one Steve!"
 	done
 
 _ViridianForestYoungster3BattleText::
-	text "Yo! You can't jam"
-	line "out if you're a"
-	cont "#MON trainer!"
+	text "Do you know how"
+	line "many legs a"
+	cont "#MON has? I"
+	cont "counted them all!"
 	done
 
 _ViridianForestYoungster3EndBattleText::
@@ -38,7 +41,8 @@ _ViridianForestYoungster3EndBattleText::
 _ViridianForestYoungster3AfterBattleText::
 	text "Darn! I'm going"
 	line "to catch some"
-	cont "stronger ones!"
+	cont "stronger ones! And"
+	cont "smell them first!"
 	done
 
 _ViridianForestYoungster4BattleText::

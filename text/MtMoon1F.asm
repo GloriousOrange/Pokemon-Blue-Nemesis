@@ -99,6 +99,8 @@ _MtMoon1FYoungster3BattleText::
 	text "Go through this"
 	line "cave to get to"
 	cont "CERULEAN CITY!"
+	cont "I know all 40"
+	cont "PARAS varieties!"
 	done
 
 _MtMoon1FYoungster3EndBattleText::
@@ -108,9 +110,9 @@ _MtMoon1FYoungster3EndBattleText::
 
 _MtMoon1FYoungster3AfterBattleText::
 	text "ZUBAT is tough!"
-	line "But, it can be"
-	cont "useful if you"
-	cont "catch one."
+	line "It also tastes"
+	cont "like a battery,"
+	cont "I've licked one."
 	done
 
 _MtMoon1FBewareZubatSign::

@@ -11,6 +11,8 @@ _Route3Text1::
 _Route3Youngster1BattleText::
 	text "Hey! I met you in"
 	line "VIRIDIAN FOREST!"
+	cont "I still have moth"
+	cont "dust in my hair!"
 	done
 
 _Route3Youngster1EndBattleText::
@@ -61,7 +63,8 @@ _Route3CooltrainerF1AfterBattleText::
 
 _Route3Youngster3BattleText::
 	text "Are you a trainer?"
-	line "Let's fight!"
+	line "I keep WEEDLE"
+	cont "in my pockets!"
 	done
 
 _Route3Youngster3EndBattleText::
@@ -111,7 +114,8 @@ _Route3Youngster4AfterBattleText::
 
 _Route3Youngster5BattleText::
 	text "You can fight my"
-	line "new #MON!"
+	line "new #MON! I"
+	cont "named it Crunchy!"
 	done
 
 _Route3Youngster5EndBattleText::

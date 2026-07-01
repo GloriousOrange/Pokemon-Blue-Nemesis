@@ -79,6 +79,11 @@ BattleIslandGatekeeperText:
 	ld hl, BattleIslandChallengerApproachesText
 .startBattle
 	ld a, [wCurArenaChallenger]
+	cp 0 ; ARENA #1, the weird bug-obsessed kid
+	jr nz, .checkSuperNerdApproach
+	ld hl, BattleIslandBugCatcherApproachesText
+	jr .printApproachText
+.checkSuperNerdApproach
 	cp 22 ; ARENA #23, the Super Nerd looking for a Yoshi
 	jr nz, .checkGamblerApproach
 	ld hl, BattleIslandSuperNerdApproachesText
@@ -134,6 +139,11 @@ BattleIslandGatekeeperText:
 	set BIT_PRINT_END_BATTLE_TEXT, [hl]
 	ld hl, BattleIslandChallengerDefeatedText
 	ld a, [wCurArenaChallenger]
+	cp 0 ; ARENA #1, the weird bug-obsessed kid
+	jr nz, .checkSuperNerdWinText
+	ld hl, BattleIslandBugCatcherDefeatedText
+	jr .notSuperNerdWinText
+.checkSuperNerdWinText
 	cp 22 ; ARENA #23, the Super Nerd looking for a Yoshi
 	jr nz, .checkGamblerWinText
 	ld hl, BattleIslandSuperNerdDefeatedText
@@ -275,6 +285,14 @@ ArenaChallengerTable:
 	db OPP_SWIMMER,       16 ; 24
 	db OPP_TAMER,          7 ; 25
 	db OPP_ROCKER,         3 ; 26
+
+BattleIslandBugCatcherApproachesText:
+	text_far _BattleIslandBugCatcherApproachesText
+	text_end
+
+BattleIslandBugCatcherDefeatedText:
+	text_far _BattleIslandBugCatcherDefeatedText
+	text_end
 
 BattleIslandChallengerApproachesText:
 	text_far _BattleIslandChallengerApproachesText

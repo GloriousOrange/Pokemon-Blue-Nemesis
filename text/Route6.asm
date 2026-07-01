@@ -27,7 +27,9 @@ _Route6CooltrainerF1EndBattleText::
 
 _Route6Youngster1BattleText::
 	text "There aren't many"
-	line "bugs out here."
+	line "bugs out here. I"
+	cont "checked under"
+	cont "every rock twice!"
 	done
 
 _Route6Youngster1EndBattleText::
@@ -75,8 +77,10 @@ _Route6CooltrainerF2AfterBattleText::
 
 _Route6Youngster2BattleText::
 	text "I've never seen"
-	line "you around!"
-	cont "Are you good?"
+	line "you around! I"
+	cont "have a pet"
+	cont "KAKUNA, it doesn't"
+	cont "do much!"
 	done
 
 _Route6Youngster2EndBattleText::

@@ -4,6 +4,18 @@ _BattleIslandSignText::
 	cont "welcome!"
 	done
 
+_BattleIslandBugCatcherApproachesText::
+	text "I brought my"
+	line "whole collection!"
+	cont "Smell my net!"
+	done
+
+_BattleIslandBugCatcherDefeatedText::
+	text "Aww! I was gonna"
+	line "name them all"
+	cont "after you!"
+	prompt
+
 _BattleIslandChallengerApproachesText::
 	text "A new challenger"
 	line "steps into the"
