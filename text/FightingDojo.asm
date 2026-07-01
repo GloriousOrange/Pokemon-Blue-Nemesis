@@ -42,8 +42,8 @@ _FightingDojoKarateMasterStayAndTrainWithUsText::
 	done
 
 _FightingDojoBlackbelt1BattleText::
-	text "Hoargh! Take your"
-	line "shoes off!"
+	text "Link in bio,"
+	line "let's get it!"
 	done
 
 _FightingDojoBlackbelt1EndBattleText::
@@ -52,16 +52,17 @@ _FightingDojoBlackbelt1EndBattleText::
 	prompt
 
 _FightingDojoBlackbelt1AfterBattleText::
-	text "You wait 'til you"
-	line "see our Master!"
+	text "Peptides are a"
+	line "game-changer."
 
-	para "I'm a small fry"
-	line "compared to him!"
+	para "Promo code GAINS"
+	line "while supplies"
+	cont "last!"
 	done
 
 _FightingDojoBlackbelt2BattleText::
-	text "I hear you're"
-	line "good! Show me!"
+	text "Smash that"
+	line "follow button!"
 	done
 
 _FightingDojoBlackbelt2EndBattleText::
@@ -70,46 +71,46 @@ _FightingDojoBlackbelt2EndBattleText::
 	prompt
 
 _FightingDojoBlackbelt2AfterBattleText::
-	text "Our Master is a"
-	line "pro fighter!"
+	text "Our Master has"
+	line "2 mil followers."
+
+	para "Verified AND"
+	line "shredded."
 	done
 
 _FightingDojoBlackbelt3BattleText::
-	text "Nothing tough"
-	line "frightens me!"
+	text "No pain, no"
+	line "gains, bro!"
 
 	para "I break boulders"
-	line "for training!"
+	line "for the 'Gram!"
 	done
 
 _FightingDojoBlackbelt3EndBattleText::
 	text "Yow!"
-	line "Stubbed fingers!"
+	line "Unfollowed!"
 	prompt
 
 _FightingDojoBlackbelt3AfterBattleText::
 	text "The only thing"
 	line "that frightens us"
-	cont "is psychic power!"
+	cont "is a bad hair"
+	cont "day on camera."
 	done
 
 _FightingDojoBlackbelt4BattleText::
-	text "Hoohah!"
-
-	para "You're trespassing"
-	line "in our FIGHTING"
-	cont "DOJO!"
+	text "My team is"
+	line "S tier!"
 	done
 
 _FightingDojoBlackbelt4EndBattleText::
-	text "Oof!"
-	line "I give up!"
+	text "Reported!"
 	prompt
 
 _FightingDojoBlackbelt4AfterBattleText::
-	text "The prime fighters"
-	line "across the land"
-	cont "train here."
+	text "I'm telling my"
+	line "lawyer about"
+	cont "this."
 	done
 
 _FightingDojoHitmonleePokeBallText::
