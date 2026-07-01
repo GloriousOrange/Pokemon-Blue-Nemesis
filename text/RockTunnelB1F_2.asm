@@ -7,6 +7,10 @@ _RockTunnelB1FHiker3AfterBattleText::
 _RockTunnelB1FSuperNerd3BattleText::
 	text "I draw #MON"
 	line "when I'm home."
+
+	para "Drawing's safer"
+	line "than asking"
+	cont "questions."
 	done
 
 _RockTunnelB1FSuperNerd3EndBattleText::
@@ -17,4 +21,7 @@ _RockTunnelB1FSuperNerd3EndBattleText::
 _RockTunnelB1FSuperNerd3AfterBattleText::
 	text "I'm an artist,"
 	line "not a fighter."
+
+	para "Not anymore,"
+	line "anyway."
 	done

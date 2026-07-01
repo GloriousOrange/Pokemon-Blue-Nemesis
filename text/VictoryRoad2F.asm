@@ -1,6 +1,10 @@
 _VictoryRoad2FPokemaniacPreBattleText::
 	text "You think you're"
 	line "hot stuff?"
+
+	para "I guard MOLTRES."
+	line "OAK doesn't even"
+	cont "know I know why."
 	done
 
 _VictoryRoad2FPokemaniacEndBattleText::
@@ -56,10 +60,12 @@ _VictoryRoad2FCooltrainerMAfterBattleText::
 	done
 
 _VictoryRoad2FSuperNerd2BattleText::
-	text "If you can get"
-	line "through here, you"
-	cont "can go meet the"
-	cont "ELITE FOUR!"
+	text "The ELITE FOUR"
+	line "aren't heroes."
+
+	para "Ask yourself why"
+	line "OAK never talks"
+	cont "about the war."
 	done
 
 _VictoryRoad2FSuperNerd2EndBattleText::
@@ -68,10 +74,9 @@ _VictoryRoad2FSuperNerd2EndBattleText::
 	prompt
 
 _VictoryRoad2FSuperNerd2AfterBattleText::
-	text "I can beat you"
-	line "when it comes to"
-	cont "knowledge about"
-	cont "#MON!"
+	text "Go on, then."
+	line "Ask them"
+	cont "yourself."
 	done
 
 _VictoryRoad2FSuperNerd3BattleText::

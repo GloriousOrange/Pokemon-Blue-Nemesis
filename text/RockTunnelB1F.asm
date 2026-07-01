@@ -50,8 +50,12 @@ _RockTunnelB1FSuperNerd1AfterBattleText::
 	done
 
 _RockTunnelB1FSuperNerd2BattleText::
-	text "Do you know about"
-	line "costume players?"
+	text "This tunnel isn't"
+	line "natural, you know."
+
+	para "Someone carved it."
+	line "Someone's still"
+	cont "watching it."
 	done
 
 _RockTunnelB1FSuperNerd2EndBattleText::
@@ -60,9 +64,10 @@ _RockTunnelB1FSuperNerd2EndBattleText::
 	prompt
 
 _RockTunnelB1FSuperNerd2AfterBattleText::
-	text "Costume players"
-	line "dress up as"
-	cont "#MON for fun."
+	text "You didn't see"
+	line "the cameras?"
+
+	para "Exactly."
 	done
 
 _RockTunnelB1FHiker2BattleText::

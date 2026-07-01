@@ -1,8 +1,11 @@
 _Route10SuperNerd1BattleText::
-	text "Wow, are you a"
-	line "#MANIAC too?"
-	cont "Want to see my"
-	cont "collection?"
+	text "The POWER PLANT"
+	line "isn't just"
+	cont "electricity."
+
+	para "They're breeding"
+	line "something in"
+	cont "there. Trust me."
 	done
 
 _Route10SuperNerd1EndBattleText::
@@ -11,8 +14,9 @@ _Route10SuperNerd1EndBattleText::
 	prompt
 
 _Route10SuperNerd1AfterBattleText::
-	text "I have more rare"
-	line "#MON at home!"
+	text "Laugh if you"
+	line "want. I've SEEN"
+	cont "things."
 	done
 
 _Route10Hiker1BattleText::
@@ -33,8 +37,12 @@ _Route10Hiker1AfterBattleText::
 	done
 
 _Route10SuperNerd2BattleText::
-	text "Hi kid, want to"
-	line "see my #MON?"
+	text "Ever wonder why"
+	line "the CENTERS heal"
+	cont "your #MON for"
+	cont "free?"
+
+	para "Nothing's free."
 	done
 
 _Route10SuperNerd2EndBattleText::
@@ -43,8 +51,9 @@ _Route10SuperNerd2EndBattleText::
 	prompt
 
 _Route10SuperNerd2AfterBattleText::
-	text "I don't like you"
-	line "for beating me!"
+	text "They're not"
+	line "healing. They're"
+	cont "logging."
 	done
 
 _Route10CooltrainerF1BattleText::
