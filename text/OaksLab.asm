@@ -201,9 +201,11 @@ _OaksLabRivalFedUpWithWaitingText::
 	done
 
 _OaksLabOakChooseMonText::
-	text "OAK: It is time"
-	line "to choose your"
-	cont "#MON."
+	text "OAK: The boys are"
+	line "eager for revenge."
+
+	para "The time is now."
+	line "Choose any slave."
 	done
 
 _OaksLabRivalWhatAboutMeText::
