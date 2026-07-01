@@ -55,6 +55,19 @@ _BattleIslandEngineerDefeatedText::
 	line "it's a feature!"
 	prompt
 
+_BattleIslandTamerApproachesText::
+	text "I raised this one"
+	line "from a calf. Time"
+	cont "to see what it's"
+	cont "worth."
+	done
+
+_BattleIslandTamerDefeatedText::
+	text "Ah well."
+	line "Back to the pen"
+	cont "with you."
+	prompt
+
 _BattleIslandChallengerDefeatedText::
 	text "Incredible!"
 	line "You're too strong!"

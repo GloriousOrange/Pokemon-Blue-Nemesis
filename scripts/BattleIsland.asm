@@ -90,8 +90,13 @@ BattleIslandGatekeeperText:
 	jr .printApproachText
 .checkEngineerApproach
 	cp 11 ; ARENA #12, the crunch-mode Engineer
-	jr nz, .printApproachText
+	jr nz, .checkTamerApproach
 	ld hl, BattleIslandEngineerApproachesText
+	jr .printApproachText
+.checkTamerApproach
+	cp 24 ; ARENA #25, the livestock Tamer
+	jr nz, .printApproachText
+	ld hl, BattleIslandTamerApproachesText
 .printApproachText
 	call PrintText
 	ld hl, wStatusFlags3
@@ -110,8 +115,13 @@ BattleIslandGatekeeperText:
 	jr .notSuperNerdWinText
 .checkEngineerWinText
 	cp 11 ; ARENA #12, the crunch-mode Engineer
-	jr nz, .notSuperNerdWinText
+	jr nz, .checkTamerWinText
 	ld hl, BattleIslandEngineerDefeatedText
+	jr .notSuperNerdWinText
+.checkTamerWinText
+	cp 24 ; ARENA #25, the livestock Tamer
+	jr nz, .notSuperNerdWinText
+	ld hl, BattleIslandTamerDefeatedText
 .notSuperNerdWinText
 	ld de, BattleIslandChallengerVictoryText
 	call SaveEndBattleTextPointers
@@ -236,6 +246,14 @@ BattleIslandEngineerApproachesText:
 
 BattleIslandEngineerDefeatedText:
 	text_far _BattleIslandEngineerDefeatedText
+	text_end
+
+BattleIslandTamerApproachesText:
+	text_far _BattleIslandTamerApproachesText
+	text_end
+
+BattleIslandTamerDefeatedText:
+	text_far _BattleIslandTamerDefeatedText
 	text_end
 
 BattleIslandChallengerDefeatedText:
