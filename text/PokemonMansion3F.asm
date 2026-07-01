@@ -13,8 +13,9 @@ _PokemonMansion3FSuperNerdAfterBattleText::
 	done
 
 _PokemonMansion3FScientistBattleText::
-	text "My mentor once"
-	line "lived here."
+	text "My mentor cloned"
+	line "MEWTWO right"
+	cont "over there."
 	done
 
 _PokemonMansion3FScientistEndBattleText::

@@ -120,8 +120,13 @@ BattleIslandGatekeeperText:
 	jr .printApproachText
 .checkRocketApproach
 	cp 10 ; ARENA #11, the true-believer Rocket
-	jr nz, .printApproachText
+	jr nz, .checkScientistApproach
 	ld hl, BattleIslandRocketApproachesText
+	jr .printApproachText
+.checkScientistApproach
+	cp 2 ; ARENA #3, the mad-science Scientist
+	jr nz, .printApproachText
+	ld hl, BattleIslandScientistApproachesText
 .printApproachText
 	call PrintText
 	ld hl, wStatusFlags3
@@ -170,8 +175,13 @@ BattleIslandGatekeeperText:
 	jr .notSuperNerdWinText
 .checkRocketWinText
 	cp 10 ; ARENA #11, the true-believer Rocket
-	jr nz, .notSuperNerdWinText
+	jr nz, .checkScientistWinText
 	ld hl, BattleIslandRocketDefeatedText
+	jr .notSuperNerdWinText
+.checkScientistWinText
+	cp 2 ; ARENA #3, the mad-science Scientist
+	jr nz, .notSuperNerdWinText
+	ld hl, BattleIslandScientistDefeatedText
 .notSuperNerdWinText
 	ld de, BattleIslandChallengerVictoryText
 	call SaveEndBattleTextPointers
@@ -344,6 +354,14 @@ BattleIslandRocketApproachesText:
 
 BattleIslandRocketDefeatedText:
 	text_far _BattleIslandRocketDefeatedText
+	text_end
+
+BattleIslandScientistApproachesText:
+	text_far _BattleIslandScientistApproachesText
+	text_end
+
+BattleIslandScientistDefeatedText:
+	text_far _BattleIslandScientistDefeatedText
 	text_end
 
 BattleIslandChallengerDefeatedText:

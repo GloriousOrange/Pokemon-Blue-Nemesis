@@ -1,7 +1,7 @@
 _PokemonMansion1FScientistBattleText::
-	text "Who are you? There"
-	line "shouldn't be"
-	cont "anyone here."
+	text "Who are you? This"
+	line "wing was sealed"
+	cont "shut for a reason."
 	done
 
 _PokemonMansion1FScientistEndBattleText::

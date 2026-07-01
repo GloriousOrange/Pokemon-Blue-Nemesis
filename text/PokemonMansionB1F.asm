@@ -18,6 +18,8 @@ _PokemonMansionB1FBurglarAfterBattleText::
 _PokemonMansionB1FScientistBattleText::
 	text "This place is"
 	line "ideal for a lab."
+	cont "No one hears the"
+	cont "screaming."
 	done
 
 _PokemonMansionB1FScientistEndBattleText::
@@ -27,8 +29,11 @@ _PokemonMansionB1FScientistEndBattleText::
 
 _PokemonMansionB1FScientistAfterBattleText::
 	text "I like it here!"
-	line "It's conducive to"
-	cont "my studies!"
+	line "OAK says every"
+	cont "#MON on Earth"
+	cont "started as MEW's"
+	cont "code. We just"
+	cont "iterate on it."
 	done
 
 _PokemonMansionB1FDiaryText::

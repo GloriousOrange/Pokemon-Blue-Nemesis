@@ -129,6 +129,18 @@ _BattleIslandRocketDefeatedText::
 	cont "this."
 	prompt
 
+_BattleIslandScientistApproachesText::
+	text "My #MON are"
+	line "MEW's code, just"
+	cont "rearranged a bit."
+	done
+
+_BattleIslandScientistDefeatedText::
+	text "Fascinating."
+	line "Noted for the"
+	cont "next draft."
+	prompt
+
 _BattleIslandChallengerDefeatedText::
 	text "Incredible!"
 	line "You're too strong!"
