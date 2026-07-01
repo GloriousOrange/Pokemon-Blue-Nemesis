@@ -233,7 +233,7 @@ SuperNerdData:
 ; Mt. Moon B2F
 	db 12, GRIMER, VOLTORB, KOFFING, 0
 ; Route 8
-	db 20, VOLTORB, KOFFING, VOLTORB, MAGNEMITE, 0
+	db 20, VOLTORB, KOFFING, VOLTORB, EKANS, 0 ; "Snake?" gag -- has an Ekans
 	db 22, GRIMER, MUK, GRIMER, 0
 	db 26, KOFFING, 0
 ; Unused

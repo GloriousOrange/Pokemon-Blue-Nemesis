@@ -78,11 +78,21 @@ BattleIslandGatekeeperText:
 	call SetupArenaBattleFromIndex
 	ld hl, BattleIslandChallengerApproachesText
 .startBattle
+	ld a, [wCurArenaChallenger]
+	cp 22 ; ARENA #23, the Super Nerd looking for a Yoshi
+	jr nz, .printApproachText
+	ld hl, BattleIslandSuperNerdApproachesText
+.printApproachText
 	call PrintText
 	ld hl, wStatusFlags3
 	set BIT_TALKED_TO_TRAINER, [hl]
 	set BIT_PRINT_END_BATTLE_TEXT, [hl]
 	ld hl, BattleIslandChallengerDefeatedText
+	ld a, [wCurArenaChallenger]
+	cp 22 ; ARENA #23, the Super Nerd looking for a Yoshi
+	jr nz, .notSuperNerdWinText
+	ld hl, BattleIslandSuperNerdDefeatedText
+.notSuperNerdWinText
 	ld de, BattleIslandChallengerVictoryText
 	call SaveEndBattleTextPointers
 	ld a, SCRIPT_BATTLEISLAND_POSTBATTLE
@@ -182,6 +192,14 @@ BattleIslandChallengerApproachesText:
 
 BattleIslandGiovanniArrivesText:
 	text_far _BattleIslandGiovanniArrivesText
+	text_end
+
+BattleIslandSuperNerdApproachesText:
+	text_far _BattleIslandSuperNerdApproachesText
+	text_end
+
+BattleIslandSuperNerdDefeatedText:
+	text_far _BattleIslandSuperNerdDefeatedText
 	text_end
 
 BattleIslandChallengerDefeatedText:

@@ -22,6 +22,16 @@ _BattleIslandGiovanniArrivesText::
 	line "over now!"
 	done
 
+_BattleIslandSuperNerdApproachesText::
+	text "I'm looking for a"
+	line "YOSHI!"
+	done
+
+_BattleIslandSuperNerdDefeatedText::
+	text "YOSHI is an OG"
+	line "POCKET MONSTER!"
+	prompt
+
 _BattleIslandChallengerDefeatedText::
 	text "Incredible!"
 	line "You're too strong!"

@@ -1,7 +1,6 @@
 _Route8SuperNerd1BattleText::
-	text "You look good at"
-	line "#MON, but"
-	cont "how's your chem?"
+	text "Kept you waiting,"
+	line "huh?"
 	done
 
 _Route8SuperNerd1EndBattleText::
@@ -10,8 +9,8 @@ _Route8SuperNerd1EndBattleText::
 	prompt
 
 _Route8SuperNerd1AfterBattleText::
-	text "I am better at"
-	line "school than this!"
+	text "Snake? Snake!?"
+	line "SNAAAAAKE"
 	done
 
 _Route8Gambler1BattleText::
@@ -30,8 +29,8 @@ _Route8Gambler1AfterBattleText::
 	done
 
 _Route8SuperNerd2BattleText::
-	text "You need strategy"
-	line "to win at this!"
+	text "Nickle? Neck-tie?"
+	line "Nectar?"
 	done
 
 _Route8SuperNerd2EndBattleText::
@@ -40,9 +39,8 @@ _Route8SuperNerd2EndBattleText::
 	prompt
 
 _Route8SuperNerd2AfterBattleText::
-	text "Go with GRIMER"
-	line "first...and..."
-	cont "...and...then..."
+	text "It was definitely"
+	line "an N word!"
 	done
 
 _Route8CooltrainerF1BattleText::
@@ -62,8 +60,8 @@ _Route8CooltrainerF1AfterBattleText::
 	done
 
 _Route8SuperNerd3BattleText::
-	text "School is fun, but"
-	line "so are #MON."
+	text "Got any"
+	line "GOOSEBUMPS books?"
 	done
 
 _Route8SuperNerd3EndBattleText::
@@ -72,9 +70,8 @@ _Route8SuperNerd3EndBattleText::
 	prompt
 
 _Route8SuperNerd3AfterBattleText::
-	text "We're stuck here"
-	line "because of the"
-	cont "gates at SAFFRON."
+	text "I'll pay good"
+	line "money."
 	done
 
 _Route8CooltrainerF2BattleText::

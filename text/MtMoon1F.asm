@@ -48,8 +48,8 @@ _MtMoon1FCooltrainerF1AfterBattleText::
 	done
 
 _MtMoon1FSuperNerdBattleText::
-	text "What! Don't sneak"
-	line "up on me!"
+	text "Hand over any"
+	line "DRAGON BALLS!"
 	done
 
 _MtMoon1FSuperNerdEndBattleText::
@@ -58,8 +58,8 @@ _MtMoon1FSuperNerdEndBattleText::
 	prompt
 
 _MtMoon1FSuperNerdAfterBattleText::
-	text "I have to find"
-	line "stronger #MON."
+	text "I'm wishing for"
+	line "a BULMA..."
 	done
 
 _MtMoon1FCooltrainerF2BattleText::

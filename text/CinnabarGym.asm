@@ -77,9 +77,9 @@ _CinnabarGymBlaineTM38NoRoomText::
 	done
 
 _CinnabarGymSuperNerd1BattleText::
-	text "Do you know how"
-	line "hot #MON fire"
-	cont "breath can get?"
+	text "Choose: SAILOR"
+	line "MOON or ANDROID"
+	cont "18?"
 	done
 
 _CinnabarGymSuperNerd1EndBattleText::
@@ -88,12 +88,8 @@ _CinnabarGymSuperNerd1EndBattleText::
 	prompt
 
 _CinnabarGymSuperNerd1AfterBattleText::
-	text "Fire, or to be"
-	line "more precise,"
-	cont "combustion..."
-
-	para "Blah, blah, blah,"
-	line "blah..."
+	text "I choose"
+	line "BUBBLES!"
 	done
 
 _CinnabarGymSuperNerd2BattleText::
@@ -114,9 +110,9 @@ _CinnabarGymSuperNerd2AfterBattleText::
 	done
 
 _CinnabarGymSuperNerd3BattleText::
-	text "You can't win!"
-	line "I have studied"
-	cont "#MON totally!"
+	text "I'm drawing a"
+	line "RONIN WARRIOR"
+	cont "SNES SPRITE!"
 	done
 
 _CinnabarGymSuperNerd3EndBattleText::
@@ -125,9 +121,8 @@ _CinnabarGymSuperNerd3EndBattleText::
 	prompt
 
 _CinnabarGymSuperNerd3AfterBattleText::
-	text "My theories are"
-	line "too complicated"
-	cont "for you!"
+	text "Now I won't even"
+	line "show you."
 	done
 
 _CinnabarGymSuperNerd4BattleText::
@@ -147,8 +142,8 @@ _CinnabarGymSuperNerd4AfterBattleText::
 	done
 
 _CinnabarGymSuperNerd5BattleText::
-	text "I know why BLAINE"
-	line "became a trainer!"
+	text "Remember"
+	line "TOONAMI?"
 	done
 
 _CinnabarGymSuperNerd5EndBattleText::
@@ -156,14 +151,8 @@ _CinnabarGymSuperNerd5EndBattleText::
 	prompt
 
 _CinnabarGymSuperNerd5AfterBattleText::
-	text "BLAINE was lost"
-	line "in the mountains"
-	cont "when a fiery bird"
-	cont "#MON appeared."
-
-	para "Its light enabled"
-	line "BLAINE to find"
-	cont "his way down!"
+	text "Sleep is for the"
+	line "weak!"
 	done
 
 _CinnabarGymSuperNerd6BattleText::
@@ -184,8 +173,8 @@ _CinnabarGymSuperNerd6AfterBattleText::
 	done
 
 _CinnabarGymSuperNerd7BattleText::
-	text "Fire is weak"
-	line "against H2O!"
+	text "I made a POKEMON"
+	line "game!"
 	done
 
 _CinnabarGymSuperNerd7EndBattleText::
@@ -194,9 +183,9 @@ _CinnabarGymSuperNerd7EndBattleText::
 	prompt
 
 _CinnabarGymSuperNerd7AfterBattleText::
-	text "Water beats fire!"
-	line "But, fire melts"
-	cont "ice #MON!"
+	text "I used CLAUDE,"
+	line "you should try"
+	cont "it!"
 	done
 
 _CinnabarGymGymGuideChampInMakingText::
