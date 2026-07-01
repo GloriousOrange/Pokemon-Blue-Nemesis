@@ -26,9 +26,9 @@ _SilphCo3FRocketAfterBattleText::
 	done
 
 _SilphCo3FScientistBattleText::
-	text "I support TEAM"
-	line "ROCKET more than"
-	cont "I support SILPH!"
+	text "I designed OAK's"
+	line "PORYGON myself!"
+	cont "Let me show you!"
 	done
 
 _SilphCo3FScientistEndBattleText::
@@ -39,8 +39,8 @@ _SilphCo3FScientistEndBattleText::
 _SilphCo3FScientistAfterBattleText::
 	text "Humph..."
 
-	para "TEAM ROCKET said"
-	line "that if I helped"
-	cont "them, they'd let"
-	cont "me study #MON!"
+	para "PORYGON was my"
+	line "design. OAK just"
+	cont "put his name on"
+	cont "the paper."
 	done

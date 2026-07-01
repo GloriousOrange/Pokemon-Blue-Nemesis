@@ -25,8 +25,11 @@ _SilphCo4FRocket1AfterBattleText::
 	done
 
 _SilphCo4FScientistBattleText::
-	text "My #MON are my"
-	line "loyal soldiers!"
+	text "I'm the one who"
+	line "accidentally"
+	cont "invented DITTO"
+	cont "cloning MEW's"
+	cont "DNA! Watch this!"
 	done
 
 _SilphCo4FScientistEndBattleText::
@@ -39,6 +42,10 @@ _SilphCo4FScientistAfterBattleText::
 	line "electronically"
 	cont "locked! A CARD"
 	cont "KEY opens them!"
+
+	para "OAK doesn't care"
+	line "about mistakes."
+	cont "Only results."
 	done
 
 _SilphCo4FRocket2BattleText::
