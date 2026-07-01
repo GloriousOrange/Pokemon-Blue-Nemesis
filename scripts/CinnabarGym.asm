@@ -48,6 +48,7 @@ CinnabarGym_ScriptPointers:
 	dw_const CinnabarGymGetOpponentTextScript,  SCRIPT_CINNABARGYM_GET_OPPONENT_TEXT
 	dw_const CinnabarGymOpenGateScript,         SCRIPT_CINNABARGYM_OPEN_GATE
 	dw_const CinnabarGymBlainePostBattleScript, SCRIPT_CINNABARGYM_BLAINE_POST_BATTLE
+	dw_const CinnabarGymRematchDefeated,        SCRIPT_CINNABARGYM_REMATCH_DEFEATED
 
 CinnabarGymDefaultScript:
 	ld a, [wOpponentAfterWrongAnswer]
@@ -136,6 +137,20 @@ CinnabarGymOpenGateScript:
 	ld [wCurMapScript], a
 	ret
 
+CinnabarGymRematchDefeated:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld hl, wGymRematchFlags
+	set 6, [hl] ; Blaine re-beaten
+	farcall PostGameCheckAllGymsRebeaten
+.reset
+	xor a
+	ld [wJoyIgnore], a
+	ld [wCinnabarGymCurScript], a
+	ld [wCurMapScript], a
+	ret
+
 CinnabarGymBlainePostBattleScript:
 	ld a, [wIsInBattle]
 	cp $ff
@@ -219,6 +234,22 @@ CinnabarGymBlaineText:
 	call DisableWaitingAfterTextDisplay
 	jp TextScriptEnd
 .afterBeat
+	ld hl, wPostGameMisc
+	bit BIT_POST_GAME_STARTED, [hl]
+	jr z, .normalAdvice
+	ld a, [wGymRematchFlags]
+	bit 6, a ; Blaine = bit 6
+	jr nz, .normalAdvice
+	ld a, OPP_BLAINE
+	ld [wCurOpponent], a
+	ld a, 2 ; rematch party
+	ld [wTrainerNo], a
+	farcall GymLeaderRematchInit
+	ld a, SCRIPT_CINNABARGYM_REMATCH_DEFEATED
+	ld [wCinnabarGymCurScript], a
+	ld [wCurMapScript], a
+	jp TextScriptEnd
+.normalAdvice
 	ld hl, .PostBattleAdviceText
 	call PrintText
 	jp TextScriptEnd

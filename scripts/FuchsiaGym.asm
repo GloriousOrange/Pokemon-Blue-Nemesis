@@ -37,6 +37,21 @@ FuchsiaGym_ScriptPointers:
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_FUCHSIAGYM_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_FUCHSIAGYM_END_BATTLE
 	dw_const FuchsiaGymKogaPostBattleScript,        SCRIPT_FUCHSIAGYM_KOGA_POST_BATTLE
+	dw_const FuchsiaGymRematchDefeated,             SCRIPT_FUCHSIAGYM_REMATCH_DEFEATED
+
+FuchsiaGymRematchDefeated:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld hl, wGymRematchFlags
+	set 4, [hl] ; Koga re-beaten
+	farcall PostGameCheckAllGymsRebeaten
+.reset
+	xor a
+	ld [wJoyIgnore], a
+	ld [wFuchsiaGymCurScript], a
+	ld [wCurMapScript], a
+	ret
 
 FuchsiaGymKogaPostBattleScript:
 	ld a, [wIsInBattle]
@@ -113,6 +128,22 @@ FuchsiaGymKogaText:
 	call DisableWaitingAfterTextDisplay
 	jr .done
 .afterBeat
+	ld hl, wPostGameMisc
+	bit BIT_POST_GAME_STARTED, [hl]
+	jr z, .normalAdvice
+	ld a, [wGymRematchFlags]
+	bit 4, a ; Koga = bit 4
+	jr nz, .normalAdvice
+	ld a, OPP_KOGA
+	ld [wCurOpponent], a
+	ld a, 2 ; rematch party
+	ld [wTrainerNo], a
+	farcall GymLeaderRematchInit
+	ld a, SCRIPT_FUCHSIAGYM_REMATCH_DEFEATED
+	ld [wFuchsiaGymCurScript], a
+	ld [wCurMapScript], a
+	jr .done
+.normalAdvice
 	ld hl, .PostBattleAdviceText
 	call PrintText
 	jr .done

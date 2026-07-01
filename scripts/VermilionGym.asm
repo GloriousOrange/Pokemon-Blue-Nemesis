@@ -54,6 +54,21 @@ VermilionGym_ScriptPointers:
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_VERMILIONGYM_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_VERMILIONGYM_END_BATTLE
 	dw_const VermilionGymLTSurgeAfterBattleScript,  SCRIPT_VERMILIONGYM_LT_SURGE_AFTER_BATTLE
+	dw_const VermilionGymRematchDefeated,           SCRIPT_VERMILIONGYM_REMATCH_DEFEATED
+
+VermilionGymRematchDefeated:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld hl, wGymRematchFlags
+	set 2, [hl] ; Lt. Surge re-beaten
+	farcall PostGameCheckAllGymsRebeaten
+.reset
+	xor a
+	ld [wJoyIgnore], a
+	ld [wVermilionGymCurScript], a
+	ld [wCurMapScript], a
+	ret
 
 VermilionGymLTSurgeAfterBattleScript:
 	ld a, [wIsInBattle]
@@ -121,6 +136,22 @@ VermilionGymLTSurgeText:
 	call DisableWaitingAfterTextDisplay
 	jr .text_script_end
 .got_tm24_already
+	ld hl, wPostGameMisc
+	bit BIT_POST_GAME_STARTED, [hl]
+	jr z, .normalAdvice
+	ld a, [wGymRematchFlags]
+	bit 2, a ; Lt. Surge = bit 2
+	jr nz, .normalAdvice
+	ld a, OPP_LT_SURGE
+	ld [wCurOpponent], a
+	ld a, 2 ; rematch party
+	ld [wTrainerNo], a
+	farcall GymLeaderRematchInit
+	ld a, SCRIPT_VERMILIONGYM_REMATCH_DEFEATED
+	ld [wVermilionGymCurScript], a
+	ld [wCurMapScript], a
+	jr .text_script_end
+.normalAdvice
 	ld hl, .PostBattleAdviceText
 	call PrintText
 	jr .text_script_end

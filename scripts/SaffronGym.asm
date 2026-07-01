@@ -35,6 +35,21 @@ SaffronGym_ScriptPointers:
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_SAFFRONGYM_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_SAFFRONGYM_END_BATTLE
 	dw_const SaffronGymSabrinaPostBattle,           SCRIPT_SAFFRONGYM_SABRINA_POST_BATTLE
+	dw_const SaffronGymRematchDefeated,             SCRIPT_SAFFRONGYM_REMATCH_DEFEATED
+
+SaffronGymRematchDefeated:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld hl, wGymRematchFlags
+	set 5, [hl] ; Sabrina re-beaten
+	farcall PostGameCheckAllGymsRebeaten
+.reset
+	xor a
+	ld [wJoyIgnore], a
+	ld [wSaffronGymCurScript], a
+	ld [wCurMapScript], a
+	ret
 
 SaffronGymSabrinaPostBattle:
 	ld a, [wIsInBattle]
@@ -114,6 +129,22 @@ SaffronGymSabrinaText:
 	call DisableWaitingAfterTextDisplay
 	jr .done
 .afterBeat
+	ld hl, wPostGameMisc
+	bit BIT_POST_GAME_STARTED, [hl]
+	jr z, .normalAdvice
+	ld a, [wGymRematchFlags]
+	bit 5, a ; Sabrina = bit 5
+	jr nz, .normalAdvice
+	ld a, OPP_SABRINA
+	ld [wCurOpponent], a
+	ld a, 2 ; rematch party
+	ld [wTrainerNo], a
+	farcall GymLeaderRematchInit
+	ld a, SCRIPT_SAFFRONGYM_REMATCH_DEFEATED
+	ld [wSaffronGymCurScript], a
+	ld [wCurMapScript], a
+	jr .done
+.normalAdvice
 	ld hl, .PostBattleAdviceText
 	call PrintText
 	jr .done

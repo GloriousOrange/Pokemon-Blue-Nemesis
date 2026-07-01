@@ -35,6 +35,21 @@ CeladonGym_ScriptPointers:
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_CELADONGYM_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_CELADONGYM_END_BATTLE
 	dw_const CeladonGymErikaPostBattleScript,       SCRIPT_CELADONGYM_ERIKA_POST_BATTLE
+	dw_const CeladonGymRematchDefeated,             SCRIPT_CELADONGYM_REMATCH_DEFEATED
+
+CeladonGymRematchDefeated:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld hl, wGymRematchFlags
+	set 3, [hl] ; Erika re-beaten
+	farcall PostGameCheckAllGymsRebeaten
+.reset
+	xor a
+	ld [wJoyIgnore], a
+	ld [wCeladonGymCurScript], a
+	ld [wCurMapScript], a
+	ret
 
 CeladonGymErikaPostBattleScript:
 	ld a, [wIsInBattle]
@@ -114,6 +129,22 @@ CeladonGymErikaText:
 	call DisableWaitingAfterTextDisplay
 	jr .done
 .afterBeat
+	ld hl, wPostGameMisc
+	bit BIT_POST_GAME_STARTED, [hl]
+	jr z, .normalAdvice
+	ld a, [wGymRematchFlags]
+	bit 3, a ; Erika = bit 3
+	jr nz, .normalAdvice
+	ld a, OPP_ERIKA
+	ld [wCurOpponent], a
+	ld a, 2 ; rematch party
+	ld [wTrainerNo], a
+	farcall GymLeaderRematchInit
+	ld a, SCRIPT_CELADONGYM_REMATCH_DEFEATED
+	ld [wCeladonGymCurScript], a
+	ld [wCurMapScript], a
+	jr .done
+.normalAdvice
 	ld hl, .PostBattleAdviceText
 	call PrintText
 	jr .done

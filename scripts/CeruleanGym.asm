@@ -35,6 +35,21 @@ CeruleanGym_ScriptPointers:
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_CERULEANGYM_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_CERULEANGYM_END_BATTLE
 	dw_const CeruleanGymMistyPostBattleScript,      SCRIPT_CERULEANGYM_MISTY_POST_BATTLE
+	dw_const CeruleanGymRematchDefeated,            SCRIPT_CERULEANGYM_REMATCH_DEFEATED
+
+CeruleanGymRematchDefeated:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld hl, wGymRematchFlags
+	set 1, [hl] ; Misty re-beaten
+	farcall PostGameCheckAllGymsRebeaten
+.reset
+	xor a
+	ld [wJoyIgnore], a
+	ld [wCeruleanGymCurScript], a
+	ld [wCurMapScript], a
+	ret
 
 CeruleanGymMistyPostBattleScript:
 	ld a, [wIsInBattle]
@@ -99,6 +114,22 @@ CeruleanGymMistyText:
 	call DisableWaitingAfterTextDisplay
 	jr .done
 .afterBeat
+	ld hl, wPostGameMisc
+	bit BIT_POST_GAME_STARTED, [hl]
+	jr z, .normalAdvice
+	ld a, [wGymRematchFlags]
+	bit 1, a ; Misty = bit 1
+	jr nz, .normalAdvice
+	ld a, OPP_MISTY
+	ld [wCurOpponent], a
+	ld a, 2 ; rematch party
+	ld [wTrainerNo], a
+	farcall GymLeaderRematchInit
+	ld a, SCRIPT_CERULEANGYM_REMATCH_DEFEATED
+	ld [wCeruleanGymCurScript], a
+	ld [wCurMapScript], a
+	jr .done
+.normalAdvice
 	ld hl, .TM11ExplanationText
 	call PrintText
 	jr .done
