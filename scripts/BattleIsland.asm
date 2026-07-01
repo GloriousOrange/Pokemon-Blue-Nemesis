@@ -100,8 +100,13 @@ BattleIslandGatekeeperText:
 	jr .printApproachText
 .checkGentlemanApproach
 	cp 17 ; ARENA #18, the food-snob Gentleman
-	jr nz, .printApproachText
+	jr nz, .checkBirdKeeperApproach
 	ld hl, BattleIslandGentlemanApproachesText
+	jr .printApproachText
+.checkBirdKeeperApproach
+	cp 20 ; ARENA #21, the fried-chicken Bird Keeper
+	jr nz, .printApproachText
+	ld hl, BattleIslandBirdKeeperApproachesText
 .printApproachText
 	call PrintText
 	ld hl, wStatusFlags3
@@ -130,8 +135,13 @@ BattleIslandGatekeeperText:
 	jr .notSuperNerdWinText
 .checkGentlemanWinText
 	cp 17 ; ARENA #18, the food-snob Gentleman
-	jr nz, .notSuperNerdWinText
+	jr nz, .checkBirdKeeperWinText
 	ld hl, BattleIslandGentlemanDefeatedText
+	jr .notSuperNerdWinText
+.checkBirdKeeperWinText
+	cp 20 ; ARENA #21, the fried-chicken Bird Keeper
+	jr nz, .notSuperNerdWinText
+	ld hl, BattleIslandBirdKeeperDefeatedText
 .notSuperNerdWinText
 	ld de, BattleIslandChallengerVictoryText
 	call SaveEndBattleTextPointers
@@ -272,6 +282,14 @@ BattleIslandGentlemanApproachesText:
 
 BattleIslandGentlemanDefeatedText:
 	text_far _BattleIslandGentlemanDefeatedText
+	text_end
+
+BattleIslandBirdKeeperApproachesText:
+	text_far _BattleIslandBirdKeeperApproachesText
+	text_end
+
+BattleIslandBirdKeeperDefeatedText:
+	text_far _BattleIslandBirdKeeperDefeatedText
 	text_end
 
 BattleIslandChallengerDefeatedText:

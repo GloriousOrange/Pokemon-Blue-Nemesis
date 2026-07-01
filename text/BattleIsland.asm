@@ -79,6 +79,18 @@ _BattleIslandGentlemanDefeatedText::
 	line "gauche of you."
 	prompt
 
+_BattleIslandBirdKeeperApproachesText::
+	text "My birds are"
+	line "juicy, tender,"
+	cont "and undefeated!"
+	done
+
+_BattleIslandBirdKeeperDefeatedText::
+	text "Well-done."
+	line "That's me, not"
+	cont "my #MON."
+	prompt
+
 _BattleIslandChallengerDefeatedText::
 	text "Incredible!"
 	line "You're too strong!"
