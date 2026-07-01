@@ -2047,9 +2047,11 @@ wBattleIslandCurScript::    db   ; Battle Island arena map-script state
 wCurArenaChallenger::       db   ; index (0-25) of the arena challenger being fought ($ff = Giovanni)
 wMeganVisitedFlags::        ds 4 ; bit per Megan location (PokeCenters/gyms/caves/etc.) = first-visit-gift given
 wMeganLocIndex::            db   ; scratch: Megan location index across a HealParty predef
+wLevelStoneMoveLevel::      db   ; scratch: level checkpoint while replaying evos/moves for LEVEL_STONE
+wLevelStoneTargetMon::      db   ; scratch: target party slot, re-armed each loop iteration (see above)
 wPostGameFlagsEnd::
 
-	ds 20 ; was ds 56; 36 bytes carved out above for wPostGameFlags
+	ds 18 ; was ds 56; 38 bytes carved out above for wPostGameFlags
 
 wObtainedHiddenItemsFlags:: flag_array MAX_HIDDEN_ITEMS
 

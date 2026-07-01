@@ -1351,32 +1351,95 @@ ItemUseMedicine:
 	ld b, 1
 	jp CalcStats ; recalculate stats
 .useLevelStone
-; lab machine: jump the chosen party mon straight to level 100, recalc its
-; stats, and refill HP. Modeled on .useRareCandy but sets level to MAX_LEVEL.
+; lab machine: walk the chosen party mon up to level 100 one simulated level
+; at a time, replaying the same checks a normal battle level-up would (move
+; learning via LearnMoveFromLevelUp, evolution via TryEvolvingMon-style flag
+; + EvolutionAfterBattle) at each level. This lets it evolve through every
+; stage it naturally would and get a shot at every move in its (possibly
+; changing, as it evolves) learnset along the way, instead of just jumping
+; straight to L100 with its original species/moveset.
 	push hl
 	ld bc, MON_LEVEL
 	add hl, bc ; hl -> level
 	ld a, [hl]
+	pop hl
 	cp MAX_LEVEL
 	jp z, .vitaminNoEffect ; already level 100
-	ld a, MAX_LEVEL
-	ld [hl], a
-	ld [wCurEnemyLevel], a
+	ld a, [wWhichPokemon]
+	ld [wLevelStoneTargetMon], a
 	push hl
-	push de
-	ld d, a
-	callfar CalcExperience ; exp floor for level 100 -> hExperience
-	pop de
+	ld bc, MON_LEVEL
+	add hl, bc
+	ld a, [hl] ; a = mon's current level
 	pop hl
-	ld bc, MON_EXP - MON_LEVEL
-	add hl, bc ; hl -> MSB of experience
+	ld [wLevelStoneMoveLevel], a
+
+.levelStoneSimLoop
+	ld a, [wLevelStoneMoveLevel]
+	cp MAX_LEVEL
+	jr nc, .levelStoneSimDone
+	inc a
+	ld [wLevelStoneMoveLevel], a
+	ld [wCurEnemyLevel], a
+
+	; write this simulated level into the mon's real LEVEL byte, so
+	; LoadMonData/CalcStat (used internally below) see the right level
+	call .levelStonePartyBase
+	ld bc, MON_LEVEL
+	add hl, bc
+	ld a, [wLevelStoneMoveLevel]
+	ld [hl], a
+
+	; give it a shot at any move its current species learns at this level
+	call .levelStonePartyBase
+	ld bc, MON_SPECIES
+	add hl, bc
+	ld a, [hl]
+	ld [wPokedexNum], a
+	xor a
+	ld [wMonDataLocation], a
+	ld a, [wLevelStoneTargetMon]
+	ld [wWhichPokemon], a
+	predef LearnMoveFromLevelUp
+
+	; check whether it evolves at this level (level evolutions only, same as
+	; a normal non-traded, non-forced level-up would trigger)
+	ld hl, wCanEvolveFlags
+	xor a
+	ld [hl], a
+	ld a, [wLevelStoneTargetMon]
+	ld c, a
+	ld b, FLAG_SET
+	predef FlagActionPredef
+	predef EvolutionAfterBattle
+
+	jr .levelStoneSimLoop
+
+.levelStoneSimDone
+	; EvolutionAfterBattle's internal party scan may have left wMonHeader
+	; loaded for some OTHER party slot; reload it for our (possibly now
+	; evolved) target before computing its level-100 exp floor.
+	call .levelStonePartyBase
+	ld bc, MON_SPECIES
+	add hl, bc
+	ld a, [hl]
+	ld [wCurSpecies], a
+	call GetMonHeader
+	call .levelStonePartyBase
+	push hl
+	ld d, MAX_LEVEL
+	callfar CalcExperience ; exp floor for level 100 -> hExperience
+	pop hl
+	push hl
+	ld bc, MON_EXP
+	add hl, bc
 	ldh a, [hExperience]
 	ld [hli], a
 	ldh a, [hExperience + 1]
 	ld [hli], a
 	ldh a, [hExperience + 2]
 	ld [hl], a
-	pop hl ; hl -> mon struct start
+	pop hl
 	push hl
 	call .recalculateStats
 	pop hl
@@ -1397,6 +1460,14 @@ ItemUseMedicine:
 	ld hl, .levelStoneRoseText
 	call PrintText
 	jp RemoveUsedItem
+
+.levelStonePartyBase
+; returns hl = party struct base for wLevelStoneTargetMon
+	ld a, [wLevelStoneTargetMon]
+	ld hl, wPartyMon1
+	ld bc, PARTYMON_STRUCT_LENGTH
+	jp AddNTimes
+
 .levelStoneRoseText
 	text "Its level shot"
 	line "up to 100!"
