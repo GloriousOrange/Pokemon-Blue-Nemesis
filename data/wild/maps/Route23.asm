@@ -1,5 +1,5 @@
 Route23WildMons:
-	def_grass_wildmons 10 ; encounter rate
+	def_grass_wildmons 5 ; encounter rate
 IF DEF(_RED)
 	db 26, EKANS
 ENDC

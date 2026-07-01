@@ -1,5 +1,5 @@
 Route13WildMons:
-	def_grass_wildmons 20 ; encounter rate
+	def_grass_wildmons 10 ; encounter rate
 IF DEF(_RED)
 	db 24, ODDISH
 	db 25, PIDGEY

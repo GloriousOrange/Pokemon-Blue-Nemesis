@@ -1,5 +1,5 @@
 Route7WildMons:
-	def_grass_wildmons 15 ; encounter rate
+	def_grass_wildmons 8 ; encounter rate
 	db 19, PIDGEY
 IF DEF(_RED)
 	db 19, ODDISH

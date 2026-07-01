@@ -1,5 +1,5 @@
 Route4WildMons:
-	def_grass_wildmons 20 ; encounter rate
+	def_grass_wildmons 10 ; encounter rate
 	db 10, RATTATA
 	db 10, SPEAROW
 	db  8, RATTATA

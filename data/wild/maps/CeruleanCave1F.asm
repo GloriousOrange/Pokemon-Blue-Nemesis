@@ -1,5 +1,5 @@
 CeruleanCave1FWildMons:
-	def_grass_wildmons 2 ; encounter rate
+	def_grass_wildmons 1 ; encounter rate
 	db 46, GOLBAT
 	db 46, HYPNO
 	db 46, MAGNETON

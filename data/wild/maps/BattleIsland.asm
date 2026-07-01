@@ -1,5 +1,5 @@
 BattleIslandWildMons:
-	def_grass_wildmons 25 ; encounter rate
+	def_grass_wildmons 13 ; encounter rate
 	db 50, NIDOKING
 	db 50, NIDOQUEEN
 	db 52, RAICHU

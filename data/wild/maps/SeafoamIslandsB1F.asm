@@ -1,5 +1,5 @@
 SeafoamIslandsB1FWildMons:
-	def_grass_wildmons 2 ; encounter rate
+	def_grass_wildmons 1 ; encounter rate
 IF DEF(_RED)
 	db 30, STARYU
 	db 30, HORSEA

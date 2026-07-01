@@ -1,5 +1,5 @@
 MtMoon1FWildMons:
-	def_grass_wildmons 2 ; encounter rate
+	def_grass_wildmons 1 ; encounter rate
 	db  8, ZUBAT
 	db  7, ZUBAT
 	db  9, ZUBAT
