@@ -486,7 +486,7 @@ YourTextString:
 	db "YOUR @"
 
 RivalsTextString:
-	db "RIVAL's @"
+	db "BROTHER's @"
 
 NameTextString:
 	db "NAME?@"

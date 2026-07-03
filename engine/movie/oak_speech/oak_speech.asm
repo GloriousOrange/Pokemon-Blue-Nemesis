@@ -50,6 +50,25 @@ OakSpeech:
 	call LoadTextBoxTilePatterns
 	call PrepareOakSpeech
 	predef InitPlayerData2
+; minimal intro naming: ask the player's name, then their brother's (the rival).
+; No preset-name menu, no pics, no speech. Empty entries are re-asked.
+.askPlayerName
+	ld hl, wPlayerName
+	xor a ; NAME_PLAYER_SCREEN
+	ld [wNamingScreenType], a
+	call DisplayNamingScreen
+	ld a, [wStringBuffer]
+	cp '@' ; empty name?
+	jr z, .askPlayerName
+.askBrotherName
+	ld hl, wRivalName
+	ld a, NAME_RIVAL_SCREEN
+	ld [wNamingScreenType], a
+	call DisplayNamingScreen
+	ld a, [wStringBuffer]
+	cp '@' ; empty name?
+	jr z, .askBrotherName
+	call ClearScreen
 ; one-time challenge options, asked here (LCD is on, so the prompts render)
 ; rather than in the RedsHouse2F map tick where PrintText is unreliable.
 ; wUnusedPlayerDataByte was set to $ff (all bits) by InitPlayerData2; clear it to
