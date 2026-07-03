@@ -2163,10 +2163,14 @@ TyranisEvosMoves:
 
 MiasmaEvosMoves:
 	db 0
-	db 50, ACID_ARMOR
+; Learnset
+	db 40, BLIGHT_VOMIT
+	db 50, CARRION_WIND
 	db 0
 
 NocturnEvosMoves:
 	db 0
-	db 50, MIRROR_MOVE
+; Learnset
+	db 40, PHANTOM_WING
+	db 50, MIND_FEVER
 	db 0

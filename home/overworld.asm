@@ -1995,6 +1995,11 @@ RunMapScript::
 
 LoadWalkingPlayerSpriteGraphics::
 	ld de, RedSprite
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a ; Loyalist path: walk around as a Team Rocket grunt
+	jr z, .gotWalkingSprite
+	ld de, RocketSprite ; same ROM bank as RedSprite, so the hardcoded bank in Common is fine
+.gotWalkingSprite
 	ld hl, vNPCSprites
 	jr LoadPlayerSpriteGraphicsCommon
 
@@ -2027,8 +2032,6 @@ LoadPlayerSpriteGraphicsCommon::
 ; function to load data from the map header
 LoadMapHeader::
 	farcall MarkTownVisitedAndLoadToggleableObjects
-	ld a, [wCurMapTileset]
-	ld [wUnusedCurMapTilesetCopy], a
 	ld a, [wCurMap]
 	call SwitchToMapRomBank
 	ld a, [wCurMapTileset]

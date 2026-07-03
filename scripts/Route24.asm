@@ -118,6 +118,22 @@ Route24CooltrainerM1Text:
 	call PrintText
 	ld hl, .JoinTeamRocketText
 	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a ; 0 = YES
+	jr nz, .refusedJoin
+; YES: join TEAM ROCKET (Loyalist path). No battle -- he welcomes you, you get
+; the Rocket overworld sprite, and this Rocket is marked dealt-with.
+	ld hl, wPostGameMisc
+	set BIT_ROCKET_LOYALTY, [hl]
+	SetEvent EVENT_BEAT_ROUTE24_ROCKET
+	ld hl, .WelcomeToRocketText
+	call PrintText
+	call LoadPlayerSpriteGraphics ; swap the overworld sprite to the Rocket grunt now
+	call UpdateSprites
+	jp TextScriptEnd
+.refusedJoin
+; NO: refuse (Hero path). He battles you, exactly as before.
 	ld hl, wStatusFlags3
 	set BIT_TALKED_TO_TRAINER, [hl]
 	set BIT_PRINT_END_BATTLE_TEXT, [hl]
@@ -163,6 +179,12 @@ Route24CooltrainerM1Text:
 .JoinTeamRocketText:
 	text_far _Route24CooltrainerM1JoinTeamRocketText
 	text_end
+
+.WelcomeToRocketText:
+	text "Excellent choice!"
+	line "Welcome to TEAM"
+	cont "ROCKET, recruit."
+	done
 
 .DefeatedText:
 	text_far _Route24CooltrainerM1DefeatedText

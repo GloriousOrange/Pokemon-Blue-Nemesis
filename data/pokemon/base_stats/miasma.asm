@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/miasma.pic", 0, 1 ; sprite dimensions (custom front)
 	dw MiasmaPicFront, MiasmaPicBack
 
-	db CARRION_WIND, BLIGHT_VOMIT, SMOKESCREEN, DRILL_PECK ; level 1 learnset
+	db SMOKESCREEN, DRILL_PECK, NO_MOVE, NO_MOVE ; starting moves (BLIGHT_VOMIT@40, CARRION_WIND@50)
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset

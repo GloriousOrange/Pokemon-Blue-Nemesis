@@ -162,7 +162,8 @@ DEF LCDC_DEFAULT EQU LCDC_ON | LCDC_WIN_9C00 | LCDC_WIN_ON | LCDC_BLOCK21 | LCDC
 DEF BIT_GOT_GIRLFRIEND EQU 1 ; met Megan; shows the CALL MEGAN entry in the Start menu
 DEF BIT_LEVEL_MACHINE_READY EQU 2 ; a level machine sets this; lets a LEVEL STONE work from the bag. Cleared on every map load.
 DEF BIT_POST_GAME_STARTED EQU 3 ; set when the Champion is beaten; unlocks gym-leader rematches
-DEF BIT_ROCKET_LOYALTY EQU 4 ; SCAFFOLDING (2026-07-01): will gate Loyalist-vs-Hero NPC/sprite swaps once the branching-path fork is built; unused/unset for now, defaults clear
+DEF BIT_ROCKET_LOYALTY EQU 4 ; set when the player joins Team Rocket at Nugget Bridge (Loyalist path). Gates the Rocket overworld sprite + Loyalist-vs-Hero content. Clear = Hero.
+DEF BIT_PLAYER_TRAITOR EQU 5 ; set when the player goes rogue at the Nocturn beat (Traitor path, reachable from either Hero or Loyalist). Overrides allegiance. Trigger hooks into the Nocturn-obtain script once that content exists.
 ; wChallengeFlags = wUnusedPlayerDataByte ($ff before the new-game prompt is answered)
 DEF BIT_CHALLENGE_DOUBLE_XP EQU 0 ; 2x EXP from trainer battles
 DEF BIT_CHALLENGE_NO_ITEMS  EQU 1 ; cannot use items in battle

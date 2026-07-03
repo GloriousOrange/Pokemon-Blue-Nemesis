@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/nocturn.pic", 0, 1 ; sprite dimensions (custom front)
 	dw NocturnPicFront, NocturnPicBack
 
-	db MIND_FEVER, PHANTOM_WING, GUST, NIGHT_SHADE ; level 1 learnset
+	db GUST, NIGHT_SHADE, NO_MOVE, NO_MOVE ; starting moves (PHANTOM_WING@40, MIND_FEVER@50)
 	db GROWTH_SLOW ; growth rate
 
 	; tm/hm learnset
