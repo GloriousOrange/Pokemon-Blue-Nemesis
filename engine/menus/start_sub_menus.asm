@@ -6,25 +6,132 @@ StartMenu_Pokedex::
 	call UpdateSprites
 	jp RedisplayStartMenu
 
-; CALL MEGAN: phone the girlfriend -> she greets you, opens the full PC (items +
-; Pokémon storage), says a brief goodbye, then drops you back in the overworld.
+; PHONE: opens a submenu of contacts. MEGAN heals your party, OAK grants remote
+; PC/storage access, and BOSS (Giovanni) only appears once you've joined Team
+; Rocket at Nugget Bridge (BIT_ROCKET_LOYALTY). The whole PHONE entry is still
+; gated on having met Megan (BIT_GOT_GIRLFRIEND) in DrawStartMenu.
+; (Label kept as StartMenu_Megan because home/start_menu.asm dispatches to it.)
 StartMenu_Megan::
-	ld hl, MeganCallGreetingText
+	call PhoneMenu_Draw
+	call HandleMenuInput
+	push af
+	call LoadScreenTilesFromBuffer2 ; erase the contact box, restore the start-menu screen
+	pop af
+	bit B_PAD_B, a
+	jp nz, RedisplayStartMenu ; cancelled -> back to the start menu
+	ld a, [wCurrentMenuItem]
+	and a
+	jp z, PhoneCall_Megan
+	dec a
+	jp z, PhoneCall_Oak
+	jp PhoneCall_Giovanni ; only reachable when BOSS is listed
+
+; draws the contact list (Megan, Oak, and Boss if Rocket-loyal) and sets up the
+; menu variables for HandleMenuInput.
+PhoneMenu_Draw:
+	hlcoord 0, 0
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld b, 2 ; interior rows: MEGAN, OAK
+	jr z, .gotHeight
+	inc b   ; + BOSS
+.gotHeight
+	ld c, 6
+	call TextBoxBorder
+	hlcoord 2, 1
+	ld de, PhoneMeganName
+	call PlaceString
+	hlcoord 2, 2
+	ld de, PhoneOakName
+	call PlaceString
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	jr z, .noBoss
+	hlcoord 2, 3
+	ld de, PhoneBossName
+	call PlaceString
+.noBoss
+	ld a, 1
+	ld [wTopMenuItemY], a
+	ld [wTopMenuItemX], a
+	xor a
+	ld [wCurrentMenuItem], a
+	ld [wLastMenuItem], a
+	ld [wMenuWatchMovingOutOfBounds], a
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld a, 1 ; highest index: MEGAN=0, OAK=1
+	jr z, .storeMax
+	inc a   ; + BOSS=2
+.storeMax
+	ld [wMaxMenuItem], a
+	ld a, PAD_A | PAD_B
+	ld [wMenuWatchedKeys], a
+	ldh a, [hUILayoutFlags]
+	res BIT_DOUBLE_SPACED_MENU, a ; contact rows are 1 tile apart
+	ldh [hUILayoutFlags], a
+	ret
+
+PhoneMeganName:
+	db "MEGAN@"
+PhoneOakName:
+	db "OAK@"
+PhoneBossName:
+	db "BOSS@"
+
+; MEGAN: remote heal, like a pocket nurse.
+PhoneCall_Megan:
+	ld hl, PhoneMeganGreetingText
 	call PrintText
-	farcall ActivatePC
-	ld hl, MeganCallGoodbyeText
+	ld a, SFX_HEAL_AILMENT
+	call PlaySound
+	predef HealParty
+	ld hl, PhoneMeganHealedText
 	call PrintText
 	jp CloseStartMenu
-MeganCallGreetingText:
-	text "MEGAN: Hi, sweetie!"
-	line "Need your PC? Here"
-	cont "you go--anything"
-	cont "for you, love!"
+
+; OAK: remote Pokémon Storage System (PC boxes + items), moved here from Megan.
+PhoneCall_Oak:
+	ld hl, PhoneOakGreetingText
+	call PrintText
+	farcall ActivatePC
+	ld hl, PhoneOakGoodbyeText
+	call PrintText
+	jp CloseStartMenu
+
+; GIOVANNI: Loyalist-only. Mission-status flavor for now.
+PhoneCall_Giovanni:
+	ld hl, PhoneBossText
+	call PrintText
+	jp CloseStartMenu
+
+PhoneMeganGreetingText:
+	text "MEGAN: Hi, honey!"
+	line "Let me freshen up"
+	cont "your team!"
 	prompt
-MeganCallGoodbyeText:
-	text "MEGAN: Love you!"
-	line "Call me anytime,"
-	cont "okay? Stay safe!"
+PhoneMeganHealedText:
+	text "MEGAN: All better!"
+	line "Go get 'em, love--"
+	cont "call me anytime!"
+	prompt
+PhoneOakGreetingText:
+	text "OAK: Need the"
+	line "storage system?"
+	cont "One moment..."
+	prompt
+PhoneOakGoodbyeText:
+	text "OAK: Do keep your"
+	line "team in order, my"
+	cont "boy. Good luck!"
+	prompt
+PhoneBossText:
+	text "GIOVANNI: Don't"
+	line "waste my time with"
+	cont "calls, recruit."
+	para "Bring me RESULTS,"
+	line "and you'll rise."
+	cont "Fail me... don't."
 	prompt
 
 StartMenu_Pokemon::
