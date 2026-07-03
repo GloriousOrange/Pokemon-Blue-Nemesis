@@ -1994,9 +1994,9 @@ RunMapScript::
 	ret
 
 LoadWalkingPlayerSpriteGraphics::
-	ld de, RedSprite
+	ld de, ScientistSprite ; Hero path (default): Oak's agent, a Scientist from the start
 	ld a, [wPostGameMisc]
-	bit BIT_ROCKET_LOYALTY, a ; Loyalist path: walk around as a Team Rocket grunt
+	bit BIT_ROCKET_LOYALTY, a ; Loyalist path: walk around as a Team Rocket grunt instead
 	jr z, .gotWalkingSprite
 	ld de, RocketSprite ; same ROM bank as RedSprite, so the hardcoded bank in Common is fine
 .gotWalkingSprite
