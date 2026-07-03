@@ -165,7 +165,7 @@ AttackAnimationPointers:
 	dw SlashAnim
 	dw SubstituteAnim
 	dw DrillPeckAnim    ; DOUBLE_DRILL — reuse drill peck visuals
-	dw HyperBeamAnim    ; HYPER_BEAMS — reuse hyper beam visuals
+	dw HyperBeamsAnim   ; HYPER_BEAMS — double-beam variant
 	dw MetronomeAnim    ; METRONOME2 — reuse metronome visuals
 	dw ToxicAnim        ; CARRION_WIND
 	dw SludgeAnim       ; BLIGHT_VOMIT
@@ -562,6 +562,18 @@ HyperBeamAnim:
 	battle_anim NO_MOVE, SE_SPIRAL_BALLS_INWARD
 	battle_anim HYPER_BEAM, SUBANIM_0_BEAM, 0, 2
 	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	battle_anim MEGA_PUNCH, SUBANIM_1_STAR_BIG_MOVING, 1, 6
+	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
+	db -1 ; end
+
+HyperBeamsAnim:
+; like HyperBeamAnim but fires the beam twice (double blast)
+	battle_anim LEECH_SEED, SE_DARK_SCREEN_PALETTE
+	battle_anim NO_MOVE, SE_SPIRAL_BALLS_INWARD
+	battle_anim HYPER_BEAM, SUBANIM_0_BEAM, 0, 2
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	battle_anim HYPER_BEAM, SUBANIM_0_BEAM, 0, 2
 	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
 	battle_anim MEGA_PUNCH, SUBANIM_1_STAR_BIG_MOVING, 1, 6
 	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
