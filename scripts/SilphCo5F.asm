@@ -84,6 +84,8 @@ SilphCo5F_TextPointers:
 	dw_const SilphCo5FPokemonReport1Text, TEXT_SILPHCO5F_POKEMON_REPORT1
 	dw_const SilphCo5FPokemonReport2Text, TEXT_SILPHCO5F_POKEMON_REPORT2
 	dw_const SilphCo5FPokemonReport3Text, TEXT_SILPHCO5F_POKEMON_REPORT3
+	dw_const SilphCo5FFlavorRocketText,   TEXT_SILPHCO5F_FLAVOR_ROCKET
+	dw_const SilphCo5FFlavorScientistText, TEXT_SILPHCO5F_FLAVOR_SCIENTIST
 
 SilphCo5TrainerHeaders:
 	def_trainers 2
@@ -194,4 +196,24 @@ SilphCo5FPokemonReport2Text:
 
 SilphCo5FPokemonReport3Text:
 	text_far _SilphCo5FPokemonReport3Text
+	text_end
+
+SilphCo5FFlavorRocketText:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _SilphCo5FFlavorRocketText
+	text_end
+
+SilphCo5FFlavorScientistText:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _SilphCo5FFlavorScientistText
 	text_end

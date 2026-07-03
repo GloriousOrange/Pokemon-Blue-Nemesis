@@ -40,3 +40,20 @@ _SilphCo10FScientistAfterBattleText::
 	line "with beating me?"
 	cont "Then go on home!"
 	done
+
+_SilphCo10FFlavorRocketText::
+	text "One floor from"
+	line "the roof."
+
+	para "GIOVANNI wants"
+	line "this whole"
+	cont "building."
+	done
+
+_SilphCo10FFlavorScientistText::
+	text "He can want all"
+	line "he likes."
+
+	para "OAK's not handing"
+	line "over the keys."
+	done

@@ -4,6 +4,7 @@ CeladonMart1F_Script:
 CeladonMart1F_TextPointers:
 	def_text_pointers
 	dw_const CeladonMart1FReceptionistText,     TEXT_CELADONMART1F_RECEPTIONIST
+	dw_const CeladonMart1FClerkText,            TEXT_CELADONMART1F_CLERK
 	dw_const CeladonMart1FDirectorySignText,    TEXT_CELADONMART1F_DIRECTORY_SIGN
 	dw_const CeladonMart1FCurrentFloorSignText, TEXT_CELADONMART1F_CURRENT_FLOOR_SIGN
 

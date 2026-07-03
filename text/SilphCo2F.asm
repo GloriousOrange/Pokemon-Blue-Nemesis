@@ -95,3 +95,19 @@ _SilphCo2FRocket2AfterBattleText::
 	line "be merged with"
 	cont "TEAM ROCKET!"
 	done
+
+_SilphCo2FFlavorRocketText::
+	text "This floor's"
+	line "ours by lunch."
+
+	para "Scientists don't"
+	line "get severance."
+	done
+
+_SilphCo2FFlavorScientistText::
+	text "We won't let you"
+	line "steal OAK's work."
+
+	para "Not one more"
+	line "cage unlocked!"
+	done

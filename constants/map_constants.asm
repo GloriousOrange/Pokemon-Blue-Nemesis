@@ -392,7 +392,7 @@ DEF FIRST_INDOOR_MAP EQU const_value
 	map_const UNUSED_MAP_F1,                  0,  0 ; $F1
 	map_const UNUSED_MAP_F2,                  0,  0 ; $F2
 	map_const UNUSED_MAP_F3,                  0,  0 ; $F3
-	map_const UNUSED_MAP_F4,                  0,  0 ; $F4
+	map_const BATTLE_ISLAND_GATE,             4,  4 ; $F4 (secret warp room under the Cinnabar lab; repurposed unused slot to avoid renumbering maps)
 	map_const LORELEIS_ROOM,                  5,  6 ; $F5
 	map_const BRUNOS_ROOM,                    5,  6 ; $F6
 	map_const AGATHAS_ROOM,                   5,  6 ; $F7

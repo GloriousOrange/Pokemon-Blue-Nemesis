@@ -13,6 +13,16 @@ MansionB1FCheckReplaceSwitchDoorBlocks:
 	bit BIT_CUR_MAP_LOADED_1, [hl]
 	res BIT_CUR_MAP_LOADED_1, [hl]
 	ret z
+; Reveal the secret staircase (down to the Battle Island gate) beside the L100 machine
+; once all 6 lab scientists have been beaten. $6e is the facility down-stairs block; its
+; stairs tile lands at map coord (25,18), which is warp 2 (see the objects file).
+	ld a, [wScientistsDefeated]
+	cp %00111111
+	jr nz, .noStaircase
+	ld a, $6e
+	lb bc, 12, 9
+	call Mansion2ReplaceBlock
+.noStaircase
 	CheckEvent EVENT_MANSION_SWITCH_ON
 	jr nz, .switchTurnedOn
 	ld a, $e
@@ -206,6 +216,11 @@ PokemonMansionB1FLevelMachineText:
 	call PrintText
 	jp TextScriptEnd
 .machineReady
+; all 6 beaten: make sure the secret staircase (beside the machine) is revealed right now,
+; not just on the next map load, so the player can descend on this same visit
+	ld a, $6e
+	lb bc, 12, 9
+	call Mansion2ReplaceBlock
 	ld a, [wPartyCount]
 	and a
 	jr nz, .hasParty

@@ -7,8 +7,8 @@
 	db 3   ; catch rate
 	db 220 ; base exp
 
-	INCBIN "gfx/pokemon/front/moltres.pic", 0, 1 ; PLACEHOLDER sprite (Moltres) — recolor later
-	dw MoltresPicFront, MoltresPicBack
+	INCBIN "gfx/pokemon/front/nocturn.pic", 0, 1 ; sprite dimensions (custom front)
+	dw NocturnPicFront, NocturnPicBack
 
 	db MIND_FEVER, PHANTOM_WING, GUST, NIGHT_SHADE ; level 1 learnset
 	db GROWTH_SLOW ; growth rate

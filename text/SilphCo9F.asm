@@ -60,3 +60,19 @@ _SilphCo9FRocket2AfterBattleText::
 	text "My brothers will"
 	line "avenge me!"
 	done
+
+_SilphCo9FFlavorRocketText::
+	text "NURSE's busy."
+
+	para "So are we."
+	line "Building audits,"
+	cont "TEAM ROCKET style."
+	done
+
+_SilphCo9FFlavorScientistText::
+	text "Audits?"
+	line "That's a raid."
+
+	para "I'm not signing"
+	line "off on this."
+	done

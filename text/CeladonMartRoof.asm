@@ -1,6 +1,6 @@
 _CeladonMartRoofLittleGirlGiveHerWhichDrinkText::
 	text "Give her which"
-	line "drink?"
+	line "snack?"
 	done
 
 _CeladonMartRoofLittleGirlYayFreshWaterText::
@@ -93,7 +93,7 @@ _CeladonMartRoofLittleGirlNoRoomText::
 
 _CeladonMartRoofLittleGirlImNotThirstyText::
 	text "No thank you!"
-	line "I'm not thirsty"
+	line "I'm not hungry"
 	cont "after all!@"
 	text_end
 
@@ -106,17 +106,17 @@ _CeladonMartRoofSuperNerdText::
 	done
 
 _CeladonMartRoofLittleGirlImThirstyText::
-	text "I'm thirsty!"
+	text "I'm hungry!"
 	line "I want something"
-	cont "to drink!"
+	cont "to eat!"
 	done
 
 _CeladonMartRoofLittleGirlGiveHerADrinkText::
-	text "I'm thirsty!"
+	text "I'm hungry!"
 	line "I want something"
-	cont "to drink!"
+	cont "to eat!"
 
-	para "Give her a drink?"
+	para "Give her a snack?"
 	done
 
 _CeladonMartRoofCurrentFloorSignText::

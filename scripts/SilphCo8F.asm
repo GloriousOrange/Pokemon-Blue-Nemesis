@@ -82,6 +82,8 @@ SilphCo8F_TextPointers:
 	dw_const SilphCo8FRocket1Text,      TEXT_SILPHCO8F_ROCKET1
 	dw_const SilphCo8FScientistText,    TEXT_SILPHCO8F_SCIENTIST
 	dw_const SilphCo8FRocket2Text,      TEXT_SILPHCO8F_ROCKET2
+	dw_const SilphCo8FFlavorRocketText, TEXT_SILPHCO8F_FLAVOR_ROCKET
+	dw_const SilphCo8FFlavorScientistText, TEXT_SILPHCO8F_FLAVOR_SCIENTIST
 
 SilphCo8TrainerHeaders:
 	def_trainers 2
@@ -163,4 +165,24 @@ SilphCo8FRocket2EndBattleText:
 
 SilphCo8FRocket2AfterBattleText:
 	text_far _SilphCo8FRocket2AfterBattleText
+	text_end
+
+SilphCo8FFlavorRocketText:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _SilphCo8FFlavorRocketText
+	text_end
+
+SilphCo8FFlavorScientistText:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _SilphCo8FFlavorScientistText
 	text_end

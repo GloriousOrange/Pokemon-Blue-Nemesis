@@ -150,7 +150,14 @@ INCLUDE "data/pokemon/base_stats/dratini.asm"
 INCLUDE "data/pokemon/base_stats/dragonair.asm"
 INCLUDE "data/pokemon/base_stats/dragonite.asm"
 INCLUDE "data/pokemon/base_stats/mewtwo.asm"
+; Mew (dex #151) is normally special-cased out of this table (stored at MewBaseStats),
+; leaving a hole. That's harmless in vanilla since Mew is the last dex entry, but the
+; new mons below have dex #s ABOVE Mew, so without a filler here their (dexnum-1) table
+; offsets are shifted down by one (Tyranis was reading Miasma's data, etc). Re-include
+; Mew's raw stats here purely to occupy dex #151's slot so #152+ line up. GetMonHeader
+; still reads real Mew from MewBaseStats via its .mew special-case, never this copy.
+INCLUDE "data/pokemon/base_stats/mew.asm"
 INCLUDE "data/pokemon/base_stats/tyranis.asm"
 INCLUDE "data/pokemon/base_stats/miasma.asm"
 INCLUDE "data/pokemon/base_stats/nocturn.asm"
-	assert_table_length NUM_POKEMON - 1 ; discount Mew
+	assert_table_length NUM_POKEMON ; Mew's slot is now filled in-table (see note above) so no discount

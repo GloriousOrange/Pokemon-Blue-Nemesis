@@ -62,10 +62,10 @@ LabScientistLoseText:
 
 LabScientistReceivedStoneText:
 	text "You received a"
-	line "LEVEL STONE!"
+	line "MUTAGENSTONE!"
 	prompt
 
 LabScientistStoneNoRoomText:
 	text "You have no room"
-	line "for a LEVEL STONE!"
+	line "for a MUTAGENSTONE!"
 	prompt

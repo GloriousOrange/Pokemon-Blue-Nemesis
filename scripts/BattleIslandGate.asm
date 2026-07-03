@@ -1,0 +1,5 @@
+BattleIslandGate_Script:
+	jp EnableAutoTextBoxDrawing
+
+BattleIslandGate_TextPointers:
+	def_text_pointers

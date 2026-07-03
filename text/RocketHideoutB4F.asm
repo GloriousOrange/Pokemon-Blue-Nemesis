@@ -1,7 +1,6 @@
 _RocketHideoutB4FGiovanniImpressedYouGotHereText::
-	text "So! I must say, I"
-	line "am impressed you"
-	cont "got here!"
+	text "I see OAK has a"
+	line "new lapdog."
 	done
 
 _RocketHideoutB4FGiovanniWhatCannotBeText::
@@ -10,20 +9,20 @@ _RocketHideoutB4FGiovanniWhatCannotBeText::
 	prompt
 
 _RocketHideoutB4FGiovanniHopeWeMeetAgainText::
-	text "I see that you"
-	line "raise #MON"
-	cont "with utmost care."
+	text "Do you know why"
+	line "OAK sent you to"
+	cont "take the SILPH"
+	cont "SCOPE?"
 
-	para "A child like you"
-	line "would never"
-	cont "understand what I"
-	cont "hope to achieve."
+	para "Or are you just"
+	line "his pawn?"
 
-	para "I shall step"
-	line "aside this time!"
+	para "He's after a"
+	line "secret weapon in"
+	cont "the POKéMON TOWER."
 
-	para "I hope we meet"
-	line "again..."
+	para "The SCOPE is the"
+	line "key."
 	done
 
 _RocketHideoutB4FRocket1BattleText::

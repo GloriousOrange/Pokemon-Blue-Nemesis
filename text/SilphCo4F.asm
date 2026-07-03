@@ -61,3 +61,20 @@ _SilphCo4FRocket2AfterBattleText::
 	text "I better tell the"
 	line "BOSS on 11F!"
 	done
+
+_SilphCo4FFlavorRocketText::
+	text "Every #MON"
+	line "here's product."
+
+	para "We're just taking"
+	line "inventory."
+	done
+
+_SilphCo4FFlavorScientistText::
+	text "They're not"
+	line "products! They're"
+
+	para "living research,"
+	line "and I'm guarding"
+	cont "them."
+	done

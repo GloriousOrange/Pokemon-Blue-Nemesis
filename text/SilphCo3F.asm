@@ -44,3 +44,19 @@ _SilphCo3FScientistAfterBattleText::
 	cont "put his name on"
 	cont "the paper."
 	done
+
+_SilphCo3FFlavorRocketText::
+	text "Move it, geek."
+
+	para "SILPH's ours now."
+	line "Your badge won't"
+	cont "save you."
+	done
+
+_SilphCo3FFlavorScientistText::
+	text "I'm just an"
+	line "intern! Please"
+
+	para "don't touch the"
+	line "MEOWTH cages!"
+	done

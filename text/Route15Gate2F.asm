@@ -10,9 +10,9 @@ _Route15Gate2FOaksAideExpAllText::
 	cont "of EXP for each"
 	cont "#MON."
 
-	para "If you don't need"
-	line "it, you should "
-	cont "store it via PC."
+	para "You can buy one"
+	line "at the CELADON"
+	cont "DEPT. STORE!"
 	done
 
 _Route15Gate2FBinocularsText::

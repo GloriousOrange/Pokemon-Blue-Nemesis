@@ -379,7 +379,13 @@ StartMenu_Item::
 	ld [hli], a ; menu watched keys
 	xor a
 	ld [hl], a ; old menu item id
+	ldh a, [hUILayoutFlags]
+	push af ; save the caller's flags so we can restore them on exit
+	res BIT_DOUBLE_SPACED_MENU, a ; USE/TOSS/INFO rows are 2 tiles apart; CLEAR here means 2-row cursor steps
+	ldh [hUILayoutFlags], a
 	call HandleMenuInput
+	pop af
+	ldh [hUILayoutFlags], a ; restore, so later menus (bag, start menu) aren't left with our spacing
 	call PlaceUnfilledArrowMenuCursor
 	bit B_PAD_B, a
 	jr z, .useOrTossItem

@@ -84,9 +84,14 @@ _PokemonMansionB1FLevelMachineOfferText::
 
 _PokemonMansionB1FLevelMachineReadyText::
 	text "It's fed. Use a"
-	line "LEVEL STONE and"
+	line "MUTAGENSTONE and"
 	cont "it'll finish the"
 	cont "rest for you."
+
+	para "A panel slid open"
+	line "beside it--stairs"
+	cont "down into the"
+	cont "dark."
 	done
 
 _PokemonMansionB1FLevelMachineDeclinedText::

@@ -26,6 +26,9 @@ CinnabarIslandDefaultScript:
 	ld a, TEXT_CINNABARISLAND_DOOR_IS_LOCKED
 	jr .blockDoor
 .checkMansionDoor
+	ld a, [wPostGameMisc]
+	bit BIT_POST_GAME_STARTED, a
+	ret z ; mansion is only re-locked once post-game starts; never blocks the Secret Key run needed to fight Blaine
 	ld b, LAB_KEY
 	call IsItemInBag
 	ret nz

@@ -48,6 +48,8 @@ SilphCo10F_TextPointers:
 	dw_const PickUpItemText,             TEXT_SILPHCO10F_TM_EARTHQUAKE
 	dw_const PickUpItemText,             TEXT_SILPHCO10F_RARE_CANDY
 	dw_const PickUpItemText,             TEXT_SILPHCO10F_CARBOS
+	dw_const SilphCo10FFlavorRocketText, TEXT_SILPHCO10F_FLAVOR_ROCKET
+	dw_const SilphCo10FFlavorScientistText, TEXT_SILPHCO10F_FLAVOR_SCIENTIST
 
 SilphCo10TrainerHeaders:
 	def_trainers
@@ -109,4 +111,24 @@ SilphCo10FScientistEndBattleText:
 
 SilphCo10FScientistAfterBattleText:
 	text_far _SilphCo10FScientistAfterBattleText
+	text_end
+
+SilphCo10FFlavorRocketText:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _SilphCo10FFlavorRocketText
+	text_end
+
+SilphCo10FFlavorScientistText:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _SilphCo10FFlavorScientistText
 	text_end

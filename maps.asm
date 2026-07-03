@@ -1207,6 +1207,11 @@ INCLUDE "scripts/BattleIslandHouse.asm"
 INCLUDE "data/maps/objects/BattleIslandHouse.asm"
 BattleIslandHouse_Blocks: INCBIN "maps/BattleIslandHouse.blk"
 
+INCLUDE "data/maps/headers/BattleIslandGate.asm"
+INCLUDE "scripts/BattleIslandGate.asm"
+INCLUDE "data/maps/objects/BattleIslandGate.asm"
+BattleIslandGate_Blocks: INCBIN "maps/BattleIslandGate.blk"
+
 INCLUDE "data/maps/headers/CopycatsHouse1F.asm"
 INCLUDE "scripts/CopycatsHouse1F.asm"
 INCLUDE "data/maps/objects/CopycatsHouse1F.asm"

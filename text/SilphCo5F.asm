@@ -50,3 +50,19 @@ _SilphCo5FRockerBattleText::
 	cont "children here?"
 	cont "Watch this trick!"
 	done
+
+_SilphCo5FFlavorRocketText::
+	text "Nice lab coat."
+
+	para "Shame if it got"
+	line "TEAM ROCKET red"
+	cont "on it."
+	done
+
+_SilphCo5FFlavorScientistText::
+	text "Back off! OAK's"
+	line "research stays"
+
+	para "OAK's. Not your"
+	line "trophy."
+	done

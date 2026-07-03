@@ -7,7 +7,7 @@ CheckTyranisEncounter::
 	ret z
 	CheckEvent EVENT_BEAT_MOLTRES
 	ret z
-	ld a, [wLastMap]
+	ld a, [wWarpedFromWhichMap] ; the map we just exited (wLastMap never holds an indoor Pokecenter ID, so it could never match here)
 	cp VIRIDIAN_POKECENTER
 	jr z, .triggerEncounter
 	cp PEWTER_POKECENTER

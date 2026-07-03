@@ -315,8 +315,8 @@ ENDM
 	const TOGGLE_SILPH_CO_11F_2                ; B8
 	const TOGGLE_SILPH_CO_11F_3                ; B9
 
-	toggle_consts_for UNUSED_MAP_F4
-	const TOGGLE_UNUSED_MAP_F4_1               ; BA XXX sprite doesn't exist
+	toggle_consts_for BATTLE_ISLAND_GATE
+	const TOGGLE_BATTLE_ISLAND_GATE_1          ; BA unused placeholder (gate map has no real toggleable objects)
 
 	toggle_consts_for POKEMON_MANSION_2F
 	const TOGGLE_POKEMON_MANSION_2F_ITEM       ; BB X

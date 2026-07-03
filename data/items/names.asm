@@ -83,7 +83,7 @@ ItemNames::
 	li "MAX ETHER"
 	li "ELIXER"
 	li "MAX ELIXER"
-	li "LEVEL STONE"
+	li "MUTAGENSTONE"
 	li "LAB KEY"
 	li "ISLAND DEED"
 	li "CALL MEGAN"

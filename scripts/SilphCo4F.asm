@@ -101,6 +101,8 @@ SilphCo4F_TextPointers:
 	dw_const PickUpItemText,            TEXT_SILPHCO4F_FULL_HEAL
 	dw_const PickUpItemText,            TEXT_SILPHCO4F_MAX_REVIVE
 	dw_const PickUpItemText,            TEXT_SILPHCO4F_ESCAPE_ROPE
+	dw_const SilphCo4FFlavorRocketText, TEXT_SILPHCO4F_FLAVOR_ROCKET
+	dw_const SilphCo4FFlavorScientistText, TEXT_SILPHCO4F_FLAVOR_SCIENTIST
 
 SilphCo4TrainerHeaders:
 	def_trainers 2
@@ -179,4 +181,24 @@ SilphCo4FRocket2EndBattleText:
 
 SilphCo4FRocket2AfterBattleText:
 	text_far _SilphCo4FRocket2AfterBattleText
+	text_end
+
+SilphCo4FFlavorRocketText:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _SilphCo4FFlavorRocketText
+	text_end
+
+SilphCo4FFlavorScientistText:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _SilphCo4FFlavorScientistText
 	text_end

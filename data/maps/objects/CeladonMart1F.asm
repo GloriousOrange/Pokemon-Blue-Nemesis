@@ -1,5 +1,6 @@
 	object_const_def
 	const_export CELADONMART1F_RECEPTIONIST
+	const_export CELADONMART1F_CLERK
 
 CeladonMart1F_Object:
 	db $f ; border block
@@ -18,5 +19,6 @@ CeladonMart1F_Object:
 
 	def_object_events
 	object_event  8,  3, SPRITE_LINK_RECEPTIONIST, STAY, DOWN, TEXT_CELADONMART1F_RECEPTIONIST
+	object_event  5,  3, SPRITE_CLERK, STAY, DOWN, TEXT_CELADONMART1F_CLERK
 
 	def_warps_to CELADON_MART_1F

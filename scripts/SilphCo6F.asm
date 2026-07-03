@@ -52,6 +52,8 @@ SilphCo6F_TextPointers:
 	dw_const SilphCo6FRocket2Text,       TEXT_SILPHCO6F_ROCKET2
 	dw_const PickUpItemText,             TEXT_SILPHCO6F_HP_UP
 	dw_const PickUpItemText,             TEXT_SILPHCO6F_X_ACCURACY
+	dw_const SilphCo6FFlavorRocketText,  TEXT_SILPHCO6F_FLAVOR_ROCKET
+	dw_const SilphCo6FFlavorScientistText, TEXT_SILPHCO6F_FLAVOR_SCIENTIST
 
 SilphCo6TrainerHeaders:
 	def_trainers 6
@@ -200,4 +202,24 @@ SilphCo6FRocket2EndBattleText:
 
 SilphCo6FRocket2AfterBattleText:
 	text_far _SilphCo6FRocket2AfterBattleText
+	text_end
+
+SilphCo6FFlavorRocketText:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _SilphCo6FFlavorRocketText
+	text_end
+
+SilphCo6FFlavorScientistText:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _SilphCo6FFlavorScientistText
 	text_end

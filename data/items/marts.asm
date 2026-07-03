@@ -19,6 +19,9 @@ VermilionMartClerkText::
 LavenderMartClerkText::
 	script_mart GREAT_BALL, SUPER_POTION, REVIVE, ESCAPE_ROPE, SUPER_REPEL, ANTIDOTE, BURN_HEAL, ICE_HEAL, PARLYZ_HEAL
 
+CeladonMart1FClerkText::
+	script_mart EXP_ALL
+
 CeladonMart2FClerk1Text::
 	script_mart GREAT_BALL, SUPER_POTION, REVIVE, SUPER_REPEL, ANTIDOTE, BURN_HEAL, ICE_HEAL, AWAKENING, PARLYZ_HEAL
 

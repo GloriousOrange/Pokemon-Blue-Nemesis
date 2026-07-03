@@ -7,8 +7,8 @@
 	db 3   ; catch rate
 	db 220 ; base exp
 
-	INCBIN "gfx/pokemon/front/articuno.pic", 0, 1 ; PLACEHOLDER sprite (Articuno) — recolor later
-	dw ArticunoPicFront, ArticunoPicBack
+	INCBIN "gfx/pokemon/front/miasma.pic", 0, 1 ; sprite dimensions (custom front)
+	dw MiasmaPicFront, MiasmaPicBack
 
 	db CARRION_WIND, BLIGHT_VOMIT, SMOKESCREEN, DRILL_PECK ; level 1 learnset
 	db GROWTH_SLOW ; growth rate

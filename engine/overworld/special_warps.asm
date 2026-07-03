@@ -25,6 +25,21 @@ PrepareForSpecialWarp::
 	ld hl, wStatusFlags6
 	bit BIT_DUNGEON_WARP, [hl]
 	ret nz
+	; Flying into Mt Moon 1F or Seafoam Islands 1F lands the player just inside the
+	; cave entrance, whose exit warp is LAST_MAP-relative. Left as `a` (the interior
+	; map itself), that exit would loop back into the same map instead of leading
+	; outside. Force wLastMap to the correct outdoor route so the exit warp resolves
+	; properly, without touching the Fly destination map/coords themselves (those
+	; can't safely point at a different map than the one being rendered).
+	cp MT_MOON_1F
+	jr nz, .notMtMoon
+	ld a, ROUTE_4
+	jr .setLastMap
+.notMtMoon
+	cp SEAFOAM_ISLANDS_1F
+	jr nz, .setLastMap
+	ld a, ROUTE_20
+.setLastMap
 	ld [wLastMap], a
 	ret
 

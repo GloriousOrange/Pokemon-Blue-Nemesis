@@ -342,8 +342,8 @@ ToggleableObjectStates:
 	toggle_object_state SILPHCO11F_ROCKET1,  ON
 	toggle_object_state SILPHCO11F_ROCKET2,  ON
 
-	toggleable_objects_for UNUSED_MAP_F4
-	toggle_object_state $02, ON ; unused
+	toggleable_objects_for BATTLE_ISLAND_GATE
+	toggle_object_state $02, ON ; unused placeholder (preserves table counts; gate map has no real toggleable objects)
 
 	toggleable_objects_for POKEMON_MANSION_2F
 	toggle_object_state POKEMONMANSION2F_CALCIUM, ON

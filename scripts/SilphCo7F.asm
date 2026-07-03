@@ -283,6 +283,8 @@ SilphCo7F_TextPointers:
 	dw_const SilphCo7FRivalText,              TEXT_SILPHCO7F_RIVAL
 	dw_const PickUpItemText,                  TEXT_SILPHCO7F_CALCIUM
 	dw_const PickUpItemText,                  TEXT_SILPHCO7F_TM_SWORDS_DANCE
+	dw_const SilphCo7FFlavorRocketText,       TEXT_SILPHCO7F_FLAVOR_ROCKET
+	dw_const SilphCo7FFlavorScientistText,    TEXT_SILPHCO7F_FLAVOR_SCIENTIST
 	dw_const PickUpItemText,                  TEXT_SILPHCO7F_UNREFERENCED_ITEM ; unreferenced
 	dw_const SilphCo7FRivalWaitedHereText,    TEXT_SILPHCO7F_RIVAL_WAITED_HERE
 	dw_const SilphCo7FRivalDefeatedText,      TEXT_SILPHCO7F_RIVAL_DEFEATED
@@ -511,4 +513,24 @@ SilphCo7FRivalGoodLuckToYouText:
 
 SilphCo7FRivalStarterDeathText:
 	text_far _SilphCo7FRivalStarterDeathText
+	text_end
+
+SilphCo7FFlavorRocketText:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _SilphCo7FFlavorRocketText
+	text_end
+
+SilphCo7FFlavorScientistText:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _SilphCo7FFlavorScientistText
 	text_end

@@ -16,6 +16,7 @@ PokemonMansionB1F_Object:
 
 	def_warp_events
 	warp_event 23, 22, POKEMON_MANSION_1F, 6
+	warp_event 25, 18, BATTLE_ISLAND_GATE, 3 ; secret staircase to the Battle Island gate (beside the L100 machine at 24,18); the stairs block ($6e) is revealed here only after all 6 lab scientists are beaten
 
 	def_bg_events
 

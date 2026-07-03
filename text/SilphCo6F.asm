@@ -105,3 +105,19 @@ _SilphCo6FRocket2AfterBattleText::
 	line "justice, you"
 	cont "betray evil!"
 	done
+
+_SilphCo6FFlavorRocketText::
+	text "Heard GIOVANNI"
+	line "owns this tower"
+
+	para "by Friday. Clock's"
+	line "ticking, doc."
+	done
+
+_SilphCo6FFlavorScientistText::
+	text "GIOVANNI can"
+	line "wait outside."
+
+	para "This floor's still"
+	line "under lockdown."
+	done

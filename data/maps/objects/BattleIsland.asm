@@ -6,6 +6,7 @@ BattleIsland_Object:
 
 	def_warp_events
 	warp_event  9,  3, BATTLE_ISLAND_HOUSE, 1
+	warp_event  8,  6, BATTLE_ISLAND_GATE, 1 ; arrival point when teleporting in from the Cinnabar lab gate (plain grass = won't auto-retrigger; leave via Fly)
 
 	def_bg_events
 	bg_event  9,  2, TEXT_BATTLEISLAND_SIGN

@@ -165,7 +165,7 @@ MoveNames::
 	li "SUPER FANG"
 	li "SLASH"
 	li "SUBSTITUTE"
-	li "DOUBLE DRIL"
+	li "DUAL DRILL"
 	li "HYPER BEAMS"
 	li "METRONOME2"
 	li "CARRION WIND"

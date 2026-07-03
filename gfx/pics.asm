@@ -325,8 +325,15 @@ VictreebelPicFront::   INCBIN "gfx/pokemon/front/victreebel.pic"
 VictreebelPicBack::    INCBIN "gfx/pokemon/back/victreebelb.pic"
 
 SECTION "Pics 6", ROMX
-TyranisPicFront::      INCBIN "gfx/pokemon/front/zapdos.pic"  ; PLACEHOLDER sprite (Zapdos) — recolor later
-TyranisPicBack::       INCBIN "gfx/pokemon/back/zapdosb.pic"  ; PLACEHOLDER sprite (Zapdos) — recolor later
+; All three new mons' pics live together in this one bank so the pic-bank
+; selector in home/pics.asm can route index >= TYRANIS here with a single branch.
+; Currently all placeholders reusing a vanilla bird's sprite — recolor later.
+TyranisPicFront::      INCBIN "gfx/pokemon/front/tyranis.pic"   ; custom Tyranis front sprite (Pixellab)
+TyranisPicBack::       INCBIN "gfx/pokemon/back/tyranisb.pic"   ; custom Tyranis back sprite (Pixellab)
+MiasmaPicFront::       INCBIN "gfx/pokemon/front/miasma.pic"    ; custom Miasma front (Pixellab)
+MiasmaPicBack::        INCBIN "gfx/pokemon/back/miasmab.pic"    ; custom Miasma back (Pixellab)
+NocturnPicFront::      INCBIN "gfx/pokemon/front/nocturn.pic"   ; custom Nocturn front (Pixellab)
+NocturnPicBack::       INCBIN "gfx/pokemon/back/nocturnb.pic"   ; custom Nocturn back (Pixellab)
 
 
 SECTION "Trainer Pics", ROMX

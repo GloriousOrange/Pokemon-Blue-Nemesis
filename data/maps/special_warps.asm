@@ -93,5 +93,5 @@ FlyWarpDataPtr:
 .BattleIsland:   fly_warp BATTLE_ISLAND,    8,  5
 .Route4:         fly_warp ROUTE_4,         11,  6
 .Route10:        fly_warp ROUTE_10,        11, 20
-.SeafoamIslands: fly_warp SEAFOAM_ISLANDS_1F, 5, 16
-.MtMoon1F:       fly_warp MT_MOON_1F, 14, 33 ; entrance corridor, just above the Route 4 exit warp
+.SeafoamIslands: fly_warp SEAFOAM_ISLANDS_1F, 5, 16 ; entrance corridor; the exit-loop bug is fixed in PrepareForSpecialWarp (engine/overworld/special_warps.asm) by forcing wLastMap to ROUTE_20 for this destination instead of here (Fly can't decouple render-map from landing-map width, so redirecting to an outdoor map here corrupts the tile read)
+.MtMoon1F:       fly_warp MT_MOON_1F, 14, 33 ; entrance corridor; the exit-loop bug is fixed in PrepareForSpecialWarp (engine/overworld/special_warps.asm) by forcing wLastMap to ROUTE_4 for this destination instead of here (Fly can't decouple render-map from landing-map width, so redirecting to an outdoor map here corrupts the tile read)

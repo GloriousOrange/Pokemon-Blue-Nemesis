@@ -162,6 +162,7 @@ DEF LCDC_DEFAULT EQU LCDC_ON | LCDC_WIN_9C00 | LCDC_WIN_ON | LCDC_BLOCK21 | LCDC
 DEF BIT_GOT_GIRLFRIEND EQU 1 ; met Megan; shows the CALL MEGAN entry in the Start menu
 DEF BIT_LEVEL_MACHINE_READY EQU 2 ; a level machine sets this; lets a LEVEL STONE work from the bag. Cleared on every map load.
 DEF BIT_POST_GAME_STARTED EQU 3 ; set when the Champion is beaten; unlocks gym-leader rematches
+DEF BIT_ROCKET_LOYALTY EQU 4 ; SCAFFOLDING (2026-07-01): will gate Loyalist-vs-Hero NPC/sprite swaps once the branching-path fork is built; unused/unset for now, defaults clear
 ; wChallengeFlags = wUnusedPlayerDataByte ($ff before the new-game prompt is answered)
 DEF BIT_CHALLENGE_DOUBLE_XP EQU 0 ; 2x EXP from trainer battles
 DEF BIT_CHALLENGE_NO_ITEMS  EQU 1 ; cannot use items in battle

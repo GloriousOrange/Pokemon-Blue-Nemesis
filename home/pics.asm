@@ -41,7 +41,11 @@ UncompressMonSprite::
 	cp STARMIE + 1
 	ld a, BANK("Pics 4")
 	jr c, .GotBank
+	ld a, b
+	cp TYRANIS ; the new mons (TYRANIS/MIASMA/NOCTURN) have their pics in "Pics 6"
 	ld a, BANK("Pics 5")
+	jr c, .GotBank
+	ld a, BANK("Pics 6")
 .GotBank
 	jp UncompressSpriteData
 

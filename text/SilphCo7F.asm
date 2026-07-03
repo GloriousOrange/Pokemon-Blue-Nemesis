@@ -223,3 +223,19 @@ _SilphCo7FRivalStarterDeathText::
 
 	para "..."
 	done
+
+_SilphCo7FFlavorRocketText::
+	text "Cute clipboard."
+
+	para "Won't stop a"
+	line "TEAM ROCKET"
+	cont "takeover."
+	done
+
+_SilphCo7FFlavorScientistText::
+	text "I've locked every"
+	line "cage twice."
+
+	para "You're not"
+	line "getting past me."
+	done

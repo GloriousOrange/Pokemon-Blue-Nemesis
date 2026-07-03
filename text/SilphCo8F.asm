@@ -54,3 +54,19 @@ _SilphCo8FRocket2AfterBattleText::
 	text "I'll leave you up"
 	line "to my brothers!"
 	done
+
+_SilphCo8FFlavorRocketText::
+	text "Almost to the"
+	line "top floor."
+
+	para "Nothing left up"
+	line "there to defend."
+	done
+
+_SilphCo8FFlavorScientistText::
+	text "Then I'll defend"
+	line "nothing with"
+
+	para "everything"
+	line "I've got."
+	done

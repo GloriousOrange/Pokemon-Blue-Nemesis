@@ -130,6 +130,8 @@ SilphCo9F_TextPointers:
 	dw_const SilphCo9FRocket1Text,   TEXT_SILPHCO9F_ROCKET1
 	dw_const SilphCo9FScientistText, TEXT_SILPHCO9F_SCIENTIST
 	dw_const SilphCo9FRocket2Text,   TEXT_SILPHCO9F_ROCKET2
+	dw_const SilphCo9FFlavorRocketText, TEXT_SILPHCO9F_FLAVOR_ROCKET
+	dw_const SilphCo9FFlavorScientistText, TEXT_SILPHCO9F_FLAVOR_SCIENTIST
 
 SilphCo9TrainerHeaders:
 	def_trainers 2
@@ -224,4 +226,24 @@ SilphCo9FRocket2EndBattleText:
 
 SilphCo9FRocket2AfterBattleText:
 	text_far _SilphCo9FRocket2AfterBattleText
+	text_end
+
+SilphCo9FFlavorRocketText:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _SilphCo9FFlavorRocketText
+	text_end
+
+SilphCo9FFlavorScientistText:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _SilphCo9FFlavorScientistText
 	text_end

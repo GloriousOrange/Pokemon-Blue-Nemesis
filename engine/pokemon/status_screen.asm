@@ -461,6 +461,7 @@ StatusScreen2_MoveInfo:
 	ld a, PAD_A | PAD_B
 	ld [wMenuWatchedKeys], a
 	ldh a, [hUILayoutFlags]
+	push af ; save the caller's flags so we can restore them on exit
 	set BIT_DOUBLE_SPACED_MENU, a ; despite the name, SET here means 1-row cursor steps (moves are listed single-spaced); CLEAR means 2-row steps
 	ldh [hUILayoutFlags], a
 .loop
@@ -474,6 +475,8 @@ StatusScreen2_MoveInfo:
 	jr .loop
 .exit
 	call LoadScreenTilesFromBuffer2 ; leave the clean page for the white-out
+	pop af
+	ldh [hUILayoutFlags], a ; restore, so later menus (bag, start menu) aren't left with our spacing
 	ret
 
 .showMoveInfo:
