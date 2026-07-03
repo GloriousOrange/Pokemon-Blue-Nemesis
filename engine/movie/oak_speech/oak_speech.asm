@@ -50,54 +50,6 @@ OakSpeech:
 	call LoadTextBoxTilePatterns
 	call PrepareOakSpeech
 	predef InitPlayerData2
-; === TEMP sprite test (REMOVE before ship): start a new game with the 3 new birds in
-; the party so their front sprites (party STATUS screen) and back sprites (any battle)
-; can be checked. $10 = player party, skip the naming screen. ===
-	ld a, $10
-	ld [wMonDataLocation], a
-	ld a, 50
-	ld [wCurEnemyLevel], a
-	ld a, TYRANIS
-	ld [wCurPartySpecies], a
-	ld [wPokedexNum], a
-	call AddPartyMon
-	ld a, 50
-	ld [wCurEnemyLevel], a
-	ld a, MIASMA
-	ld [wCurPartySpecies], a
-	ld [wPokedexNum], a
-	call AddPartyMon
-	ld a, 50
-	ld [wCurEnemyLevel], a
-	ld a, NOCTURN
-	ld [wCurPartySpecies], a
-	ld [wPokedexNum], a
-	call AddPartyMon
-	xor a
-	ld [wMonDataLocation], a
-; the skip-naming path leaves the nickname blank; set each to its species name
-	ld a, TYRANIS
-	ld [wNamedObjectIndex], a
-	call GetMonName
-	ld hl, wNameBuffer
-	ld de, wPartyMon1Nick
-	ld bc, NAME_LENGTH
-	call CopyData
-	ld a, MIASMA
-	ld [wNamedObjectIndex], a
-	call GetMonName
-	ld hl, wNameBuffer
-	ld de, wPartyMon2Nick
-	ld bc, NAME_LENGTH
-	call CopyData
-	ld a, NOCTURN
-	ld [wNamedObjectIndex], a
-	call GetMonName
-	ld hl, wNameBuffer
-	ld de, wPartyMon3Nick
-	ld bc, NAME_LENGTH
-	call CopyData
-; === end temp sprite test ===
 ; one-time challenge options, asked here (LCD is on, so the prompts render)
 ; rather than in the RedsHouse2F map tick where PrintText is unreliable.
 ; wUnusedPlayerDataByte was set to $ff (all bits) by InitPlayerData2; clear it to
@@ -122,28 +74,6 @@ OakSpeech:
 	ld hl, wUnusedPlayerDataByte
 	set BIT_CHALLENGE_NO_ITEMS, [hl]
 .challengeOptionsDone
-	; Starting PC stash — temporary playtest aids; strip before final ship.
-	ld hl, wNumBoxItems
-	ld a, RARE_CANDY
-	ld [wCurItem], a
-	ld a, 99
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, SUPER_REPEL
-	ld [wCurItem], a
-	ld a, 99
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, TM_THUNDERBOLT
-	ld [wCurItem], a
-	ld a, 1
-	ld [wItemQuantity], a
-	call AddItemToInventory
-	ld a, TM_BODY_SLAM
-	ld [wCurItem], a
-	ld a, 1
-	ld [wItemQuantity], a
-	call AddItemToInventory
 	ld a, [wDefaultMap]
 	ld [wDestinationMap], a
 	call PrepareForSpecialWarp
