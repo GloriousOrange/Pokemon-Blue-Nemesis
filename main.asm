@@ -212,6 +212,11 @@ INCLUDE "engine/events/gym_rematch.asm"
 SECTION "LabScientists", ROMX
 INCLUDE "engine/events/lab_scientists.asm"
 
+SECTION "PlayerPath", ROMX
+; branching-path helpers (GetPlayerPath) + the Nocturn go-rogue choice
+; (NocturnGoRogueChoice), reached via callfar once the Nocturn-obtain script exists
+INCLUDE "engine/events/player_path.asm"
+
 SECTION "Megan", ROMX
 ; girlfriend interaction shared by every Megan NPC; reached only via farcall MeganTalk
 INCLUDE "engine/overworld/megan.asm"
