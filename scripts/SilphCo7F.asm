@@ -496,7 +496,21 @@ SilphCo7FRivalText:
 	text_end
 
 SilphCo7FRivalWaitedHereText:
-	text_far _SilphCo7FRivalWaitedHereText
+; the rival reacts to your allegiance before the battle
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .Loyalist
+	jr nz, .print
+	ld hl, .Hero
+.print
+	call PrintText
+	jp TextScriptEnd
+.Loyalist:
+	text_far _SilphCo7FRivalLoyalistPreText
+	text_end
+.Hero:
+	text_far _SilphCo7FRivalHeroPreText
 	text_end
 
 SilphCo7FRivalDefeatedText:
@@ -508,7 +522,21 @@ SilphCo7FRivalVictoryText:
 	text_end
 
 SilphCo7FRivalGoodLuckToYouText:
-	text_far _SilphCo7FRivalGoodLuckToYouText
+; the rival's parting words after you beat him, keyed to your allegiance
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .Loyalist
+	jr nz, .print
+	ld hl, .Hero
+.print
+	call PrintText
+	jp TextScriptEnd
+.Loyalist:
+	text_far _SilphCo7FRivalLoyalistWinText
+	text_end
+.Hero:
+	text_far _SilphCo7FRivalHeroWinText
 	text_end
 
 SilphCo7FRivalStarterDeathText:

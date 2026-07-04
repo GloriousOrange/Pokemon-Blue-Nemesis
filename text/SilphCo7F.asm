@@ -181,6 +181,44 @@ _SilphCo7FRivalVictoryText::
 	cont "with us big boys!"
 	prompt
 
+; Path-conditional rival lines (see scripts/SilphCo7F.asm). Pre-battle:
+_SilphCo7FRivalHeroPreText::
+	text "<RIVAL>: OAK sent"
+	line "you here too?"
+
+	para "Doesn't he trust"
+	line "me?"
+	done
+
+_SilphCo7FRivalLoyalistPreText::
+	text "<RIVAL>: You"
+	line "joined TEAM"
+	cont "ROCKET?"
+
+	para "Why?? <PLAYER>,"
+	line "why??"
+	done
+
+; After you beat him:
+_SilphCo7FRivalHeroWinText::
+	text "<RIVAL>: Fine."
+
+	para "The reward is all"
+	line "yours then."
+
+	para "Take out BOSS"
+	line "ROCKET."
+	done
+
+_SilphCo7FRivalLoyalistWinText::
+	text "<RIVAL>: Fine."
+	line "Go on then."
+
+	para "I'll tell OAK all"
+	line "about your"
+	cont "new...family."
+	done
+
 _SilphCo7FRivalGoodLuckToYouText::
 	text "Well, <PLAYER>!"
 
