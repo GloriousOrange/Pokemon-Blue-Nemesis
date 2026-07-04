@@ -93,6 +93,8 @@ OakSpeech:
 	ld hl, wUnusedPlayerDataByte
 	set BIT_CHALLENGE_NO_ITEMS, [hl]
 .challengeOptionsDone
+	ld hl, OpeningColdOpenText ; a cold, dark mood-setter before the game world fades in
+	call PrintText
 	ld a, [wDefaultMap]
 	ld [wDestinationMap], a
 	call PrepareForSpecialWarp
@@ -116,6 +118,26 @@ ChallengeNoItemsText:
 	text "CHALLENGE: forbid"
 	line "ITEMS during"
 	cont "battle?"
+	prompt
+
+OpeningColdOpenText:
+	text "The war nearly"
+	line "ended us all."
+
+	para "Now we huddle"
+	line "behind walls, and"
+	cont "the monsters own"
+	cont "the dark."
+
+	para "Your father went"
+	line "out to make us"
+	cont "safe. He did not"
+	cont "come home."
+
+	para "PROF.OAK has not"
+	line "forgotten his"
+	cont "name...nor the"
+	cont "ones who took him."
 	prompt
 
 OakSpeechText1:

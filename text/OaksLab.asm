@@ -201,8 +201,35 @@ _OaksLabRivalFedUpWithWaitingText::
 	done
 
 _OaksLabOakChooseMonText::
-	text "OAK: The boys are"
-	line "eager for revenge."
+	text "OAK: Long ago,"
+	line "MEW fell from the"
+	cont "sky."
+
+	para "My bloodline has"
+	line "guarded it for"
+	cont "generations."
+
+	para "From its code, my"
+	line "ancestors built"
+	cont "the first"
+	cont "monsters."
+
+	para "The war burned"
+	line "nearly all of"
+	cont "them away."
+
+	para "I have rebuilt the"
+	line "old horrors--and"
+	cont "bred new ones from"
+	cont "MEW's blood."
+
+	para "The boys are eager"
+	line "for revenge. Your"
+	cont "father's enemies"
+	cont "still breathe."
+
+	para "Crush the enemies"
+	line "of science."
 
 	para "The time is now."
 	line "Choose any slave."
