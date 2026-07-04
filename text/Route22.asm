@@ -1,49 +1,42 @@
 _Route22RivalBeforeBattleText1::
-	text "<RIVAL>: Hey!"
-	line "<PLAYER>!"
+	text "<RIVAL>: <PLAYER>."
 
-	para "You're going to"
-	line "#MON LEAGUE?"
+	para "The LEAGUE? You?"
 
-	para "Forget it! You"
-	line "probably don't"
-	cont "have any BADGEs!"
+	para "No BADGEs. The"
+	line "guard will turn"
+	cont "you away."
 
-	para "The guard won't"
-	line "let you through!"
-
-	para "By the way, did"
-	line "your #MON"
-	cont "get any stronger?"
+	para "Show me your"
+	line "beasts have grown"
+	cont "at all."
 	done
 
 _Route22RivalAfterBattleText1::
-	text "I heard #MON"
-	line "LEAGUE has many"
-	cont "tough trainers!"
+	text "The LEAGUE is full"
+	line "of killers."
 
-	para "I have to figure"
-	line "out how to get"
-	cont "past them!"
+	para "I will carve the"
+	line "way through them."
 
-	para "You should quit"
-	line "dawdling and get"
-	cont "a move on!"
+	para "Stop crawling."
+	line "Keep up, or don't."
 	done
 
 _Route22Rival1DefeatedText::
-	text "Awww!"
-	line "You just lucked"
-	cont "out!"
+	text "Luck. Nothing"
+	line "more."
+
+	para "It will not save"
+	line "you twice."
 	prompt
 
 _Route22Rival1VictoryText::
-	text "<RIVAL>: What?"
-	line "Why do I have 2"
-	cont "#MON?"
+	text "<RIVAL>: Weak."
 
-	para "You should catch"
-	cont "some more too!"
+	para "Come back when"
+	line "your beasts can"
+	cont "stand."
 	prompt
 
 _Route22RivalBeforeBattleText2::
@@ -61,16 +54,19 @@ _Route22RivalBeforeBattleText2::
 	done
 
 _Route22RivalAfterBattleText2::
-	text "That loosened me"
-	line "up! I'm ready for"
-	cont "#MON LEAGUE!"
+	text "That was worth"
+	line "something."
 
-	para "<PLAYER>, you need"
-	line "more practice!"
+	para "I am ready for the"
+	line "LEAGUE."
 
-	para "But hey, you know"
-	line "that! I'm out of"
-	cont "here. Smell ya!"
+	para "You are not,"
+	line "<PLAYER>. You know"
+	cont "it."
+
+	para "Do not keep me"
+	line "waiting at the"
+	cont "top."
 	done
 
 _Route22Rival2DefeatedText::

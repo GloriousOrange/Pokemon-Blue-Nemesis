@@ -145,40 +145,22 @@ _SilphCo7FRocket3AfterBattleText::
 	done
 
 _SilphCo7FRivalText::
-	text "<RIVAL>: What"
-	line "kept you <PLAYER>?"
-	done
-
-_SilphCo7FRivalWaitedHereText::
-	text "<RIVAL>: Hahaha!"
-	line "I thought you'd"
-	cont "turn up if I"
-	cont "waited here!"
-
-	para "I guess TEAM"
-	line "ROCKET slowed you"
-	cont "down! Not that I"
-	cont "care!"
-
-	para "I saw you in"
-	line "SAFFRON, so I"
-	cont "decided to see if"
-	cont "you got better!"
+	text "<RIVAL>: You are"
+	line "slow, <PLAYER>."
 	done
 
 _SilphCo7FRivalDefeatedText::
-	text "Oh ho!"
-	line "So, you are ready"
-	cont "for BOSS ROCKET!"
+	text "...Enough."
+	line "You have won."
 	prompt
 
 _SilphCo7FRivalVictoryText::
-	text "<RIVAL>: How can"
-	line "I put this?"
+	text "<RIVAL>: You came"
+	line "all this way to"
+	cont "lose?"
 
-	para "You're not good"
-	line "enough to play"
-	cont "with us big boys!"
+	para "Go home,"
+	line "<PLAYER>."
 	prompt
 
 ; Path-conditional rival lines (see scripts/SilphCo7F.asm). Pre-battle:
@@ -217,33 +199,6 @@ _SilphCo7FRivalLoyalistWinText::
 	para "I'll tell OAK all"
 	line "about your"
 	cont "new...family."
-	done
-
-_SilphCo7FRivalGoodLuckToYouText::
-	text "Well, <PLAYER>!"
-
-	para "I'm moving on up"
-	line "and ahead!"
-
-	para "By checking my"
-	line "#DEX, I'm"
-	cont "starting to see"
-	cont "what's strong and"
-	cont "how they evolve!"
-
-	para "I'm going to the"
-	line "#MON LEAGUE"
-	cont "to boot out the"
-	cont "ELITE FOUR!"
-
-	para "I'll become the"
-	line "world's most"
-	cont "powerful trainer!"
-
-	para "<PLAYER>, well"
-	line "good luck to you!"
-	cont "Don't sweat it!"
-	cont "Smell ya!"
 	done
 
 _SilphCo7FRivalStarterDeathText::

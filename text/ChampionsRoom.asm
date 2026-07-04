@@ -31,35 +31,28 @@ _RivalDefeatedText::
 	prompt
 
 _RivalVictoryText::
-	text "Hahaha!"
-	line "I won, I won!"
+	text "<RIVAL>: I win."
 
-	para "I'm too good for"
-	line "you, <PLAYER>!"
+	para "I was always going"
+	line "to win, <PLAYER>."
 
-	para "You did well to"
-	line "even reach me,"
-	cont "<RIVAL>, the"
-	cont "#MON genius!"
-
-	para "Nice try, loser!"
-	line "Hahaha!"
+	para "Go home. Bury"
+	line "your dead."
 	prompt
 
 _ChampionsRoomRivalAfterBattleText::
-	text "Why?"
-	line "Why did I lose?"
+	text "<RIVAL>: I made no"
+	line "mistakes."
 
-	para "I never made any"
-	line "mistakes raising"
-	cont "my #MON..."
+	para "I broke them. I"
+	line "drove them. And"
+	cont "still I lost."
 
-	para "Darn it! You're"
-	line "the new #MON"
-	cont "LEAGUE champion!"
+	para "...You are the"
+	line "champion now."
 
-	para "Although I don't"
-	line "like to admit it."
+	para "I will not forget"
+	line "this."
 	done
 
 _ChampionsRoomOakText::

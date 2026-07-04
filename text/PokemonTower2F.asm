@@ -1,49 +1,44 @@
 _PokemonTower2FRivalWhatBringsYouHereText::
-	text "<RIVAL>: Hey,"
-	line "<PLAYER>! What"
-	cont "brings you here?"
-	cont "Your #MON"
-	cont "don't look dead!"
+	text "<RIVAL>: <PLAYER>."
 
-	para "I can at least"
-	line "make them faint!"
-	cont "Let's go, pal!"
+	para "A tower of dead"
+	line "beasts. Fitting"
+	cont "place for us."
+
+	para "Yours still"
+	line "breathe. Let me"
+	cont "fix that."
 	done
 
 _PokemonTower2FRivalDefeatedText::
-	text "What?"
-	line "You stinker!"
+	text "Hmph. I was not"
+	line "trying."
 
-	para "I took it easy on"
-	line "you too!"
+	para "Do not mistake"
+	line "this for mercy."
 	prompt
 
 _PokemonTower2FRivalVictoryText::
-	text "<RIVAL>: Well,"
-	line "look at all your"
-	cont "wimpy #MON!"
+	text "<RIVAL>: Weak"
+	line "beasts. Weak"
+	cont "master."
 
-	para "Toughen them up a"
-	line "bit more!"
+	para "Bury them here"
+	line "and move on."
 	prompt
 
 _PokemonTower2FRivalHowsYourDexText::
-	text "How's your #DEX"
-	line "coming, pal?"
-	cont "I just caught a"
-	cont "CUBONE!"
+	text "<RIVAL>: I took a"
+	line "CUBONE from this"
+	cont "place."
 
-	para "I can't find the"
-	line "grown-up MAROWAK"
-	cont "yet!"
+	para "Its mother, the"
+	line "MAROWAK, still"
+	cont "haunts these"
+	cont "floors."
 
-	para "I doubt there are"
-	line "any left! Well, I"
-	cont "better get going!"
-	cont "I've got a lot to"
-	cont "accomplish, pal!"
-
-	para "Smell ya later!"
+	para "Let it. I have"
+	line "work to do."
 	done
 
 _PokemonTower2FChannelerText::

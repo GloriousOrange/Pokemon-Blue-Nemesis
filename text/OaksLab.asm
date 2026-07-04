@@ -1,22 +1,28 @@
 _OaksLabRivalGrampsIsntAroundText::
-	text "Where is OAK?"
-	line "He told us to"
-	cont "meet him here!"
+	text "<RIVAL>: OAK"
+	line "summoned us."
+
+	para "So where is he?"
+	line "I am done"
+	cont "waiting to begin."
 	done
 
 _OaksLabRivalGoAheadAndChooseText::
-	text "<RIVAL>: Heh, I"
-	line "don't need to be"
-	cont "greedy like you!"
+	text "<RIVAL>: Choose,"
+	line "<PLAYER>."
 
-	para "Go ahead and"
-	line "choose, <PLAYER>!"
+	para "I will take"
+	line "whatever is left."
+	cont "It only has to"
+	cont "obey."
 	done
 
 _OaksLabRivalMyPokemonLooksStrongerText::
-	text "<RIVAL>: My"
-	line "#MON looks a"
-	cont "lot stronger."
+	text "<RIVAL>: Mine is"
+	line "the stronger"
+	cont "beast."
+
+	para "As it should be."
 	done
 
 _OaksLabThoseArePokeBallsText::
@@ -195,9 +201,12 @@ _OaksLabGirlText::
 	done
 
 _OaksLabRivalFedUpWithWaitingText::
-	text "<RIVAL>: Professor!"
-	line "I'm fed up with"
-	cont "waiting!"
+	text "<RIVAL>: Enough,"
+	line "Professor."
+
+	para "Arm us. I have"
+	line "waited long"
+	cont "enough for this."
 	done
 
 _OaksLabOakChooseMonText::
@@ -236,8 +245,9 @@ _OaksLabOakChooseMonText::
 	done
 
 _OaksLabRivalWhatAboutMeText::
-	text "<RIVAL>: Hey!"
-	line "What about me?"
+	text "<RIVAL>: And me."
+	line "I will not be"
+	cont "left behind."
 	done
 
 _OaksLabOakBePatientText::
@@ -252,8 +262,9 @@ _OaksLabOakDontGoAwayYetText::
 	done
 
 _OaksLabRivalIllTakeThisOneText::
-	text "<RIVAL>: I'll take"
-	line "this one, then!"
+	text "<RIVAL>: This one."
+	line "It only needs to"
+	cont "obey."
 	done
 
 _OaksLabRivalReceivedMonText::
@@ -264,29 +275,33 @@ _OaksLabRivalReceivedMonText::
 	text_end
 
 _OaksLabRivalIllTakeYouOnText::
-	text "<RIVAL>: Wait!"
-	line "Let's make them"
-	cont "fight!"
+	text "<RIVAL>: Wait."
+	line "Let us see whose"
+	cont "breaks first."
 	done
 
 _OaksLabRivalIPickedTheWrongPokemonText::
-	text "My Slave is"
-	line "worthless!"
+	text "This one is weak."
+	line "I will replace it."
 	prompt
 
 _OaksLabRivalAmIGreatOrWhatText::
-	text "Your Slave is"
-	line "worthless."
+	text "Yours is weak."
+	line "Bury it and"
+	cont "start again."
 	prompt
 
 _OaksLabRivalSmellYouLaterText::
-	text "<RIVAL>: Okay!"
-	line "I'll make my"
-	cont "slave fight to"
-	cont "toughen it up!"
+	text "<RIVAL>: I will"
+	line "drive mine until"
+	cont "it is worth"
+	cont "something."
 
-	para "<PLAYER>! Smell"
-	line "you later!"
+	para "Do not fall"
+	line "behind, <PLAYER>."
+
+	para "I will not wait"
+	line "for you."
 	done
 
 _OaksLabRivalGrampsText::

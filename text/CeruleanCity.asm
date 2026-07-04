@@ -1,61 +1,44 @@
 _CeruleanCityRivalPreBattleText::
-	text "<RIVAL>: Yo!"
-	line "<PLAYER>!"
+	text "<RIVAL>: <PLAYER>."
 
-	para "You're still"
-	line "struggling along"
-	cont "back here?"
+	para "Still crawling"
+	line "through the small"
+	cont "towns?"
 
-	para "I'm doing great!"
-	line "I caught a bunch"
-	cont "of strong and"
-	cont "smart #MON!"
+	para "My cages are full"
+	line "of stronger"
+	cont "beasts now."
 
-	para "Here, let me see"
-	line "what you caught,"
-	cont "<PLAYER>!"
+	para "Show me what you"
+	line "have taken."
 	done
 
 _CeruleanCityRivalDefeatedText::
-	text "Hey!"
-	line "Take it easy!"
-	cont "You won already!"
+	text "Enough. You have"
+	line "won. This time."
 	prompt
 
 _CeruleanCityRivalVictoryText::
-	text "Heh!"
-	line "You're no match"
-	cont "for my genius!"
+	text "You are not ready."
+
+	para "You may never be."
 	prompt
 
 _CeruleanCityRivalIWentToBillsText::
-	text "<RIVAL>: Hey,"
-	line "guess what?"
+	text "<RIVAL>: I paid"
+	line "BILL a visit."
 
-	para "I went to BILL's"
-	line "and got him to"
-	cont "show me his rare"
-	cont "#MON!"
+	para "He showed me his"
+	line "rarest beasts."
 
-	para "That added a lot"
-	line "of pages to my"
-	cont "#DEX!"
+	para "More pages for my"
+	line "#DEX."
 
-	para "After all, BILL's"
-	line "world famous as a"
-	cont "#MANIAC!"
+	para "He built the PC"
+	line "storage you lean"
+	cont "on. Go thank him."
 
-	para "He invented the"
-	line "#MON Storage"
-	cont "System on PC!"
-
-	para "Since you're using"
-	line "his system, go"
-	cont "thank him!"
-
-	para "Well, I better"
-	line "get rolling!"
-	cont "Smell ya later!"
+	para "I have work to do."
 	done
 
 _CeruleanCityRocketText::

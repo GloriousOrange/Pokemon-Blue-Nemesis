@@ -9,55 +9,42 @@ _SSAnne2FWaiterText::
 	done
 
 _SSAnne2FRivalText::
-	text "<RIVAL>: Bonjour!"
-	line "<PLAYER>!"
+	text "<RIVAL>: <PLAYER>."
 
-	para "Imagine seeing"
-	line "you here!"
+	para "You were invited"
+	line "aboard this ship?"
 
-	para "<PLAYER>, were you"
-	line "really invited?"
+	para "I doubt it."
 
-	para "So how's your"
-	line "#DEX coming?"
+	para "How many kinds"
+	line "have you caged?"
 
-	para "I already caught"
-	line "40 kinds, pal!"
-
-	para "Different kinds"
-	line "are everywhere!"
-
-	para "Crawl around in"
-	line "grassy areas!"
+	para "I have forty. The"
+	line "wilds are full of"
+	cont "them. Hunt."
 	done
 
 _SSAnne2FRivalDefeatedText::
-	text "Humph!"
+	text "Hmph."
 
-	para "At least you're"
-	line "raising your"
-	cont "#MON!"
+	para "At least you are"
+	line "raising them."
 	prompt
 
 _SSAnne2FRivalVictoryText::
-	text "<PLAYER>! What are"
-	line "you, seasick?"
-
-	para "You should shape"
-	line "up, pal!"
+	text "<PLAYER>. Focus,"
+	line "or drown."
 	prompt
 
 _SSAnne2FRivalCutMasterText::
-	text "<RIVAL>: I heard"
-	line "there was a CUT"
-	cont "master on board."
+	text "<RIVAL>: There is"
+	line "a CUT master"
+	cont "aboard."
 
-	para "But, he was just a"
-	line "seasick, old man!"
+	para "A seasick old"
+	line "man. Pathetic."
 
-	para "But, CUT itself is"
-	line "really useful!"
-
-	para "You should go see"
-	line "him! Smell ya!"
+	para "But CUT is useful."
+	line "Go take it from"
+	cont "him."
 	done
