@@ -621,7 +621,9 @@
 	const EVENT_BEAT_SILPH_CO_2F_TRAINER_1
 	const EVENT_BEAT_SILPH_CO_2F_TRAINER_2
 	const EVENT_BEAT_SILPH_CO_2F_TRAINER_3
-	const_skip 7
+	const EVENT_BEAT_SILPH_CO_2F_TRAINER_4 ; former flavor Rocket (obj index 6, bit 6)
+	const EVENT_BEAT_SILPH_CO_2F_TRAINER_5 ; former flavor Scientist (obj index 7, bit 7)
+	const_skip 5
 	const EVENT_SILPH_CO_2_UNLOCKED_DOOR1
 	const EVENT_SILPH_CO_2_UNLOCKED_DOOR2
 	const EVENT_GOT_TM36
@@ -667,13 +669,17 @@
 	const EVENT_BEAT_SILPH_CO_8F_TRAINER_0
 	const EVENT_BEAT_SILPH_CO_8F_TRAINER_1
 	const EVENT_BEAT_SILPH_CO_8F_TRAINER_2
-	const_skip 3
+	const EVENT_BEAT_SILPH_CO_8F_TRAINER_3 ; former flavor Rocket (obj index 5, bit 5)
+	const EVENT_BEAT_SILPH_CO_8F_TRAINER_4 ; former flavor Scientist (obj index 6, bit 6)
+	const_skip 1
 	const EVENT_SILPH_CO_8_UNLOCKED_DOOR
 	const_skip 9
 	const EVENT_BEAT_SILPH_CO_9F_TRAINER_0
 	const EVENT_BEAT_SILPH_CO_9F_TRAINER_1
 	const EVENT_BEAT_SILPH_CO_9F_TRAINER_2
-	const_skip 3
+	const EVENT_BEAT_SILPH_CO_9F_TRAINER_3 ; former flavor Rocket (obj index 5, bit 5)
+	const EVENT_BEAT_SILPH_CO_9F_TRAINER_4 ; former flavor Scientist (obj index 6, bit 6)
+	const_skip 1
 	const EVENT_SILPH_CO_9_UNLOCKED_DOOR1
 	const EVENT_SILPH_CO_9_UNLOCKED_DOOR2
 	const EVENT_SILPH_CO_9_UNLOCKED_DOOR3

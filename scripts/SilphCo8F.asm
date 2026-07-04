@@ -93,6 +93,10 @@ SilphCo8TrainerHeader1:
 	trainer EVENT_BEAT_SILPH_CO_8F_TRAINER_1, 4, SilphCo8FScientistBattleText, SilphCo8FScientistEndBattleText, SilphCo8FScientistAfterBattleText
 SilphCo8TrainerHeader2:
 	trainer EVENT_BEAT_SILPH_CO_8F_TRAINER_2, 4, SilphCo8FRocket2BattleText, SilphCo8FRocket2EndBattleText, SilphCo8FRocket2AfterBattleText
+SilphCo8TrainerHeader3:
+	trainer EVENT_BEAT_SILPH_CO_8F_TRAINER_3, 1, SilphCo8FFlavorRocketBattleText, SilphFlavorRocketEndBattleText, SilphFlavorRocketAfterBattleText
+SilphCo8TrainerHeader4:
+	trainer EVENT_BEAT_SILPH_CO_8F_TRAINER_4, 1, SilphCo8FFlavorScientistBattleText, SilphFlavorScientistEndBattleText, SilphFlavorScientistAfterBattleText
 	db -1 ; end
 
 SilphCo8FSilphWorkerMText:
@@ -169,20 +173,20 @@ SilphCo8FRocket2AfterBattleText:
 
 SilphCo8FFlavorRocketText:
 	text_asm
-	ld hl, .Text
-	call PrintText
+	ld hl, SilphCo8TrainerHeader3
+	call TalkToTrainer
 	jp TextScriptEnd
-
-.Text:
-	text_far _SilphCo8FFlavorRocketText
-	text_end
 
 SilphCo8FFlavorScientistText:
 	text_asm
-	ld hl, .Text
-	call PrintText
+	ld hl, SilphCo8TrainerHeader4
+	call TalkToTrainer
 	jp TextScriptEnd
 
-.Text:
+SilphCo8FFlavorRocketBattleText:
+	text_far _SilphCo8FFlavorRocketText
+	text_end
+
+SilphCo8FFlavorScientistBattleText:
 	text_far _SilphCo8FFlavorScientistText
 	text_end

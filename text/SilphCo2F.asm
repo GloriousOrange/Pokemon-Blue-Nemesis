@@ -111,3 +111,27 @@ _SilphCo2FFlavorScientistText::
 	para "Not one more"
 	line "cage unlocked!"
 	done
+
+; Shared end/after-battle lines for the converted flavor Rocket/Scientist NPCs
+; across the Silph floors (referenced from 2F/8F/9F scripts).
+_SilphFlavorRocketEndText::
+	text "Tch... you hit"
+	line "harder than the"
+	cont "boss lets on."
+	done
+
+_SilphFlavorRocketAfterText::
+	text "Fine. This floor's"
+	line "yours. For now."
+	done
+
+_SilphFlavorScientistEndText::
+	text "No... OAK's work"
+	line "must be protected!"
+	done
+
+_SilphFlavorScientistAfterText::
+	text "Do what you want."
+	line "The truth is"
+	cont "already loose."
+	done

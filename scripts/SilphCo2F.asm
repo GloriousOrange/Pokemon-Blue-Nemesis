@@ -112,6 +112,10 @@ SilphCo2TrainerHeader2:
 	trainer EVENT_BEAT_SILPH_CO_2F_TRAINER_2, 3, SilphCo2FRocket1BattleText, SilphCo2FRocket1EndBattleText, SilphCo2FRocket1AfterBattleText
 SilphCo2TrainerHeader3:
 	trainer EVENT_BEAT_SILPH_CO_2F_TRAINER_3, 3, SilphCo2FRocket2BattleText, SilphCo2FRocket2EndBattleText, SilphCo2FRocket2AfterBattleText
+SilphCo2TrainerHeader4:
+	trainer EVENT_BEAT_SILPH_CO_2F_TRAINER_4, 1, SilphCo2FFlavorRocketBattleText, SilphFlavorRocketEndBattleText, SilphFlavorRocketAfterBattleText
+SilphCo2TrainerHeader5:
+	trainer EVENT_BEAT_SILPH_CO_2F_TRAINER_5, 1, SilphCo2FFlavorScientistBattleText, SilphFlavorScientistEndBattleText, SilphFlavorScientistAfterBattleText
 	db -1 ; end
 
 SilphCo2FSilphWorkerFText:
@@ -224,20 +228,39 @@ SilphCo2FRocket2AfterBattleText:
 
 SilphCo2FFlavorRocketText:
 	text_asm
-	ld hl, .Text
-	call PrintText
+	ld hl, SilphCo2TrainerHeader4
+	call TalkToTrainer
 	jp TextScriptEnd
-
-.Text:
-	text_far _SilphCo2FFlavorRocketText
-	text_end
 
 SilphCo2FFlavorScientistText:
 	text_asm
-	ld hl, .Text
-	call PrintText
+	ld hl, SilphCo2TrainerHeader5
+	call TalkToTrainer
 	jp TextScriptEnd
 
-.Text:
+; Before-battle text reuses each floor's existing flavor line.
+SilphCo2FFlavorRocketBattleText:
+	text_far _SilphCo2FFlavorRocketText
+	text_end
+
+SilphCo2FFlavorScientistBattleText:
 	text_far _SilphCo2FFlavorScientistText
+	text_end
+
+; Shared end/after-battle lines for every converted flavor Rocket/Scientist
+; across the Silph floors (defined once here, referenced from 8F/9F too).
+SilphFlavorRocketEndBattleText:
+	text_far _SilphFlavorRocketEndText
+	text_end
+
+SilphFlavorRocketAfterBattleText:
+	text_far _SilphFlavorRocketAfterText
+	text_end
+
+SilphFlavorScientistEndBattleText:
+	text_far _SilphFlavorScientistEndText
+	text_end
+
+SilphFlavorScientistAfterBattleText:
+	text_far _SilphFlavorScientistAfterText
 	text_end
