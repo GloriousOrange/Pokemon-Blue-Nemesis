@@ -23,6 +23,63 @@ GetPlayerPath::
 	ld a, 2
 	ret
 
+; Silph Co faction gate. Returns NZ when the trainer currently being considered
+; is an ALLY on the player's path (so it must NOT engage or battle), Z otherwise.
+; Loyalist (BIT_ROCKET_LOYALTY set) -> Rockets are allies; Hero (clear) ->
+; Scientists are allies. Only applies on the Silph Co floors. The trainer's class
+; is read from wMapSpriteExtraData[wSpriteIndex], the same addressing EngageMapTrainer
+; uses. Callable from the home-bank engagement code via `callfar`: Bankswitch's
+; return path touches no flags, so the Z/NZ verdict survives the bank switch.
+CheckSilphAllyTrainer::
+	ld a, [wCurMap]
+	call IsSilphCoMap
+	jr z, .normal
+	ld hl, wMapSpriteExtraData
+	ld a, [wSpriteIndex]
+	dec a
+	add a
+	ld e, a
+	ld d, 0
+	add hl, de
+	ld a, [hl] ; trainer class
+	ld b, a
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld a, b
+	jr z, .hero
+	cp OPP_ROCKET ; Loyalist: your fellow Rockets don't fight you
+	jr z, .ally
+	jr .normal
+.hero
+	cp OPP_SCIENTIST ; Hero: Oak's Scientists don't fight you
+	jr z, .ally
+.normal
+	xor a ; Z = engage normally
+	ret
+.ally
+	or 1 ; NZ = ally, suppress engagement
+	ret
+
+; a = map id -> NZ if it's a Silph Co floor, Z otherwise. Floors are two
+; contiguous runs (1F=$B5; 2F-8F=$CF-$D5; 9F-11F=$E9-$EB), elevator excluded.
+IsSilphCoMap:
+	cp SILPH_CO_1F
+	jr z, .yes
+	cp SILPH_CO_2F
+	jr c, .no
+	cp SILPH_CO_8F + 1
+	jr c, .yes
+	cp SILPH_CO_9F
+	jr c, .no
+	cp SILPH_CO_11F + 1
+	jr c, .yes
+.no
+	xor a
+	ret
+.yes
+	or 1
+	ret
+
 ; The go-rogue beat, to be `callfar`'d from the Nocturn-obtain script once that
 ; content exists. Presents the "report to your boss vs block the number and go
 ; rogue" choice: YES keeps you on your current path (Hero -> Oak, Loyalist ->

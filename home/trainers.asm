@@ -107,8 +107,8 @@ TalkToTrainer::
 	ld a, $4
 	call ReadTrainerHeaderInfo     ; print before battle text
 	call PrintText
-	ld a, $a
-	call ReadTrainerHeaderInfo     ; (?) does nothing apparently (maybe bug in ReadTrainerHeaderInfo)
+	callfar CheckSilphAllyTrainer  ; in Silph, an allied-faction trainer just talks; no battle
+	ret nz
 	push de
 	ld a, $8
 	call ReadTrainerHeaderInfo     ; read end battle text
@@ -281,6 +281,10 @@ CheckForEngagingTrainers::
 	call TrainerFlagAction           ; read trainer flag
 	ld a, c
 	and a ; has the trainer already been defeated?
+	jr nz, .continue
+	push de
+	callfar CheckSilphAllyTrainer    ; in Silph, allied-faction trainers don't engage on sight
+	pop de
 	jr nz, .continue
 	push hl
 	push de
