@@ -199,13 +199,12 @@ _ArcanineDexEntry::
 	dex
 
 _MewDexEntry::
-	text "So rare that it"
-	next "is still said to"
-	next "be a mirage by"
+	text "So old it is now"
+	next "only a mirage."
 
-	page "many experts. Only"
-	next "a few people have"
-	next "seen it worldwide"
+	page "Every common beast"
+	next "was grown from a"
+	next "trace of its code."
 	dex
 
 _GyaradosDexEntry::
@@ -1079,13 +1078,13 @@ _GolbatDexEntry::
 	dex
 
 _MewtwoDexEntry::
-	text "It was created by"
-	next "a scientist after"
-	next "years of horrific"
+	text "OAK cloned this"
+	next "from ancient MEW"
+	next "to prove he had"
 
-	page "gene splicing and"
-	next "DNA engineering"
-	next "experiments"
+	page "mastered the old"
+	next "art of making"
+	next "life."
 	dex
 
 _SnorlaxDexEntry::
