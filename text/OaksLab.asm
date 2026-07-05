@@ -232,8 +232,8 @@ _OaksLabOakChooseMonText::
 	cont "bred new ones from"
 	cont "MEW's blood."
 
-	para "The boys are eager"
-	line "for revenge. Your"
+	para "You both want"
+	line "revenge. Your"
 	cont "father's enemies"
 	cont "still breathe."
 
@@ -281,8 +281,8 @@ _OaksLabRivalIllTakeYouOnText::
 	done
 
 _OaksLabRivalIPickedTheWrongPokemonText::
-	text "This one is weak."
-	line "I will replace it."
+	text "Too weak."
+	line "I'll switch it."
 	prompt
 
 _OaksLabRivalAmIGreatOrWhatText::
