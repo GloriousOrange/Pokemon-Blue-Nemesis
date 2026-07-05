@@ -356,6 +356,20 @@ _OaksLabRivalLeaveItAllToMeText::
 	done
 
 _OaksLabScientistText::
-	text "I study #MON as"
-	line "PROF.OAK's AIDE."
+	text "I study #MON"
+	line "under PROF.OAK."
+
+	para "Every strand of"
+	line "MEW's code, he's"
+	cont "mapped himself."
+	done
+
+_OaksLabScientist2Text::
+	text "I still can't"
+	line "believe he tamed"
+	cont "MEW's blood into"
+	cont "living #MON."
+
+	para "PROF.OAK is a god"
+	line "among men."
 	done

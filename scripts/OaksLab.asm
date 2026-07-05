@@ -739,7 +739,7 @@ OaksLab_TextPointers:
 	dw_const OaksLabOak2Text,                     TEXT_OAKSLAB_OAK2
 	dw_const OaksLabGirlText,                     TEXT_OAKSLAB_GIRL
 	dw_const OaksLabScientistText,                TEXT_OAKSLAB_SCIENTIST1
-	dw_const OaksLabScientistText,                TEXT_OAKSLAB_SCIENTIST2
+	dw_const OaksLabScientist2Text,               TEXT_OAKSLAB_SCIENTIST2
 	dw_const OaksLabOakDontGoAwayYetText,         TEXT_OAKSLAB_OAK_DONT_GO_AWAY_YET
 	dw_const OaksLabRivalIllTakeThisOneText,      TEXT_OAKSLAB_RIVAL_ILL_TAKE_THIS_ONE
 	dw_const OaksLabRivalReceivedMonText,         TEXT_OAKSLAB_RIVAL_RECEIVED_MON
@@ -1267,6 +1267,16 @@ OaksLabScientistText:
 
 .Text:
 	text_far _OaksLabScientistText
+	text_end
+
+OaksLabScientist2Text:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _OaksLabScientist2Text
 	text_end
 
 
