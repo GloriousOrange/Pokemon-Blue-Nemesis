@@ -69,31 +69,21 @@ OakSpeech:
 	cp '@' ; empty name?
 	jr z, .askBrotherName
 	call ClearScreen
-; one-time difficulty choice, asked here (LCD is on, so the prompts render)
+; one-time difficulty choice, asked here (LCD is on, so the menu renders)
 ; rather than in the RedsHouse2F map tick where PrintText is unreliable.
-; wDifficulty was set to $ff by InitPlayerData2; clear it to 0 first so declining
-; both prompts defaults to Normal.
-	xor a
-	ld [wDifficulty], a
-	ld hl, EasyModeText
+	ld hl, DifficultyExplainText
 	call PrintText
-	call YesNoChoice
+	call ClearScreen
+	call DifficultyMenu_Draw
+	call HandleMenuInput
 	ld a, [wCurrentMenuItem]
-	and a ; 0 = YES
-	jr nz, .askHardMode
-	ld a, DIFFICULTY_EASY
+	ld e, a
+	ld d, 0
+	ld hl, DifficultyMenuValues
+	add hl, de
+	ld a, [hl]
 	ld [wDifficulty], a
-	jr .difficultyChosen
-.askHardMode
-	ld hl, HardModeText
-	call PrintText
-	call YesNoChoice
-	ld a, [wCurrentMenuItem]
-	and a ; 0 = YES
-	jr nz, .difficultyChosen
-	ld a, DIFFICULTY_HARD
-	ld [wDifficulty], a
-.difficultyChosen
+	call ClearScreen
 	ld hl, OpeningColdOpenText ; a cold, dark mood-setter before the game world fades in
 	call PrintText
 	ld a, [wDefaultMap]
@@ -109,24 +99,60 @@ OakSpeech:
 	call GBFadeOutToWhite
 	jp ClearScreen
 
-EasyModeText:
-	text "Play on EASY?"
+; draws a 3-item EASY/NORMAL/HARD selection box and sets up HandleMenuInput.
+; No B in wMenuWatchedKeys -- a difficulty must be chosen, no cancelling out.
+DifficultyMenu_Draw:
+	hlcoord 0, 0
+	ld b, 3
+	ld c, 6
+	call TextBoxBorder
+	hlcoord 2, 1
+	ld de, DifficultyEasyName
+	call PlaceString
+	hlcoord 2, 2
+	ld de, DifficultyNormalName
+	call PlaceString
+	hlcoord 2, 3
+	ld de, DifficultyHardName
+	call PlaceString
+	ld a, 1
+	ld [wTopMenuItemY], a
+	ld [wTopMenuItemX], a
+	ld a, 1 ; default cursor on NORMAL
+	ld [wCurrentMenuItem], a
+	ld [wLastMenuItem], a
+	xor a
+	ld [wMenuWatchMovingOutOfBounds], a
+	ld a, 2 ; highest index: EASY=0, NORMAL=1, HARD=2
+	ld [wMaxMenuItem], a
+	ld a, PAD_A
+	ld [wMenuWatchedKeys], a
+	ldh a, [hUILayoutFlags]
+	res BIT_DOUBLE_SPACED_MENU, a ; rows are 1 tile apart
+	ldh [hUILayoutFlags], a
+	ret
 
-	para "More TRAINER EXP"
-	line "and better gifts"
-	cont "from MEGAN."
-	prompt
+; wCurrentMenuItem (0/1/2, EASY/NORMAL/HARD menu order) -> DIFFICULTY_* value
+DifficultyMenuValues:
+	db DIFFICULTY_EASY, DIFFICULTY_NORMAL, DIFFICULTY_HARD
 
-HardModeText:
-	text "Play on HARD?"
+DifficultyEasyName:
+	db "EASY@"
+DifficultyNormalName:
+	db "NORMAL@"
+DifficultyHardName:
+	db "HARD@"
 
-	para "No items allowed"
-	line "in battle."
+DifficultyExplainText:
+	text "EASY: more EXP,"
+	line "better gifts."
 
-	para "MEGAN gives"
-	line "little, and only"
-	cont "near the end."
-	prompt
+	para "NORMAL: default."
+
+	para "HARD: no items"
+	line "in battle, gifts"
+	cont "held back."
+	done
 
 OpeningColdOpenText:
 	text "The war nearly"
