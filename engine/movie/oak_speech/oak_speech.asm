@@ -71,8 +71,14 @@ OakSpeech:
 	call ClearScreen
 ; one-time difficulty choice, asked here (LCD is on, so the menu renders)
 ; rather than in the RedsHouse2F map tick where PrintText is unreliable.
+; DifficultyMenu_Draw sets BIT_DOUBLE_SPACED_MENU for its own 1-row-apart list; save/restore
+; hUILayoutFlags so it doesn't leak into the first Start Menu open of the new game.
+	ldh a, [hUILayoutFlags]
+	push af
 	call DifficultyMenu_Draw
 	call HandleMenuInput
+	pop af
+	ldh [hUILayoutFlags], a
 	ld a, [wCurrentMenuItem]
 	ld e, a
 	ld d, 0

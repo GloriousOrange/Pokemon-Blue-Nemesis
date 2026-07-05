@@ -12,11 +12,20 @@ StartMenu_Pokedex::
 ; gated on having met Megan (BIT_GOT_GIRLFRIEND) in DrawStartMenu.
 ; (Label kept as StartMenu_Megan because home/start_menu.asm dispatches to it.)
 StartMenu_Megan::
+; PhoneMenu_Draw sets BIT_DOUBLE_SPACED_MENU for its own 1-row-apart contact list; save/restore
+; hUILayoutFlags around the whole interaction so it doesn't leak into the Start Menu's own
+; 2-row-apart cursor (that bug: the Start Menu cursor renders one row off after using PHONE).
+	ldh a, [hUILayoutFlags]
+	push af
 	call PhoneMenu_Draw
 	call HandleMenuInput
-	push af
-	call LoadScreenTilesFromBuffer2 ; erase the contact box, restore the start-menu screen
+	ld b, a
 	pop af
+	ldh [hUILayoutFlags], a
+	push bc
+	call LoadScreenTilesFromBuffer2 ; erase the contact box, restore the start-menu screen
+	pop bc
+	ld a, b
 	bit B_PAD_B, a
 	jp nz, RedisplayStartMenu ; cancelled -> back to the start menu
 	ld a, [wCurrentMenuItem]
