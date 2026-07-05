@@ -47,8 +47,8 @@ _Route21Swimmer1AfterBattleText::
 	done
 
 _Route21Swimmer2BattleText::
-	text "What's wrong with"
-	line "me swimming?"
+	text "Something wrong"
+	line "with me swimming?"
 	done
 
 _Route21Swimmer2EndBattleText::
@@ -57,9 +57,9 @@ _Route21Swimmer2EndBattleText::
 	prompt
 
 _Route21Swimmer2AfterBattleText::
-	text "I look like what?"
-	line "A studded inner"
-	cont "tube? Get lost!"
+	text "Get lost before"
+	line "I toss you back"
+	cont "in."
 	done
 
 _Route21Swimmer3BattleText::
