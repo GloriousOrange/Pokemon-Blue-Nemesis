@@ -4,11 +4,11 @@ PrepareOakSpeech:
 	ld a, [wOptions]
 	push af
 	; Retrieve BIT_DEBUG_MODE set in DebugMenu for StartNewGameDebug.
-	; BUG: StartNewGame carries over BIT_ALWAYS_ON_BIKE from previous save files,
-	; which causes CheckForceBikeOrSurf to not return.
-	; To fix this in debug builds, reset BIT_ALWAYS_ON_BIKE here or in StartNewGame.
-	; In non-debug builds, the instructions can be removed.
+	; Fixed bug: a new game used to carry over BIT_ALWAYS_ON_BIKE from a
+	; previously loaded save (or uninitialized WRAM on a fresh boot), causing
+	; CheckForceBikeOrSurf to not return -- the player started on a bike.
 	ld a, [wStatusFlags6]
+	res BIT_ALWAYS_ON_BIKE, a
 	push af
 	ld hl, wPlayerName
 	ld bc, wBoxDataEnd - wPlayerName
