@@ -71,9 +71,6 @@ OakSpeech:
 	call ClearScreen
 ; one-time difficulty choice, asked here (LCD is on, so the menu renders)
 ; rather than in the RedsHouse2F map tick where PrintText is unreliable.
-	ld hl, DifficultyExplainText
-	call PrintText
-	call ClearScreen
 	call DifficultyMenu_Draw
 	call HandleMenuInput
 	ld a, [wCurrentMenuItem]
@@ -128,7 +125,7 @@ DifficultyMenu_Draw:
 	ld a, PAD_A
 	ld [wMenuWatchedKeys], a
 	ldh a, [hUILayoutFlags]
-	res BIT_DOUBLE_SPACED_MENU, a ; rows are 1 tile apart
+	set BIT_DOUBLE_SPACED_MENU, a ; rows are 1 tile apart (this flag is inverted: SET = single-spaced)
 	ldh [hUILayoutFlags], a
 	ret
 
@@ -142,17 +139,6 @@ DifficultyNormalName:
 	db "NORMAL@"
 DifficultyHardName:
 	db "HARD@"
-
-DifficultyExplainText:
-	text "EASY: more EXP,"
-	line "better gifts."
-
-	para "NORMAL: default."
-
-	para "HARD: no items"
-	line "in battle, gifts"
-	cont "held back."
-	done
 
 OpeningColdOpenText:
 	text "The war nearly"

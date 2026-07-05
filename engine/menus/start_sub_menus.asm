@@ -68,7 +68,7 @@ PhoneMenu_Draw:
 	ld a, PAD_A | PAD_B
 	ld [wMenuWatchedKeys], a
 	ldh a, [hUILayoutFlags]
-	res BIT_DOUBLE_SPACED_MENU, a ; contact rows are 1 tile apart
+	set BIT_DOUBLE_SPACED_MENU, a ; contact rows are 1 tile apart (flag is inverted: SET = single-spaced)
 	ldh [hUILayoutFlags], a
 	ret
 
