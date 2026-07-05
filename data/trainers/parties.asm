@@ -136,7 +136,7 @@ LassData:
 	db 23, BELLSPROUT, WEEPINBELL, 0
 	db 23, ODDISH, GLOOM, 0
 	db $ff, 8, LICKITUNG, 7, SLOWPOKE, 6, JIGGLYPUFF, 0 ; #19 Megan (max L8, outside Mt. Moon)
-	db 5, SLOWPOKE, 0 ; #20 Megan (Route 1, meet-cute)
+	db 2, SLOWPOKE, 0 ; #20 Megan (Route 1, meet-cute)
 
 SailorData:
 ; SS Anne Stern
