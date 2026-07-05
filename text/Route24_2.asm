@@ -27,8 +27,9 @@ _Route24CooltrainerM3AfterBattleText::
 	done
 
 _Route24CooltrainerF1BattleText::
-	text "I'm No. 4!"
-	line "Getting tired?"
+	text "I'm No. 4! I"
+	line "fight for BOSS"
+	cont "ROCKET's approval!"
 	done
 
 _Route24CooltrainerF1EndBattleText::
@@ -37,8 +38,9 @@ _Route24CooltrainerF1EndBattleText::
 	prompt
 
 _Route24CooltrainerF1AfterBattleText::
-	text "I did my best, so"
-	line "I've no regrets!"
+	text "The BOSS rewards"
+	line "loyalty, not"
+	cont "excuses!"
 	done
 
 _Route24Youngster1BattleText::
@@ -57,8 +59,8 @@ _Route24Youngster1AfterBattleText::
 	done
 
 _Route24CooltrainerF2BattleText::
-	text "I'm second!"
-	line "Now it's serious!"
+	text "I'm second! The"
+	line "BOSS is watching!"
 	done
 
 _Route24CooltrainerF2EndBattleText::
@@ -67,8 +69,9 @@ _Route24CooltrainerF2EndBattleText::
 	prompt
 
 _Route24CooltrainerF2AfterBattleText::
-	text "I did my best, I"
-	line "have no regrets!"
+	text "Every fight here"
+	line "is judged. Don't"
+	cont "tell him I lost!"
 	done
 
 _Route24Youngster2BattleText::

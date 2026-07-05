@@ -47,7 +47,9 @@ _MtMoon1FCooltrainerF1EndBattleText::
 
 _MtMoon1FCooltrainerF1AfterBattleText::
 	text "How do you get"
-	line "out of here?"
+	line "out of here? I"
+	cont "didn't think this"
+	cont "through at all."
 	done
 
 _MtMoon1FSuperNerdBattleText::
@@ -79,6 +81,8 @@ _MtMoon1FCooltrainerF2AfterBattleText::
 	text "I heard there are"
 	line "some very rare"
 	cont "fossils here."
+	cont "OAK will bring"
+	cont "them back to life!"
 	done
 
 _MtMoon1FYoungster2BattleText::

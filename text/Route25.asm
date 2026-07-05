@@ -63,8 +63,9 @@ _Route25CooltrainerF1EndBattleText::
 	prompt
 
 _Route25CooltrainerF1AfterBattleText::
-	text "I wish my guy was"
-	line "as good as you!"
+	text "He says the war's"
+	line "basically over."
+	cont "I believe him!"
 	done
 
 _Route25Youngster3BattleText::
@@ -101,7 +102,8 @@ _Route25CooltrainerF2EndBattleText::
 _Route25CooltrainerF2AfterBattleText::
 	text "You came from MT."
 	line "MOON? May I have"
-	cont "a CLEFAIRY?"
+	cont "a CLEFAIRY? It'd"
+	cont "match my earrings."
 	done
 
 _Route25Hiker1BattleText::

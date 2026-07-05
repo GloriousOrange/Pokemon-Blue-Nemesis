@@ -57,8 +57,9 @@ _Route8CooltrainerF1EndBattleText::
 _Route8CooltrainerF1AfterBattleText::
 	text "When #MON grow"
 	line "up they get ugly!"
-	cont "They shouldn't"
-	cont "evolve!"
+	cont "I'm keeping mine"
+	cont "small and cute"
+	cont "forever."
 	done
 
 _Route8SuperNerd3BattleText::
@@ -87,14 +88,15 @@ _Route8CooltrainerF2EndBattleText::
 
 _Route8CooltrainerF2AfterBattleText::
 	text "I think PIDGEY"
-	line "and RATTATA"
-	cont "are cute too!"
+	line "and RATTATA are"
+	cont "cute too! I don't"
+	cont "read the news."
 	done
 
 _Route8CooltrainerF3BattleText::
-	text "We must look"
-	line "silly standing"
-	cont "here like this!"
+	text "The GYMS say the"
+	line "checkpoints are"
+	cont "for our own good!"
 	done
 
 _Route8CooltrainerF3EndBattleText::
@@ -106,7 +108,8 @@ _Route8CooltrainerF3AfterBattleText::
 	text "SAFFRON's gate"
 	line "keeper won't let"
 	cont "us through."
-	cont "He's so mean!"
+	cont "It must be for"
+	cont "our safety!"
 	done
 
 _Route8Gambler2BattleText::
@@ -142,6 +145,8 @@ _Route8CooltrainerF4AfterBattleText::
 	line "CLEFAIRY evolves"
 	cont "when it's exposed"
 	cont "to a MOON STONE."
+	cont "It's still cute"
+	cont "though, right?"
 	done
 
 _Route8UndergroundSignText::

@@ -119,5 +119,7 @@ _SSAnne2FRoomsCooltrainerFEndBattleText::
 
 _SSAnne2FRoomsCooltrainerFAfterBattleText::
 	text "Oh, I adore your"
-	line "strong #MON!"
+	line "strong #MON! Let's"
+	cont "forget the world"
+	cont "and dance!"
 	done

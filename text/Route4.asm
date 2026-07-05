@@ -2,6 +2,8 @@ _Route4CooltrainerF1Text::
 	text "Ouch! I tripped"
 	line "over a rocky"
 	cont "#MON, GEODUDE!"
+	cont "Nobody warns you"
+	cont "about anything."
 	done
 
 _Route4CooltrainerF2BattleText::
@@ -15,12 +17,11 @@ _Route4CooltrainerF2EndBattleText::
 	prompt
 
 _Route4CooltrainerF2AfterBattleText::
-	text "There might not"
-	line "be any more"
-	cont "mushrooms here."
-
-	para "I think I got"
-	line "them all."
+	text "I need the spores"
+	line "for my new dye."
+	cont "Perfect shade for"
+	cont "spring, don't you"
+	cont "think?"
 	done
 
 _Route4MtMoonSignText::

@@ -71,8 +71,9 @@ _SSAnne1FRoomsCooltrainerFEndBattleText::
 	prompt
 
 _SSAnne1FRoomsCooltrainerFAfterBattleText::
-	text "You hurt my poor"
-	line "worldly #MON!"
+	text "You hurt my poor,"
+	line "rare, extremely"
+	cont "photogenic #MON!"
 
 	para "I demand that you"
 	line "heal them at a"

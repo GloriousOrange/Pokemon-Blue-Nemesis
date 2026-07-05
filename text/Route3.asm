@@ -46,19 +46,20 @@ _Route3Youngster2AfterBattleText::
 	done
 
 _Route3CooltrainerF1BattleText::
-	text "You looked at me,"
-	line "didn't you?"
+	text "You don't look"
+	line "scared at all."
 	done
 
 _Route3CooltrainerF1EndBattleText::
-	text "You're"
-	line "mean!"
+	text "Must be nice"
+	line "not to worry!"
 	prompt
 
 _Route3CooltrainerF1AfterBattleText::
-	text "Quit staring if"
-	line "you don't want to"
-	cont "fight!"
+	text "I try not to"
+	line "think about the"
+	cont "news. Ignorance"
+	cont "is bliss!"
 	done
 
 _Route3Youngster3BattleText::
@@ -81,19 +82,20 @@ _Route3Youngster3AfterBattleText::
 	done
 
 _Route3CooltrainerF2BattleText::
-	text "That look you"
-	line "gave me, it's so"
-	cont "intriguing!"
+	text "Like my new"
+	line "RATTATA-fur"
+	cont "scarf?"
 	done
 
 _Route3CooltrainerF2EndBattleText::
-	text "Be nice!"
+	text "It's ruined!"
 	prompt
 
 _Route3CooltrainerF2AfterBattleText::
-	text "Avoid fights by"
-	line "not letting"
-	cont "people see you!"
+	text "Don't tell me"
+	line "fur's out of"
+	cont "style. I just"
+	cont "bought this!"
 	done
 
 _Route3Youngster4BattleText::
@@ -130,8 +132,9 @@ _Route3Youngster5AfterBattleText::
 	done
 
 _Route3CooltrainerF3BattleText::
-	text "Eek! Did you"
-	line "touch me?"
+	text "The GYMS keep"
+	line "us safe. The"
+	cont "ELITE FOUR don't!"
 	done
 
 _Route3CooltrainerF3EndBattleText::
@@ -141,6 +144,8 @@ _Route3CooltrainerF3EndBattleText::
 _Route3CooltrainerF3AfterBattleText::
 	text "ROUTE 4 is at the"
 	line "foot of MT.MOON."
+	cont "OAK keeps it safe"
+	cont "for us all."
 	done
 
 _Route3SignText::

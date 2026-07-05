@@ -102,9 +102,10 @@ _CeladonGymEndBattleText2::
 	prompt
 
 _CeladonGymAfterBattleText2::
-	text "Bleaah!"
-	line "I hope ERIKA"
-	cont "wipes you out!"
+	text "Bleaah! I heard"
+	line "there's a war on"
+	cont "somewhere. Isn't"
+	cont "that sad?"
 	done
 
 _CeladonGymBattleText3::
@@ -173,10 +174,9 @@ _CeladonGymEndBattleText6::
 	prompt
 
 _CeladonGymAfterBattleText6::
-	text "Our LEADER, ERIKA,"
-	line "might be quiet,"
-	cont "but she's also"
-	cont "very skilled!"
+	text "I paid a fortune"
+	line "for this VENONAT-"
+	cont "hide handbag!"
 	done
 
 _CeladonGymBattleText7::
