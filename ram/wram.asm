@@ -2097,8 +2097,9 @@ wLastBlackoutMap:: db
 ; destination map (for certain types of special warps, not ordinary walking)
 wDestinationMap:: db
 
-; initialized to $ff, but nothing ever reads it
-wUnusedPlayerDataByte:: db
+; holds the chosen difficulty (DIFFICULTY_NORMAL/EASY/HARD), set once at the
+; new-game prompt (engine/movie/oak_speech/oak_speech.asm)
+wDifficulty:: db
 
 ; used to store the tile in front of the boulder when trying to push a boulder
 ; also used to store the result of the collision check ($ff for a collision and $00 for no collision)

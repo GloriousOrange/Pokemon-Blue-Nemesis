@@ -164,6 +164,7 @@ DEF BIT_LEVEL_MACHINE_READY EQU 2 ; a level machine sets this; lets a LEVEL STON
 DEF BIT_POST_GAME_STARTED EQU 3 ; set when the Champion is beaten; unlocks gym-leader rematches
 DEF BIT_ROCKET_LOYALTY EQU 4 ; set when the player joins Team Rocket at Nugget Bridge (Loyalist path). Gates the Rocket overworld sprite + Loyalist-vs-Hero content. Clear = Hero.
 DEF BIT_PLAYER_TRAITOR EQU 5 ; set when the player goes rogue at the Nocturn beat (Traitor path, reachable from either Hero or Loyalist). Overrides allegiance. Trigger hooks into the Nocturn-obtain script once that content exists.
-; wChallengeFlags = wUnusedPlayerDataByte ($ff before the new-game prompt is answered)
-DEF BIT_CHALLENGE_DOUBLE_XP EQU 0 ; 2x EXP from trainer battles
-DEF BIT_CHALLENGE_NO_ITEMS  EQU 1 ; cannot use items in battle
+; wDifficulty (ram/wram.asm) is set once at the new-game prompt (0 if declined = Normal).
+DEF DIFFICULTY_NORMAL EQU 0 ; no EXP boost; Megan's Rare Candy/vitamin gifts become a healing item instead
+DEF DIFFICULTY_EASY   EQU 1 ; 1.5x EXP from trainer battles; Megan's gifts unchanged
+DEF DIFFICULTY_HARD   EQU 2 ; cannot use items in battle; Megan gives nothing until Victory Road

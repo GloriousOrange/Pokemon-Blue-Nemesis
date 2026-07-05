@@ -69,30 +69,31 @@ OakSpeech:
 	cp '@' ; empty name?
 	jr z, .askBrotherName
 	call ClearScreen
-; one-time challenge options, asked here (LCD is on, so the prompts render)
+; one-time difficulty choice, asked here (LCD is on, so the prompts render)
 ; rather than in the RedsHouse2F map tick where PrintText is unreliable.
-; wUnusedPlayerDataByte was set to $ff (all bits) by InitPlayerData2; clear it to
-; 0 first so both challenges default off, then set a bit per YES answer.
+; wDifficulty was set to $ff by InitPlayerData2; clear it to 0 first so declining
+; both prompts defaults to Normal.
 	xor a
-	ld [wUnusedPlayerDataByte], a
-	ld hl, ChallengeDoubleXpText
+	ld [wDifficulty], a
+	ld hl, EasyModeText
 	call PrintText
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
 	and a ; 0 = YES
-	jr nz, .askChallengeNoItems
-	ld hl, wUnusedPlayerDataByte
-	set BIT_CHALLENGE_DOUBLE_XP, [hl]
-.askChallengeNoItems
-	ld hl, ChallengeNoItemsText
+	jr nz, .askHardMode
+	ld a, DIFFICULTY_EASY
+	ld [wDifficulty], a
+	jr .difficultyChosen
+.askHardMode
+	ld hl, HardModeText
 	call PrintText
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
 	and a ; 0 = YES
-	jr nz, .challengeOptionsDone
-	ld hl, wUnusedPlayerDataByte
-	set BIT_CHALLENGE_NO_ITEMS, [hl]
-.challengeOptionsDone
+	jr nz, .difficultyChosen
+	ld a, DIFFICULTY_HARD
+	ld [wDifficulty], a
+.difficultyChosen
 	ld hl, OpeningColdOpenText ; a cold, dark mood-setter before the game world fades in
 	call PrintText
 	ld a, [wDefaultMap]
@@ -108,16 +109,23 @@ OakSpeech:
 	call GBFadeOutToWhite
 	jp ClearScreen
 
-ChallengeDoubleXpText:
-	text "CHALLENGE: earn"
-	line "DOUBLE EXP from"
-	cont "TRAINER battles?"
+EasyModeText:
+	text "Play on EASY?"
+
+	para "More TRAINER EXP"
+	line "and better gifts"
+	cont "from MEGAN."
 	prompt
 
-ChallengeNoItemsText:
-	text "CHALLENGE: forbid"
-	line "ITEMS during"
-	cont "battle?"
+HardModeText:
+	text "Play on HARD?"
+
+	para "No items allowed"
+	line "in battle."
+
+	para "MEGAN gives"
+	line "little, and only"
+	cont "near the end."
 	prompt
 
 OpeningColdOpenText:

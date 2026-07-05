@@ -9,6 +9,9 @@ MeganTalk::
 	ld a, SFX_HEAL_AILMENT
 	call PlaySound
 	predef HealParty
+	ld a, [wDifficulty]
+	cp DIFFICULTY_HARD
+	jp z, .hardMode
 	; look up this location's first-visit gift (item, quantity); item 0 = none yet
 	ld a, [wMeganLocIndex]
 	add a ; 2 bytes per table entry
@@ -21,6 +24,19 @@ MeganTalk::
 	jr z, .alreadyVisited ; no gift assigned here -> just heal and chat
 	ld b, a ; b = gift item
 	ld c, [hl] ; c = quantity
+	; Normal mode: Rare Candy and every vitamin except PP Up become a healing
+	; item instead (HP_UP..RARE_CANDY is a contiguous item-ID range; PP_UP is
+	; a separate ID outside it, so it's untouched)
+	ld a, [wDifficulty]
+	cp DIFFICULTY_NORMAL
+	jr nz, .giftTierOk
+	ld a, b
+	cp HP_UP
+	jr c, .giftTierOk
+	cp RARE_CANDY + 1
+	jr nc, .giftTierOk
+	ld b, SUPER_POTION
+.giftTierOk
 	push bc ; save item+qty across the visited-mask calc
 	ld a, [wMeganLocIndex]
 	call MeganGetVisitedMask ; hl = flag byte, a = bit mask for this location
@@ -39,6 +55,33 @@ MeganTalk::
 .alreadyVisited
 	ld hl, MeganHealedText
 	jp PrintText
+
+.hardMode
+; Hard mode: no gifts anywhere except a one-time bundle at Victory Road
+; (near the Elite Four) -- 3x PP Up, 1x Max Revive, 1x TM Hyper Beam.
+	ld a, [wMeganLocIndex]
+	cp MEGAN_LOC_VICTORY_ROAD
+	jr nz, .alreadyVisited
+	call MeganGetVisitedMask
+	ld b, a
+	and [hl]
+	jr nz, .alreadyVisited ; already given
+	ld a, [hl]
+	or b
+	ld [hl], a
+	ld b, PP_UP
+	ld c, 3
+	call GiveItem
+	ld b, MAX_REVIVE
+	ld c, 1
+	call GiveItem
+	ld b, TM_HYPER_BEAM
+	ld c, 1
+	call GiveItem
+	ld hl, MeganGiftText
+	jp PrintText
+
+DEF MEGAN_LOC_VICTORY_ROAD EQU 25
 
 ; a = location index -> hl = &wMeganVisitedFlags[index / 8], a = 1 << (index % 8)
 MeganGetVisitedMask:

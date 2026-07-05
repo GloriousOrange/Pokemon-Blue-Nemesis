@@ -10,7 +10,7 @@ InitPlayerData2:
 	ld [wPlayerID + 1], a
 
 	ld a, $ff
-	ld [wUnusedPlayerDataByte], a
+	ld [wDifficulty], a
 
 	ld hl, wPartyCount
 	call InitializeEmptyList
