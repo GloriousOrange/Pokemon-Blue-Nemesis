@@ -361,7 +361,7 @@ JugglerPic::       INCBIN "gfx/trainers/juggler.pic"
 TamerPic::         INCBIN "gfx/trainers/tamer.pic"
 BirdKeeperPic::    INCBIN "gfx/trainers/birdkeeper.pic"
 BlackbeltPic::     INCBIN "gfx/trainers/blackbelt.pic"
-Rival1Pic::        INCBIN "gfx/player/red.pic" ; rival looks like Red (same Trainer Pics bank)
+Rival1Pic::        INCBIN "gfx/trainers/rival1.pic"
 ProfOakPic::       INCBIN "gfx/trainers/prof.oak.pic"
 ChiefPic::
 ScientistPic::     INCBIN "gfx/trainers/scientist.pic"
@@ -378,8 +378,8 @@ KogaPic::          INCBIN "gfx/trainers/koga.pic"
 BlainePic::        INCBIN "gfx/trainers/blaine.pic"
 SabrinaPic::       INCBIN "gfx/trainers/sabrina.pic"
 GentlemanPic::     INCBIN "gfx/trainers/gentleman.pic"
-Rival2Pic::        INCBIN "gfx/player/red.pic" ; rival looks like Red
-Rival3Pic::        INCBIN "gfx/player/red.pic" ; rival looks like Red
+Rival2Pic::        INCBIN "gfx/trainers/rival2.pic"
+Rival3Pic::        INCBIN "gfx/trainers/rival3.pic"
 LoreleiPic::       INCBIN "gfx/trainers/lorelei.pic"
 ChannelerPic::     INCBIN "gfx/trainers/channeler.pic"
 AgathaPic::        INCBIN "gfx/trainers/agatha.pic"
