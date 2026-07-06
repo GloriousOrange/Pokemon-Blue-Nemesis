@@ -1992,30 +1992,40 @@ RunMapScript::
 
 LoadWalkingPlayerSpriteGraphics::
 	ld de, ScientistSprite ; Hero path (default): Oak's agent, a Scientist from the start
+	ld b, BANK(ScientistSprite)
 	ld a, [wPostGameMisc]
 	bit BIT_ROCKET_LOYALTY, a ; Loyalist path: walk around as a Team Rocket grunt instead
 	jr z, .gotWalkingSprite
-	ld de, RocketSprite ; same ROM bank as RedSprite, so the hardcoded bank in Common is fine
+	ld de, RocketSprite
+	ld b, BANK(RocketSprite)
 .gotWalkingSprite
 	ld hl, vNPCSprites
 	jr LoadPlayerSpriteGraphicsCommon
 
 LoadSurfingPlayerSpriteGraphics::
 	ld de, SeelSprite
+	ld b, BANK(SeelSprite)
 	ld hl, vNPCSprites
 	jr LoadPlayerSpriteGraphicsCommon
 
 LoadBikePlayerSpriteGraphics::
 	ld de, RedBikeSprite
+	ld b, BANK(RedBikeSprite)
 	ld hl, vNPCSprites
 
+; b = bank of the sprite at de (set by each caller above -- NOT always BANK(RedSprite);
+; ScientistSprite in particular lives in a different bank, "NPC Sprites 1" vs "NPC Sprites 2",
+; and hardcoding BANK(RedSprite) here used to silently copy the wrong bank's data at that
+; offset instead -- scrambling the Hero-path Scientist sprite into what looked like a bike)
 LoadPlayerSpriteGraphicsCommon::
+	ld c, $0c
+	push bc ; pop bc below restores both the bank AND this count -- no need to reset c twice
 	push de
 	push hl
-	lb bc, BANK(RedSprite), $0c
 	call CopyVideoData
 	pop hl
 	pop de
+	pop bc
 	ld a, $c0
 	add e
 	ld e, a
@@ -2023,7 +2033,6 @@ LoadPlayerSpriteGraphicsCommon::
 	inc d
 .noCarry
 	set 3, h ; add $800 ($80 tiles) to hl (1 << 3 == $8)
-	lb bc, BANK(RedSprite), $0c
 	jp CopyVideoData
 
 ; function to load data from the map header
