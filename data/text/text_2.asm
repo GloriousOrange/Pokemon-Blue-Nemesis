@@ -872,7 +872,7 @@ _MoneyForWinningText::
 	prompt
 
 _CoinsForWinningText::
-	text "<PLAYER> got 5"
+	text "<PLAYER> got 25"
 	line "coins for"
 	cont "winning!"
 	prompt

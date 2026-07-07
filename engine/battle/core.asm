@@ -1027,7 +1027,7 @@ TrainerBattleVictory:
 	xor a
 	ldh [hUnusedCoinsByte], a
 	ldh [hCoins], a
-	ld a, 5
+	ld a, $25 ; BCD: 25 coins
 	ldh [hCoins + 1], a
 	ld de, wPlayerCoins + 1
 	ld hl, hCoins + 1

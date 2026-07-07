@@ -69,6 +69,11 @@ GetPrizeMenuId:
 	ld d, 0
 	ld e, a
 	ld hl, PrizeDifferentMenuPtrs
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	jr z, .notLoyalist
+	ld hl, RocketPrizeDifferentMenuPtrs
+.notLoyalist
 	add hl, de
 	ld a, [hli]
 	ld d, [hl]

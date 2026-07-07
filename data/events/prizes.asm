@@ -65,3 +65,48 @@ PrizeMenuTMsCost:
 	bcd2 5500
 	bcd2 7700
 	db "@"
+
+; Rocket-loyalist exclusive prize list (BIT_ROCKET_LOYALTY), replaces the
+; above for loyalists -- see engine/events/prize_menu.asm's GetPrizeMenuId.
+; Priced so clearing the whole Rocket Hideout (11 trainers x 25 coins = 275)
+; buys 3-4 prizes depending on choice; the rest needs slots.
+RocketPrizeDifferentMenuPtrs:
+	dw RocketPrizeMenuMon1Entries, RocketPrizeMenuMon1Cost
+	dw RocketPrizeMenuMon2Entries, RocketPrizeMenuMon2Cost
+	dw RocketPrizeMenuTMsEntries,  RocketPrizeMenuTMsCost
+
+RocketPrizeMenuMon1Entries:
+	db EKANS
+	db GRIMER
+	db KOFFING
+	db "@"
+
+RocketPrizeMenuMon1Cost:
+	bcd2 40
+	bcd2 55
+	bcd2 70
+	db "@"
+
+RocketPrizeMenuMon2Entries:
+	db MEOWTH
+	db DODUO
+	db SCYTHER
+	db "@"
+
+RocketPrizeMenuMon2Cost:
+	bcd2 110
+	bcd2 300
+	bcd2 500
+	db "@"
+
+RocketPrizeMenuTMsEntries:
+	db TM_TOXIC
+	db TM_SWORDS_DANCE
+	db TM_DOUBLE_TEAM
+	db "@"
+
+RocketPrizeMenuTMsCost:
+	bcd2 180
+	bcd2 350
+	bcd2 550
+	db "@"

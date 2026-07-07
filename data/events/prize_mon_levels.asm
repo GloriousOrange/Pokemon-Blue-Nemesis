@@ -16,4 +16,12 @@ IF DEF(_BLUE)
 	db PINSIR,   20
 	db DRATINI,  24
 	db PORYGON,  18
+
+	db EKANS,    15
+	db GRIMER,   18
+	db KOFFING,  20
+
+	db MEOWTH,   20
+	db DODUO,    22
+	db SCYTHER,  25
 ENDC

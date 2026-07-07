@@ -231,6 +231,21 @@ SilphCo11FGiovanniAfterBattleScript:
 	call Delay3
 	call GBFadeInFromBlack
 	SetEvent EVENT_BEAT_SILPH_CO_GIOVANNI
+; Rocket loyalists get a 500-coin cut for clearing Silph Co
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	jr z, .notLoyalist
+	xor a
+	ldh [hUnusedCoinsByte], a
+	ld a, $05 ; BCD: 500 coins (hCoins:hCoins+1 = $05:$00)
+	ldh [hCoins], a
+	xor a
+	ldh [hCoins + 1], a
+	ld de, wPlayerCoins + 1
+	ld hl, hCoins + 1
+	ld c, $2
+	predef AddBCDPredef
+.notLoyalist
 	xor a
 	ld [wJoyIgnore], a
 	jp SilphCo11FSetCurScript
