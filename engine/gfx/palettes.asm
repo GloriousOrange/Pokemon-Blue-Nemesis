@@ -421,16 +421,6 @@ LoadSGB:
 	di
 	call PrepareSuperNintendoVRAMTransfer
 	ei
-	ld a, 1
-	ld [wCopyingSGBTileData], a
-	ld de, ChrTrnPacket
-	ld hl, SGBBorderGraphics
-	call CopyGfxToSuperNintendoVRAM
-	xor a
-	ld [wCopyingSGBTileData], a
-	ld de, PctTrnPacket
-	ld hl, BorderPalettes
-	call CopyGfxToSuperNintendoVRAM
 	xor a
 	ld [wCopyingSGBTileData], a
 	ld de, PalTrnPacket
