@@ -44,9 +44,10 @@ GameCornerReenterMapAfterPlayerLoss:
 
 GameCorner_ScriptPointers:
 	def_script_pointers
-	dw_const GameCornerDefaultScript,      SCRIPT_GAMECORNER_DEFAULT
-	dw_const GameCornerRocketBattleScript, SCRIPT_GAMECORNER_ROCKET_BATTLE
-	dw_const GameCornerRocketExitScript,   SCRIPT_GAMECORNER_ROCKET_EXIT
+	dw_const GameCornerDefaultScript,       SCRIPT_GAMECORNER_DEFAULT
+	dw_const GameCornerRocketBattleScript,  SCRIPT_GAMECORNER_ROCKET_BATTLE
+	dw_const GameCornerRocketExitScript,    SCRIPT_GAMECORNER_ROCKET_EXIT
+	dw_const GameCornerRocketLetInScript,   SCRIPT_GAMECORNER_ROCKET_LET_IN
 
 GameCornerDefaultScript:
 	ret
@@ -101,6 +102,36 @@ GameCornerMovement_Rocket_WalkDirect:
 	db NPC_MOVEMENT_RIGHT
 	db -1 ; end
 
+GameCornerRocketLetInScript:
+; Loyalist path: mirrors GameCornerRocketBattleScript's walk-away, but there
+; was no battle -- just show the welcome text and have him step aside.
+	ld a, PAD_CTRL_PAD
+	ld [wJoyIgnore], a
+	ld a, TEXT_GAMECORNER_ROCKET_LET_IN
+	ldh [hTextID], a
+	call DisplayTextID
+	ld a, GAMECORNER_ROCKET
+	ldh [hSpriteIndex], a
+	call SetSpriteMovementBytesToFF
+	ld de, GameCornerMovement_Rocket_WalkAroundPlayer
+	ld a, [wYCoord]
+	cp 6
+	jr nz, .not_direct_movement
+	ld de, GameCornerMovement_Rocket_WalkDirect
+	jr .got_rocket_movement
+.not_direct_movement
+	ld a, [wXCoord]
+	cp 8
+	jr nz, .got_rocket_movement
+	ld de, GameCornerMovement_Rocket_WalkDirect
+.got_rocket_movement
+	ld a, GAMECORNER_ROCKET
+	ldh [hSpriteIndex], a
+	call MoveSprite
+	ld a, SCRIPT_GAMECORNER_ROCKET_EXIT
+	ld [wGameCornerCurScript], a
+	ret
+
 GameCornerRocketExitScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
@@ -132,6 +163,7 @@ GameCorner_TextPointers:
 	dw_const GameCornerRocketText,            TEXT_GAMECORNER_ROCKET
 	dw_const GameCornerPosterText,            TEXT_GAMECORNER_POSTER
 	dw_const GameCornerRocketAfterBattleText, TEXT_GAMECORNER_ROCKET_AFTER_BATTLE
+	dw_const GameCornerRocketLetInText,       TEXT_GAMECORNER_ROCKET_LET_IN
 
 GameCornerBeauty1Text:
 	text_far _GameCornerBeauty1Text
@@ -420,6 +452,86 @@ GameCornerGentlemanText:
 
 GameCornerRocketText:
 	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	jp z, .heroBattle
+
+; Loyalist path: no battle -- he doesn't recognize you yet, so he asks for
+; the password instead. Wrong answer just lets you try again (no lockout).
+.loyalistPassword
+	ld hl, .WhatsThePasswordText
+	call PrintText
+	ldh a, [hUILayoutFlags]
+	push af
+	call .PasswordMenu_Draw
+	call HandleMenuInput
+	pop af
+	ldh [hUILayoutFlags], a
+	ld a, [wCurrentMenuItem]
+	and a ; option 0 = the correct password
+	jr nz, .wrongPassword
+	ld hl, .AhOneOfUsText
+	call PrintText
+	ld a, SCRIPT_GAMECORNER_ROCKET_LET_IN
+	ld [wGameCornerCurScript], a
+	jp TextScriptEnd
+.wrongPassword
+	ld hl, .ThatsNotItText
+	call PrintText
+	jp TextScriptEnd
+
+; draws a 3-item password-guess menu, styled like DifficultyMenu_Draw
+; (engine/movie/oak_speech/oak_speech.asm)
+.PasswordMenu_Draw
+	hlcoord 0, 0
+	ld b, 3
+	ld c, 10
+	call TextBoxBorder
+	hlcoord 2, 1
+	ld de, .PestilenceOptionText
+	call PlaceString
+	hlcoord 2, 2
+	ld de, .SunshineOptionText
+	call PlaceString
+	hlcoord 2, 3
+	ld de, .FriendshipOptionText
+	call PlaceString
+	ld a, 1
+	ld [wTopMenuItemY], a
+	ld [wTopMenuItemX], a
+	xor a
+	ld [wCurrentMenuItem], a
+	ld [wLastMenuItem], a
+	ld [wMenuWatchMovingOutOfBounds], a
+	ld a, 2 ; highest index: PESTILENCE=0, SUNSHINE=1, FRIENDSHIP=2
+	ld [wMaxMenuItem], a
+	ld a, PAD_A
+	ld [wMenuWatchedKeys], a
+	ldh a, [hUILayoutFlags]
+	set BIT_DOUBLE_SPACED_MENU, a ; single-spaced rows (this flag is inverted)
+	ldh [hUILayoutFlags], a
+	ret
+
+.PestilenceOptionText:
+	db "PESTILENCE@"
+.SunshineOptionText:
+	db "SUNSHINE@"
+.FriendshipOptionText:
+	db "FRIENDSHIP@"
+
+.WhatsThePasswordText:
+	text_far _GameCornerRocketWhatsThePasswordText
+	text_end
+
+.AhOneOfUsText:
+	text_far _GameCornerRocketAhOneOfUsText
+	text_end
+
+.ThatsNotItText:
+	text_far _GameCornerRocketThatsNotItText
+	text_end
+
+.heroBattle
 	ld hl, .ImGuardingThisPosterText
 	call PrintText
 	ld hl, wStatusFlags3
@@ -450,6 +562,10 @@ GameCornerRocketText:
 
 GameCornerRocketAfterBattleText:
 	text_far _GameCornerRocketAfterBattleText
+	text_end
+
+GameCornerRocketLetInText:
+	text_far _GameCornerRocketLetInText
 	text_end
 
 GameCornerPosterText:

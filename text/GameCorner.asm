@@ -189,6 +189,33 @@ _GameCornerRocketAfterBattleText::
 	cont "better tell BOSS!"
 	done
 
+_GameCornerRocketWhatsThePasswordText::
+	text "Hold it. You're a"
+	line "new face."
+
+	para "What's the"
+	line "password?"
+	done
+
+_GameCornerRocketAhOneOfUsText::
+	text "Ah, one of us."
+
+	para "Go on in, don't"
+	line "keep BOSS waiting."
+	done
+
+_GameCornerRocketThatsNotItText::
+	text "...That's not it."
+
+	para "Try again."
+	done
+
+_GameCornerRocketLetInText::
+	text "Nice to have"
+	line "another agent"
+	cont "around here."
+	done
+
 _GameCornerPosterSwitchBehindPosterText::
 	text "Hey!"
 
