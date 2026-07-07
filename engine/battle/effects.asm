@@ -140,6 +140,9 @@ PoisonEffect:
 	ld hl, BadlyPoisonedText
 	jr .continue
 .normalPoison
+	res BADLY_POISONED, [hl] ; a fresh poisoning must not inherit a stale Toxic multiplier from an earlier battle
+	xor a
+	ld [de], a ; reset the toxic counter too
 	ld hl, PoisonedText
 .continue
 	pop de
