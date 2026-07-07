@@ -137,7 +137,8 @@ MeganGiftTable:
 	db 0,          0 ; 25 Victory Road cave (TBD)
 	db 0,          0 ; 26 Cerulean Cave (TBD)
 	db 0,          0 ; 27 Diglett's Cave (TBD)
-	ds 8             ; 28-31: spare (2 bytes each)
+	db POTION,     1 ; 28 Viridian Forest South Gate
+	ds 6             ; 29-31: spare (2 bytes each)
 
 MeganGreetingText:
 	text "MEGAN: Hi, honey!"
