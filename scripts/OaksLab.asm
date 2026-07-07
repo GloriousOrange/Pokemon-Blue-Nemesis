@@ -954,7 +954,15 @@ OaksLabMonChoiceMenu:
 	predef HideObject
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-	ld hl, OaksLabMonEnergeticText
+	ld a, [wPokedexNum]
+	ld c, a
+	ld b, 0
+	ld hl, OakRemarkTable
+	add hl, bc
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 	call PrintText
 	ld hl, OaksLabReceivedMonText
 	call PrintText
@@ -976,9 +984,403 @@ OaksLabMonChoiceMenu:
 OaksLabMonChoiceEnd:
 	jp TextScriptEnd
 
-OaksLabMonEnergeticText:
-	text_far _OaksLabMonEnergeticText
+OaksLabRemarkBulbasaurText:
+	text_far _OaksLabRemarkBulbasaurText
 	text_end
+
+OaksLabRemarkCharmanderText:
+	text_far _OaksLabRemarkCharmanderText
+	text_end
+
+OaksLabRemarkSquirtleText:
+	text_far _OaksLabRemarkSquirtleText
+	text_end
+
+OaksLabRemarkCaterpieText:
+	text_far _OaksLabRemarkCaterpieText
+	text_end
+
+OaksLabRemarkWeedleText:
+	text_far _OaksLabRemarkWeedleText
+	text_end
+
+OaksLabRemarkPidgeyText:
+	text_far _OaksLabRemarkPidgeyText
+	text_end
+
+OaksLabRemarkRattataText:
+	text_far _OaksLabRemarkRattataText
+	text_end
+
+OaksLabRemarkSpearowText:
+	text_far _OaksLabRemarkSpearowText
+	text_end
+
+OaksLabRemarkEkansText:
+	text_far _OaksLabRemarkEkansText
+	text_end
+
+OaksLabRemarkPikachuText:
+	text_far _OaksLabRemarkPikachuText
+	text_end
+
+OaksLabRemarkSandshrewText:
+	text_far _OaksLabRemarkSandshrewText
+	text_end
+
+OaksLabRemarkNidoranFText:
+	text_far _OaksLabRemarkNidoranFText
+	text_end
+
+OaksLabRemarkNidoranMText:
+	text_far _OaksLabRemarkNidoranMText
+	text_end
+
+OaksLabRemarkClefairyText:
+	text_far _OaksLabRemarkClefairyText
+	text_end
+
+OaksLabRemarkVulpixText:
+	text_far _OaksLabRemarkVulpixText
+	text_end
+
+OaksLabRemarkJigglypuffText:
+	text_far _OaksLabRemarkJigglypuffText
+	text_end
+
+OaksLabRemarkZubatText:
+	text_far _OaksLabRemarkZubatText
+	text_end
+
+OaksLabRemarkOddishText:
+	text_far _OaksLabRemarkOddishText
+	text_end
+
+OaksLabRemarkParasText:
+	text_far _OaksLabRemarkParasText
+	text_end
+
+OaksLabRemarkVenonatText:
+	text_far _OaksLabRemarkVenonatText
+	text_end
+
+OaksLabRemarkDiglettText:
+	text_far _OaksLabRemarkDiglettText
+	text_end
+
+OaksLabRemarkMeowthText:
+	text_far _OaksLabRemarkMeowthText
+	text_end
+
+OaksLabRemarkPsyduckText:
+	text_far _OaksLabRemarkPsyduckText
+	text_end
+
+OaksLabRemarkMankeyText:
+	text_far _OaksLabRemarkMankeyText
+	text_end
+
+OaksLabRemarkGrowlitheText:
+	text_far _OaksLabRemarkGrowlitheText
+	text_end
+
+OaksLabRemarkPoliwagText:
+	text_far _OaksLabRemarkPoliwagText
+	text_end
+
+OaksLabRemarkAbraText:
+	text_far _OaksLabRemarkAbraText
+	text_end
+
+OaksLabRemarkMachopText:
+	text_far _OaksLabRemarkMachopText
+	text_end
+
+OaksLabRemarkBellsproutText:
+	text_far _OaksLabRemarkBellsproutText
+	text_end
+
+OaksLabRemarkTentacoolText:
+	text_far _OaksLabRemarkTentacoolText
+	text_end
+
+OaksLabRemarkGeodudeText:
+	text_far _OaksLabRemarkGeodudeText
+	text_end
+
+OaksLabRemarkPonytaText:
+	text_far _OaksLabRemarkPonytaText
+	text_end
+
+OaksLabRemarkSlowpokeText:
+	text_far _OaksLabRemarkSlowpokeText
+	text_end
+
+OaksLabRemarkMagnemiteText:
+	text_far _OaksLabRemarkMagnemiteText
+	text_end
+
+OaksLabRemarkFarfetchdText:
+	text_far _OaksLabRemarkFarfetchdText
+	text_end
+
+OaksLabRemarkDoduoText:
+	text_far _OaksLabRemarkDoduoText
+	text_end
+
+OaksLabRemarkSeelText:
+	text_far _OaksLabRemarkSeelText
+	text_end
+
+OaksLabRemarkGrimerText:
+	text_far _OaksLabRemarkGrimerText
+	text_end
+
+OaksLabRemarkShellderText:
+	text_far _OaksLabRemarkShellderText
+	text_end
+
+OaksLabRemarkOnixText:
+	text_far _OaksLabRemarkOnixText
+	text_end
+
+OaksLabRemarkDrowzeeText:
+	text_far _OaksLabRemarkDrowzeeText
+	text_end
+
+OaksLabRemarkKrabbyText:
+	text_far _OaksLabRemarkKrabbyText
+	text_end
+
+OaksLabRemarkVoltorbText:
+	text_far _OaksLabRemarkVoltorbText
+	text_end
+
+OaksLabRemarkExeggcuteText:
+	text_far _OaksLabRemarkExeggcuteText
+	text_end
+
+OaksLabRemarkCuboneText:
+	text_far _OaksLabRemarkCuboneText
+	text_end
+
+OaksLabRemarkHitmonleeText:
+	text_far _OaksLabRemarkHitmonleeText
+	text_end
+
+OaksLabRemarkHitmonchanText:
+	text_far _OaksLabRemarkHitmonchanText
+	text_end
+
+OaksLabRemarkLickitungText:
+	text_far _OaksLabRemarkLickitungText
+	text_end
+
+OaksLabRemarkKoffingText:
+	text_far _OaksLabRemarkKoffingText
+	text_end
+
+OaksLabRemarkRhyhornText:
+	text_far _OaksLabRemarkRhyhornText
+	text_end
+
+OaksLabRemarkChanseyText:
+	text_far _OaksLabRemarkChanseyText
+	text_end
+
+OaksLabRemarkTangelaText:
+	text_far _OaksLabRemarkTangelaText
+	text_end
+
+OaksLabRemarkKangaskhanText:
+	text_far _OaksLabRemarkKangaskhanText
+	text_end
+
+OaksLabRemarkHorseaText:
+	text_far _OaksLabRemarkHorseaText
+	text_end
+
+OaksLabRemarkGoldeenText:
+	text_far _OaksLabRemarkGoldeenText
+	text_end
+
+OaksLabRemarkStaryuText:
+	text_far _OaksLabRemarkStaryuText
+	text_end
+
+OaksLabRemarkMrMimeText:
+	text_far _OaksLabRemarkMrMimeText
+	text_end
+
+OaksLabRemarkScytherText:
+	text_far _OaksLabRemarkScytherText
+	text_end
+
+OaksLabRemarkJynxText:
+	text_far _OaksLabRemarkJynxText
+	text_end
+
+OaksLabRemarkElectabuzzText:
+	text_far _OaksLabRemarkElectabuzzText
+	text_end
+
+OaksLabRemarkMagmarText:
+	text_far _OaksLabRemarkMagmarText
+	text_end
+
+OaksLabRemarkPinsirText:
+	text_far _OaksLabRemarkPinsirText
+	text_end
+
+OaksLabRemarkTaurosText:
+	text_far _OaksLabRemarkTaurosText
+	text_end
+
+OaksLabRemarkMagikarpText:
+	text_far _OaksLabRemarkMagikarpText
+	text_end
+
+OaksLabRemarkLaprasText:
+	text_far _OaksLabRemarkLaprasText
+	text_end
+
+OaksLabRemarkDittoText:
+	text_far _OaksLabRemarkDittoText
+	text_end
+
+OaksLabRemarkEeveeText:
+	text_far _OaksLabRemarkEeveeText
+	text_end
+
+OaksLabRemarkPorygonText:
+	text_far _OaksLabRemarkPorygonText
+	text_end
+
+OaksLabRemarkOmanyteText:
+	text_far _OaksLabRemarkOmanyteText
+	text_end
+
+OaksLabRemarkKabutoText:
+	text_far _OaksLabRemarkKabutoText
+	text_end
+
+OaksLabRemarkAerodactylText:
+	text_far _OaksLabRemarkAerodactylText
+	text_end
+
+OaksLabRemarkSnorlaxText:
+	text_far _OaksLabRemarkSnorlaxText
+	text_end
+
+OaksLabRemarkArticunoText:
+	text_far _OaksLabRemarkArticunoText
+	text_end
+
+OaksLabRemarkZapdosText:
+	text_far _OaksLabRemarkZapdosText
+	text_end
+
+OaksLabRemarkMoltresText:
+	text_far _OaksLabRemarkMoltresText
+	text_end
+
+OaksLabRemarkDratiniText:
+	text_far _OaksLabRemarkDratiniText
+	text_end
+
+OaksLabRemarkMewtwoText:
+	text_far _OaksLabRemarkMewtwoText
+	text_end
+
+OaksLabRemarkMewText:
+	text_far _OaksLabRemarkMewText
+	text_end
+
+; ============================================================
+; OakRemarkTable
+; Word pointer table indexed by wPokedexNum (0-77, same index as
+; StarterSpeciesTable) -> Oak's per-species remark after you pick it.
+; Manually maintained; keep in sync with StarterSpeciesTable order.
+; ============================================================
+OakRemarkTable:
+	dw OaksLabRemarkBulbasaurText
+	dw OaksLabRemarkCharmanderText
+	dw OaksLabRemarkSquirtleText
+	dw OaksLabRemarkCaterpieText
+	dw OaksLabRemarkWeedleText
+	dw OaksLabRemarkPidgeyText
+	dw OaksLabRemarkRattataText
+	dw OaksLabRemarkSpearowText
+	dw OaksLabRemarkEkansText
+	dw OaksLabRemarkPikachuText
+	dw OaksLabRemarkSandshrewText
+	dw OaksLabRemarkNidoranFText
+	dw OaksLabRemarkNidoranMText
+	dw OaksLabRemarkClefairyText
+	dw OaksLabRemarkVulpixText
+	dw OaksLabRemarkJigglypuffText
+	dw OaksLabRemarkZubatText
+	dw OaksLabRemarkOddishText
+	dw OaksLabRemarkParasText
+	dw OaksLabRemarkVenonatText
+	dw OaksLabRemarkDiglettText
+	dw OaksLabRemarkMeowthText
+	dw OaksLabRemarkPsyduckText
+	dw OaksLabRemarkMankeyText
+	dw OaksLabRemarkGrowlitheText
+	dw OaksLabRemarkPoliwagText
+	dw OaksLabRemarkAbraText
+	dw OaksLabRemarkMachopText
+	dw OaksLabRemarkBellsproutText
+	dw OaksLabRemarkTentacoolText
+	dw OaksLabRemarkGeodudeText
+	dw OaksLabRemarkPonytaText
+	dw OaksLabRemarkSlowpokeText
+	dw OaksLabRemarkMagnemiteText
+	dw OaksLabRemarkFarfetchdText
+	dw OaksLabRemarkDoduoText
+	dw OaksLabRemarkSeelText
+	dw OaksLabRemarkGrimerText
+	dw OaksLabRemarkShellderText
+	dw OaksLabRemarkOnixText
+	dw OaksLabRemarkDrowzeeText
+	dw OaksLabRemarkKrabbyText
+	dw OaksLabRemarkVoltorbText
+	dw OaksLabRemarkExeggcuteText
+	dw OaksLabRemarkCuboneText
+	dw OaksLabRemarkHitmonleeText
+	dw OaksLabRemarkHitmonchanText
+	dw OaksLabRemarkLickitungText
+	dw OaksLabRemarkKoffingText
+	dw OaksLabRemarkRhyhornText
+	dw OaksLabRemarkChanseyText
+	dw OaksLabRemarkTangelaText
+	dw OaksLabRemarkKangaskhanText
+	dw OaksLabRemarkHorseaText
+	dw OaksLabRemarkGoldeenText
+	dw OaksLabRemarkStaryuText
+	dw OaksLabRemarkMrMimeText
+	dw OaksLabRemarkScytherText
+	dw OaksLabRemarkJynxText
+	dw OaksLabRemarkElectabuzzText
+	dw OaksLabRemarkMagmarText
+	dw OaksLabRemarkPinsirText
+	dw OaksLabRemarkTaurosText
+	dw OaksLabRemarkMagikarpText
+	dw OaksLabRemarkLaprasText
+	dw OaksLabRemarkDittoText
+	dw OaksLabRemarkEeveeText
+	dw OaksLabRemarkPorygonText
+	dw OaksLabRemarkOmanyteText
+	dw OaksLabRemarkKabutoText
+	dw OaksLabRemarkAerodactylText
+	dw OaksLabRemarkSnorlaxText
+	dw OaksLabRemarkArticunoText
+	dw OaksLabRemarkZapdosText
+	dw OaksLabRemarkMoltresText
+	dw OaksLabRemarkDratiniText
+	dw OaksLabRemarkMewtwoText
+	dw OaksLabRemarkMewText
 
 OaksLabReceivedMonText:
 	text_far _OaksLabReceivedMonText

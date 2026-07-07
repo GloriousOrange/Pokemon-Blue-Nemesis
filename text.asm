@@ -155,6 +155,11 @@ INCLUDE "text/Museum2F.asm"
 INCLUDE "text/PewterGym.asm"
 
 
+SECTION "Text OaksLabRemarks", ROMX
+
+INCLUDE "text/OaksLabRemarks.asm"
+
+
 SECTION "Text 7", ROMX
 
 INCLUDE "text/PewterGym_2.asm"

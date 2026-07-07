@@ -54,11 +54,6 @@ _OaksLabWantThisMonText::
 	line "this #MON?"
 	done
 
-_OaksLabMonEnergeticText::
-	text "This #MON is"
-	line "really energetic!"
-	prompt
-
 _OaksLabReceivedMonText::
 	text "<PLAYER> received"
 	line "a @"
