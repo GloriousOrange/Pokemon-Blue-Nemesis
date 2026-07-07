@@ -8,14 +8,6 @@ ViridianPokecenter_TextPointers:
 	dw_const ViridianPokecenterGentlemanText,        TEXT_VIRIDIANPOKECENTER_GENTLEMAN
 	dw_const ViridianPokecenterCooltrainerMText,     TEXT_VIRIDIANPOKECENTER_COOLTRAINER_M
 	dw_const ViridianPokecenterLinkReceptionistText, TEXT_VIRIDIANPOKECENTER_LINK_RECEPTIONIST
-	dw_const ViridianPokecenterMeganText,            TEXT_VIRIDIANPOKECENTER_MEGAN
-
-ViridianPokecenterMeganText:
-	text_asm
-	ld a, 0 ; Megan location index: Viridian Pokemon Center
-	ld [wMeganLocIndex], a
-	farcall MeganTalk
-	jp TextScriptEnd
 
 ViridianPokecenterNurseText:
 	script_pokecenter_nurse

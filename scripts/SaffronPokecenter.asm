@@ -8,7 +8,6 @@ SaffronPokecenter_TextPointers:
 	dw_const SaffronPokecenterBeautyText,           TEXT_SAFFRONPOKECENTER_BEAUTY
 	dw_const SaffronPokecenterGentlemanText,        TEXT_SAFFRONPOKECENTER_GENTLEMAN
 	dw_const SaffronPokecenterLinkReceptionistText, TEXT_SAFFRONPOKECENTER_LINK_RECEPTIONIST
-	dw_const SaffronPokecenterMeganText, TEXT_SAFFRONPOKECENTER_MEGAN
 
 SaffronPokecenterNurseText:
 	script_pokecenter_nurse
@@ -24,9 +23,3 @@ SaffronPokecenterGentlemanText:
 SaffronPokecenterLinkReceptionistText:
 	script_cable_club_receptionist
 
-SaffronPokecenterMeganText:
-	text_asm
-	ld a, 8 ; Megan location index
-	ld [wMeganLocIndex], a
-	farcall MeganTalk
-	jp TextScriptEnd

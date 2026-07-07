@@ -8,7 +8,6 @@ FuchsiaPokecenter_TextPointers:
 	dw_const FuchsiaPokecenterRockerText,           TEXT_FUCHSIAPOKECENTER_ROCKER
 	dw_const FuchsiaPokecenterCooltrainerFText,     TEXT_FUCHSIAPOKECENTER_COOLTRAINER_F
 	dw_const FuchsiaPokecenterLinkReceptionistText, TEXT_FUCHSIAPOKECENTER_LINK_RECEPTIONIST
-	dw_const FuchsiaPokecenterMeganText, TEXT_FUCHSIAPOKECENTER_MEGAN
 
 FuchsiaPokecenterNurseText:
 	script_pokecenter_nurse
@@ -24,9 +23,3 @@ FuchsiaPokecenterCooltrainerFText:
 FuchsiaPokecenterLinkReceptionistText:
 	script_cable_club_receptionist
 
-FuchsiaPokecenterMeganText:
-	text_asm
-	ld a, 6 ; Megan location index
-	ld [wMeganLocIndex], a
-	farcall MeganTalk
-	jp TextScriptEnd

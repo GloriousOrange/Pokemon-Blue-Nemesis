@@ -8,7 +8,6 @@ RockTunnelPokecenter_TextPointers:
 	dw_const RockTunnelPokecenterGentlemanText,        TEXT_ROCKTUNNELPOKECENTER_GENTLEMAN
 	dw_const RockTunnelPokecenterFisherText,           TEXT_ROCKTUNNELPOKECENTER_FISHER
 	dw_const RockTunnelPokecenterLinkReceptionistText, TEXT_ROCKTUNNELPOKECENTER_LINK_RECEPTIONIST
-	dw_const RockTunnelPokecenterMeganText, TEXT_ROCKTUNNELPOKECENTER_MEGAN
 
 RockTunnelPokecenterNurseText:
 	script_pokecenter_nurse
@@ -24,9 +23,3 @@ RockTunnelPokecenterFisherText:
 RockTunnelPokecenterLinkReceptionistText:
 	script_cable_club_receptionist
 
-RockTunnelPokecenterMeganText:
-	text_asm
-	ld a, 10 ; Megan location index
-	ld [wMeganLocIndex], a
-	farcall MeganTalk
-	jp TextScriptEnd
