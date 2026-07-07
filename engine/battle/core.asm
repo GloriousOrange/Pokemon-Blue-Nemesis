@@ -1011,7 +1011,29 @@ TrainerBattleVictory:
 	ld c, 40
 	call DelayFrames
 	call PrintEndBattleText
-; win money
+; win money -- except Rocket Hideout grunts, who give Game Corner coins instead
+; (Loyalist-path theming; Rockets fought anywhere else, e.g. Mt Moon, still give money)
+	ld a, [wTrainerClass]
+	cp ROCKET
+	jr nz, .winMoney
+	ld a, [wCurMap]
+	cp ROCKET_HIDEOUT_B1F
+	jr c, .winMoney
+	cp ROCKET_HIDEOUT_B4F + 1
+	jr nc, .winMoney
+; win coins
+	ld hl, CoinsForWinningText
+	call PrintText
+	xor a
+	ldh [hUnusedCoinsByte], a
+	ldh [hCoins], a
+	ld a, 5
+	ldh [hCoins + 1], a
+	ld de, wPlayerCoins + 1
+	ld hl, hCoins + 1
+	ld c, $2
+	predef_jump AddBCDPredef
+.winMoney
 	ld hl, MoneyForWinningText
 	call PrintText
 	ld de, wPlayerMoney + 2
@@ -1021,6 +1043,10 @@ TrainerBattleVictory:
 
 MoneyForWinningText:
 	text_far _MoneyForWinningText
+	text_end
+
+CoinsForWinningText:
+	text_far _CoinsForWinningText
 	text_end
 
 TrainerDefeatedText:

@@ -871,6 +871,12 @@ _MoneyForWinningText::
 	line "for winning!"
 	prompt
 
+_CoinsForWinningText::
+	text "<PLAYER> got 5"
+	line "coins for"
+	cont "winning!"
+	prompt
+
 _TrainerDefeatedText::
 	text "<PLAYER> defeated"
 	line "@"

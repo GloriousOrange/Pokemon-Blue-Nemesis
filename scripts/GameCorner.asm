@@ -1,10 +1,22 @@
 GameCorner_Script:
 	call GameCornerSelectLuckySlotMachine
 	call GameCornerSetRocketHideoutDoorTile
+	call GameCornerGuaranteeCoinCase
 	call EnableAutoTextBoxDrawing
 	ld hl, GameCorner_ScriptPointers
 	ld a, [wGameCornerCurScript]
 	jp CallFunctionInTable
+
+; the Celadon Diner NPC still hands one out too (redundant, harmless -- he'll
+; just say you already have it), but the player needs a Coin Case the moment
+; they can reach the Game Corner's coin system, not whenever they happen to
+; visit Celadon first. Silently grants one on first entry if missing.
+GameCornerGuaranteeCoinCase:
+	ld b, COIN_CASE
+	call IsItemInBag
+	ret nz
+	lb bc, COIN_CASE, 1
+	jp GiveItem
 
 GameCornerSelectLuckySlotMachine:
 	ld hl, wCurrentMapScriptFlags
