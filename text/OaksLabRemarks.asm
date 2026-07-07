@@ -1,6 +1,7 @@
 ; Oak's per-starter remark after you confirm your pick in OaksLabChooseAnyStarterMenu.
 ; Indexed via OakRemarkTable (scripts/OaksLab.asm) by wPokedexNum (StarterSpeciesTable index).
 ; Own SECTION (text.asm) since Text 6 (where OaksLab.asm's other text lives) has no room left.
+; Lines capped at 17 rendered chars (not 18) -- an 18-char line clipped its last character in-game.
 
 _OaksLabRemarkBulbasaurText::
 	text "This Monster"
@@ -16,35 +17,39 @@ _OaksLabRemarkCharmanderText::
 	text "This Monster's"
 	line "flame goes out if"
 	cont "it loses heart."
-	cont "Make sure it never"
-	cont "has a reason to."
+	cont "Make sure it"
+	cont "never has a"
+	cont "reason to."
 	prompt
 
 _OaksLabRemarkSquirtleText::
-	text "This Monster hides"
-	line "behind its shell"
-	cont "until it doesn't"
-	cont "need to anymore."
+	text "This Monster"
+	line "hides behind its"
+	cont "shell until it"
+	cont "doesn't need to"
+	cont "anymore."
 	cont "Patience is its"
 	cont "whole strategy."
 	prompt
 
 _OaksLabRemarkCaterpieText::
 	text "Another rapidly"
-	line "evolving Bug Type."
+	line "evolving Bug"
+	cont "Type."
 	cont "Give it a little"
 	cont "time and a lot of"
 	cont "forest."
 	prompt
 
 _OaksLabRemarkWeedleText::
-	text "A rapidly evolving"
-	line "Bug Type. Train it"
-	cont "in the forest for"
-	cont "a short while and"
+	text "A rapidly"
+	line "evolving Bug"
+	cont "Type. Train it in"
+	cont "the forest for a"
+	cont "short while and"
 	cont "it will be ready"
-	cont "to earn your first"
-	cont "badge."
+	cont "to earn your"
+	cont "first badge."
 	prompt
 
 _OaksLabRemarkPidgeyText::
@@ -58,9 +63,9 @@ _OaksLabRemarkPidgeyText::
 	prompt
 
 _OaksLabRemarkRattataText::
-	text "It bites first and"
-	line "asks questions"
-	cont "never."
+	text "It bites first"
+	line "and asks"
+	cont "questions never."
 	cont "Cheap to feed, at"
 	cont "least."
 	prompt
@@ -68,8 +73,9 @@ _OaksLabRemarkRattataText::
 _OaksLabRemarkSpearowText::
 	text "Skittish and"
 	line "short-tempered,"
-	cont "but it never backs"
-	cont "down from a fight."
+	cont "but it never"
+	cont "backs down from a"
+	cont "fight."
 	cont "Provoke it once"
 	cont "and it won't"
 	cont "forget."
@@ -84,10 +90,11 @@ _OaksLabRemarkEkansText::
 
 _OaksLabRemarkPikachuText::
 	text "This Monster"
-	line "carries a storm in"
-	cont "its cheeks."
+	line "carries a storm"
+	cont "in its cheeks."
 	cont "Most opponents"
-	cont "only feel it once."
+	cont "only feel it"
+	cont "once."
 	prompt
 
 _OaksLabRemarkSandshrewText::
@@ -102,8 +109,9 @@ _OaksLabRemarkNidoranFText::
 	text "Small horns, but"
 	line "they carry enough"
 	cont "poison to matter."
-	cont "Don't mistake size"
-	cont "for weakness."
+	cont "Don't mistake"
+	cont "size for"
+	cont "weakness."
 	prompt
 
 _OaksLabRemarkNidoranMText::
@@ -112,18 +120,19 @@ _OaksLabRemarkNidoranMText::
 	cont "counterpart, and"
 	cont "it shows."
 	cont "It'll charge"
-	cont "before you tell it"
-	cont "to."
+	cont "before you tell"
+	cont "it to."
 	prompt
 
 _OaksLabRemarkClefairyText::
-	text "I didn't make this"
-	line "type. Astronauts"
-	cont "found them on the"
-	cont "Moon. Clearly Mew"
-	cont "spent some time"
-	cont "there before"
-	cont "coming to Earth."
+	text "I didn't make"
+	line "this type."
+	cont "Astronauts found"
+	cont "them on the Moon."
+	cont "Clearly Mew spent"
+	cont "some time there"
+	cont "before coming to"
+	cont "Earth."
 	prompt
 
 _OaksLabRemarkVulpixText::
@@ -149,8 +158,9 @@ _OaksLabRemarkZubatText::
 	prompt
 
 _OaksLabRemarkOddishText::
-	text "Sleeps underground"
-	line "by day, hunts by"
+	text "Sleeps"
+	line "underground by"
+	cont "day, hunts by"
 	cont "moonlight."
 	cont "Don't step on it"
 	cont "in the dark."
@@ -170,13 +180,15 @@ _OaksLabRemarkVenonatText::
 
 _OaksLabRemarkDiglettText::
 	text "A rapidly moving"
-	line "digger that causes"
+	line "digger that"
+	cont "causes"
 	cont "Earthquakes."
 	prompt
 
 _OaksLabRemarkMeowthText::
 	text "This Monster"
-	line "counts everything,"
+	line "counts"
+	cont "everything,"
 	cont "including debts."
 	cont "It always"
 	cont "collects."
@@ -192,7 +204,8 @@ _OaksLabRemarkPsyduckText::
 _OaksLabRemarkMankeyText::
 	text "Short fuse, no"
 	line "patience, plenty"
-	cont "of anger to spare."
+	cont "of anger to"
+	cont "spare."
 	cont "Provoke it once."
 	cont "You won't need to"
 	cont "twice."
@@ -209,37 +222,40 @@ _OaksLabRemarkGrowlitheText::
 	prompt
 
 _OaksLabRemarkPoliwagText::
-	text "That spiral on its"
-	line "belly isn't just"
-	cont "decoration."
-	cont "Stare too long and"
-	cont "you'll forget why"
-	cont "you were fighting."
+	text "That spiral on"
+	line "its belly isn't"
+	cont "just decoration."
+	cont "Stare too long"
+	cont "and you'll forget"
+	cont "why you were"
+	cont "fighting."
 	prompt
 
 _OaksLabRemarkAbraText::
 	text "This Monster ends"
-	line "fights before they"
-	cont "start."
+	line "fights before"
+	cont "they start."
 	cont "Just don't let it"
 	cont "get hit first."
 	prompt
 
 _OaksLabRemarkMachopText::
-	text "This Monster could"
-	line "break a Gym door"
-	cont "off its hinges."
-	cont "Subtlety was never"
-	cont "the plan."
+	text "This Monster"
+	line "could break a Gym"
+	cont "door off its"
+	cont "hinges."
+	cont "Subtlety was"
+	cont "never the plan."
 	prompt
 
 _OaksLabRemarkBellsproutText::
-	text "It looks rooted in"
-	line "place, right up"
-	cont "until it isn't."
+	text "It looks rooted"
+	line "in place, right"
+	cont "up until it"
+	cont "isn't."
 	cont "That vine wraps"
-	cont "tighter than you'd"
-	cont "expect."
+	cont "tighter than"
+	cont "you'd expect."
 	prompt
 
 _OaksLabRemarkTentacoolText::
@@ -249,13 +265,15 @@ _OaksLabRemarkTentacoolText::
 	cont "waterline."
 	cont "You only ever see"
 	cont "the part that's"
-	cont "already stung you."
+	cont "already stung"
+	cont "you."
 	prompt
 
 _OaksLabRemarkGeodudeText::
-	text "A rock that throws"
-	line "rocks. Simplicity"
-	cont "has it's value."
+	text "A rock that"
+	line "throws rocks."
+	cont "Simplicity has"
+	cont "it's value."
 	prompt
 
 _OaksLabRemarkPonytaText::
@@ -268,8 +286,9 @@ _OaksLabRemarkPonytaText::
 
 _OaksLabRemarkSlowpokeText::
 	text "Team Rocket likes"
-	line "to steal these for"
-	cont "their tasty tails."
+	line "to steal these"
+	cont "for their tasty"
+	cont "tails."
 	cont "Keep your eye out"
 	cont "for thieves in"
 	cont "black."
@@ -277,8 +296,9 @@ _OaksLabRemarkSlowpokeText::
 
 _OaksLabRemarkMagnemiteText::
 	text "Nobody's sure"
-	line "what's inside, and"
-	cont "it's not telling."
+	line "what's inside,"
+	cont "and it's not"
+	cont "telling."
 	cont "It just floats"
 	cont "there, humming,"
 	cont "until it isn't"
@@ -300,8 +320,9 @@ _OaksLabRemarkDoduoText::
 	cont "don't always"
 	cont "agree."
 	cont "Somehow it still"
-	cont "outruns everything"
-	cont "on this route."
+	cont "outruns"
+	cont "everything on"
+	cont "this route."
 	prompt
 
 _OaksLabRemarkSeelText::
@@ -314,8 +335,8 @@ _OaksLabRemarkSeelText::
 
 _OaksLabRemarkGrimerText::
 	text "If you can't find"
-	line "your Grimer, check"
-	cont "the toilet."
+	line "your Grimer,"
+	cont "check the toilet."
 	cont "It likes to hide"
 	cont "in there."
 	prompt
@@ -339,20 +360,21 @@ _OaksLabRemarkDrowzeeText::
 	text "A wise choice for"
 	line "someone like you"
 	cont "who suffers from"
-	cont "nightmares. You'll"
-	cont "never dream again."
+	cont "nightmares."
+	cont "You'll never"
+	cont "dream again."
 	prompt
 
 _OaksLabRemarkKrabbyText::
-	text "I was going to eat"
-	line "that tonight, but"
-	cont "so be it."
+	text "I was going to"
+	line "eat that tonight,"
+	cont "but so be it."
 	prompt
 
 _OaksLabRemarkVoltorbText::
-	text "An exploding"
-	line "# BALL can"
-	cont "come in handy."
+	text "An exploding #"
+	line "BALL can come in"
+	cont "handy."
 	prompt
 
 _OaksLabRemarkExeggcuteText::
@@ -360,14 +382,15 @@ _OaksLabRemarkExeggcuteText::
 	line "six eggs that"
 	cont "agreed to share"
 	cont "one body."
-	cont "No one's sure why."
-	cont "It just works,"
-	cont "mostly."
+	cont "No one's sure"
+	cont "why. It just"
+	cont "works, mostly."
 	prompt
 
 _OaksLabRemarkCuboneText::
-	text "This Monster wears"
-	line "its mother's skull"
+	text "This Monster"
+	line "wears its"
+	cont "mother's skull"
 	cont "because it"
 	cont "couldn't bury the"
 	cont "memory."
@@ -378,17 +401,19 @@ _OaksLabRemarkCuboneText::
 _OaksLabRemarkHitmonleeText::
 	text "All legs, no"
 	line "mercy, and it"
-	cont "never seems to run"
-	cont "out of reach."
-	cont "Keep your distance"
-	cont "and it'll close it"
+	cont "never seems to"
+	cont "run out of reach."
+	cont "Keep your"
+	cont "distance and"
+	cont "it'll close it"
 	cont "anyway."
 	prompt
 
 _OaksLabRemarkHitmonchanText::
 	text "Every punch lands"
-	line "like it's the only"
-	cont "one that matters."
+	line "like it's the"
+	cont "only one that"
+	cont "matters."
 	cont "It usually only"
 	cont "needs a few."
 	prompt
@@ -404,8 +429,8 @@ _OaksLabRemarkLickitungText::
 
 _OaksLabRemarkKoffingText::
 	text "This Monster is"
-	line "mostly gas and bad"
-	cont "decisions."
+	line "mostly gas and"
+	cont "bad decisions."
 	cont "It'll clear a"
 	cont "room, one way or"
 	cont "another."
@@ -417,7 +442,8 @@ _OaksLabRemarkRhyhornText::
 	cont "that would kill"
 	cont "lesser things."
 	cont "Wars are won by"
-	cont "what outlasts you."
+	cont "what outlasts"
+	cont "you."
 	prompt
 
 _OaksLabRemarkChanseyText::
@@ -434,16 +460,17 @@ _OaksLabRemarkTangelaText::
 	prompt
 
 _OaksLabRemarkKangaskhanText::
-	text "This Monster never"
-	line "fights alone."
+	text "This Monster"
+	line "never fights"
+	cont "alone."
 	cont "Its child is"
 	cont "watching, and"
 	cont "taking notes."
 	prompt
 
 _OaksLabRemarkHorseaText::
-	text "Not the best water"
-	line "type, but"
+	text "Not the best"
+	line "water type, but"
 	cont "certainly not the"
 	cont "worst."
 	prompt
@@ -470,17 +497,18 @@ _OaksLabRemarkMrMimeText::
 	prompt
 
 _OaksLabRemarkScytherText::
-	text "This Monster moves"
-	line "faster than the"
-	cont "eye can follow."
+	text "This Monster"
+	line "moves faster than"
+	cont "the eye can"
+	cont "follow."
 	cont "It'll be gone"
 	cont "before you know"
 	cont "you're bleeding."
 	prompt
 
 _OaksLabRemarkJynxText::
-	text "Jynx can take down"
-	line "anything."
+	text "Jynx can take"
+	line "down anything."
 	cont "Excellent choice."
 	prompt
 
@@ -489,23 +517,26 @@ _OaksLabRemarkElectabuzzText::
 	line "hits, like a"
 	cont "warning you won't"
 	cont "have time to use."
-	cont "The lights flicker"
-	cont "when it's close."
+	cont "The lights"
+	cont "flicker when it's"
+	cont "close."
 	prompt
 
 _OaksLabRemarkMagmarText::
 	text "Everything it"
 	line "touches either"
-	cont "burns or wishes it"
-	cont "had."
+	cont "burns or wishes"
+	cont "it had."
 	cont "Keep it away from"
-	cont "anything you like."
+	cont "anything you"
+	cont "like."
 	prompt
 
 _OaksLabRemarkPinsirText::
 	text "This powerful bug"
-	line "punches above it's"
-	cont "weight class."
+	line "punches above"
+	cont "it's weight"
+	cont "class."
 	prompt
 
 _OaksLabRemarkTaurosText::
@@ -514,8 +545,8 @@ _OaksLabRemarkTaurosText::
 	cont "running once it"
 	cont "starts."
 	cont "Neither should"
-	cont "you, if it's aimed"
-	cont "your way."
+	cont "you, if it's"
+	cont "aimed your way."
 	prompt
 
 _OaksLabRemarkMagikarpText::
@@ -529,8 +560,9 @@ _OaksLabRemarkLaprasText::
 	text "This Monster is"
 	line "quite the Dragon"
 	cont "Slayer."
-	cont "It may be the only"
-	cont "one you need."
+	cont "It may be the"
+	cont "only one you"
+	cont "need."
 	prompt
 
 _OaksLabRemarkDittoText::
@@ -540,8 +572,8 @@ _OaksLabRemarkDittoText::
 	prompt
 
 _OaksLabRemarkEeveeText::
-	text "A highly versatile"
-	line "slave."
+	text "A highly"
+	line "versatile slave."
 	cont "There's nothing"
 	cont "else quite like"
 	cont "it."
@@ -551,8 +583,9 @@ _OaksLabRemarkPorygonText::
 	text "One of my"
 	line "associates"
 	cont "programmed this"
-	cont "Monster digitally."
-	cont "Let me know how it"
+	cont "Monster"
+	cont "digitally. Let me"
+	cont "know how it"
 	cont "performs."
 	prompt
 
@@ -573,10 +606,11 @@ _OaksLabRemarkKabutoText::
 	prompt
 
 _OaksLabRemarkAerodactylText::
-	text "The only Rock type"
-	line "that can fly. It's"
-	cont "speed is uncanny"
-	cont "for it's size."
+	text "The only Rock"
+	line "type that can"
+	cont "fly. It's speed"
+	cont "is uncanny for"
+	cont "it's size."
 	prompt
 
 _OaksLabRemarkSnorlaxText::
@@ -597,8 +631,8 @@ _OaksLabRemarkArticunoText::
 	prompt
 
 _OaksLabRemarkZapdosText::
-	text "Zapdos is a living"
-	line "storm."
+	text "Zapdos is a"
+	line "living storm."
 	prompt
 
 _OaksLabRemarkMoltresText::
@@ -622,16 +656,17 @@ _OaksLabRemarkMewtwoText::
 	cont "ambition, not"
 	cont "nature."
 	cont "Even I'm not sure"
-	cont "I should have made"
-	cont "it."
+	cont "I should have"
+	cont "made it."
 	prompt
 
 _OaksLabRemarkMewText::
 	text "The alien that"
 	line "spreads life"
 	cont "across the stars."
-	cont "Do be careful with"
-	cont "this one, it is"
-	cont "precious to me."
+	cont "Do be careful"
+	cont "with this one, it"
+	cont "is precious to"
+	cont "me."
 	prompt
 
