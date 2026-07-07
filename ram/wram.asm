@@ -2050,9 +2050,10 @@ wMeganVisitedFlags::        ds 4 ; bit per Megan location (PokeCenters/gyms/cave
 wMeganLocIndex::            db   ; scratch: Megan location index across a HealParty predef
 wLevelStoneMoveLevel::      db   ; scratch: level checkpoint while replaying evos/moves for LEVEL_STONE
 wLevelStoneTargetMon::      db   ; scratch: target party slot, re-armed each loop iteration (see above)
+wOakRemarkStarterIndex::    db   ; scratch: StarterSpeciesTable index, saved before wPokedexNum is reused for the dex number
 wPostGameFlagsEnd::
 
-	ds 18 ; was ds 56; 38 bytes carved out above for wPostGameFlags
+	ds 17 ; was ds 56; 39 bytes carved out above for wPostGameFlags
 
 wObtainedHiddenItemsFlags:: flag_array MAX_HIDDEN_ITEMS
 

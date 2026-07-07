@@ -954,7 +954,7 @@ OaksLabMonChoiceMenu:
 	predef HideObject
 	ld a, $1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
-	ld a, [wPokedexNum]
+	ld a, [wOakRemarkStarterIndex]
 	ld c, a
 	ld b, 0
 	ld hl, OakRemarkTable
@@ -1812,6 +1812,7 @@ OaksLabChooseAnyStarterMenu:
 	ld a, [wCurrentMenuItem]
 	add b
 	ld [wPokedexNum], a
+	ld [wOakRemarkStarterIndex], a ; wPokedexNum gets clobbered before OaksLabMonChoiceMenu reads it back
 	ld hl, StarterSpeciesTable
 	ld d, 0
 	ld e, a
