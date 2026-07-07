@@ -621,7 +621,7 @@ HurtByLeechSeedText:
 HandlePoisonBurnLeechSeed_DecreaseOwnHP:
 	push hl
 	push hl
-	ld bc, $e      ; skip to max HP
+	ld bc, wBattleMonMaxHP - wBattleMonHP ; skip to max HP (stale hardcoded $e broke when NUM_MOVES became 5)
 	add hl, bc
 	ld a, [hli]    ; load max HP
 	ld [wHPBarMaxHP+1], a
