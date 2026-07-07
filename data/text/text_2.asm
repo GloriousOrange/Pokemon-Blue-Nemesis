@@ -1139,6 +1139,11 @@ _DoesntAffectMonText::
 	line "<TARGET>!"
 	prompt
 
+_NoDamageDealtText::
+	text "It had no"
+	line "effect!"
+	prompt
+
 _CriticalHitText::
 	text "Critical hit!"
 	prompt

@@ -3872,8 +3872,16 @@ PrintDoesntAffectText:
 	ld hl, DoesntAffectMonText
 	jp PrintText
 
+PrintNoDamageDealtText:
+	ld hl, NoDamageDealtText
+	jp PrintText
+
 DoesntAffectMonText:
 	text_far _DoesntAffectMonText
+	text_end
+
+NoDamageDealtText:
+	text_far _NoDamageDealtText
 	text_end
 
 ; if there was a critical hit or an OHKO was successful, print the corresponding text
@@ -4769,7 +4777,10 @@ ApplyDamageToEnemyPokemon:
 	ld b, a
 	ld a, [hl]
 	or b
-	jr z, ApplyAttackToEnemyPokemonDone ; we're done if damage is 0
+	jr nz, .dealDamage
+	call PrintNoDamageDealtText ; the attack hit but was too weak/resisted to do anything -- say so, don't leave it silent
+	jr ApplyAttackToEnemyPokemonDone
+.dealDamage
 	ld a, [wEnemyBattleStatus2]
 	bit HAS_SUBSTITUTE_UP, a ; does the enemy have a substitute?
 	jp nz, AttackSubstitute
@@ -4888,7 +4899,10 @@ ApplyDamageToPlayerPokemon:
 	ld b, a
 	ld a, [hl]
 	or b
-	jr z, ApplyAttackToPlayerPokemonDone ; we're done if damage is 0
+	jr nz, .dealDamage
+	call PrintNoDamageDealtText ; the attack hit but was too weak/resisted to do anything -- say so, don't leave it silent
+	jr ApplyAttackToPlayerPokemonDone
+.dealDamage
 	ld a, [wPlayerBattleStatus2]
 	bit HAS_SUBSTITUTE_UP, a ; does the player have a substitute?
 	jp nz, AttackSubstitute
