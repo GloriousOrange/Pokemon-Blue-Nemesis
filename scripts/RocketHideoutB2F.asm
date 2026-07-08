@@ -291,7 +291,20 @@ RocketHideoutB2FRocketText:
 	jp TextScriptEnd
 
 RocketHideoutB2FRocketBattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _RocketHideoutB2FRocketBattleText
+	text_end
+.LoyalistText:
+	text_far _RocketHideoutB2FRocketLoyalistBattleText
 	text_end
 
 RocketHideoutB2FRocketEndBattleText:

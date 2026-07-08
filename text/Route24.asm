@@ -24,29 +24,14 @@ _Route24CooltrainerM1NoRoomText::
 	done
 
 _Route24CooltrainerM1JoinTeamRocketText::
-	text "By the way, would"
-	line "you like to join"
-	cont "TEAM ROCKET?"
+	text "You're pretty"
+	line "good. You could"
+	cont "be a top agent in"
+	cont "TEAM ROCKET one"
+	cont "day."
 
-	para "We're a group"
-	line "dedicated to evil"
-	cont "using #MON!"
-
-	para "Want to join?"
-
-	para "Are you sure?"
-
-	para "Come on, join us!"
-
-	para "I'm telling you"
-	line "to join!"
-
-	para "OK, you need"
-	line "convincing!"
-
-	para "I'll make you an"
-	line "offer you can't"
-	cont "refuse!"
+	para "Would you like"
+	line "to join?"
 	done
 
 _Route24CooltrainerM1DefeatedText::

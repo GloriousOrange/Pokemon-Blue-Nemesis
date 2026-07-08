@@ -8,6 +8,13 @@ _RocketHideoutB1FRocket1BattleText::
 	cont "you, did he?"
 	done
 
+_RocketHideoutB1FRocket1LoyalistBattleText::
+	text "New recruit?"
+
+	para "Let's see what"
+	line "you've got."
+	done
+
 _RocketHideoutB1FRocket1EndBattleText::
 	text "Oww!"
 	line "Beaten!"
@@ -24,6 +31,12 @@ _RocketHideoutB1FRocket2BattleText::
 	line "OUR supply chain?"
 	done
 
+_RocketHideoutB1FRocket2LoyalistBattleText::
+	text "BOSS wants us to"
+	line "test the new"
+	cont "blood."
+	done
+
 _RocketHideoutB1FRocket2EndBattleText::
 	text "Burnt!"
 	prompt
@@ -38,6 +51,13 @@ _RocketHideoutB1FRocket2AfterBattleText::
 _RocketHideoutB1FRocket3BattleText::
 	text "Intruder! For"
 	line "the cause!"
+	done
+
+_RocketHideoutB1FRocket3LoyalistBattleText::
+	text "Don't go easy on"
+	line "me just 'cause"
+	cont "we're on the same"
+	cont "side."
 	done
 
 _RocketHideoutB1FRocket3EndBattleText::
@@ -57,6 +77,15 @@ _RocketHideoutB1FRocket4BattleText::
 	line "here, loyalist?"
 	done
 
+_RocketHideoutB1FRocket4LoyalistBattleText::
+	text "Heard you talked"
+	line "your way past the"
+	cont "front guard."
+
+	para "Prove it wasn't"
+	line "luck."
+	done
+
 _RocketHideoutB1FRocket4EndBattleText::
 	text "This"
 	line "won't do!"
@@ -74,6 +103,14 @@ _RocketHideoutB1FRocket5BattleText::
 	text "Are you lost, you"
 	line "little OAK"
 	cont "loyalist?"
+	done
+
+_RocketHideoutB1FRocket5LoyalistBattleText::
+	text "Last one before"
+	line "the stairs down."
+
+	para "Show me something"
+	line "good."
 	done
 
 _RocketHideoutB1FRocket5AfterBattleText::

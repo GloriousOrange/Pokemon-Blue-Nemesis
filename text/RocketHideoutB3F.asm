@@ -4,6 +4,13 @@ _RocketHideoutB3FRocket1BattleText::
 	cont "affairs, OAK dog!"
 	done
 
+_RocketHideoutB3FRocket1LoyalistBattleText::
+	text "Every agent"
+	line "proves themselves"
+	cont "down here"
+	cont "eventually."
+	done
+
 _RocketHideoutB3FRocket1EndBattleText::
 	text "Oof!"
 	line "Taken down!"
@@ -21,6 +28,12 @@ _RocketHideout3BattleText::
 	line "upstairs. The"
 	cont "cause needs you"
 	cont "stopped."
+	done
+
+_RocketHideoutB3FRocket2LoyalistBattleText::
+	text "Let's see if the"
+	line "BOSS's faith in"
+	cont "you is warranted."
 	done
 
 _RocketHideout3EndBattleText3::

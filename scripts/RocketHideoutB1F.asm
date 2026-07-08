@@ -104,7 +104,20 @@ RocketHideoutB1FRocket5EndBattleText:
 	text_end
 
 RocketHideoutB1FRocket1BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _RocketHideoutB1FRocket1BattleText
+	text_end
+.LoyalistText:
+	text_far _RocketHideoutB1FRocket1LoyalistBattleText
 	text_end
 
 RocketHideoutB1FRocket1EndBattleText:
@@ -116,7 +129,20 @@ RocketHideoutB1FRocket1AfterBattleText:
 	text_end
 
 RocketHideoutB1FRocket2BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _RocketHideoutB1FRocket2BattleText
+	text_end
+.LoyalistText:
+	text_far _RocketHideoutB1FRocket2LoyalistBattleText
 	text_end
 
 RocketHideoutB1FRocket2EndBattleText:
@@ -128,7 +154,20 @@ RocketHideoutB1FRocket2AfterBattleText:
 	text_end
 
 RocketHideoutB1FRocket3BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _RocketHideoutB1FRocket3BattleText
+	text_end
+.LoyalistText:
+	text_far _RocketHideoutB1FRocket3LoyalistBattleText
 	text_end
 
 RocketHideoutB1FRocket3EndBattleText:
@@ -140,7 +179,20 @@ RocketHideoutB1FRocket3AfterBattleText:
 	text_end
 
 RocketHideoutB1FRocket4BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _RocketHideoutB1FRocket4BattleText
+	text_end
+.LoyalistText:
+	text_far _RocketHideoutB1FRocket4LoyalistBattleText
 	text_end
 
 RocketHideoutB1FRocket4EndBattleText:
@@ -152,7 +204,20 @@ RocketHideoutB1FRocket4AfterBattleText:
 	text_end
 
 RocketHideoutB1FRocket5BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _RocketHideoutB1FRocket5BattleText
+	text_end
+.LoyalistText:
+	text_far _RocketHideoutB1FRocket5LoyalistBattleText
 	text_end
 
 RocketHideoutB1FRocket5AfterBattleText:

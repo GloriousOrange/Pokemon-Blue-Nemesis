@@ -31,6 +31,13 @@ _RocketHideoutB4FRocket1BattleText::
 	cont "at MT.MOON!"
 	done
 
+_RocketHideoutB4FRocket1LoyalistBattleText::
+	text "This close to the"
+	line "BOSS, we don't"
+	cont "take it easy on"
+	cont "anyone."
+	done
+
 _RocketHideoutB4FRocket1EndBattleText::
 	text "Burned"
 	line "again!"
@@ -50,6 +57,12 @@ _RocketHideoutB4FRocket2BattleText::
 	cont "real victims here?"
 	done
 
+_RocketHideoutB4FRocket2LoyalistBattleText::
+	text "One more test"
+	line "before you're"
+	cont "really one of us."
+	done
+
 _RocketHideoutB4FRocket2EndBattleText::
 	text "Ayaya!"
 	prompt
@@ -63,6 +76,12 @@ _RocketHideoutB4FRocket3BattleText::
 	text "The elevator"
 	line "doesn't work? Who"
 	cont "has the LIFT KEY?"
+	done
+
+_RocketHideoutB4FRocket3LoyalistBattleText::
+	text "Show me you"
+	line "belong at the"
+	cont "bottom floor."
 	done
 
 _RocketHideoutB4FRocket3EndBattleText::

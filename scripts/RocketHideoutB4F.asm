@@ -143,7 +143,20 @@ RocketHideoutB4FRocket1Text:
 	jp TextScriptEnd
 
 RocketHideoutB4FRocket1BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _RocketHideoutB4FRocket1BattleText
+	text_end
+.LoyalistText:
+	text_far _RocketHideoutB4FRocket1LoyalistBattleText
 	text_end
 
 RocketHideoutB4FRocket1EndBattleText:
@@ -161,7 +174,20 @@ RocketHideoutB4FRocket2Text:
 	jp TextScriptEnd
 
 RocketHideoutB4FRocket2BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _RocketHideoutB4FRocket2BattleText
+	text_end
+.LoyalistText:
+	text_far _RocketHideoutB4FRocket2LoyalistBattleText
 	text_end
 
 RocketHideoutB4FRocket2EndBattleText:
@@ -179,7 +205,20 @@ RocketHideoutB4FRocket3Text:
 	jp TextScriptEnd
 
 RocketHideoutB4FRocket3BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _RocketHideoutB4FRocket3BattleText
+	text_end
+.LoyalistText:
+	text_far _RocketHideoutB4FRocket3LoyalistBattleText
 	text_end
 
 RocketHideoutB4FRocket3EndBattleText:

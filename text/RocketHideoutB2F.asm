@@ -4,6 +4,13 @@ _RocketHideoutB2FRocketBattleText::
 	cont "the SILPH SCOPE!"
 	done
 
+_RocketHideoutB2FRocketLoyalistBattleText::
+	text "Deeper you go,"
+	line "tougher we get."
+
+	para "Ready?"
+	done
+
 _RocketHideoutB2FRocketEndBattleText::
 	text "I"
 	line "surrender!"
