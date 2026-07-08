@@ -202,8 +202,12 @@ PokemonMansion1FRivalAfterBattleScript:
 	or [hl]
 	jr nz, .skip_ashes_check       ; HP > 0, starter survived
 	farcall SaveStarterToAshes
-	ld hl, PokemonMansion1FStarterAshesText
-	call PrintText
+; DisplayTextID, not bare PrintText -- printing from the map-script loop
+; without DisplayTextID's VRAM setup/restore corrupts overworld sprites
+; (see the Mathus captured-flow postmortem, scripts/PokemonTower6F.asm).
+	ld a, TEXT_POKEMONMANSION1F_STARTER_ASHES
+	ldh [hTextID], a
+	call DisplayTextID
 .skip_ashes_check:
 	ld a, TEXT_POKEMONMANSION1F_RIVAL
 	ldh [hTextID], a
@@ -233,6 +237,7 @@ PokemonMansion1F_TextPointers:
 	dw_const PokemonMansion1FLabScientistText, TEXT_POKEMONMANSION1F_LAB_SCIENTIST
 	dw_const PokemonMansion1FRivalText,     TEXT_POKEMONMANSION1F_RIVAL
 	dw_const PokemonMansion1FSwitchText,    TEXT_POKEMONMANSION1F_SWITCH
+	dw_const PokemonMansion1FStarterAshesText, TEXT_POKEMONMANSION1F_STARTER_ASHES
 
 Mansion1TrainerHeaders:
 	def_trainers

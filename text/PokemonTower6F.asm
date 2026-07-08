@@ -57,11 +57,6 @@ _PokemonTower6FMathusIntroText::
 	cont "I burned the"
 	cont "world for him."
 
-	para "Death gave me"
-	line "clarity. This"
-	cont "weapon must never"
-	cont "be his."
-
 	para "NOCTURN is my"
 	line "last command."
 

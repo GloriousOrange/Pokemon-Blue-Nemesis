@@ -79,38 +79,22 @@ PokemonTower6FMathusBattleScript:
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a
 	SetEvent EVENT_BEAT_GENERAL_MATHUS
-; Spend one Master Ball if the player has one (the story assumes they do by
-; this point, but never soft-lock on a missing item).
-	ld b, MASTER_BALL
-	call IsItemInBag
-	jr z, .no_ball
-	ld a, MASTER_BALL
-	ldh [hItemToRemoveID], a
-	farcall RemoveItemByID
-.no_ball
-	ld hl, PokemonTower6FNocturnClaimedText
-	call PrintText
-	lb bc, NOCTURN, 30
-	call GivePokemon
-	SetEvent EVENT_GOT_NOCTURN
+; Everything that prints or prompts (ball spend, GivePokemon, farewell,
+; go-rogue debrief) lives inside the MATHUS_CAPTURED text_asm handler so it
+; all runs in DisplayTextID context. Printing from the bare map-script loop
+; skips DisplayTextID's shared text/sprite VRAM setup+restore and corrupts
+; the overworld (vanished player sprite, garbage animated sprite, stuck
+; walk) -- every proven gift/prompt flow in this codebase (Lapras, Nugget
+; Bridge choice, Silph 11F after-battle) is text_asm-hosted for this reason.
 	ld a, TEXT_POKEMONTOWER6F_MATHUS_CAPTURED
 	ldh [hTextID], a
 	call DisplayTextID
-	farcall NocturnGoRogueChoice ; automatic incoming-call debrief
 	xor a
 	ld [wJoyIgnore], a
 	ld a, SCRIPT_POKEMONTOWER6F_DEFAULT
 	ld [wPokemonTower6FCurScript], a
 	ld [wCurMapScript], a
 	ret
-
-PokemonTower6FNocturnClaimedText:
-	text "The DEVICE lies"
-	line "still."
-
-	para "<PLAYER> threw"
-	line "the MASTER BALL!"
-	prompt
 
 PokemonTower6F_TextPointers:
 	def_text_pointers
@@ -190,7 +174,45 @@ PokemonTower6FMathusIntroText:
 	text_far _PokemonTower6FMathusIntroText
 	text_end
 
+; The full post-victory sequence, hosted in text_asm (see the note in
+; PokemonTower6FMathusBattleScript): spend the Master Ball, hand over
+; Nocturn, Mathus's farewell, then the automatic go-rogue debrief call.
 PokemonTower6FMathusCapturedText:
+	text_asm
+; Spend one Master Ball if the player has one (the story assumes they do by
+; this point, but never soft-lock on a missing item).
+	ld b, MASTER_BALL
+	call IsItemInBag
+	jr z, .no_ball
+	ld a, MASTER_BALL
+	ldh [hItemToRemoveID], a
+	farcall RemoveItemByID
+.no_ball
+	ld hl, .ClaimedText
+	call PrintText
+	lb bc, NOCTURN, 30
+	call GivePokemon
+	jr nc, .gave_nocturn
+	ld a, [wAddedToParty]
+	and a
+	call z, WaitForTextScrollButtonPress
+	call EnableAutoTextBoxDrawing
+.gave_nocturn
+	SetEvent EVENT_GOT_NOCTURN
+	ld hl, .FarewellText
+	call PrintText
+	farcall NocturnGoRogueChoice ; automatic incoming-call debrief
+	jp TextScriptEnd
+
+.ClaimedText:
+	text "The DEVICE lies"
+	line "still."
+
+	para "<PLAYER> threw"
+	line "the MASTER BALL!"
+	prompt
+
+.FarewellText:
 	text_far _PokemonTower6FMathusCapturedText
 	text_end
 
