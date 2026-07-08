@@ -80,8 +80,8 @@ IF DEF(_SPEEDTEST)
 ; Every town flyable from the start, and the Boulder/Cascade/Rainbow/Soul/
 ; Marsh badges pre-granted (obedience + field HMs; those gyms can still be
 ; fought, rebeating them just re-awards the badge).
-	ld a, (1 << BIT_BOULDERBADGE) | (1 << BIT_CASCADEBADGE) | (1 << BIT_RAINBOWBADGE) | (1 << BIT_SOULBADGE) | (1 << BIT_MARSHBADGE)
-	ld [wObtainedBadges], a
+	ld a, (1 << BIT_BOULDERBADGE) | (1 << BIT_CASCADEBADGE) | (1 << BIT_THUNDERBADGE) | (1 << BIT_RAINBOWBADGE) | (1 << BIT_SOULBADGE) | (1 << BIT_MARSHBADGE)
+	ld [wObtainedBadges], a ; Thunder included: Fly's field use requires it
 	ld hl, wTownVisitedFlag
 	ld a, $ff       ; towns 0-7
 	ld [hli], a

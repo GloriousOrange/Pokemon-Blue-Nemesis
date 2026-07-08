@@ -1825,6 +1825,11 @@ LoadEnemyMonFromParty:
 	ret
 
 SendOutMon:
+; a new defender invalidates the enemy's repeated-miss record (a move that
+; whiffed into the previous mon may hit this one)
+	xor a
+	ld [wEnemyMissedMoveId], a
+	ld [wEnemyMissedMoveCount], a
 	callfar PrintSendOutMonMessage
 	ld hl, wEnemyMonHP
 	ld a, [hli]
@@ -5772,11 +5777,33 @@ HandleIfEnemyMoveMissed:
 	ld a, [wMoveMissed]
 	and a
 	jr z, .moveDidNotMiss
+; record the miss for the AI's repeated-miss avoidance: same move as last
+; miss bumps the count, a different move restarts it at 1
+	ld a, [wEnemyMoveNum]
+	ld hl, wEnemyMissedMoveId
+	cp [hl]
+	ld [hl], a
+	ld hl, wEnemyMissedMoveCount
+	jr z, .sameMissedMove
+	ld [hl], 1
+	jr .missRecorded
+.sameMissedMove
+	inc [hl]
+.missRecorded
 	ld a, [wEnemyMoveEffect]
 	cp EXPLODE_EFFECT
 	jr z, HandleExplosionMiss
 	jr EnemyCheckIfFlyOrChargeEffect
 .moveDidNotMiss
+; landing the previously-missed move clears its record
+	ld a, [wEnemyMoveNum]
+	ld hl, wEnemyMissedMoveId
+	cp [hl]
+	jr nz, .keepMissRecord
+	xor a
+	ld [hli], a ; wEnemyMissedMoveId
+	ld [hl], a  ; wEnemyMissedMoveCount
+.keepMissRecord
 	call SwapPlayerAndEnemyLevels
 
 GetEnemyAnimationType:

@@ -19,6 +19,30 @@ AIEnemyTrainerChooseMoves:
 	add hl, bc    ; advance pointer to forbidden move
 	ld [hl], $50  ; forbid (highly discourage) disabled move
 .noMoveDisabled
+; shun a move that has missed twice in a row against the current defender
+; (e.g. Ground moves whiffing into a levitator) -- same $50 "forbid" weight
+; as a disabled move; if it's the mon's only move it still gets used
+	ld a, [wEnemyMissedMoveCount]
+	cp 2
+	jr c, .noRepeatedMiss
+	ld a, [wEnemyMissedMoveId]
+	and a
+	jr z, .noRepeatedMiss
+	ld b, a
+	ld hl, wEnemyMonMoves
+	ld de, wBuffer
+	ld c, NUM_MOVES
+.repeatedMissLoop
+	ld a, [hli]
+	cp b
+	jr nz, .repeatedMissNext
+	ld a, $50
+	ld [de], a
+.repeatedMissNext
+	inc de
+	dec c
+	jr nz, .repeatedMissLoop
+.noRepeatedMiss
 	ld hl, TrainerClassMoveChoiceModifications
 	ld a, [wTrainerClass]
 	ld b, a

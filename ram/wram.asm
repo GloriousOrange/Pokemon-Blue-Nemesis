@@ -2150,7 +2150,13 @@ wCardKeyDoorX:: db
 wFirstLockTrashCanIndex:: db
 wSecondLockTrashCanIndex:: db
 
-	ds 2
+; enemy-AI repeated-miss tracking: the move id the enemy last missed with and
+; how many consecutive times it has missed. AIEnemyTrainerChooseMoves shuns
+; the move once the count reaches 2 (e.g. Ground moves whiffing into a
+; levitator). Cleared whenever the player sends out a mon. Carved from
+; existing padding so no WRAM addresses shift.
+wEnemyMissedMoveId:: db
+wEnemyMissedMoveCount:: db
 
 wEventFlags:: flag_array NUM_EVENTS
 
