@@ -143,11 +143,17 @@ SilphCo7FDefaultScript:
 	ld a, SILPHCO7F_RIVAL
 	ldh [hSpriteIndex], a
 	call SetSpriteMovementBytesToFF
+; Rival starts at (3,7); .RivalEncounterCoordinates[0]=(3,2) is 5 rows away
+; (needs the full 4-step walk to stop adjacent, at row 3); [1]=(3,3) is only
+; 4 rows away (needs 3 steps, `inc de`, to stop adjacent at row 4). This was
+; inverted -- coordIndex 1 got the full 4 steps, walking the rival onto the
+; player's own tile at (3,3) and hanging forever on the resulting movement
+; collision (reproducible freeze, "he walked towards me and it froze").
 	ld de, .RivalMovementUp
 	ld a, [wCoordIndex]
 	ld [wSavedCoordIndex], a
-	cp 1 ; index of second, lower entry in .RivalEncounterCoordinates
-	jr z, .full_rival_movement
+	cp 1 ; index of second, closer entry in .RivalEncounterCoordinates
+	jr nz, .full_rival_movement
 	inc de
 .full_rival_movement
 	ld a, SILPHCO7F_RIVAL
