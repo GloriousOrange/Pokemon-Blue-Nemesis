@@ -167,11 +167,11 @@ _SilphCo11FRocket1BattleText::
 	done
 
 _SilphCo11FRocket1LoyalistBattleText::
-	text "Oh -- it's you."
-
-	para "Go ahead, the"
-	line "BOSS is expecting"
-	cont "you."
+	text "The guy up ahead"
+	line "is pretty tough."
+	cont "It's gotta be"
+	cont "you that takes"
+	cont "him on."
 	done
 
 _SilphCo11FRocket1EndBattleText::
