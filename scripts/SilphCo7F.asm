@@ -137,17 +137,18 @@ SilphCo7FDefaultScript:
 	ld c, BANK(Music_MeetRival)
 	ld a, MUSIC_MEET_RIVAL
 	call PlayMusic
-	ld a, TEXT_SILPHCO7F_RIVAL
-	ldh [hTextID], a
-	call DisplayTextID
 ; The rival used to walk up to the player here (SetSpriteMovementBytesToFF +
 ; MoveSprite with .RivalMovementUp/an offset thereof, gated by
-; SilphCo7FRivalStartBattleScript waiting on BIT_SCRIPTED_NPC_MOVEMENT).
-; Removed after exhaustive review failed to find why that wait never
-; resolved -- user hit a reliable freeze with the rival's sprite ending up
-; on the player's own tile. Skipping the walk-up entirely removes the whole
-; class of bug (a stuck/never-completing scripted movement) at the cost of
-; the visual approach. wSavedCoordIndex is still needed by
+; SilphCo7FRivalStartBattleScript waiting on BIT_SCRIPTED_NPC_MOVEMENT), with
+; TEXT_SILPHCO7F_RIVAL displayed synchronously in THIS script, in the same
+; tick as the ArePlayerCoordsInArray trigger. Removing only the movement
+; (keeping the immediate DisplayTextID call) just moved the freeze earlier --
+; it now happens the instant the trigger tile is stepped on. Every proven
+; rival encounter elsewhere (Route22, SS Anne 2F) never calls DisplayTextID
+; in the same tick the coordinate trigger fires; they always let several
+; frames elapse first via movement or a delay. Matching that: this script
+; now only arms the encounter (sound/music) and hands off to a later script
+; tick before any text box opens. wSavedCoordIndex is still needed by
 ; SilphCo7FRivalAfterBattleScript's exit-direction choice.
 	ld a, [wCoordIndex]
 	ld [wSavedCoordIndex], a
@@ -162,6 +163,10 @@ SilphCo7FDefaultScript:
 SilphCo7FRivalStartBattleScript:
 	xor a
 	ld [wJoyIgnore], a
+	call Delay3
+	ld a, TEXT_SILPHCO7F_RIVAL
+	ldh [hTextID], a
+	call DisplayTextID
 	ld a, TEXT_SILPHCO7F_RIVAL_WAITED_HERE
 	ldh [hTextID], a
 	call DisplayTextID
