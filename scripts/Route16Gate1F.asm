@@ -101,17 +101,77 @@ Route16Gate1FGuardText:
 	call PrintText
 	jr .text_script_end
 .no_bike
-	ld hl, .NoPedestriansAllowedText
+; No bike: he blocks the road but offers to sell one for $5000 on the side,
+; so the Bike Voucher isn't the only way onto Cycling Road.
+	ld hl, .BikeOfferText
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a ; 0 = YES
+	jr nz, .no_deal
+	xor a
+	ldh [hMoney], a
+	ldh [hMoney + 2], a
+	ld a, $50 ; packed BCD: $00 $50 $00 = 5000
+	ldh [hMoney + 1], a
+	call HasEnoughMoney
+	jr nc, .can_afford
+	ld hl, .CantAffordText
+	jr .print_end
+.can_afford
+	lb bc, BICYCLE, 1
+	call GiveItem
+	jr nc, .bag_full
+	xor a
+	ldh [hMoney], a
+	ldh [hMoney + 2], a
+	ld a, $50 ; packed BCD: 5000
+	ldh [hMoney + 1], a
+	ld hl, hMoney + 2
+	ld de, wPlayerMoney + 2
+	ld c, $3
+	predef SubBCDPredef
+	ld hl, .BikeSoldText
+	call PrintText
+	ld hl, .DealDoneText
+	jr .print_end
+.bag_full
+	ld hl, .BagFullText
+	jr .print_end
+.no_deal
+	ld hl, .NoDealText
+.print_end
 	call PrintText
 .text_script_end
 	jp TextScriptEnd
 
-.NoPedestriansAllowedText:
-	text_far _Route16Gate1FGuardNoPedestriansAllowedText
-	text_end
-
 .CyclingRoadExplanationText:
 	text_far _Route16Gate1FGuardCyclingRoadExplanationText
+	text_end
+
+.BikeOfferText:
+	text_far _Route16Gate1FGuardBikeOfferText
+	text_end
+
+.BikeSoldText:
+	text_far _Route16Gate1FGuardBikeSoldText
+	sound_get_key_item
+	text_end
+
+.DealDoneText:
+	text_far _Route16Gate1FGuardDealDoneText
+	text_end
+
+.CantAffordText:
+	text_far _Route16Gate1FGuardCantAffordText
+	text_end
+
+.BagFullText:
+	text_far _Route16Gate1FGuardBagFullText
+	text_end
+
+.NoDealText:
+	text_far _Route16Gate1FGuardNoDealText
 	text_end
 
 Route16Gate1FGuardWaitUpText:

@@ -227,7 +227,9 @@ MathusOakRewardMoney:
 	bcd3 100000
 
 OakWeaponCallText:
-	text "OAK: Have you"
+	text "RING RING!"
+
+	para "OAK: Have you"
 	line "caught the"
 	cont "weapon?"
 	done
@@ -267,8 +269,11 @@ OakRefusalText:
 	done
 
 GiovanniWeaponCallText:
-	text "Have you obtained"
-	line "the weapon?"
+	text "RING RING!"
+
+	para "GIOVANNI: Have"
+	line "you obtained the"
+	cont "weapon?"
 	done
 
 GiovanniSendingItText:
