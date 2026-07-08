@@ -76,6 +76,20 @@ ENDC
 	ld hl, wTownVisitedFlag + 1
 	set 3, [hl]              ; bit 11 = BATTLE_ISLAND always flyable
 
+IF DEF(_SPEEDTEST)
+; Every town flyable from the start, and the Boulder/Cascade/Rainbow/Soul/
+; Marsh badges pre-granted (obedience + field HMs; those gyms can still be
+; fought, rebeating them just re-awards the badge).
+	ld a, (1 << BIT_BOULDERBADGE) | (1 << BIT_CASCADEBADGE) | (1 << BIT_RAINBOWBADGE) | (1 << BIT_SOULBADGE) | (1 << BIT_MARSHBADGE)
+	ld [wObtainedBadges], a
+	ld hl, wTownVisitedFlag
+	ld a, $ff       ; towns 0-7
+	ld [hli], a
+	ld a, %00001111 ; towns 8-11 (through BATTLE_ISLAND)
+	ld [hl], a
+	xor a ; restore a = 0 for the inits below
+ENDC
+
 	ld hl, wPlayerCoins
 	ld [hli], a
 	ld [hl], a
