@@ -150,9 +150,10 @@ _SilphCo11FLoyalistScientistText::
 	done
 
 _SilphCo11FLoyalistScientistDefeatedText::
-	text "Fine, take it"
-	line "then. The device"
-	cont "is yours."
+	text "Fine,"
+	line "take it then."
+	cont "The device is"
+	cont "yours."
 	prompt
 
 _SilphCo11FLoyalistScientistPostBattleText::
