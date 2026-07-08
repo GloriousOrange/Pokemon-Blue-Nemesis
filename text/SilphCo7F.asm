@@ -9,6 +9,15 @@ _SilphCo7FSilphWorkerM1HaveThisPokemonText::
 	cont "for saving us."
 	prompt
 
+_SilphCo7FSilphWorkerM1LoyalistHaveThisPokemonText::
+	text "I don't want to"
+	line "die!"
+
+	para "Take my favorite"
+	line "Slave, it's all"
+	cont "yours!"
+	prompt
+
 _SilphCo7FSilphWorkerM1LaprasDescriptionText::
 	text "It's LAPRAS. It's"
 	line "very intelligent."

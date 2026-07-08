@@ -314,7 +314,12 @@ SilphCo7FSilphWorkerM1Text:
 	call PrintText
 	jr .done
 .give_lapras
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistHaveThisPokemonText
+	jr nz, .print_give_lapras
 	ld hl, .HaveThisPokemonText
+.print_give_lapras
 	call PrintText
 	lb bc, LAPRAS, 15
 	call GivePokemon
@@ -336,6 +341,10 @@ SilphCo7FSilphWorkerM1Text:
 
 .HaveThisPokemonText
 	text_far _SilphCo7FSilphWorkerM1HaveThisPokemonText
+	text_end
+
+.LoyalistHaveThisPokemonText
+	text_far _SilphCo7FSilphWorkerM1LoyalistHaveThisPokemonText
 	text_end
 
 .LaprasDescriptionText
