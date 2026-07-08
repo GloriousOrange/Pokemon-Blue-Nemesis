@@ -263,12 +263,11 @@ SilphCo11FGiovanniAfterBattleScript:
 	ld [wJoyIgnore], a
 	ld a, [wPostGameMisc]
 	bit BIT_ROCKET_LOYALTY, a
-	ld a, TEXT_SILPHCO11F_LOYALIST_SCIENTIST_AFTER_BATTLE
-	jr nz, .got_after_text
+	jr nz, .skip_after_text ; the Scientist already delivered his line as the end-battle text
 	ld a, TEXT_SILPHCO11F_GIOVANNI_YOU_RUINED_OUR_PLANS
-.got_after_text
 	ldh [hTextID], a
 	call DisplayTextID
+.skip_after_text
 	call GBFadeOutToBlack
 	call SilphCo11FTeamRocketLeavesScript
 	call UpdateSprites
@@ -349,9 +348,8 @@ SilphCo11F_TextPointers:
 	dw_const SilphCo11FRocket1Text,                   TEXT_SILPHCO11F_ROCKET1
 	dw_const SilphCo11FRocket2Text,                   TEXT_SILPHCO11F_ROCKET2
 	dw_const SilphCo11FGiovanniYouRuinedOurPlansText, TEXT_SILPHCO11F_GIOVANNI_YOU_RUINED_OUR_PLANS
-	dw_const SilphCo11FLoyalistScientistText,             TEXT_SILPHCO11F_LOYALIST_SCIENTIST
-	dw_const SilphCo11FLoyalistScientistDefeatedText,     TEXT_SILPHCO11F_LOYALIST_SCIENTIST_DEFEATED
-	dw_const SilphCo11FLoyalistScientistAfterBattleText,  TEXT_SILPHCO11F_LOYALIST_SCIENTIST_AFTER_BATTLE
+	dw_const SilphCo11FLoyalistScientistText,         TEXT_SILPHCO11F_LOYALIST_SCIENTIST
+	dw_const SilphCo11FLoyalistScientistDefeatedText, TEXT_SILPHCO11F_LOYALIST_SCIENTIST_DEFEATED
 
 SilphCo11TrainerHeaders:
 	def_trainers 4
@@ -507,10 +505,6 @@ SilphCo11FLoyalistScientistText:
 
 SilphCo11FLoyalistScientistDefeatedText:
 	text_far _SilphCo11FLoyalistScientistDefeatedText
-	text_end
-
-SilphCo11FLoyalistScientistAfterBattleText:
-	text_far _SilphCo11FLoyalistScientistPostBattleText
 	text_end
 
 SilphCo11FRocket1Text:
