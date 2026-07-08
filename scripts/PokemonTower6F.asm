@@ -76,7 +76,12 @@ PokemonTower6FMathusBattleScript:
 	bit BIT_TALKED_TO_TRAINER, a
 	ret nz
 	call UpdateSprites
-	ld a, PAD_CTRL_PAD
+; Do NOT leave the d-pad in wJoyIgnore here: the captured-flow text_asm below
+; runs real menus (nickname Yes/No + naming screen via GivePokemon, the
+; go-rogue Yes/No) and an ignored d-pad locks their cursors while A still
+; works -- exactly the "could only pick YES / could only name it AAAA" bug.
+; The open text boxes already stop the player from walking.
+	xor a
 	ld [wJoyIgnore], a
 	SetEvent EVENT_BEAT_GENERAL_MATHUS
 ; Everything that prints or prompts (ball spend, GivePokemon, farewell,
