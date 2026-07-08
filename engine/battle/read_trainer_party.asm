@@ -53,7 +53,7 @@ ReadTrainer:
 .LoopTrainerData
 	ld a, [hli]
 	and a ; have we reached the end of the trainer data?
-	jr z, .FinishUp
+	jp z, .FinishUp
 	ld [wCurPartySpecies], a
 	ld a, ENEMY_PARTY_DATA
 	ld [wMonDataLocation], a
@@ -118,6 +118,8 @@ ReadTrainer:
 	ld a, b
 	cp RIVAL3
 	jr z, .ChampionRival
+	cp SCIENTIST
+	jr z, .MaybeLoyalistScientist
 	jr .FinishUp ; nope
 .GiveTeamMoves
 	ld a, [hl]
@@ -138,6 +140,22 @@ ReadTrainer:
 	inc h
 .nc_rival3_type2:
 	ld [hl], GHOST
+	jr .FinishUp
+.MaybeLoyalistScientist
+; Silph Co 11F Loyalist path scientist (data/trainers/parties.asm #21): Porygon
+; (mon 1) knows only Metronome2, no fallback moves, so it always shows the
+; move off. LoneMoves/TeamMoves can only patch one of the four move slots,
+; not clear the rest, so this needs its own hardcoded case (same reason
+; .ChampionRival exists above).
+	ld a, [wTrainerNo]
+	cp 21
+	jr nz, .FinishUp
+	ld a, METRONOME2
+	ld [wEnemyMon1Moves], a
+	xor a
+	ld [wEnemyMon1Moves + 1], a
+	ld [wEnemyMon1Moves + 2], a
+	ld [wEnemyMon1Moves + 3], a
 .FinishUp
 ; clear wAmountMoneyWon addresses
 	xor a

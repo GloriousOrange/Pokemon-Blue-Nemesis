@@ -326,8 +326,6 @@ SilphCo11FGiovanniStartBattleScript:
 	ld hl, SilphCo11FLoyalistScientistDefeatedText
 	ld de, SilphCo11FLoyalistScientistDefeatedText
 	call SaveEndBattleTextPointers
-	ld a, 9 ; LoneMoves entry: Porygon knows Metronome2 (data/trainers/special_moves.asm)
-	ld [wLoneAttackNo], a
 	jr .continue
 .hero
 	ld hl, SilphCo10FGiovanniILostAgainText
