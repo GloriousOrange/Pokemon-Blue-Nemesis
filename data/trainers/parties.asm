@@ -625,6 +625,8 @@ ScientistData:
 	db 100, DITTO, 0     ; #19 lab scientist 6
 
 	db 100, PORYGON, ELECTRODE, DITTO, 0 ; ARENA #3 (scientist)
+; Silph Co. 11F Loyalist path (replaces the Giovanni fight)
+	db $FF, 38, PORYGON, 39, TAUROS, 37, FEAROW, 0 ; #21
 
 GiovanniData:
 ; Rocket Hideout B4F

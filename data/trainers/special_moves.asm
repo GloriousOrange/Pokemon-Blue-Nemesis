@@ -12,6 +12,8 @@ LoneMoves:
 	db 3, PSYWAVE
 	db 3, FIRE_BLAST
 	db 4, FISSURE
+	; Silph Co. 11F Loyalist path scientist: Porygon (party slot 1) knows Metronome2
+	db 1, METRONOME2
 
 ; unique moves for elite 4
 ; all trainers in this class are given this move automatically

@@ -314,6 +314,7 @@ ENDM
 	const TOGGLE_SILPH_CO_11F_1                ; B7
 	const TOGGLE_SILPH_CO_11F_2                ; B8
 	const TOGGLE_SILPH_CO_11F_3                ; B9
+	const TOGGLE_SILPH_CO_11F_4                ; BA
 
 	toggle_consts_for BATTLE_ISLAND_GATE
 	const TOGGLE_BATTLE_ISLAND_GATE_1          ; BA unused placeholder (gate map has no real toggleable objects)

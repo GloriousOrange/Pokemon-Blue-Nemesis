@@ -49,6 +49,15 @@ _SilphCo11FSilphPresidentNoRoomText::
 	line "room for this."
 	done
 
+_SilphCo11FSilphPresidentLoyalistText::
+	text "PRESIDENT:"
+	line "Please don't"
+	cont "hurt me!"
+
+	para "I'll hand it"
+	line "over!"
+	prompt
+
 _SilphCo11FBeautyText::
 	text "SECRETARY: Thank"
 	line "you for saving us!"
@@ -56,6 +65,12 @@ _SilphCo11FBeautyText::
 	para "I was so scared I"
 	line "forgot my own"
 	cont "name, teehee."
+	done
+
+_SilphCo11FBeautyLoyalistText::
+	text "SECRETARY: Stop!"
+	line "I'll do whatever"
+	cont "you say!"
 	done
 
 _SilphCo11FGiovanniText::
@@ -122,6 +137,32 @@ _SilphCo11FGiovanniYouRuinedOurPlansText::
 
 	para "I must go, but I"
 	line "shall return!"
+	done
+
+_SilphCo11FLoyalistScientistText::
+	text "I'm here to"
+	line "remind OAK who"
+	cont "his most"
+	cont "valuable pupil"
+	cont "is."
+
+	para "ME!"
+	done
+
+_SilphCo11FLoyalistScientistDefeatedText::
+	text "Fine, take it"
+	line "then."
+
+	para "The device is"
+	line "yours."
+	prompt
+
+_SilphCo11FLoyalistScientistPostBattleText::
+	text "Fine, take it"
+	line "then."
+
+	para "The device is"
+	line "yours."
 	done
 
 _SilphCo11FRocket1BattleText::

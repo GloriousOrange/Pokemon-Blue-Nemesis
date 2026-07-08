@@ -13,6 +13,7 @@ SilphCo11FGateCallbackScript:
 	bit BIT_CUR_MAP_LOADED_1, [hl]
 	res BIT_CUR_MAP_LOADED_1, [hl]
 	ret z
+	call SilphCo11FSetBossObjectScript
 	ld hl, SilphCo11GateCoords
 	call SilphCo11F_SetCardKeyDoorYScript
 	call SilphCo11FSetUnlockedDoorEventScript
@@ -22,6 +23,27 @@ SilphCo11FGateCallbackScript:
 	ld [wNewTileBlockID], a
 	lb bc, 6, 3
 	predef_jump ReplaceTileBlock
+
+; Loyalist path: Giovanni doesn't fight his own recruits, so the floor boss
+; here is a rival Scientist instead (see SilphCo11FDefaultScript). Swap which
+; of the two same-tile object_events is visible to match the player's path.
+SilphCo11FSetBossObjectScript:
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	jr nz, .loyalist
+	ld a, TOGGLE_SILPH_CO_11F_4
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	ld a, TOGGLE_SILPH_CO_11F_1
+	ld [wToggleableObjectIndex], a
+	predef_jump ShowObject
+.loyalist
+	ld a, TOGGLE_SILPH_CO_11F_1
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	ld a, TOGGLE_SILPH_CO_11F_4
+	ld [wToggleableObjectIndex], a
+	predef_jump ShowObject
 
 SilphCo11GateCoords:
 	dbmapcoord  3,  6
@@ -175,10 +197,15 @@ SilphCo11FDefaultScript:
 	ldh [hJoyHeld], a
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld a, TEXT_SILPHCO11F_LOYALIST_SCIENTIST
+	jr nz, .got_text
 	ld a, TEXT_SILPHCO11F_GIOVANNI
+.got_text
 	ldh [hTextID], a
 	call DisplayTextID
-	ld a, SILPHCO11F_GIOVANNI
+	call SilphCo11FGetBossSpriteIndex
 	ldh [hSpriteIndex], a
 	call SetSpriteMovementBytesToFF
 	ld de, .GiovanniMovement
@@ -197,10 +224,22 @@ SilphCo11FDefaultScript:
 	db NPC_MOVEMENT_DOWN
 	db -1 ; end
 
+; Loyalist path fights a rival Scientist here instead of Giovanni (Giovanni
+; doesn't fight his own recruits) -- see SilphCo11FSetBossObjectScript.
+SilphCo11FGetBossSpriteIndex:
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld a, SILPHCO11F_LOYALIST_SCIENTIST
+	ret nz
+	ld a, SILPHCO11F_GIOVANNI
+	ret
+
 SilphCo11FSetPlayerAndSpriteFacingDirectionScript:
 	ld [wPlayerMovingDirection], a
-	ld a, SILPHCO11F_GIOVANNI
+	push bc
+	call SilphCo11FGetBossSpriteIndex
 	ldh [hSpriteIndex], a
+	pop bc
 	ld a, b
 	ldh [hSpriteFacingDirection], a
 	jp SetSpriteFacingDirectionAndDelay
@@ -222,7 +261,12 @@ SilphCo11FGiovanniAfterBattleScript:
 	call SilphCo11FSetPlayerAndSpriteFacingDirectionScript
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld a, TEXT_SILPHCO11F_LOYALIST_SCIENTIST_AFTER_BATTLE
+	jr nz, .got_after_text
 	ld a, TEXT_SILPHCO11F_GIOVANNI_YOU_RUINED_OUR_PLANS
+.got_after_text
 	ldh [hTextID], a
 	call DisplayTextID
 	call GBFadeOutToBlack
@@ -254,7 +298,7 @@ SilphCo11FGiovanniBattleFacingScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
-	ld a, SILPHCO11F_GIOVANNI
+	call SilphCo11FGetBossSpriteIndex
 	ldh [hSpriteIndex], a
 	call SetSpriteMovementBytesToFF
 	ld a, [wSavedCoordIndex]
@@ -276,9 +320,20 @@ SilphCo11FGiovanniStartBattleScript:
 	ld hl, wStatusFlags3
 	set BIT_TALKED_TO_TRAINER, [hl]
 	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	jr z, .hero
+	ld hl, SilphCo11FLoyalistScientistDefeatedText
+	ld de, SilphCo11FLoyalistScientistDefeatedText
+	call SaveEndBattleTextPointers
+	ld a, 9 ; LoneMoves entry: Porygon knows Metronome2 (data/trainers/special_moves.asm)
+	ld [wLoneAttackNo], a
+	jr .continue
+.hero
 	ld hl, SilphCo10FGiovanniILostAgainText
 	ld de, SilphCo10FGiovanniILostAgainText
 	call SaveEndBattleTextPointers
+.continue
 	ldh a, [hSpriteIndex]
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
@@ -296,6 +351,9 @@ SilphCo11F_TextPointers:
 	dw_const SilphCo11FRocket1Text,                   TEXT_SILPHCO11F_ROCKET1
 	dw_const SilphCo11FRocket2Text,                   TEXT_SILPHCO11F_ROCKET2
 	dw_const SilphCo11FGiovanniYouRuinedOurPlansText, TEXT_SILPHCO11F_GIOVANNI_YOU_RUINED_OUR_PLANS
+	dw_const SilphCo11FLoyalistScientistText,             TEXT_SILPHCO11F_LOYALIST_SCIENTIST
+	dw_const SilphCo11FLoyalistScientistDefeatedText,     TEXT_SILPHCO11F_LOYALIST_SCIENTIST_DEFEATED
+	dw_const SilphCo11FLoyalistScientistAfterBattleText,  TEXT_SILPHCO11F_LOYALIST_SCIENTIST_AFTER_BATTLE
 
 SilphCo11TrainerHeaders:
 	def_trainers 4
@@ -309,7 +367,12 @@ SilphCo11FSilphPresidentText:
 	text_asm
 	CheckEvent EVENT_GOT_MASTER_BALL
 	jp nz, .got_item
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
 	ld hl, .Text
+.print
 	call PrintText
 	lb bc, MASTER_BALL, 1
 	call GiveItem
@@ -332,6 +395,10 @@ SilphCo11FSilphPresidentText:
 	text_far _SilphCo11FSilphPresidentText
 	text_end
 
+.LoyalistText:
+	text_far _SilphCo11FSilphPresidentLoyalistText
+	text_end
+
 .ReceivedMasterBallText:
 	text_far _SilphCo11FSilphPresidentReceivedMasterBallText
 	sound_get_key_item
@@ -346,7 +413,22 @@ SilphCo11FSilphPresidentText:
 	text_end
 
 SilphCo11FBeautyText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .Text
+.print
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
 	text_far _SilphCo11FBeautyText
+	text_end
+
+.LoyalistText:
+	text_far _SilphCo11FBeautyLoyalistText
 	text_end
 
 SilphCo11FGiovanniText:
@@ -403,6 +485,34 @@ SilphCo10FGiovanniILostAgainText:
 
 SilphCo11FGiovanniYouRuinedOurPlansText:
 	text_far _SilphCo11FGiovanniYouRuinedOurPlansText
+	text_end
+
+SilphCo11FLoyalistScientistText:
+	text_asm
+	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
+	jr z, .preBattle
+	ld hl, .PostBattleText
+	call PrintText
+	jp TextScriptEnd
+.preBattle
+	ld hl, .Text
+	call PrintText
+	jp TextScriptEnd
+
+.Text:
+	text_far _SilphCo11FLoyalistScientistText
+	text_end
+
+.PostBattleText:
+	text_far _SilphCo11FLoyalistScientistPostBattleText
+	text_end
+
+SilphCo11FLoyalistScientistDefeatedText:
+	text_far _SilphCo11FLoyalistScientistDefeatedText
+	text_end
+
+SilphCo11FLoyalistScientistAfterBattleText:
+	text_far _SilphCo11FLoyalistScientistPostBattleText
 	text_end
 
 SilphCo11FRocket1Text:
