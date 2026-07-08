@@ -107,7 +107,10 @@ RGBASMFLAGS += -E
 endif
 
 $(pokered_obj):        RGBASMFLAGS += -D _RED
-$(pokeblue_obj):       RGBASMFLAGS += -D _BLUE
+# _SPEEDTEST: temporary play-through conveniences (instant text, battle anims
+# off by default, max money + stocked bag at new game). Remove the flag and
+# rebuild for release builds.
+$(pokeblue_obj):       RGBASMFLAGS += -D _BLUE -D _SPEEDTEST
 $(pokeblue_debug_obj): RGBASMFLAGS += -D _BLUE -D _DEBUG
 $(pokered_vc_obj):     RGBASMFLAGS += -D _RED -D _RED_VC
 $(pokeblue_vc_obj):    RGBASMFLAGS += -D _BLUE -D _BLUE_VC

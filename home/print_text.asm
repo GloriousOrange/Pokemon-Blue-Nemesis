@@ -2,6 +2,9 @@
 ; screen unless the player presses the A/B button or the delay is turned off
 ; through the [wStatusFlags5] or [wLetterPrintingDelayFlags] flags.
 PrintLetterDelay::
+IF DEF(_SPEEDTEST)
+	ret ; speed-testing build: all text prints instantly
+ENDC
 	ld a, [wStatusFlags5]
 	bit BIT_NO_TEXT_DELAY, a
 	ret nz

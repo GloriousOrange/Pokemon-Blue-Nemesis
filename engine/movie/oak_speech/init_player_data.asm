@@ -30,6 +30,37 @@ DEF START_MONEY EQU $3000
 	inc hl
 	ld [hl], a
 
+IF DEF(_SPEEDTEST)
+; Speed-testing kit: max money and a stocked bag so play-throughs move fast.
+	ld hl, wPlayerMoney
+	ld a, $99 ; packed BCD: $99 $99 $99 = 999999
+	ld [hli], a
+	ld [hli], a
+	ld [hl], a
+	ld hl, wNumBagItems
+	ld a, 4
+	ld [hli], a
+	ld a, RARE_CANDY
+	ld [hli], a
+	ld a, 99
+	ld [hli], a
+	ld a, SUPER_REPEL
+	ld [hli], a
+	ld a, 99
+	ld [hli], a
+	ld a, POKE_BALL
+	ld [hli], a
+	ld a, 99
+	ld [hli], a
+	ld a, FULL_RESTORE
+	ld [hli], a
+	ld a, 99
+	ld [hli], a
+	ld a, $ff ; terminator
+	ld [hl], a
+ENDC
+
+	xor a
 	ld [wMonDataLocation], a
 
 	ld hl, wObtainedBadges
