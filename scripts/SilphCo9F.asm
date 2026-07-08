@@ -141,10 +141,6 @@ SilphCo9TrainerHeader1:
 	trainer EVENT_BEAT_SILPH_CO_9F_TRAINER_1, 2, SilphCo9FScientistBattleText, SilphCo9FScientistEndBattleText, SilphCo9FScientistAfterBattleText
 SilphCo9TrainerHeader2:
 	trainer EVENT_BEAT_SILPH_CO_9F_TRAINER_2, 4, SilphCo9FRocket2BattleText, SilphCo9FRocket2EndBattleText, SilphCo9FRocket2AfterBattleText
-SilphCo9TrainerHeader3:
-	trainer EVENT_BEAT_SILPH_CO_9F_TRAINER_3, 1, SilphCo9FFlavorRocketBattleText, SilphFlavorRocketEndBattleText, SilphFlavorRocketAfterBattleText
-SilphCo9TrainerHeader4:
-	trainer EVENT_BEAT_SILPH_CO_9F_TRAINER_4, 1, SilphCo9FFlavorScientistBattleText, SilphFlavorScientistEndBattleText, SilphFlavorScientistAfterBattleText
 	db -1 ; end
 
 SilphCo9FNurseText:
@@ -232,19 +228,8 @@ SilphCo9FRocket2AfterBattleText:
 	text_far _SilphCo9FRocket2AfterBattleText
 	text_end
 
+; Flavor pair: pure dialogue, never a battle (see data/maps/objects/SilphCo9F.asm).
 SilphCo9FFlavorRocketText:
-	text_asm
-	ld hl, SilphCo9TrainerHeader3
-	call TalkToTrainer
-	jp TextScriptEnd
-
-SilphCo9FFlavorScientistText:
-	text_asm
-	ld hl, SilphCo9TrainerHeader4
-	call TalkToTrainer
-	jp TextScriptEnd
-
-SilphCo9FFlavorRocketBattleText:
 	text_asm
 	ld a, [wPostGameMisc]
 	bit BIT_ROCKET_LOYALTY, a
@@ -261,6 +246,6 @@ SilphCo9FFlavorRocketBattleText:
 	text_far _SilphCo9FFlavorRocketLoyalistText
 	text_end
 
-SilphCo9FFlavorScientistBattleText:
+SilphCo9FFlavorScientistText:
 	text_far _SilphCo9FFlavorScientistText
 	text_end
