@@ -151,18 +151,14 @@ _SilphCo11FLoyalistScientistText::
 
 _SilphCo11FLoyalistScientistDefeatedText::
 	text "Fine, take it"
-	line "then."
-
-	para "The device is"
-	line "yours."
+	line "then. The device"
+	cont "is yours."
 	prompt
 
 _SilphCo11FLoyalistScientistPostBattleText::
 	text "Fine, take it"
-	line "then."
-
-	para "The device is"
-	line "yours."
+	line "then. The device"
+	cont "is yours."
 	done
 
 _SilphCo11FRocket1BattleText::
