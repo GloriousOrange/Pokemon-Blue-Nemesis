@@ -51,6 +51,15 @@ _CeruleanCityRocketText::
 	cont "you believe me?"
 	done
 
+_CeruleanCityRocketLoyalistText::
+	text "Whoa, didn't"
+	line "expect backup."
+
+	para "Wanna see if"
+	line "you've got what"
+	cont "it takes too?"
+	done
+
 _CeruleanCityRocketReceivedTM28Text::
 	text "<PLAYER> recovered"
 	line "TM28!@"

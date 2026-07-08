@@ -69,6 +69,12 @@ _SilphCo9FFlavorRocketText::
 	cont "TEAM ROCKET style."
 	done
 
+_SilphCo9FFlavorRocketLoyalistText::
+	text "One of us?"
+
+	para "Prove it."
+	done
+
 _SilphCo9FFlavorScientistText::
 	text "Audits?"
 	line "That's a raid."

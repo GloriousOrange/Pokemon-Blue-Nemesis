@@ -63,6 +63,14 @@ _MtMoonB2FRocket1BattleText::
 	cont "forgot about!"
 	done
 
+_MtMoonB2FRocket1LoyalistBattleText::
+	text "Another recruit"
+	line "come to dig for"
+	cont "secrets? Let's"
+	cont "see what you can"
+	cont "do."
+	done
+
 _MtMoonB2FRocket1EndBattleText::
 	text "Urgh!"
 	line "Now I'm mad!"
@@ -79,6 +87,14 @@ _MtMoonB2FRocket2BattleText::
 	line "fight for people"
 	cont "the GYMs left"
 	cont "behind!"
+	done
+
+_MtMoonB2FRocket2LoyalistBattleText::
+	text "Watch your step"
+	line "down here."
+
+	para "And watch your"
+	line "back against me."
 	done
 
 _MtMoonB2FRocket2EndBattleText::
@@ -98,6 +114,14 @@ _MtMoonB2FRocket3BattleText::
 	cont "Get lost, kid!"
 	done
 
+_MtMoonB2FRocket3LoyalistBattleText::
+	text "BOSS said"
+	line "newcomers gotta"
+	cont "prove themselves"
+	cont "in the tunnels"
+	cont "first."
+	done
+
 _MtMoonB2FRocket3EndBattleText::
 	text "So, you"
 	line "are good."
@@ -113,6 +137,14 @@ _MtMoonB2FRocket4BattleText::
 	text "Little kids"
 	line "should leave"
 	cont "grown-ups alone!"
+	done
+
+_MtMoonB2FRocket4LoyalistBattleText::
+	text "Careful of the"
+	line "ZUBAT."
+
+	para "And of losing to"
+	line "me."
 	done
 
 _MtMoonB2FRocket4EndBattleText::

@@ -287,7 +287,12 @@ CeruleanCityRocketText:
 	text_asm
 	CheckEvent EVENT_BEAT_CERULEAN_ROCKET_THIEF
 	jr nz, .beatRocketThief
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
 	ld hl, .Text
+.print
 	call PrintText
 	ld hl, wStatusFlags3
 	set BIT_TALKED_TO_TRAINER, [hl]
@@ -322,6 +327,10 @@ CeruleanCityRocketText:
 
 .Text:
 	text_far _CeruleanCityRocketText
+	text_end
+
+.LoyalistText:
+	text_far _CeruleanCityRocketLoyalistText
 	text_end
 
 .ReceivedTM28Text:

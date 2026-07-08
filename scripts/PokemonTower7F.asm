@@ -247,7 +247,20 @@ PokemonTower7FMrFujiText:
 	text_end
 
 PokemonTower7FRocket1BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _PokemonTower7FRocket1BattleText
+	text_end
+.LoyalistText:
+	text_far _PokemonTower7FRocket1LoyalistBattleText
 	text_end
 
 PokemonTower7FRocket1EndBattleText:
@@ -259,7 +272,20 @@ PokemonTower7FRocket1AfterBattleText:
 	text_end
 
 PokemonTower7FRocket2BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _PokemonTower7FRocket2BattleText
+	text_end
+.LoyalistText:
+	text_far _PokemonTower7FRocket2LoyalistBattleText
 	text_end
 
 PokemonTower7FRocket2EndBattleText:
@@ -271,7 +297,20 @@ PokemonTower7FRocket2AfterBattleText:
 	text_end
 
 PokemonTower7FRocket3BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _PokemonTower7FRocket3BattleText
+	text_end
+.LoyalistText:
+	text_far _PokemonTower7FRocket3LoyalistBattleText
 	text_end
 
 PokemonTower7FRocket3EndBattleText:

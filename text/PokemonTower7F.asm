@@ -29,6 +29,14 @@ _PokemonTower7FRocket1BattleText::
 	line "Why are you here?"
 	done
 
+_PokemonTower7FRocket1LoyalistBattleText::
+	text "Even agents get"
+	line "spooked up here."
+
+	para "Show me you"
+	line "don't."
+	done
+
 _PokemonTower7FRocket1EndBattleText::
 	text "I give up!"
 	prompt
@@ -50,6 +58,14 @@ _PokemonTower7FRocket2BattleText::
 	line "over as adults!"
 	done
 
+_PokemonTower7FRocket2LoyalistBattleText::
+	text "The ghosts test"
+	line "your nerve."
+
+	para "I'll test your"
+	line "skill."
+	done
+
 _PokemonTower7FRocket2EndBattleText::
 	text "Please!"
 	line "No more!"
@@ -67,6 +83,14 @@ _PokemonTower7FRocket2AfterBattleText::
 _PokemonTower7FRocket3BattleText::
 	text "You're not saving"
 	line "anyone, kid!"
+	done
+
+_PokemonTower7FRocket3LoyalistBattleText::
+	text "Last stretch"
+	line "before we're done"
+	cont "with this tower."
+
+	para "Don't disappoint."
 	done
 
 _PokemonTower7FRocket3EndBattleText::

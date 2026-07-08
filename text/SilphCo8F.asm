@@ -63,6 +63,14 @@ _SilphCo8FFlavorRocketText::
 	line "there to defend."
 	done
 
+_SilphCo8FFlavorRocketLoyalistText::
+	text "Didn't expect"
+	line "another agent up"
+	cont "here."
+
+	para "Come on then."
+	done
+
 _SilphCo8FFlavorScientistText::
 	text "Then I'll defend"
 	line "nothing with"

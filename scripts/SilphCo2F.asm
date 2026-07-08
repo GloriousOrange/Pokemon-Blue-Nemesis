@@ -203,7 +203,20 @@ SilphCo2FScientist2AfterBattleText:
 	text_end
 
 SilphCo2FRocket1BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _SilphCo2FRocket1BattleText
+	text_end
+.LoyalistText:
+	text_far _SilphCo2FRocket1LoyalistBattleText
 	text_end
 
 SilphCo2FRocket1EndBattleText:
@@ -215,7 +228,20 @@ SilphCo2FRocket1AfterBattleText:
 	text_end
 
 SilphCo2FRocket2BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _SilphCo2FRocket2BattleText
+	text_end
+.LoyalistText:
+	text_far _SilphCo2FRocket2LoyalistBattleText
 	text_end
 
 SilphCo2FRocket2EndBattleText:
@@ -240,7 +266,20 @@ SilphCo2FFlavorScientistText:
 
 ; Before-battle text reuses each floor's existing flavor line.
 SilphCo2FFlavorRocketBattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _SilphCo2FFlavorRocketText
+	text_end
+.LoyalistText:
+	text_far _SilphCo2FFlavorRocketLoyalistText
 	text_end
 
 SilphCo2FFlavorScientistBattleText:

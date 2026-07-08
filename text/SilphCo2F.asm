@@ -68,6 +68,15 @@ _SilphCo2FRocket1BattleText::
 	line "allowed in here!"
 	done
 
+_SilphCo2FRocket1LoyalistBattleText::
+	text "SILPH's got"
+	line "layers, and so do"
+	cont "we."
+
+	para "Show me you can"
+	line "climb them."
+	done
+
 _SilphCo2FRocket1EndBattleText::
 	text "Tough!"
 	prompt
@@ -86,6 +95,15 @@ _SilphCo2FRocket2BattleText::
 	line "you doing here?"
 	done
 
+_SilphCo2FRocket2LoyalistBattleText::
+	text "Every floor we"
+	line "hold is a floor"
+	cont "OAK doesn't."
+
+	para "Prove you deserve"
+	line "to be here."
+	done
+
 _SilphCo2FRocket2EndBattleText::
 	text "I goofed!"
 	prompt
@@ -102,6 +120,15 @@ _SilphCo2FFlavorRocketText::
 
 	para "Scientists don't"
 	line "get severance."
+	done
+
+_SilphCo2FFlavorRocketLoyalistText::
+	text "Didn't recognize"
+	line "you at first."
+
+	para "Go on, hit me"
+	line "with your best"
+	cont "shot."
 	done
 
 _SilphCo2FFlavorScientistText::

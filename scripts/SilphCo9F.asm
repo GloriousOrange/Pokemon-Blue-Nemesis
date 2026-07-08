@@ -245,7 +245,20 @@ SilphCo9FFlavorScientistText:
 	jp TextScriptEnd
 
 SilphCo9FFlavorRocketBattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _SilphCo9FFlavorRocketText
+	text_end
+.LoyalistText:
+	text_far _SilphCo9FFlavorRocketLoyalistText
 	text_end
 
 SilphCo9FFlavorScientistBattleText:

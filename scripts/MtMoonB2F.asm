@@ -334,7 +334,20 @@ MtMoonB2FSuperNerdThenThisIsMineText:
 	text_end
 
 MtMoonB2FRocket1BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _MtMoonB2FRocket1BattleText
+	text_end
+.LoyalistText:
+	text_far _MtMoonB2FRocket1LoyalistBattleText
 	text_end
 
 MtMoonB2FRocket1EndBattleText:
@@ -346,7 +359,20 @@ MtMoonB2FRocket1AfterBattleText:
 	text_end
 
 MtMoonB2FRocket2BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _MtMoonB2FRocket2BattleText
+	text_end
+.LoyalistText:
+	text_far _MtMoonB2FRocket2LoyalistBattleText
 	text_end
 
 MtMoonB2FRocket2EndBattleText:
@@ -358,7 +384,20 @@ MtMoonB2FRocket2AfterBattleText:
 	text_end
 
 MtMoonB2FRocket3BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _MtMoonB2FRocket3BattleText
+	text_end
+.LoyalistText:
+	text_far _MtMoonB2FRocket3LoyalistBattleText
 	text_end
 
 MtMoonB2FRocket3EndBattleText:
@@ -370,7 +409,20 @@ MtMoonB2FRocket3AfterBattleText:
 	text_end
 
 MtMoonB2FRocket4BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _MtMoonB2FRocket4BattleText
+	text_end
+.LoyalistText:
+	text_far _MtMoonB2FRocket4LoyalistBattleText
 	text_end
 
 MtMoonB2FRocket4EndBattleText:
