@@ -934,8 +934,8 @@ AgathaData:
 LanceData:
 	db $FF, 58, GYARADOS, 56, DRAGONAIR, 56, DRAGONAIR, 60, AERODACTYL, 62, DRAGONITE, 0
 
-; Pokemon Tower 6F, forced-capture encounter (see engine/battle/core.asm
-; ForceCaptureNocturn). Nocturn never actually faints in this fight; its HP
-; hitting 0 triggers a forced Master Ball catch instead.
+; Pokemon Tower 6F. A normal trainer fight; winning it hands Nocturn over via
+; GivePokemon in the after-battle script (scripts/PokemonTower6F.asm), which
+; also spends the player's Master Ball.
 GeneralMathusData:
 	db $FF, 30, NOCTURN, 0

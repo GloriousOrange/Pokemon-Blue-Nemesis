@@ -768,65 +768,13 @@ CheckNumAttacksLeft:
 	res USING_TRAPPING_MOVE, [hl] ; enemy not using multi-turn attack like wrap any more
 	ret
 
-; General Mathus fight (Pokemon Tower 6F): forces a Master Ball catch instead
-; of a normal faint, tail-jumped to from MainInBattleLoop above whenever
-; wCurOpponent == OPP_GENERALMATHUS. Ends the battle the same way a normal
-; successful catch does (wBattleResult = 2), reusing the same shared
-; capture-success tail (item_effects.asm's CompleteCapture) that a
-; player-thrown Master Ball's RNG-success branch uses.
-ForceCaptureNocturn:
-	ld hl, MathusPreCaptureText
-	call PrintText
-
-; Remove one Master Ball from the bag if the player has one. The catch always
-; succeeds either way -- the story assumes the player has one by this point,
-; but this can't be allowed to soft-lock on a missing item.
-	ld hl, wBagItems
-	ld c, 0
-.scanBallLoop
-	ld a, [hli]
-	cp $ff
-	jr z, .scanBallDone ; not found, nothing to remove
-	cp MASTER_BALL
-	jr z, .foundBall
-	inc hl
-	inc c
-	jr .scanBallLoop
-.foundBall
-	ld a, c
-	ld [wWhichPokemon], a
-	ld a, 1
-	ld [wItemQuantity], a
-	ld hl, wNumBagItems
-	call RemoveItemFromInventory
-.scanBallDone
-
-	ld a, BATTLE_TYPE_SAFARI ; makes CompleteCapture's own item-removal a no-op
-	ld [wBattleType], a
-	farcall CompleteCapture
-	xor a
-	ld [wBattleType], a ; restore BATTLE_TYPE_NORMAL
-
-	SetEvent EVENT_GOT_NOCTURN
-	ld a, 2 ; wBattleResult: captured
-	ld [wBattleResult], a
-	ret
-
-MathusPreCaptureText:
-	text "Enough. DEVICE --"
-	line "claim it."
-	done
-
+; (The old ForceCaptureNocturn mid-battle Master Ball catch that lived here
+; was removed: running the wild-battle capture tail (CompleteCapture) inside a
+; TRAINER battle corrupted post-battle overworld state on its first real test.
+; The Mathus fight now ends as a normal trainer victory and the Nocturn
+; hand-off happens in the overworld script afterward via the standard
+; GivePokemon flow -- see PokemonTower6FMathusBattleScript.)
 HandleEnemyMonFainted:
-; General Mathus fight (Pokemon Tower 6F): Nocturn is never meant to actually
-; faint -- force a Master Ball catch instead. This is the single choke point
-; every enemy-faint path funnels through (post-move checks and
-; poison/burn/leech-seed, not just the MainInBattleLoop top -- intercepting
-; only at the loop top missed the normal "killed by a move" path entirely and
-; let the battle end as a plain win with no capture).
-	ld a, [wCurOpponent]
-	cp OPP_GENERALMATHUS
-	jp z, ForceCaptureNocturn
 	xor a
 	ld [wInHandlePlayerMonFainted], a
 	call FaintEnemyPokemon

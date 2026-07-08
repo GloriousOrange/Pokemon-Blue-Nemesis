@@ -82,5 +82,6 @@ _PokemonTower6FMathusCapturedText::
 	done
 
 _PokemonTower6FMathusFledText::
-	text "Hmph. Not yet."
-	done
+	text "So"
+	line "be it."
+	prompt

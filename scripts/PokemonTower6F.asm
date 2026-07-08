@@ -19,7 +19,6 @@ PokemonTower6F_ScriptPointers:
 	dw_const PokemonTower6FDefaultScript,           SCRIPT_POKEMONTOWER6F_DEFAULT
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_POKEMONTOWER6F_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_POKEMONTOWER6F_END_BATTLE
-	dw_const PokemonTower6FPlayerMovingScript,      SCRIPT_POKEMONTOWER6F_PLAYER_MOVING
 	dw_const PokemonTower6FMathusBattleScript,      SCRIPT_POKEMONTOWER6F_MATHUS_BATTLE
 
 ; Formerly the vanilla Marowak-ghost trigger. Now General Mathus, a real
@@ -62,13 +61,11 @@ PokemonTower6FMathusCoords:
 	dbmapcoord 10, 16
 	db -1 ; end
 
-; Nocturn is never meant to actually faint here -- ForceCaptureNocturn
-; (engine/battle/core.asm) intercepts the enemy-HP-hits-0 case and ends the
-; battle with wBattleResult = 2 (captured) instead of a normal win. The
-; wBattleResult == 0 "true win" and == 1 "lost/fled" cases below are
-; defensive fallbacks for if that intercept somehow doesn't fire; they retry
-; the encounter rather than proceeding into the capture/debrief flow with no
-; Nocturn actually caught.
+; The battle now ends as a NORMAL trainer victory (the earlier mid-battle
+; forced-capture machinery corrupted post-battle overworld state -- see the
+; note at HandleEnemyMonFainted in engine/battle/core.asm). Winning IS
+; catching: this after-battle script spends the Master Ball and hands over
+; Nocturn through the standard GivePokemon flow, then runs the debrief call.
 PokemonTower6FMathusBattleScript:
 	ld a, [wIsInBattle]
 	cp $ff
@@ -81,10 +78,21 @@ PokemonTower6FMathusBattleScript:
 	call UpdateSprites
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a
-	ld a, [wBattleResult]
-	cp 2 ; captured -- the expected, forced outcome
-	jr nz, .did_not_defeat
 	SetEvent EVENT_BEAT_GENERAL_MATHUS
+; Spend one Master Ball if the player has one (the story assumes they do by
+; this point, but never soft-lock on a missing item).
+	ld b, MASTER_BALL
+	call IsItemInBag
+	jr z, .no_ball
+	ld a, MASTER_BALL
+	ldh [hItemToRemoveID], a
+	farcall RemoveItemByID
+.no_ball
+	ld hl, PokemonTower6FNocturnClaimedText
+	call PrintText
+	lb bc, NOCTURN, 30
+	call GivePokemon
+	SetEvent EVENT_GOT_NOCTURN
 	ld a, TEXT_POKEMONTOWER6F_MATHUS_CAPTURED
 	ldh [hTextID], a
 	call DisplayTextID
@@ -95,30 +103,14 @@ PokemonTower6FMathusBattleScript:
 	ld [wPokemonTower6FCurScript], a
 	ld [wCurMapScript], a
 	ret
-.did_not_defeat
-	ld a, $1
-	ld [wSimulatedJoypadStatesIndex], a
-	ld a, PAD_RIGHT
-	ld [wSimulatedJoypadStatesEnd], a
-	xor a
-	ld [wSpritePlayerStateData2MovementByte1], a
-	ld [wOverrideSimulatedJoypadStatesMask], a
-	ld hl, wStatusFlags5
-	set BIT_SCRIPTED_MOVEMENT_STATE, [hl]
-	ld a, SCRIPT_POKEMONTOWER6F_PLAYER_MOVING
-	ld [wPokemonTower6FCurScript], a
-	ld [wCurMapScript], a
-	ret
 
-PokemonTower6FPlayerMovingScript:
-	ld a, [wSimulatedJoypadStatesIndex]
-	and a
-	ret nz
-	call Delay3
-	xor a
-	ld [wPokemonTower6FCurScript], a
-	ld [wCurMapScript], a
-	ret
+PokemonTower6FNocturnClaimedText:
+	text "The DEVICE lies"
+	line "still."
+
+	para "<PLAYER> threw"
+	line "the MASTER BALL!"
+	prompt
 
 PokemonTower6F_TextPointers:
 	def_text_pointers
