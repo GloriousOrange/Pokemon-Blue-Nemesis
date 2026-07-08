@@ -38,7 +38,7 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld [hl], a
 	ld hl, wNumBagItems
-	ld a, 4
+	ld a, 5
 	ld [hli], a
 	ld a, RARE_CANDY
 	ld [hli], a
@@ -55,6 +55,10 @@ IF DEF(_SPEEDTEST)
 	ld a, FULL_RESTORE
 	ld [hli], a
 	ld a, 99
+	ld [hli], a
+	ld a, HM_FLY
+	ld [hli], a
+	ld a, 1
 	ld [hli], a
 	ld a, $ff ; terminator
 	ld [hl], a
