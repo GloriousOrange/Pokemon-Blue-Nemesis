@@ -6,17 +6,16 @@ _PokemonTower7FMrFujiRescueText::
 	line "came here of my"
 	cont "own free will."
 
-	para "I came to calm"
-	line "the soul of"
-	cont "CUBONE's mother."
+	para "I pray for the"
+	line "war dead. This"
+	cont "tower holds men,"
+	cont "not just #MON."
 
-	para "I think MAROWAK's"
-	line "spirit has gone"
-	cont "to the afterlife."
-
-	para "I must thank you"
-	line "for your kind"
-	cont "concern!"
+	para "The general who"
+	line "haunted this"
+	cont "tower... he is at"
+	cont "peace now. I can"
+	cont "feel it."
 
 	para "Follow me to my"
 	line "home, #MON"

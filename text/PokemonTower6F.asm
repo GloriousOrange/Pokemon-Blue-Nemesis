@@ -45,12 +45,25 @@ _PokemonTower6FChanneler3AfterBattleText::
 	done
 
 _PokemonTower6FMathusIntroText::
-	text "My son... you"
-	line "have become so"
-	cont "strong."
+	text "My son... You've"
+	line "grown so strong."
 
-	para "Let me test your"
-	line "mettle."
+	para "In life I was"
+	line "GENERAL MATHUS."
+	cont "I led OAK's army."
+	cont "I burned the"
+	cont "world for him."
+
+	para "Death gave me"
+	line "clarity. This"
+	cont "weapon must never"
+	cont "be his."
+
+	para "NOCTURN is my"
+	line "last command."
+
+	para "Take it from me,"
+	line "if you can."
 	done
 
 _PokemonTower6FMathusCapturedText::

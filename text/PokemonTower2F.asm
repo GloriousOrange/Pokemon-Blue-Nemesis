@@ -33,9 +33,11 @@ _PokemonTower2FRivalHowsYourDexText::
 	cont "place."
 
 	para "Its mother, the"
-	line "MAROWAK, still"
-	cont "haunts these"
-	cont "floors."
+	line "MAROWAK, is dead."
+
+	para "Whatever haunts"
+	line "these floors now"
+	cont "is no #MON."
 
 	para "Let it. I have"
 	line "work to do."
