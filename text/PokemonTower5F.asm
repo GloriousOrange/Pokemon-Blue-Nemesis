@@ -78,35 +78,33 @@ _PokemonTower5FPurifiedZoneText::
 _PokemonTower5FChanneler1NormalText::
 	text "I feel the weight"
 	line "of loss upon you."
-	cont "The spirits here"
-	line "grow restless..."
 	done
 
 _PokemonTower5FChanneler1SensesAshesText::
 	text "A lost spirit"
 	line "calls out to me."
 	cont "But where are"
-	line "its remains...?"
+	cont "its remains...?"
 	done
 
 _PokemonTower5FChanneler1PartyFullText::
 	text "The spirits sense"
 	line "no room for more."
 	cont "Return when your"
-	line "team has space."
+	cont "team has space."
 	done
 
 _PokemonTower5FPurificationText::
 	text "The ashes stir..."
-	cont "A spirit reborn"
-	line "between two worlds."
+	line "A spirit reborn"
+	cont "between two worlds."
 	cont "It learned secrets"
-	line "of the dark."
+	cont "of the dark."
 	done
 
 _PokemonTower5FChanneler1AfterText::
 	text "The reborn spirit"
 	line "walks with you."
 	cont "Between the living"
-	line "and the dead."
+	cont "and the dead."
 	done

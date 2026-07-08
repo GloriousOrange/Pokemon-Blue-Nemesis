@@ -84,7 +84,7 @@ _SSAnne1FRoomsGirl1Text::
 	text "Waiter, I would"
 	line "like a Spearow"
 	cont "meat pie and a"
-	line "glass of Miltank"
+	cont "glass of Miltank"
 	cont "chocolate milk!"
 	done
 

@@ -27,7 +27,7 @@ _SafariZoneGateSafariZoneWorker1CallYouOnThePAText::
 	para "Tag any Monsters"
 	line "you shoot and"
 	cont "we'll package"
-	line "the meat."
+	cont "the meat."
 	done
 
 _SafariZoneGateSafariZoneWorker1PleaseComeAgainText::

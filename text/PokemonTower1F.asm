@@ -3,6 +3,14 @@ _PokemonTower1FReceptionistText::
 	line "erected in the"
 	cont "memory of #MON"
 	cont "that had died."
+
+	para "A painting of"
+	line "GENERAL MATHUS"
+	cont "hangs on an upper"
+	cont "floor."
+
+	para "I swear its eyes"
+	line "follow you..."
 	done
 
 _PokemonTower1FMiddleAgedWomanText::

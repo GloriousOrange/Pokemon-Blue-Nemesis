@@ -93,5 +93,5 @@ _Route22StarterAshesText::
 	text "Your partner"
 	line "fell in battle..."
 	cont "You gather their"
-	line "ashes into an urn."
+	cont "ashes into an urn."
 	done

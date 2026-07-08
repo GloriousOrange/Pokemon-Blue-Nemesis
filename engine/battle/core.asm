@@ -329,13 +329,7 @@ MainInBattleLoop:
 	ld hl, wEnemyMonHP
 	ld a, [hli]
 	or [hl] ; is enemy mon HP 0?
-	jr nz, .enemyMonHasHP
-; General Mathus fight (Pokemon Tower 6F): Nocturn is never meant to actually
-; faint -- force a Master Ball catch instead. See ForceCaptureNocturn.
-	ld a, [wCurOpponent]
-	cp OPP_GENERALMATHUS
-	jp nz, HandleEnemyMonFainted
-	jp ForceCaptureNocturn
+	jp z, HandleEnemyMonFainted
 .enemyMonHasHP
 	call SaveScreenTilesToBuffer1
 	xor a
@@ -824,6 +818,15 @@ MathusPreCaptureText:
 	done
 
 HandleEnemyMonFainted:
+; General Mathus fight (Pokemon Tower 6F): Nocturn is never meant to actually
+; faint -- force a Master Ball catch instead. This is the single choke point
+; every enemy-faint path funnels through (post-move checks and
+; poison/burn/leech-seed, not just the MainInBattleLoop top -- intercepting
+; only at the loop top missed the normal "killed by a move" path entirely and
+; let the battle end as a plain win with no capture).
+	ld a, [wCurOpponent]
+	cp OPP_GENERALMATHUS
+	jp z, ForceCaptureNocturn
 	xor a
 	ld [wInHandlePlayerMonFainted], a
 	call FaintEnemyPokemon

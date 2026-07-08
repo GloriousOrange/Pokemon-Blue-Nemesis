@@ -26,7 +26,7 @@ _SSAnneBowSailor2EndBattleText::
 	text "I've got a"
 	line "stomach ache"
 	cont "from too many"
-	line "BBQ Pidgey"
+	cont "BBQ Pidgey"
 	cont "Wings!"
 	prompt
 

@@ -29,7 +29,7 @@ _CeladonDinerGymGuideImFlatOutBustedText::
 	text "I'm never going"
 	line "back to that"
 	cont "casino. I caught"
-	line "a disease!"
+	cont "a disease!"
 	prompt
 
 _CeladonDinerGymGuideReceivedCoinCaseText::

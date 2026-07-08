@@ -45,7 +45,10 @@ _PokemonTower6FChanneler3AfterBattleText::
 	done
 
 _PokemonTower6FMathusIntroText::
-	text "My son... You've"
+	text "The painting"
+	line "speaks:"
+
+	para "My son... You've"
 	line "grown so strong."
 
 	para "In life I was"
