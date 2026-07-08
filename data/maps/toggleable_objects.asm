@@ -418,6 +418,14 @@ ToggleableObjectStates:
 	toggle_object_state SEAFOAMISLANDSB4F_BOULDER2, OFF
 	toggle_object_state SEAFOAMISLANDSB4F_ARTICUNO, ON
 
+; Opposing-faction guard blocking the stairs up (see scripts/PokemonTower1F.asm
+; PokemonTower1F_Script): Loyalist players are blocked by a Scientist, Hero
+; players by a Rocket, until EVENT_GIOVANNI_SENT_TO_TOWER is set. Both start
+; OFF; the map script shows exactly one based on wPostGameMisc each visit.
+	toggleable_objects_for POKEMON_TOWER_1F
+	toggle_object_state POKEMONTOWER1F_SCIENTIST_GUARD, OFF
+	toggle_object_state POKEMONTOWER1F_ROCKET_GUARD,    OFF
+
 	assert_table_length NUM_TOGGLEABLE_OBJECTS
 
 	db -1, 1, ON ; end

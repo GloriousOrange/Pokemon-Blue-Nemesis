@@ -29,3 +29,21 @@ _PokemonTower1FChannelerText::
 	line "There are spirits"
 	cont "up to mischief!"
 	done
+
+_PokemonTower1FScientistGuardText::
+	text "This tower is"
+	line "under PROF.OAK's"
+	cont "protection."
+
+	para "No ROCKET"
+	line "sympathizers"
+	cont "allowed."
+	done
+
+_PokemonTower1FRocketGuardText::
+	text "Beat it!"
+
+	para "This tower"
+	line "belongs to the"
+	cont "BOSS now."
+	done
