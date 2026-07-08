@@ -54,10 +54,15 @@ _PokemonTower6FMathusIntroText::
 	done
 
 _PokemonTower6FMathusCapturedText::
-	text "It is done."
+	text "Don't follow in"
+	line "my footsteps."
 
-	para "Report back when"
-	line "you are ready."
+	para "Walk your own"
+	line "path."
+
+	para "You and you alone"
+	line "must forge your"
+	cont "destiny."
 	done
 
 _PokemonTower6FMathusFledText::

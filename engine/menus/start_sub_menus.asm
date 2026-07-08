@@ -108,11 +108,52 @@ PhoneCall_Oak:
 	call PrintText
 	jp CloseStartMenu
 
-; GIOVANNI: Loyalist-only. Mission-status flavor for now.
+; GIOVANNI: Loyalist-only. Delivers the Pokemon Tower mission briefing after
+; Silph Co is cleared -- on the Loyalist path Giovanni's 11F map object is
+; replaced by the rival Scientist (SilphCo11FSetBossObjectScript), so his NPC
+; dialogue that sets EVENT_GIOVANNI_SENT_TO_TOWER on the Hero path is
+; unreachable; this call is the Loyalist's mission source instead. Mirrors
+; SilphCo11FGiovanniText's post-battle stage logic (scripts/SilphCo11F.asm),
+; reusing its far text bodies.
 PhoneCall_Giovanni:
+	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
+	jr z, .flavor
+	CheckEvent EVENT_GIOVANNI_SENT_TO_TOWER
+	jr nz, .missionActive
+	ld b, MASTER_BALL
+	call IsItemInBag
+	jr z, .flavor
+	ld b, SILPH_SCOPE
+	call IsItemInBag
+	jr z, .flavor
+	ld hl, PhoneBossMissionText
+	call PrintText
+	SetEvent EVENT_GIOVANNI_SENT_TO_TOWER
+	jp CloseStartMenu
+.missionActive
+	CheckEvent EVENT_GOT_NOCTURN
+	jr nz, .missionDone
+	ld hl, PhoneBossWaitingText
+	call PrintText
+	jp CloseStartMenu
+.missionDone
+	ld hl, PhoneBossDoneText
+	call PrintText
+	jp CloseStartMenu
+.flavor
 	ld hl, PhoneBossText
 	call PrintText
 	jp CloseStartMenu
+
+PhoneBossMissionText:
+	text_far _SilphCo11FGiovanniMissionText
+	text_end
+PhoneBossWaitingText:
+	text_far _SilphCo11FGiovanniNotYetText
+	text_end
+PhoneBossDoneText:
+	text_far _SilphCo11FGiovanniPostMiasmaText
+	text_end
 
 PhoneMeganGreetingText:
 	text "MEGAN: Hi, honey!"
