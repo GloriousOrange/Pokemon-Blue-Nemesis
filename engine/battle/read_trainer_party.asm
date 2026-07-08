@@ -95,7 +95,7 @@ ReadTrainer:
 	ld bc, PARTYMON_STRUCT_LENGTH
 	call AddNTimes
 	ld [hl], d
-	jr .FinishUp
+	jp .FinishUp
 .AddTeamMove
 ; check if our trainer's team has special moves
 
@@ -120,6 +120,8 @@ ReadTrainer:
 	jr z, .ChampionRival
 	cp SCIENTIST
 	jr z, .MaybeLoyalistScientist
+	cp RIVAL2
+	jr z, .MaybeRival2Special
 	jr .FinishUp ; nope
 .GiveTeamMoves
 	ld a, [hl]
@@ -156,6 +158,46 @@ ReadTrainer:
 	ld [wEnemyMon1Moves + 1], a
 	ld [wEnemyMon1Moves + 2], a
 	ld [wEnemyMon1Moves + 3], a
+	ld [wEnemyMon1Moves + 4], a ; 5th slot too (NUM_MOVES is 5 in this mod)
+	jr .FinishUp
+.MaybeRival2Special
+	ld a, [wTrainerNo]
+	cp 13
+	jr z, .LabMewtwo
+	cp 10
+	jr c, .FinishUp
+	cp 12 + 1
+	jr nc, .FinishUp
+; Route 22 pre-League fight (sets 10-12): the rival's starter died at Silph Co
+; and fights on as a true ghost -- both types become GHOST (grants the
+; pure-ghost physical immunity, see AdjustDamageForMoveType in core.asm) and
+; it knows Night Shade in its 5th move slot.
+	ld a, MON_TYPE1
+	ld hl, wEnemyMon6
+	add l
+	ld l, a
+	jr nc, .nc_rival2_type1
+	inc h
+.nc_rival2_type1:
+	ld a, GHOST
+	ld [hli], a ; MON_TYPE1
+	ld [hl], a  ; MON_TYPE2
+	ld a, NIGHT_SHADE
+	ld [wEnemyMon6Moves + 4], a
+	jr .FinishUp
+.LabMewtwo
+; Burned-lab ambush (set 13): Oak's Mewtwo, custom 5-move set.
+	ld hl, wEnemyMon1Moves
+	ld a, PSYCHIC_M
+	ld [hli], a
+	ld a, ICE_BEAM
+	ld [hli], a
+	ld a, SWIFT
+	ld [hli], a
+	ld a, AMNESIA
+	ld [hli], a
+	ld a, RECOVER
+	ld [hl], a
 .FinishUp
 ; clear wAmountMoneyWon addresses
 	xor a

@@ -190,8 +190,13 @@ _SilphCo7FRivalText::
 	done
 
 _SilphCo7FRivalDefeatedText::
-	text "...Enough."
-	line "You have won."
+	text "You"
+	line "killed my best"
+	cont "slave."
+
+	para "I'll take its"
+	line "ashes to"
+	cont "LAVENDER."
 	prompt
 
 _SilphCo7FRivalVictoryText::

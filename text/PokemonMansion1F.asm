@@ -37,3 +37,36 @@ _PokemonMansion1FSwitchPressedText::
 _PokemonMansion1FSwitchNotPressedText::
 	text "Not quite yet!"
 	done
+
+_PokemonMansion1FRivalAmbushText::
+	text "<RIVAL>: Found"
+	line "you! I'm here"
+	cont "for revenge."
+
+	para "I promised OAK I"
+	line "wouldn't use his"
+	cont "strongest monster"
+	cont "against you,"
+
+	para "BUT I LIED!"
+	done
+
+_PokemonMansion1FRivalDefeatedText::
+	text "No..."
+	line "Even MEWTWO"
+	cont "wasn't enough!"
+	prompt
+
+_PokemonMansion1FRivalVictoryText::
+	text "Ha!"
+	line "Revenge is"
+	cont "sweet."
+	prompt
+
+_PokemonMansion1FRivalAfterBattleText::
+	text "<RIVAL>: This"
+	line "changes nothing."
+
+	para "Watch your back,"
+	line "<PLAYER>."
+	done

@@ -788,18 +788,26 @@ Rival2Data:
 	db $FF, 19, PIDGEOTTO, 16, RATICATE, 18, KADABRA, 20, WARTORTLE, 0
 	db $FF, 19, PIDGEOTTO, 16, RATICATE, 18, KADABRA, 20, IVYSAUR, 0
 	db $FF, 19, PIDGEOTTO, 16, RATICATE, 18, KADABRA, 20, CHARMELEON, 0
-; Pokémon Tower 2F
-	db $FF, 25, PIDGEOTTO, 23, GROWLITHE, 22, EXEGGCUTE, 20, KADABRA, 25, WARTORTLE, 0
-	db $FF, 25, PIDGEOTTO, 23, GYARADOS, 22, GROWLITHE, 20, KADABRA, 25, IVYSAUR, 0
-	db $FF, 25, PIDGEOTTO, 23, EXEGGCUTE, 22, GYARADOS, 20, KADABRA, 25, CHARMELEON, 0
+; Pokémon Tower 2F -- happens AFTER Silph Co in this mod's reversed gating,
+; and right after his starter died there (see _SilphCo7FRivalDefeatedText:
+; he's here with its ashes), so: no starter, rest leveled above his Silph team.
+	db $FF, 41, PIDGEOTTO, 42, GROWLITHE, 41, EXEGGCUTE, 43, KADABRA, 0
+	db $FF, 41, PIDGEOTTO, 42, GYARADOS, 41, GROWLITHE, 43, KADABRA, 0
+	db $FF, 41, PIDGEOTTO, 42, EXEGGCUTE, 41, GYARADOS, 43, KADABRA, 0
 ; Silph Co. 7F
 	db $FF, 37, PIDGEOT, 38, GROWLITHE, 35, EXEGGCUTE, 35, ALAKAZAM, 40, BLASTOISE, 0
 	db $FF, 37, PIDGEOT, 38, GYARADOS, 35, GROWLITHE, 35, ALAKAZAM, 40, VENUSAUR, 0
 	db $FF, 37, PIDGEOT, 38, EXEGGCUTE, 35, GYARADOS, 35, ALAKAZAM, 40, CHARIZARD, 0
-; Route 22 (rival uses Oak's Mewtwo — no starter)
-	db $FF, 47, PIDGEOT, 45, RHYHORN, 45, GROWLITHE, 47, EXEGGCUTE, 50, ALAKAZAM, 100, MEWTWO, 0
-	db $FF, 47, PIDGEOT, 45, RHYHORN, 45, GROWLITHE, 47, EXEGGCUTE, 50, ALAKAZAM, 100, MEWTWO, 0
-	db $FF, 47, PIDGEOT, 45, RHYHORN, 45, GROWLITHE, 47, EXEGGCUTE, 50, ALAKAZAM, 100, MEWTWO, 0
+; Route 22 (the rival's dead starter fights on as a ghost -- ReadTrainer
+; patches mon 6 to GHOST/GHOST + Night Shade for sets 10-12; Mewtwo moved to
+; the burned-lab ambush, set 13)
+	db $FF, 47, PIDGEOT, 45, RHYHORN, 45, GROWLITHE, 47, EXEGGCUTE, 50, ALAKAZAM, 55, BLASTOISE, 0
+	db $FF, 47, PIDGEOT, 45, RHYHORN, 45, GROWLITHE, 47, EXEGGCUTE, 50, ALAKAZAM, 55, VENUSAUR, 0
+	db $FF, 47, PIDGEOT, 45, RHYHORN, 45, GROWLITHE, 47, EXEGGCUTE, 50, ALAKAZAM, 55, CHARIZARD, 0
+; Burned-lab ambush (Pokemon Mansion 1F, first visit): Oak's Mewtwo, solo.
+; ReadTrainer gives it the custom 5-move set (Psychic/Ice Beam/Swift/Amnesia/
+; Recover); AIMoveChoiceModification4 makes it Recover below half HP.
+	db $FF, 70, MEWTWO, 0 ; #13
 
 Rival3Data:
 	; trainer 1 — rival starter: SQUIRTLE

@@ -51,7 +51,7 @@ TrainerClassMoveChoiceModifications:
 	move_choices 1, 3    ; BLAINE
 	move_choices 1, 3    ; SABRINA
 	move_choices 1, 2    ; GENTLEMAN
-	move_choices 1, 3    ; RIVAL2
+	move_choices 1, 3, 4 ; RIVAL2 (4 = Recover below half HP, for the lab Mewtwo)
 	move_choices 1, 3    ; RIVAL3
 	move_choices 1, 2, 3 ; LORELEI
 	move_choices 1       ; CHANNELER

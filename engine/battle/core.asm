@@ -5310,6 +5310,29 @@ AdjustDamageForMoveType:
 	ld a, [wEnemyMoveType]
 	ld [wMoveType], a
 .next
+; Pure-ghost rule (Pokemon Nemesis): a mon whose types are BOTH GHOST is
+; immune to every physical-category move, not just the Normal/Fighting
+; immunities regular ghosts get. No vanilla or custom species is GHOST/GHOST
+; (Gastly line is GHOST/POISON, Nocturn is GHOST/FLYING) -- only ReadTrainer's
+; rival ghost-starter patch produces it, so this can't affect anything else.
+	ld a, d
+	cp GHOST
+	jr nz, .noPureGhostImmunity
+	ld a, e
+	cp GHOST
+	jr nz, .noPureGhostImmunity
+	ld a, [wMoveType]
+	cp SPECIAL
+	jr nc, .noPureGhostImmunity ; special-category move types start at SPECIAL
+; physical move vs pure ghost: zero the damage and miss, same as the
+; .skipTypeImmunity treatment of 0-damage outcomes below
+	xor a
+	ld [wDamage], a
+	ld [wDamage + 1], a
+	inc a
+	ld [wMoveMissed], a
+	ret
+.noPureGhostImmunity
 	ld a, [wMoveType]
 	cp b ; does the move type match type 1 of the attacker?
 	jr z, .sameTypeAttackBonus

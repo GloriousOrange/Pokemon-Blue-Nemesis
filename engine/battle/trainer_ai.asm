@@ -6,7 +6,8 @@ AIEnemyTrainerChooseMoves:
 	ld [hli], a   ; move 1
 	ld [hli], a   ; move 2
 	ld [hli], a   ; move 3
-	ld [hl], a    ; move 4
+	ld [hli], a   ; move 4
+	ld [hl], a    ; move 5 (NUM_MOVES is 5 in this mod; the selection loops below already run over NUM_MOVES entries)
 	ld a, [wEnemyDisabledMove] ; forbid disabled move (if any)
 	swap a
 	and $f
@@ -255,8 +256,27 @@ AIMoveChoiceModification3:
 	jr z, .nextMove
 	inc [hl] ; slightly discourage this move
 	jr .nextMove
+; strongly prefer RECOVER whenever below half HP (assigned to RIVAL2 for the
+; burned-lab Mewtwo; also fires for any other RIVAL2 mon that knows Recover)
 AIMoveChoiceModification4:
-	ret
+	ld a, 2
+	call AICheckIfHPBelowFraction
+	ret nc ; not below half HP
+	ld hl, wBuffer - 1 ; temp move selection array (-1 byte offset)
+	ld de, wEnemyMonMoves
+	ld b, NUM_MOVES + 1
+.nextMove
+	dec b
+	ret z
+	inc hl
+	ld a, [de]
+	inc de
+	and a
+	ret z ; no more moves in move set
+	cp RECOVER
+	jr nz, .nextMove
+	ld [hl], 1 ; minimum preference value -- always beats the $a default
+	jr .nextMove
 
 ReadMove:
 	push hl

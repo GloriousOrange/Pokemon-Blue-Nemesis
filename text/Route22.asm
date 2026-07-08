@@ -41,14 +41,17 @@ _Route22Rival1VictoryText::
 
 _Route22RivalBeforeBattleText2::
 	text "My partner is"
-	line "gone. But Prof"
-	cont "OAK lent me his"
-	cont "secret weapon."
+	line "gone. Or so I"
+	cont "thought."
 
-	para "An experimental"
-	line "#MON unlike"
-	cont "anything you've"
-	cont "seen before!"
+	para "It came back,"
+	line "<PLAYER>. Death"
+	cont "could not stop"
+	cont "its loyalty."
+
+	para "Your attacks will"
+	line "pass right"
+	cont "through it."
 
 	para "Face THIS!"
 	done
@@ -70,9 +73,9 @@ _Route22RivalAfterBattleText2::
 	done
 
 _Route22Rival2DefeatedText::
-	text "Even MEWTWO..."
-	line "You're the real"
-	cont "deal, <PLAYER>."
+	text "Even"
+	line "death wasn't"
+	cont "enough..."
 	prompt
 
 _Route22Rival2VictoryText::
