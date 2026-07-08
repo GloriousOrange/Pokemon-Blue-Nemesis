@@ -14,6 +14,15 @@ _SilphCo10FRocketBattleText::
 	cont "you to join me!"
 	done
 
+_SilphCo10FRocketLoyalistBattleText::
+	text "Welcome to the"
+	line "10F!"
+
+	para "Good to have you"
+	line "with us instead"
+	cont "of against us."
+	done
+
 _SilphCo10FRocketEndBattleText::
 	text "I'm"
 	line "stunned!"
@@ -28,6 +37,14 @@ _SilphCo10FRocketAfterBattleText::
 _SilphCo10FScientistBattleText::
 	text "Enough of your"
 	line "silly games!"
+	done
+
+_SilphCo10FScientistHeroBattleText::
+	text "Oh -- OAK's kid."
+
+	para "Try not to touch"
+	line "anything, would"
+	cont "you?"
 	done
 
 _SilphCo10FScientistEndBattleText::

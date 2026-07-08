@@ -129,6 +129,14 @@ _SilphCo11FRocket1BattleText::
 	line "Don't you move!"
 	done
 
+_SilphCo11FRocket1LoyalistBattleText::
+	text "Oh -- it's you."
+
+	para "Go ahead, the"
+	line "BOSS is expecting"
+	cont "you."
+	done
+
 _SilphCo11FRocket1EndBattleText::
 	text "Don't..."
 	line "Please!"
@@ -143,6 +151,12 @@ _SilphCo11FRocket2BattleText::
 	text "Halt! Do you have"
 	line "an appointment"
 	cont "with my BOSS?"
+	done
+
+_SilphCo11FRocket2LoyalistBattleText::
+	text "Go on in, the"
+	line "BOSS is expecting"
+	cont "you."
 	done
 
 _SilphCo11FRocket2EndBattleText::

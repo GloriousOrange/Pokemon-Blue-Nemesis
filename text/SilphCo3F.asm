@@ -14,6 +14,11 @@ _SilphCo3FRocketBattleText::
 	line "us, kid!"
 	done
 
+_SilphCo3FRocketLoyalistBattleText::
+	text "I need to take a"
+	line "break, cover me."
+	done
+
 _SilphCo3FRocketEndBattleText::
 	text "I give"
 	line "up!"

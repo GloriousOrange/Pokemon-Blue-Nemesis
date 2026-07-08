@@ -13,6 +13,14 @@ _SilphCo8FRocket1BattleText::
 	line "you'll go!"
 	done
 
+_SilphCo8FRocket1LoyalistBattleText::
+	text "That's as far as"
+	line "most get."
+
+	para "Not you, though."
+	line "Go on."
+	done
+
 _SilphCo8FRocket1EndBattleText::
 	text "Not"
 	line "enough grit!"
@@ -29,6 +37,15 @@ _SilphCo8FScientistBattleText::
 	line "problems!"
 	done
 
+_SilphCo8FScientistHeroBattleText::
+	text "One of OAK's"
+	line "too, huh?"
+
+	para "Watch yourself,"
+	line "it's not safe up"
+	cont "here."
+	done
+
 _SilphCo8FScientistEndBattleText::
 	text "Huh?"
 	line "I lost?"
@@ -43,6 +60,15 @@ _SilphCo8FScientistAfterBattleText::
 _SilphCo8FRocket2BattleText::
 	text "I am one of the 4"
 	line "ROCKET BROTHERS!"
+	done
+
+_SilphCo8FRocket2LoyalistBattleText::
+	text "I am one of the 4"
+	line "ROCKET BROTHERS!"
+
+	para "Good to see a"
+	line "friendly face up"
+	cont "here."
 	done
 
 _SilphCo8FRocket2EndBattleText::

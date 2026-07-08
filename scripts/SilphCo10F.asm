@@ -90,7 +90,20 @@ SilphCo10FSilphWorkerFText:
 	text_end
 
 SilphCo10FRocketBattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _SilphCo10FRocketBattleText
+	text_end
+.LoyalistText:
+	text_far _SilphCo10FRocketLoyalistBattleText
 	text_end
 
 SilphCo10FRocketEndBattleText:
@@ -102,7 +115,20 @@ SilphCo10FRocketAfterBattleText:
 	text_end
 
 SilphCo10FScientistBattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .HeroText
+	jr z, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _SilphCo10FScientistBattleText
+	text_end
+.HeroText:
+	text_far _SilphCo10FScientistHeroBattleText
 	text_end
 
 SilphCo10FScientistEndBattleText:

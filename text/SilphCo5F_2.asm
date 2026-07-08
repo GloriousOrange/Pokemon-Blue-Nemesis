@@ -14,6 +14,15 @@ _SilphCo5FRocket2BattleText::
 	line "a little respect!"
 	done
 
+_SilphCo5FRocket2LoyalistBattleText::
+	text "Show a little"
+	line "respect to the"
+	cont "guy holding this"
+	cont "floor down."
+
+	para "Go on through."
+	done
+
 _SilphCo5FRocket2EndBattleText::
 	text "Cough..."
 	line "Cough..."

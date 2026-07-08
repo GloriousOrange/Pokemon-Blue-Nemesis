@@ -14,6 +14,16 @@ _SilphCo4FRocket1BattleText::
 	cont "SILPH CO.!"
 	done
 
+_SilphCo4FRocket1LoyalistBattleText::
+	text "We've got SILPH"
+	line "locked down."
+
+	para "Go on, the BOSS"
+	line "doesn't need us"
+	cont "both watching"
+	cont "this floor."
+	done
+
 _SilphCo4FRocket1EndBattleText::
 	text "Arrgh!"
 	prompt
@@ -50,6 +60,15 @@ _SilphCo4FScientistAfterBattleText::
 
 _SilphCo4FRocket2BattleText::
 	text "Intruder spotted!"
+	done
+
+_SilphCo4FRocket2LoyalistBattleText::
+	text "Oh, it's just"
+	line "you."
+
+	para "Had my hand on my"
+	line "BALL there for a"
+	cont "second."
 	done
 
 _SilphCo4FRocket2EndBattleText::

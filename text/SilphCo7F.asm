@@ -83,6 +83,15 @@ _SilphCo7FRocket1BattleText::
 	line "little rat!"
 	done
 
+_SilphCo7FRocket1LoyalistBattleText::
+	text "Oh, it's just"
+	line "you."
+
+	para "Thought I smelled"
+	line "a rat for a"
+	cont "second there."
+	done
+
 _SilphCo7FRocket1EndBattleText::
 	text "Lights"
 	line "out!"
@@ -117,6 +126,15 @@ _SilphCo7FRocket2BattleText::
 	line "ROCKET BROTHERS!"
 	done
 
+_SilphCo7FRocket2LoyalistBattleText::
+	text "I am one of the 4"
+	line "ROCKET BROTHERS!"
+
+	para "Hah, didn't"
+	line "recognize you for"
+	cont "a second."
+	done
+
 _SilphCo7FRocket2EndBattleText::
 	text "Aack!"
 	line "Brothers, I lost!"
@@ -131,6 +149,15 @@ _SilphCo7FRocket2AfterBattleText::
 _SilphCo7FRocket3BattleText::
 	text "A child intruder?"
 	line "That must be you!"
+	done
+
+_SilphCo7FRocket3LoyalistBattleText::
+	text "Ha, thought you"
+	line "were some kid"
+	cont "sneaking around."
+
+	para "Go on, you're"
+	line "clear."
 	done
 
 _SilphCo7FRocket3EndBattleText::

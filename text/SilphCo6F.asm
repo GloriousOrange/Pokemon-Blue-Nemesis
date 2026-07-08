@@ -60,6 +60,14 @@ _SilphCo6FRocket1BattleText::
 	line "ROCKET BROTHERS!"
 	done
 
+_SilphCo6FRocket1LoyalistBattleText::
+	text "I am one of the 4"
+	line "ROCKET BROTHERS!"
+
+	para "And you're one of"
+	line "us now. Go on."
+	done
+
 _SilphCo6FRocket1EndBattleText::
 	text "Flame"
 	line "out!"
@@ -93,6 +101,14 @@ _SilphCo6FScientistAfterBattleText::
 _SilphCo6FRocket2BattleText::
 	text "You dare betray"
 	line "TEAM ROCKET?"
+	done
+
+_SilphCo6FRocket2LoyalistBattleText::
+	text "Wait, you're with"
+	line "us now?"
+
+	para "Sorry about that"
+	line "-- go on ahead."
 	done
 
 _SilphCo6FRocket2EndBattleText::

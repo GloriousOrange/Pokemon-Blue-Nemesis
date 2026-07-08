@@ -136,7 +136,20 @@ SilphCo4FRocket1Text:
 	jp TextScriptEnd
 
 SilphCo4FRocket1BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _SilphCo4FRocket1BattleText
+	text_end
+.LoyalistText:
+	text_far _SilphCo4FRocket1LoyalistBattleText
 	text_end
 
 SilphCo4FRocket1EndBattleText:
@@ -172,7 +185,20 @@ SilphCo4FRocket2Text:
 	jp TextScriptEnd
 
 SilphCo4FRocket2BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _SilphCo4FRocket2BattleText
+	text_end
+.LoyalistText:
+	text_far _SilphCo4FRocket2LoyalistBattleText
 	text_end
 
 SilphCo4FRocket2EndBattleText:

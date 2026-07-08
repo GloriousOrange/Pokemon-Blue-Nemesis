@@ -18,6 +18,14 @@ _SilphCo9FRocket1BattleText::
 	line "to adore you, kid!"
 	done
 
+_SilphCo9FRocket1LoyalistBattleText::
+	text "Your #MON seem"
+	line "to adore you."
+
+	para "Guess the BOSS"
+	line "picked well."
+	done
+
 _SilphCo9FRocket1EndBattleText::
 	text "Ghaaah!"
 	prompt
@@ -32,6 +40,14 @@ _SilphCo9FScientistBattleText::
 	text "Your #MON have"
 	line "weak points! I"
 	cont "can nail them!"
+	done
+
+_SilphCo9FScientistHeroBattleText::
+	text "Careful in here."
+	line "OAK send you?"
+
+	para "Don't touch the"
+	line "equipment."
 	done
 
 _SilphCo9FScientistEndBattleText::
@@ -49,6 +65,15 @@ _SilphCo9FScientistAfterBattleText::
 _SilphCo9FRocket2BattleText::
 	text "I am one of the 4"
 	line "ROCKET BROTHERS!"
+	done
+
+_SilphCo9FRocket2LoyalistBattleText::
+	text "I am one of the 4"
+	line "ROCKET BROTHERS!"
+
+	para "Watch yourself up"
+	line "top, it's tense"
+	cont "today."
 	done
 
 _SilphCo9FRocket2EndBattleText::

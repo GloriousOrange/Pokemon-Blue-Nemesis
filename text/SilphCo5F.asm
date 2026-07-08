@@ -16,6 +16,15 @@ _SilphCo5FRocket1BattleText::
 	line "wandering around."
 	done
 
+_SilphCo5FRocket1LoyalistBattleText::
+	text "Heard you were"
+	line "coming through."
+
+	para "Go easy on the"
+	line "new recruits,"
+	cont "yeah?"
+	done
+
 _SilphCo5FRocket1EndBattleText::
 	text "Boom!"
 	prompt

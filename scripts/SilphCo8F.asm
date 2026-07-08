@@ -132,7 +132,20 @@ SilphCo8FRocket2Text:
 	jp TextScriptEnd
 
 SilphCo8FRocket1BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _SilphCo8FRocket1BattleText
+	text_end
+.LoyalistText:
+	text_far _SilphCo8FRocket1LoyalistBattleText
 	text_end
 
 SilphCo8FRocket1EndBattleText:
@@ -144,7 +157,20 @@ SilphCo8FRocket1AfterBattleText:
 	text_end
 
 SilphCo8FScientistBattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .HeroText
+	jr z, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _SilphCo8FScientistBattleText
+	text_end
+.HeroText:
+	text_far _SilphCo8FScientistHeroBattleText
 	text_end
 
 SilphCo8FScientistEndBattleText:
@@ -156,7 +182,20 @@ SilphCo8FScientistAfterBattleText:
 	text_end
 
 SilphCo8FRocket2BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _SilphCo8FRocket2BattleText
+	text_end
+.LoyalistText:
+	text_far _SilphCo8FRocket2LoyalistBattleText
 	text_end
 
 SilphCo8FRocket2EndBattleText:

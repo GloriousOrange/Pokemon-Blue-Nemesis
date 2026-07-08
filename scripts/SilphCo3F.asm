@@ -98,7 +98,20 @@ SilphCo3FRocketText:
 	jp TextScriptEnd
 
 SilphCo3FRocketBattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _SilphCo3FRocketBattleText
+	text_end
+.LoyalistText:
+	text_far _SilphCo3FRocketLoyalistBattleText
 	text_end
 
 SilphCo3FRocketEndBattleText:

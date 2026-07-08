@@ -121,7 +121,20 @@ SilphCo5FRocket1Text:
 	jp TextScriptEnd
 
 SilphCo5FRocket1BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _SilphCo5FRocket1BattleText
+	text_end
+.LoyalistText:
+	text_far _SilphCo5FRocket1LoyalistBattleText
 	text_end
 
 SilphCo5FRocket1EndBattleText:
@@ -175,7 +188,20 @@ SilphCo5FRocket2Text:
 	jp TextScriptEnd
 
 SilphCo5FRocket2BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _SilphCo5FRocket2BattleText
+	text_end
+.LoyalistText:
+	text_far _SilphCo5FRocket2LoyalistBattleText
 	text_end
 
 SilphCo5FRocket2EndBattleText:
