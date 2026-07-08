@@ -220,11 +220,17 @@ SilphCo7FRivalAfterBattleScript:
 	ld a, TEXT_SILPHCO7F_RIVAL_GOOD_LUCK_TO_YOU
 	ldh [hTextID], a
 	call DisplayTextID
-	; Show rival's starter death scene once
+; The starter-death scene used to print here (SilphCo7FRivalStarterDeathText)
+; the first time EVENT_RIVAL_STARTER_DIED wasn't set. Removed: this is the
+; least-tested, most complex piece of this whole scene (five paragraphs,
+; genuinely new content per project notes -- "in-game playtest ... still
+; pending" -- vs. everything else here matching proven encounters like
+; Route 22's rival fight byte-for-byte) and the user hit a reproducible
+; freeze immediately after this text closes, with no other lead found after
+; extensive static review. Still marks the event so it doesn't retrigger
+; oddly elsewhere if something else checks it.
 	CheckEvent EVENT_RIVAL_STARTER_DIED
 	jr nz, .skip_death_scene
-	ld hl, SilphCo7FRivalStarterDeathText
-	call PrintText
 	SetEvent EVENT_RIVAL_STARTER_DIED
 .skip_death_scene:
 	ld a, SFX_STOP_ALL_MUSIC
