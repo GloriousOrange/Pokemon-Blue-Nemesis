@@ -9,6 +9,10 @@ PokemonTower1F_Script:
 	call EnableAutoTextBoxDrawing
 	CheckEvent EVENT_GIOVANNI_SENT_TO_TOWER
 	jr nz, .hideBothGuards
+; Quest already completed: the Master Ball gets SPENT catching Nocturn, so
+; the in-bag check below would fail forever after -- keep the tower open.
+	CheckEvent EVENT_BEAT_GENERAL_MATHUS
+	jr nz, .hideBothGuards
 	ld b, SILPH_SCOPE
 	call IsItemInBag
 	jr z, .guardsUp

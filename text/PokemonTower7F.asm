@@ -23,81 +23,58 @@ _PokemonTower7FMrFujiRescueText::
 	cont "of this tower."
 	done
 
-_PokemonTower7FRocket1BattleText::
-	text "What do you want?"
-	line "Why are you here?"
+_PokemonTower7FChanneler1BattleText::
+	text "The dead crowd"
+	line "this floor..."
+
+	para "And you bring"
+	line "more noise!"
 	done
 
-_PokemonTower7FRocket1LoyalistBattleText::
-	text "Even agents get"
-	line "spooked up here."
-
-	para "Show me you"
-	line "don't."
-	done
-
-_PokemonTower7FRocket1EndBattleText::
-	text "I give up!"
+_PokemonTower7FChanneler1EndBattleText::
+	text "No!"
+	line "The spirits"
+	cont "recoil!"
 	prompt
 
-_PokemonTower7FRocket1AfterBattleText::
-	text "I'm not going to"
-	line "forget this! The"
-	cont "cause remembers"
-	cont "its enemies."
+_PokemonTower7FChanneler1AfterBattleText::
+	text "The old man prays"
+	line "above. Tread"
+	cont "softly."
 	done
 
-_PokemonTower7FRocket2BattleText::
-	text "This old guy came"
-	line "and complained"
-	cont "about us harming"
-	cont "useless #MON!"
+_PokemonTower7FChanneler2BattleText::
+	text "Be still!"
 
-	para "We're talking it"
-	line "over as adults!"
+	para "The vigil must"
+	line "not be broken!"
 	done
 
-_PokemonTower7FRocket2LoyalistBattleText::
-	text "The ghosts test"
-	line "your nerve."
-
-	para "I'll test your"
-	line "skill."
-	done
-
-_PokemonTower7FRocket2EndBattleText::
-	text "Please!"
-	line "No more!"
+_PokemonTower7FChanneler2EndBattleText::
+	text "Forgive"
+	line "me, spirits!"
 	prompt
 
-_PokemonTower7FRocket2AfterBattleText::
-	text "#MON are only"
-	line "good for making"
-	cont "money!"
-
-	para "Stay out of our"
-	line "business!"
+_PokemonTower7FChanneler2AfterBattleText::
+	text "MR.FUJI prays for"
+	line "the fallen. We"
+	cont "guard his peace."
 	done
 
-_PokemonTower7FRocket3BattleText::
-	text "You're not saving"
-	line "anyone, kid!"
+_PokemonTower7FChanneler3BattleText::
+	text "The general's"
+	line "shadow passed"
+	cont "through here..."
+
+	para "Are you its kin?"
 	done
 
-_PokemonTower7FRocket3LoyalistBattleText::
-	text "Last stretch"
-	line "before we're done"
-	cont "with this tower."
-
-	para "Don't disappoint."
-	done
-
-_PokemonTower7FRocket3EndBattleText::
-	text "Don't"
-	line "fight us ROCKETs!"
+_PokemonTower7FChanneler3EndBattleText::
+	text "Such"
+	line "fury!"
 	prompt
 
-_PokemonTower7FRocket3AfterBattleText::
-	text "You're not getting"
-	line "away with this!"
+_PokemonTower7FChanneler3AfterBattleText::
+	text "Go. The old man"
+	line "waits beyond."
 	done

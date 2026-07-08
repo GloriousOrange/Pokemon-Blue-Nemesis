@@ -155,9 +155,9 @@ ToggleableObjectStates:
 	toggle_object_state POKEMONTOWER6F_X_ACCURACY, ON
 
 	toggleable_objects_for POKEMON_TOWER_7F
-	toggle_object_state POKEMONTOWER7F_ROCKET1, ON
-	toggle_object_state POKEMONTOWER7F_ROCKET2, ON
-	toggle_object_state POKEMONTOWER7F_ROCKET3, ON
+	toggle_object_state POKEMONTOWER7F_CHANNELER1, ON
+	toggle_object_state POKEMONTOWER7F_CHANNELER2, ON
+	toggle_object_state POKEMONTOWER7F_CHANNELER3, ON
 	toggle_object_state POKEMONTOWER7F_MR_FUJI, ON
 
 	toggleable_objects_for MR_FUJIS_HOUSE
