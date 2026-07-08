@@ -5,7 +5,7 @@ KeyItemFlags:
 	dbit FALSE ; GREAT_BALL
 	dbit FALSE ; POKE_BALL
 	dbit TRUE  ; TOWN_MAP
-	dbit TRUE  ; BICYCLE
+	dbit FALSE ; BICYCLE -- sellable (and tossable) so a spare bike isn't stuck in the bag forever
 	dbit TRUE  ; SURFBOARD
 	dbit TRUE  ; SAFARI_BALL
 	dbit TRUE  ; POKEDEX

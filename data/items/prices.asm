@@ -5,7 +5,7 @@ ItemPrices::
 	bcd3 600   ; GREAT_BALL
 	bcd3 200   ; POKE_BALL
 	bcd3 0     ; TOWN_MAP
-	bcd3 0     ; BICYCLE
+	bcd3 10000 ; BICYCLE (sells to marts for half = 5000, matching the Route 16 guard's asking price)
 	bcd3 0     ; SURFBOARD
 	bcd3 1000  ; SAFARI_BALL
 	bcd3 0     ; POKEDEX
