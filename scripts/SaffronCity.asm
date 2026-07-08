@@ -1,5 +1,21 @@
+; The Rocket guard blocking Silph Co's door (SAFFRONCITY_ROCKET8, standing at
+; (18,22) right below the door at (18,21)) vanishes once the player has the
+; Silph Scope -- reversed from vanilla, where this guard only left after
+; rescuing Mr. Fuji in Pokemon Tower (still wired too, see
+; scripts/PokemonTower7F.asm, and harmless to leave alongside this). This
+; mod's Pokemon Tower is separately gated by its own opposing-faction guard
+; (scripts/PokemonTower1F.asm) unlocked much later in the Nocturn quest, so
+; waiting on the vanilla trigger alone would deadlock Silph Co access.
 SaffronCity_Script:
-	jp EnableAutoTextBoxDrawing
+	call EnableAutoTextBoxDrawing
+	ld b, SILPH_SCOPE
+	call IsItemInBag
+	jr z, .noScope
+	ld a, TOGGLE_SAFFRON_CITY_E
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+.noScope
+	ret
 
 SaffronCity_TextPointers:
 	def_text_pointers
