@@ -5232,6 +5232,51 @@ IncrementMovePP:
 
 ; function to adjust the base damage of an attack to account for type effectiveness
 AdjustDamageForMoveType:
+; Levitation (Pokemon Nemesis): floating species take nothing from
+; Ground-type moves, like the later-gen Levitate ability. Species-based, not
+; type-based, so it works regardless of the mon's actual typing (e.g. Ground
+; would otherwise be super-effective on Poison Koffing / Electric Voltorb).
+; Checked before the register-heavy type code below since it clobbers b/c/hl.
+	ldh a, [hWhoseTurn]
+	and a
+	jr nz, .enemyAttackingLevitator
+	ld a, [wPlayerMoveType]
+	ld b, a
+	ld a, [wEnemyMonSpecies]
+	jr .checkLevitate
+.enemyAttackingLevitator
+	ld a, [wEnemyMoveType]
+	ld b, a
+	ld a, [wBattleMonSpecies]
+.checkLevitate
+	ld c, a
+	ld a, b
+	cp GROUND
+	jr nz, .noLevitate
+	ld hl, .LevitatingSpecies
+.levitateLoop
+	ld a, [hli]
+	inc a ; terminator ($ff)?
+	jr z, .noLevitate
+	dec a
+	cp c
+	jr nz, .levitateLoop
+; defender levitates: no damage, move misses
+	xor a
+	ld [wDamage], a
+	ld [wDamage + 1], a
+	inc a
+	ld [wMoveMissed], a
+	ret
+
+.LevitatingSpecies:
+	db GASTLY, HAUNTER, GENGAR
+	db KOFFING, WEEZING
+	db VOLTORB, ELECTRODE
+	db MAGNEMITE, MAGNETON
+	db $ff ; end
+
+.noLevitate
 ; values for player turn
 	ld hl, wBattleMonType
 	ld a, [hli]
