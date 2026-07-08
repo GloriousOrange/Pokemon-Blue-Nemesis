@@ -28,13 +28,16 @@ _LavenderTownCooltrainerMText::
 	done
 
 _LavenderTownSuperNerdText::
-	text "GHOSTs appeared"
-	line "in #MON TOWER."
+	text "There are ghosts"
+	line "in that tower."
 
-	para "I think they're"
-	line "the spirits of"
-	cont "#MON that the"
-	cont "ROCKETs killed."
+	para "And a haunted"
+	line "painting of"
+	cont "GENERAL MATHUS."
+
+	para "Tourists are only"
+	line "allowed on the"
+	cont "1st floor."
 	done
 
 _LavenderTownSignText::
