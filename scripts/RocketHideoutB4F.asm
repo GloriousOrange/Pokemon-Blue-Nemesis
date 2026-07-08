@@ -100,7 +100,12 @@ RocketHideoutB4FGiovanniText:
 	text_asm
 	CheckEvent EVENT_BEAT_ROCKET_HIDEOUT_GIOVANNI
 	jp nz, .beat_giovanni
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistImpressedText
+	jr nz, .printImpressed
 	ld hl, .ImpressedYouGotHereText
+.printImpressed
 	call PrintText
 	ld hl, wStatusFlags3
 	set BIT_TALKED_TO_TRAINER, [hl]
@@ -128,12 +133,29 @@ RocketHideoutB4FGiovanniText:
 	text_far _RocketHideoutB4FGiovanniImpressedYouGotHereText
 	text_end
 
+.LoyalistImpressedText:
+	text_far _RocketHideoutB4FGiovanniLoyalistImpressedText
+	text_end
+
 .WhatCannotBeText:
 	text_far _RocketHideoutB4FGiovanniWhatCannotBeText
 	text_end
 
 RocketHideoutB4FGiovanniHopeWeMeetAgainText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistRankText
+	jr nz, .print
+	ld hl, .HopeWeMeetAgainText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HopeWeMeetAgainText:
 	text_far _RocketHideoutB4FGiovanniHopeWeMeetAgainText
+	text_end
+.LoyalistRankText:
+	text_far _RocketHideoutB4FGiovanniLoyalistRankText
 	text_end
 
 RocketHideoutB4FRocket1Text:

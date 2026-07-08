@@ -3,6 +3,14 @@ _RocketHideoutB4FGiovanniImpressedYouGotHereText::
 	line "new lapdog."
 	done
 
+_RocketHideoutB4FGiovanniLoyalistImpressedText::
+	text "You've been"
+	line "wiping the floor"
+	cont "with my agents."
+
+	para "Impressive."
+	done
+
 _RocketHideoutB4FGiovanniWhatCannotBeText::
 	text "WHAT!"
 	line "This cannot be!"
@@ -23,6 +31,19 @@ _RocketHideoutB4FGiovanniHopeWeMeetAgainText::
 
 	para "The SCOPE is the"
 	line "key."
+	done
+
+_RocketHideoutB4FGiovanniLoyalistRankText::
+	text "Not bad. Not bad"
+	line "at all."
+
+	para "I grant you the"
+	line "rank of AGENT."
+
+	para "Executive comes"
+	line "later -- once"
+	cont "you've brought me"
+	cont "the SILPH SCOPE."
 	done
 
 _RocketHideoutB4FRocket1BattleText::
