@@ -83,18 +83,10 @@ GainExperience:
 	ld a, 1
 .next
 	ld [wGainBoostedExp], a
-	ld a, [wIsInBattle]
-	dec a ; is it a trainer battle?
-	call nz, BoostExp ; if so, boost exp
-; Easy mode: an extra 1.5x on top of the normal trainer-battle boost above
-	ld a, [wIsInBattle]
-	dec a
-	jr z, .noEasyBoost ; wild battle
-	ld a, [wDifficulty]
-	cp DIFFICULTY_EASY
-	jr nz, .noEasyBoost
-	call BoostExp
-.noEasyBoost
+; Wild and trainer battles award identical exp for the same enemy level --
+; no trainer-battle boost, no Easy-mode boost on top of it (both removed:
+; the compounded 1.5x x 1.5x on Easy made leveling absurdly fast, and with
+; the starting Rare Candy stash a leveling boost isn't needed at all).
 	inc hl
 	inc hl
 	inc hl
