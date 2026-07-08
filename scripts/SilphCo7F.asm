@@ -140,25 +140,17 @@ SilphCo7FDefaultScript:
 	ld a, TEXT_SILPHCO7F_RIVAL
 	ldh [hTextID], a
 	call DisplayTextID
-	ld a, SILPHCO7F_RIVAL
-	ldh [hSpriteIndex], a
-	call SetSpriteMovementBytesToFF
-; Rival starts at (3,7); .RivalEncounterCoordinates[0]=(3,2) is 5 rows away
-; (needs the full 4-step walk to stop adjacent, at row 3); [1]=(3,3) is only
-; 4 rows away (needs 3 steps, `inc de`, to stop adjacent at row 4). This was
-; inverted -- coordIndex 1 got the full 4 steps, walking the rival onto the
-; player's own tile at (3,3) and hanging forever on the resulting movement
-; collision (reproducible freeze, "he walked towards me and it froze").
-	ld de, .RivalMovementUp
+; The rival used to walk up to the player here (SetSpriteMovementBytesToFF +
+; MoveSprite with .RivalMovementUp/an offset thereof, gated by
+; SilphCo7FRivalStartBattleScript waiting on BIT_SCRIPTED_NPC_MOVEMENT).
+; Removed after exhaustive review failed to find why that wait never
+; resolved -- user hit a reliable freeze with the rival's sprite ending up
+; on the player's own tile. Skipping the walk-up entirely removes the whole
+; class of bug (a stuck/never-completing scripted movement) at the cost of
+; the visual approach. wSavedCoordIndex is still needed by
+; SilphCo7FRivalAfterBattleScript's exit-direction choice.
 	ld a, [wCoordIndex]
 	ld [wSavedCoordIndex], a
-	cp 1 ; index of second, closer entry in .RivalEncounterCoordinates
-	jr nz, .full_rival_movement
-	inc de
-.full_rival_movement
-	ld a, SILPHCO7F_RIVAL
-	ldh [hSpriteIndex], a
-	call MoveSprite
 	ld a, SCRIPT_SILPHCO7F_RIVAL_START_BATTLE
 	jp SilphCo7FSetCurScript
 
@@ -167,17 +159,7 @@ SilphCo7FDefaultScript:
 	dbmapcoord  3,  3
 	db -1 ; end
 
-.RivalMovementUp:
-	db NPC_MOVEMENT_UP
-	db NPC_MOVEMENT_UP
-	db NPC_MOVEMENT_UP
-	db NPC_MOVEMENT_UP
-	db -1 ; end
-
 SilphCo7FRivalStartBattleScript:
-	ld a, [wStatusFlags5]
-	bit BIT_SCRIPTED_NPC_MOVEMENT, a
-	ret nz
 	xor a
 	ld [wJoyIgnore], a
 	ld a, TEXT_SILPHCO7F_RIVAL_WAITED_HERE
@@ -270,10 +252,11 @@ SilphCo7FRivalAfterBattleScript:
 	db NPC_MOVEMENT_DOWN
 	db -1 ; end
 
+; Used to wait here for the walk-away movement (kicked off above) to finish
+; before hiding the rival -- removed for the same reason as the pre-battle
+; approach: an unresolved stuck-movement freeze risk isn't worth the
+; cosmetic payoff. The walk still plays; we just don't gate on it finishing.
 SilphCo7FRivalExitScript:
-	ld a, [wStatusFlags5]
-	bit BIT_SCRIPTED_NPC_MOVEMENT, a
-	ret nz
 	ld a, TOGGLE_SILPH_CO_7F_RIVAL
 	ld [wToggleableObjectIndex], a
 	predef HideObject
