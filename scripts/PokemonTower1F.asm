@@ -1,11 +1,21 @@
 ; Shows the opposing-faction guard blocking the stairs at (18,9): Loyalist
 ; players are blocked by a Scientist, Hero players by a Rocket. Both hide
-; once EVENT_GIOVANNI_SENT_TO_TOWER is set (Silph Co 11F mission briefing) --
-; you're on official business by then and neither faction stops you.
+; once EVENT_GIOVANNI_SENT_TO_TOWER is set (mission briefing: Giovanni's 11F
+; NPC on the Hero path, the PHONE BOSS call on the Loyalist path) -- or as
+; soon as the player simply holds both key items (SILPH SCOPE + MASTER BALL,
+; only obtainable by finishing the Hideout and Silph Co), so tower access
+; never depends on finding the briefing first.
 PokemonTower1F_Script:
 	call EnableAutoTextBoxDrawing
 	CheckEvent EVENT_GIOVANNI_SENT_TO_TOWER
 	jr nz, .hideBothGuards
+	ld b, SILPH_SCOPE
+	call IsItemInBag
+	jr z, .guardsUp
+	ld b, MASTER_BALL
+	call IsItemInBag
+	jr nz, .hideBothGuards
+.guardsUp
 	ld a, [wPostGameMisc]
 	bit BIT_ROCKET_LOYALTY, a
 	jr nz, .loyalist
