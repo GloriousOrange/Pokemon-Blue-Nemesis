@@ -128,6 +128,7 @@ NocturnGoRogueChoice::
 	jr nz, .oakRefused
 	ld hl, OakSendingItText
 	call PrintText
+	call HandOverNocturn
 	lb bc, MASTER_BALL, 1
 	call GiveItem
 	ld hl, MathusOakRewardMoney + 2
@@ -157,6 +158,10 @@ NocturnGoRogueChoice::
 	jr nz, .giovanniRefused
 	ld hl, GiovanniSendingItText
 	call PrintText
+; hand Nocturn over BEFORE giving Miasma -- if the party was full when
+; Nocturn was caught (sent to box) this order still works, and if Nocturn is
+; IN the party, removing it first frees the slot for Miasma
+	call HandOverNocturn
 	lb bc, MIASMA, 40
 	call GivePokemon
 	jr nc, .giovanniDone
@@ -175,6 +180,48 @@ NocturnGoRogueChoice::
 	call PrintText
 	SetEvent EVENT_REPORTED_NOCTURN
 	ret
+
+; Reporting in means physically sending Nocturn to the boss: remove it from
+; the party, or from the current box if it was caught with a full party.
+; Only called on the report-in (YES) branches -- going rogue keeps it.
+; Searching by species is safe: Nocturn is unique. Removing it can never
+; empty the party: the player fought Mathus with at least one mon, so party
+; size is >= 2 whenever Nocturn is in it.
+HandOverNocturn:
+	ld b, NOCTURN
+	ld hl, wPartySpecies
+	ld c, 0
+.partyLoop
+	ld a, [hli]
+	cp $ff
+	jr z, .checkBox
+	cp b
+	jr z, .removeFromParty
+	inc c
+	jr .partyLoop
+.removeFromParty
+	ld a, c
+	ld [wWhichPokemon], a
+	xor a
+	ld [wRemoveMonFromBox], a
+	jp RemovePokemon
+.checkBox
+	ld hl, wBoxSpecies
+	ld c, 0
+.boxLoop
+	ld a, [hli]
+	cp $ff
+	ret z ; not found anywhere -- nothing to hand over
+	cp b
+	jr z, .removeFromBox
+	inc c
+	jr .boxLoop
+.removeFromBox
+	ld a, c
+	ld [wWhichPokemon], a
+	ld a, 1
+	ld [wRemoveMonFromBox], a
+	jp RemovePokemon
 
 MathusOakRewardMoney:
 	bcd3 100000
