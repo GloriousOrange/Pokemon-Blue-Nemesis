@@ -1,10 +1,8 @@
 _CeladonMansionRoofHouseHikerText::
-	text "I know everything"
-	line "about the world"
-	cont "of #MON in"
-	cont "your GAME BOY!"
+	text "TEAM ROCKET stole"
+	line "my last EEVEE."
 
-	para "Get together with"
-	line "your friends and"
-	cont "trade #MON!"
+	para "I finally got my"
+	line "hands on a new"
+	cont "one!"
 	done
