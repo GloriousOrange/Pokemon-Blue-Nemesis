@@ -350,7 +350,51 @@ SilphCo11FBeautyText:
 	text_end
 
 SilphCo11FGiovanniText:
+	text_asm
+	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
+	jr z, .preBattle
+	CheckEvent EVENT_GIOVANNI_SENT_TO_TOWER
+	jr z, .checkItems
+	CheckEvent EVENT_GOT_NOCTURN
+	jr z, .notYet
+	ld hl, .PostMissionText
+	call PrintText
+	jr .textEnd
+.checkItems
+	ld b, MASTER_BALL
+	call IsItemInBag
+	jr z, .notYet
+	ld b, SILPH_SCOPE
+	call IsItemInBag
+	jr z, .notYet
+	ld hl, .MissionText
+	call PrintText
+	SetEvent EVENT_GIOVANNI_SENT_TO_TOWER
+	jr .textEnd
+.notYet
+	ld hl, .NotYetText
+	call PrintText
+	jr .textEnd
+.preBattle
+	ld hl, .Text
+	call PrintText
+.textEnd
+	jp TextScriptEnd
+
+.Text:
 	text_far _SilphCo11FGiovanniText
+	text_end
+
+.NotYetText:
+	text_far _SilphCo11FGiovanniNotYetText
+	text_end
+
+.MissionText:
+	text_far _SilphCo11FGiovanniMissionText
+	text_end
+
+.PostMissionText:
+	text_far _SilphCo11FGiovanniPostMiasmaText
 	text_end
 
 SilphCo10FGiovanniILostAgainText:

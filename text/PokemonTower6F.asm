@@ -1,17 +1,3 @@
-_PokemonTower6FGhostWasCubonesMotherText::
-	text "The GHOST was the"
-	line "restless soul of"
-	cont "CUBONE's mother!"
-	done
-
-_PokemonTower6FSoulWasCalmedText::
-	text "The mother's soul"
-	line "was calmed."
-
-	para "It departed to"
-	line "the afterlife!"
-	done
-
 _PokemonTower6FChanneler1BattleText::
 	text "Give...me..."
 	line "blood..."
@@ -58,7 +44,22 @@ _PokemonTower6FChanneler3AfterBattleText::
 	cont "order."
 	done
 
-_PokemonTower6FBeGoneText::
-	text "Be gone..."
-	line "Intruders..."
+_PokemonTower6FMathusIntroText::
+	text "My son... you"
+	line "have become so"
+	cont "strong."
+
+	para "Let me test your"
+	line "mettle."
+	done
+
+_PokemonTower6FMathusCapturedText::
+	text "It is done."
+
+	para "Report back when"
+	line "you are ready."
+	done
+
+_PokemonTower6FMathusFledText::
+	text "Hmph. Not yet."
 	done

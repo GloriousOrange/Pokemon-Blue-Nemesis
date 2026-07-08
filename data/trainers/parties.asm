@@ -47,6 +47,7 @@ TrainerDataPointers:
 	dw ChannelerData
 	dw AgathaData
 	dw LanceData
+	dw GeneralMathusData
 	assert_table_length NUM_TRAINERS
 
 ; if first byte != $FF, then
@@ -922,3 +923,9 @@ AgathaData:
 
 LanceData:
 	db $FF, 58, GYARADOS, 56, DRAGONAIR, 56, DRAGONAIR, 60, AERODACTYL, 62, DRAGONITE, 0
+
+; Pokemon Tower 6F, forced-capture encounter (see engine/battle/core.asm
+; ForceCaptureNocturn). Nocturn never actually faints in this fight; its HP
+; hitting 0 triggers a forced Master Ball catch instead.
+GeneralMathusData:
+	db $FF, 30, NOCTURN, 0

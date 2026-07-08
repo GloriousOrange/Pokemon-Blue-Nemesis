@@ -255,9 +255,20 @@ SECTION "Screen Effects", ROMX
 INCLUDE "engine/gfx/screen_effects.asm"
 
 
-SECTION "Predefs", ROMX
+; Floating (unpinned in layout.link, like "Pics 6") so the linker packs it
+; wherever there's room -- moved out of "Predefs" (bank $13, shared with
+; "Trainer Pics"/"Maps 9") to make room for MathusPic (General Mathus's
+; trainer front sprite, gfx/trainers/mathus.png) in that bank's very tight
+; budget. Only ever reached via GivePokemon's `farjp _GivePokemon`
+; (home/give.asm), which resolves the target bank automatically, so this is
+; safe to relocate freely.
+SECTION "GivePokemon", ROMX
 
 INCLUDE "engine/events/give_pokemon.asm"
+
+
+SECTION "Predefs", ROMX
+
 INCLUDE "engine/predefs.asm"
 
 

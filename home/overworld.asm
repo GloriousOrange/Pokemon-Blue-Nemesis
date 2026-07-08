@@ -1991,14 +1991,14 @@ RunMapScript::
 	ret
 
 LoadWalkingPlayerSpriteGraphics::
-	ld de, ScientistSprite ; Hero path (default): Oak's agent, a Scientist from the start
-	ld b, BANK(ScientistSprite)
-	ld a, [wPostGameMisc]
-	bit BIT_ROCKET_LOYALTY, a ; Loyalist path: walk around as a Team Rocket grunt instead
-	jr z, .gotWalkingSprite
-	ld de, RocketSprite
-	ld b, BANK(RocketSprite)
-.gotWalkingSprite
+; Hero: Scientist, Loyalist: Rocket, Traitor (overrides both): BLUE (twin
+; brothers). The 3-way branch lives in GetWalkingPlayerSpriteGraphics
+; (engine/events/player_path.asm) since this home bank has no spare bytes
+; left to inline it -- see that function for why the bank comes back via
+; wBuffer instead of a register.
+	farcall GetWalkingPlayerSpriteGraphics
+	ld a, [wBuffer]
+	ld b, a
 	ld hl, vNPCSprites
 	jr LoadPlayerSpriteGraphicsCommon
 

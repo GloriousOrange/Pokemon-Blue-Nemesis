@@ -75,6 +75,33 @@ _SilphCo11FGiovanniText::
 	line "world of pain!"
 	done
 
+_SilphCo11FGiovanniNotYetText::
+	text "I'm still"
+	line "waiting."
+	done
+
+_SilphCo11FGiovanniMissionText::
+	text "We are one step"
+	line "closer to"
+	cont "ensuring ground"
+	cont "and air"
+	cont "superiority in"
+	cont "the field."
+
+	para "There is a"
+	line "weapon hidden in"
+	cont "the POKEMON"
+	cont "TOWER."
+
+	para "Find it. Bring it"
+	line "back to me --"
+	cont "alive."
+	done
+
+_SilphCo11FGiovanniPostMiasmaText::
+	text "We're done here."
+	done
+
 _SilphCo10FGiovanniILostAgainText::
 	text "Arrgh!!"
 	line "I lost again!?"

@@ -20,33 +20,56 @@ PokemonTower6F_ScriptPointers:
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_POKEMONTOWER6F_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_POKEMONTOWER6F_END_BATTLE
 	dw_const PokemonTower6FPlayerMovingScript,      SCRIPT_POKEMONTOWER6F_PLAYER_MOVING
-	dw_const PokemonTower6FMarowakBattleScript,     SCRIPT_POKEMONTOWER6F_MAROWAK_BATTLE
+	dw_const PokemonTower6FMathusBattleScript,      SCRIPT_POKEMONTOWER6F_MATHUS_BATTLE
 
+; Formerly the vanilla Marowak-ghost trigger. Now General Mathus, a real
+; trainer (not a disguise), commanding a single Nocturn. Same invisible
+; coordinate-poll trigger tile as vanilla -- no map object/overworld sprite
+; needed for Mathus (data/maps/objects/PokemonTower6F.asm has no bg_events).
 PokemonTower6FDefaultScript:
-	CheckEvent EVENT_BEAT_GHOST_MAROWAK
+	CheckEvent EVENT_BEAT_GENERAL_MATHUS
 	jp nz, CheckFightingMapTrainers
-	ld hl, PokemonTower6FMarowakCoords
+	ld hl, PokemonTower6FMathusCoords
 	call ArePlayerCoordsInArray
 	jp nc, CheckFightingMapTrainers
 	xor a
 	ldh [hJoyHeld], a
-	ld a, TEXT_POKEMONTOWER6F_BEGONE
+	ld a, TEXT_POKEMONTOWER6F_MATHUS_INTRO
 	ldh [hTextID], a
 	call DisplayTextID
-	ld a, RESTLESS_SOUL
+	ld hl, wStatusFlags3
+	set BIT_TALKED_TO_TRAINER, [hl]
+	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld hl, PokemonTower6FMathusFledText
+	ld de, PokemonTower6FMathusFledText
+	call SaveEndBattleTextPointers
+; Start a trainer battle directly, without EngageMapTrainer/a map object --
+; same technique gym-leader rematches use (e.g. scripts/PewterGym.asm's
+; OPP_BROCK rematch branch): the overworld loop starts a new battle purely
+; off wCurOpponent being nonzero (home/overworld.asm), and the trainer/wild
+; split is just wCurOpponent's value vs OPP_ID_OFFSET plus wTrainerNo holding
+; the party-set index (home/trainers.asm InitBattleEnemyParameters).
+	ld a, OPP_GENERALMATHUS
 	ld [wCurOpponent], a
-	ld a, 30
-	ld [wCurEnemyLevel], a
-	ld a, SCRIPT_POKEMONTOWER6F_MAROWAK_BATTLE
+	ld a, 1
+	ld [wTrainerNo], a
+	ld a, SCRIPT_POKEMONTOWER6F_MATHUS_BATTLE
 	ld [wPokemonTower6FCurScript], a
 	ld [wCurMapScript], a
 	ret
 
-PokemonTower6FMarowakCoords:
+PokemonTower6FMathusCoords:
 	dbmapcoord 10, 16
 	db -1 ; end
 
-PokemonTower6FMarowakBattleScript:
+; Nocturn is never meant to actually faint here -- ForceCaptureNocturn
+; (engine/battle/core.asm) intercepts the enemy-HP-hits-0 case and ends the
+; battle with wBattleResult = 2 (captured) instead of a normal win. The
+; wBattleResult == 0 "true win" and == 1 "lost/fled" cases below are
+; defensive fallbacks for if that intercept somehow doesn't fire; they retry
+; the encounter rather than proceeding into the capture/debrief flow with no
+; Nocturn actually caught.
+PokemonTower6FMathusBattleScript:
 	ld a, [wIsInBattle]
 	cp $ff
 	jp z, PokemonTower6FSetDefaultScript
@@ -59,12 +82,13 @@ PokemonTower6FMarowakBattleScript:
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a
 	ld a, [wBattleResult]
-	and a
+	cp 2 ; captured -- the expected, forced outcome
 	jr nz, .did_not_defeat
-	SetEvent EVENT_BEAT_GHOST_MAROWAK
-	ld a, TEXT_POKEMONTOWER6F_MAROWAK_DEPARTED
+	SetEvent EVENT_BEAT_GENERAL_MATHUS
+	ld a, TEXT_POKEMONTOWER6F_MATHUS_CAPTURED
 	ldh [hTextID], a
 	call DisplayTextID
+	farcall NocturnGoRogueChoice ; automatic incoming-call debrief
 	xor a
 	ld [wJoyIgnore], a
 	ld a, SCRIPT_POKEMONTOWER6F_DEFAULT
@@ -103,8 +127,8 @@ PokemonTower6F_TextPointers:
 	dw_const PokemonTower6FChanneler3Text,      TEXT_POKEMONTOWER6F_CHANNELER3
 	dw_const PickUpItemText,                    TEXT_POKEMONTOWER6F_RARE_CANDY
 	dw_const PickUpItemText,                    TEXT_POKEMONTOWER6F_X_ACCURACY
-	dw_const PokemonTower6FBeGoneText,          TEXT_POKEMONTOWER6F_BEGONE
-	dw_const PokemonTower6FMarowakDepartedText, TEXT_POKEMONTOWER6F_MAROWAK_DEPARTED
+	dw_const PokemonTower6FMathusIntroText,     TEXT_POKEMONTOWER6F_MATHUS_INTRO
+	dw_const PokemonTower6FMathusCapturedText,  TEXT_POKEMONTOWER6F_MATHUS_CAPTURED
 
 PokemonTower6TrainerHeaders:
 	def_trainers
@@ -133,27 +157,6 @@ PokemonTower6FChanneler3Text:
 	ld hl, PokemonTower6TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
-
-PokemonTower6FMarowakDepartedText:
-	text_asm
-	ld hl, PokemonTower6FGhostWasCubonesMotherText
-	call PrintText
-	ld a, RESTLESS_SOUL
-	call PlayCry
-	call WaitForSoundToFinish
-	ld c, 30
-	call DelayFrames
-	ld hl, PokemonTower6FSoulWasCalmedText
-	call PrintText
-	jp TextScriptEnd
-
-PokemonTower6FGhostWasCubonesMotherText:
-	text_far _PokemonTower6FGhostWasCubonesMotherText
-	text_end
-
-PokemonTower6FSoulWasCalmedText:
-	text_far _PokemonTower6FSoulWasCalmedText
-	text_end
 
 PokemonTower6FChanneler1BattleText:
 	text_far _PokemonTower6FChanneler1BattleText
@@ -191,6 +194,14 @@ PokemonTower6FChanneler3AfterBattleText:
 	text_far _PokemonTower6FChanneler3AfterBattleText
 	text_end
 
-PokemonTower6FBeGoneText:
-	text_far _PokemonTower6FBeGoneText
+PokemonTower6FMathusIntroText:
+	text_far _PokemonTower6FMathusIntroText
+	text_end
+
+PokemonTower6FMathusCapturedText:
+	text_far _PokemonTower6FMathusCapturedText
+	text_end
+
+PokemonTower6FMathusFledText:
+	text_far _PokemonTower6FMathusFledText
 	text_end

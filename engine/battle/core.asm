@@ -329,7 +329,14 @@ MainInBattleLoop:
 	ld hl, wEnemyMonHP
 	ld a, [hli]
 	or [hl] ; is enemy mon HP 0?
-	jp z, HandleEnemyMonFainted ; if enemy mon HP is 0, jump
+	jr nz, .enemyMonHasHP
+; General Mathus fight (Pokemon Tower 6F): Nocturn is never meant to actually
+; faint -- force a Master Ball catch instead. See ForceCaptureNocturn.
+	ld a, [wCurOpponent]
+	cp OPP_GENERALMATHUS
+	jp nz, HandleEnemyMonFainted
+	jp ForceCaptureNocturn
+.enemyMonHasHP
 	call SaveScreenTilesToBuffer1
 	xor a
 	ld [wFirstMonsNotOutYet], a
@@ -766,6 +773,55 @@ CheckNumAttacksLeft:
 	ld hl, wEnemyBattleStatus1
 	res USING_TRAPPING_MOVE, [hl] ; enemy not using multi-turn attack like wrap any more
 	ret
+
+; General Mathus fight (Pokemon Tower 6F): forces a Master Ball catch instead
+; of a normal faint, tail-jumped to from MainInBattleLoop above whenever
+; wCurOpponent == OPP_GENERALMATHUS. Ends the battle the same way a normal
+; successful catch does (wBattleResult = 2), reusing the same shared
+; capture-success tail (item_effects.asm's CompleteCapture) that a
+; player-thrown Master Ball's RNG-success branch uses.
+ForceCaptureNocturn:
+	ld hl, MathusPreCaptureText
+	call PrintText
+
+; Remove one Master Ball from the bag if the player has one. The catch always
+; succeeds either way -- the story assumes the player has one by this point,
+; but this can't be allowed to soft-lock on a missing item.
+	ld hl, wBagItems
+	ld c, 0
+.scanBallLoop
+	ld a, [hli]
+	cp $ff
+	jr z, .scanBallDone ; not found, nothing to remove
+	cp MASTER_BALL
+	jr z, .foundBall
+	inc hl
+	inc c
+	jr .scanBallLoop
+.foundBall
+	ld a, c
+	ld [wWhichPokemon], a
+	ld a, 1
+	ld [wItemQuantity], a
+	ld hl, wNumBagItems
+	call RemoveItemFromInventory
+.scanBallDone
+
+	ld a, BATTLE_TYPE_SAFARI ; makes CompleteCapture's own item-removal a no-op
+	ld [wBattleType], a
+	farcall CompleteCapture
+	xor a
+	ld [wBattleType], a ; restore BATTLE_TYPE_NORMAL
+
+	SetEvent EVENT_GOT_NOCTURN
+	ld a, 2 ; wBattleResult: captured
+	ld [wBattleResult], a
+	ret
+
+MathusPreCaptureText:
+	text "Enough. DEVICE --"
+	line "claim it."
+	done
 
 HandleEnemyMonFainted:
 	xor a
@@ -6354,12 +6410,33 @@ SwapPlayerAndEnemyLevels:
 LoadPlayerBackPic:
 	ld a, [wBattleType]
 	dec a ; is it the old man tutorial?
-	ld de, RedPicBack
-	jr nz, .next
+	jr z, .oldMan
+; Hero path battles as the Scientist disguise, Loyalist path as the Rocket
+; disguise, Traitor path (overrides both) as the Nemesis back sprite --
+; matches the overworld sprite picked by LoadWalkingPlayerSpriteGraphics
+; (home/overworld.asm).
+	ld a, [wPostGameMisc]
+	bit BIT_PLAYER_TRAITOR, a
+	jr nz, .traitor
+	bit BIT_ROCKET_LOYALTY, a
+	jr nz, .rocket
+	ld de, ScientistPicBack
+	ld a, BANK(ScientistPicBack)
+	jr .next
+.rocket
+	ld de, RocketPicBack
+	ld a, BANK(RocketPicBack)
+	ASSERT BANK(ScientistPicBack) == BANK(RocketPicBack)
+	jr .next
+.traitor
+	ld de, TraitorPicBack
+	ld a, BANK(TraitorPicBack)
+	ASSERT BANK(ScientistPicBack) == BANK(TraitorPicBack)
+	jr .next
+.oldMan
 	ld de, OldManPicBack
+	ld a, BANK(OldManPicBack)
 .next
-	ld a, BANK(RedPicBack)
-	ASSERT BANK(RedPicBack) == BANK(OldManPicBack)
 	call UncompressSpriteFromDE
 	predef ScaleSpriteByTwo
 	ld hl, wShadowOAM

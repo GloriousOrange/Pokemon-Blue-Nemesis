@@ -51,4 +51,5 @@ TrainerAIPointers:
 	dbw 3, GenericAI ; CHANNELER
 	dbw 2, AgathaAI ; AGATHA
 	dbw 1, LanceAI ; LANCE
+	dbw 1, GenericAI ; GENERALMATHUS
 	assert_table_length NUM_TRAINERS

@@ -576,7 +576,14 @@ INCLUDE "data/maps/objects/SafariZoneSecretHouse.asm"
 SafariZoneSecretHouse_Blocks: INCBIN "maps/SafariZoneSecretHouse.blk"
 
 
+; Left empty (still declared so layout.link's pin to bank $13 stays valid) --
+; its former contents moved to the floating "TradeCenterColosseum" section
+; below to free room in bank $13 for MathusPic. Map bank references
+; (data/maps/map_header_banks.asm) use BANK(TradeCenter_h)/BANK(Colosseum_h),
+; computed automatically, so relocating these maps needed no other changes.
 SECTION "Maps 9", ROMX
+
+SECTION "TradeCenterColosseum", ROMX
 
 INCLUDE "data/maps/headers/TradeCenter.asm"
 INCLUDE "scripts/TradeCenter.asm"

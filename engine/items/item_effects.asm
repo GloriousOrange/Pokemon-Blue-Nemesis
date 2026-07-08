@@ -461,6 +461,20 @@ ItemUseBall:
 	ld hl, ItemUseBallText04
 	jp z, .printMessage
 
+; Shared capture-success tail, entered either from a normal successful ball
+; throw above, OR via farcall from ForceCaptureNocturn (engine/battle/core.asm)
+; for the General Mathus fight's forced no-RNG Master Ball catch. Callers that
+; skip the RNG/animation above (like ForceCaptureNocturn) must still set
+; wBattleType = BATTLE_TYPE_SAFARI first, purely to make the ball-removal at
+; the tail of this routine (.done, below) a no-op via its own `and a / ret nz`
+; check -- SAFARI doesn't trigger the old-man "don't give the player the mon"
+; branch the way BATTLE_TYPE_OLD_MAN would, so the mon is still added to the
+; party/box normally. Forced-capture item removal is handled by the caller
+; instead, since it needs its own presence check (the catch must always
+; succeed even if the player's Master Ball is somehow already gone). Kept as
+; a local label (see CompleteCapture:: trampoline below, past .done) so it
+; doesn't disturb this function's existing dot-label scoping.
+.captureSuccess
 ; Save current HP.
 	ld hl, wEnemyMonHP
 	ld a, [hli]
@@ -590,6 +604,14 @@ ItemUseBall:
 	inc a
 	ld [wItemQuantity], a
 	jp RemoveItemFromInventory
+
+; farcall entry point for ForceCaptureNocturn (engine/battle/core.asm, General
+; Mathus fight) to reuse ItemUseBall's capture-success tail without going
+; through the normal ball-throw RNG/animation. Placed here, after ItemUseBall
+; is fully done defining its own dot-locals, so this global export doesn't
+; disturb their scoping.
+CompleteCapture::
+	jp ItemUseBall.captureSuccess
 
 ItemUseBallText00:
 ;"It dodged the thrown ball!"

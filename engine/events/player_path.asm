@@ -23,6 +23,32 @@ GetPlayerPath::
 	ld a, 2
 	ret
 
+; Returns the overworld walking sprite for the player's current path in de.
+; The sprite's bank is stashed in wBuffer rather than returned in a register:
+; farcall's Bankswitch clobbers af/bc on its way back to the home bank, so b
+; can't carry the bank home the way non-farcalled callers usually do it.
+; Hero: Scientist, Loyalist: Rocket, Traitor (overrides both): Blue (twin
+; brothers). farcall'd from LoadWalkingPlayerSpriteGraphics (home/overworld.asm).
+GetWalkingPlayerSpriteGraphics::
+	ld a, [wPostGameMisc]
+	bit BIT_PLAYER_TRAITOR, a
+	jr nz, .traitor
+	bit BIT_ROCKET_LOYALTY, a
+	jr nz, .rocket
+	ld de, ScientistSprite
+	ld a, BANK(ScientistSprite)
+	jr .done
+.rocket
+	ld de, RocketSprite
+	ld a, BANK(RocketSprite)
+	jr .done
+.traitor
+	ld de, BlueSprite
+	ld a, BANK(BlueSprite)
+.done
+	ld [wBuffer], a
+	ret
+
 ; Silph Co faction gate. Returns NZ when the trainer currently being considered
 ; is an ALLY on the player's path (so it must NOT engage or battle), Z otherwise.
 ; Loyalist (BIT_ROCKET_LOYALTY set) -> Rockets are allies; Hero (clear) ->
@@ -80,57 +106,148 @@ IsSilphCoMap:
 	or 1
 	ret
 
-; The go-rogue beat, to be `callfar`'d from the Nocturn-obtain script once that
-; content exists. Presents the "report to your boss vs block the number and go
-; rogue" choice: YES keeps you on your current path (Hero -> Oak, Loyalist ->
-; Giovanni); NO blocks the number and sets BIT_PLAYER_TRAITOR (Traitor path,
-; reachable from either prior path). Not yet wired to a caller.
+; Automatic incoming-call debrief, fired immediately after Nocturn is
+; captured (see PokemonTower6FMathusBattleScript, scripts/PokemonTower6F.asm
+; -- farcall'd from there, not reached via the Start-menu PHONE). Loyalist ->
+; Giovanni; Hero -> Oak. YES reports the weapon in and stays on the current
+; path (Loyalist is rewarded with Miasma; Hero with a fresh Master Ball +
+; $100,000). NO keeps Nocturn and sets BIT_PLAYER_TRAITOR (Traitor path,
+; reachable from either prior path, overrides allegiance -- see
+; GetWalkingPlayerSpriteGraphics/LoadPlayerBackPic).
 NocturnGoRogueChoice::
 	ld a, [wPostGameMisc]
 	bit BIT_ROCKET_LOYALTY, a
-	ld hl, NocturnReportOakText
-	jr z, .gotPrompt
-	ld hl, NocturnReportGiovanniText
-.gotPrompt
+	jr nz, .giovanni
+
+.oak
+	ld hl, OakWeaponCallText
 	call PrintText
 	call YesNoChoice
 	ld a, [wCurrentMenuItem]
-	and a ; 0 = YES (report in, stay on your path)
-	jr nz, .goRogue
-	ld hl, NocturnReportedText
-	jp PrintText
-.goRogue
+	and a ; 0 = YES
+	jr nz, .oakRefused
+	ld hl, OakSendingItText
+	call PrintText
+	lb bc, MASTER_BALL, 1
+	call GiveItem
+	ld hl, MathusOakRewardMoney + 2
+	ld de, wPlayerMoney + 2
+	ld c, 3
+	predef AddBCDPredef
+	ld hl, OakRewardText
+	call PrintText
+	SetEvent EVENT_REPORTED_NOCTURN
+	ret
+.oakRefused
+	ld hl, OakRefusalPlayerText
+	call PrintText
 	ld hl, wPostGameMisc
 	set BIT_PLAYER_TRAITOR, [hl]
-	ld hl, NocturnGoRogueText
-	jp PrintText
+	ld hl, OakRefusalText
+	call PrintText
+	SetEvent EVENT_REPORTED_NOCTURN
+	ret
 
-NocturnReportOakText:
-	text "NOCTURN is yours."
-	para "Call PROF.OAK and"
-	line "report the weapon"
-	cont "is secured?"
+.giovanni
+	ld hl, GiovanniWeaponCallText
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a ; 0 = YES
+	jr nz, .giovanniRefused
+	ld hl, GiovanniSendingItText
+	call PrintText
+	lb bc, MIASMA, 40
+	call GivePokemon
+	jr nc, .giovanniDone
+	SetEvent EVENT_GOT_MIASMA
+.giovanniDone
+	ld hl, GiovanniRewardText
+	call PrintText
+	SetEvent EVENT_REPORTED_NOCTURN
+	ret
+.giovanniRefused
+	ld hl, GiovanniRefusalPlayerText
+	call PrintText
+	ld hl, wPostGameMisc
+	set BIT_PLAYER_TRAITOR, [hl]
+	ld hl, GiovanniRefusalText
+	call PrintText
+	SetEvent EVENT_REPORTED_NOCTURN
+	ret
+
+MathusOakRewardMoney:
+	bcd3 100000
+
+OakWeaponCallText:
+	text "OAK: Have you"
+	line "caught the"
+	cont "weapon?"
 	done
 
-NocturnReportGiovanniText:
-	text "NOCTURN is yours."
-	para "Call GIOVANNI and"
-	line "report the weapon"
-	cont "is secured?"
+OakSendingItText:
+	text "Yes, Professor."
+	line "I'm sending it to"
+	cont "you now."
 	done
 
-NocturnReportedText:
-	text "You report in."
-	para "Your orders stand."
-	line "For now, you serve"
-	cont "another's will."
+OakRewardText:
+	text "OAK: Wonderful"
+	line "work, my boy!"
+
+	para "Here -- a new"
+	line "MASTER BALL, and"
+	cont "100,000 for your"
+	cont "trouble."
+
+	para "You've more than"
+	line "earned it."
 	done
 
-NocturnGoRogueText:
-	text "You block the"
-	line "number."
-	para "No OAK. No"
-	line "GIOVANNI. NOCTURN"
-	cont "answers to you"
-	cont "alone now."
+OakRefusalPlayerText:
+	text "It's mine now."
+	line "Find someone else"
+	cont "to fight your"
+	cont "battles."
+	done
+
+OakRefusalText:
+	text "OAK: ...I see."
+
+	para "I hope you know"
+	line "what you're"
+	cont "doing."
+	done
+
+GiovanniWeaponCallText:
+	text "Have you obtained"
+	line "the weapon?"
+	done
+
+GiovanniSendingItText:
+	text "Yes, boss. It's"
+	line "all yours."
+	cont "Sending it now."
+	done
+
+GiovanniRewardText:
+	text "We have now"
+	line "guaranteed our"
+	cont "superiority."
+
+	para "Sending you your"
+	line "reward now. Check"
+	cont "your storage."
+	done
+
+GiovanniRefusalPlayerText:
+	text "You mean MY"
+	line "weapon? Get lost!"
+	done
+
+GiovanniRefusalText:
+	text "Curse you,"
+	line "traitor! This"
+	cont "won't be the end"
+	cont "of this."
 	done

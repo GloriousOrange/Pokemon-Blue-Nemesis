@@ -335,6 +335,14 @@ MiasmaPicBack::        INCBIN "gfx/pokemon/back/miasmab.pic"    ; custom Miasma 
 NocturnPicFront::      INCBIN "gfx/pokemon/front/nocturn.pic"   ; custom Nocturn front (Pixellab)
 NocturnPicBack::       INCBIN "gfx/pokemon/back/nocturnb.pic"   ; custom Nocturn back (Pixellab)
 
+; Player battle back sprites for the Hero (Scientist), Loyalist (Rocket), and
+; Traitor overworld disguises, matching LoadWalkingPlayerSpriteGraphics'
+; BIT_ROCKET_LOYALTY / BIT_PLAYER_TRAITOR branches (home/overworld.asm).
+; Selected by LoadPlayerBackPic (engine/battle/core.asm).
+ScientistPicBack::     INCBIN "gfx/player/scientistb.pic"
+RocketPicBack::        INCBIN "gfx/player/rocketb.pic"
+TraitorPicBack::       INCBIN "gfx/player/traitorb.pic"
+
 
 SECTION "Trainer Pics", ROMX
 
@@ -384,3 +392,4 @@ LoreleiPic::       INCBIN "gfx/trainers/lorelei.pic"
 ChannelerPic::     INCBIN "gfx/trainers/channeler.pic"
 AgathaPic::        INCBIN "gfx/trainers/agatha.pic"
 LancePic::         INCBIN "gfx/trainers/lance.pic"
+MathusPic::        INCBIN "gfx/trainers/mathus.pic"
