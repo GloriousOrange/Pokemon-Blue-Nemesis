@@ -36,6 +36,10 @@ _SilphCo7FSilphWorkerM1LaprasDescriptionText::
 	cont "give you a lift!"
 	done
 
+_SilphCo7FSilphWorkerM1LoyalistLaprasDescriptionText::
+	text "Just leave!"
+	done
+
 _SilphCo7FSilphWorkerM1IsOurPresidentOkText::
 	text "TEAM ROCKET's"
 	line "BOSS went to the"

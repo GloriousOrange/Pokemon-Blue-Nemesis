@@ -328,7 +328,12 @@ SilphCo7FSilphWorkerM1Text:
 	and a
 	call z, WaitForTextScrollButtonPress
 	call EnableAutoTextBoxDrawing
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistLaprasDescriptionText
+	jr nz, .print_lapras_description
 	ld hl, .LaprasDescriptionText
+.print_lapras_description
 	call PrintText
 	ld hl, wStatusFlags4
 	set BIT_GOT_LAPRAS, [hl]
@@ -349,6 +354,10 @@ SilphCo7FSilphWorkerM1Text:
 
 .LaprasDescriptionText
 	text_far _SilphCo7FSilphWorkerM1LaprasDescriptionText
+	text_end
+
+.LoyalistLaprasDescriptionText
+	text_far _SilphCo7FSilphWorkerM1LoyalistLaprasDescriptionText
 	text_end
 
 .IsOurPresidentOkText
