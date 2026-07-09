@@ -291,12 +291,20 @@ PokemonMansion1FRivalLeaveWaitScript:
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_NPC_MOVEMENT, a
 	ret nz
+; Dramatic flash to black as he escapes, but bring the screen back BEFORE any
+; text box: DisplayTextID must run with the LCD on, and the perish text_asm
+; can open GivePokemon's nickname YES/NO prompt, which needs the d-pad free.
+; (Calling DisplayTextID while faded to black + with wJoyIgnore holding the
+; d-pad is what froze the loss path -- same two rules as the Mathus/Nocturn
+; captured-flow fixes.)
 	call GBFadeOutToBlack
+	call GBFadeInFromBlack
+	xor a
+	ld [wJoyIgnore], a
 	ld a, TEXT_POKEMONMANSION1F_PERISH
 	ldh [hTextID], a
 	call DisplayTextID
 	predef HealParty ; no blackout happened -- patch up the survivors
-	call GBFadeInFromBlack
 	jp PokemonMansion1FResetScripts
 
 PokemonMansion1FLabScientistPostBattle:
