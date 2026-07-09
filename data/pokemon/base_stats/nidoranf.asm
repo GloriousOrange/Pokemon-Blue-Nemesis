@@ -14,9 +14,9 @@
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
-	tmhm TOXIC,        BODY_SLAM,    TAKE_DOWN,    DOUBLE_EDGE,  BLIZZARD,     \
-	     RAGE,         THUNDERBOLT,  THUNDER,      MIMIC,        DOUBLE_TEAM,  \
-	     REFLECT,      BIDE,         SKULL_BASH,   REST,         SUBSTITUTE
+	tmhm TOXIC, BODY_SLAM, TAKE_DOWN, DOUBLE_EDGE, BLIZZARD,  \
+	     RAGE, THUNDERBOLT, THUNDER, MIMIC, DOUBLE_TEAM,  \
+	     REFLECT, SKULL_BASH, REST, SUBSTITUTE
 	; end
 
 	db 0 ; padding

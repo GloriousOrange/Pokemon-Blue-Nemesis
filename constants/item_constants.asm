@@ -196,7 +196,7 @@ DEF TM01 EQU const_value
 	add_tm MIMIC        ; $E7
 	add_tm DOUBLE_TEAM  ; $E8
 	add_tm REFLECT      ; $E9
-	add_tm BIDE         ; $EA
+	add_tm ROCK_THROW   ; $EA (TM34, was BIDE) -- Brock's reward, "hands" mons
 	add_tm METRONOME    ; $EB
 	add_tm SELFDESTRUCT ; $EC
 	add_tm EGG_BOMB     ; $ED

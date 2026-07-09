@@ -36,13 +36,13 @@ _TM34ExplanationText::
 	cont "pick the #MON"
 	cont "carefully!"
 
-	para "TM34 contains"
-	line "BIDE!"
+	para "TM34 is ROCK"
+	line "THROW!"
 
-	para "Your #MON will"
-	line "absorb damage in"
-	cont "battle then pay"
-	cont "it back double!"
+	para "Teach it to any"
+	line "monster that can"
+	cont "hold a rock in"
+	cont "its hand."
 	done
 
 _PewterGymTM34NoRoomText::
