@@ -108,6 +108,10 @@ BugCatcherData:
 
 	db 100, PINSIR, SCYTHER, BEEDRILL, 0 ; ARENA #1 (bug catcher)
 
+; Toby -- Elite Four Bug Catcher (took Bruno's slot). Custom movesets for
+; Parasect/Butterfree/Pinsir are applied in ReadTrainer (.MaybeToby).
+	db $FF, 55, PARASECT, 55, BUTTERFREE, 56, BEEDRILL, 57, SCYTHER, 58, PINSIR, 0 ; #16 TOBY
+
 LassData:
 ; Route 3
 	db 9, PIDGEY, PIDGEY, 0
@@ -743,7 +747,8 @@ CooltrainerFData:
 	db 43, PERSIAN, NINETALES, RAICHU, 0
 
 BrunoData:
-	db $FF, 53, ONIX, 55, HITMONCHAN, 55, HITMONLEE, 56, ONIX, 58, MACHAMP, 0
+; Now the Fighting Dojo master (moved from the Elite Four). One Onix -> Golem.
+	db $FF, 53, GOLEM, 55, HITMONCHAN, 55, HITMONLEE, 56, ONIX, 58, MACHAMP, 0
 
 BrockData:
 	db $FF, 12, GEODUDE, 14, ONIX, 0

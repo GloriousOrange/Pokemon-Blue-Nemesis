@@ -1,12 +1,13 @@
 _FightingDojoKarateMasterText::
 	text "Grunt!"
 
-	para "I am the KARATE"
-	line "MASTER! I am the"
-	cont "LEADER here!"
+	para "I am BRUNO. I"
+	line "left the ELITE"
+	cont "FOUR for this"
+	cont "DOJO."
 
-	para "You wish to"
-	line "challenge us?"
+	para "Here, only"
+	line "strength speaks."
 	cont "Expect no mercy!"
 
 	para "Fwaaa!"

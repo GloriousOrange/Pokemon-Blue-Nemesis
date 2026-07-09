@@ -122,11 +122,13 @@ ReadTrainer:
 	jr z, .MaybeLoyalistScientist
 	cp RIVAL2
 	jr z, .MaybeRival2Special
-	jr .FinishUp ; nope
+	cp BUG_CATCHER
+	jp z, .MaybeToby
+	jp .FinishUp ; nope
 .GiveTeamMoves
 	ld a, [hl]
 	ld [wEnemyMon5Moves + 2], a
-	jr .FinishUp
+	jp .FinishUp
 .ChampionRival ; give moves to his team
 
 ; pidgeot
@@ -142,7 +144,7 @@ ReadTrainer:
 	inc h
 .nc_rival3_type2:
 	ld [hl], GHOST
-	jr .FinishUp
+	jp .FinishUp
 .MaybeLoyalistScientist
 ; Silph Co 11F Loyalist path scientist (data/trainers/parties.asm #21): Porygon
 ; (mon 1) knows only Metronome2, no fallback moves, so it always shows the
@@ -151,7 +153,7 @@ ReadTrainer:
 ; .ChampionRival exists above).
 	ld a, [wTrainerNo]
 	cp 21
-	jr nz, .FinishUp
+	jp nz, .FinishUp
 	ld a, METRONOME2
 	ld [wEnemyMon1Moves], a
 	xor a
@@ -159,15 +161,15 @@ ReadTrainer:
 	ld [wEnemyMon1Moves + 2], a
 	ld [wEnemyMon1Moves + 3], a
 	ld [wEnemyMon1Moves + 4], a ; 5th slot too (NUM_MOVES is 5 in this mod)
-	jr .FinishUp
+	jp .FinishUp
 .MaybeRival2Special
 	ld a, [wTrainerNo]
 	cp 13
 	jr z, .LabMewtwo
 	cp 10
-	jr c, .FinishUp
+	jp c, .FinishUp
 	cp 12 + 1
-	jr nc, .FinishUp
+	jp nc, .FinishUp
 ; Route 22 pre-League fight (sets 10-12): the rival's starter died at Silph Co
 ; and fights on as a true ghost -- both types become GHOST (grants the
 ; pure-ghost physical immunity, see AdjustDamageForMoveType in core.asm) and
@@ -184,7 +186,7 @@ ReadTrainer:
 	ld [hl], a  ; MON_TYPE2
 	ld a, NIGHT_SHADE
 	ld [wEnemyMon6Moves + 4], a
-	jr .FinishUp
+	jp .FinishUp
 .LabMewtwo
 ; Burned-lab ambush (set 13): Oak's Mewtwo, custom 5-move set.
 	ld hl, wEnemyMon1Moves
@@ -197,6 +199,49 @@ ReadTrainer:
 	ld a, AMNESIA
 	ld [hli], a
 	ld a, RECOVER
+	ld [hl], a
+	jp .FinishUp
+.MaybeToby
+; Elite Four Bug Catcher Toby (BugCatcherData #16). Custom movesets:
+; Parasect (mon1) -- Spore + Slash, plus Cut (Bug) so it can hit Ghosts that
+; are immune to Normal-type Slash; the generic AI picks the effective move.
+	ld a, [wTrainerNo]
+	cp 16
+	jp nz, .FinishUp
+	ld hl, wEnemyMon1Moves
+	ld a, SPORE
+	ld [hli], a
+	ld a, SLASH
+	ld [hli], a
+	ld a, CUT
+	ld [hli], a
+	ld a, LEECH_LIFE
+	ld [hli], a
+	ld a, GROWTH
+	ld [hl], a
+; Butterfree (mon2) -- Psychic, Sleep Powder, Dream Eater, Stun Spore, Web Cannon
+	ld hl, wEnemyMon2Moves
+	ld a, PSYCHIC_M
+	ld [hli], a
+	ld a, SLEEP_POWDER
+	ld [hli], a
+	ld a, DREAM_EATER
+	ld [hli], a
+	ld a, STUN_SPORE
+	ld [hli], a
+	ld a, WEB_CANNON
+	ld [hl], a
+; Pinsir (mon5) -- Guillotine, Twineedle, Web Cannon, Slash, Swords Dance
+	ld hl, wEnemyMon5Moves
+	ld a, GUILLOTINE
+	ld [hli], a
+	ld a, TWINEEDLE
+	ld [hli], a
+	ld a, WEB_CANNON
+	ld [hli], a
+	ld a, SLASH
+	ld [hli], a
+	ld a, SWORDS_DANCE
 	ld [hl], a
 .FinishUp
 ; clear wAmountMoneyWon addresses

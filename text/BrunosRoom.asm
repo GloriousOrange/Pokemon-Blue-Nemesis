@@ -1,45 +1,37 @@
 _BrunoBeforeBattleText::
-	text "I am BRUNO of"
+	text "I am TOBY of"
 	line "the ELITE FOUR!"
 
-	para "Through rigorous"
-	line "training, people"
-	cont "and #MON can"
-	cont "become stronger!"
+	para "They laughed when"
+	line "I raised BUG"
+	cont "#MON. Only BUGS."
 
-	para "I've weight"
-	line "trained with"
-	cont "my #MON!"
+	para "They stopped"
+	line "laughing. So did"
+	cont "their #MON."
 
 	para "<PLAYER>!"
 
-	para "We will grind you"
-	line "down with our"
-	cont "superior power!"
-
-	para "Hoo hah!"
+	para "My swarm will"
+	line "bury you!"
 	done
 
 _BrunoEndBattleText::
-	text "Why?"
-	line "How could I lose?"
+	text "Impossible!"
+	line "My swarm..."
 	prompt
 
 _BrunoAfterBattleText::
-	text "Raw power alone"
-	line "won't uncover"
-	cont "the truth."
+	text "You are strong."
+	line "Stronger than me."
 
-	para "Your father served"
-	line "Oak without"
-	cont "question."
+	para "But LANCE waits"
+	line "beyond this hall."
 
-	para "Oak is still out"
-	line "there. Watching."
-	cont "Planning."
-
-	para "You walk into a"
-	line "trap for Lance."
+	para "He is not like"
+	line "us. Turn back"
+	cont "while you still"
+	cont "can."
 	done
 
 _BrunosRoomBrunoDontRunAwayText::
