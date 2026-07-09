@@ -369,7 +369,7 @@ ArenaChallengerTable:
 	db OPP_YOUNGSTER,     14 ; 22
 	db OPP_SUPER_NERD,    13 ; 23
 	db OPP_SWIMMER,       16 ; 24
-	db OPP_TAMER,          7 ; 25
+	db OPP_TAMER,          2 ; 25
 	db OPP_ROCKER,         3 ; 26
 
 BattleIslandBugCatcherApproachesText:

@@ -27,7 +27,7 @@ ItemNames::
 	li "SOULBADGE"
 	li "MARSHBADGE"
 	li "VOLCANOBADGE"
-	li "EARTHBADGE"
+	li "HARMONYBADGE"
 	li "ESCAPE ROPE"
 	li "REPEL"
 	li "OLD AMBER"

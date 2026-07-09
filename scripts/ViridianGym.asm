@@ -14,7 +14,7 @@ ViridianGym_Script:
 	db "VIRIDIAN CITY@"
 
 .LeaderName:
-	db "GIOVANNI@"
+	db "NORMAN@"
 
 ViridianGymResetScripts:
 	xor a
@@ -139,8 +139,8 @@ ViridianGymReceiveTM27:
 	ld a, TEXT_VIRIDIANGYM_GIOVANNI_EARTH_BADGE_INFO
 	ldh [hTextID], a
 	call DisplayTextID
-	SetEvent EVENT_BEAT_VIRIDIAN_GYM_GIOVANNI
-	lb bc, TM_FISSURE, 1
+	SetEvent EVENT_BEAT_VIRIDIAN_GYM_GIOVANNI ; now tracks beating NORMAN
+	lb bc, TM_HYPER_BEAM, 1
 	call GiveItem
 	jr nc, .bag_full
 	ld a, TEXT_VIRIDIANGYM_GIOVANNI_RECEIVED_TM27

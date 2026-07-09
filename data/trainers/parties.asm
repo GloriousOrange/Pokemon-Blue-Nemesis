@@ -474,19 +474,22 @@ JugglerData:
 
 	db 100, MACHAMP, TENTACRUEL, MR_MIME, 0 ; ARENA #7 (juggler)
 
-TamerData:
-; Fuchsia Gym
-	db 34, SANDSLASH, ARBOK, 0
-	db 33, ARBOK, SANDSLASH, ARBOK, 0
-; Viridian Gym
-	db 43, RHYHORN, 0
-	db 39, ARBOK, TAUROS, 0
-; Victory Road 2F
-	db 44, PERSIAN, GOLDUCK, 0
-; Unused
-	db 42, RHYHORN, PRIMEAPE, ARBOK, TAUROS, 0
+; Ex-Tamers reclassed as Jugglers (Norman is now the game's only Tamer).
+; Fuchsia Gym (rosters unchanged from their Tamer days)
+	db 34, SANDSLASH, ARBOK, 0                ; #11 (Fuchsia, was Tamer 1)
+	db 33, ARBOK, SANDSLASH, ARBOK, 0         ; #12 (Fuchsia, was Tamer 2)
+; Victory Road 2F (roster unchanged)
+	db 44, PERSIAN, GOLDUCK, 0                ; #13 (Victory Road, was Tamer 5)
+; Viridian Gym reskin -- Normal-type rosters (was Tamer 3 / 4)
+	db 43, TAUROS, KANGASKHAN, 0             ; #14 (Viridian ex-Rocker1)
+	db 44, EEVEE, PERSIAN, 0                 ; #15 (Viridian ex-Rocker2)
 
-	db 100, TAUROS, GYARADOS, CHARIZARD, 0 ; ARENA #25 (tamer)
+TamerData:
+; Norman -- Viridian Gym leader (the game's only remaining Tamer).
+; Movesets deferred (per-mon levels via $FF format, auto level-up moves).
+	db $FF, 46, TAUROS, 53, SNORLAX, 47, CHANSEY, 50, KANGASKHAN, 48, EEVEE, 51, PERSIAN, 0 ; #1 NORMAN
+
+	db 100, TAUROS, GYARADOS, CHARIZARD, 0 ; ARENA #2 (tamer, was #25 ref)
 
 BirdKeeperData:
 ; Route 13
@@ -523,10 +526,10 @@ BlackbeltData:
 	db 32, MACHOP, MACHOKE, 0
 	db 36, PRIMEAPE, 0
 	db 31, MACHOP, MANKEY, PRIMEAPE, 0
-; Viridian Gym
-	db 40, MACHOP, MACHOKE, 0
-	db 43, MACHOKE, 0
-	db 38, MACHOKE, MACHOP, MACHOKE, 0
+; Viridian Gym (Normal-type reskin)
+	db 43, WIGGLYTUFF, CLEFABLE, 0            ; #6 (Viridian HIKER1)
+	db 45, SNORLAX, 0                         ; #7 (Viridian HIKER2)
+	db 42, MEOWTH, PERSIAN, RATICATE, 0       ; #8 (Viridian HIKER3)
 ; Victory Road 2F
 	db 43, MACHOKE, MACHOP, MACHOKE, 0
 
@@ -704,8 +707,8 @@ RocketData:
 	db 100, MUK, GOLBAT, GENGAR, 0 ; ARENA #11 (rocket)
 
 CooltrainerMData:
-; Viridian Gym
-	db 39, NIDORINO, NIDOKING, 0
+; Viridian Gym (Normal-type reskin)
+	db 44, PERSIAN, SNORLAX, 0                ; #1 (Viridian COOLTRAINER_M3)
 ; Victory Road 3F
 	db 43, EXEGGUTOR, CLOYSTER, ARCANINE, 0
 	db 43, KINGLER, TENTACRUEL, BLASTOISE, 0
@@ -717,9 +720,9 @@ CooltrainerMData:
 	db 44, IVYSAUR, WARTORTLE, CHARMELEON, 0
 	db 49, NIDOKING, 0
 	db 44, KINGLER, CLOYSTER, 0
-; Viridian Gym
-	db 39, SANDSLASH, DUGTRIO, 0
-	db 43, RHYHORN, 0
+; Viridian Gym (Normal-type reskin)
+	db 43, RATICATE, PERSIAN, 0              ; #9 (Viridian COOLTRAINER_M1)
+	db 44, TAUROS, KANGASKHAN, 0             ; #10 (Viridian COOLTRAINER_M2)
 
 	db 100, CHARIZARD, NIDOKING, TAUROS, 0 ; ARENA #4 (cooltrainer m)
 	db 100, DRAGONITE, RAICHU, VENUSAUR, 0 ; ARENA #16 (cooltrainer m)

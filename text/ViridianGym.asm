@@ -1,30 +1,26 @@
 _ViridianGymGiovanniPreBattleText::
-	text "Fwahahaha! This is"
-	line "my hideout!"
+	text "So. You climbed"
+	line "all this way."
 
-	para "I planned to"
-	line "resurrect TEAM"
-	cont "ROCKET here!"
+	para "I am NORMAN. I"
+	line "keep the peace in"
+	cont "this region."
 
-	para "But, you have"
-	line "caught me again!"
-	cont "So be it! This"
-	cont "time, I'm not"
-	cont "holding back!"
+	para "Peace bought with"
+	line "blood. Yours, if"
+	cont "you falter."
 
-	para "Once more, you"
-	line "shall face"
-	cont "GIOVANNI, the"
-	cont "greatest trainer!"
+	para "Show me you are"
+	line "worthy of the"
+	cont "truth!"
 	done
 
 _ViridianGymGiovanniReceivedEarthBadgeText::
-	text "Ha!"
-	line "That was a truly"
-	cont "intense fight!"
-	cont "You have won!"
-	cont "As proof, here is"
-	cont "the EARTHBADGE!@"
+	text "Enough."
+	line "You fought well."
+
+	para "Take the"
+	line "HARMONYBADGE.@"
 	text_end
 
 _ViridianGymGiovanniPostBattleAdviceText::
@@ -40,14 +36,11 @@ _ViridianGymGiovanniPostBattleAdviceText::
 	line "Oak's Army. Lance"
 	cont "led the Rebellion."
 
-	para "Lance stopped it."
-	line "Now ask yourself:"
-	cont "are you any"
-	cont "different?@"
+	para "Lance stopped it.@"
 	text_end
 
 _ViridianGymGiovanniEarthBadgeInfoText::
-	text "The EARTHBADGE"
+	text "The HARMONYBADGE"
 	line "makes #MON of"
 	cont "any level obey!"
 
@@ -66,20 +59,18 @@ _ViridianGymGiovanniEarthBadgeInfoText::
 
 _ViridianGymGiovanniReceivedTM27Text::
 	text "<PLAYER> received"
-	line "TM27!@"
+	line "TM15!@"
 	text_end
 
 _ViridianGymGiovanniTM27ExplanationText::
 	text_start
 
-	para "TM27 is FISSURE!"
-	line "It will take out"
-	cont "#MON with just"
-	cont "one hit!"
+	para "TM15 is HYPER"
+	line "BEAM! One blast"
+	cont "of raw force!"
 
-	para "I made it when I"
-	line "ran the GYM here,"
-	cont "too long ago..."
+	para "It served me well"
+	line "in my time..."
 	done
 
 _ViridianGymGiovanniTM27NoRoomText::
@@ -234,12 +225,12 @@ _ViridianGymGuidePreBattleText::
 
 	para "I heard that the"
 	line "trainers here"
-	cont "like ground-type"
+	cont "like NORMAL-type"
 	cont "#MON!"
 	done
 
 _ViridianGymGuidePostBattleText::
 	text "Blow me away!"
-	line "GIOVANNI was the"
+	line "NORMAN was the"
 	cont "GYM LEADER here?"
 	done
