@@ -91,10 +91,3 @@ _Route22PokemonLeagueSignText::
 	text "#MON LEAGUE"
 	line "Front Gate"
 	done
-
-_Route22StarterAshesText::
-	text "Your partner"
-	line "fell in battle..."
-	cont "You gather their"
-	cont "ashes into an urn."
-	done

@@ -58,9 +58,16 @@ _PokemonMansion1FRivalDefeatedText::
 	prompt
 
 _PokemonMansion1FRivalVictoryText::
-	text "Ha!"
-	line "Revenge is"
-	cont "sweet."
+; his gloat on a loss -- shown via SaveEndBattleTextPointers while the
+; battle screen is still up, so TrainerEndBattleText auto-prefixes it with
+; "<RIVAL>: " (his name, ~7 chars) + ": " before the first line even starts;
+; keep the first line short (see the Loyalist Scientist name-prefix gotcha).
+	text "You got"
+	line "what you"
+	cont "deserved."
+
+	para "An eye for"
+	line "an eye."
 	prompt
 
 _PokemonMansion1FRivalAfterBattleText::
@@ -69,4 +76,26 @@ _PokemonMansion1FRivalAfterBattleText::
 
 	para "Watch your back,"
 	line "<PLAYER>."
+	done
+
+_PokemonMansion1FRivalRaticateGiftText::
+	text "<RIVAL>: Looks"
+	line "like your only"
+	cont "slave is dead."
+
+	para "You can have"
+	line "this one, I'm"
+	cont "not going to"
+	cont "use it."
+	done
+
+_PokemonMansion1FStarterPerishedText::
+	text "Your starter,"
+	line "@"
+	text_ram wNameBuffer
+	cont "has perished."
+
+	para "You gather its"
+	line "ashes into an"
+	cont "urn."
 	done

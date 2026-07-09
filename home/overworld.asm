@@ -352,6 +352,14 @@ OverworldLoopLessDelay::
 	ld a, [wCurMap]
 	cp OAKS_LAB
 	jp z, .noFaintCheck ; no blacking out if the player lost to the rival in Oak's lab
+	cp POKEMON_MANSION_1F
+	jr nz, .checkFaint
+; no blacking out if the player lost the burned-lab rival ambush either --
+; the starter-perish beat (scripts/PokemonMansion1F.asm) handles it instead.
+; Once the fight is over (event set) this map faints/blacks out normally.
+	CheckEvent EVENT_BEAT_LAB_RIVAL_AMBUSH
+	jp z, .noFaintCheck
+.checkFaint
 	callfar AnyPartyAlive
 	ld a, d
 	and a

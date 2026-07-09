@@ -449,7 +449,3 @@ Route22Rival2VictoryText:
 Route22PokemonLeagueSignText:
 	text_far _Route22PokemonLeagueSignText
 	text_end
-
-Route22StarterAshesText:
-	text_far _Route22StarterAshesText
-	text_end

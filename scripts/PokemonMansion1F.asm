@@ -61,33 +61,59 @@ PokemonMansion1F_ScriptPointers:
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_POKEMONMANSION1F_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_POKEMONMANSION1F_END_BATTLE
 	dw_const PokemonMansion1FLabScientistPostBattle, SCRIPT_POKEMONMANSION1F_LAB_SCIENTIST_POST_BATTLE
+	dw_const PokemonMansion1FRivalApproachWaitScript, SCRIPT_POKEMONMANSION1F_RIVAL_APPROACH
 	dw_const PokemonMansion1FRivalStartBattleScript, SCRIPT_POKEMONMANSION1F_RIVAL_START_BATTLE
 	dw_const PokemonMansion1FRivalAfterBattleScript, SCRIPT_POKEMONMANSION1F_RIVAL_AFTER_BATTLE
+	dw_const PokemonMansion1FRivalLeaveWaitScript,   SCRIPT_POKEMONMANSION1F_RIVAL_LEAVE_WAIT
 
 ; The rival's revenge ambush: first time the player walks in from the
 ; entrance, he's waiting with Oak's Mewtwo (OPP_RIVAL2 party set 13). Same
 ; trigger discipline as the fixed Silph Co 7F fight: the trigger tick only
-; arms sound/music and hands off; no text box opens until the next script
-; tick (see the Silph 7F freeze postmortem).
+; arms sound/music and hands off; no text box opens until the movement
+; finishes and the state after that ticks (see the Silph 7F freeze
+; postmortem). He's visible ahead at (6,22) and walks down to end up
+; face-to-face with the player, same shape as Route22FirstRivalBattleScript.
 PokemonMansion1FDefaultScript:
 	CheckEvent EVENT_BEAT_LAB_RIVAL_AMBUSH
 	jp nz, CheckFightingMapTrainers
 	ld hl, .AmbushCoords
 	call ArePlayerCoordsInArray
 	jp nc, CheckFightingMapTrainers
+	ld a, [wCoordIndex]
+	ld [wSavedCoordIndex], a
 	xor a
 	ldh [hJoyHeld], a
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a
 	ld a, PLAYER_DIR_UP
 	ld [wPlayerMovingDirection], a
+	ld a, POKEMONMANSION1F_RIVAL
+	ld [wEmotionBubbleSpriteIndex], a
+	xor a ; EXCLAMATION_BUBBLE
+	ld [wWhichEmotionBubble], a
+	predef EmotionBubble
 	ld a, SFX_STOP_ALL_MUSIC
 	ld [wNewSoundID], a
 	call PlaySound
 	ld c, BANK(Music_MeetRival)
 	ld a, MUSIC_MEET_RIVAL
 	call PlayMusic
-	ld a, SCRIPT_POKEMONMANSION1F_RIVAL_START_BATTLE
+	ld a, POKEMONMANSION1F_RIVAL
+	ldh [hSpriteIndex], a
+	call SetSpriteMovementBytesToFF
+	ld a, [wSavedCoordIndex]
+	ld hl, .ApproachMovementPointers
+	add a
+	ld c, a
+	ld b, 0
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	ld d, h
+	ld e, l
+	call MoveSprite
+	ld a, SCRIPT_POKEMONMANSION1F_RIVAL_APPROACH
 	ld [wPokemonMansion1FCurScript], a
 	ld [wCurMapScript], a
 	ret
@@ -98,6 +124,58 @@ PokemonMansion1FDefaultScript:
 	dbmapcoord  6, 26
 	dbmapcoord  7, 26
 	db -1 ; end
+
+; He starts at (6,22); each list walks him down to end adjacent-above
+; whichever column the player entered on.
+.ApproachMovementPointers:
+	dw .ApproachToCol4
+	dw .ApproachToCol5
+	dw .ApproachToCol6
+	dw .ApproachToCol7
+
+.ApproachToCol4:
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_LEFT
+	db NPC_MOVEMENT_LEFT
+	db -1 ; end
+
+.ApproachToCol5:
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_LEFT
+	db -1 ; end
+
+.ApproachToCol6:
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN
+	db -1 ; end
+
+.ApproachToCol7:
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_RIGHT
+	db -1 ; end
+
+PokemonMansion1FRivalApproachWaitScript:
+	ld a, [wStatusFlags5]
+	bit BIT_SCRIPTED_NPC_MOVEMENT, a
+	ret nz
+	ld a, PLAYER_DIR_UP
+	ld [wPlayerMovingDirection], a
+	ld a, POKEMONMANSION1F_RIVAL
+	ldh [hSpriteIndex], a
+	ld a, SPRITE_FACING_DOWN
+	ldh [hSpriteFacingDirection], a
+	call SetSpriteFacingDirectionAndDelay
+	ld a, SCRIPT_POKEMONMANSION1F_RIVAL_START_BATTLE
+	ld [wPokemonMansion1FCurScript], a
+	ld [wCurMapScript], a
+	ret
 
 PokemonMansion1FRivalStartBattleScript:
 	xor a
@@ -151,68 +229,71 @@ PokemonMansion1FRivalStartBattleScript:
 	ld [wCurMapScript], a
 	ret
 
+; Everything below that prints or prompts goes through DisplayTextID (never
+; bare PrintText/GivePokemon from a map-script tick) -- see the Mathus
+; captured-flow postmortem, scripts/PokemonTower6F.asm, for why.
 PokemonMansion1FRivalAfterBattleScript:
 	ld a, [wIsInBattle]
 	cp $ff
 	jp z, PokemonMansion1FResetScripts
-	ld a, PAD_CTRL_PAD
+	xor a
 	ld [wJoyIgnore], a
+	farcall AnyPartyAlive
+	ld a, d
+	and a
+	jr z, .lost
+; --- WON ---
 	SetEvent EVENT_BEAT_LAB_RIVAL_AMBUSH
-; Starter permadeath: if it was alive going in and is at 0 HP now, it becomes
-; ashes (unless it's already a resurrected ghost -- those can't die again).
+; Starter permadeath: only if it was alive going into this fight (an
+; already-dead-before-the-fight starter isn't THIS fight's doing). A full
+; loss (the .lost branch below) always perishes it regardless, per design.
 	CheckEvent EVENT_STARTER_ALIVE_BEFORE_RIVAL2
-	jr z, .skip_ashes_check
-	CheckEvent EVENT_STARTER_BECAME_ASHES
-	jr nz, .skip_ashes_check
-	ld a, [wPlayerStarter]
-	ld b, a
-	ld hl, wPartySpecies
-	ld c, 0
-.find_starter_post:
-	ld a, [hli]
-	cp $FF
-	jr z, .skip_ashes_check
-	cp b
-	jr z, .found_starter_post
-	inc c
-	jr .find_starter_post
-.found_starter_post:
-	push bc
-	ld a, c
-	ld hl, wPartyMons
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes
-	pop bc
-	; Save base in DE; check TYPE2 -- ghost starters skip the ashes mechanic
-	ld d, h
-	ld e, l
-	ld a, e
-	add MON_TYPE2
-	ld l, a
-	jr nc, .nc_type2_post
-	inc h
-.nc_type2_post:
-	ld a, [hl]
-	cp GHOST
-	jr z, .skip_ashes_check        ; already a ghost -- can't become ashes
-	ld h, d
-	ld l, e
-	inc hl                         ; MON_HP at +$01
-	ld a, [hli]
-	or [hl]
-	jr nz, .skip_ashes_check       ; HP > 0, starter survived
-	farcall SaveStarterToAshes
-; DisplayTextID, not bare PrintText -- printing from the map-script loop
-; without DisplayTextID's VRAM setup/restore corrupts overworld sprites
-; (see the Mathus captured-flow postmortem, scripts/PokemonTower6F.asm).
-	ld a, TEXT_POKEMONMANSION1F_STARTER_ASHES
+	jr z, .skip_perish_win
+	ld a, TEXT_POKEMONMANSION1F_PERISH
 	ldh [hTextID], a
 	call DisplayTextID
-.skip_ashes_check:
+.skip_perish_win:
 	ld a, TEXT_POKEMONMANSION1F_RIVAL
 	ldh [hTextID], a
 	call DisplayTextID
 	call PlayDefaultMusic
+	jp PokemonMansion1FResetScripts
+; --- LOST --- no blackout on this map pre-ambush (home/overworld.asm). His
+; gloat ("You got what you deserved...") already played automatically as the
+; in-battle end-text (PokemonMansion1FRivalVictoryText, SaveEndBattleTextPointers'
+; lose pointer) -- no second overworld print of it here, that would just be
+; the same double-gloat we already fixed once for the Silph 11F Scientist.
+; He retreats (MoveSprite, waited on in the next state) and the starter
+; always perishes -- ambush event stays UNSET, so the fight is retryable.
+.lost:
+	ld a, PAD_CTRL_PAD
+	ld [wJoyIgnore], a ; keep the player put through the retreat/fade/perish beat
+	ld a, POKEMONMANSION1F_RIVAL
+	ldh [hSpriteIndex], a
+	call SetSpriteMovementBytesToFF
+	ld de, .RivalRetreatMovement
+	call MoveSprite
+	ld a, SCRIPT_POKEMONMANSION1F_RIVAL_LEAVE_WAIT
+	ld [wPokemonMansion1FCurScript], a
+	ld [wCurMapScript], a
+	ret
+
+.RivalRetreatMovement:
+	db NPC_MOVEMENT_UP
+	db NPC_MOVEMENT_UP
+	db NPC_MOVEMENT_UP
+	db -1 ; end
+
+PokemonMansion1FRivalLeaveWaitScript:
+	ld a, [wStatusFlags5]
+	bit BIT_SCRIPTED_NPC_MOVEMENT, a
+	ret nz
+	call GBFadeOutToBlack
+	ld a, TEXT_POKEMONMANSION1F_PERISH
+	ldh [hTextID], a
+	call DisplayTextID
+	predef HealParty ; no blackout happened -- patch up the survivors
+	call GBFadeInFromBlack
 	jp PokemonMansion1FResetScripts
 
 PokemonMansion1FLabScientistPostBattle:
@@ -237,7 +318,7 @@ PokemonMansion1F_TextPointers:
 	dw_const PokemonMansion1FLabScientistText, TEXT_POKEMONMANSION1F_LAB_SCIENTIST
 	dw_const PokemonMansion1FRivalText,     TEXT_POKEMONMANSION1F_RIVAL
 	dw_const PokemonMansion1FSwitchText,    TEXT_POKEMONMANSION1F_SWITCH
-	dw_const PokemonMansion1FStarterAshesText, TEXT_POKEMONMANSION1F_STARTER_ASHES
+	dw_const PokemonMansion1FPerishText,    TEXT_POKEMONMANSION1F_PERISH
 
 Mansion1TrainerHeaders:
 	def_trainers
@@ -315,8 +396,76 @@ PokemonMansion1FRivalVictoryText:
 	text_far _PokemonMansion1FRivalVictoryText
 	text_end
 
-PokemonMansion1FStarterAshesText:
-	text_far _Route22StarterAshesText
+; Shared starter-permadeath handler, called from both the win and loss
+; after-battle paths. Confirms the starter actually died (HP 0, not already a
+; ghost, not already ashes), then either gifts a level 40 RATICATE first (if
+; it was the player's only Pokemon -- gift BEFORE removal so the party never
+; passes through zero) or goes straight to the ashes/urn text. Hosted in
+; text_asm (not called bare) since GivePokemon's nickname prompt needs a
+; DisplayTextID-safe context -- see the Mathus captured-flow postmortem.
+PokemonMansion1FPerishText:
+	text_asm
+	CheckEvent EVENT_STARTER_BECAME_ASHES
+	jp nz, .done
+	ld a, [wPlayerStarter]
+	ld b, a
+	ld hl, wPartySpecies
+	ld c, 0
+.find_starter:
+	ld a, [hli]
+	cp $FF
+	jp z, .done
+	cp b
+	jr z, .found_starter
+	inc c
+	jr .find_starter
+.found_starter:
+	push bc
+	ld a, c
+	ld hl, wPartyMons
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes
+	pop bc
+	ld d, h
+	ld e, l
+	ld a, e
+	add MON_TYPE2
+	ld l, a
+	jr nc, .nc_type2
+	inc h
+.nc_type2:
+	ld a, [hl]
+	cp GHOST
+	jp z, .done ; already a resurrected ghost -- can't die again
+	ld h, d
+	ld l, e
+	inc hl ; MON_HP at +$01
+	ld a, [hli]
+	or [hl]
+	jp nz, .done ; HP > 0, didn't actually die
+	ld a, [wPlayerStarter]
+	ld [wNamedObjectIndex], a
+	call GetMonName ; -> wNameBuffer, used by .PerishText below
+	ld a, [wPartyCount]
+	cp 1
+	jr nz, .notOnlyMon
+	ld hl, .OnlyMonGiftText
+	call PrintText
+	lb bc, RATICATE, 40
+	call GivePokemon
+.notOnlyMon
+	farcall SaveStarterToAshes
+	ld hl, .PerishText
+	call PrintText
+.done
+	jp TextScriptEnd
+
+.OnlyMonGiftText:
+	text_far _PokemonMansion1FRivalRaticateGiftText
+	text_end
+
+.PerishText:
+	text_far _PokemonMansion1FStarterPerishedText
 	text_end
 
 PokemonMansion1FSwitchText:
