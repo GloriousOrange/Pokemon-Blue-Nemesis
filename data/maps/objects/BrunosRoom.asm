@@ -13,6 +13,6 @@ BrunosRoom_Object:
 	def_bg_events
 
 	def_object_events
-	object_event  5,  2, SPRITE_BRUNO, STAY, DOWN, TEXT_BRUNOSROOM_BRUNO, OPP_BUG_CATCHER, 16
+	object_event  5,  2, SPRITE_YOUNGSTER, STAY, DOWN, TEXT_BRUNOSROOM_BRUNO, OPP_BUG_CATCHER, 16
 
 	def_warps_to BRUNOS_ROOM
