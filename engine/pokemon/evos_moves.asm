@@ -140,6 +140,17 @@ Evolution_PartyMonLoop: ; loop over party mons
 	ld [wCurSpecies], a
 	ld [wLoadedMonSpecies], a
 	ld [wEvoNewSpecies], a
+; If the mon that just evolved is the player's tracked starter, advance
+; wPlayerStarter to its new form. Otherwise the starter-death/ashes mechanic
+; (SaveStarterToAshes etc., which locates the starter by species) silently
+; fails once the starter evolves. wCurPartySpecies still holds the old species.
+	ld a, [wCurPartySpecies]
+	ld hl, wPlayerStarter
+	cp [hl]
+	jr nz, .notTrackedStarter
+	ld a, [wEvoNewSpecies]
+	ld [hl], a
+.notTrackedStarter
 	ld a, MONSTER_NAME
 	ld [wNameListType], a
 	ld a, BANK(TrainerNames) ; bank is not used for monster names
