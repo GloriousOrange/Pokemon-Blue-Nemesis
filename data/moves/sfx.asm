@@ -173,6 +173,7 @@ MoveSoundTable:
 	db SFX_BATTLE_0B,          $00, $80 ; MIND_FEVER
 	db SFX_BATTLE_13,          $f0, $20 ; PHANTOM_WING
 	db SFX_BATTLE_1B,          $02, $a0 ; WEB_CANNON (String Shot sfx)
+	db SFX_BATTLE_13,          $00, $80 ; UPPERCUT (Mega Punch-ish sfx)
 	db SFX_BATTLE_0B,          $00, $80 ; STRUGGLE
 	assert_table_length NUM_ATTACKS
 	db SFX_BATTLE_0B,          $00, $80

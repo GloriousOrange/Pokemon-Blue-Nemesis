@@ -4665,12 +4665,33 @@ CriticalHitTest:
 	jr nc, .SkipHighCritical
 	ld b, $ff
 .SkipHighCritical
+; Uppercut: guaranteed critical hit if the user outspeeds the target.
+; (c still holds the move id; b still holds the normal crit rate for the
+; fallback roll if the user isn't faster.)
+	ld a, c
+	cp UPPERCUT
+	jr nz, .rollCrit
+	ld de, wBattleMonSpeed       ; assume player attacking: user = player
+	ld hl, wEnemyMonSpeed        ; target = enemy
+	ldh a, [hWhoseTurn]
+	and a
+	jr z, .uppercutCompare
+	ld de, wEnemyMonSpeed        ; enemy attacking: user = enemy
+	ld hl, wBattleMonSpeed       ; target = player
+.uppercutCompare
+	ld c, $2
+	call StringCmp               ; de(user) vs hl(target), big-endian
+	jr z, .rollCrit              ; equal speed -> normal crit roll
+	jr nc, .forceCrit            ; user faster -> guaranteed crit
+	; user slower -> fall through to normal roll
+.rollCrit
 	call BattleRandom            ; generates a random value, in "a"
 	rlc a
 	rlc a
 	rlc a
 	cp b                         ; check a against calculated crit rate
 	ret nc                       ; no critical hit if no borrow
+.forceCrit
 	ld a, $1
 	ld [wCriticalHitOrOHKO], a   ; set critical hit flag
 	ret

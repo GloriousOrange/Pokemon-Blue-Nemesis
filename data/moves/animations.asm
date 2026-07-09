@@ -172,6 +172,7 @@ AttackAnimationPointers:
 	dw ConfuseRayAnim   ; MIND_FEVER
 	dw WingAttackAnim   ; PHANTOM_WING
 	dw StringShotAnim   ; WEB_CANNON
+	dw MegaPunchAnim    ; UPPERCUT
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim
