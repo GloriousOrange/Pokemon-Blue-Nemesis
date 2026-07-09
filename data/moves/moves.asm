@@ -182,5 +182,6 @@ Moves:
 	move BLIGHT_VOMIT, PARALYZE_SIDE_EFFECT2,       80, POISON,       100, 15
 	move MIND_FEVER,   CONFUSION_EFFECT,             0, GHOST,        100,  1
 	move PHANTOM_WING, SPECIAL_DOWN_SIDE_EFFECT,    80, GHOST,        100, 10
+	move WEB_CANNON,   SPEED_DOWN1_EFFECT,           0, BUG,           95, 10
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
 	assert_table_length NUM_ATTACKS

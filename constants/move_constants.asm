@@ -177,6 +177,7 @@
 	const BLIGHT_VOMIT ; a9 - Poison, dmg + paralyze (Miasma)
 	const MIND_FEVER   ; aa - Ghost, confusion 'curse' (Nocturn)
 	const PHANTOM_WING ; ab - Ghost, dmg + lower Special (Nocturn)
+	const WEB_CANNON   ; ac - Bug, lowers target Speed by 3 stages (Toby)
 	const STRUGGLE     ; a8
 DEF NUM_ATTACKS EQU const_value - 1
 

@@ -581,6 +581,31 @@ StatModifierDownEffect:
 	ld a, [bc]
 	bit INVULNERABLE, a ; fly/dig
 	jp nz, MoveMissed
+; WEB_CANNON: custom Bug move -- lowers target Speed by 3 stages in one hit.
+; Special-cased here so the generic -1/-2 path below is left untouched.
+	ldh a, [hWhoseTurn]
+	and a
+	ld a, [wPlayerMoveNum]
+	jr z, .gotMoveNumForWebCannon
+	ld a, [wEnemyMoveNum]
+.gotMoveNumForWebCannon
+	cp WEB_CANNON
+	jr nz, .notWebCannon
+	ld c, 2 ; SPEED stat-mod index
+	ld b, $0
+	add hl, bc ; hl -> target's Speed stat mod
+	ld a, [hl]
+	sub 3 ; lower 3 stages
+	jr c, .webCannonClamp
+	cp 1
+	jr nc, .webCannonStore
+.webCannonClamp
+	ld a, 1 ; clamp at -6 (stored as 1)
+.webCannonStore
+	ld b, a
+	ld c, 2 ; ensure SPEED index for the stat recalc below
+	jr .ok
+.notWebCannon
 	ld a, [de]
 	sub ATTACK_DOWN1_EFFECT
 	cp EVASION_DOWN1_EFFECT + $3 - ATTACK_DOWN1_EFFECT ; covers all -1 effects

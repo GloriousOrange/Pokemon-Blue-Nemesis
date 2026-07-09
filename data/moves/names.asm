@@ -172,5 +172,6 @@ MoveNames::
 	li "BLIGHT VOMIT"
 	li "MIND FEVER"
 	li "PHANTOM WING"
+	li "WEB CANNON"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS
