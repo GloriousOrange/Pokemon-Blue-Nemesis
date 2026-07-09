@@ -1121,8 +1121,8 @@ DratiniEvosMoves:
 	db 0
 ; Learnset
 	db 10, THUNDER_WAVE
+	db 10, SLAM
 	db 20, AGILITY
-	db 30, SLAM
 	db 40, DRAGON_RAGE
 	db 50, HYPER_BEAM
 	db 0
