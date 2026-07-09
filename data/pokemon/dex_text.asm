@@ -1535,3 +1535,12 @@ _NocturnDexEntry::
 	page "is known of this"
 	next "ghostly raven."
 	dex
+
+_AlakachampDexEntry::
+	text "A MACHAMP reforged"
+	next "in the lab. Its"
+	next "four arms strike"
+
+	page "as its mind bends"
+	next "the foe's will."
+	dex

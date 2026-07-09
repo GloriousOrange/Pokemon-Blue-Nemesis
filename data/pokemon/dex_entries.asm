@@ -193,6 +193,7 @@ PokedexEntryPointers:
 	dw TyranisDexEntry
 	dw MiasmaDexEntry
 	dw NocturnDexEntry
+	dw AlakachampDexEntry
 	assert_table_length NUM_POKEMON_INDEXES
 
 ; string: species name
@@ -1276,6 +1277,13 @@ NocturnDexEntry:
 	db 4,0
 	dw 300
 	text_far _NocturnDexEntry
+	text_end
+
+AlakachampDexEntry:
+	db "SUPERPOWER@"
+	db 5,3
+	dw 2500
+	text_far _AlakachampDexEntry
 	text_end
 
 MissingNoDexEntry:

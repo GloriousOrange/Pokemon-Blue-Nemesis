@@ -160,4 +160,5 @@ INCLUDE "data/pokemon/base_stats/mew.asm"
 INCLUDE "data/pokemon/base_stats/tyranis.asm"
 INCLUDE "data/pokemon/base_stats/miasma.asm"
 INCLUDE "data/pokemon/base_stats/nocturn.asm"
+INCLUDE "data/pokemon/base_stats/alakachamp.asm"
 	assert_table_length NUM_POKEMON ; Mew's slot is now filled in-table (see note above) so no discount

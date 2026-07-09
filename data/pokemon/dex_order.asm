@@ -193,4 +193,5 @@ PokedexOrder:
 	db DEX_TYRANIS
 	db DEX_MIASMA
 	db DEX_NOCTURN
+	db DEX_ALAKACHAMP
 	assert_table_length NUM_POKEMON_INDEXES

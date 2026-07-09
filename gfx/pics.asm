@@ -334,6 +334,8 @@ MiasmaPicFront::       INCBIN "gfx/pokemon/front/miasma.pic"    ; custom Miasma 
 MiasmaPicBack::        INCBIN "gfx/pokemon/back/miasmab.pic"    ; custom Miasma back (Pixellab)
 NocturnPicFront::      INCBIN "gfx/pokemon/front/nocturn.pic"   ; custom Nocturn front (Pixellab)
 NocturnPicBack::       INCBIN "gfx/pokemon/back/nocturnb.pic"   ; custom Nocturn back (Pixellab)
+AlakachampPicFront::   INCBIN "gfx/pokemon/front/machamp.pic"   ; Alakachamp reuses Machamp art (placeholder)
+AlakachampPicBack::    INCBIN "gfx/pokemon/back/machampb.pic"
 
 ; Player battle back sprites for the Hero (Scientist), Loyalist (Rocket), and
 ; Traitor overworld disguises, matching LoadWalkingPlayerSpriteGraphics'

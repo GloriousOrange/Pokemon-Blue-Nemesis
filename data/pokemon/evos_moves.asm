@@ -203,6 +203,7 @@ EvosMovesPointerTable:
 	dw TyranisEvosMoves
 	dw MiasmaEvosMoves
 	dw NocturnEvosMoves
+	dw AlakachampEvosMoves
 	assert_table_length NUM_POKEMON_INDEXES
 
 RhydonEvosMoves:
@@ -2175,4 +2176,11 @@ NocturnEvosMoves:
 ; Learnset
 	db 40, PHANTOM_WING
 	db 50, MIND_FEVER
+	db 0
+
+AlakachampEvosMoves:
+	db 0 ; no evolutions
+; Learnset -- signature UPPERCUT; the rest of its set (Counter/Psychic/
+; Mind Fever/Double Team) comes from its base-stats initial moves.
+	db 1, UPPERCUT
 	db 0

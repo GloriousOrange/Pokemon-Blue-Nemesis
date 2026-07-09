@@ -158,5 +158,6 @@
 	const DEX_TYRANIS    ; 152
 	const DEX_MIASMA     ; 153
 	const DEX_NOCTURN    ; 154
+	const DEX_ALAKACHAMP ; 155
 
 DEF NUM_POKEMON EQU const_value - 1

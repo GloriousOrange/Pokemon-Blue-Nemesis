@@ -154,4 +154,5 @@ MonPartyData:
 	nybble ICON_BIRD      ; Tyranis
 	nybble ICON_BIRD      ; Miasma
 	nybble ICON_BIRD      ; Nocturn
+	nybble ICON_MON       ; Alakachamp
 	end_nybble_array NUM_POKEMON

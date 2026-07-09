@@ -199,4 +199,5 @@ CryData::
 	mon_cry SFX_CRY_18, $40, $A0 ; Tyranis (Fearow's cry)
 	mon_cry SFX_CRY_18, $20, $C0 ; Miasma (placeholder cry)
 	mon_cry SFX_CRY_18, $60, $80 ; Nocturn (placeholder cry)
+	mon_cry SFX_CRY_1F, $08, $C0 ; Alakachamp (reuses Machamp cry)
 	assert_table_length NUM_POKEMON_INDEXES

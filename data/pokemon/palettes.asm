@@ -155,4 +155,5 @@ MonsterPalettes:
 	db PAL_YELLOWMON ; TYRANIS
 	db PAL_PURPLEMON ; MIASMA
 	db PAL_GRAYMON   ; NOCTURN
+	db PAL_GRAYMON   ; ALAKACHAMP
 	assert_table_length NUM_POKEMON + 1
