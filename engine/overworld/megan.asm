@@ -58,7 +58,7 @@ MeganTalk::
 
 .hardMode
 ; Hard mode: no gifts anywhere except a one-time bundle at Victory Road
-; (near the Elite Four) -- 3x PP Up, 1x Max Revive, 1x TM Hyper Beam.
+; (near the Elite Four) -- 3x PP Up, 1x Max Revive, 1x TM Body Slam.
 	ld a, [wMeganLocIndex]
 	cp MEGAN_LOC_VICTORY_ROAD
 	jr nz, .alreadyVisited
@@ -75,7 +75,7 @@ MeganTalk::
 	ld b, MAX_REVIVE
 	ld c, 1
 	call GiveItem
-	ld b, TM_HYPER_BEAM
+	ld b, TM_BODY_SLAM
 	ld c, 1
 	call GiveItem
 	ld hl, MeganGiftText
