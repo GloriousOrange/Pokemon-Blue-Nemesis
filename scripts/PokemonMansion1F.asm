@@ -238,12 +238,14 @@ PokemonMansion1FRivalAfterBattleScript:
 	jp z, PokemonMansion1FResetScripts
 	xor a
 	ld [wJoyIgnore], a
+; One-time fight either way -- set the ambush-beaten event now, before the
+; win/loss split, so a loss doesn't leave it retriggerable.
+	SetEvent EVENT_BEAT_LAB_RIVAL_AMBUSH
 	farcall AnyPartyAlive
 	ld a, d
 	and a
 	jr z, .lost
 ; --- WON ---
-	SetEvent EVENT_BEAT_LAB_RIVAL_AMBUSH
 ; Starter permadeath: only if it was alive going into this fight (an
 ; already-dead-before-the-fight starter isn't THIS fight's doing). A full
 ; loss (the .lost branch below) always perishes it regardless, per design.
@@ -264,7 +266,8 @@ PokemonMansion1FRivalAfterBattleScript:
 ; lose pointer) -- no second overworld print of it here, that would just be
 ; the same double-gloat we already fixed once for the Silph 11F Scientist.
 ; He retreats (MoveSprite, waited on in the next state) and the starter
-; always perishes -- ambush event stays UNSET, so the fight is retryable.
+; always perishes. One-time fight: the ambush-beaten event is already set
+; above regardless of outcome, so this doesn't retrigger on a loss either.
 .lost:
 	ld a, PAD_CTRL_PAD
 	ld [wJoyIgnore], a ; keep the player put through the retreat/fade/perish beat
