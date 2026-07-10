@@ -397,4 +397,12 @@ ENDM
 	const TOGGLE_POKEMON_TOWER_1F_SCIENTIST_GUARD
 	const TOGGLE_POKEMON_TOWER_1F_ROCKET_GUARD
 
+; The deck rival ambush (scripts/SSOlympiaBow.asm): a bird circles the deck
+; until the player approaches, then "transforms" into the rival -- two
+; overlapping objects at the same tile, toggled (no runtime sprite-swap API
+; exists), same technique as the Tower 1F faction guards above.
+	toggle_consts_for SS_OLYMPIA_BOW
+	const TOGGLE_SS_OLYMPIA_BOW_BIRD
+	const TOGGLE_SS_OLYMPIA_BOW_RIVAL
+
 DEF NUM_TOGGLEABLE_OBJECTS EQU const_value

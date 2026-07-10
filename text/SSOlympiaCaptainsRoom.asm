@@ -10,14 +10,20 @@ _SSOlympiaCaptainsRoomLogbookText::
 	cont "taken the bridge.'"
 	done
 _SSOlympiaCaptainsRoomRocket1BattleText::
-	text "You picked the wrong deck to snoop around on, kid."
+	text "You picked the"
+	line "wrong deck to"
+	cont "snoop around on,"
+	cont "kid."
 	done
 
 _SSOlympiaCaptainsRoomRocket1EndBattleText::
-	text "The boss is gonna hear about this..."
+	text "The boss is gonna"
+	line "hear about"
+	cont "this..."
 	prompt
 
 _SSOlympiaCaptainsRoomRocket1AfterBattleText::
-	text "I'm not fighting you again."
+	text "I'm not fighting"
+	line "you again."
 	done
 

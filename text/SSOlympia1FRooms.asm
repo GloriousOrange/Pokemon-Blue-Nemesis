@@ -26,38 +26,58 @@ _SSOlympia1FRoomsGentleman3Text::
 	line "on this cruise!"
 	done
 _SSOlympia1FRoomsRocket1BattleText::
-	text "The boss doesn't like visitors. Neither do I!"
+	text "The boss doesn't"
+	line "like visitors."
+	cont "Neither do I!"
 	done
 
 _SSOlympia1FRoomsRocket1EndBattleText::
-	text "H-how did you get so strong?!"
+	text "H-how did you get"
+	line "so strong?!"
 	prompt
 
 _SSOlympia1FRoomsRocket1AfterBattleText::
-	text "Team ROCKET rules this ship. Remember that."
+	text "Team ROCKET rules"
+	line "this ship."
+	cont "Remember that."
 	done
 
 _SSOlympia1FRoomsRocket2BattleText::
-	text "Another do-gooder, huh? Let's see what you've got."
+	text "Another"
+	line "do-gooder, huh?"
+	cont "Let's see what"
+	cont "you've got."
 	done
 
 _SSOlympia1FRoomsRocket2EndBattleText::
-	text "Not bad. Still won't save you from what's up top."
+	text "Not bad. Still"
+	line "won't save you"
+	cont "from what's up"
+	cont "top."
 	prompt
 
 _SSOlympia1FRoomsRocket2AfterBattleText::
-	text "...Whatever. Move along."
+	text "...Whatever. Move"
+	line "along."
 	done
 
 _SSOlympia1FRoomsRocket3BattleText::
-	text "Halt! Nobody sets foot on the S.S. OLYMPIA without the boss's say-so!"
+	text "Halt! Nobody sets"
+	line "foot on the S.S."
+	cont "OLYMPIA without"
+	cont "the boss's"
+	cont "say-so!"
 	done
 
 _SSOlympia1FRoomsRocket3EndBattleText::
-	text "Ugh! I'm just a grunt, I don't get paid enough for this!"
+	text "Ugh! I'm just a"
+	line "grunt, I don't"
+	cont "get paid enough"
+	cont "for this!"
 	prompt
 
 _SSOlympia1FRoomsRocket3AfterBattleText::
-	text "Just get out of my sight."
+	text "Just get out of"
+	line "my sight."
 	done
 

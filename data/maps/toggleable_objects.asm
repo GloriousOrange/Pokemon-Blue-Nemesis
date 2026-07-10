@@ -431,6 +431,10 @@ ToggleableObjectStates:
 	toggle_object_state POKEMONTOWER1F_SCIENTIST_GUARD, OFF
 	toggle_object_state POKEMONTOWER1F_ROCKET_GUARD,    OFF
 
+	toggleable_objects_for SS_OLYMPIA_BOW
+	toggle_object_state SSOLYMPIABOW_BIRD,  ON
+	toggle_object_state SSOLYMPIABOW_RIVAL, OFF
+
 	assert_table_length NUM_TOGGLEABLE_OBJECTS
 
 	db -1, 1, ON ; end

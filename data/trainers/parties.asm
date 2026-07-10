@@ -914,6 +914,20 @@ Rival3Data:
 	db $FF, 61, PIDGEOT, 59, ALAKAZAM, 61, RHYDON, 63, ARCANINE, 63, EXEGGUTOR, 65, SCYTHER, 0
 	; trainer 37 — rival starter: PINSIR
 	db $FF, 61, PIDGEOT, 59, ALAKAZAM, 61, RHYDON, 63, ARCANINE, 63, EXEGGUTOR, 65, PINSIR, 0
+
+; S.S. Olympia deck superboss (endgame). All L100: Zapdos, Articuno, Moltres,
+; a vengeful Gengar (his dead starter's ghost -- already natively GHOST/POISON,
+; no type patch needed), his path-tier bird (Tyranis/Miasma/Nocturn), and
+; Alakachamp (comes with Double Team/Counter/Psychic/Mind Fever from its own
+; base-stats learnset; Uppercut is patched into the 5th slot in ReadTrainer).
+; Selected by GetPlayerPath (0/1/2 -> trainer 38/39/40).
+	; trainer 38 — Hero path (Tyranis)
+	db $FF, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 100, GENGAR, 100, TYRANIS, 100, ALAKACHAMP, 0
+	; trainer 39 — Loyalist path (Miasma)
+	db $FF, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 100, GENGAR, 100, MIASMA, 100, ALAKACHAMP, 0
+	; trainer 40 — Traitor path (Nocturn)
+	db $FF, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 100, GENGAR, 100, NOCTURN, 100, ALAKACHAMP, 0
+
 LoreleiData:
 	db $FF, 54, DEWGONG, 53, CLOYSTER, 54, SLOWBRO, 56, JYNX, 56, LAPRAS, 0
 

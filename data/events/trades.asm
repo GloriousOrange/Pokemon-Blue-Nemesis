@@ -25,4 +25,5 @@ TradeMons:
 	npctrade RAICHU,     ELECTRODE, TRADE_DIALOGSET_EVOLUTION, "DORIS"
 	npctrade VENONAT,    TANGELA,   TRADE_DIALOGSET_HAPPY,     "CRINKLES"
 	npctrade NIDORAN_M,  NIDORAN_F, TRADE_DIALOGSET_HAPPY,     "SPOT"
+	npctrade MEW,        ALAKACHAMP, TRADE_DIALOGSET_HAPPY,   "RIVAL" ; S.S. Olympia deck rival, post-defeat
 	assert_table_length NUM_NPC_TRADES

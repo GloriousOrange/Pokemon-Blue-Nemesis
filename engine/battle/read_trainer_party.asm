@@ -117,7 +117,7 @@ ReadTrainer:
 ; no matches found. is this trainer champion rival?
 	ld a, b
 	cp RIVAL3
-	jr z, .ChampionRival
+	jr z, .MaybeChampionOrOlympiaRival
 	cp SCIENTIST
 	jr z, .MaybeLoyalistScientist
 	cp RIVAL2
@@ -129,6 +129,14 @@ ReadTrainer:
 	ld a, [hl]
 	ld [wEnemyMon5Moves + 2], a
 	jp .FinishUp
+.MaybeChampionOrOlympiaRival
+; RIVAL3 covers both the Champion fight (trainer_no 1-37, per-starter) and the
+; S.S. Olympia deck superboss (trainer_no 38-40, one per path) -- their
+; rosters don't share a shape (Pidgeot/ghost-starter in slots 1/6 vs
+; Zapdos/Alakachamp), so branch on wTrainerNo before patching either.
+	ld a, [wTrainerNo]
+	cp 38
+	jp nc, .OlympiaRival
 .ChampionRival ; give moves to his team
 
 ; pidgeot
@@ -144,6 +152,14 @@ ReadTrainer:
 	inc h
 .nc_rival3_type2:
 	ld [hl], GHOST
+	jp .FinishUp
+.OlympiaRival
+; Alakachamp (mon6) comes with Double Team/Counter/Psychic/Mind Fever from its
+; own base-stats learnset (4 of 5 slots); patch the empty 5th slot to its
+; signature move, Uppercut. The Gengar (mon4, his dead starter's ghost) needs
+; no patch -- it's natively GHOST/POISON already.
+	ld a, UPPERCUT
+	ld [wEnemyMon6Moves + 4], a
 	jp .FinishUp
 .MaybeLoyalistScientist
 ; Silph Co 11F Loyalist path scientist (data/trainers/parties.asm #21): Porygon
