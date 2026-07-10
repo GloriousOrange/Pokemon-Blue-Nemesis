@@ -454,9 +454,6 @@ PokemonMansion1FPerishText:
 	ld a, [hli]
 	or [hl]
 	jp nz, .done ; HP > 0, didn't actually die
-	ld a, [wPlayerStarter]
-	ld [wNamedObjectIndex], a
-	call GetMonName ; -> wNameBuffer, used by .PerishText below
 	ld a, [wPartyCount]
 	cp 1
 	jr nz, .notOnlyMon
@@ -466,6 +463,13 @@ PokemonMansion1FPerishText:
 	call GivePokemon
 .notOnlyMon
 	farcall SaveStarterToAshes
+; Fill wNameBuffer with the starter's name ONLY NOW -- both GivePokemon
+; (Raticate) and SaveStarterToAshes' GiveItem (URN OF ASHES) overwrite
+; wNameBuffer with their own name, which previously clobbered the starter
+; name into "URN OF ASH..." and hung the text box.
+	ld a, [wPlayerStarter]
+	ld [wNamedObjectIndex], a
+	call GetMonName ; -> wNameBuffer, used by .PerishText below
 	ld hl, .PerishText
 	call PrintText
 .done
