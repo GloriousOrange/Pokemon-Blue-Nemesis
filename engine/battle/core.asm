@@ -5341,6 +5341,8 @@ AdjustDamageForMoveType:
 	cp GHOST
 	jr nz, .noPureGhostImmunity
 	ld a, [wMoveType]
+	cp FLYING
+	jr z, .noPureGhostImmunity ; Flying attacks still hit pure ghosts (Pokemon Nemesis)
 	cp SPECIAL
 	jr nc, .noPureGhostImmunity ; special-category move types start at SPECIAL
 ; physical move vs pure ghost: zero the damage and miss, same as the
