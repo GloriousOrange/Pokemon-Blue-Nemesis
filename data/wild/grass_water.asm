@@ -105,7 +105,7 @@ WildDataPointers:
 	dw NothingWildMons
 	dw NothingWildMons
 	dw NothingWildMons
-	dw NothingWildMons
+	dw OriginIsleWildMons      ; ORIGIN_ISLE (was UNUSED_MAP_69)
 	dw NothingWildMons
 	dw NothingWildMons
 	dw VictoryRoad1FWildMons
@@ -264,6 +264,7 @@ WildDataPointers:
 
 INCLUDE "data/wild/maps/nothing.asm"
 INCLUDE "data/wild/maps/BattleIsland.asm"
+INCLUDE "data/wild/maps/OriginIsle.asm"
 INCLUDE "data/wild/maps/Route1.asm"
 INCLUDE "data/wild/maps/Route2.asm"
 INCLUDE "data/wild/maps/Route22.asm"

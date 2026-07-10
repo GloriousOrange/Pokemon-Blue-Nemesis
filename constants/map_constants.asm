@@ -175,7 +175,13 @@ DEF FIRST_INDOOR_MAP EQU const_value
 	map_const SS_ANNE_B1F_ROOMS,             12,  8 ; $68
 	end_indoor_group SS_ANNE
 
-	map_const UNUSED_MAP_69,                  0,  0 ; $69
+	; Living-dex archipelago (repurposed unused slots, avoids renumbering --
+	; same technique as BATTLE_ISLAND_GATE). Islands chain east-west off
+	; Battle Island, all 10x18 like it. Cave floors are indoor CAVERN maps.
+	; NOTE: only ORIGIN_ISLE is built so far (vertical slice); the rest stay
+	; UNUSED_MAP_* until built, to avoid dangling refs elsewhere (e.g.
+	; data/events/hidden_events.asm still points at UNUSED_MAP_6F).
+	map_const ORIGIN_ISLE,                   10, 18 ; $69 (was UNUSED_MAP_69)
 	map_const UNUSED_MAP_6A,                  0,  0 ; $6A
 	map_const UNUSED_MAP_6B,                  0,  0 ; $6B
 	map_const VICTORY_ROAD_1F,               10,  9 ; $6C

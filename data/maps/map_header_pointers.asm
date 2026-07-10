@@ -106,7 +106,7 @@ MapHeaderPointers::
 	dw SSAnne1FRooms_h
 	dw SSAnne2FRooms_h
 	dw SSAnneB1FRooms_h
-	dw LancesRoom_h ; UNUSED_MAP_69
+	dw OriginIsle_h ; ORIGIN_ISLE (was UNUSED_MAP_69)
 	dw LancesRoom_h ; UNUSED_MAP_6A
 	dw LancesRoom_h ; UNUSED_MAP_6B
 	dw VictoryRoad1F_h

@@ -81,6 +81,10 @@ INCLUDE "data/maps/headers/BattleIsland.asm"
 INCLUDE "data/maps/objects/BattleIsland.asm"
 BattleIsland_Blocks: INCBIN "maps/BattleIsland.blk"
 
+INCLUDE "data/maps/headers/OriginIsle.asm"
+INCLUDE "data/maps/objects/OriginIsle.asm"
+OriginIsle_Blocks: INCBIN "maps/OriginIsle.blk"
+
 INCLUDE "data/maps/headers/Route1.asm"
 INCLUDE "data/maps/objects/Route1.asm"
 Route1_Blocks: INCBIN "maps/Route1.blk"
@@ -116,6 +120,7 @@ SECTION "Maps 4", ROMX
 INCLUDE "scripts/CinnabarIsland.asm"
 
 INCLUDE "scripts/BattleIsland.asm"
+INCLUDE "scripts/OriginIsle.asm"
 
 INCLUDE "scripts/Route1.asm"
 
