@@ -93,6 +93,7 @@ _PokemonMansion1FStarterPerishedText::
 	text "Your starter,"
 	line "@"
 	text_ram wNameBuffer
+	text_start
 	cont "has perished."
 
 	para "You gather its"
