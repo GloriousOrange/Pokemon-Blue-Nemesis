@@ -88,22 +88,45 @@ PhoneOakName:
 PhoneBossName:
 	db "BOSS@"
 
-; MEGAN: remote heal, like a pocket nurse.
+; MEGAN: remote ITEM storage (the item-box PC). Healing moved to the in-person
+; Battle Island house Megan; over the phone she holds your ITEMS instead. Mirror
+; ActivatePC's screen framing (SaveScreenTilesToBuffer2 + BIT_USING_GENERIC_PC +
+; LoadScreenTilesFromBuffer2) but drop straight into the item PC (PlayerPC).
 PhoneCall_Megan:
 	ld hl, PhoneMeganGreetingText
 	call PrintText
-	ld a, SFX_HEAL_AILMENT
-	call PlaySound
-	predef HealParty
-	ld hl, PhoneMeganHealedText
+	call SaveScreenTilesToBuffer2
+	ld hl, wMiscFlags
+	set BIT_USING_GENERIC_PC, [hl]
+	farcall PlayerPC
+	ld hl, wMiscFlags
+	res BIT_USING_GENERIC_PC, [hl]
+	call LoadScreenTilesFromBuffer2
+	call Delay3
+	ld hl, PhoneMeganGoodbyeText
 	call PrintText
 	jp CloseStartMenu
 
-; OAK: remote Pokémon Storage System (PC boxes + items), moved here from Megan.
+; OAK: remote BILL's Pokémon BOXES only (Pokémon storage -- the item PC is
+; Megan's job now). Drops straight into the box engine (BillsPC_) rather than the
+; full PC menu. A gone-rogue player (BIT_PLAYER_TRAITOR) still gets box access,
+; but a cold greeting instead of the warm one.
 PhoneCall_Oak:
 	ld hl, PhoneOakGreetingText
+	ld a, [wPostGameMisc]
+	bit BIT_PLAYER_TRAITOR, a
+	jr z, .greet
+	ld hl, PhoneOakTraitorText
+.greet
 	call PrintText
-	farcall ActivatePC
+	call SaveScreenTilesToBuffer2
+	ld hl, wMiscFlags
+	set BIT_USING_GENERIC_PC, [hl]
+	farcall BillsPC_
+	ld hl, wMiscFlags
+	res BIT_USING_GENERIC_PC, [hl]
+	call LoadScreenTilesFromBuffer2
+	call Delay3
 	ld hl, PhoneOakGoodbyeText
 	call PrintText
 	jp CloseStartMenu
@@ -116,6 +139,14 @@ PhoneCall_Oak:
 ; SilphCo11FGiovanniText's post-battle stage logic (scripts/SilphCo11F.asm),
 ; reusing its far text bodies.
 PhoneCall_Giovanni:
+; Gone rogue at the Nocturn beat: no more mission talk -- just a threat.
+	ld a, [wPostGameMisc]
+	bit BIT_PLAYER_TRAITOR, a
+	jr z, .notTraitor
+	ld hl, PhoneBossTraitorText
+	call PrintText
+	jp CloseStartMenu
+.notTraitor
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
 	jr z, .flavor
 	CheckEvent EVENT_GIOVANNI_SENT_TO_TOWER
@@ -157,23 +188,29 @@ PhoneBossDoneText:
 
 PhoneMeganGreetingText:
 	text "MEGAN: Hi, honey!"
-	line "Let me freshen up"
-	cont "your team!"
+	line "Want me to hold"
+	cont "your things?"
 	prompt
-PhoneMeganHealedText:
-	text "MEGAN: All better!"
-	line "Go get 'em, love--"
-	cont "call me anytime!"
+PhoneMeganGoodbyeText:
+	text "MEGAN: Anytime,"
+	line "love-- call me"
+	cont "whenever!"
 	prompt
 PhoneOakGreetingText:
-	text "OAK: Need the"
-	line "storage system?"
+	text "OAK: Need your"
+	line "STORAGE BOXES?"
 	cont "One moment..."
 	prompt
 PhoneOakGoodbyeText:
-	text "OAK: Do keep your"
-	line "team in order, my"
-	cont "boy. Good luck!"
+	text "OAK: Keep your"
+	line "team in order."
+	prompt
+PhoneOakTraitorText:
+	text "OAK: ...You. I"
+	line "should hang up."
+	para "But even a traitor"
+	line "needs his BOXES."
+	cont "Make it quick."
 	prompt
 PhoneBossText:
 	text "GIOVANNI: Don't"
@@ -182,6 +219,13 @@ PhoneBossText:
 	para "Bring me RESULTS,"
 	line "and you'll rise."
 	cont "Fail me... don't."
+	prompt
+PhoneBossTraitorText:
+	text "GIOVANNI: Curse"
+	line "you, traitor!"
+	para "You'll answer for"
+	line "NOCTURN. Pray I"
+	cont "don't find you."
 	prompt
 
 StartMenu_Pokemon::
