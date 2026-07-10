@@ -48,8 +48,9 @@ _PokemonTower5FChanneler4EndBattleText::
 	prompt
 
 _PokemonTower5FChanneler4AfterBattleText::
-	text "I regained my"
-	line "senses!"
+	text "I saw them march."
+	line "Boys sent to die"
+	cont "for OAK's war."
 	done
 
 _PokemonTower5FChanneler5BattleText::
@@ -62,9 +63,10 @@ _PokemonTower5FChanneler5EndBattleText::
 	prompt
 
 _PokemonTower5FChanneler5AfterBattleText::
-	text "I fell to evil"
-	line "spirits despite"
-	cont "my training!"
+	text "Their spirits are"
+	line "strong. They died"
+	cont "afraid, and"
+	cont "unavenged."
 	done
 
 _PokemonTower5FPurifiedZoneText::

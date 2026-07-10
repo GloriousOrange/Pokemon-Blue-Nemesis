@@ -25,9 +25,10 @@ _PokemonTower4FChanneler2EndBattleText::
 	prompt
 
 _PokemonTower4FChanneler2AfterBattleText::
-	text "We can't crack"
-	line "the identity of"
-	cont "the GHOSTs."
+	text "So many nameless"
+	line "dead in here. We"
+	cont "can't tell soldier"
+	cont "from #MON now."
 	done
 
 _PokemonTower4FChanneler3BattleText::
