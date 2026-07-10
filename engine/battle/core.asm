@@ -5331,16 +5331,32 @@ AdjustDamageForMoveType:
 .next
 ; Pure-ghost rule (Pokemon Nemesis): a mon whose types are BOTH GHOST is
 ; immune to every physical-category move EXCEPT Flying, not just the
-; Normal/Fighting immunities regular ghosts get. This applies to the whole
-; Gastly line (Gastly/Haunter/Gengar are GHOST/GHOST in this mod) and the
-; ReadTrainer rival ghost-starter patch. Flying is exempted below so it can
-; still hit them. (Nocturn is GHOST/FLYING, not pure ghost, so unaffected.)
+; Normal/Fighting immunities regular ghosts get. This is the ReadTrainer
+; rival ghost-starter patch's defensive gimmick. The Gastly line
+; (Gastly/Haunter/Gengar are GHOST/GHOST in this mod) is EXCLUDED below so it
+; only gets the vanilla Normal/Fighting ghost immunities via the type chart.
+; (Nocturn is GHOST/FLYING, not pure ghost, so unaffected either way.)
 	ld a, d
 	cp GHOST
 	jr nz, .noPureGhostImmunity
 	ld a, e
 	cp GHOST
 	jr nz, .noPureGhostImmunity
+; exclude the Gastly line by species -- they keep only Normal/Fighting immunity
+	ldh a, [hWhoseTurn]
+	and a
+	jr nz, .pureGhostDefenderIsPlayer
+	ld a, [wEnemyMonSpecies]
+	jr .pureGhostSpeciesCheck
+.pureGhostDefenderIsPlayer
+	ld a, [wBattleMonSpecies]
+.pureGhostSpeciesCheck
+	cp GASTLY
+	jr z, .noPureGhostImmunity
+	cp HAUNTER
+	jr z, .noPureGhostImmunity
+	cp GENGAR
+	jr z, .noPureGhostImmunity
 	ld a, [wMoveType]
 	cp FLYING
 	jr z, .noPureGhostImmunity ; Flying attacks still hit pure ghosts (Pokemon Nemesis)
