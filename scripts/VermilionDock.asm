@@ -1,5 +1,6 @@
 VermilionDock_Script:
 	call EnableAutoTextBoxDrawing
+	call VermilionDockCheckOlympiaGuard
 	CheckEventHL EVENT_STARTED_WALKING_OUT_OF_DOCK
 	jr nz, .walking_out_of_dock
 	CheckEventReuseHL EVENT_GOT_HM01
@@ -208,10 +209,30 @@ VermilionDock_EraseSSAnne:
 	call DelayFrames
 	ret
 
+; S.S. Olympia's berth (14,3) stays blocked by a guard until the player has
+; beaten the Champion and holds a Master Ball -- then he steps aside for
+; good (toggleable-object flag, persists in SRAM; matches Pokemon Tower 1F's
+; guard-blocks-the-tile-then-hides technique).
+VermilionDockCheckOlympiaGuard:
+	CheckEvent EVENT_BEAT_CHAMPION_RIVAL
+	ret z
+	ld b, MASTER_BALL
+	call IsItemInBag
+	ret z
+	ld a, TOGGLE_VERMILION_DOCK_OLYMPIA_GUARD
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	ret
+
 VermilionDock_TextPointers:
 	def_text_pointers
+	dw_const VermilionDockOlympiaGuardText, TEXT_VERMILIONDOCK_OLYMPIA_GUARD
 	dw_const VermilionDockUnusedText, TEXT_VERMILIONDOCK_UNUSED
 
 VermilionDockUnusedText:
 	text_far _VermilionDockUnusedText
+	text_end
+
+VermilionDockOlympiaGuardText:
+	text_far _VermilionDockOlympiaGuardText
 	text_end

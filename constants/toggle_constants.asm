@@ -397,6 +397,12 @@ ENDM
 	const TOGGLE_POKEMON_TOWER_1F_SCIENTIST_GUARD
 	const TOGGLE_POKEMON_TOWER_1F_ROCKET_GUARD
 
+; Guard blocking the S.S. Olympia's dock berth (scripts/VermilionDock.asm)
+; until EVENT_BEAT_CHAMPION_RIVAL is set and the player holds a Master Ball --
+; same physically-blocks-the-tile-then-hides technique as the Tower 1F guards.
+	toggle_consts_for VERMILION_DOCK
+	const TOGGLE_VERMILION_DOCK_OLYMPIA_GUARD
+
 ; The deck rival ambush (scripts/SSOlympiaBow.asm): a bird circles the deck
 ; until the player approaches, then "transforms" into the rival -- two
 ; overlapping objects at the same tile, toggled (no runtime sprite-swap API

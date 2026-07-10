@@ -431,6 +431,9 @@ ToggleableObjectStates:
 	toggle_object_state POKEMONTOWER1F_SCIENTIST_GUARD, OFF
 	toggle_object_state POKEMONTOWER1F_ROCKET_GUARD,    OFF
 
+	toggleable_objects_for VERMILION_DOCK
+	toggle_object_state VERMILIONDOCK_OLYMPIA_GUARD, ON
+
 	toggleable_objects_for SS_OLYMPIA_BOW
 	toggle_object_state SSOLYMPIABOW_BIRD,  ON
 	toggle_object_state SSOLYMPIABOW_RIVAL, OFF
