@@ -191,6 +191,17 @@ PokemonMansion1FRivalApproachWaitScript:
 PokemonMansion1FRivalStartBattleScript:
 	xor a
 	ld [wJoyIgnore], a
+; Face the rival DOWN toward the player HERE (right before the battle text),
+; matching Route22Rival1StartBattleScript. The facing set in the earlier
+; ApproachWait step gets reverted once scripted movement ends, so setting it
+; only there left him facing north (away) when the battle commenced.
+	ld a, PLAYER_DIR_UP
+	ld [wPlayerMovingDirection], a
+	ld a, SPRITE_FACING_DOWN
+	ldh [hSpriteFacingDirection], a
+	ld a, POKEMONMANSION1F_RIVAL
+	ldh [hSpriteIndex], a
+	call SetSpriteFacingDirectionAndDelay
 	call Delay3
 	ld a, TEXT_POKEMONMANSION1F_RIVAL
 	ldh [hTextID], a
