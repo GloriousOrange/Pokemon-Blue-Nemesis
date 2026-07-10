@@ -5330,10 +5330,11 @@ AdjustDamageForMoveType:
 	ld [wMoveType], a
 .next
 ; Pure-ghost rule (Pokemon Nemesis): a mon whose types are BOTH GHOST is
-; immune to every physical-category move, not just the Normal/Fighting
-; immunities regular ghosts get. No vanilla or custom species is GHOST/GHOST
-; (Gastly line is GHOST/POISON, Nocturn is GHOST/FLYING) -- only ReadTrainer's
-; rival ghost-starter patch produces it, so this can't affect anything else.
+; immune to every physical-category move EXCEPT Flying, not just the
+; Normal/Fighting immunities regular ghosts get. This applies to the whole
+; Gastly line (Gastly/Haunter/Gengar are GHOST/GHOST in this mod) and the
+; ReadTrainer rival ghost-starter patch. Flying is exempted below so it can
+; still hit them. (Nocturn is GHOST/FLYING, not pure ghost, so unaffected.)
 	ld a, d
 	cp GHOST
 	jr nz, .noPureGhostImmunity
