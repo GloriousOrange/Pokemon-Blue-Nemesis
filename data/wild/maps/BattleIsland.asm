@@ -12,5 +12,15 @@ BattleIslandWildMons:
 	db 60, SNORLAX
 	end_grass_wildmons
 
-	def_water_wildmons 0 ; encounter rate
+	def_water_wildmons 20 ; encounter rate -- surf the island's lake
+	db 50, LAPRAS
+	db 52, VAPOREON
+	db 52, KINGLER
+	db 54, CLOYSTER
+	db 55, TENTACRUEL
+	db 55, DEWGONG
+	db 56, SLOWBRO
+	db 57, GOLDUCK
+	db 58, POLIWRATH
+	db 60, SEADRA
 	end_water_wildmons
