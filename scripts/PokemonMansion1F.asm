@@ -401,9 +401,10 @@ PokemonMansion1FRivalVictoryText:
 
 ; Shared starter-permadeath handler, called from both the win and loss
 ; after-battle paths. Confirms the starter actually died (HP 0, not already a
-; ghost, not already ashes), then either gifts a level 40 RATICATE first (if
-; it was the player's only Pokemon -- gift BEFORE removal so the party never
-; passes through zero) or goes straight to the ashes/urn text. Hosted in
+; ghost, not already ashes), then either gifts a level 40 FLY-capable FARFETCH'D
+; first (if it was the player's only Pokemon -- gift BEFORE removal so the party
+; never passes through zero, and it knows FLY so a solo player isn't stranded on
+; Cinnabar) or goes straight to the ashes/urn text. Hosted in
 ; text_asm (not called bare) since GivePokemon's nickname prompt needs a
 ; DisplayTextID-safe context -- see the Mathus captured-flow postmortem.
 PokemonMansion1FPerishText:
@@ -451,12 +452,13 @@ PokemonMansion1FPerishText:
 	jr nz, .notOnlyMon
 	ld hl, .OnlyMonGiftText
 	call PrintText
-	lb bc, RATICATE, 40
+	lb bc, FARFETCHD, 40
 	call GivePokemon
+	call .teachGiftFly
 .notOnlyMon
 	farcall SaveStarterToAshes
 ; Fill wNameBuffer with the starter's name ONLY NOW -- both GivePokemon
-; (Raticate) and SaveStarterToAshes' GiveItem (URN OF ASHES) overwrite
+; (Farfetch'd) and SaveStarterToAshes' GiveItem (URN OF ASHES) overwrite
 ; wNameBuffer with their own name, which previously clobbered the starter
 ; name into "URN OF ASH..." and hung the text box.
 	ld a, [wPlayerStarter]
@@ -467,8 +469,42 @@ PokemonMansion1FPerishText:
 .done
 	jp TextScriptEnd
 
+; Teach the just-gifted FARFETCH'D how to FLY. A solo-party player whose only
+; #MON just perished would otherwise be stranded on Cinnabar (a natural L40
+; FARFETCH'D can't leave the island) -- GivePokemon only grants level-up moves,
+; so we write FLY into its first empty move slot (keeps its other moves and the
+; slot list contiguous; overwrites the last slot only if all NUM_MOVES are
+; full). The gift is always the last party mon.
+.teachGiftFly:
+	ld a, [wPartyCount]
+	dec a
+	ld hl, wPartyMons + MON_MOVES
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes ; hl -> new mon's move slots
+	ld b, NUM_MOVES
+.findFlySlot:
+	ld a, [hl]
+	and a
+	jr z, .gotFlySlot ; empty slot -> use it
+	inc hl
+	dec b
+	jr nz, .findFlySlot
+	dec hl ; all slots full -> overwrite the last one
+.gotFlySlot:
+	ld a, FLY
+	ld [hl], a
+	ld a, l
+	add MON_PP - MON_MOVES ; same slot offset in the PP block
+	ld l, a
+	jr nc, .noCarry
+	inc h
+.noCarry:
+	ld a, 15 ; FLY's base PP
+	ld [hl], a
+	ret
+
 .OnlyMonGiftText:
-	text_far _PokemonMansion1FRivalRaticateGiftText
+	text_far _PokemonMansion1FRivalMonGiftText
 	text_end
 
 .PerishText:

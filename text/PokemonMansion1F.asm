@@ -78,7 +78,7 @@ _PokemonMansion1FRivalAfterBattleText::
 	line "<PLAYER>."
 	done
 
-_PokemonMansion1FRivalRaticateGiftText::
+_PokemonMansion1FRivalMonGiftText::
 	text "<RIVAL>: Looks"
 	line "like your only"
 	cont "slave is dead."
