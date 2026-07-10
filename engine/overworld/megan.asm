@@ -138,7 +138,8 @@ MeganGiftTable:
 	db 0,          0 ; 26 Cerulean Cave (TBD)
 	db 0,          0 ; 27 Diglett's Cave (TBD)
 	db POTION,     1 ; 28 Viridian Forest South Gate
-	ds 6             ; 29-31: spare (2 bytes each)
+	db 0,          0 ; 29 Battle Island house (heal-only, no gift)
+	ds 4             ; 30-31: spare (2 bytes each)
 
 MeganGreetingText:
 	text "MEGAN: Hi, honey!"

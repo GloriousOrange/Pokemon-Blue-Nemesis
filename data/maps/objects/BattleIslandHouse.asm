@@ -12,6 +12,6 @@ BattleIslandHouse_Object:
 	bg_event  6,  1, TEXT_BATTLEISLANDHOUSE_PC
 
 	def_object_events
-	object_event  4,  3, SPRITE_NURSE, STAY, DOWN, TEXT_BATTLEISLANDHOUSE_NURSE
+	object_event  4,  3, SPRITE_GIRL, STAY, DOWN, TEXT_BATTLEISLANDHOUSE_NURSE ; MEGAN (heal point)
 
 	def_warps_to BATTLE_ISLAND_HOUSE

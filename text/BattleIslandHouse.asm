@@ -1,9 +1,2 @@
-_BattleIslandHouseNurseHealText::
-	text "You look worn"
-	line "out. Rest here!"
-	done
-
-_BattleIslandHouseNurseDoneText::
-	text "You're all"
-	line "healed up!"
-	prompt
+; The Battle Island house healer is MEGAN now -- her heal/chat text lives in the
+; shared girlfriend routine (engine/overworld/megan.asm). No map-local text here.
