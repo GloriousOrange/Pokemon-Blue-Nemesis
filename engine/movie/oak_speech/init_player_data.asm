@@ -38,7 +38,7 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld [hl], a
 	ld hl, wNumBagItems
-	ld a, 5
+	ld a, 7
 	ld [hli], a
 	ld a, RARE_CANDY
 	ld [hli], a
@@ -57,6 +57,16 @@ IF DEF(_SPEEDTEST)
 	ld a, 99
 	ld [hli], a
 	ld a, HM_FLY
+	ld [hli], a
+	ld a, 1
+	ld [hli], a
+	; SILPH SCOPE + MASTER BALL so testers can reach Pokemon Tower / the Mathus
+	; quest without doing the Hideout+Silph Co questline first.
+	ld a, SILPH_SCOPE
+	ld [hli], a
+	ld a, 1
+	ld [hli], a
+	ld a, MASTER_BALL
 	ld [hli], a
 	ld a, 1
 	ld [hli], a
