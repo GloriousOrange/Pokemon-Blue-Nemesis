@@ -182,19 +182,19 @@ DEF FIRST_INDOOR_MAP EQU const_value
 	; UNUSED_MAP_* until built, to avoid dangling refs elsewhere (e.g.
 	; data/events/hidden_events.asm still points at UNUSED_MAP_6F).
 	map_const ORIGIN_ISLE,                   10, 18 ; $69 (was UNUSED_MAP_69)
-	map_const UNUSED_MAP_6A,                  0,  0 ; $6A
-	map_const UNUSED_MAP_6B,                  0,  0 ; $6B
+	map_const VERDANT_ISLE,                  10, 18 ; $6A (was UNUSED_MAP_6A)
+	map_const MIASMA_ISLE,                   10, 18 ; $6B (was UNUSED_MAP_6B)
 	map_const VICTORY_ROAD_1F,               10,  9 ; $6C
 	end_indoor_group VICTORY_ROAD
 
-	map_const UNUSED_MAP_6D,                  0,  0 ; $6D
-	map_const UNUSED_MAP_6E,                  0,  0 ; $6E
-	map_const UNUSED_MAP_6F,                  0,  0 ; $6F
-	map_const UNUSED_MAP_70,                  0,  0 ; $70
+	map_const SAGE_ISLE,                     10, 18 ; $6D (was UNUSED_MAP_6D)
+	map_const EMBER_ISLE,                    10, 18 ; $6E (was UNUSED_MAP_6E)
+	map_const HAVEN_ISLE,                    10, 18 ; $6F (was UNUSED_MAP_6F)
+	map_const APEX_ISLE,                     10, 18 ; $70 (was UNUSED_MAP_70)
 	map_const LANCES_ROOM,                   13, 13 ; $71
-	map_const UNUSED_MAP_72,                  0,  0 ; $72
-	map_const UNUSED_MAP_73,                  0,  0 ; $73
-	map_const UNUSED_MAP_74,                  0,  0 ; $74
+	map_const ARCHIPELAGO_CAVE_1F,            9,  9 ; $72 (was UNUSED_MAP_72)
+	map_const ARCHIPELAGO_CAVE_2F,            9,  9 ; $73 (was UNUSED_MAP_73)
+	map_const ARCHIPELAGO_CAVE_3F,            9,  9 ; $74 (was UNUSED_MAP_74)
 	map_const UNUSED_MAP_75,                  0,  0 ; $75
 	map_const HALL_OF_FAME,                   5,  4 ; $76
 	end_indoor_group POKEMON_LEAGUE

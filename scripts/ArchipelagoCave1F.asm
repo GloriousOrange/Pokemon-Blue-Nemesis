@@ -1,0 +1,5 @@
+ArchipelagoCave1F_Script:
+	jp EnableAutoTextBoxDrawing
+
+ArchipelagoCave1F_TextPointers:
+	def_text_pointers

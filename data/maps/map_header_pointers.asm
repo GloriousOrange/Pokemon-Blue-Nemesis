@@ -107,17 +107,17 @@ MapHeaderPointers::
 	dw SSAnne2FRooms_h
 	dw SSAnneB1FRooms_h
 	dw OriginIsle_h ; ORIGIN_ISLE (was UNUSED_MAP_69)
-	dw LancesRoom_h ; UNUSED_MAP_6A
-	dw LancesRoom_h ; UNUSED_MAP_6B
+	dw VerdantIsle_h ; VERDANT_ISLE (was UNUSED_MAP_6A)
+	dw MiasmaIsle_h ; MIASMA_ISLE (was UNUSED_MAP_6B)
 	dw VictoryRoad1F_h
-	dw LancesRoom_h ; UNUSED_MAP_6D
-	dw LancesRoom_h ; UNUSED_MAP_6E
-	dw LancesRoom_h ; UNUSED_MAP_6F
-	dw LancesRoom_h ; UNUSED_MAP_70
+	dw SageIsle_h ; SAGE_ISLE (was UNUSED_MAP_6D)
+	dw EmberIsle_h ; EMBER_ISLE (was UNUSED_MAP_6E)
+	dw HavenIsle_h ; HAVEN_ISLE (was UNUSED_MAP_6F)
+	dw ApexIsle_h ; APEX_ISLE (was UNUSED_MAP_70)
 	dw LancesRoom_h
-	dw LancesRoom_h ; UNUSED_MAP_72
-	dw LancesRoom_h ; UNUSED_MAP_73
-	dw LancesRoom_h ; UNUSED_MAP_74
+	dw ArchipelagoCave1F_h ; ARCHIPELAGO_CAVE_1F (was UNUSED_MAP_72)
+	dw ArchipelagoCave2F_h ; ARCHIPELAGO_CAVE_2F (was UNUSED_MAP_73)
+	dw ArchipelagoCave3F_h ; ARCHIPELAGO_CAVE_3F (was UNUSED_MAP_74)
 	dw LancesRoom_h ; UNUSED_MAP_75
 	dw HallOfFame_h
 	dw UndergroundPathNorthSouth_h

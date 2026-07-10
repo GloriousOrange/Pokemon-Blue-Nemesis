@@ -81,9 +81,47 @@ INCLUDE "data/maps/headers/BattleIsland.asm"
 INCLUDE "data/maps/objects/BattleIsland.asm"
 BattleIsland_Blocks: INCBIN "maps/BattleIsland.blk"
 
+SECTION "Maps Archipelago", ROMX ; new archipelago islands + cave, own section so the linker can relocate this ~2KB chunk independently (bank3 overflowed when it was packed into "Maps 2")
+
 INCLUDE "data/maps/headers/OriginIsle.asm"
 INCLUDE "data/maps/objects/OriginIsle.asm"
 OriginIsle_Blocks: INCBIN "maps/OriginIsle.blk"
+
+INCLUDE "data/maps/headers/VerdantIsle.asm"
+INCLUDE "data/maps/objects/VerdantIsle.asm"
+VerdantIsle_Blocks: INCBIN "maps/VerdantIsle.blk"
+
+INCLUDE "data/maps/headers/MiasmaIsle.asm"
+INCLUDE "data/maps/objects/MiasmaIsle.asm"
+MiasmaIsle_Blocks: INCBIN "maps/MiasmaIsle.blk"
+
+INCLUDE "data/maps/headers/SageIsle.asm"
+INCLUDE "data/maps/objects/SageIsle.asm"
+SageIsle_Blocks: INCBIN "maps/SageIsle.blk"
+
+INCLUDE "data/maps/headers/EmberIsle.asm"
+INCLUDE "data/maps/objects/EmberIsle.asm"
+EmberIsle_Blocks: INCBIN "maps/EmberIsle.blk"
+
+INCLUDE "data/maps/headers/HavenIsle.asm"
+INCLUDE "data/maps/objects/HavenIsle.asm"
+HavenIsle_Blocks: INCBIN "maps/HavenIsle.blk"
+
+INCLUDE "data/maps/headers/ApexIsle.asm"
+INCLUDE "data/maps/objects/ApexIsle.asm"
+ApexIsle_Blocks: INCBIN "maps/ApexIsle.blk"
+
+INCLUDE "data/maps/headers/ArchipelagoCave1F.asm"
+INCLUDE "data/maps/objects/ArchipelagoCave1F.asm"
+ArchipelagoCave1F_Blocks: INCBIN "maps/ArchipelagoCave1F.blk"
+
+INCLUDE "data/maps/headers/ArchipelagoCave2F.asm"
+INCLUDE "data/maps/objects/ArchipelagoCave2F.asm"
+ArchipelagoCave2F_Blocks: INCBIN "maps/ArchipelagoCave2F.blk"
+
+INCLUDE "data/maps/headers/ArchipelagoCave3F.asm"
+INCLUDE "data/maps/objects/ArchipelagoCave3F.asm"
+ArchipelagoCave3F_Blocks: INCBIN "maps/ArchipelagoCave3F.blk"
 
 INCLUDE "data/maps/headers/Route1.asm"
 INCLUDE "data/maps/objects/Route1.asm"
@@ -121,6 +159,15 @@ INCLUDE "scripts/CinnabarIsland.asm"
 
 INCLUDE "scripts/BattleIsland.asm"
 INCLUDE "scripts/OriginIsle.asm"
+INCLUDE "scripts/VerdantIsle.asm"
+INCLUDE "scripts/MiasmaIsle.asm"
+INCLUDE "scripts/SageIsle.asm"
+INCLUDE "scripts/EmberIsle.asm"
+INCLUDE "scripts/HavenIsle.asm"
+INCLUDE "scripts/ApexIsle.asm"
+INCLUDE "scripts/ArchipelagoCave1F.asm"
+INCLUDE "scripts/ArchipelagoCave2F.asm"
+INCLUDE "scripts/ArchipelagoCave3F.asm"
 
 INCLUDE "scripts/Route1.asm"
 

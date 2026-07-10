@@ -1,0 +1,5 @@
+ArchipelagoCave3F_Script:
+	jp EnableAutoTextBoxDrawing
+
+ArchipelagoCave3F_TextPointers:
+	def_text_pointers

@@ -1,4 +1,4 @@
-	map_header OriginIsle, ORIGIN_ISLE, OVERWORLD, WEST
+	map_header OriginIsle, ORIGIN_ISLE, OVERWORLD, EAST | WEST
 	connection west, BattleIsland, BATTLE_ISLAND, 0
-	; TODO east connection to VerdantIsle once it's built (next island in the chain)
+	connection east, VerdantIsle, VERDANT_ISLE, 0
 	end_map_header

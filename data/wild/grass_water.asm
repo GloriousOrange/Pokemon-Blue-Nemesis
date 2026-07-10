@@ -106,17 +106,17 @@ WildDataPointers:
 	dw NothingWildMons
 	dw NothingWildMons
 	dw OriginIsleWildMons      ; ORIGIN_ISLE (was UNUSED_MAP_69)
-	dw NothingWildMons
-	dw NothingWildMons
+	dw VerdantIsleWildMons    ; VERDANT_ISLE (was UNUSED_MAP_6A)
+	dw MiasmaIsleWildMons    ; MIASMA_ISLE (was UNUSED_MAP_6B)
 	dw VictoryRoad1FWildMons
+	dw SageIsleWildMons    ; SAGE_ISLE (was UNUSED_MAP_6D)
+	dw EmberIsleWildMons    ; EMBER_ISLE (was UNUSED_MAP_6E)
+	dw HavenIsleWildMons    ; HAVEN_ISLE (was UNUSED_MAP_6F)
+	dw ApexIsleWildMons    ; APEX_ISLE (was UNUSED_MAP_70)
 	dw NothingWildMons
-	dw NothingWildMons
-	dw NothingWildMons
-	dw NothingWildMons
-	dw NothingWildMons
-	dw NothingWildMons
-	dw NothingWildMons
-	dw NothingWildMons
+	dw ArchipelagoCave1FWildMons    ; ARCHIPELAGO_CAVE_1F (was UNUSED_MAP_72)
+	dw ArchipelagoCave2FWildMons    ; ARCHIPELAGO_CAVE_2F (was UNUSED_MAP_73)
+	dw ArchipelagoCave3FWildMons    ; ARCHIPELAGO_CAVE_3F (was UNUSED_MAP_74)
 	dw NothingWildMons
 	dw NothingWildMons
 	dw NothingWildMons
@@ -265,6 +265,15 @@ WildDataPointers:
 INCLUDE "data/wild/maps/nothing.asm"
 INCLUDE "data/wild/maps/BattleIsland.asm"
 INCLUDE "data/wild/maps/OriginIsle.asm"
+INCLUDE "data/wild/maps/VerdantIsle.asm"
+INCLUDE "data/wild/maps/MiasmaIsle.asm"
+INCLUDE "data/wild/maps/SageIsle.asm"
+INCLUDE "data/wild/maps/EmberIsle.asm"
+INCLUDE "data/wild/maps/HavenIsle.asm"
+INCLUDE "data/wild/maps/ApexIsle.asm"
+INCLUDE "data/wild/maps/ArchipelagoCave1F.asm"
+INCLUDE "data/wild/maps/ArchipelagoCave2F.asm"
+INCLUDE "data/wild/maps/ArchipelagoCave3F.asm"
 INCLUDE "data/wild/maps/Route1.asm"
 INCLUDE "data/wild/maps/Route2.asm"
 INCLUDE "data/wild/maps/Route22.asm"

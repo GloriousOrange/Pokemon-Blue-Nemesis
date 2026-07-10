@@ -43,7 +43,6 @@ SECTION "bank3", ROMX
 
 INCLUDE "engine/joypad.asm"
 INCLUDE "data/maps/songs.asm"
-INCLUDE "data/maps/map_header_banks.asm"
 INCLUDE "engine/overworld/clear_variables.asm"
 INCLUDE "engine/overworld/tyranis_encounter.asm"
 INCLUDE "engine/overworld/player_state.asm"
@@ -399,3 +398,7 @@ INCLUDE "engine/items/tm_prices.asm"
 SECTION "Starter Ashes", ROMX
 
 INCLUDE "engine/events/starter_ashes.asm"
+
+SECTION "Map Header Banks", ROMX ; relocated out of bank3 (which filled up with the archipelago's new maps); referenced via BANK(), so any bank works, same technique as "TM Prices" above
+
+INCLUDE "data/maps/map_header_banks.asm"
