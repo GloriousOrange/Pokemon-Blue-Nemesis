@@ -710,6 +710,28 @@ RocketData:
 
 	db 100, MUK, GOLBAT, GENGAR, 0 ; ARENA #11 (rocket)
 
+; S.S. Olympia (endgame Rocket-crewed ship), all L100, trainer nos 43-62
+	db 100, RATICATE, ARBOK, 0                ; 43 -- 1F
+	db 100, WEEZING, MUK, 0                   ; 44 -- 1F
+	db 100, PERSIAN, GOLEM, 0                 ; 45 -- 2F
+	db 100, TAUROS, FEAROW, 0                 ; 46 -- 2F
+	db 100, VAPOREON, CLOYSTER, 0              ; 47 -- 3F
+	db 100, JYNX, MR_MIME, 0                  ; 48 -- B1F
+	db 100, GOLDUCK, CLOYSTER, 0                ; 49 -- B1F
+	db 100, VICTREEBEL, VILEPLUME, 0            ; 50 -- Bow
+	db 100, RAPIDASH, FLAREON, 0                ; 51 -- Bow
+	db 100, JOLTEON, PERSIAN, 0                  ; 52 -- Kitchen
+	db 100, MUK, WEEZING, ARBOK, 0                ; 53 -- Captain's Room (boss-tier)
+	db 100, RATICATE, PERSIAN, TAUROS, 0            ; 54 -- 1F Rooms
+	db 100, GOLEM, FEAROW, RAPIDASH, 0               ; 55 -- 1F Rooms
+	db 100, VAPOREON, CLOYSTER, GOLDUCK, 0             ; 56 -- 1F Rooms
+	db 100, VICTREEBEL, VILEPLUME, JYNX, 0               ; 57 -- 2F Rooms
+	db 100, FLAREON, JOLTEON, MR_MIME, 0                 ; 58 -- 2F Rooms
+	db 100, ARBOK, WEEZING, MUK, 0                          ; 59 -- 2F Rooms
+	db 100, PERSIAN, TAUROS, GOLEM, 0                        ; 60 -- B1F Rooms
+	db 100, FEAROW, RAPIDASH, VAPOREON, 0                      ; 61 -- B1F Rooms
+	db 100, CLOYSTER, GOLDUCK, JYNX, 0                           ; 62 -- B1F Rooms
+
 CooltrainerMData:
 ; Viridian Gym (Normal-type reskin)
 	db 44, PERSIAN, SNORLAX, 0                ; #1 (Viridian COOLTRAINER_M3)

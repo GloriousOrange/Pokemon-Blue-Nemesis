@@ -303,6 +303,58 @@ INCLUDE "scripts/BillsHouse.asm"
 INCLUDE "data/maps/objects/BillsHouse.asm"
 BillsHouse_Blocks: INCBIN "maps/BillsHouse.blk"
 
+SECTION "Maps SSOlympia", ROMX ; S.S. Olympia (endgame Rocket-crewed ship, reuses S.S. Anne's proven geometry), own section like "Maps Archipelago"
+
+INCLUDE "data/maps/headers/SSOlympia1F.asm"
+INCLUDE "scripts/SSOlympia1F.asm"
+INCLUDE "data/maps/objects/SSOlympia1F.asm"
+SSOlympia1F_Blocks: INCBIN "maps/SSOlympia1F.blk"
+
+INCLUDE "data/maps/headers/SSOlympia2F.asm"
+INCLUDE "scripts/SSOlympia2F.asm"
+INCLUDE "data/maps/objects/SSOlympia2F.asm"
+SSOlympia2F_Blocks: INCBIN "maps/SSOlympia2F.blk"
+
+INCLUDE "data/maps/headers/SSOlympia3F.asm"
+INCLUDE "scripts/SSOlympia3F.asm"
+INCLUDE "data/maps/objects/SSOlympia3F.asm"
+SSOlympia3F_Blocks: INCBIN "maps/SSOlympia3F.blk"
+
+INCLUDE "data/maps/headers/SSOlympiaB1F.asm"
+INCLUDE "scripts/SSOlympiaB1F.asm"
+INCLUDE "data/maps/objects/SSOlympiaB1F.asm"
+SSOlympiaB1F_Blocks: INCBIN "maps/SSOlympiaB1F.blk"
+
+INCLUDE "data/maps/headers/SSOlympiaBow.asm"
+INCLUDE "scripts/SSOlympiaBow.asm"
+INCLUDE "data/maps/objects/SSOlympiaBow.asm"
+SSOlympiaBow_Blocks: INCBIN "maps/SSOlympiaBow.blk"
+
+INCLUDE "data/maps/headers/SSOlympiaKitchen.asm"
+INCLUDE "scripts/SSOlympiaKitchen.asm"
+INCLUDE "data/maps/objects/SSOlympiaKitchen.asm"
+SSOlympiaKitchen_Blocks: INCBIN "maps/SSOlympiaKitchen.blk"
+
+INCLUDE "data/maps/headers/SSOlympiaCaptainsRoom.asm"
+INCLUDE "scripts/SSOlympiaCaptainsRoom.asm"
+INCLUDE "data/maps/objects/SSOlympiaCaptainsRoom.asm"
+SSOlympiaCaptainsRoom_Blocks: INCBIN "maps/SSOlympiaCaptainsRoom.blk"
+
+INCLUDE "data/maps/headers/SSOlympia1FRooms.asm"
+INCLUDE "scripts/SSOlympia1FRooms.asm"
+INCLUDE "data/maps/objects/SSOlympia1FRooms.asm"
+SSOlympia1FRooms_Blocks: INCBIN "maps/SSOlympia1FRooms.blk"
+
+INCLUDE "data/maps/headers/SSOlympia2FRooms.asm"
+INCLUDE "scripts/SSOlympia2FRooms.asm"
+INCLUDE "data/maps/objects/SSOlympia2FRooms.asm"
+SSOlympia2FRooms_Blocks: INCBIN "maps/SSOlympia2FRooms.blk"
+
+INCLUDE "data/maps/headers/SSOlympiaB1FRooms.asm"
+INCLUDE "scripts/SSOlympiaB1FRooms.asm"
+INCLUDE "data/maps/objects/SSOlympiaB1FRooms.asm"
+SSOlympiaB1FRooms_Blocks: INCBIN "maps/SSOlympiaB1FRooms.blk"
+
 
 SECTION "Maps 5", ROMX
 

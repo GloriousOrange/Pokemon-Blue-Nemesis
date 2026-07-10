@@ -118,7 +118,7 @@ MapHeaderPointers::
 	dw ArchipelagoCave1F_h ; ARCHIPELAGO_CAVE_1F (was UNUSED_MAP_72)
 	dw ArchipelagoCave2F_h ; ARCHIPELAGO_CAVE_2F (was UNUSED_MAP_73)
 	dw ArchipelagoCave3F_h ; ARCHIPELAGO_CAVE_3F (was UNUSED_MAP_74)
-	dw LancesRoom_h ; UNUSED_MAP_75
+	dw SSOlympia1F_h ; SS_OLYMPIA_1F (was UNUSED_MAP_75)
 	dw HallOfFame_h
 	dw UndergroundPathNorthSouth_h
 	dw ChampionsRoom_h
@@ -205,9 +205,9 @@ MapHeaderPointers::
 	dw RocketHideoutB3F_h
 	dw RocketHideoutB4F_h
 	dw RocketHideoutElevator_h
-	dw RocketHideoutElevator_h ; UNUSED_MAP_CC
-	dw RocketHideoutElevator_h ; UNUSED_MAP_CD
-	dw RocketHideoutElevator_h ; UNUSED_MAP_CE
+	dw SSOlympia2F_h ; SS_OLYMPIA_2F (was UNUSED_MAP_CC)
+	dw SSOlympia3F_h ; SS_OLYMPIA_3F (was UNUSED_MAP_CD)
+	dw SSOlympiaB1F_h ; SS_OLYMPIA_B1F (was UNUSED_MAP_CE)
 	dw SilphCo2F_h
 	dw SilphCo3F_h
 	dw SilphCo4F_h
@@ -232,19 +232,19 @@ MapHeaderPointers::
 	dw CeruleanCave1F_h
 	dw NameRatersHouse_h
 	dw CeruleanBadgeHouse_h
-	dw Route16Gate1F_h ; UNUSED_MAP_E7
+	dw SSOlympiaBow_h ; SS_OLYMPIA_BOW (was UNUSED_MAP_E7)
 	dw RockTunnelB1F_h
 	dw SilphCo9F_h
 	dw SilphCo10F_h
 	dw SilphCo11F_h
 	dw SilphCoElevator_h
-	dw SilphCo2F_h ; UNUSED_MAP_ED
-	dw SilphCo2F_h ; UNUSED_MAP_EE
+	dw SSOlympiaKitchen_h ; SS_OLYMPIA_KITCHEN (was UNUSED_MAP_ED)
+	dw SSOlympiaCaptainsRoom_h ; SS_OLYMPIA_CAPTAINS_ROOM (was UNUSED_MAP_EE)
 	dw TradeCenter_h
 	dw Colosseum_h
-	dw SilphCo2F_h ; UNUSED_MAP_F1
-	dw SilphCo2F_h ; UNUSED_MAP_F2
-	dw SilphCo2F_h ; UNUSED_MAP_F3
+	dw SSOlympia1FRooms_h ; SS_OLYMPIA_1F_ROOMS (was UNUSED_MAP_F1)
+	dw SSOlympia2FRooms_h ; SS_OLYMPIA_2F_ROOMS (was UNUSED_MAP_F2)
+	dw SSOlympiaB1FRooms_h ; SS_OLYMPIA_B1F_ROOMS (was UNUSED_MAP_F3)
 	dw BattleIslandGate_h ; BATTLE_ISLAND_GATE (was UNUSED_MAP_F4)
 	dw LoreleisRoom_h
 	dw BrunosRoom_h

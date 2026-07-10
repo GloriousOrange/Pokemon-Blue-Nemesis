@@ -118,7 +118,7 @@ MapHeaderBanks::
 	db BANK(ArchipelagoCave1F_h) ; ARCHIPELAGO_CAVE_1F (was UNUSED_MAP_72)
 	db BANK(ArchipelagoCave2F_h) ; ARCHIPELAGO_CAVE_2F (was UNUSED_MAP_73)
 	db BANK(ArchipelagoCave3F_h) ; ARCHIPELAGO_CAVE_3F (was UNUSED_MAP_74)
-	db $1D ; UNUSED_MAP_75
+	db BANK(SSOlympia1F_h) ; SS_OLYMPIA_1F (was UNUSED_MAP_75)
 	db BANK(HallOfFame_h)
 	db BANK(UndergroundPathNorthSouth_h)
 	db BANK(ChampionsRoom_h)
@@ -205,9 +205,9 @@ MapHeaderBanks::
 	db BANK(RocketHideoutB3F_h)
 	db BANK(RocketHideoutB4F_h)
 	db BANK(RocketHideoutElevator_h)
-	db $01 ; UNUSED_MAP_CC
-	db $01 ; UNUSED_MAP_CD
-	db $01 ; UNUSED_MAP_CE
+	db BANK(SSOlympia2F_h) ; SS_OLYMPIA_2F (was UNUSED_MAP_CC)
+	db BANK(SSOlympia3F_h) ; SS_OLYMPIA_3F (was UNUSED_MAP_CD)
+	db BANK(SSOlympiaB1F_h) ; SS_OLYMPIA_B1F (was UNUSED_MAP_CE)
 	db BANK(SilphCo2F_h)
 	db BANK(SilphCo3F_h)
 	db BANK(SilphCo4F_h)
@@ -232,19 +232,19 @@ MapHeaderBanks::
 	db BANK(CeruleanCave1F_h)
 	db BANK(NameRatersHouse_h)
 	db BANK(CeruleanBadgeHouse_h)
-	db $01 ; UNUSED_MAP_E7
+	db BANK(SSOlympiaBow_h) ; SS_OLYMPIA_BOW (was UNUSED_MAP_E7)
 	db BANK(RockTunnelB1F_h)
 	db BANK(SilphCo9F_h)
 	db BANK(SilphCo10F_h)
 	db BANK(SilphCo11F_h)
 	db BANK(SilphCoElevator_h)
-	db $11 ; UNUSED_MAP_ED
-	db $11 ; UNUSED_MAP_EE
+	db BANK(SSOlympiaKitchen_h) ; SS_OLYMPIA_KITCHEN (was UNUSED_MAP_ED)
+	db BANK(SSOlympiaCaptainsRoom_h) ; SS_OLYMPIA_CAPTAINS_ROOM (was UNUSED_MAP_EE)
 	db BANK(TradeCenter_h)
 	db BANK(Colosseum_h)
-	db $11 ; UNUSED_MAP_F1
-	db $11 ; UNUSED_MAP_F2
-	db $11 ; UNUSED_MAP_F3
+	db BANK(SSOlympia1FRooms_h) ; SS_OLYMPIA_1F_ROOMS (was UNUSED_MAP_F1)
+	db BANK(SSOlympia2FRooms_h) ; SS_OLYMPIA_2F_ROOMS (was UNUSED_MAP_F2)
+	db BANK(SSOlympiaB1FRooms_h) ; SS_OLYMPIA_B1F_ROOMS (was UNUSED_MAP_F3)
 	db BANK(BattleIslandGate_h) ; BATTLE_ISLAND_GATE (was UNUSED_MAP_F4)
 	db BANK(LoreleisRoom_h)
 	db BANK(BrunosRoom_h)

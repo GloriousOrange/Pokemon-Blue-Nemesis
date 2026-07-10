@@ -1995,6 +1995,16 @@ wRoute8GateCurScript:: db
 wCinnabarIslandCurScript:: db
 wPokemonMansion1FCurScript:: db
 	ds 1
+wSSOlympia1FCurScript:: db
+wSSOlympia2FCurScript:: db
+wSSOlympia3FCurScript:: db
+wSSOlympiaB1FCurScript:: db
+wSSOlympiaBowCurScript:: db
+wSSOlympiaKitchenCurScript:: db
+wSSOlympiaCaptainsRoomCurScript:: db
+wSSOlympia1FRoomsCurScript:: db
+wSSOlympia2FRoomsCurScript:: db
+wSSOlympiaB1FRoomsCurScript:: db
 wPokemonMansion2FCurScript:: db
 wPokemonMansion3FCurScript:: db
 wPokemonMansionB1FCurScript:: db

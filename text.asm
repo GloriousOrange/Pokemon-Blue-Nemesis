@@ -284,3 +284,16 @@ INCLUDE "data/pokemon/dex_text.asm"
 SECTION "Move Names", ROMX
 
 INCLUDE "data/moves/names.asm"
+
+SECTION "Text SSOlympia", ROMX ; own section, "Text 1" overflowed when this landed there
+
+INCLUDE "text/SSOlympia1F.asm"
+INCLUDE "text/SSOlympia2F.asm"
+INCLUDE "text/SSOlympia3F.asm"
+INCLUDE "text/SSOlympiaB1F.asm"
+INCLUDE "text/SSOlympiaBow.asm"
+INCLUDE "text/SSOlympiaKitchen.asm"
+INCLUDE "text/SSOlympiaCaptainsRoom.asm"
+INCLUDE "text/SSOlympia1FRooms.asm"
+INCLUDE "text/SSOlympia2FRooms.asm"
+INCLUDE "text/SSOlympiaB1FRooms.asm"

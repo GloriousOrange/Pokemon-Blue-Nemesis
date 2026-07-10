@@ -195,7 +195,7 @@ DEF FIRST_INDOOR_MAP EQU const_value
 	map_const ARCHIPELAGO_CAVE_1F,            9,  9 ; $72 (was UNUSED_MAP_72)
 	map_const ARCHIPELAGO_CAVE_2F,            9,  9 ; $73 (was UNUSED_MAP_73)
 	map_const ARCHIPELAGO_CAVE_3F,            9,  9 ; $74 (was UNUSED_MAP_74)
-	map_const UNUSED_MAP_75,                  0,  0 ; $75
+	map_const SS_OLYMPIA_1F,                 20,  9 ; $75 (was UNUSED_MAP_75; S.S. Olympia -- reuses S.S. Anne's proven ship geometry, renamed)
 	map_const HALL_OF_FAME,                   5,  4 ; $76
 	end_indoor_group POKEMON_LEAGUE
 
@@ -340,9 +340,9 @@ DEF FIRST_INDOOR_MAP EQU const_value
 	map_const ROCKET_HIDEOUT_B3F,            15, 14 ; $C9
 	map_const ROCKET_HIDEOUT_B4F,            15, 12 ; $CA
 	map_const ROCKET_HIDEOUT_ELEVATOR,        3,  4 ; $CB
-	map_const UNUSED_MAP_CC,                  0,  0 ; $CC
-	map_const UNUSED_MAP_CD,                  0,  0 ; $CD
-	map_const UNUSED_MAP_CE,                  0,  0 ; $CE
+	map_const SS_OLYMPIA_2F,                 20,  9 ; $CC (was UNUSED_MAP_CC)
+	map_const SS_OLYMPIA_3F,                 10,  3 ; $CD (was UNUSED_MAP_CD)
+	map_const SS_OLYMPIA_B1F,                15,  4 ; $CE (was UNUSED_MAP_CE)
 	end_indoor_group ROCKET_HQ
 
 	map_const SILPH_CO_2F,                   15,  9 ; $CF
@@ -381,7 +381,7 @@ DEF FIRST_INDOOR_MAP EQU const_value
 	map_const CERULEAN_BADGE_HOUSE,           4,  4 ; $E6
 	end_indoor_group CERULEAN_CITY_3
 
-	map_const UNUSED_MAP_E7,                  0,  0 ; $E7
+	map_const SS_OLYMPIA_BOW,                10,  7 ; $E7 (was UNUSED_MAP_E7)
 	map_const ROCK_TUNNEL_B1F,               20, 18 ; $E8
 	end_indoor_group ROCK_TUNNEL_2
 
@@ -391,13 +391,13 @@ DEF FIRST_INDOOR_MAP EQU const_value
 	map_const SILPH_CO_ELEVATOR,              2,  2 ; $EC
 	end_indoor_group SILPH_CO_2
 
-	map_const UNUSED_MAP_ED,                  0,  0 ; $ED
-	map_const UNUSED_MAP_EE,                  0,  0 ; $EE
+	map_const SS_OLYMPIA_KITCHEN,              7,  8 ; $ED (was UNUSED_MAP_ED)
+	map_const SS_OLYMPIA_CAPTAINS_ROOM,        3,  4 ; $EE (was UNUSED_MAP_EE)
 	map_const TRADE_CENTER,                   5,  4 ; $EF
 	map_const COLOSSEUM,                      5,  4 ; $F0
-	map_const UNUSED_MAP_F1,                  0,  0 ; $F1
-	map_const UNUSED_MAP_F2,                  0,  0 ; $F2
-	map_const UNUSED_MAP_F3,                  0,  0 ; $F3
+	map_const SS_OLYMPIA_1F_ROOMS,            12,  8 ; $F1 (was UNUSED_MAP_F1)
+	map_const SS_OLYMPIA_2F_ROOMS,            12,  8 ; $F2 (was UNUSED_MAP_F2)
+	map_const SS_OLYMPIA_B1F_ROOMS,           12,  8 ; $F3 (was UNUSED_MAP_F3)
 	map_const BATTLE_ISLAND_GATE,             4,  4 ; $F4 (secret warp room under the Cinnabar lab; repurposed unused slot to avoid renumbering maps)
 	map_const LORELEIS_ROOM,                  5,  6 ; $F5
 	map_const BRUNOS_ROOM,                    5,  6 ; $F6
