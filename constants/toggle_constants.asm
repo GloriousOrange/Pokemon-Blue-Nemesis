@@ -148,6 +148,7 @@ ENDM
 	toggle_consts_for POKEMON_MANSION_1F
 	const TOGGLE_POKEMON_MANSION_1F_ITEM_1     ; 48 X
 	const TOGGLE_POKEMON_MANSION_1F_ITEM_2     ; 49 X
+	const TOGGLE_POKEMON_MANSION_1F_RIVAL      ; 4A -- shifts later indices by 1
 
 	toggle_consts_for FIGHTING_DOJO
 	const TOGGLE_FIGHTING_DOJO_GIFT_1          ; 4A

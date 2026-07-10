@@ -175,6 +175,10 @@ ToggleableObjectStates:
 	toggleable_objects_for POKEMON_MANSION_1F
 	toggle_object_state POKEMONMANSION1F_ESCAPE_ROPE, ON
 	toggle_object_state POKEMONMANSION1F_CARBOS,      ON
+; The burned-lab rival ambusher (scripts/PokemonMansion1F.asm): visible at
+; (5,22) until the one-time fight, then HideObject'd -- he "escape-ropes" away
+; and never reappears standing in the entrance (the flag persists in SRAM).
+	toggle_object_state POKEMONMANSION1F_RIVAL,       ON
 
 	toggleable_objects_for FIGHTING_DOJO
 	toggle_object_state FIGHTINGDOJO_HITMONLEE_POKE_BALL,  ON

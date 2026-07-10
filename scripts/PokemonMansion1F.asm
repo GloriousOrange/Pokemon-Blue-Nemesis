@@ -234,6 +234,13 @@ PokemonMansion1FRivalAfterBattleScript:
 	ld a, TEXT_POKEMONMANSION1F_RIVAL
 	ldh [hTextID], a
 	call DisplayTextID
+; He bails the moment he's beaten -- ESCAPE ROPE out, vanishing on the spot
+; (SFX + HideObject). The hidden flag persists in SRAM, so he never reappears
+; standing in the entrance on later visits.
+	ld a, SFX_GO_OUTSIDE
+	call PlaySound
+	call Delay3
+	call PokemonMansion1FHideRival
 	call PlayDefaultMusic
 	jp PokemonMansion1FResetScripts
 ; --- LOST --- no blackout on this map pre-ambush (home/overworld.asm). His
@@ -274,6 +281,7 @@ PokemonMansion1FRivalLeaveWaitScript:
 ; d-pad is what froze the loss path -- same two rules as the Mathus/Nocturn
 ; captured-flow fixes.)
 	call GBFadeOutToBlack
+	call PokemonMansion1FHideRival ; he's fled -- gone when the screen returns
 	call GBFadeInFromBlack
 	xor a
 	ld [wJoyIgnore], a
@@ -282,6 +290,14 @@ PokemonMansion1FRivalLeaveWaitScript:
 	call DisplayTextID
 	predef HealParty ; no blackout happened -- patch up the survivors
 	jp PokemonMansion1FResetScripts
+
+; Removes the rival sprite for good (toggleable-object flag, persists in SRAM),
+; so he doesn't respawn in the doorway once the ambush is over.
+PokemonMansion1FHideRival:
+	ld a, TOGGLE_POKEMON_MANSION_1F_RIVAL
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	ret
 
 PokemonMansion1FLabScientistPostBattle:
 	ld a, [wIsInBattle]
