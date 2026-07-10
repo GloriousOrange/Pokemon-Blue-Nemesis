@@ -133,7 +133,22 @@ PokemonMansion1FDefaultScript:
 	dw .ApproachToCol6
 	dw .ApproachToCol7
 
-.ApproachToCol4:
+; NOTE the leading extra step in each direction run: Gen-1 scripted NPC
+; movement spends the first byte of a run turning to face that direction
+; (no tile moved), so N tiles need N+1 bytes. Rival starts (6,22), must end
+; one tile above the player (row 25) aligned to the entered column.
+.ApproachToCol4: ; 3 down, 2 left
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_LEFT
+	db NPC_MOVEMENT_LEFT
+	db NPC_MOVEMENT_LEFT
+	db -1 ; end
+
+.ApproachToCol5: ; 3 down, 1 left
+	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
@@ -141,23 +156,19 @@ PokemonMansion1FDefaultScript:
 	db NPC_MOVEMENT_LEFT
 	db -1 ; end
 
-.ApproachToCol5:
+.ApproachToCol6: ; 3 down, aligned
 	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_LEFT
-	db -1 ; end
-
-.ApproachToCol6:
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db -1 ; end
 
-.ApproachToCol7:
+.ApproachToCol7: ; 3 down, 1 right
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_DOWN
+	db NPC_MOVEMENT_RIGHT
 	db NPC_MOVEMENT_RIGHT
 	db -1 ; end
 
