@@ -71,16 +71,21 @@ PokemonMansion1F_ScriptPointers:
 ; trigger discipline as the fixed Silph Co 7F fight: the trigger tick only
 ; arms sound/music and hands off; no text box opens until the movement
 ; finishes and the state after that ticks (see the Silph 7F freeze
-; postmortem). He's visible ahead at (6,22) and walks down to end up
-; face-to-face with the player, same shape as Route22FirstRivalBattleScript.
+; postmortem).
+;
+; The Cinnabar door always warps to mansion warp #2 = (5,27), and the player
+; auto-steps up to (5,26) -- so the ambush only ever triggers on column 5.
+; The rival waits 4 tiles straight ahead at (5,22), in the SAME column, and
+; walks straight down to (5,25), ending directly in front of the player,
+; face-to-face. Keeping him in-column is the whole fix: the previous
+; walk-down-then-sidestep scheme stepped into the player's occupied tile,
+; got blocked, and left him stuck one tile to the player's right.
 PokemonMansion1FDefaultScript:
 	CheckEvent EVENT_BEAT_LAB_RIVAL_AMBUSH
 	jp nz, CheckFightingMapTrainers
 	ld hl, .AmbushCoords
 	call ArePlayerCoordsInArray
 	jp nc, CheckFightingMapTrainers
-	ld a, [wCoordIndex]
-	ld [wSavedCoordIndex], a
 	xor a
 	ldh [hJoyHeld], a
 	ld a, PAD_CTRL_PAD
@@ -101,17 +106,7 @@ PokemonMansion1FDefaultScript:
 	ld a, POKEMONMANSION1F_RIVAL
 	ldh [hSpriteIndex], a
 	call SetSpriteMovementBytesToFF
-	ld a, [wSavedCoordIndex]
-	ld hl, .ApproachMovementPointers
-	add a
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	ld d, h
-	ld e, l
+	ld de, .ApproachMovement
 	call MoveSprite
 	ld a, SCRIPT_POKEMONMANSION1F_RIVAL_APPROACH
 	ld [wPokemonMansion1FCurScript], a
@@ -119,57 +114,16 @@ PokemonMansion1FDefaultScript:
 	ret
 
 .AmbushCoords:
-	dbmapcoord  4, 26
 	dbmapcoord  5, 26
-	dbmapcoord  6, 26
-	dbmapcoord  7, 26
 	db -1 ; end
 
-; He starts at (6,22); each list walks him down to end adjacent-above
-; whichever column the player entered on.
-.ApproachMovementPointers:
-	dw .ApproachToCol4
-	dw .ApproachToCol5
-	dw .ApproachToCol6
-	dw .ApproachToCol7
-
-; NOTE the leading extra step in each direction run: Gen-1 scripted NPC
-; movement spends the first byte of a run turning to face that direction
-; (no tile moved), so N tiles need N+1 bytes. Rival starts (6,22), must end
-; one tile above the player (row 25) aligned to the entered column.
-.ApproachToCol4: ; 3 down, 2 left
+; Rival starts at (5,22) already facing DOWN, so each DOWN byte moves a full
+; tile (no leading turn-only step): 3 bytes = 3 tiles, (5,22)->(5,25), one
+; tile above the player at (5,26).
+.ApproachMovement:
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
 	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_LEFT
-	db NPC_MOVEMENT_LEFT
-	db NPC_MOVEMENT_LEFT
-	db -1 ; end
-
-.ApproachToCol5: ; 3 down, 1 left
-	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_LEFT
-	db NPC_MOVEMENT_LEFT
-	db -1 ; end
-
-.ApproachToCol6: ; 3 down, aligned
-	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_DOWN
-	db -1 ; end
-
-.ApproachToCol7: ; 3 down, 1 right
-	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_DOWN
-	db NPC_MOVEMENT_RIGHT
-	db NPC_MOVEMENT_RIGHT
 	db -1 ; end
 
 PokemonMansion1FRivalApproachWaitScript:
