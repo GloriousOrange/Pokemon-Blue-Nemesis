@@ -106,6 +106,9 @@ IF DEF(_SPEEDTEST)
 	lb bc, PINSIR, 100
 	ld hl, .PinsirMoves
 	call .GiveBoxedMonWithMoves
+	lb bc, MEW, 100
+	ld hl, .MewMoves
+	call .GiveBoxedMonWithMoves
 ENDC
 	ret
 
@@ -115,6 +118,8 @@ ENDC
 	db THUNDERBOLT, BODY_SLAM, ROCK_SLIDE, FLY, EARTHQUAKE
 .PinsirMoves:
 	db WEB_CANNON, VICEGRIP, TWINEEDLE, SWORDS_DANCE, SEISMIC_TOSS
+.MewMoves:
+	db METRONOME2, PSYCHIC_M, FIRE_BLAST, MEGA_DRAIN, BODY_SLAM
 
 ; b = species, c = level, hl = pointer to a NUM_MOVES-byte moveset
 .GiveBoxedMonWithMoves:
