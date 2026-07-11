@@ -1,4 +1,12 @@
 ActivatePC::
+IF DEF(_SPEEDTEST)
+; One-time debug gift fires the first time any physical PC is opened -- this
+; is a DisplayTextID-hosted context, so SendNewMonToBox's built-in nickname
+; prompt and the "got X!" prints are legal here (same context as the vanilla
+; full-party Lapras gift). It previously ran at the main menu's Continue,
+; where no text/map UI exists -- froze with garbage graphics on first use.
+	farcall SpeedtestGiveDebugMons
+ENDC
 	call SaveScreenTilesToBuffer2
 	ld a, SFX_TURN_ON_PC
 	call PlaySound
