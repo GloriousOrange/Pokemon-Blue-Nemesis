@@ -94,6 +94,12 @@ BoxIsFullText:
 ; gift) -- LoadMovePPs then derives correct PP from the patched move IDs.
 SpeedtestGiveDebugMons::
 IF DEF(_SPEEDTEST)
+; Need 4 free box slots -- SendNewMonToBox has no overflow guard of its own,
+; so depositing into a (nearly) full box would corrupt it. If there's no
+; room, bail WITHOUT setting the flag so it retries on a later Continue.
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 3
+	ret nc
 	CheckEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
 	ret nz
 	SetEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
