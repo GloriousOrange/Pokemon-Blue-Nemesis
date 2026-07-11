@@ -539,7 +539,7 @@ PinsirEvosMoves:
 	db 37, WEB_CANNON
 	db 43, PIN_MISSILE
 	db 49, SLASH
-	db 54, SWORDS_DANCE
+	db 98, SWORDS_DANCE ; moved from level 54 (user request 2026-07-10)
 	db 0
 
 TangelaEvosMoves:
@@ -1760,6 +1760,7 @@ StarmieEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 98, AMNESIA ; user request 2026-07-10
 	db 0
 
 BulbasaurEvosMoves:

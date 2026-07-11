@@ -105,6 +105,9 @@ MainMenu:
 	jp nz, .mainMenuLoop
 	jr .inputLoop
 .pressedA
+IF DEF(_SPEEDTEST)
+	farcall SpeedtestGiveDebugMons
+ENDC
 	call GBPalWhiteOutWithDelay3
 	call ClearScreen
 	ld a, PLAYER_DIR_DOWN
