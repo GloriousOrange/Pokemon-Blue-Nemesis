@@ -1,7 +1,19 @@
 _BattleIslandSignText::
 	text "BATTLE ISLAND"
-	line "Challengers"
-	cont "welcome!"
+	line "3-on-3 battles!"
+
+	para "Store extra #MON"
+	line "in the house PC"
+	cont "before you fight."
+	done
+
+_BattleIslandTooManyMonsText::
+	text "Whoa there. Arena"
+	line "rules: 3-on-3."
+
+	para "Store the rest of"
+	line "your team in the"
+	cont "house PC first."
 	done
 
 _BattleIslandBugCatcherApproachesText::

@@ -47,10 +47,24 @@ BattleIslandSignText:
 	text_far _BattleIslandSignText
 	text_end
 
+BattleIslandTooManyMonsText:
+	text_far _BattleIslandTooManyMonsText
+	text_end
+
 ; Talk to the gatekeeper -> face a random challenger you haven't beaten yet.
 ; Once all 26 are beaten, Giovanni; afterward, endless random rematches.
+; ARENA RULE: 3-on-3 only. Every challenger fields exactly 3 mons, so the
+; player must too -- more than 3 in the party and the gatekeeper turns you
+; away to the house PC (north edge of the island) to store the rest.
 BattleIslandGatekeeperText:
 	text_asm
+	ld a, [wPartyCount]
+	cp 3 + 1
+	jr c, .partySizeOk
+	ld hl, BattleIslandTooManyMonsText
+	call PrintText
+	jp TextScriptEnd
+.partySizeOk
 	ld hl, wPostGameMisc
 	bit BIT_ARENA_GIOVANNI_DEFEATED, [hl]
 	jr nz, .endlessRandom
