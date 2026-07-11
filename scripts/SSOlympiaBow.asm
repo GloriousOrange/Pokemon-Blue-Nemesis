@@ -87,8 +87,25 @@ SSOlympiaBowRivalStartBattleScript:
 	call SaveEndBattleTextPointers
 	ld a, OPP_RIVAL3
 	ld [wCurOpponent], a
-	call GetPlayerPath ; a = 0/1/2 Hero/Loyalist/Traitor
-	add 38 ; trainer_no 38/39/40 (data/trainers/parties.asm)
+; Pick the path-tier team: trainer_no 38/39/40 = Hero/Loyalist/Traitor
+; (data/trainers/parties.asm). Inlined rather than `call GetPlayerPath` --
+; that helper lives in another bank, and a plain cross-bank `call` jumps
+; into garbage (and this repo's farcall clobbers `a` on bank-restore, so it
+; can't return a value in `a` either). Traitor overrides Loyalist, matching
+; GetPlayerPath's precedence.
+	ld a, [wPostGameMisc]
+	bit BIT_PLAYER_TRAITOR, a
+	jr nz, .traitorTeam
+	bit BIT_ROCKET_LOYALTY, a
+	jr nz, .loyalistTeam
+	ld a, 38 ; Hero (Tyranis)
+	jr .setTeam
+.loyalistTeam
+	ld a, 39 ; Loyalist (Miasma)
+	jr .setTeam
+.traitorTeam
+	ld a, 40 ; Traitor (Nocturn)
+.setTeam
 	ld [wTrainerNo], a
 	ld a, SCRIPT_SSOLYMPIABOW_RIVAL_AFTER_BATTLE
 	ld [wSSOlympiaBowCurScript], a
