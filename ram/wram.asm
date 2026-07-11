@@ -1952,12 +1952,23 @@ wMtMoonB2FCurScript:: db
 wSSAnne1FRoomsCurScript:: db
 wSSAnne2FRoomsCurScript:: db
 wRoute22CurScript:: db
-	ds 1
+; The S.S. Olympia CurScript bytes live in what used to be padding (`ds 1` /
+; `ds 7`) so every pre-existing WRAM address -- and therefore every existing
+; save file -- keeps its exact layout. The first version of this appended
+; them as NEW bytes mid-layout, which shifted everything after (event flags,
+; party data) by 10 and scrambled old saves on load.
+wSSOlympia1FCurScript:: db
 wRedsHouse2FCurScript:: db
 wViridianMartCurScript:: db
 wRoute22GateCurScript:: db
 wCeruleanCityCurScript:: db
-	ds 7
+wSSOlympia2FCurScript:: db
+wSSOlympia3FCurScript:: db
+wSSOlympiaB1FCurScript:: db
+wSSOlympiaBowCurScript:: db
+wSSOlympiaKitchenCurScript:: db
+wSSOlympiaCaptainsRoomCurScript:: db
+wSSOlympia1FRoomsCurScript:: db
 wSSAnneBowCurScript:: db
 wViridianForestCurScript:: db
 wMuseum1FCurScript:: db
@@ -1969,7 +1980,7 @@ wRoute21CurScript:: db
 wSafariZoneGateCurScript:: db
 wRockTunnelB1FCurScript:: db
 wRockTunnel1FCurScript:: db
-	ds 1
+wSSOlympia2FRoomsCurScript:: db
 wRoute11CurScript:: db
 wRoute12CurScript:: db
 wRoute15CurScript:: db
@@ -1988,23 +1999,13 @@ wRocketHideoutB1FCurScript:: db
 wRocketHideoutB2FCurScript:: db
 wRocketHideoutB3FCurScript:: db
 wRocketHideoutB4FCurScript:: db
-	ds 1
+wSSOlympiaB1FRoomsCurScript:: db
 wRoute6GateCurScript:: db
 wRoute8GateCurScript:: db
 	ds 1
 wCinnabarIslandCurScript:: db
 wPokemonMansion1FCurScript:: db
 	ds 1
-wSSOlympia1FCurScript:: db
-wSSOlympia2FCurScript:: db
-wSSOlympia3FCurScript:: db
-wSSOlympiaB1FCurScript:: db
-wSSOlympiaBowCurScript:: db
-wSSOlympiaKitchenCurScript:: db
-wSSOlympiaCaptainsRoomCurScript:: db
-wSSOlympia1FRoomsCurScript:: db
-wSSOlympia2FRoomsCurScript:: db
-wSSOlympiaB1FRoomsCurScript:: db
 wPokemonMansion2FCurScript:: db
 wPokemonMansion3FCurScript:: db
 wPokemonMansionB1FCurScript:: db
