@@ -1,14 +1,3 @@
-_BattleIslandStatueText::
-	text "A weathered stone"
-	line "#MON statue"
-	cont "guards the arena."
-	done
-
-_BattleIslandBoulderText::
-	text "Worn boulders ring"
-	line "the arena floor."
-	done
-
 _BattleIslandSignText::
 	text "BATTLE ISLAND"
 	line "3-on-3 battles!"
