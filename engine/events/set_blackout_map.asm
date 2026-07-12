@@ -1,4 +1,4 @@
-SetLastBlackoutMap:
+SetLastBlackoutMap::
 ; Set the map to return to when
 ; blacking out or using Teleport or Dig.
 ; Safari rest houses don't count.
