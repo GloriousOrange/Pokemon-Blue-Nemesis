@@ -40,8 +40,29 @@ BattleIslandPostBattleScript:
 
 BattleIsland_TextPointers:
 	def_text_pointers
-	dw_const BattleIslandGatekeeperText, TEXT_BATTLEISLAND_GATEKEEPER ; object_event (id 1)
-	dw_const BattleIslandSignText,       TEXT_BATTLEISLAND_SIGN        ; bg_event (id 2)
+	dw_const BattleIslandGatekeeperText, TEXT_BATTLEISLAND_GATEKEEPER ; object_event
+	dw_const BattleIslandStatueText,     TEXT_BATTLEISLAND_STATUE1    ; object_event
+	dw_const BattleIslandStatueText,     TEXT_BATTLEISLAND_STATUE2    ; object_event (shares text with STATUE1)
+	dw_const BattleIslandBoulderText,    TEXT_BATTLEISLAND_BOULDER1   ; object_event
+	dw_const BattleIslandBoulderText,    TEXT_BATTLEISLAND_BOULDER2   ; object_event (all boulders share one text)
+	dw_const BattleIslandBoulderText,    TEXT_BATTLEISLAND_BOULDER3
+	dw_const BattleIslandBoulderText,    TEXT_BATTLEISLAND_BOULDER4
+	dw_const BattleIslandBoulderText,    TEXT_BATTLEISLAND_BOULDER5
+	dw_const BattleIslandBoulderText,    TEXT_BATTLEISLAND_BOULDER6
+	dw_const BattleIslandBoulderText,    TEXT_BATTLEISLAND_BOULDER7
+	dw_const BattleIslandBoulderText,    TEXT_BATTLEISLAND_BOULDER8
+	dw_const BattleIslandBoulderText,    TEXT_BATTLEISLAND_BOULDER9
+	dw_const BattleIslandBoulderText,    TEXT_BATTLEISLAND_BOULDER10
+	dw_const BattleIslandBoulderText,    TEXT_BATTLEISLAND_BOULDER11
+	dw_const BattleIslandSignText,       TEXT_BATTLEISLAND_SIGN        ; bg_event -- must come after all object_events
+
+BattleIslandStatueText:
+	text_far _BattleIslandStatueText
+	text_end
+
+BattleIslandBoulderText:
+	text_far _BattleIslandBoulderText
+	text_end
 
 BattleIslandSignText:
 	text_far _BattleIslandSignText
