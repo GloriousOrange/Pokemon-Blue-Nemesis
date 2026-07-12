@@ -4,7 +4,6 @@ BattleIslandHouse_Script:
 BattleIslandHouse_TextPointers:
 	def_text_pointers
 	dw_const BattleIslandHouseNurseText, TEXT_BATTLEISLANDHOUSE_NURSE
-	dw_const BattleIslandHousePCText,    TEXT_BATTLEISLANDHOUSE_PC
 
 ; The Battle Island house healer is MEGAN (endgame heal point). Uses the shared
 ; girlfriend interaction (engine/overworld/megan.asm) -- heal-only here, since
@@ -16,5 +15,6 @@ BattleIslandHouseNurseText:
 	farcall MeganTalk
 	jp TextScriptEnd
 
-BattleIslandHousePCText:
-	script_pokecenter_pc
+; The PC is a shared hidden event (data/events/hidden_events.asm ->
+; OpenPokemonCenterPC -> PokemonCenterPCText), not a map-local text ID --
+; see every real Pokecenter for the same pattern.

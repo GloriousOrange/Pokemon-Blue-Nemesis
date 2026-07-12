@@ -91,6 +91,7 @@ HiddenEventMaps:
 	hidden_event_map VERMILION_CITY
 	hidden_event_map CERULEAN_CITY
 	hidden_event_map ROUTE_4
+	hidden_event_map BATTLE_ISLAND_HOUSE
 	db -1 ; end
 
 HiddenEventPointers:
@@ -183,6 +184,13 @@ DEF ANY_FACING EQU $d0
 
 	hidden_events_for PEWTER_POKECENTER
 	hidden_event  0,  4, PrintBenchGuyText, SPRITE_FACING_LEFT
+	hidden_event 13,  3, OpenPokemonCenterPC, SPRITE_FACING_UP
+	db -1 ; end
+
+; Battle Island house reuses the Pokecenter layout wholesale (its PC console
+; tile only exists in that tileset), so the PC hidden event sits at the same
+; coordinate every real Pokecenter uses.
+	hidden_events_for BATTLE_ISLAND_HOUSE
 	hidden_event 13,  3, OpenPokemonCenterPC, SPRITE_FACING_UP
 	db -1 ; end
 

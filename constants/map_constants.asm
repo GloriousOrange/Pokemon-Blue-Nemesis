@@ -281,7 +281,7 @@ DEF FIRST_INDOOR_MAP EQU const_value
 	map_const CINNABAR_LAB_FOSSIL_ROOM,       4,  4 ; $AA
 	map_const CINNABAR_POKECENTER,            7,  4 ; $AB
 	map_const CINNABAR_MART,                  4,  4 ; $AC
-	map_const BATTLE_ISLAND_HOUSE,            4,  4 ; $AD
+	map_const BATTLE_ISLAND_HOUSE,            7,  4 ; $AD (matches the Pokecenter layout it now reuses)
 	end_indoor_group CINNABAR_ISLAND
 
 	map_const INDIGO_PLATEAU_LOBBY,           8,  6 ; $AE
