@@ -581,8 +581,10 @@ StatModifierDownEffect:
 	ld a, [bc]
 	bit INVULNERABLE, a ; fly/dig
 	jp nz, MoveMissed
-; WEB_CANNON: custom Bug move -- lowers target Speed by 3 stages in one hit.
-; Special-cased here so the generic -1/-2 path below is left untouched.
+; WEB_CANNON: custom Bug move -- drops target Speed to the minimum (-6) in one hit.
+; Special-cased here so the generic -1/-2 path below is left untouched. Once the
+; target is already at -6, it falls through to CantLowerAnymore instead of
+; re-applying endlessly.
 	ldh a, [hWhoseTurn]
 	and a
 	ld a, [wPlayerMoveNum]
@@ -595,14 +597,9 @@ StatModifierDownEffect:
 	ld b, $0
 	add hl, bc ; hl -> target's Speed stat mod
 	ld a, [hl]
-	sub 3 ; lower 3 stages
-	jr c, .webCannonClamp
-	cp 1
-	jr nc, .webCannonStore
-.webCannonClamp
-	ld a, 1 ; clamp at -6 (stored as 1)
-.webCannonStore
-	ld b, a
+	cp 2 ; already at -6 (mod stored as 1)?
+	jp c, CantLowerAnymore ; if so, don't keep "lowering" it
+	ld b, 1 ; drop Speed to the minimum (-6) in one hit
 	ld c, 2 ; ensure SPEED index for the stat recalc below
 	jr .ok
 .notWebCannon
