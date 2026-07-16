@@ -229,6 +229,95 @@ CarrionWindEffect:
 .didntAffect
 	jp PrintDidntAffectText
 
+; Nemesis: Chaos Sting (Beedrill's lv38). A 70-power Bug attack that, after its
+; normal damage, has a 30% chance to inflict ONE random non-volatile status:
+; poison, burn, freeze, or paralysis -- never sleep. Honors the multi-status
+; system (ORs the chosen bit, never re-applies a status already present) and the
+; usual type immunities (Poison can't be poisoned, Fire can't be burned). Being
+; a damaging move whose effect is NOT in the SpecialEffects list, this runs
+; after damage is dealt, same dispatch path as Body Slam's paralysis chance.
+ChaosStingEffect:
+	call CheckTargetSubstitute
+	ret nz ; can't status a substitute
+	call BattleRandom
+	cp 30 percent + 1
+	ret nc ; 70% of the time, no bonus status
+; point hl at the target's status byte and de at its type1
+	ldh a, [hWhoseTurn]
+	and a
+	ld hl, wEnemyMonStatus
+	ld de, wEnemyMonType1
+	jr z, .gotTarget
+	ld hl, wBattleMonStatus
+	ld de, wBattleMonType1
+.gotTarget
+	bit FRZ, [hl]
+	ret nz ; a frozen target is already fully locked; don't layer onto freeze
+; roll the ailment: 0 = poison, 1 = burn, 2 = freeze, 3 = paralysis
+	call BattleRandom
+	and $03
+	jr z, .poison
+	dec a
+	jr z, .burn
+	dec a
+	jp z, .freeze
+	jp .paralyze
+.poison
+	bit PSN, [hl]
+	ret nz ; already poisoned
+	ld a, [de]
+	cp POISON
+	ret z ; Poison-type is immune
+	inc de
+	ld a, [de]
+	cp POISON
+	ret z
+	set PSN, [hl]
+	call ChaosStingResetToxic ; regular (not badly-) poison: clear stale Toxic state
+	ld hl, PoisonedText
+	jp PrintText
+.burn
+	bit BRN, [hl]
+	ret nz ; already burned
+	ld a, [de]
+	cp FIRE
+	ret z ; Fire-type is immune
+	inc de
+	ld a, [de]
+	cp FIRE
+	ret z
+	set BRN, [hl]
+	call HalveAttackDueToBurn
+	ld hl, BurnedText
+	jp PrintText
+.freeze
+	call ClearHyperBeam ; a freshly frozen mon drops any Hyper Beam recharge
+	set FRZ, [hl]
+	ld hl, FrozenText
+	jp PrintText
+.paralyze
+	bit PAR, [hl]
+	ret nz ; already paralyzed
+	set PAR, [hl]
+	call QuarterSpeedDueToParalysis
+	jp PrintMayNotAttackText
+
+ChaosStingResetToxic:
+; clear BADLY_POISONED + the Toxic counter on the target, so a plain poisoning
+; from Chaos Sting never inherits a stale Toxic multiplier (mirrors PoisonEffect)
+	ldh a, [hWhoseTurn]
+	and a
+	ld hl, wEnemyBattleStatus3
+	ld de, wEnemyToxicCounter
+	jr z, .ok
+	ld hl, wPlayerBattleStatus3
+	ld de, wPlayerToxicCounter
+.ok
+	res BADLY_POISONED, [hl]
+	xor a
+	ld [de], a
+	ret
+
 DrainHPEffect:
 	jpfar DrainHPEffect_
 
@@ -440,6 +529,25 @@ SuperInstinctEffect:
 	call StatModifierUpEffect
 	pop hl
 	ld [hl], EVASION_UP1_EFFECT
+	jp StatModifierUpEffect
+
+CrystallizeEffect:
+; Nemesis (Beedrill lv22): Harden-style self-buff that raises the user's own
+; Defense by two stages and Special by one. Same twice-through-the-stat-up-
+; routine trick as SuperInstinctEffect: point the move-effect byte at
+; DEFENSE_UP2_EFFECT, then SPECIAL_UP1_EFFECT. The byte is reloaded from the
+; move data each turn, so clobbering it here is safe.
+	ldh a, [hWhoseTurn]
+	and a
+	ld hl, wPlayerMoveEffect
+	jr z, .gotEffectPtr
+	ld hl, wEnemyMoveEffect
+.gotEffectPtr
+	ld [hl], DEFENSE_UP2_EFFECT
+	push hl
+	call StatModifierUpEffect
+	pop hl
+	ld [hl], SPECIAL_UP1_EFFECT
 	jp StatModifierUpEffect
 
 StatModifierUpEffect:

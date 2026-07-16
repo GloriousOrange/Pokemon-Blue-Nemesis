@@ -94,4 +94,6 @@
 	const CARRION_WIND_EFFECT        ; $57 - Nemesis: flinch on any accurate hit + badly-poison
 	const JACKPOT_EFFECT             ; $58 - Nemesis: deals damage + scatters $300-$1000 (Persian)
 	const SUPER_INSTINCT_EFFECT      ; $59 - Nemesis: raises user's accuracy + evasion by 1 each (Hitmonlee)
+	const CRYSTALLIZE_EFFECT         ; $5A - Nemesis: raises user's Defense by 2 + Special by 1 (Beedrill)
+	const CHAOS_STING_EFFECT         ; $5B - Nemesis: 30% chance of a random non-sleep status (Beedrill)
 DEF NUM_MOVE_EFFECTS EQU const_value - 1

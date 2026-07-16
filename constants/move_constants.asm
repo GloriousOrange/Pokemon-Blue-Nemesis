@@ -181,7 +181,9 @@
 	const UPPERCUT     ; ad - Fighting, always crits if user outspeeds target (Alakachamp)
 	const JACKPOT        ; ae - Normal, Pay Day-style: 80 dmg + scatters $300-$1000 (Persian, lv98)
 	const SUPER_INSTINCT ; af - Normal, raises user's accuracy + evasion by 1 each (Hitmonlee, lv22)
-	const STRUGGLE       ; b0
+	const CRYSTALLIZE    ; b0 - Normal, raises user's Defense by 2 + Special by 1 (Beedrill, lv22)
+	const CHAOS_STING    ; b1 - Bug, 70 dmg, 30% random status (any but sleep) (Beedrill, lv38)
+	const STRUGGLE       ; b2
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

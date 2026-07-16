@@ -176,5 +176,7 @@ MoveNames::
 	li "UPPERCUT"
 	li "JACKPOT"
 	li "INSTINCT"
+	li "CRYSTALLIZE"
+	li "CHAOS STING"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS

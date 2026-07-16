@@ -90,4 +90,6 @@ MoveEffectPointerTable:
 	dw CarrionWindEffect         ; CARRION_WIND_EFFECT
 	dw JackpotEffect             ; JACKPOT_EFFECT
 	dw SuperInstinctEffect       ; SUPER_INSTINCT_EFFECT
+	dw CrystallizeEffect         ; CRYSTALLIZE_EFFECT
+	dw ChaosStingEffect          ; CHAOS_STING_EFFECT
 	assert_table_length NUM_MOVE_EFFECTS

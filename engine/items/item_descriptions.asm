@@ -589,8 +589,8 @@ MachineSwordsDanceDesc:
 	prompt
 MachineWhirlwindDesc:
 	text "WHIRLWIND"
-	line "A FLYING-type"
-	cont "gust attack."
+	line "FLYING gust that"
+	cont "lowers ACCURACY."
 	prompt
 MachineMegaKickDesc:
 	text "MEGA KICK"

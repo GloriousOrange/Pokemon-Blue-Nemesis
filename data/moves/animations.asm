@@ -175,6 +175,8 @@ AttackAnimationPointers:
 	dw MegaPunchAnim    ; UPPERCUT
 	dw PayDayAnim       ; JACKPOT — reuse Pay Day's coin-scatter visuals
 	dw AgilityAnim      ; SUPER_INSTINCT — reuse Agility's focus-aura visuals
+	dw HardenAnim       ; CRYSTALLIZE — reuse Harden's hardening shimmer
+	dw TwineedleAnim    ; CHAOS_STING — reuse Twineedle's stinger visuals
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim

@@ -23,12 +23,12 @@ Moves:
 	move SCRATCH,      NO_ADDITIONAL_EFFECT,        40, NORMAL,       100, 35
 	move VICEGRIP,     NO_ADDITIONAL_EFFECT,        55, BUG,          100, 30
 	move GUILLOTINE,   NO_ADDITIONAL_EFFECT,        130, BUG,           50,  5
-	move RAZOR_WIND,   CHARGE_EFFECT,               80, NORMAL,        75, 10
+	move RAZOR_WIND,   CHARGE_EFFECT,              140, NORMAL,        75, 10
 	move SWORDS_DANCE, ATTACK_UP2_EFFECT,            0, NORMAL,       100, 30
 	move CUT,          NO_ADDITIONAL_EFFECT,        60, BUG,           95, 30
 	move GUST,         NO_ADDITIONAL_EFFECT,        60, FLYING,       100, 35
 	move WING_ATTACK,  NO_ADDITIONAL_EFFECT,        60, FLYING,       100, 35
-	move WHIRLWIND,    SWITCH_AND_TELEPORT_EFFECT,   0, FLYING,        85, 20
+	move WHIRLWIND,    ACCURACY_DOWN1_EFFECT,       20, FLYING,        85, 20
 	move FLY,          FLY_EFFECT,                  70, FLYING,        95, 15
 	move BIND,         TRAPPING_EFFECT,             15, NORMAL,        75, 20
 	move SLAM,         NO_ADDITIONAL_EFFECT,        80, NORMAL,        75, 20
@@ -186,5 +186,7 @@ Moves:
 	move UPPERCUT,     NO_ADDITIONAL_EFFECT,        95, FIGHTING,     100, 15
 	move JACKPOT,      JACKPOT_EFFECT,              80, NORMAL,       100, 10
 	move SUPER_INSTINCT, SUPER_INSTINCT_EFFECT,      0, NORMAL,       100, 20
+	move CRYSTALLIZE,  CRYSTALLIZE_EFFECT,           0, NORMAL,       100, 20
+	move CHAOS_STING,  CHAOS_STING_EFFECT,          70, BUG,         100, 15
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
 	assert_table_length NUM_ATTACKS

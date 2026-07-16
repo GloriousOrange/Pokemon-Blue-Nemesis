@@ -176,6 +176,8 @@ MoveSoundTable:
 	db SFX_BATTLE_13,          $00, $80 ; UPPERCUT (Mega Punch-ish sfx)
 	db SFX_TRAINER_APPEARED,   $00, $ff ; JACKPOT (Pay Day coin-jingle sfx)
 	db SFX_FAINT_FALL,         $20, $c0 ; SUPER_INSTINCT (match reused Agility sfx)
+	db SFX_BATTLE_14,          $11, $20 ; CRYSTALLIZE (match reused Harden sfx)
+	db SFX_BATTLE_1B,          $20, $c0 ; CHAOS_STING (match reused Twineedle sfx)
 	db SFX_BATTLE_0B,          $00, $80 ; STRUGGLE
 	assert_table_length NUM_ATTACKS
 	db SFX_BATTLE_0B,          $00, $80
