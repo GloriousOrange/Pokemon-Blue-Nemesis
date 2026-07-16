@@ -46,10 +46,22 @@ Saves to battery, same as a real cartridge.
   Normal self-buff that raises Defense by two stages and Special by one), and
   **Chaos Sting** (Beedrill, Lv. 38 — a 70-power Bug attack with a 30% chance
   to also inflict a random status: poison, burn, freeze, or paralysis, never
-  sleep).
+  sleep). Plus: **Rock Fists** (Geodude, Lv. 28 — a Rock move that hits 2-5
+  times for 30 each), **Chokehold** (Primeape, Lv. 33 — a Fighting-type Wrap
+  that traps for 2-5 turns at 20/turn), **Hot Oil** (Magmar, Lv. 36 — a
+  40-power Fire attack that *always* burns), **Bad Touch** (Drowzee, Lv. 42 —
+  always confuses, 100% accuracy), **Crush Coil** (Ekans & Arbok, Lv. 42 — a
+  Poison-type Wrap dealing 30/turn), and **Blood Suck** (Zubat, Lv. 32 — an
+  80-power Poison attack that heals the user for half the damage dealt).
 - **Reworked moves**: Whirlwind is now a 20-power Flying attack that lowers
   the target's accuracy by one stage (it no longer ends/flees the battle);
   Razor Wind hits much harder (base power raised to 140).
+- **New/earlier level-up moves** on several Pokemon, including: Charmander
+  learns Fire Punch (Lv. 10); Pikachu learns Flash (Lv. 7); Grimer learns Acid
+  (Lv. 7); Shellder learns Crystallize (Lv. 25). A few are deliberately placed
+  *above* the mon's evolution level to reward keeping it unevolved (see below):
+  Kabuto gets Cut (7), Crystallize (22) and Guillotine (42); Rhyhorn gets
+  Agility (44); Slowpoke gets Thunder (50).
 - **Status conditions can now stack** — a Pokemon can be, say, burned *and*
   confused at the same time, where the vanilla game only allowed one at a
   time. (Note: the battle HUD still only has room to show one status icon,
@@ -98,6 +110,19 @@ Saves to battery, same as a real cartridge.
 - The classic Gen 1 "badge boost" bug is fixed: repeatedly raising or lowering
   a stat no longer causes a Pokemon's *other* stats to slowly drift up or down.
   Stats are now recomputed cleanly after every stat-changing move.
+- **Cancelling an evolution now sticks.** If you press B to stop a Pokemon
+  evolving, it won't ask again until the Pokemon has gained 30 more levels
+  (vanilla nagged you every single level-up). This makes it practical to keep a
+  Pokemon in its earlier form to reach its unevolved-only moves. (Known beta
+  limitation: if you reorder your party or box/withdraw the Pokemon during that
+  30-level window, the "don't ask" timer can get misapplied — see Caveats.)
+- **Stat & growth-rate changes.** Several Pokemon got base-stat bumps —
+  e.g. Onix (HP), Muk (Def), Slowpoke (Special), Ekans/Zubat (Speed, Zubat is
+  now blisteringly fast), Shellder (Special & Speed), Kabuto (Def & Speed), and
+  Pikachu (very high Speed). Many species also level up faster: Pikachu,
+  Sandshrew, Beedrill, Geodude and Kabuto are now Fast-growth, and every
+  ordinary Slow-growth species was bumped to Medium-Slow (legendaries and
+  pseudo-legendaries were left as-is).
 - Wild encounter rates are reduced across routes, caves, and water tiles
   (Safari Zone is unchanged).
 - Vitamin (HP Up/Protein/Iron/Calcium/Carbos) and PP Up pricing/behavior may
@@ -136,6 +161,12 @@ core gameplay.
 - The S.S. Olympia rival superboss fight's "fallen partner" callback
   Pokemon is currently a placeholder Gengar rather than a dynamic reflection
   of your own starter — a known simplification, not a bug.
+- The "cancel evolution suppresses it for 30 levels" feature tracks the timer
+  by party slot, not by the individual Pokemon. If you shuffle your party order
+  or deposit/withdraw the Pokemon during those 30 levels, the timer can attach
+  to the wrong slot — a Pokemon might get asked to evolve again early, or a
+  different one might briefly refuse to evolve. Cancel again (or just keep
+  playing) and it sorts itself out.
 - Several custom Pokemon (Tyranis, Miasma, Nocturn) and Alakachamp currently
   use placeholder or reused sprites/cries rather than fully original art.
   (Alakachamp does now use its own crimson palette so it's easy to tell apart
