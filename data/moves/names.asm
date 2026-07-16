@@ -179,5 +179,6 @@ MoveNames::
 	li "CRYSTALLIZE"
 	li "CHAOS STING"
 	li "CHOKEHOLD"
+	li "ROCK FISTS"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS

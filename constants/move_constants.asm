@@ -184,7 +184,8 @@
 	const CRYSTALLIZE    ; b0 - Normal, raises user's Defense by 2 + Special by 1 (Beedrill, lv22)
 	const CHAOS_STING    ; b1 - Bug, 70 dmg, 30% random status (any but sleep) (Beedrill, lv38)
 	const CHOKEHOLD      ; b2 - Fighting, Wrap-style trap: 20 dmg/turn for 2-5 turns (Primeape, lv33)
-	const STRUGGLE       ; b3
+	const ROCK_FISTS     ; b3 - Rock, multi-hit: 30 dmg x 2-5 hits (Geodude, lv28)
+	const STRUGGLE       ; b4
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff
