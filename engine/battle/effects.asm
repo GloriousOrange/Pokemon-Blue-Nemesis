@@ -46,9 +46,6 @@ SleepEffect:
 	ld hl, AlreadyAsleepText
 	jp PrintText
 .notAlreadySleeping
-	ld a, b
-	and a
-	jr nz, .didntAffect ; can't affect a mon that is already statused
 	push de
 	call MoveHitTest ; apply accuracy tests
 	pop de
@@ -60,6 +57,11 @@ SleepEffect:
 	call BattleRandom
 	and SLP_MASK
 	jr z, .setSleepCounter
+; Nemesis: OR the counter in so an existing PSN/BRN/FRZ/PAR status is preserved
+	ld b, a
+	ld a, [de]
+	and %11111000
+	or b
 	ld [de], a
 	call PlayCurrentMoveAnimation2
 	ld hl, FellAsleepText
@@ -88,8 +90,8 @@ PoisonEffect:
 	jr nz, .noEffect ; can't poison a substitute target
 	ld a, [hli]
 	ld b, a
-	and a
-	jr nz, .noEffect ; miss if target is already statused
+	bit PSN, a
+	jr nz, .noEffect ; Nemesis: only skip if already poisoned; other statuses can stack
 	ld a, [hli]
 	cp POISON ; can't poison a poison-type target
 	jr z, .noEffect
@@ -133,10 +135,7 @@ PoisonEffect:
 	ld de, wEnemyToxicCounter
 .ok
 	cp TOXIC
-	jr z, .badlyPoison
-	cp CARRION_WIND ; Nemesis: Carrion Wind badly-poisons like Toxic
-	jr nz, .normalPoison ; done if move is neither Toxic nor Carrion Wind
-.badlyPoison
+	jr nz, .normalPoison ; done if move is not Toxic
 	set BADLY_POISONED, [hl] ; else set Toxic battstatus
 	xor a
 	ld [de], a
@@ -157,7 +156,6 @@ PoisonEffect:
 	jp PrintText
 .regularPoisonEffect
 	call PlayCurrentMoveAnimation2
-	call CarrionWindFlinch ; Nemesis: Carrion Wind also flinches the target
 	jp PrintText
 .noEffect
 	ld a, [de]
@@ -176,30 +174,60 @@ BadlyPoisonedText:
 	text_far _BadlyPoisonedText
 	text_end
 
-; Nemesis: Carrion Wind (Miasma's signature) flinches the target on a successful
-; hit, on top of its priority and badly-poison. hl holds the poison text pointer
-; on entry and must survive for the caller's PrintText, so preserve it.
-CarrionWindFlinch:
-	push hl
-	ldh a, [hWhoseTurn]
+; Nemesis: Carrion Wind (Miasma's signature). On ANY accurate hit it flinches the
+; target; then it badly-poisons the target unless the target is a Poison-type.
+; Combined with its guaranteed-first priority (turn-order code), the flinch makes
+; the target lose its turn. Statuses stack, so no "already statused" check.
+CarrionWindEffect:
+	call CheckTargetSubstitute
+	jr nz, .didntAffect ; can't flinch or poison through a substitute
+	call MoveHitTest ; accuracy test
+	ld a, [wMoveMissed]
 	and a
-	ld a, [wPlayerMoveNum]
-	jr z, .gotMove
-	ld a, [wEnemyMoveNum]
-.gotMove
-	cp CARRION_WIND
-	jr nz, .done
+	jr nz, .didntAffect
+; hit -> flinch the target unconditionally
 	ld hl, wEnemyBattleStatus1 ; player attacking -> flinch the enemy
 	ldh a, [hWhoseTurn]
 	and a
-	jr z, .setFlinch
+	jr z, .gotFlinchTarget
 	ld hl, wPlayerBattleStatus1 ; enemy attacking -> flinch the player
-.setFlinch
+.gotFlinchTarget
 	set FLINCHED, [hl]
 	call ClearHyperBeam
-.done
-	pop hl
+; then badly-poison the target unless it is Poison-type
+	ldh a, [hWhoseTurn]
+	and a
+	ld hl, wEnemyMonStatus
+	ld de, wEnemyBattleStatus3
+	ld bc, wEnemyToxicCounter
+	jr z, .gotPoisonTarget
+	ld hl, wBattleMonStatus
+	ld de, wPlayerBattleStatus3
+	ld bc, wPlayerToxicCounter
+.gotPoisonTarget
+	inc hl
+	ld a, [hli] ; type 1 (status byte skipped)
+	cp POISON
+	jr z, .poisonImmune
+	ld a, [hl] ; type 2
+	cp POISON
+	jr z, .poisonImmune
+	dec hl
+	dec hl ; hl -> status byte
+	set PSN, [hl]
+	ld a, [de]
+	set BADLY_POISONED, a
+	ld [de], a
+	xor a
+	ld [bc], a ; reset the toxic counter for a fresh badly-poison
+	call PlayCurrentMoveAnimation2
+	ld hl, BadlyPoisonedText
+	jp PrintText
+.poisonImmune ; still flinched, just no poison
+	call PlayCurrentMoveAnimation2
 	ret
+.didntAffect
+	jp PrintDidntAffectText
 
 DrainHPEffect:
 	jpfar DrainHPEffect_
@@ -232,8 +260,8 @@ FreezeBurnParalyzeEffect:
 	and a
 	jp nz, .opponentAttacker
 	ld a, [wEnemyMonStatus]
-	and a
-	jp nz, CheckDefrost ; can't inflict status if opponent is already statused
+	and 1 << FRZ
+	jp nz, CheckDefrost ; Nemesis: only a frozen target short-circuits (thaw on fire); other statuses stack
 	ld a, [wPlayerMoveType]
 	ld b, a
 	ld a, [wEnemyMonType1]
@@ -263,14 +291,20 @@ FreezeBurnParalyzeEffect:
 	cp FREEZE_SIDE_EFFECT1
 	jr z, .freeze1
 ; paralyze1
-	ld a, 1 << PAR
+	ld a, [wEnemyMonStatus]
+	bit PAR, a
+	ret nz ; Nemesis: already paralyzed -> don't re-apply (would re-quarter speed)
+	or 1 << PAR
 	ld [wEnemyMonStatus], a
 	call QuarterSpeedDueToParalysis ; quarter speed of affected mon
 	ld a, ENEMY_HUD_SHAKE_ANIM
 	call PlayBattleAnimation
 	jp PrintMayNotAttackText ; print paralysis text
 .burn1
-	ld a, 1 << BRN
+	ld a, [wEnemyMonStatus]
+	bit BRN, a
+	ret nz ; Nemesis: already burned -> don't re-apply (would re-halve attack)
+	or 1 << BRN
 	ld [wEnemyMonStatus], a
 	call HalveAttackDueToBurn ; halve attack of affected mon
 	ld a, ENEMY_HUD_SHAKE_ANIM
@@ -279,7 +313,8 @@ FreezeBurnParalyzeEffect:
 	jp PrintText
 .freeze1
 	call ClearHyperBeam ; resets hyper beam (recharge) condition from target
-	ld a, 1 << FRZ
+	ld a, [wEnemyMonStatus]
+	or 1 << FRZ
 	ld [wEnemyMonStatus], a
 	ld a, ENEMY_HUD_SHAKE_ANIM
 	call PlayBattleAnimation
@@ -287,8 +322,8 @@ FreezeBurnParalyzeEffect:
 	jp PrintText
 .opponentAttacker
 	ld a, [wBattleMonStatus] ; mostly same as above with addresses swapped for opponent
-	and a
-	jp nz, CheckDefrost
+	and 1 << FRZ
+	jp nz, CheckDefrost ; Nemesis: only a frozen target short-circuits; other statuses stack
 	ld a, [wEnemyMoveType]
 	ld b, a
 	ld a, [wBattleMonType1]
@@ -316,19 +351,26 @@ FreezeBurnParalyzeEffect:
 	cp FREEZE_SIDE_EFFECT1
 	jr z, .freeze2
 ; paralyze2
-	ld a, 1 << PAR
+	ld a, [wBattleMonStatus]
+	bit PAR, a
+	ret nz ; Nemesis: already paralyzed -> don't re-apply (would re-quarter speed)
+	or 1 << PAR
 	ld [wBattleMonStatus], a
 	call QuarterSpeedDueToParalysis
 	jp PrintMayNotAttackText
 .burn2
-	ld a, 1 << BRN
+	ld a, [wBattleMonStatus]
+	bit BRN, a
+	ret nz ; Nemesis: already burned -> don't re-apply (would re-halve attack)
+	or 1 << BRN
 	ld [wBattleMonStatus], a
 	call HalveAttackDueToBurn
 	ld hl, BurnedText
 	jp PrintText
 .freeze2
 ; hyper beam bits aren't reset for opponent's side
-	ld a, 1 << FRZ
+	ld a, [wBattleMonStatus]
+	or 1 << FRZ
 	ld [wBattleMonStatus], a
 	ld hl, FrozenText
 	jp PrintText
@@ -1238,8 +1280,8 @@ MindFeverPoison:
 	ld hl, wBattleMonStatus ; enemy attacking -> poison the player
 .gotTarget
 	ld a, [hli]
-	and a
-	ret nz ; already has a non-volatile status -> can't poison
+	bit PSN, a
+	ret nz ; already poisoned -> skip (other statuses can stack)
 	ld a, [hli]
 	cp POISON
 	ret z ; Poison-types can't be poisoned

@@ -91,4 +91,5 @@
 	const LEECH_SEED_EFFECT          ; $54
 	const SPLASH_EFFECT              ; $55
 	const DISABLE_EFFECT             ; $56
+	const CARRION_WIND_EFFECT        ; $57 - Nemesis: flinch on any accurate hit + badly-poison
 DEF NUM_MOVE_EFFECTS EQU const_value - 1
