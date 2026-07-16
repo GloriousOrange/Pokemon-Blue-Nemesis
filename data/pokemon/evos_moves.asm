@@ -351,6 +351,7 @@ GrimerEvosMoves:
 	db EVOLVE_LEVEL, 38, MUK
 	db 0
 ; Learnset
+	db 7, ACID
 	db 30, POISON_GAS
 	db 33, MINIMIZE
 	db 37, SLUDGE
@@ -409,6 +410,7 @@ RhyhornEvosMoves:
 	db 30, STOMP
 	db 35, TAIL_WHIP
 	db 40, FURY_ATTACK
+	db 44, AGILITY
 	db 45, HORN_DRILL
 	db 50, LEER
 	db 55, TAKE_DOWN
@@ -460,6 +462,7 @@ ShellderEvosMoves:
 ; Learnset
 	db 18, SUPERSONIC
 	db 23, CLAMP
+	db 25, CRYSTALLIZE
 	db 30, AURORA_BEAM
 	db 39, LEER
 	db 50, ICE_BEAM
@@ -624,6 +627,7 @@ SlowpokeEvosMoves:
 	db 33, WATER_GUN
 	db 40, AMNESIA
 	db 48, PSYCHIC_M
+	db 50, THUNDER
 	db 0
 
 KadabraEvosMoves:
@@ -721,6 +725,7 @@ ArbokEvosMoves:
 	db 17, BITE
 	db 27, GLARE
 	db 36, SCREECH
+	db 42, CRUSH_COIL
 	db 47, ACID
 	db 0
 
@@ -758,6 +763,7 @@ DrowzeeEvosMoves:
 	db 29, POISON_GAS
 	db 32, PSYCHIC_M
 	db 37, MEDITATE
+	db 42, BAD_TOUCH
 	db 0
 
 GolemEvosMoves:
@@ -782,6 +788,7 @@ MagmarEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 36, HOT_OIL
 	db 36, LEER
 	db 39, CONFUSE_RAY
 	db 43, FIRE_PUNCH
@@ -1146,8 +1153,11 @@ KabutoEvosMoves:
 	db EVOLVE_LEVEL, 40, KABUTOPS
 	db 0
 ; Learnset
+	db 7, CUT
+	db 22, CRYSTALLIZE
 	db 34, ABSORB
 	db 39, SLASH
+	db 42, GUILLOTINE
 	db 44, LEER
 	db 49, HYDRO_PUMP
 	db 0
@@ -1337,6 +1347,7 @@ ZubatEvosMoves:
 	db 15, BITE
 	db 21, CONFUSE_RAY
 	db 28, WING_ATTACK
+	db 32, BLOOD_SUCK
 	db 36, HAZE
 	db 0
 
@@ -1350,6 +1361,7 @@ EkansEvosMoves:
 	db 24, GLARE
 	db 31, SCREECH
 	db 38, ACID
+	db 42, CRUSH_COIL
 	db 0
 
 ParasEvosMoves:
