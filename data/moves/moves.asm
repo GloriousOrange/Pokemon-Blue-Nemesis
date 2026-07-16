@@ -178,9 +178,9 @@ Moves:
 	move DOUBLE_DRILL, DEFENSE_DOWN_SIDE_EFFECT,    80, FLYING,      100, 20
 	move HYPER_BEAMS,  HYPER_BEAM_EFFECT,          255, NORMAL,       100,  1
 	move METRONOME2,   METRONOME_EFFECT,             0, NORMAL,       100, 10
-	move CARRION_WIND, POISON_EFFECT,                0, POISON,        85, 10
+	move CARRION_WIND, POISON_EFFECT,                0, POISON,        85,  1
 	move BLIGHT_VOMIT, PARALYZE_SIDE_EFFECT2,       80, POISON,       100, 15
-	move MIND_FEVER,   CONFUSION_EFFECT,             0, GHOST,        100, 10
+	move MIND_FEVER,   CONFUSION_EFFECT,             0, GHOST,        100,  1
 	move PHANTOM_WING, SPECIAL_DOWN_SIDE_EFFECT,    80, GHOST,        100, 10
 	move WEB_CANNON,   SPEED_DOWN1_EFFECT,           0, BUG,           95, 10
 	move UPPERCUT,     NO_ADDITIONAL_EFFECT,        95, FIGHTING,     100, 15

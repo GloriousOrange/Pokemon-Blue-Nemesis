@@ -157,6 +157,7 @@ PoisonEffect:
 	jp PrintText
 .regularPoisonEffect
 	call PlayCurrentMoveAnimation2
+	call CarrionWindFlinch ; Nemesis: Carrion Wind also flinches the target
 	jp PrintText
 .noEffect
 	ld a, [de]
@@ -174,6 +175,31 @@ PoisonedText:
 BadlyPoisonedText:
 	text_far _BadlyPoisonedText
 	text_end
+
+; Nemesis: Carrion Wind (Miasma's signature) flinches the target on a successful
+; hit, on top of its priority and badly-poison. hl holds the poison text pointer
+; on entry and must survive for the caller's PrintText, so preserve it.
+CarrionWindFlinch:
+	push hl
+	ldh a, [hWhoseTurn]
+	and a
+	ld a, [wPlayerMoveNum]
+	jr z, .gotMove
+	ld a, [wEnemyMoveNum]
+.gotMove
+	cp CARRION_WIND
+	jr nz, .done
+	ld hl, wEnemyBattleStatus1 ; player attacking -> flinch the enemy
+	ldh a, [hWhoseTurn]
+	and a
+	jr z, .setFlinch
+	ld hl, wPlayerBattleStatus1 ; enemy attacking -> flinch the player
+.setFlinch
+	set FLINCHED, [hl]
+	call ClearHyperBeam
+.done
+	pop hl
+	ret
 
 DrainHPEffect:
 	jpfar DrainHPEffect_
@@ -1177,7 +1203,8 @@ ConfusionSideEffectSuccess:
 	cp CONFUSION_SIDE_EFFECT
 	call nz, PlayCurrentMoveAnimation2
 	ld hl, BecameConfusedText
-	jp PrintText
+	call PrintText
+	jp MindFeverPoison ; Nemesis: Mind Fever also poisons ("curse"); no-op for other confuse moves
 
 BecameConfusedText:
 	text_far _BecameConfusedText
@@ -1189,6 +1216,52 @@ ConfusionEffectFailed:
 	ld c, 50
 	call DelayFrames
 	jp ConditionalPrintButItFailed
+
+; Nemesis: Mind Fever (Nocturn's signature) poisons the target in addition to
+; confusing it. Regular poison, and only if the target has no status yet and
+; isn't a Poison-type. Returns immediately for every other confusion move.
+; (Placed after ConfusionEffectFailed so it doesn't push that label out of
+; jr range of the confusion checks above.)
+MindFeverPoison:
+	ldh a, [hWhoseTurn]
+	and a
+	ld a, [wPlayerMoveNum]
+	jr z, .checkMove
+	ld a, [wEnemyMoveNum]
+.checkMove
+	cp MIND_FEVER
+	ret nz
+	ld hl, wEnemyMonStatus ; player attacking -> poison the enemy
+	ldh a, [hWhoseTurn]
+	and a
+	jr z, .gotTarget
+	ld hl, wBattleMonStatus ; enemy attacking -> poison the player
+.gotTarget
+	ld a, [hli]
+	and a
+	ret nz ; already has a non-volatile status -> can't poison
+	ld a, [hli]
+	cp POISON
+	ret z ; Poison-types can't be poisoned
+	ld a, [hl]
+	cp POISON
+	ret z
+	dec hl
+	dec hl ; hl -> target status byte
+	set PSN, [hl]
+	ld hl, wEnemyBattleStatus3
+	ld de, wEnemyToxicCounter
+	ldh a, [hWhoseTurn]
+	and a
+	jr z, .clearToxic
+	ld hl, wPlayerBattleStatus3
+	ld de, wPlayerToxicCounter
+.clearToxic
+	res BADLY_POISONED, [hl] ; fresh poison must not inherit a stale Toxic multiplier
+	xor a
+	ld [de], a
+	ld hl, PoisonedText
+	jp PrintText
 
 ParalyzeEffect:
 	jpfar ParalyzeEffect_
