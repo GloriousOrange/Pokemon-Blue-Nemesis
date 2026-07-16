@@ -95,6 +95,9 @@ Saves to battery, same as a real cartridge.
   trainer battles, sparser gifts, one big reward cache later on).
 - Enemy trainers never use items or switch Pokemon mid-battle, on any
   difficulty — they always just attack.
+- The classic Gen 1 "badge boost" bug is fixed: repeatedly raising or lowering
+  a stat no longer causes a Pokemon's *other* stats to slowly drift up or down.
+  Stats are now recomputed cleanly after every stat-changing move.
 - Wild encounter rates are reduced across routes, caves, and water tiles
   (Safari Zone is unchanged).
 - Vitamin (HP Up/Protein/Iron/Calcium/Carbos) and PP Up pricing/behavior may
