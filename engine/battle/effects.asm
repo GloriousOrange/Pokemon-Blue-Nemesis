@@ -1246,7 +1246,7 @@ ConfusionSideEffectSuccess:
 	call nz, PlayCurrentMoveAnimation2
 	ld hl, BecameConfusedText
 	call PrintText
-	jp MindFeverPoison ; Nemesis: Mind Fever also poisons ("curse"); no-op for other confuse moves
+	jp MindFeverBurn ; Nemesis: Mind Fever also burns ("curse"); no-op for other confuse moves
 
 BecameConfusedText:
 	text_far _BecameConfusedText
@@ -1259,12 +1259,12 @@ ConfusionEffectFailed:
 	call DelayFrames
 	jp ConditionalPrintButItFailed
 
-; Nemesis: Mind Fever (Nocturn's signature) poisons the target in addition to
-; confusing it. Regular poison, and only if the target has no status yet and
-; isn't a Poison-type. Returns immediately for every other confusion move.
-; (Placed after ConfusionEffectFailed so it doesn't push that label out of
-; jr range of the confusion checks above.)
-MindFeverPoison:
+; Nemesis: Mind Fever (Nocturn's signature) burns the target in addition to
+; confusing it, and only if the target isn't already burned and isn't a
+; Fire-type. Returns immediately for every other confusion move. (Placed after
+; ConfusionEffectFailed so it doesn't push that label out of jr range of the
+; confusion checks above.)
+MindFeverBurn:
 	ldh a, [hWhoseTurn]
 	and a
 	ld a, [wPlayerMoveNum]
@@ -1273,36 +1273,26 @@ MindFeverPoison:
 .checkMove
 	cp MIND_FEVER
 	ret nz
-	ld hl, wEnemyMonStatus ; player attacking -> poison the enemy
+	ld hl, wEnemyMonStatus ; player attacking -> burn the enemy
 	ldh a, [hWhoseTurn]
 	and a
 	jr z, .gotTarget
-	ld hl, wBattleMonStatus ; enemy attacking -> poison the player
+	ld hl, wBattleMonStatus ; enemy attacking -> burn the player
 .gotTarget
 	ld a, [hli]
-	bit PSN, a
-	ret nz ; already poisoned -> skip (other statuses can stack)
+	bit BRN, a
+	ret nz ; already burned -> skip (would re-halve attack)
 	ld a, [hli]
-	cp POISON
-	ret z ; Poison-types can't be poisoned
+	cp FIRE
+	ret z ; Fire-types can't be burned
 	ld a, [hl]
-	cp POISON
+	cp FIRE
 	ret z
 	dec hl
 	dec hl ; hl -> target status byte
-	set PSN, [hl]
-	ld hl, wEnemyBattleStatus3
-	ld de, wEnemyToxicCounter
-	ldh a, [hWhoseTurn]
-	and a
-	jr z, .clearToxic
-	ld hl, wPlayerBattleStatus3
-	ld de, wPlayerToxicCounter
-.clearToxic
-	res BADLY_POISONED, [hl] ; fresh poison must not inherit a stale Toxic multiplier
-	xor a
-	ld [de], a
-	ld hl, PoisonedText
+	set BRN, [hl]
+	call HalveAttackDueToBurn
+	ld hl, BurnedText
 	jp PrintText
 
 ParalyzeEffect:

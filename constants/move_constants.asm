@@ -175,7 +175,7 @@
 	const METRONOME2   ; a7 - HM move: rolls a random move from a fixed 21-move list
 	const CARRION_WIND ; a8 - Poison, badly-poison status (Miasma)
 	const BLIGHT_VOMIT ; a9 - Poison, dmg + paralyze (Miasma)
-	const MIND_FEVER   ; aa - Ghost, confusion 'curse' (Nocturn)
+	const MIND_FEVER   ; aa - Ghost, confuse + burn 'curse' (Nocturn)
 	const PHANTOM_WING ; ab - Ghost, dmg + lower Special (Nocturn)
 	const WEB_CANNON   ; ac - Bug, drops target Speed to minimum (-6) in one hit (Toby)
 	const UPPERCUT     ; ad - Fighting, always crits if user outspeeds target (Alakachamp)
