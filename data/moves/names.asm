@@ -174,5 +174,6 @@ MoveNames::
 	li "PHANTOM WING"
 	li "WEB CANNON"
 	li "UPPERCUT"
+	li "JACKPOT"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS

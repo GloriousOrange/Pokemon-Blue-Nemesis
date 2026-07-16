@@ -164,6 +164,7 @@ INCLUDE "gfx/trainer_card.asm"
 INCLUDE "engine/items/tmhm.asm"
 INCLUDE "engine/battle/scale_sprites.asm"
 INCLUDE "engine/battle/move_effects/pay_day.asm"
+INCLUDE "engine/battle/move_effects/jackpot.asm"
 INCLUDE "engine/slots/game_corner_slots2.asm"
 
 

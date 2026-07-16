@@ -173,6 +173,7 @@ AttackAnimationPointers:
 	dw WingAttackAnim   ; PHANTOM_WING
 	dw StringShotAnim   ; WEB_CANNON
 	dw MegaPunchAnim    ; UPPERCUT
+	dw PayDayAnim       ; JACKPOT — reuse Pay Day's coin-scatter visuals
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim

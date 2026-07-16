@@ -179,7 +179,8 @@
 	const PHANTOM_WING ; ab - Ghost, dmg + lower Special (Nocturn)
 	const WEB_CANNON   ; ac - Bug, drops target Speed to minimum (-6) in one hit (Toby)
 	const UPPERCUT     ; ad - Fighting, always crits if user outspeeds target (Alakachamp)
-	const STRUGGLE     ; ae
+	const JACKPOT      ; ae - Normal, Pay Day-style: 80 dmg + scatters $300-$1000 (Persian, lv98)
+	const STRUGGLE     ; af
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

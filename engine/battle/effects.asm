@@ -1506,6 +1506,9 @@ MoveWasDisabledText:
 PayDayEffect:
 	jpfar PayDayEffect_
 
+JackpotEffect:
+	jpfar JackpotEffect_
+
 ConversionEffect:
 	jpfar ConversionEffect_
 

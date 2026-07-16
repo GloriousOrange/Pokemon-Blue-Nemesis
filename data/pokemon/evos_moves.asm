@@ -1683,6 +1683,7 @@ PersianEvosMoves:
 	db 24, SCREECH
 	db 37, FURY_SWIPES
 	db 51, SLASH
+	db 98, JACKPOT
 	db 0
 
 MarowakEvosMoves:
