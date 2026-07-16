@@ -11,7 +11,7 @@
 	dw GrowlithePicFront, GrowlithePicBack
 
 	db BITE, ROAR, NO_MOVE, NO_MOVE ; level 1 learnset
-	db GROWTH_SLOW ; growth rate
+	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset
 	tmhm TOXIC, BODY_SLAM, TAKE_DOWN, DOUBLE_EDGE, RAGE,  \
