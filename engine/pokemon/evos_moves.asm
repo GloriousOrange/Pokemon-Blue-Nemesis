@@ -106,6 +106,10 @@ Evolution_PartyMonLoop: ; loop over party mons
 	ld a, [wLoadedMonLevel]
 	cp b ; is the mon's level greater than the evolution requirement?
 	jp c, .nextEvoEntry2 ; if so, go the next evolution entry
+; Nemesis: if this mon's evolution was recently cancelled, suppress it until the
+; mon has gained 30 more levels (see wPartyEvoSuppress).
+	call CheckEvoSuppressed
+	jp c, .nextEvoEntry2
 .doEvolution
 	ld [wCurEnemyLevel], a
 	ld a, 1
@@ -307,7 +311,40 @@ CancelledEvolution:
 	call ClearScreen
 	pop hl
 	call Evolution_ReloadTilesetTilePatterns
+	call SuppressEvoFor30Levels ; Nemesis: don't re-offer this evo for 30 levels
 	jp Evolution_PartyMonLoop
+
+; Nemesis helpers for the "cancel evolution -> suppress for 30 levels" feature.
+; Both key off wWhichPokemon (current party slot) and wLoadedMonLevel (the mon's
+; current level, loaded for this iteration).
+
+CheckEvoSuppressed:
+; Returns carry set if this mon's stored suppress-until level is above its
+; current level (i.e. its evolution should be skipped). Preserves hl/bc/de.
+	push hl
+	push bc
+	ld a, [wWhichPokemon]
+	ld c, a
+	ld b, 0
+	ld hl, wPartyEvoSuppress
+	add hl, bc
+	ld a, [wLoadedMonLevel]
+	cp [hl] ; carry if currentLevel < suppressUntil (0 -> never carries)
+	pop bc
+	pop hl
+	ret
+
+SuppressEvoFor30Levels:
+; Store currentLevel + 30 as the suppress-until level for this party slot.
+	ld a, [wWhichPokemon]
+	ld c, a
+	ld b, 0
+	ld hl, wPartyEvoSuppress
+	add hl, bc
+	ld a, [wLoadedMonLevel]
+	add 30 ; level caps at 100, so this never overflows a byte
+	ld [hl], a
+	ret
 
 EvolvedText:
 	text_far _EvolvedText

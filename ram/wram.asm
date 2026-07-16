@@ -1741,6 +1741,12 @@ wPartyMon{d:n}Nick:: ds NAME_LENGTH
 ENDR
 wPartyMonNicksEnd::
 
+; Nemesis: per party-slot "do not evolve until this level" value (0 = no
+; suppression). Set to currentLevel+30 when the player cancels an evolution so
+; the game stops offering it every level-up. Lives inside the saved party block
+; (sPartyData auto-sizes from wPartyDataEnd - wPartyDataStart), so it persists.
+wPartyEvoSuppress:: ds PARTY_LENGTH
+
 wPartyDataEnd::
 
 
