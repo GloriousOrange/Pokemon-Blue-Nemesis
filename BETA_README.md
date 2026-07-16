@@ -5,8 +5,9 @@ that's changed from the vanilla game, mechanically — no story spoilers, just
 patch notes. If something looks broken, weird, or unfinished, that's exactly
 what this beta is for; please report it.
 
-Runs on any Game Boy Color emulator (tested on Pizza Boy GBC for Android).
-Saves to battery, same as a real cartridge.
+Runs on Game Boy Color emulators — use **Nostalgia** on Android (Pizza Boy GBC
+does *not* run this build correctly). Saves to battery, same as a real
+cartridge.
 
 ## New Areas
 
@@ -19,8 +20,9 @@ Saves to battery, same as a real cartridge.
 - **The Living-Dex Archipelago** — a chain of 8 seamlessly connected islands
   (plus a 3-floor cave with a hidden "grotto" pool) branching off Battle
   Island. Together they host all 151 catchable Pokemon at Lv. 50-60, with
-  the 5 legendary birds, Mewtwo, and Mew each placed at a rare (~1%)
-  encounter slot on their island.
+  the 6 legendary birds (the three vanilla birds plus Tyranis, Miasma, and
+  Nocturn), Mewtwo, and Mew each placed at a rare (~1%) encounter slot on
+  their island.
 - **S.S. Olympia** — an endgame ship, reachable from Vermilion Dock once
   you've beaten the Champion and hold a Master Ball. Rocket-crewed, with 20
   Level 100 trainers spread across its decks and a Rival superboss fight on
