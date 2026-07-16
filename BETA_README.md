@@ -33,28 +33,37 @@ cartridge.
 
 - **New species**: Tyranis, Miasma, and Nocturn (three new legendary-tier
   birds), plus Alakachamp (a Fighting/Psychic Machamp variant, Pokedex #155).
-- **New moves**: Web Cannon (Bug, no damage, drops the target's Speed all the
-  way to the minimum in a single hit), Uppercut (Fighting, guaranteed critical
-  hit if you outspeed the target), Carrion Wind (always strikes first and
-  flinches on any hit that connects, then badly-poisons — but only 1 PP),
-  Mind Fever (confuses and burns the target, also 1 PP), Blight Vomit, Phantom
-  Wing (signature moves for the new birds), Double Drill (a signature Flying
-  move), Hyper Beams (a double-hit Hyper Beam variant), and **Jackpot**
-  (Persian's signature move, learned at Lv. 98 — Normal, deals damage and, like
-  Pay Day, scatters coins you collect after the battle; a hefty $300-$1000
-  per use), and **Instinct** (Hitmonlee's move at Lv. 22 — a Normal
-  self-buff that raises the user's own accuracy *and* evasion by one stage
-  each in a single turn), **Crystallize** (Beedrill, Lv. 22 — a Harden-style
-  Normal self-buff that raises Defense by two stages and Special by one), and
-  **Chaos Sting** (Beedrill, Lv. 38 — a 70-power Bug attack with a 30% chance
-  to also inflict a random status: poison, burn, freeze, or paralysis, never
-  sleep). Plus: **Rock Fists** (Geodude, Lv. 28 — a Rock move that hits 2-5
-  times for 30 each), **Chokehold** (Primeape, Lv. 33 — a Fighting-type Wrap
-  that traps for 2-5 turns at 20/turn), **Hot Oil** (Magmar, Lv. 36 — a
-  40-power Fire attack that *always* burns), **Bad Touch** (Drowzee, Lv. 42 —
-  always confuses, 100% accuracy), **Crush Coil** (Ekans & Arbok, Lv. 42 — a
-  Poison-type Wrap dealing 30/turn), and **Blood Suck** (Zubat, Lv. 32 — an
-  80-power Poison attack that heals the user for half the damage dealt).
+- **New moves**:
+  - **Web Cannon** (Bug) — no damage; drops the target's Speed to the minimum
+    in a single hit.
+  - **Uppercut** (Fighting) — guaranteed critical hit if you outspeed the
+    target.
+  - **Carrion Wind** (Poison, Miasma) — always strikes first and flinches on
+    any hit that connects, then badly-poisons. Only 1 PP.
+  - **Mind Fever** (Ghost, Nocturn) — confuses *and* burns the target. Only
+    1 PP.
+  - **Blight Vomit** (Poison, Miasma) — 80-power hit with a chance to paralyze.
+  - **Phantom Wing** (Ghost, Nocturn) — 80-power hit that lowers the target's
+    Special.
+  - **Double Drill** (Flying) — 80-power hit that lowers the target's Defense.
+  - **Hyper Beams** (Normal) — a double-hit Hyper Beam variant.
+  - **Jackpot** (Normal, Persian Lv. 98) — deals damage and, like Pay Day,
+    scatters $300–$1000 you collect after the battle.
+  - **Instinct** (Normal, Hitmonlee Lv. 22) — self-buff that raises the user's
+    own accuracy *and* evasion by one stage each.
+  - **Crystallize** (Normal, Beedrill Lv. 22) — Harden-style self-buff: +2
+    Defense and +1 Special.
+  - **Chaos Sting** (Bug, Beedrill Lv. 38) — 70-power hit with a 30% chance to
+    inflict a random status (poison, burn, freeze, or paralysis — never sleep).
+  - **Rock Fists** (Rock, Geodude Lv. 28) — hits 2–5 times for 30 each.
+  - **Chokehold** (Fighting, Primeape Lv. 33) — a Wrap-style trap, 20/turn for
+    2–5 turns.
+  - **Hot Oil** (Fire, Magmar Lv. 36) — 40-power hit that *always* burns.
+  - **Bad Touch** (Drowzee Lv. 42) — always confuses; 100% accuracy.
+  - **Crush Coil** (Poison, Ekans & Arbok Lv. 42) — a Wrap-style trap dealing
+    30/turn.
+  - **Blood Suck** (Poison, Zubat Lv. 32) — 80-power hit that heals the user
+    for half the damage dealt.
 - **Reworked moves**: Whirlwind is now a 20-power Flying attack that lowers
   the target's accuracy by one stage (it no longer ends/flees the battle);
   Razor Wind hits much harder (base power raised to 140).
