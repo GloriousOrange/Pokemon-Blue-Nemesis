@@ -550,6 +550,32 @@ CrystallizeEffect:
 	ld [hl], SPECIAL_UP1_EFFECT
 	jp StatModifierUpEffect
 
+RecalcModifiedStatsFor:
+; Nemesis bug fix for the vanilla "badge boost" bug. Recompute ONE mon's four
+; battle stats from its UNMODIFIED base using the current stat-stage mods, then
+; re-apply the burn/paralysis penalty and (player only) badge boosts exactly
+; once -- the same sequence used when a mon is sent out. Vanilla instead re-ran
+; ApplyBadgeStatBoosts and the status penalties directly on the live, already-
+; boosted stats after every stat-changing move, so badge boosts (and burn/para
+; penalties) compounded on every stat the move didn't touch.
+;   a = 0 -> recalc the player's mon, nonzero -> recalc the enemy's mon
+	ld [wCalculateWhoseStats], a
+	ldh a, [hWhoseTurn]
+	push af ; ApplyBurnAndParalysisPenaltiesTo* overwrite hWhoseTurn; preserve it
+	call CalculateModifiedStats
+	ld a, [wCalculateWhoseStats]
+	and a
+	jr nz, .enemyMon
+	call ApplyBurnAndParalysisPenaltiesToPlayer
+	call ApplyBadgeStatBoosts ; badges only ever boost the player's mon
+	jr .done
+.enemyMon
+	call ApplyBurnAndParalysisPenaltiesToEnemy
+.done
+	pop af
+	ldh [hWhoseTurn], a
+	ret
+
 StatModifierUpEffect:
 	ld hl, wPlayerMonStatMods
 	ld de, wPlayerMoveEffect
@@ -696,16 +722,13 @@ UpdateStatDone:
 	pop af
 	call nz, Bankswitch
 .applyBadgeBoostsAndStatusPenalties
-	ldh a, [hWhoseTurn]
-	and a
-	call z, ApplyBadgeStatBoosts ; whenever the player uses a stat-up move, badge boosts get reapplied again to every stat,
-	                             ; even to those not affected by the stat-up move (will be boosted further)
 	ld hl, MonsStatsRoseText
 	call PrintText
-
-; these shouldn't be here
-	call QuarterSpeedDueToParalysis ; apply speed penalty to the player whose turn is not, if it's paralyzed
-	jp HalveAttackDueToBurn ; apply attack penalty to the player whose turn is not, if it's burned
+; Nemesis bug fix: cleanly recompute the buffed mon's stats from its unmodified
+; base (badge boosts + burn/para penalty applied once) instead of re-multiplying
+; them onto the live stats. The buffed mon is the one whose turn it is.
+	ldh a, [hWhoseTurn]
+	jp RecalcModifiedStatsFor
 
 RestoreOriginalStatModifier:
 	pop hl
@@ -908,18 +931,18 @@ UpdateLoweredStatDone:
 	jr nc, .ApplyBadgeBoostsAndStatusPenalties
 	call PlayCurrentMoveAnimation2
 .ApplyBadgeBoostsAndStatusPenalties
-	ldh a, [hWhoseTurn]
-	and a
-	call nz, ApplyBadgeStatBoosts ; whenever the opponent uses a stat-down move, badge boosts get reapplied again to every stat,
-	                              ; even to those not affected by the stat-down move (will be boosted further)
 	ld hl, MonsStatsFellText
 	call PrintText
-
-; These where probably added given that a stat-down move affecting speed or attack will override
-; the stat penalties from paralysis and burn respectively.
-; But they are always called regardless of the stat affected by the stat-down move.
-	call QuarterSpeedDueToParalysis
-	jp HalveAttackDueToBurn
+; Nemesis bug fix: cleanly recompute the debuffed mon's stats from its
+; unmodified base (see RecalcModifiedStatsFor). The debuffed mon is the OPPONENT
+; of whoever used the move.
+	ldh a, [hWhoseTurn]
+	and a
+	ld a, 1 ; player used the move -> the enemy mon was debuffed
+	jr z, .recalcLoweredMon
+	xor a ; enemy used the move -> the player's mon was debuffed
+.recalcLoweredMon
+	jp RecalcModifiedStatsFor
 
 CantLowerAnymore_Pop:
 	pop de
