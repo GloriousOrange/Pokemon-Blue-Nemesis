@@ -177,6 +177,7 @@ AttackAnimationPointers:
 	dw AgilityAnim      ; SUPER_INSTINCT — reuse Agility's focus-aura visuals
 	dw HardenAnim       ; CRYSTALLIZE — reuse Harden's hardening shimmer
 	dw TwineedleAnim    ; CHAOS_STING — reuse Twineedle's stinger visuals
+	dw WrapAnim         ; CHOKEHOLD — reuse Wrap's trapping visuals
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim
