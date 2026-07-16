@@ -50,4 +50,7 @@ ENDC
 	RGB 31,28,12, 31,22,00, 18,10,00, 06,02,00 ; PAL_BADGE
 	RGB 31,28,12, 31,22,00, 18,10,00, 06,02,00 ; PAL_CAVE
 	RGB 31,28,12, 31,22,00, 18,10,00, 06,02,00 ; PAL_GAMEFREAK
+; Alakachamp's own palette: cream backdrop (matches the game's sepia scenes) with a
+; crimson body ramp, so the fusion boss stands out from the identical-looking Machamp.
+	RGB 31,28,12, 31,13,11, 21,05,06, 10,02,02 ; PAL_ALAKACHAMP
 	assert_table_length NUM_SGB_PALS
