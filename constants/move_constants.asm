@@ -179,7 +179,7 @@
 	const PHANTOM_WING ; ab - Ghost, dmg + lower Special (Nocturn)
 	const WEB_CANNON   ; ac - Bug, drops target Speed to minimum (-6) in one hit (Toby)
 	const UPPERCUT     ; ad - Fighting, always crits if user outspeeds target (Alakachamp)
-	const STRUGGLE     ; a8
+	const STRUGGLE     ; ae
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff
