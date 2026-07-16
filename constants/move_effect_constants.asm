@@ -96,4 +96,5 @@
 	const SUPER_INSTINCT_EFFECT      ; $59 - Nemesis: raises user's accuracy + evasion by 1 each (Hitmonlee)
 	const CRYSTALLIZE_EFFECT         ; $5A - Nemesis: raises user's Defense by 2 + Special by 1 (Beedrill)
 	const CHAOS_STING_EFFECT         ; $5B - Nemesis: 30% chance of a random non-sleep status (Beedrill)
+	const HOT_OIL_EFFECT             ; $5C - Nemesis: damage + guaranteed burn (Magmar)
 DEF NUM_MOVE_EFFECTS EQU const_value - 1

@@ -179,6 +179,10 @@ AttackAnimationPointers:
 	dw TwineedleAnim    ; CHAOS_STING — reuse Twineedle's stinger visuals
 	dw WrapAnim         ; CHOKEHOLD — reuse Wrap's trapping visuals
 	dw CometPunchAnim   ; ROCK_FISTS — reuse Comet Punch's multi-hit fists
+	dw FirePunchAnim    ; HOT_OIL — reuse Fire Punch's flame visuals
+	dw ConfuseRayAnim   ; BAD_TOUCH — reuse Confuse Ray's visuals
+	dw WrapAnim         ; CRUSH_COIL — reuse Wrap's trapping visuals
+	dw LeechLifeAnim    ; BLOOD_SUCK — reuse Leech Life's drain visuals
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim

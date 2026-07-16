@@ -180,5 +180,9 @@ MoveNames::
 	li "CHAOS STING"
 	li "CHOKEHOLD"
 	li "ROCK FISTS"
+	li "HOT OIL"
+	li "BAD TOUCH"
+	li "CRUSH COIL"
+	li "BLOOD SUCK"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS

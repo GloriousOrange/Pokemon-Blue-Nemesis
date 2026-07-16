@@ -180,6 +180,10 @@ MoveSoundTable:
 	db SFX_BATTLE_1B,          $20, $c0 ; CHAOS_STING (match reused Twineedle sfx)
 	db SFX_BATTLE_14,          $10, $60 ; CHOKEHOLD (match reused Wrap sfx)
 	db SFX_BATTLE_0B,          $01, $80 ; ROCK_FISTS (match reused Comet Punch sfx)
+	db SFX_BATTLE_0D,          $10, $60 ; HOT_OIL (match reused Fire Punch sfx)
+	db SFX_BATTLE_13,          $f1, $ff ; BAD_TOUCH (match reused Confuse Ray sfx)
+	db SFX_BATTLE_14,          $10, $60 ; CRUSH_COIL (match reused Wrap sfx)
+	db SFX_BATTLE_24,          $00, $80 ; BLOOD_SUCK (match reused Leech Life sfx)
 	db SFX_BATTLE_0B,          $00, $80 ; STRUGGLE
 	assert_table_length NUM_ATTACKS
 	db SFX_BATTLE_0B,          $00, $80

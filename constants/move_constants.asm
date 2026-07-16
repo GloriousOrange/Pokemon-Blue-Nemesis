@@ -185,7 +185,11 @@
 	const CHAOS_STING    ; b1 - Bug, 70 dmg, 30% random status (any but sleep) (Beedrill, lv38)
 	const CHOKEHOLD      ; b2 - Fighting, Wrap-style trap: 20 dmg/turn for 2-5 turns (Primeape, lv33)
 	const ROCK_FISTS     ; b3 - Rock, multi-hit: 30 dmg x 2-5 hits (Geodude, lv28)
-	const STRUGGLE       ; b4
+	const HOT_OIL        ; b4 - Fire, 40 dmg + guaranteed burn (Magmar, lv36)
+	const BAD_TOUCH      ; b5 - Normal, always confuses, 100 acc (Drowzee, lv42)
+	const CRUSH_COIL     ; b6 - Poison, Wrap-style trap: 30 dmg/turn (Ekans/Arbok, lv42)
+	const BLOOD_SUCK     ; b7 - Poison, 80 dmg, drains half as HP (Zubat, lv32)
+	const STRUGGLE       ; b8
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

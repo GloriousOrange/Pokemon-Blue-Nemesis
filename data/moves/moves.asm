@@ -190,5 +190,9 @@ Moves:
 	move CHAOS_STING,  CHAOS_STING_EFFECT,          70, BUG,         100, 15
 	move CHOKEHOLD,    TRAPPING_EFFECT,             20, FIGHTING,      85, 15
 	move ROCK_FISTS,   TWO_TO_FIVE_ATTACKS_EFFECT,  30, ROCK,          85, 10
+	move HOT_OIL,      HOT_OIL_EFFECT,              40, FIRE,         100, 10
+	move BAD_TOUCH,    CONFUSION_EFFECT,             0, NORMAL,       100, 10
+	move CRUSH_COIL,   TRAPPING_EFFECT,             30, POISON,        85, 15
+	move BLOOD_SUCK,   DRAIN_HP_EFFECT,             80, POISON,       100, 10
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
 	assert_table_length NUM_ATTACKS

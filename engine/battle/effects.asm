@@ -318,6 +318,36 @@ ChaosStingResetToxic:
 	ld [de], a
 	ret
 
+; Nemesis: Hot Oil (Magmar's lv36). A 40-power Fire attack that, after its
+; normal damage, ALWAYS burns the target (unless it's a Fire-type or already
+; burned). Like Chaos Sting's burn branch but guaranteed, no random roll. Being
+; a damaging move whose effect is NOT in the SpecialEffects list, this runs
+; after damage, same dispatch path as Body Slam's paralysis chance.
+HotOilEffect:
+	call CheckTargetSubstitute
+	ret nz ; can't burn through a substitute
+	ldh a, [hWhoseTurn]
+	and a
+	ld hl, wEnemyMonStatus
+	ld de, wEnemyMonType1
+	jr z, .gotTarget
+	ld hl, wBattleMonStatus
+	ld de, wBattleMonType1
+.gotTarget
+	bit BRN, [hl]
+	ret nz ; already burned
+	ld a, [de]
+	cp FIRE
+	ret z ; Fire-type is immune to burn
+	inc de
+	ld a, [de]
+	cp FIRE
+	ret z
+	set BRN, [hl]
+	call HalveAttackDueToBurn
+	ld hl, BurnedText
+	jp PrintText
+
 DrainHPEffect:
 	jpfar DrainHPEffect_
 
