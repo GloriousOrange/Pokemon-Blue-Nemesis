@@ -109,6 +109,12 @@ endif
 $(pokered_obj):        RGBASMFLAGS += -D _RED
 $(pokeblue_obj):       RGBASMFLAGS += -D _BLUE
 $(pokeblue_debug_obj): RGBASMFLAGS += -D _BLUE -D _DEBUG
+
+# Opt-in test build: `make blue TESTPARTY=1` starts the player with 5 test mons
+# (given on first PC open). Default `make blue` stays clean.
+ifdef TESTPARTY
+$(pokeblue_obj):       RGBASMFLAGS += -D _TESTPARTY
+endif
 $(pokered_vc_obj):     RGBASMFLAGS += -D _RED -D _RED_VC
 $(pokeblue_vc_obj):    RGBASMFLAGS += -D _BLUE -D _BLUE_VC
 

@@ -7,6 +7,10 @@ IF DEF(_SPEEDTEST)
 ; where no text/map UI exists -- froze with garbage graphics on first use.
 	farcall SpeedtestGiveDebugMons
 ENDC
+IF DEF(_TESTPARTY)
+; Test-party build: drop the 5 test mons into the party on first PC open.
+	farcall GiveTestParty
+ENDC
 	call SaveScreenTilesToBuffer2
 	ld a, SFX_TURN_ON_PC
 	call PlaySound

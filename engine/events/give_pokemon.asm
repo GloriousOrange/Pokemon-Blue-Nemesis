@@ -152,3 +152,87 @@ ENDC
 	call SetPokedexOwnedFlag
 	callfar SendNewMonToBox
 	ret
+
+; Test-party kit (user request 2026-07-15): the first time the bedroom PC is
+; opened, silently drops five L100 mons -- Alakachamp, a Web Cannon Pinsir, and
+; the three legendary birds -- straight into the PARTY with hand-picked movesets,
+; so their signature mechanics can be tested immediately. AddPartyMon with
+; wMonDataLocation != 0 adds to the player's party, skips the naming screen, and
+; updates the Pokedex, all with no text/menu UI. Compile with `make blue TESTPARTY=1`.
+GiveTestParty::
+IF DEF(_TESTPARTY)
+	ld a, [wPartyCount]
+	cp PARTY_LENGTH - 4 ; need 5 free slots; bail and retry later if the party is too full
+	ret nc
+	CheckEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
+	ret nz
+	SetEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
+	ld a, $80
+	ld [wMonDataLocation], a ; player party, skip the naming screen
+	lb bc, ALAKACHAMP, 100
+	ld hl, .AlakachampMoves
+	call .GivePartyMonWithMoves
+	lb bc, PINSIR, 100
+	ld hl, .PinsirMoves
+	call .GivePartyMonWithMoves
+	lb bc, TYRANIS, 100
+	ld hl, .TyranisMoves
+	call .GivePartyMonWithMoves
+	lb bc, MIASMA, 100
+	ld hl, .MiasmaMoves
+	call .GivePartyMonWithMoves
+	lb bc, NOCTURN, 100
+	ld hl, .NocturnMoves
+	call .GivePartyMonWithMoves
+	xor a
+	ld [wMonDataLocation], a ; restore PLAYER_PARTY_DATA
+	ld hl, .TestPartyLoadedText
+	call PrintText
+ENDC
+	ret
+
+IF DEF(_TESTPARTY)
+; b = species, c = level, hl = NUM_MOVES-byte moveset
+.GivePartyMonWithMoves:
+	push hl
+	ld a, b
+	ld [wCurPartySpecies], a
+	ld a, c
+	ld [wCurEnemyLevel], a
+	call AddPartyMon ; silent: builds the mon (natural moves) and updates the Pokedex
+	pop de ; de = moveset source
+; overwrite the newly added (last) party slot's moves, then recompute PP
+	ld a, [wPartyCount]
+	dec a
+	ld bc, PARTYMON_STRUCT_LENGTH
+	ld hl, wPartyMon1Moves
+	call AddNTimes ; hl -> that slot's Moves
+	push hl
+	REPT NUM_MOVES
+	ld a, [de]
+	ld [hli], a
+	inc de
+	ENDR
+	ld a, [wPartyCount]
+	dec a
+	ld bc, PARTYMON_STRUCT_LENGTH
+	ld hl, wPartyMon1PP
+	call AddNTimes ; hl -> that slot's PP
+	ld d, h
+	ld e, l
+	dec de ; LoadMovePPs expects de = PP - 1
+	pop hl ; hl = Moves address
+	predef LoadMovePPs
+	ret
+
+.AlakachampMoves: db UPPERCUT, PSYCHIC_M, EARTHQUAKE, SUBMISSION, SWORDS_DANCE
+.PinsirMoves:     db WEB_CANNON, VICEGRIP, TWINEEDLE, SWORDS_DANCE, SEISMIC_TOSS
+.TyranisMoves:    db DOUBLE_DRILL, HYPER_BEAM, SKY_ATTACK, BODY_SLAM, FLY
+.MiasmaMoves:     db CARRION_WIND, BLIGHT_VOMIT, DRILL_PECK, TOXIC, FLY
+.NocturnMoves:    db MIND_FEVER, PHANTOM_WING, NIGHT_SHADE, GUST, CONFUSE_RAY
+
+.TestPartyLoadedText:
+	text "Test party loaded!"
+	line "5 L100 mons ready."
+	prompt
+ENDC
