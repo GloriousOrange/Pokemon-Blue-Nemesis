@@ -52,7 +52,8 @@ Saves to battery, same as a real cartridge.
   Physical); Guillotine is now Bug-type; Rock Throw moved to TM34 (replacing
   Bide, which was removed from every Pokemon's compatible-move list);
   Porygon starts with Mimic instead of Tackle; several Pokemon had extra
-  HM/TM compatibility added (e.g. more Pokemon can learn Fly).
+  HM/TM compatibility added (e.g. more Pokemon can learn Fly); Leech Seed now
+  has a 50% chance to also make the target flinch.
 - **5 moves per Pokemon**, not the vanilla 4 — battle menus, the Summary
   screen, and Move Relearner/Mimic are all sized for this.
 - Some items display under new flavor names but work identically to their
