@@ -1091,6 +1091,7 @@ PikachuEvosMoves:
 	db EVOLVE_ITEM, THUNDER_STONE, 1, RAICHU
 	db 0
 ; Learnset
+	db 7, FLASH
 	db 9, THUNDER_WAVE
 	db 16, QUICK_ATTACK
 	db 26, SWIFT
