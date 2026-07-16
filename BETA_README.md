@@ -31,11 +31,21 @@ Saves to battery, same as a real cartridge.
 
 - **New species**: Tyranis, Miasma, and Nocturn (three new legendary-tier
   birds), plus Alakachamp (a Fighting/Psychic Machamp variant, Pokedex #155).
-- **New moves**: Web Cannon (Bug, no damage, sharply lowers target Speed),
-  Uppercut (Fighting, guaranteed critical hit if you outspeed the target),
-  Carrion Wind, Blight Vomit, Mind Fever, Phantom Wing (signature moves for
-  the new birds), Double Drill (a signature Flying move), Hyper Beams (a
-  double-hit Hyper Beam variant).
+- **New moves**: Web Cannon (Bug, no damage, drops the target's Speed all the
+  way to the minimum in a single hit), Uppercut (Fighting, guaranteed critical
+  hit if you outspeed the target), Carrion Wind (always strikes first and
+  flinches on any hit that connects, then badly-poisons — but only 1 PP),
+  Mind Fever (confuses and burns the target, also 1 PP), Blight Vomit, Phantom
+  Wing (signature moves for the new birds), Double Drill (a signature Flying
+  move), Hyper Beams (a double-hit Hyper Beam variant), and **Jackpot**
+  (Persian's signature move, learned at Lv. 98 — Normal, deals damage and, like
+  Pay Day, scatters coins you collect after the battle; a hefty $300-$1000
+  per use).
+- **Status conditions can now stack** — a Pokemon can be, say, burned *and*
+  confused at the same time, where the vanilla game only allowed one at a
+  time. (Note: the battle HUD still only has room to show one status icon,
+  and only one poison/burn tick's worth of end-of-turn damage is applied
+  even when multiple are active — see Known Caveats.)
 - **Type/move changes**: Ghost-type moves are now Special category (not
   Physical); Guillotine is now Bug-type; Rock Throw moved to TM34 (replacing
   Bide, which was removed from every Pokemon's compatible-move list);
@@ -115,6 +125,13 @@ core gameplay.
   of your own starter — a known simplification, not a bug.
 - Several custom Pokemon (Tyranis, Miasma, Nocturn) and Alakachamp currently
   use placeholder or reused sprites/cries rather than fully original art.
+  (Alakachamp does now use its own crimson palette so it's easy to tell apart
+  from Machamp.)
+- With the new stacking status conditions, the in-battle status icon only
+  shows one condition at a time and end-of-turn poison/burn damage is applied
+  as a single tick, even if a Pokemon carries more than one status. The
+  underlying effects (attack/speed drops, confusion, sleep/freeze skipping
+  turns) all still apply — it's just the on-screen readout that's limited.
 - This is an active beta. If you hit a freeze, crash, or obviously broken
   interaction, that's exactly the kind of thing to report — several major
   freeze bugs were found and fixed in the lead-up to this build, but more
