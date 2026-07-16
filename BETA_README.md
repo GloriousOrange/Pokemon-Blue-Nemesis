@@ -42,7 +42,14 @@ Saves to battery, same as a real cartridge.
   Pay Day, scatters coins you collect after the battle; a hefty $300-$1000
   per use), and **Instinct** (Hitmonlee's move at Lv. 22 — a Normal
   self-buff that raises the user's own accuracy *and* evasion by one stage
-  each in a single turn).
+  each in a single turn), **Crystallize** (Beedrill, Lv. 22 — a Harden-style
+  Normal self-buff that raises Defense by two stages and Special by one), and
+  **Chaos Sting** (Beedrill, Lv. 38 — a 70-power Bug attack with a 30% chance
+  to also inflict a random status: poison, burn, freeze, or paralysis, never
+  sleep).
+- **Reworked moves**: Whirlwind is now a 20-power Flying attack that lowers
+  the target's accuracy by one stage (it no longer ends/flees the battle);
+  Razor Wind hits much harder (base power raised to 140).
 - **Status conditions can now stack** — a Pokemon can be, say, burned *and*
   confused at the same time, where the vanilla game only allowed one at a
   time. (Note: the battle HUD still only has room to show one status icon,
