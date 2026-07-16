@@ -2006,6 +2006,7 @@ CharmanderEvosMoves:
 	db 0
 ; Learnset
 	db 9, EMBER
+	db 10, FIRE_PUNCH
 	db 15, LEER
 	db 22, RAGE
 	db 30, SLASH
