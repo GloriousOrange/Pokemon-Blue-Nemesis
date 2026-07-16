@@ -21,7 +21,7 @@ SSOlympia3F_TextPointers:
 SSOlympia3FTrainerHeaders:
 	def_trainers 0
 SSOlympia3FTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_3F_ROCKET_0, 47, SSOlympia3FRocket1BattleText, SSOlympia3FRocket1EndBattleText, SSOlympia3FRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_3F_ROCKET_0, 3, SSOlympia3FRocket1BattleText, SSOlympia3FRocket1EndBattleText, SSOlympia3FRocket1AfterBattleText
 	db -1 ; end
 
 SSOlympia3FSailorText:

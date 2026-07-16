@@ -27,7 +27,7 @@ SSOlympiaKitchen_TextPointers:
 SSOlympiaKitchenTrainerHeaders:
 	def_trainers 5
 SSOlympiaKitchenTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_KITCHEN_ROCKET_0, 52, SSOlympiaKitchenRocket1BattleText, SSOlympiaKitchenRocket1EndBattleText, SSOlympiaKitchenRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_KITCHEN_ROCKET_0, 3, SSOlympiaKitchenRocket1BattleText, SSOlympiaKitchenRocket1EndBattleText, SSOlympiaKitchenRocket1AfterBattleText
 	db -1 ; end
 
 SSOlympiaKitchenCook1Text:

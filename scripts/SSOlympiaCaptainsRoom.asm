@@ -22,7 +22,7 @@ SSOlympiaCaptainsRoom_TextPointers:
 SSOlympiaCaptainsRoomTrainerHeaders:
 	def_trainers 6
 SSOlympiaCaptainsRoomTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_CAPTAINS_ROOM_ROCKET_0, 53, SSOlympiaCaptainsRoomRocket1BattleText, SSOlympiaCaptainsRoomRocket1EndBattleText, SSOlympiaCaptainsRoomRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_CAPTAINS_ROOM_ROCKET_0, 3, SSOlympiaCaptainsRoomRocket1BattleText, SSOlympiaCaptainsRoomRocket1EndBattleText, SSOlympiaCaptainsRoomRocket1AfterBattleText
 	db -1 ; end
 
 SSOlympiaCaptainsRoomTrashText:

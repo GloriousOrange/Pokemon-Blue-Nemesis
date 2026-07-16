@@ -139,9 +139,9 @@ SSOlympiaBow_TextPointers:
 SSOlympiaBowTrainerHeaders:
 	def_trainers 3
 SSOlympiaBowTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_BOW_ROCKET_0, 50, SSOlympiaBowRocket1BattleText, SSOlympiaBowRocket1EndBattleText, SSOlympiaBowRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_BOW_ROCKET_0, 3, SSOlympiaBowRocket1BattleText, SSOlympiaBowRocket1EndBattleText, SSOlympiaBowRocket1AfterBattleText
 SSOlympiaBowTrainerHeader1:
-	trainer EVENT_BEAT_SS_OLYMPIA_BOW_ROCKET_1, 51, SSOlympiaBowRocket2BattleText, SSOlympiaBowRocket2EndBattleText, SSOlympiaBowRocket2AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_BOW_ROCKET_1, 3, SSOlympiaBowRocket2BattleText, SSOlympiaBowRocket2EndBattleText, SSOlympiaBowRocket2AfterBattleText
 	db -1 ; end
 
 SSOlympiaBowSuperNerdText:

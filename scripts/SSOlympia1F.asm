@@ -23,9 +23,9 @@ SSOlympia1F_TextPointers:
 SSOlympia1FTrainerHeaders:
 	def_trainers 4
 SSOlympia1FTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_1F_ROCKET_0, 43, SSOlympia1FRocket1BattleText, SSOlympia1FRocket1EndBattleText, SSOlympia1FRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_1F_ROCKET_0, 3, SSOlympia1FRocket1BattleText, SSOlympia1FRocket1EndBattleText, SSOlympia1FRocket1AfterBattleText
 SSOlympia1FTrainerHeader1:
-	trainer EVENT_BEAT_SS_OLYMPIA_1F_ROCKET_1, 44, SSOlympia1FRocket2BattleText, SSOlympia1FRocket2EndBattleText, SSOlympia1FRocket2AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_1F_ROCKET_1, 3, SSOlympia1FRocket2BattleText, SSOlympia1FRocket2EndBattleText, SSOlympia1FRocket2AfterBattleText
 	db -1 ; end
 
 SSOlympia1FWaiterText:
