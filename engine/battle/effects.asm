@@ -133,7 +133,10 @@ PoisonEffect:
 	ld de, wEnemyToxicCounter
 .ok
 	cp TOXIC
-	jr nz, .normalPoison ; done if move is not Toxic
+	jr z, .badlyPoison
+	cp CARRION_WIND ; Nemesis: Carrion Wind badly-poisons like Toxic
+	jr nz, .normalPoison ; done if move is neither Toxic nor Carrion Wind
+.badlyPoison
 	set BADLY_POISONED, [hl] ; else set Toxic battstatus
 	xor a
 	ld [de], a
