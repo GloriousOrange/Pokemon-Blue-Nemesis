@@ -40,7 +40,9 @@ Saves to battery, same as a real cartridge.
   move), Hyper Beams (a double-hit Hyper Beam variant), and **Jackpot**
   (Persian's signature move, learned at Lv. 98 — Normal, deals damage and, like
   Pay Day, scatters coins you collect after the battle; a hefty $300-$1000
-  per use).
+  per use), and **Instinct** (Hitmonlee's move at Lv. 22 — a Normal
+  self-buff that raises the user's own accuracy *and* evasion by one stage
+  each in a single turn).
 - **Status conditions can now stack** — a Pokemon can be, say, burned *and*
   confused at the same time, where the vanilla game only allowed one at a
   time. (Note: the battle HUD still only has room to show one status icon,
