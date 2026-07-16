@@ -89,4 +89,5 @@ MoveEffectPointerTable:
 	dw DisableEffect             ; DISABLE_EFFECT
 	dw CarrionWindEffect         ; CARRION_WIND_EFFECT
 	dw JackpotEffect             ; JACKPOT_EFFECT
+	dw SuperInstinctEffect       ; SUPER_INSTINCT_EFFECT
 	assert_table_length NUM_MOVE_EFFECTS

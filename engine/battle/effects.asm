@@ -422,6 +422,26 @@ FireDefrostedText:
 	text_far _FireDefrostedText
 	text_end
 
+SuperInstinctEffect:
+; Nemesis (Hitmonlee lv22): raise the user's own accuracy AND evasion by one
+; stage each. Runs the standard +1 stat-up routine twice, once per stat --
+; StatModifierUpEffect picks which stat from the move-effect byte, so we point
+; it at ACCURACY_UP1_EFFECT then EVASION_UP1_EFFECT. Clobbering that byte is
+; safe: it's reloaded from the move data at the start of each turn. The two
+; calls also give two "rose!" messages/animations, which reads clearly.
+	ldh a, [hWhoseTurn]
+	and a
+	ld hl, wPlayerMoveEffect
+	jr z, .gotEffectPtr
+	ld hl, wEnemyMoveEffect
+.gotEffectPtr
+	ld [hl], ACCURACY_UP1_EFFECT
+	push hl
+	call StatModifierUpEffect
+	pop hl
+	ld [hl], EVASION_UP1_EFFECT
+	jp StatModifierUpEffect
+
 StatModifierUpEffect:
 	ld hl, wPlayerMonStatMods
 	ld de, wPlayerMoveEffect

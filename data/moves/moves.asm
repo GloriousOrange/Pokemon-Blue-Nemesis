@@ -185,5 +185,6 @@ Moves:
 	move WEB_CANNON,   SPEED_DOWN1_EFFECT,           0, BUG,           95, 10
 	move UPPERCUT,     NO_ADDITIONAL_EFFECT,        95, FIGHTING,     100, 15
 	move JACKPOT,      JACKPOT_EFFECT,              80, NORMAL,       100, 10
+	move SUPER_INSTINCT, SUPER_INSTINCT_EFFECT,      0, NORMAL,       100, 20
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
 	assert_table_length NUM_ATTACKS
