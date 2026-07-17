@@ -6,7 +6,6 @@ SageIsle_Object:
 	def_warp_events
 
 	def_bg_events
-	bg_event 11, 3, TEXT_SAGEISLE_SIGN
 
 	def_object_events
 
