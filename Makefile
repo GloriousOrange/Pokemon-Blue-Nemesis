@@ -115,6 +115,15 @@ $(pokeblue_debug_obj): RGBASMFLAGS += -D _BLUE -D _DEBUG
 ifdef TESTPARTY
 $(pokeblue_obj):       RGBASMFLAGS += -D _TESTPARTY
 endif
+
+# Opt-in speed-test build: `make blue SPEEDTEST=1` starts the player with HM02
+# (Fly), max cash, key items (Silph Scope + Master Ball), the field badges, and
+# every town pre-flyable, so testers can reach mid/late-game content fast.
+# Default `make blue` stays clean. Run after `make clean` (flag changes aren't
+# auto-detected).
+ifdef SPEEDTEST
+$(pokeblue_obj):       RGBASMFLAGS += -D _SPEEDTEST
+endif
 $(pokered_vc_obj):     RGBASMFLAGS += -D _RED -D _RED_VC
 $(pokeblue_vc_obj):    RGBASMFLAGS += -D _BLUE -D _BLUE_VC
 
