@@ -1,7 +1,7 @@
 ArchipelagoCave3FWildMons:
 	def_grass_wildmons 10 ; encounter rate
-	db 50, ZUBAT
-	db 50, GOLBAT
+	db 50, GASTLY
+	db 50, HAUNTER
 	db 52, GEODUDE
 	db 52, ONIX
 	db 54, SANDSHREW
