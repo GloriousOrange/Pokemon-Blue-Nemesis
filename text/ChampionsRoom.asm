@@ -96,7 +96,7 @@ _ChampionsRoomOakDisappointedWithRivalText::
 	para "You have forgotten"
 	line "to treat your"
 	cont "#MON with"
-	cont "trust and love!"
+	cont "fear and steel!"
 
 	para "Without them, you"
 	line "will never become"

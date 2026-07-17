@@ -90,7 +90,7 @@ _Route25Youngster3AfterBattleText::
 
 _Route25CooltrainerF2BattleText::
 	text "My friend has a"
-	line "cute #MON."
+	line "prize #MON."
 	cont "I'm so jealous!"
 	done
 

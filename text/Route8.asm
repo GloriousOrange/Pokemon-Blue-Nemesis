@@ -55,10 +55,10 @@ _Route8CooltrainerF1EndBattleText::
 	prompt
 
 _Route8CooltrainerF1AfterBattleText::
-	text "When #MON grow"
-	line "up they get ugly!"
-	cont "I'm keeping mine"
-	cont "small and cute"
+	text "Grown #MON are"
+	line "tough and stringy!"
+	cont "I keep mine young"
+	cont "and tender"
 	cont "forever."
 	done
 
@@ -78,8 +78,8 @@ _Route8SuperNerd3AfterBattleText::
 	done
 
 _Route8CooltrainerF2BattleText::
-	text "MEOWTH is so cute,"
-	line "meow, meow, meow!"
+	text "MEOWTH coughs up"
+	line "coins, meow!"
 	done
 
 _Route8CooltrainerF2EndBattleText::
@@ -87,9 +87,9 @@ _Route8CooltrainerF2EndBattleText::
 	prompt
 
 _Route8CooltrainerF2AfterBattleText::
-	text "I think PIDGEY"
-	line "and RATTATA are"
-	cont "cute too! I don't"
+	text "PIDGEY and RATTATA"
+	line "fetch good money"
+	cont "too! I don't"
 	cont "read the news."
 	done
 
@@ -128,8 +128,8 @@ _Route8Gambler2AfterBattleText::
 	done
 
 _Route8CooltrainerF4BattleText::
-	text "What's a cute,"
-	line "round and fluffy"
+	text "What's a round,"
+	line "fatty, fluffy"
 	cont "#MON?"
 	done
 
@@ -145,7 +145,7 @@ _Route8CooltrainerF4AfterBattleText::
 	line "CLEFAIRY evolves"
 	cont "when it's exposed"
 	cont "to a MOON STONE."
-	cont "It's still cute"
+	cont "Still good eating"
 	cont "though, right?"
 	done
 

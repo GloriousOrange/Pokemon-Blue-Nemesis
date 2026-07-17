@@ -24,8 +24,8 @@ _MrFujisHouseLittleGirlThisIsMrFujisHouseText::
 
 _MrFujisHouseLittleGirlPokemonAreNiceToHugText::
 	text "It's so warm!"
-	line "#MON are so"
-	cont "nice to hug!"
+	line "MR.FUJI says it's"
+	cont "OK to love them."
 	done
 
 _MrFujisHousePsyduckText::
