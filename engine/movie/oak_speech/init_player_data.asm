@@ -38,7 +38,7 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld [hl], a
 	ld hl, wNumBagItems
-	ld a, 7
+	ld a, 8
 	ld [hli], a
 	ld a, RARE_CANDY
 	ld [hli], a
@@ -57,6 +57,10 @@ IF DEF(_SPEEDTEST)
 	ld a, 99
 	ld [hli], a
 	ld a, HM_FLY
+	ld [hli], a
+	ld a, 1
+	ld [hli], a
+	ld a, HM_SURF
 	ld [hli], a
 	ld a, 1
 	ld [hli], a
