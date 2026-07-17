@@ -19,7 +19,7 @@ IF DEF(_BLUE)
 	db 17, RATTATA
 	db 17, SPEAROW
 	db 13, SANDSHREW
-	db 17, SANDSHREW
+	db 15, SQUIRTLE
 ENDC
 	end_grass_wildmons
 

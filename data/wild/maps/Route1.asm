@@ -3,7 +3,7 @@ Route1WildMons:
 	db  3, PIDGEY
 	db  3, RATTATA
 	db  3, RATTATA
-	db  2, RATTATA
+	db  3, ODDISH
 	db  2, PIDGEY
 	db  3, PIDGEY
 	db  3, PIDGEY
