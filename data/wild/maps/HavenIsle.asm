@@ -1,7 +1,7 @@
 HavenIsleWildMons:
 	def_grass_wildmons 13 ; encounter rate
-	db 50, GASTLY
-	db 50, HAUNTER
+	db 50, BULBASAUR
+	db 50, ODDISH
 	db 52, NIDORAN_F
 	db 52, NIDORINA
 	db 54, NIDORAN_M
