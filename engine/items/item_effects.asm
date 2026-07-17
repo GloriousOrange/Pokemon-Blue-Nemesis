@@ -1679,14 +1679,17 @@ ItemUseEscapeRope:
 INCLUDE "data/tilesets/escape_rope_tilesets.asm"
 
 ItemUseRepel:
-	ld b, 100
+	ld bc, 100
 
+; bc = number of steps (16-bit)
 ItemUseRepelCommon:
 	ld a, [wIsInBattle]
 	and a
 	jp nz, ItemUseNotTime
-	ld a, b
+	ld a, c
 	ld [wRepelRemainingSteps], a
+	ld a, b
+	ld [wRepelRemainingSteps + 1], a
 	jp PrintItemUseTextAndRemoveItem
 
 ; handles X Accuracy item
@@ -1769,11 +1772,11 @@ ItemUseGuardSpec:
 	jp PrintItemUseTextAndRemoveItem
 
 ItemUseSuperRepel:
-	ld b, 200
+	ld bc, 1000
 	jp ItemUseRepelCommon
 
 ItemUseMaxRepel:
-	ld b, 250
+	ld bc, 250
 	jp ItemUseRepelCommon
 
 ItemUseDireHit:

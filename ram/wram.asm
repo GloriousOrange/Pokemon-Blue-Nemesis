@@ -1550,9 +1550,10 @@ wSavedTileAnimations:: db
 
 wDamage:: dw
 
-	ds 2
+	ds 1
 
-wRepelRemainingSteps:: db
+; 16-bit so repels can exceed 255 steps (Super Repel = 1000)
+wRepelRemainingSteps:: dw
 
 ; list of moves for FormatMovesString
 wMoves:: ds NUM_MOVES

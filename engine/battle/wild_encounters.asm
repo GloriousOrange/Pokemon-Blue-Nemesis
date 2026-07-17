@@ -16,12 +16,21 @@ TryDoWildEncounter:
 .notStandingOnDoorOrWarpTile
 	callfar IsPlayerJustOutsideMap
 	jr z, .CantEncounter
-	ld a, [wRepelRemainingSteps]
-	and a
-	jr z, .next
-	dec a
+	ld hl, wRepelRemainingSteps
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a           ; hl = remaining steps (16-bit)
+	ld a, h
+	or l
+	jr z, .next       ; no repel active
+	dec hl
+	ld a, h
+	or l
 	jr z, .lastRepelStep
+	ld a, l
 	ld [wRepelRemainingSteps], a
+	ld a, h
+	ld [wRepelRemainingSteps + 1], a
 .next
 ; determine if wild pokemon can appear in the half-block we're standing in
 ; is the bottom right tile (9,9) of the half-block we're standing in a grass/water tile?
@@ -79,7 +88,8 @@ TryDoWildEncounter:
 	ld [wCurPartySpecies], a
 	ld [wEnemyMonSpecies2], a
 	ld a, [wRepelRemainingSteps]
-	and a
+	ld hl, wRepelRemainingSteps + 1
+	or [hl]
 	jr z, .willEncounter
 	ld a, [wPartyMon1Level]
 	ld b, a
@@ -88,7 +98,9 @@ TryDoWildEncounter:
 	jr c, .CantEncounter2 ; repel prevents encounters if the leading party mon's level is higher than the wild mon
 	jr .willEncounter
 .lastRepelStep
+	xor a
 	ld [wRepelRemainingSteps], a
+	ld [wRepelRemainingSteps + 1], a
 	ld a, TEXT_REPEL_WORE_OFF
 	ldh [hTextID], a
 	call EnableAutoTextBoxDrawing
