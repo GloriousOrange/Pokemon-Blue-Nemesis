@@ -72,7 +72,7 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld a, MASTER_BALL
 	ld [hli], a
-	ld a, 1
+	ld a, 90
 	ld [hli], a
 	ld a, $ff ; terminator
 	ld [hl], a
