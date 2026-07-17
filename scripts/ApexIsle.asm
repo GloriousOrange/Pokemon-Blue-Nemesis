@@ -3,3 +3,8 @@ ApexIsle_Script:
 
 ApexIsle_TextPointers:
 	def_text_pointers
+	dw_const ApexIsleSignText, TEXT_APEXISLE_SIGN
+
+ApexIsleSignText:
+	text "APEX ISLE"
+	done

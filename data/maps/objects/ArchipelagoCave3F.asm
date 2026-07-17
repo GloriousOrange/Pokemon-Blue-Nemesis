@@ -7,6 +7,7 @@ ArchipelagoCave3F_Object:
 	warp_event 4, 1, ARCHIPELAGO_CAVE_2F, 2 ; stairs up
 
 	def_bg_events
+	bg_event  7, 3, TEXT_ARCHIPELAGOCAVE3F_SIGN
 
 	def_object_events
 
