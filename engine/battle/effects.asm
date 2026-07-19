@@ -87,11 +87,11 @@ PoisonEffect:
 	ld de, wEnemyMoveEffect
 .poisonEffect
 	call CheckTargetSubstitute
-	jr nz, .noEffect ; can't poison a substitute target
+	jp nz, .noEffect ; can't poison a substitute target
 	ld a, [hli]
 	ld b, a
 	bit PSN, a
-	jr nz, .noEffect ; Nemesis: only skip if already poisoned; other statuses can stack
+	jp nz, .noEffect ; Nemesis: only skip if already poisoned; other statuses can stack
 	ld a, [hli]
 	cp POISON ; can't poison a poison-type target
 	jr z, .noEffect
@@ -103,8 +103,21 @@ PoisonEffect:
 	ld b, 20 percent + 1 ; chance of poisoning
 	jr z, .sideEffectTest
 	cp POISON_SIDE_EFFECT2
-	ld b, 40 percent + 1 ; chance of poisoning
-	jr z, .sideEffectTest
+	jr nz, .notSideEffect2
+	ld b, 40 percent + 1 ; chance of poisoning (Smog / Sludge)
+; Twineedle's effect was swapped to POISON_SIDE_EFFECT2 above, but it gets a
+; higher poison chance than Smog/Sludge: 50%.
+	ldh a, [hWhoseTurn]
+	and a
+	ld a, [wPlayerMoveNum]
+	jr z, .gotPoisonMoveNum
+	ld a, [wEnemyMoveNum]
+.gotPoisonMoveNum
+	cp TWINEEDLE
+	jr nz, .sideEffectTest
+	ld b, 50 percent + 1 ; Twineedle poison chance
+	jr .sideEffectTest
+.notSideEffect2
 	push hl
 	push de
 	call MoveHitTest ; apply accuracy tests
