@@ -1243,6 +1243,7 @@ TwoToFiveAttacksEffect:
 .twineedle
 	ld a, POISON_SIDE_EFFECT2
 	ld [hl], a ; set Twineedle's effect to poison effect
+	ld a, $2 ; Twineedle always hits exactly twice
 	jr .saveNumberOfHits
 
 FlinchSideEffect:
