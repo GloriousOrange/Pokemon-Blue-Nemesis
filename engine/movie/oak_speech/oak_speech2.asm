@@ -180,7 +180,7 @@ DisplayIntroNameTextBox:
 	ld [wMenuWatchedKeys], a ; PAD_A
 	inc a
 	ld [wTopMenuItemY], a
-	inc a
+	ld a, NUM_PLAYER_NAMES ; NEW NAME + NUM_PLAYER_NAMES suggestions; max index = NUM_PLAYER_NAMES
 	ld [wMaxMenuItem], a
 	jp HandleMenuInput
 

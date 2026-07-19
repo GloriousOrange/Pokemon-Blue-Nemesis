@@ -50,9 +50,25 @@ OakSpeech:
 	call LoadTextBoxTilePatterns
 	call PrepareOakSpeech
 	predef InitPlayerData2
-; minimal intro naming: ask the player's name, then their brother's (the rival).
-; No preset-name menu, no pics, no speech. Empty entries are re-asked.
+; intro naming: offer a preset-name menu (NEW NAME + suggestions) for the
+; player, then the brother (rival). Picking NEW NAME opens the keyboard.
+; No pics or speech -- this is the dark minimal intro. Empty custom names are
+; re-asked (loops back to the menu).
 .askPlayerName
+	call ClearScreen
+	ld de, DefaultNamesPlayer
+	call DisplayIntroNameTextBox
+	ld a, [wCurrentMenuItem]
+	and a ; NEW NAME (item 0)?
+	jr z, .playerCustomName
+	ld hl, DefaultNamesPlayerList
+	call GetDefaultName ; selected suggestion -> wNameBuffer
+	ld hl, wNameBuffer
+	ld de, wPlayerName
+	ld bc, NAME_LENGTH
+	call CopyData
+	jr .askBrotherName
+.playerCustomName
 	ld hl, wPlayerName
 	xor a ; NAME_PLAYER_SCREEN
 	ld [wNamingScreenType], a
@@ -61,6 +77,20 @@ OakSpeech:
 	cp '@' ; empty name?
 	jr z, .askPlayerName
 .askBrotherName
+	call ClearScreen
+	ld de, DefaultNamesRival
+	call DisplayIntroNameTextBox
+	ld a, [wCurrentMenuItem]
+	and a ; NEW NAME (item 0)?
+	jr z, .brotherCustomName
+	ld hl, DefaultNamesRivalList
+	call GetDefaultName ; selected suggestion -> wNameBuffer
+	ld hl, wNameBuffer
+	ld de, wRivalName
+	ld bc, NAME_LENGTH
+	call CopyData
+	jr .namesChosen
+.brotherCustomName
 	ld hl, wRivalName
 	ld a, NAME_RIVAL_SCREEN
 	ld [wNamingScreenType], a
@@ -68,6 +98,7 @@ OakSpeech:
 	ld a, [wStringBuffer]
 	cp '@' ; empty name?
 	jr z, .askBrotherName
+.namesChosen
 	call ClearScreen
 ; one-time difficulty choice, asked here (LCD is on, so the menu renders)
 ; rather than in the RedsHouse2F map tick where PrintText is unreliable.
