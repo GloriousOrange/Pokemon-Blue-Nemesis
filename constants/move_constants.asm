@@ -194,7 +194,10 @@
 	const MIGRAIN        ; ba - Psychic, 30 dmg (Caterpie)
 	const DIVE           ; bb - Flying, 30 dmg (Zubat)
 	const STATIC_SHOCK   ; bc - Electric, 40 dmg, always paralyzes (Electabuzz niche)
-	const STRUGGLE       ; bd
+	const GRAVITY_SLAM   ; bd - Rock, 80 dmg, always paralyzes (Aerodactyl niche)
+	const VIBRATE        ; be - raise user's Attack + Speed by 2 (Pinsir niche)
+	const STEALTH        ; bf - raise user's Evasion by 2 (Scyther niche)
+	const STRUGGLE       ; c0
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

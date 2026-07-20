@@ -402,9 +402,10 @@ WebCannonEffect:
 	set FLINCHED, [hl]
 	jp ClearHyperBeam
 
-; Nemesis: Static Shock (Electabuzz's niche). A 40-power Electric attack that,
-; after its damage, ALWAYS paralyzes the target (unless it's Electric-type or
-; already statused). Same shape as Hot Oil's guaranteed burn; runs after damage.
+; Nemesis: shared by Static Shock (Electric, Electabuzz) and Gravity Slam (Rock,
+; Aerodactyl). A damaging move that, after its damage, ALWAYS paralyzes the
+; target -- unless the target already has a status or shares the MOVE's own type
+; (Electric can't paralyze Electric, Rock can't paralyze Rock). Runs after damage.
 StaticShockEffect:
 	call CheckTargetSubstitute
 	ret nz ; can't paralyze through a substitute
@@ -412,23 +413,44 @@ StaticShockEffect:
 	and a
 	ld hl, wEnemyMonStatus
 	ld de, wEnemyMonType1
-	jr z, .gotTarget
+	ld a, [wPlayerMoveType]
+	jr z, .gotMoveType
 	ld hl, wBattleMonStatus
 	ld de, wBattleMonType1
-.gotTarget
+	ld a, [wEnemyMoveType]
+.gotMoveType
+	ld b, a ; b = the move's own type
 	ld a, [hl]
 	and a
 	ret nz ; single-status: don't paralyze an already-statused mon
 	ld a, [de]
-	cp ELECTRIC
-	ret z ; Electric-type is immune to paralysis
+	cp b
+	ret z ; target that shares the move's type is immune
 	inc de
 	ld a, [de]
-	cp ELECTRIC
+	cp b
 	ret z
 	set PAR, [hl]
 	call QuarterSpeedDueToParalysis
 	jp PrintMayNotAttackText
+
+; Nemesis: Vibrate (Pinsir's niche). Raises the user's own Attack AND Speed by
+; two stages each -- same double-through-StatModifierUpEffect trick as
+; CrystallizeEffect (the move-effect byte is reloaded from move data each turn,
+; so clobbering it here is safe).
+VibrateEffect:
+	ldh a, [hWhoseTurn]
+	and a
+	ld hl, wPlayerMoveEffect
+	jr z, .gotEffectPtr
+	ld hl, wEnemyMoveEffect
+.gotEffectPtr
+	ld [hl], ATTACK_UP2_EFFECT
+	push hl
+	call StatModifierUpEffect
+	pop hl
+	ld [hl], SPEED_UP2_EFFECT
+	jp StatModifierUpEffect
 
 DrainHPEffect:
 	jpfar DrainHPEffect_

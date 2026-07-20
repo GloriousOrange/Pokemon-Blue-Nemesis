@@ -95,4 +95,5 @@ MoveEffectPointerTable:
 	dw HotOilEffect              ; HOT_OIL_EFFECT
 	dw WebCannonEffect           ; WEB_CANNON_EFFECT
 	dw StaticShockEffect         ; STATIC_SHOCK_EFFECT
+	dw VibrateEffect             ; VIBRATE_EFFECT
 	assert_table_length NUM_MOVE_EFFECTS

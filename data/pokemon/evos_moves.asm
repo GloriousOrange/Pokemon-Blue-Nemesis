@@ -442,6 +442,7 @@ MewEvosMoves:
 	db 20, MEGA_PUNCH
 	db 30, METRONOME
 	db 40, PSYCHIC_M
+	db 55, METRONOME2
 	db 0
 
 GyaradosEvosMoves:
@@ -504,6 +505,7 @@ ScytherEvosMoves:
 	db 29, SLASH
 	db 35, SWORDS_DANCE
 	db 42, AGILITY
+	db 55, STEALTH
 	db 0
 
 StaryuEvosMoves:
@@ -544,6 +546,7 @@ PinsirEvosMoves:
 	db 36, FOCUS_ENERGY
 	db 43, PIN_MISSILE
 	db 49, SLASH
+	db 55, VIBRATE
 	db 70, WEB_CANNON
 	db 98, SWORDS_DANCE ; moved from level 54 (user request 2026-07-10)
 	db 0
@@ -2007,6 +2010,7 @@ AerodactylEvosMoves:
 	db 38, BITE
 	db 45, TAKE_DOWN
 	db 54, HYPER_BEAM
+	db 55, GRAVITY_SLAM
 	db 0
 
 MissingNoACEvosMoves:

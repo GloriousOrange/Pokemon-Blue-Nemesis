@@ -189,5 +189,8 @@ MoveNames::
 	li "MIGRAIN"
 	li "DIVE"
 	li "STATIC SHOCK"
+	li "GRAVITY SLAM"
+	li "VIBRATE"
+	li "STEALTH"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS

@@ -199,5 +199,8 @@ Moves:
 	move MIGRAIN,      NO_ADDITIONAL_EFFECT,        30, PSYCHIC_TYPE, 100, 20
 	move DIVE,         NO_ADDITIONAL_EFFECT,        30, FLYING,       100, 20
 	move STATIC_SHOCK, STATIC_SHOCK_EFFECT,         40, ELECTRIC,     100, 15
+	move GRAVITY_SLAM, STATIC_SHOCK_EFFECT,         80, ROCK,         100, 10
+	move VIBRATE,      VIBRATE_EFFECT,               0, NORMAL,       100, 20
+	move STEALTH,      EVASION_UP2_EFFECT,           0, NORMAL,       100, 15
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
 	assert_table_length NUM_ATTACKS

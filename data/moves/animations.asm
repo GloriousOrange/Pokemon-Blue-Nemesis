@@ -188,6 +188,9 @@ AttackAnimationPointers:
 	dw ConfusionAnim    ; MIGRAIN — reuse Confusion's visuals
 	dw WingAttackAnim   ; DIVE — reuse Wing Attack's visuals
 	dw ThunderShockAnim ; STATIC_SHOCK — reuse ThunderShock's visuals
+	dw RockSlideAnim    ; GRAVITY_SLAM — reuse Rock Slide's visuals
+	dw SwordsDanceAnim  ; VIBRATE — reuse Swords Dance's visuals
+	dw MinimizeAnim     ; STEALTH — reuse Minimize's visuals
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim
