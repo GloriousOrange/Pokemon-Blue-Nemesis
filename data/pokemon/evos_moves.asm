@@ -1004,27 +1004,39 @@ MoltresEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 51, LEER
-	db 55, AGILITY
-	db 60, SKY_ATTACK
+	db 12, EMBER
+	db 18, WING_ATTACK
+	db 25, LEER
+	db 31, FLAMETHROWER
+	db 38, AGILITY
+	db 45, SKY_ATTACK
+	db 52, FIRE_BLAST
 	db 0
 
 ArticunoEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 51, BLIZZARD
-	db 55, AGILITY
-	db 60, MIST
+	db 12, WING_ATTACK
+	db 18, AGILITY
+	db 25, MIST
+	db 31, AURORA_BEAM
+	db 38, REFLECT
+	db 45, SKY_ATTACK
+	db 52, BLIZZARD
 	db 0
 
 ZapdosEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 51, THUNDER
-	db 55, AGILITY
-	db 60, LIGHT_SCREEN
+	db 12, THUNDER_WAVE
+	db 18, AGILITY
+	db 25, SWIFT
+	db 31, THUNDERBOLT
+	db 38, LIGHT_SCREEN
+	db 45, SKY_ATTACK
+	db 52, THUNDER
 	db 0
 
 DittoEvosMoves:
