@@ -172,7 +172,7 @@
 	const SUBSTITUTE   ; a4
 	const DOUBLE_DRILL ; a5
 	const HYPER_BEAMS  ; a6
-	const METRONOME2   ; a7 - HM move: rolls a random move from a fixed 20-move list
+	const METRONOME2   ; a7 - HM move: rolls a random move from a fixed 18-move list
 	const CARRION_WIND ; a8 - Poison, badly-poison status (Miasma)
 	const BLIGHT_VOMIT ; a9 - Poison, dmg + paralyze (Miasma)
 	const MIND_FEVER   ; aa - Ghost, confuse + burn 'curse' (Nocturn)
