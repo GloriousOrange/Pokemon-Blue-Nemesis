@@ -1,6 +1,6 @@
 	db DEX_STARYU ; pokedex id
 
-	db  30,  45,  55,  85,  95
+	db  30,  45,  55, 125,  95
 	;   hp  atk  def  spd  spc
 
 	db WATER, PSYCHIC_TYPE ; type

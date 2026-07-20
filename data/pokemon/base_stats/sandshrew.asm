@@ -1,6 +1,6 @@
 	db DEX_SANDSHREW ; pokedex id
 
-	db  50,  75,  85,  40,  30
+	db  50,  75,  85,  75,  30
 	;   hp  atk  def  spd  spc
 
 	db GROUND, GROUND ; type
