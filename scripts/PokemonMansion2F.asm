@@ -15,6 +15,9 @@ Mansion2CheckReplaceSwitchDoorBlocks:
 	ret z
 	CheckEvent EVENT_MANSION_SWITCH_ON
 	jr nz, .switchTurnedOn
+	ld a, [wPostGameMisc] ; post-game: switch doors are permanently open (no puzzle)
+	bit BIT_POST_GAME_STARTED, a
+	jr nz, .switchTurnedOn
 	ld a, $e
 	lb bc, 2, 4
 	call Mansion2ReplaceBlock

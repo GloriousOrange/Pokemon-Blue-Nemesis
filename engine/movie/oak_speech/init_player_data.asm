@@ -38,7 +38,7 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld [hl], a
 	ld hl, wNumBagItems
-	ld a, 8
+	ld a, 9
 	ld [hli], a
 	ld a, RARE_CANDY
 	ld [hli], a
@@ -73,6 +73,10 @@ IF DEF(_SPEEDTEST)
 	ld a, MASTER_BALL
 	ld [hli], a
 	ld a, 90
+	ld [hli], a
+	ld a, LAB_KEY ; enter the post-game re-locked burned Cinnabar lab
+	ld [hli], a
+	ld a, 1
 	ld [hli], a
 	ld a, $ff ; terminator
 	ld [hl], a
@@ -111,6 +115,17 @@ ENDC
 	ld hl, wGameProgressFlags
 	ld bc, wPostGameFlagsEnd - wGameProgressFlags ; also clears wPostGameFlags (arena/post-game state)
 	call FillMemory ; clear all game progress flags
+
+IF DEF(_SPEEDTEST)
+; Set AFTER the flag clear above so it survives: jump testers straight into
+; post-game so they can reach the burned lab + Battle Island. Champion-beaten
+; flag + all 6 lab scientists pre-beaten (reveals the B1F stairs); the Lab Key
+; to enter the re-locked lab is in the SPEEDTEST bag above.
+	ld hl, wPostGameMisc
+	set BIT_POST_GAME_STARTED, [hl]
+	ld a, %00111111 ; all 6 burned-lab scientists beaten
+	ld [wScientistsDefeated], a
+ENDC
 
 	jp InitializeToggleableObjectsFlags
 
