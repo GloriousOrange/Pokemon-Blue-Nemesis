@@ -175,6 +175,7 @@ PokemonMansionB1FLabScientist1Text:
 	ld a, [wScientistsDefeated]
 	bit 4, a
 	jr nz, .afterBeat
+	ld c, 4 ; scientist index -> unique challenge/win text
 	farcall LabScientistBattleInit
 	ldh a, [hSpriteIndex]
 	ld [wSpriteIndex], a
@@ -199,6 +200,7 @@ PokemonMansionB1FLabScientist2Text:
 	ld a, [wScientistsDefeated]
 	bit 5, a
 	jr nz, .afterBeat
+	ld c, 5 ; scientist index -> unique challenge/win text
 	farcall LabScientistBattleInit
 	ldh a, [hSpriteIndex]
 	ld [wSpriteIndex], a
