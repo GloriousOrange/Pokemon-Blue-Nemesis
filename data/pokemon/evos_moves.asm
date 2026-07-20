@@ -1017,10 +1017,11 @@ ArticunoEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 6, AURORA_BEAM
 	db 12, WING_ATTACK
 	db 18, AGILITY
 	db 25, MIST
-	db 31, AURORA_BEAM
+	db 31, ICE_BEAM
 	db 38, REFLECT
 	db 45, SKY_ATTACK
 	db 52, BLIZZARD
@@ -1618,6 +1619,7 @@ MagikarpEvosMoves:
 	db EVOLVE_LEVEL, 20, GYARADOS
 	db 0
 ; Learnset
+	db 10, WATER_GUN
 	db 15, TACKLE
 	db 0
 
