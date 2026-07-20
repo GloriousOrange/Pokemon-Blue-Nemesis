@@ -188,6 +188,7 @@ MoveSoundTable:
 	db SFX_BATTLE_28,          $40, $80 ; ICE_SPIKE (match reused Ice Beam sfx)
 	db SFX_BATTLE_14,          $00, $20 ; MIGRAIN (match reused Confusion sfx)
 	db SFX_BATTLE_12,          $10, $a0 ; DIVE (match reused Wing Attack sfx)
+	db SFX_BATTLE_2F,          $00, $20 ; STATIC_SHOCK (match reused ThunderShock sfx)
 	db SFX_BATTLE_0B,          $00, $80 ; STRUGGLE
 	assert_table_length NUM_ATTACKS
 	db SFX_BATTLE_0B,          $00, $80

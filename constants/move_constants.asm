@@ -193,7 +193,8 @@
 	const ICE_SPIKE      ; b9 - Ice, 25 dmg (Shellder)
 	const MIGRAIN        ; ba - Psychic, 30 dmg (Caterpie)
 	const DIVE           ; bb - Flying, 30 dmg (Zubat)
-	const STRUGGLE       ; bc
+	const STATIC_SHOCK   ; bc - Electric, 40 dmg, always paralyzes (Electabuzz niche)
+	const STRUGGLE       ; bd
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

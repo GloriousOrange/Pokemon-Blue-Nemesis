@@ -402,6 +402,34 @@ WebCannonEffect:
 	set FLINCHED, [hl]
 	jp ClearHyperBeam
 
+; Nemesis: Static Shock (Electabuzz's niche). A 40-power Electric attack that,
+; after its damage, ALWAYS paralyzes the target (unless it's Electric-type or
+; already statused). Same shape as Hot Oil's guaranteed burn; runs after damage.
+StaticShockEffect:
+	call CheckTargetSubstitute
+	ret nz ; can't paralyze through a substitute
+	ldh a, [hWhoseTurn]
+	and a
+	ld hl, wEnemyMonStatus
+	ld de, wEnemyMonType1
+	jr z, .gotTarget
+	ld hl, wBattleMonStatus
+	ld de, wBattleMonType1
+.gotTarget
+	ld a, [hl]
+	and a
+	ret nz ; single-status: don't paralyze an already-statused mon
+	ld a, [de]
+	cp ELECTRIC
+	ret z ; Electric-type is immune to paralysis
+	inc de
+	ld a, [de]
+	cp ELECTRIC
+	ret z
+	set PAR, [hl]
+	call QuarterSpeedDueToParalysis
+	jp PrintMayNotAttackText
+
 DrainHPEffect:
 	jpfar DrainHPEffect_
 

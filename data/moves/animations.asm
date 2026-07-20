@@ -187,6 +187,7 @@ AttackAnimationPointers:
 	dw IceBeamAnim      ; ICE_SPIKE — reuse Ice Beam's visuals
 	dw ConfusionAnim    ; MIGRAIN — reuse Confusion's visuals
 	dw WingAttackAnim   ; DIVE — reuse Wing Attack's visuals
+	dw ThunderShockAnim ; STATIC_SHOCK — reuse ThunderShock's visuals
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim

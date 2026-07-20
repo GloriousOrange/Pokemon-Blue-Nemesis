@@ -188,5 +188,6 @@ MoveNames::
 	li "ICE SPIKE"
 	li "MIGRAIN"
 	li "DIVE"
+	li "STATIC SHOCK"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS

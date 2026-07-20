@@ -195,7 +195,6 @@ INCLUDE "engine/battle/trainer_ai.asm"
 INCLUDE "engine/battle/draw_hud_pokeball_gfx.asm"
 INCLUDE "engine/pokemon/evos_moves.asm"
 INCLUDE "engine/battle/move_effects/heal.asm"
-INCLUDE "engine/battle/move_effects/transform.asm"
 
 
 ; moved out of Battle Engine 7 (bank $E is full after the extra moves + the
@@ -204,6 +203,9 @@ INCLUDE "engine/battle/move_effects/transform.asm"
 SECTION "Reflect Light Screen Effect", ROMX
 
 INCLUDE "engine/battle/move_effects/reflect_light_screen.asm"
+
+SECTION "Transform Effect", ROMX ; floated out of Battle Engine 7 (bank $E full); reached only via jpfar TransformEffect_ so any bank works
+INCLUDE "engine/battle/move_effects/transform.asm"
 
 
 SECTION "Trade Animation GFX", ROMX

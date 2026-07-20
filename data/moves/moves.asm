@@ -198,5 +198,6 @@ Moves:
 	move ICE_SPIKE,    NO_ADDITIONAL_EFFECT,        25, ICE,          100, 20
 	move MIGRAIN,      NO_ADDITIONAL_EFFECT,        30, PSYCHIC_TYPE, 100, 20
 	move DIVE,         NO_ADDITIONAL_EFFECT,        30, FLYING,       100, 20
+	move STATIC_SHOCK, STATIC_SHOCK_EFFECT,         40, ELECTRIC,     100, 15
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
 	assert_table_length NUM_ATTACKS
