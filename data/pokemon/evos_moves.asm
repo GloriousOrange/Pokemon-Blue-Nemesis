@@ -791,7 +791,7 @@ MagmarEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 36, HOT_OIL
+	db 30, HOT_OIL
 	db 36, LEER
 	db 39, CONFUSE_RAY
 	db 43, FIRE_PUNCH
