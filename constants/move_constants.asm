@@ -189,7 +189,8 @@
 	const BAD_TOUCH      ; b5 - Normal, always confuses, 100 acc (Drowzee, lv42)
 	const CRUSH_COIL     ; b6 - Poison, Wrap-style trap: 30 dmg/turn (Ekans/Arbok, lv42)
 	const BLOOD_SUCK     ; b7 - Poison, 80 dmg, drains half as HP (Zubat, lv32)
-	const STRUGGLE       ; b8
+	const HURRICANE      ; b8 - Dragon, 80 dmg, high crit ratio; Gust anim (Gyarados, lv42)
+	const STRUGGLE       ; b9
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

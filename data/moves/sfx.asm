@@ -184,6 +184,7 @@ MoveSoundTable:
 	db SFX_BATTLE_13,          $f1, $ff ; BAD_TOUCH (match reused Confuse Ray sfx)
 	db SFX_BATTLE_14,          $10, $60 ; CRUSH_COIL (match reused Wrap sfx)
 	db SFX_BATTLE_24,          $00, $80 ; BLOOD_SUCK (match reused Leech Life sfx)
+	db SFX_BATTLE_12,          $00, $c0 ; HURRICANE (match reused Gust sfx)
 	db SFX_BATTLE_0B,          $00, $80 ; STRUGGLE
 	assert_table_length NUM_ATTACKS
 	db SFX_BATTLE_0B,          $00, $80

@@ -183,6 +183,7 @@ AttackAnimationPointers:
 	dw ConfuseRayAnim   ; BAD_TOUCH — reuse Confuse Ray's visuals
 	dw WrapAnim         ; CRUSH_COIL — reuse Wrap's trapping visuals
 	dw LeechLifeAnim    ; BLOOD_SUCK — reuse Leech Life's drain visuals
+	dw GustAnim         ; HURRICANE — reuse Gust's wind visuals
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim

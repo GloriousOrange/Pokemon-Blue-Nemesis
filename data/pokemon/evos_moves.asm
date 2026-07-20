@@ -452,6 +452,7 @@ GyaradosEvosMoves:
 	db 25, DRAGON_RAGE
 	db 32, LEER
 	db 41, HYDRO_PUMP
+	db 42, HURRICANE
 	db 52, HYPER_BEAM
 	db 0
 
@@ -1033,7 +1034,7 @@ ZapdosEvosMoves:
 ; Learnset
 	db 12, THUNDER_WAVE
 	db 18, AGILITY
-	db 25, SWIFT
+	db 25, DRILL_PECK
 	db 31, THUNDERBOLT
 	db 38, LIGHT_SCREEN
 	db 45, SKY_ATTACK

@@ -194,5 +194,6 @@ Moves:
 	move BAD_TOUCH,    CONFUSION_EFFECT,             0, NORMAL,       100, 10
 	move CRUSH_COIL,   TRAPPING_EFFECT,             30, POISON,        85, 15
 	move BLOOD_SUCK,   DRAIN_HP_EFFECT,             80, POISON,       100, 10
+	move HURRICANE,    NO_ADDITIONAL_EFFECT,        80, DRAGON,       100, 10
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
 	assert_table_length NUM_ATTACKS
