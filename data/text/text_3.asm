@@ -116,7 +116,7 @@ _MonsStatsFellText::
 	text_end
 
 _GreatlyFellText::
-	text "<SCROLL>greatly@"
+	text "<SCROLL>harshly@"
 	text_end
 
 _FellText::
