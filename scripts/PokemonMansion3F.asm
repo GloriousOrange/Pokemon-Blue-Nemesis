@@ -38,13 +38,21 @@ PokemonMansion3F_ScriptPointers:
 	dw_const EndTrainerBattle,                      SCRIPT_POKEMONMANSION3F_END_BATTLE
 	dw_const PokemonMansion3FLabScientistPostBattle, SCRIPT_POKEMONMANSION3F_LAB_SCIENTIST_POST_BATTLE
 
+; Awards the stone via DisplayTextID (never a bare PrintText from a map tick).
+PokemonMansion3FLabScientistStoneText:
+	text_asm
+	farcall LabScientistGiveStone
+	jp TextScriptEnd
+
 PokemonMansion3FLabScientistPostBattle:
 	ld a, [wIsInBattle]
 	cp $ff
 	jr z, .reset
 	ld hl, wScientistsDefeated
 	set 3, [hl] ; lab scientist 4 (Alakazam)
-	farcall LabScientistGiveStone
+	ld a, TEXT_POKEMONMANSION3F_LAB_SCIENTIST_STONE
+	ldh [hTextID], a
+	call DisplayTextID
 .reset
 	xor a
 	ld [wJoyIgnore], a
@@ -107,6 +115,7 @@ PokemonMansion3F_TextPointers:
 	dw_const PokemonMansion3FDiaryText,     TEXT_POKEMONMANSION3F_DIARY
 	dw_const PokemonMansion3FLabScientistText, TEXT_POKEMONMANSION3F_LAB_SCIENTIST
 	dw_const PokemonMansion2FSwitchText,    TEXT_POKEMONMANSION3F_SWITCH ; This switch uses the text script from the 2F.
+	dw_const PokemonMansion3FLabScientistStoneText, TEXT_POKEMONMANSION3F_LAB_SCIENTIST_STONE
 
 Mansion3TrainerHeaders:
 	def_trainers

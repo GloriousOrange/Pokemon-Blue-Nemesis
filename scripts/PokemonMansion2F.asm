@@ -66,13 +66,21 @@ PokemonMansion2FResetScripts:
 	ld [wCurMapScript], a
 	ret
 
+; Awards the stone via DisplayTextID (never a bare PrintText from a map tick).
+PokemonMansion2FLabScientistStoneText:
+	text_asm
+	farcall LabScientistGiveStone
+	jp TextScriptEnd
+
 PokemonMansion2FLabScientist1PostBattle:
 	ld a, [wIsInBattle]
 	cp $ff
 	jp z, PokemonMansion2FResetScripts
 	ld hl, wScientistsDefeated
 	set 1, [hl] ; lab scientist 2 (Electrode)
-	farcall LabScientistGiveStone
+	ld a, TEXT_POKEMONMANSION2F_LAB_SCIENTIST_STONE
+	ldh [hTextID], a
+	call DisplayTextID
 	jp PokemonMansion2FResetScripts
 
 PokemonMansion2FLabScientist2PostBattle:
@@ -81,7 +89,9 @@ PokemonMansion2FLabScientist2PostBattle:
 	jp z, PokemonMansion2FResetScripts
 	ld hl, wScientistsDefeated
 	set 2, [hl] ; lab scientist 3 (Magneton)
-	farcall LabScientistGiveStone
+	ld a, TEXT_POKEMONMANSION2F_LAB_SCIENTIST_STONE
+	ldh [hTextID], a
+	call DisplayTextID
 	jp PokemonMansion2FResetScripts
 
 PokemonMansion2F_TextPointers:
@@ -93,6 +103,7 @@ PokemonMansion2F_TextPointers:
 	dw_const PokemonMansion2FLabScientist1Text, TEXT_POKEMONMANSION2F_LAB_SCIENTIST_1
 	dw_const PokemonMansion2FLabScientist2Text, TEXT_POKEMONMANSION2F_LAB_SCIENTIST_2
 	dw_const PokemonMansion2FSwitchText,    TEXT_POKEMONMANSION2F_SWITCH
+	dw_const PokemonMansion2FLabScientistStoneText, TEXT_POKEMONMANSION2F_LAB_SCIENTIST_STONE
 
 Mansion2TrainerHeaders:
 	def_trainers

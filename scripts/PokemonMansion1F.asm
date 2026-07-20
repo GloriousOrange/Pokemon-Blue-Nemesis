@@ -305,7 +305,13 @@ PokemonMansion1FLabScientistPostBattle:
 	jp z, PokemonMansion1FResetScripts
 	ld hl, wScientistsDefeated
 	set 0, [hl] ; lab scientist 1 (Porygon)
-	farcall LabScientistGiveStone
+; Award the stone + its "received" text through DisplayTextID, never a bare
+; PrintText from this map-script tick -- that skips DisplayTextID's shared
+; text/sprite VRAM setup+restore and corrupts the overworld (garbled text +
+; frozen player). Same rule as the Mathus/Nocturn captured-flow postmortem.
+	ld a, TEXT_POKEMONMANSION1F_LAB_SCIENTIST_STONE
+	ldh [hTextID], a
+	call DisplayTextID
 PokemonMansion1FResetScripts:
 	xor a
 	ld [wJoyIgnore], a
@@ -322,6 +328,7 @@ PokemonMansion1F_TextPointers:
 	dw_const PokemonMansion1FRivalText,     TEXT_POKEMONMANSION1F_RIVAL
 	dw_const PokemonMansion1FSwitchText,    TEXT_POKEMONMANSION1F_SWITCH
 	dw_const PokemonMansion1FPerishText,    TEXT_POKEMONMANSION1F_PERISH
+	dw_const PokemonMansion1FLabScientistStoneText, TEXT_POKEMONMANSION1F_LAB_SCIENTIST_STONE
 
 Mansion1TrainerHeaders:
 	def_trainers
@@ -370,6 +377,12 @@ PokemonMansion1FLabScientistText:
 .AfterBeatText:
 	text_far _PokemonMansion1FLabScientistAfterBeatText
 	text_end
+
+; Runs the shared stone award from a proper DisplayTextID/text_asm context.
+PokemonMansion1FLabScientistStoneText:
+	text_asm
+	farcall LabScientistGiveStone
+	jp TextScriptEnd
 
 ; Shows the ambush challenge before the battle (also what the trigger tick's
 ; DisplayTextID lands on) and his parting line after it.

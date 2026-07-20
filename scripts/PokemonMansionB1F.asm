@@ -78,13 +78,21 @@ PokemonMansionB1FResetScripts:
 	ld [wCurMapScript], a
 	ret
 
+; Awards the stone via DisplayTextID (never a bare PrintText from a map tick).
+PokemonMansionB1FLabScientistStoneText:
+	text_asm
+	farcall LabScientistGiveStone
+	jp TextScriptEnd
+
 PokemonMansionB1FLabScientist1PostBattle:
 	ld a, [wIsInBattle]
 	cp $ff
 	jp z, PokemonMansionB1FResetScripts
 	ld hl, wScientistsDefeated
 	set 4, [hl] ; lab scientist 5 (Gengar)
-	farcall LabScientistGiveStone
+	ld a, TEXT_POKEMONMANSIONB1F_LAB_SCIENTIST_STONE
+	ldh [hTextID], a
+	call DisplayTextID
 	jp PokemonMansionB1FResetScripts
 
 PokemonMansionB1FLabScientist2PostBattle:
@@ -93,7 +101,9 @@ PokemonMansionB1FLabScientist2PostBattle:
 	jp z, PokemonMansionB1FResetScripts
 	ld hl, wScientistsDefeated
 	set 5, [hl] ; lab scientist 6 (Ditto)
-	farcall LabScientistGiveStone
+	ld a, TEXT_POKEMONMANSIONB1F_LAB_SCIENTIST_STONE
+	ldh [hTextID], a
+	call DisplayTextID
 	jp PokemonMansionB1FResetScripts
 
 PokemonMansionB1F_TextPointers:
@@ -110,6 +120,7 @@ PokemonMansionB1F_TextPointers:
 	dw_const PokemonMansionB1FLabScientist2Text, TEXT_POKEMONMANSIONB1F_LAB_SCIENTIST_2
 	dw_const PokemonMansionB1FLevelMachineText,  TEXT_POKEMONMANSIONB1F_LEVEL_MACHINE
 	dw_const PokemonMansion2FSwitchText,     TEXT_POKEMONMANSIONB1F_SWITCH ; This switch uses the text script from the 2F.
+	dw_const PokemonMansionB1FLabScientistStoneText, TEXT_POKEMONMANSIONB1F_LAB_SCIENTIST_STONE
 
 Mansion4TrainerHeaders:
 	def_trainers
