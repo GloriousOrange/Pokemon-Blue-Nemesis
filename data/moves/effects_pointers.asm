@@ -93,4 +93,5 @@ MoveEffectPointerTable:
 	dw CrystallizeEffect         ; CRYSTALLIZE_EFFECT
 	dw ChaosStingEffect          ; CHAOS_STING_EFFECT
 	dw HotOilEffect              ; HOT_OIL_EFFECT
+	dw WebCannonEffect           ; WEB_CANNON_EFFECT
 	assert_table_length NUM_MOVE_EFFECTS

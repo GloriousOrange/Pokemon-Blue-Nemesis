@@ -361,6 +361,48 @@ HotOilEffect:
 	ld hl, BurnedText
 	jp PrintText
 
+; WEB_CANNON: a damaging Bug move (10 power) that, after its damage, drops the
+; target's Speed to the minimum (-6) in a single hit and has a 35% chance to
+; make it flinch. Runs after damage (WEB_CANNON_EFFECT is not in SpecialEffects,
+; same dispatch as Chaos Sting / Body Slam's paralysis chance).
+WebCannonEffect:
+	call CheckTargetSubstitute
+	ret nz ; a substitute blocks the debuff + flinch
+; drop the target's Speed to -6 (stat-mod index 2; neutral = 7, minimum = 1)
+	ldh a, [hWhoseTurn]
+	and a
+	ld hl, wEnemyMonStatMods + 2 ; player attacking -> enemy is the target
+	jr z, .gotSpeedMod
+	ld hl, wPlayerMonStatMods + 2 ; enemy attacking -> player is the target
+.gotSpeedMod
+	ld a, [hl]
+	cp 1 ; already at -6? then skip the drop and its message
+	jr z, .flinch
+	ld [hl], 1 ; Speed mod -> -6 in one hit
+	ldh a, [hWhoseTurn]
+	and a
+	ld a, 1 ; player used it -> recalc the enemy mon's stats
+	jr z, .recalc
+	xor a ; enemy used it -> recalc the player mon's stats
+.recalc
+	call RecalcModifiedStatsFor
+	ld b, 3 ; SPEED, for PrintStatText
+	call PrintStatText
+	ld hl, MonsStatsFellText
+	call PrintText
+.flinch
+	call BattleRandom
+	cp 35 percent + 1
+	ret nc ; 65% of the time: no flinch
+	ldh a, [hWhoseTurn]
+	and a
+	ld hl, wEnemyBattleStatus1 ; player attacking -> flinch the enemy
+	jr z, .gotStatus
+	ld hl, wPlayerBattleStatus1 ; enemy attacking -> flinch the player
+.gotStatus
+	set FLINCHED, [hl]
+	jp ClearHyperBeam
+
 DrainHPEffect:
 	jpfar DrainHPEffect_
 
@@ -846,28 +888,8 @@ StatModifierDownEffect:
 	ld a, [bc]
 	bit INVULNERABLE, a ; fly/dig
 	jp nz, MoveMissed
-; WEB_CANNON: custom Bug move -- drops target Speed to the minimum (-6) in one hit.
-; Special-cased here so the generic -1/-2 path below is left untouched. Once the
-; target is already at -6, it falls through to CantLowerAnymore instead of
-; re-applying endlessly.
-	ldh a, [hWhoseTurn]
-	and a
-	ld a, [wPlayerMoveNum]
-	jr z, .gotMoveNumForWebCannon
-	ld a, [wEnemyMoveNum]
-.gotMoveNumForWebCannon
-	cp WEB_CANNON
-	jr nz, .notWebCannon
-	ld c, 2 ; SPEED stat-mod index
-	ld b, $0
-	add hl, bc ; hl -> target's Speed stat mod
-	ld a, [hl]
-	cp 2 ; already at -6 (mod stored as 1)?
-	jp c, CantLowerAnymore ; if so, don't keep "lowering" it
-	ld b, 1 ; drop Speed to the minimum (-6) in one hit
-	ld c, 2 ; ensure SPEED index for the stat recalc below
-	jr .ok
-.notWebCannon
+; (Web Cannon no longer routes through here -- it's a damaging move with its
+; own WebCannonEffect that runs after damage.)
 	ld a, [de]
 	sub ATTACK_DOWN1_EFFECT
 	cp EVASION_DOWN1_EFFECT + $3 - ATTACK_DOWN1_EFFECT ; covers all -1 effects

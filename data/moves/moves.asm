@@ -182,7 +182,7 @@ Moves:
 	move BLIGHT_VOMIT, PARALYZE_SIDE_EFFECT2,       80, POISON,       100, 15
 	move MIND_FEVER,   CONFUSION_EFFECT,             0, GHOST,        100,  1
 	move PHANTOM_WING, SPECIAL_DOWN_SIDE_EFFECT,    80, GHOST,        100, 10
-	move WEB_CANNON,   SPEED_DOWN1_EFFECT,           0, BUG,           95, 10
+	move WEB_CANNON,   WEB_CANNON_EFFECT,           10, BUG,           85, 10
 	move UPPERCUT,     NO_ADDITIONAL_EFFECT,        95, FIGHTING,     100, 15
 	move JACKPOT,      JACKPOT_EFFECT,              80, NORMAL,       100, 10
 	move SUPER_INSTINCT, SUPER_INSTINCT_EFFECT,      0, NORMAL,       100, 20

@@ -97,4 +97,5 @@
 	const CRYSTALLIZE_EFFECT         ; $5A - Nemesis: raises user's Defense by 2 + Special by 1 (Beedrill)
 	const CHAOS_STING_EFFECT         ; $5B - Nemesis: 30% chance of a random non-sleep status (Beedrill)
 	const HOT_OIL_EFFECT             ; $5C - Nemesis: damage + guaranteed burn (Magmar)
+	const WEB_CANNON_EFFECT          ; $5D - Nemesis: damage + drop target Speed to -6 + 35% flinch (Pinsir/Butterfree)
 DEF NUM_MOVE_EFFECTS EQU const_value - 1

@@ -542,9 +542,9 @@ PinsirEvosMoves:
 	db 25, SEISMIC_TOSS
 	db 30, GUILLOTINE
 	db 36, FOCUS_ENERGY
-	db 37, WEB_CANNON
 	db 43, PIN_MISSILE
 	db 49, SLASH
+	db 70, WEB_CANNON
 	db 98, SWORDS_DANCE ; moved from level 54 (user request 2026-07-10)
 	db 0
 
@@ -1541,7 +1541,7 @@ ButterfreeEvosMoves:
 	db 17, SLEEP_POWDER
 	db 21, SUPERSONIC
 	db 26, WHIRLWIND
-	db 26, WEB_CANNON
+	db 28, WEB_CANNON
 	db 32, PSYBEAM
 	db 0
 
