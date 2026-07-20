@@ -405,6 +405,23 @@ INCLUDE "engine/items/tm_prices.asm"
 SECTION "Dust Smoke", ROMX ; relocated out of bank1E (refilled by new moves); AnimateBoulderDust / LoadSmokeTileFourTimes are only called via farcall/callfar, so any bank works
 INCLUDE "engine/overworld/dust_smoke.asm"
 
+SECTION "Mansion Postgame Wild", ROMX ; loaded via FarCopyData, so any bank works
+; Fully-evolved forms of the normal burned-Mansion mons at L50-60, with a rare
+; (1% -- last slot) Charizard. Swapped over wGrassRate/wGrassMons post-game by
+; LoadWildData when the player is on a Mansion floor and the Champion is beaten.
+PokemonMansionPostGameWildMons::
+	db 2 ; encounter rate
+	db 53, MUK
+	db 55, WEEZING
+	db 54, RAPIDASH
+	db 50, MUK
+	db 56, NINETALES
+	db 58, WEEZING
+	db 57, RAPIDASH
+	db 58, MAGMAR
+	db 60, NINETALES
+	db 60, CHARIZARD
+
 SECTION "Starter Ashes", ROMX
 
 INCLUDE "engine/events/starter_ashes.asm"
