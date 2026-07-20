@@ -41,7 +41,7 @@ SleepEffect:
 	                        ; including the event where the target already has another status
 	ld a, [de]
 	ld b, a
-	and SLP_MASK
+	and a ; single-status: any existing status blocks sleep
 	jr z, .notAlreadySleeping ; can't affect a mon that is already asleep
 	ld hl, AlreadyAsleepText
 	jp PrintText
@@ -57,12 +57,7 @@ SleepEffect:
 	call BattleRandom
 	and SLP_MASK
 	jr z, .setSleepCounter
-; Nemesis: OR the counter in so an existing PSN/BRN/FRZ/PAR status is preserved
-	ld b, a
-	ld a, [de]
-	and %11111000
-	or b
-	ld [de], a
+	ld [de], a ; single-status: sleep replaces any prior status bits
 	call PlayCurrentMoveAnimation2
 	ld hl, FellAsleepText
 	jp PrintText
@@ -90,8 +85,8 @@ PoisonEffect:
 	jp nz, .noEffect ; can't poison a substitute target
 	ld a, [hli]
 	ld b, a
-	bit PSN, a
-	jp nz, .noEffect ; Nemesis: only skip if already poisoned; other statuses can stack
+	and a
+	jp nz, .noEffect ; single-status: any existing status blocks poison
 	ld a, [hli]
 	cp POISON ; can't poison a poison-type target
 	jr z, .noEffect
@@ -218,6 +213,9 @@ CarrionWindEffect:
 	ld de, wPlayerBattleStatus3
 	ld bc, wPlayerToxicCounter
 .gotPoisonTarget
+	ld a, [hl]
+	and a
+	jr nz, .poisonImmune ; single-status: don't badly-poison an already-statused mon (still flinched)
 	inc hl
 	ld a, [hli] ; type 1 (status byte skipped)
 	cp POISON
@@ -264,8 +262,9 @@ ChaosStingEffect:
 	ld hl, wBattleMonStatus
 	ld de, wBattleMonType1
 .gotTarget
-	bit FRZ, [hl]
-	ret nz ; a frozen target is already fully locked; don't layer onto freeze
+	ld a, [hl]
+	and a
+	ret nz ; single-status: don't add a status to an already-statused mon
 ; roll the ailment: 0 = poison, 1 = burn, 2 = freeze, 3 = paralysis
 	call BattleRandom
 	and $03
@@ -347,8 +346,9 @@ HotOilEffect:
 	ld hl, wBattleMonStatus
 	ld de, wBattleMonType1
 .gotTarget
-	bit BRN, [hl]
-	ret nz ; already burned
+	ld a, [hl]
+	and a
+	ret nz ; single-status: don't burn an already-statused mon
 	ld a, [de]
 	cp FIRE
 	ret z ; Fire-type is immune to burn
@@ -392,8 +392,8 @@ FreezeBurnParalyzeEffect:
 	and a
 	jp nz, .opponentAttacker
 	ld a, [wEnemyMonStatus]
-	and 1 << FRZ
-	jp nz, CheckDefrost ; Nemesis: only a frozen target short-circuits (thaw on fire); other statuses stack
+	and a
+	jp nz, CheckDefrost ; single-status: any existing status blocks a new one (frozen thaws on fire, else fails)
 	ld a, [wPlayerMoveType]
 	ld b, a
 	ld a, [wEnemyMonType1]
@@ -454,8 +454,8 @@ FreezeBurnParalyzeEffect:
 	jp PrintText
 .opponentAttacker
 	ld a, [wBattleMonStatus] ; mostly same as above with addresses swapped for opponent
-	and 1 << FRZ
-	jp nz, CheckDefrost ; Nemesis: only a frozen target short-circuits; other statuses stack
+	and a
+	jp nz, CheckDefrost ; single-status: any existing status blocks a new one
 	ld a, [wEnemyMoveType]
 	ld b, a
 	ld a, [wBattleMonType1]
@@ -1475,8 +1475,8 @@ MindFeverBurn:
 	ld hl, wBattleMonStatus ; enemy attacking -> burn the player
 .gotTarget
 	ld a, [hli]
-	bit BRN, a
-	ret nz ; already burned -> skip (would re-halve attack)
+	and a
+	ret nz ; single-status: any existing status blocks Mind Fever's burn
 	ld a, [hli]
 	cp FIRE
 	ret z ; Fire-types can't be burned
