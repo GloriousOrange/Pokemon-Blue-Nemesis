@@ -519,6 +519,7 @@ StaryuEvosMoves:
 	db 37, MINIMIZE
 	db 42, LIGHT_SCREEN
 	db 47, HYDRO_PUMP
+	db 50, MEGA_DRAIN
 	db 0
 
 BlastoiseEvosMoves:
