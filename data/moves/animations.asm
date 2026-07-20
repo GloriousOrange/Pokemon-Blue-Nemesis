@@ -191,6 +191,11 @@ AttackAnimationPointers:
 	dw RockSlideAnim    ; GRAVITY_SLAM — reuse Rock Slide's visuals
 	dw SwordsDanceAnim  ; VIBRATE — reuse Swords Dance's visuals
 	dw MinimizeAnim     ; STEALTH — reuse Minimize's visuals
+	dw ConstrictAnim    ; TANGLE — reuse Constrict's visuals
+	dw BlizzardAnim     ; ICE_BOMB — reuse Blizzard's visuals
+	dw SubstituteAnim   ; ICE_SCULPTURE — reuse Substitute's visuals
+	dw TakeDownAnim     ; STAMPEDE — reuse Take Down's visuals
+	dw BodySlamAnim     ; ROLL — reuse Body Slam's visuals
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim

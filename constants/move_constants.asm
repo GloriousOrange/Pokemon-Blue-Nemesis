@@ -197,7 +197,12 @@
 	const GRAVITY_SLAM   ; bd - Rock, 80 dmg, always paralyzes (Aerodactyl niche)
 	const VIBRATE        ; be - raise user's Attack + Speed by 2 (Pinsir niche)
 	const STEALTH        ; bf - raise user's Evasion by 2 (Scyther niche)
-	const STRUGGLE       ; c0
+	const TANGLE         ; c0 - Grass, 50 dmg + lowers target Speed by 3 (Tangela niche)
+	const ICE_BOMB       ; c1 - Ice, 100 dmg, 50% freeze, 100 acc (Lapras niche)
+	const ICE_SCULPTURE  ; c2 - makes a Substitute; damaging it may freeze (Jynx niche)
+	const STAMPEDE       ; c3 - Normal, 150 dmg, 2-turn charge like Dig (Tauros niche)
+	const ROLL           ; c4 - Normal, 100 dmg, 85 acc, lowers user Defense by 2 (Snorlax niche)
+	const STRUGGLE       ; c5
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

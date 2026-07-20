@@ -176,6 +176,31 @@ _DugAHoleText::
 	line "dug a hole!"
 	prompt
 
+; Nemesis: Stampede's turn-1 charge message (Tauros).
+_BeganToChargeText::
+	text_start
+	line "began to charge!"
+	prompt
+
+; Nemesis: Ice Sculpture's frost Substitute freezes the attacker (the USER).
+_FrostSubstituteFrozeText::
+	text "<USER>"
+	line "was frozen solid!"
+	prompt
+
+; Nemesis: Roll's self-inflicted Defense drop (Snorlax).
+_RollDefenseFellText::
+	text "<USER>'s"
+	line "DEFENSE fell!"
+	prompt
+
+; Nemesis: Tangle's three-stage Speed drop (Tangela).
+_TangleSpeedFellText::
+	text "<TARGET>'s"
+	line "SPEED greatly"
+	cont "fell!"
+	prompt
+
 _BecameConfusedText::
 	text "<TARGET>"
 	line "became confused!"

@@ -192,5 +192,10 @@ MoveNames::
 	li "GRAVITY SLAM"
 	li "VIBRATE"
 	li "STEALTH"
+	li "TANGLE"
+	li "ICE BOMB"
+	li "ICE STATUE"
+	li "STAMPEDE"
+	li "ROLL"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS

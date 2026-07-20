@@ -508,7 +508,13 @@ wLowHealthAlarmDisabled:: db
 
 wPlayerMonMinimized:: db
 
-	ds 13
+; Nemesis: nonzero if this side's active Substitute is a "frost" Substitute
+; (made by Jynx's Ice Sculpture). While up, any mon that damages it has a 50%
+; chance to be frozen. Set by IceSculptureEffect, cleared by a normal Substitute.
+wPlayerFrostSubstitute:: db
+wEnemyFrostSubstitute:: db
+
+	ds 11
 
 UNION
 ; the amount of damage accumulated by the enemy while biding

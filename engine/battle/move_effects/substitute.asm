@@ -1,4 +1,15 @@
 SubstituteEffect_:
+; Nemesis: a fresh Substitute starts non-frost; clear this side's frost flag so it
+; can't inherit Ice Sculpture's freeze-on-hit from earlier in the battle.
+; IceSculptureEffect_ re-sets the flag afterward for Jynx's frost Substitute.
+	ldh a, [hWhoseTurn]
+	and a
+	ld hl, wPlayerFrostSubstitute
+	jr z, .gotFrostFlag
+	ld hl, wEnemyFrostSubstitute
+.gotFrostFlag
+	xor a
+	ld [hl], a
 	ld c, 50
 	call DelayFrames
 	ld hl, wBattleMonMaxHP

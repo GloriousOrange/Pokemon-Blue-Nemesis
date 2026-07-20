@@ -334,31 +334,10 @@ ChaosStingResetToxic:
 ; burned). Like Chaos Sting's burn branch but guaranteed, no random roll. Being
 ; a damaging move whose effect is NOT in the SpecialEffects list, this runs
 ; after damage, same dispatch path as Body Slam's paralysis chance.
+; Nemesis: Hot Oil (Magmar). Body floated to "Nemesis Niche Effects" to free room
+; in the packed Battle Core bank; reached through this thin jpfar wrapper.
 HotOilEffect:
-	call CheckTargetSubstitute
-	ret nz ; can't burn through a substitute
-	ldh a, [hWhoseTurn]
-	and a
-	ld hl, wEnemyMonStatus
-	ld de, wEnemyMonType1
-	jr z, .gotTarget
-	ld hl, wBattleMonStatus
-	ld de, wBattleMonType1
-.gotTarget
-	ld a, [hl]
-	and a
-	ret nz ; single-status: don't burn an already-statused mon
-	ld a, [de]
-	cp FIRE
-	ret z ; Fire-type is immune to burn
-	inc de
-	ld a, [de]
-	cp FIRE
-	ret z
-	set BRN, [hl]
-	call HalveAttackDueToBurn
-	ld hl, BurnedText
-	jp PrintText
+	jpfar HotOilEffect_
 
 ; WEB_CANNON: a damaging Bug move (10 power) that, after its damage, drops the
 ; target's Speed to the minimum (-6) in a single hit and has a 35% chance to
@@ -402,37 +381,11 @@ WebCannonEffect:
 	set FLINCHED, [hl]
 	jp ClearHyperBeam
 
-; Nemesis: shared by Static Shock (Electric, Electabuzz) and Gravity Slam (Rock,
-; Aerodactyl). A damaging move that, after its damage, ALWAYS paralyzes the
-; target -- unless the target already has a status or shares the MOVE's own type
-; (Electric can't paralyze Electric, Rock can't paralyze Rock). Runs after damage.
+; Nemesis: shared by Static Shock (Electabuzz) and Gravity Slam (Aerodactyl).
+; Body floated to "Nemesis Niche Effects" to keep the packed Battle Core bank
+; within budget; reached through this thin jpfar wrapper.
 StaticShockEffect:
-	call CheckTargetSubstitute
-	ret nz ; can't paralyze through a substitute
-	ldh a, [hWhoseTurn]
-	and a
-	ld hl, wEnemyMonStatus
-	ld de, wEnemyMonType1
-	ld a, [wPlayerMoveType]
-	jr z, .gotMoveType
-	ld hl, wBattleMonStatus
-	ld de, wBattleMonType1
-	ld a, [wEnemyMoveType]
-.gotMoveType
-	ld b, a ; b = the move's own type
-	ld a, [hl]
-	and a
-	ret nz ; single-status: don't paralyze an already-statused mon
-	ld a, [de]
-	cp b
-	ret z ; target that shares the move's type is immune
-	inc de
-	ld a, [de]
-	cp b
-	ret z
-	set PAR, [hl]
-	call QuarterSpeedDueToParalysis
-	jp PrintMayNotAttackText
+	jpfar StaticShockEffect_
 
 ; Nemesis: Vibrate (Pinsir's niche). Raises the user's own Attack AND Speed by
 ; two stages each -- same double-through-StatModifierUpEffect trick as
@@ -451,6 +404,22 @@ VibrateEffect:
 	pop hl
 	ld [hl], SPEED_UP2_EFFECT
 	jp StatModifierUpEffect
+
+; Nemesis niche moves. Their bodies are floated out of the full Battle Core bank
+; into "Nemesis Niche Effects" and reached through these thin jpfar wrappers
+; (same pattern as the vanilla effects just above/below).
+; See engine/battle/move_effects/niche_effects.asm.
+TangleEffect:
+	jpfar TangleEffect_
+
+IceBombEffect:
+	jpfar IceBombEffect_
+
+RollEffect:
+	jpfar RollEffect_
+
+IceSculptureEffect:
+	jpfar IceSculptureEffect_
 
 DrainHPEffect:
 	jpfar DrainHPEffect_
@@ -683,6 +652,14 @@ CrystallizeEffect:
 	pop hl
 	ld [hl], SPECIAL_UP1_EFFECT
 	jp StatModifierUpEffect
+
+; Nemesis: argless helper so the floated Roll effect can refresh the acting mon's
+; own live stats after a self-inflicted stat drop. RecalcModifiedStatsFor takes
+; its side in `a` (0 = player, nonzero = enemy), which a callfar from another bank
+; would clobber; setting it here, in-bank, keeps the argument intact.
+RecalcSelfStats:
+	ldh a, [hWhoseTurn]
+	jp RecalcModifiedStatsFor
 
 RecalcModifiedStatsFor:
 ; Nemesis bug fix for the vanilla "badge boost" bug. Recompute ONE mon's four
@@ -1421,10 +1398,17 @@ ChargeMoveEffectText:
 	cp FLY
 	ld hl, FlewUpHighText
 	jr z, .gotText
+	cp STAMPEDE
+	ld hl, BeganToChargeText
+	jr z, .gotText
 	cp DIG
 	ld hl, DugAHoleText
 .gotText
 	ret
+
+BeganToChargeText:
+	text_far _BeganToChargeText
+	text_end
 
 MadeWhirlwindText:
 	text_far _MadeWhirlwindText

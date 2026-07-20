@@ -5035,7 +5035,10 @@ AttackSubstitute:
 	ld a, [de]
 	sub [hl]
 	ld [de], a
-	ret nc
+	jr c, .substituteBroke
+; substitute survived -- a frost Substitute may still freeze the attacker
+	callfar FrostSubstituteFreezeCheck
+	ret
 .substituteBroke
 ; If the target's Substitute breaks, wDamage isn't updated with the amount of HP
 ; the Substitute had before being attacked.
@@ -5060,6 +5063,8 @@ AttackSubstitute:
 .nullifyEffect
 	xor a
 	ld [hl], a ; zero the effect of the attacker's move
+; a frost Substitute (Ice Sculpture) that just broke may still freeze the attacker
+	callfar FrostSubstituteFreezeCheck
 	jp DrawHUDsAndHPBars
 
 SubstituteTookDamageText:

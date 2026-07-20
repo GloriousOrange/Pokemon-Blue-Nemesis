@@ -192,6 +192,11 @@ MoveSoundTable:
 	db SFX_BATTLE_36,          $f0, $20 ; GRAVITY_SLAM (match reused Rock Slide sfx)
 	db SFX_NOT_VERY_EFFECTIVE, $10, $c0 ; VIBRATE (match reused Swords Dance sfx)
 	db SFX_BATTLE_14,          $22, $10 ; STEALTH (match reused Minimize sfx)
+	db SFX_BATTLE_14,          $0f, $80 ; TANGLE (match reused Constrict sfx)
+	db SFX_BATTLE_29,          $f0, $e0 ; ICE_BOMB (match reused Blizzard sfx)
+	db SFX_BATTLE_2C,          $d8, $04 ; ICE_SCULPTURE (match reused Substitute sfx)
+	db SFX_SUPER_EFFECTIVE,    $00, $a0 ; STAMPEDE (match reused Take Down sfx)
+	db SFX_BATTLE_20,          $00, $c0 ; ROLL (match reused Body Slam sfx)
 	db SFX_BATTLE_0B,          $00, $80 ; STRUGGLE
 	assert_table_length NUM_ATTACKS
 	db SFX_BATTLE_0B,          $00, $80

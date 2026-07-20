@@ -100,4 +100,8 @@
 	const WEB_CANNON_EFFECT          ; $5D - Nemesis: damage + drop target Speed to -6 + 35% flinch (Pinsir/Butterfree)
 	const STATIC_SHOCK_EFFECT        ; $5E - Nemesis: damage + always paralyze; shared by Static Shock + Gravity Slam
 	const VIBRATE_EFFECT             ; $5F - Nemesis: raise user's Attack + Speed by 2 (Pinsir)
+	const TANGLE_EFFECT              ; $60 - Nemesis: damage + lower target Speed by 3 (Tangela)
+	const ICE_BOMB_EFFECT            ; $61 - Nemesis: damage + 50% freeze (Lapras)
+	const ROLL_EFFECT                ; $62 - Nemesis: damage + lower user's own Defense by 2 (Snorlax)
+	const ICE_SCULPTURE_EFFECT       ; $63 - Nemesis: makes a frost Substitute; damaging it may freeze (Jynx)
 DEF NUM_MOVE_EFFECTS EQU const_value - 1

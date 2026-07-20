@@ -202,5 +202,10 @@ Moves:
 	move GRAVITY_SLAM, STATIC_SHOCK_EFFECT,         80, ROCK,         100, 10
 	move VIBRATE,      VIBRATE_EFFECT,               0, NORMAL,       100, 20
 	move STEALTH,      EVASION_UP2_EFFECT,           0, NORMAL,       100, 15
+	move TANGLE,       TANGLE_EFFECT,               50, GRASS,        100, 15
+	move ICE_BOMB,     ICE_BOMB_EFFECT,            100, ICE,          100,  5
+	move ICE_SCULPTURE, ICE_SCULPTURE_EFFECT,        0, ICE,          100, 10
+	move STAMPEDE,     CHARGE_EFFECT,              150, NORMAL,       100,  5
+	move ROLL,         ROLL_EFFECT,               100, NORMAL,        85, 15
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
 	assert_table_length NUM_ATTACKS

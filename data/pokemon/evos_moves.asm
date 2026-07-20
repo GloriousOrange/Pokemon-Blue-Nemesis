@@ -426,6 +426,7 @@ LaprasEvosMoves:
 	db 31, CONFUSE_RAY
 	db 38, ICE_BEAM
 	db 46, HYDRO_PUMP
+	db 55, ICE_BOMB
 	db 0
 
 ArcanineEvosMoves:
@@ -557,6 +558,7 @@ TangelaEvosMoves:
 ; Learnset
 	db 29, ABSORB
 	db 32, POISONPOWDER
+	db 33, TANGLE
 	db 36, STUN_SPORE
 	db 39, SLEEP_POWDER
 	db 45, SLAM
@@ -896,6 +898,7 @@ TaurosEvosMoves:
 	db 35, LEER
 	db 44, RAGE
 	db 51, TAKE_DOWN
+	db 55, STAMPEDE
 	db 0
 
 MissingNo3DEvosMoves:
@@ -1004,6 +1007,7 @@ JynxEvosMoves:
 	db 31, ICE_PUNCH
 	db 39, BODY_SLAM
 	db 47, THRASH
+	db 55, ICE_SCULPTURE
 	db 58, BLIZZARD
 	db 0
 
@@ -1622,6 +1626,7 @@ SnorlaxEvosMoves:
 	db 35, BODY_SLAM
 	db 41, HARDEN
 	db 48, DOUBLE_EDGE
+	db 55, ROLL
 	db 56, HYPER_BEAM
 	db 0
 

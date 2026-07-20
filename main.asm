@@ -207,6 +207,9 @@ INCLUDE "engine/battle/move_effects/reflect_light_screen.asm"
 SECTION "Transform Effect", ROMX ; floated out of Battle Engine 7 (bank $E full); reached only via jpfar TransformEffect_ so any bank works
 INCLUDE "engine/battle/move_effects/transform.asm"
 
+SECTION "Nemesis Niche Effects", ROMX ; floated out of the full Battle Core bank; reached via jpfar wrappers in effects.asm + callfar from AttackSubstitute, so any bank works
+INCLUDE "engine/battle/move_effects/niche_effects.asm"
+
 
 SECTION "Trade Animation GFX", ROMX
 
