@@ -5188,7 +5188,7 @@ MetronomePickMove:
 .gotTurn
 	ld a, [hl] ; the move being used (METRONOME or the METRONOME2 HM)
 	cp METRONOME2
-	jr z, .metronome2 ; METRONOME2 rolls only from a fixed 21-move list
+	jr z, .metronome2 ; METRONOME2 rolls only from a fixed 20-move list
 ; loop to pick a random number in the range of valid moves used by Metronome
 .pickMoveLoop
 	call BattleRandom
@@ -5205,7 +5205,7 @@ MetronomePickMove:
 	jr ReloadMoveData
 .metronome2
 	call BattleRandom
-	cp 21 ; number of entries in Metronome2MoveList
+	cp 20 ; number of entries in Metronome2MoveList
 	jr nc, .metronome2
 	ld c, a
 	ld b, 0
@@ -5220,7 +5220,7 @@ MetronomePickMove:
 Metronome2MoveList:
 	db ICE_BEAM, HYPER_BEAM, MEGA_DRAIN, WING_ATTACK, DIG, RAZOR_LEAF, THUNDERBOLT
 	db SPORE, ACID_ARMOR, MEDITATE, HYDRO_PUMP, SURF, SAND_ATTACK, FIRE_BLAST
-	db FLAMETHROWER, TRANSFORM, SLASH, SLUDGE, BODY_SLAM, PSYCHIC_M, TOXIC
+	db FLAMETHROWER, SLASH, SLUDGE, BODY_SLAM, PSYCHIC_M, TOXIC
 
 ; this function increments the current move's PP
 ; it's used to prevent moves that run another move within the same turn
