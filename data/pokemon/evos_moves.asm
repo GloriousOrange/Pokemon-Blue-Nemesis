@@ -1600,11 +1600,15 @@ MewtwoEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 63, RECOVER
-	db 67, ICE_BEAM
-	db 73, THUNDERBOLT
-	db 79, AMNESIA
-	db 85, PSYCHIC_M
+	db 9, LIGHT_SCREEN
+	db 16, SWIFT
+	db 23, PSYBEAM
+	db 30, BARRIER
+	db 37, RECOVER
+	db 42, PSYCHIC_M
+	db 49, AMNESIA
+	db 56, ICE_BEAM
+	db 63, THUNDERBOLT
 	db 0
 
 SnorlaxEvosMoves:
