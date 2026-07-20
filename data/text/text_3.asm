@@ -116,8 +116,12 @@ _MonsStatsFellText::
 	text_end
 
 _GreatlyFellText::
-	text "<SCROLL>harshly@"
+	text "<SCROLL>greatly@"
 	text_end
+
+_MassivelyFellText::
+	text "<SCROLL>massively fell!"
+	prompt
 
 _FellText::
 	text " fell!"

@@ -1037,16 +1037,24 @@ MonsStatsFellText:
 	jr z, .playerTurn
 	ld a, [wEnemyMoveEffect]
 .playerTurn
-	cp WEB_CANNON_EFFECT ; Web Cannon drops Speed a full -6 -> use the "harshly fell" text
-	jr z, .greatly
+	cp WEB_CANNON_EFFECT ; Web Cannon drops Speed a full -6 -> its own "massively fell" text
+	jr z, .massively
 ; check if the move's effect decreases a stat by 2
 	cp BIDE_EFFECT
 	ret c
 	cp ATTACK_DOWN_SIDE_EFFECT
 	ret nc
-.greatly
 	ld hl, GreatlyFellText
 	ret
+.massively
+	ld hl, MassivelyFellText
+	ret
+
+MassivelyFellText:
+; Web Cannon's -6 Speed drop; a complete "massively fell!" line of its own.
+	text_pause
+	text_far _MassivelyFellText
+	text_end
 
 GreatlyFellText:
 	text_pause
