@@ -511,6 +511,7 @@ StaryuEvosMoves:
 	db EVOLVE_ITEM, WATER_STONE, 1, STARMIE
 	db 0
 ; Learnset
+	db 10, CONFUSION
 	db 17, WATER_GUN
 	db 22, HARDEN
 	db 27, RECOVER
