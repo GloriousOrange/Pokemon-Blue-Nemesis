@@ -184,6 +184,9 @@ AttackAnimationPointers:
 	dw WrapAnim         ; CRUSH_COIL — reuse Wrap's trapping visuals
 	dw LeechLifeAnim    ; BLOOD_SUCK — reuse Leech Life's drain visuals
 	dw GustAnim         ; HURRICANE — reuse Gust's wind visuals
+	dw IceBeamAnim      ; ICE_SPIKE — reuse Ice Beam's visuals
+	dw ConfusionAnim    ; MIGRAIN — reuse Confusion's visuals
+	dw WingAttackAnim   ; DIVE — reuse Wing Attack's visuals
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim

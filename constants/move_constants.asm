@@ -190,7 +190,10 @@
 	const CRUSH_COIL     ; b6 - Poison, Wrap-style trap: 30 dmg/turn (Ekans/Arbok, lv42)
 	const BLOOD_SUCK     ; b7 - Poison, 80 dmg, drains half as HP (Zubat, lv32)
 	const HURRICANE      ; b8 - Dragon, 80 dmg, high crit ratio; Gust anim (Gyarados, lv42)
-	const STRUGGLE       ; b9
+	const ICE_SPIKE      ; b9 - Ice, 25 dmg (Shellder)
+	const MIGRAIN        ; ba - Psychic, 30 dmg (Caterpie)
+	const DIVE           ; bb - Flying, 30 dmg (Zubat)
+	const STRUGGLE       ; bc
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

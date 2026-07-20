@@ -392,7 +392,6 @@ SECTION "bank1E", ROMX
 
 INCLUDE "engine/battle/animations.asm"
 INCLUDE "engine/overworld/cut2.asm"
-INCLUDE "engine/overworld/dust_smoke.asm"
 INCLUDE "gfx/fishing.asm"
 INCLUDE "data/moves/animations.asm"
 INCLUDE "data/battle_anims/subanimations.asm"
@@ -402,6 +401,9 @@ INCLUDE "engine/overworld/elevator.asm"
 
 SECTION "TM Prices", ROMX ; relocated out of bank1E (which filled up); GetMachinePrice is called via BANK(), so any bank works
 INCLUDE "engine/items/tm_prices.asm"
+
+SECTION "Dust Smoke", ROMX ; relocated out of bank1E (refilled by new moves); AnimateBoulderDust / LoadSmokeTileFourTimes are only called via farcall/callfar, so any bank works
+INCLUDE "engine/overworld/dust_smoke.asm"
 
 SECTION "Starter Ashes", ROMX
 

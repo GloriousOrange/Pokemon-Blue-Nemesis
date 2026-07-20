@@ -185,5 +185,8 @@ MoveNames::
 	li "CRUSH COIL"
 	li "BLOOD SUCK"
 	li "HURRICANE"
+	li "ICE SPIKE"
+	li "MIGRAIN"
+	li "DIVE"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS

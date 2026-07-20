@@ -95,8 +95,7 @@ PoisonEffect:
 	jr z, .noEffect
 	ld a, [de]
 	cp POISON_SIDE_EFFECT1
-	ld b, 20 percent + 1 ; chance of poisoning
-	jr z, .sideEffectTest
+	jr z, .inflictPoison ; Nemesis: Poison Sting (the only POISON_SIDE_EFFECT1 move) always poisons
 	cp POISON_SIDE_EFFECT2
 	jr nz, .notSideEffect2
 	ld b, 40 percent + 1 ; chance of poisoning (Smog / Sludge)

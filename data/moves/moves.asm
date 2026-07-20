@@ -195,5 +195,8 @@ Moves:
 	move CRUSH_COIL,   TRAPPING_EFFECT,             30, POISON,        85, 15
 	move BLOOD_SUCK,   DRAIN_HP_EFFECT,             80, POISON,       100, 10
 	move HURRICANE,    NO_ADDITIONAL_EFFECT,        80, DRAGON,       100, 10
+	move ICE_SPIKE,    NO_ADDITIONAL_EFFECT,        25, ICE,          100, 20
+	move MIGRAIN,      NO_ADDITIONAL_EFFECT,        30, PSYCHIC_TYPE, 100, 20
+	move DIVE,         NO_ADDITIONAL_EFFECT,        30, FLYING,       100, 20
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
 	assert_table_length NUM_ATTACKS
