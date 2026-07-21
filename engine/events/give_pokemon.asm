@@ -98,19 +98,36 @@ IF DEF(_SPEEDTEST)
 ; so depositing into a (nearly) full box would corrupt it. If there's no
 ; room, bail WITHOUT setting the flag so it retries on a later Continue.
 	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 3
+	cp MONS_PER_BOX - 8 ; need 9 free box slots for the niche-move test roster
 	ret nc
 	CheckEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
 	ret nz
 	SetEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
-	lb bc, STARMIE, 100
-	ld hl, .StarmieMoves
+; The niche-move test roster: every non-evolving mon that got a signature move,
+; at L100 with the new move first so it can be tried immediately from storage.
+	lb bc, JYNX, 100
+	ld hl, .JynxMoves
 	call .GiveBoxedMonWithMoves
-	lb bc, DITTO, 100
-	ld hl, .DittoMoves
+	lb bc, TAUROS, 100
+	ld hl, .TaurosMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, SNORLAX, 100
+	ld hl, .SnorlaxMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, LAPRAS, 100
+	ld hl, .LaprasMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, TANGELA, 100
+	ld hl, .TangelaMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, AERODACTYL, 100
+	ld hl, .AerodactylMoves
 	call .GiveBoxedMonWithMoves
 	lb bc, PINSIR, 100
 	ld hl, .PinsirMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, SCYTHER, 100
+	ld hl, .ScytherMoves
 	call .GiveBoxedMonWithMoves
 	lb bc, MEW, 100
 	ld hl, .MewMoves
@@ -118,14 +135,15 @@ IF DEF(_SPEEDTEST)
 ENDC
 	ret
 
-.StarmieMoves:
-	db PSYCHIC_M, ICE_BEAM, RECOVER, AMNESIA, SURF
-.DittoMoves:
-	db THUNDERBOLT, BODY_SLAM, ROCK_SLIDE, FLY, EARTHQUAKE
-.PinsirMoves:
-	db WEB_CANNON, VICEGRIP, TWINEEDLE, SWORDS_DANCE, SEISMIC_TOSS
-.MewMoves:
-	db METRONOME2, PSYCHIC_M, FIRE_BLAST, MEGA_DRAIN, BODY_SLAM
+.JynxMoves:       db ICE_SCULPTURE, BLIZZARD, PSYCHIC_M, LOVELY_KISS, BODY_SLAM
+.TaurosMoves:     db STAMPEDE, BODY_SLAM, EARTHQUAKE, HYPER_BEAM, TAKE_DOWN
+.SnorlaxMoves:    db ROLL, BODY_SLAM, EARTHQUAKE, HYPER_BEAM, REST
+.LaprasMoves:     db ICE_BOMB, SURF, ICE_BEAM, BODY_SLAM, CONFUSE_RAY
+.TangelaMoves:    db TANGLE, MEGA_DRAIN, SLEEP_POWDER, GROWTH, BODY_SLAM
+.AerodactylMoves: db GRAVITY_SLAM, FLY, HYPER_BEAM, BITE, TAKE_DOWN
+.PinsirMoves:     db VIBRATE, SLASH, SWORDS_DANCE, SEISMIC_TOSS, VICEGRIP
+.ScytherMoves:    db STEALTH, SLASH, SWORDS_DANCE, AGILITY, QUICK_ATTACK
+.MewMoves:        db METRONOME2, PSYCHIC_M, ICE_BEAM, SURF, EARTHQUAKE
 
 ; b = species, c = level, hl = pointer to a NUM_MOVES-byte moveset
 .GiveBoxedMonWithMoves:

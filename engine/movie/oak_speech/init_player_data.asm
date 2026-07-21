@@ -38,7 +38,7 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld [hl], a
 	ld hl, wNumBagItems
-	ld a, 9
+	ld a, 10
 	ld [hli], a
 	ld a, RARE_CANDY
 	ld [hli], a
@@ -78,6 +78,10 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld a, 1
 	ld [hli], a
+	ld a, LEVEL_STONE ; "MUTAGENSTONE" x6 to test the lab machine's L100 upgrade
+	ld [hli], a
+	ld a, 6
+	ld [hli], a
 	ld a, $ff ; terminator
 	ld [hl], a
 ENDC
@@ -91,8 +95,11 @@ ENDC
 	ASSERT wObtainedBadges + 1 == wUnusedObtainedBadges
 	ld [hl], a
 
+IF !DEF(_SPEEDTEST)
 	ld hl, wTownVisitedFlag + 1
 	set 3, [hl]              ; bit 11 = BATTLE_ISLAND always flyable
+	; (the SPEEDTEST block just below writes this bit as part of %00001111)
+ENDC
 
 IF DEF(_SPEEDTEST)
 ; Every town flyable from the start, and the Boulder/Cascade/Rainbow/Soul/

@@ -23,6 +23,13 @@ MansionB1FCheckReplaceSwitchDoorBlocks:
 	lb bc, 12, 9
 	call Mansion2ReplaceBlock
 .noStaircase
+; Post-game (and the SPEEDTEST kit, which sets this): drop EVERY switch barrier so
+; the whole floor is walkable with no puzzle -- the 1F/2F/3F scripts already open in
+; post-game, this completes that for B1F. The four switch tiles all take $e (floor)
+; safely; each is already a walkable $e in one of the normal switch states.
+	ld a, [wPostGameMisc]
+	bit BIT_POST_GAME_STARTED, a
+	jr nz, .allBarriersOpen
 	CheckEvent EVENT_MANSION_SWITCH_ON
 	jr nz, .switchTurnedOn
 	ld a, $e
@@ -35,6 +42,20 @@ MansionB1FCheckReplaceSwitchDoorBlocks:
 	lb bc, 3, 4
 	call Mansion2ReplaceBlock
 	ld a, $54
+	lb bc, 8, 8
+	call Mansion2ReplaceBlock
+	ret
+.allBarriersOpen
+	ld a, $e
+	lb bc, 8, 13
+	call Mansion2ReplaceBlock
+	ld a, $e
+	lb bc, 11, 6
+	call Mansion2ReplaceBlock
+	ld a, $e
+	lb bc, 3, 4
+	call Mansion2ReplaceBlock
+	ld a, $e
 	lb bc, 8, 8
 	call Mansion2ReplaceBlock
 	ret
