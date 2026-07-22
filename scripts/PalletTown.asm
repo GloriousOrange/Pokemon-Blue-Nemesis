@@ -208,12 +208,16 @@ PalletTownGirlText:
 ; left clear), same destination path the town-map Fly and Escape Rope use.
 PalletTownFisherText:
 	text_asm
+IF DEF(_SPEEDTEST)
+	jr .open ; testers: ferry always available, no need for a fresh save to set the flag
+ELSE
 	ld a, [wPostGameMisc]
 	bit BIT_OAK_ISLAND_UNLOCKED, a
 	jr nz, .open
 	ld hl, .ClosedText
 	call PrintText
 	jp TextScriptEnd
+ENDC
 .open
 	ld hl, .OfferText
 	call PrintText
