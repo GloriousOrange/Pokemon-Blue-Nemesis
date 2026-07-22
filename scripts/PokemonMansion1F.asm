@@ -63,7 +63,6 @@ PokemonMansion1F_ScriptPointers:
 	dw_const PokemonMansion1FDefaultScript,         SCRIPT_POKEMONMANSION1F_DEFAULT
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_POKEMONMANSION1F_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_POKEMONMANSION1F_END_BATTLE
-	dw_const PokemonMansion1FLabScientistPostBattle, SCRIPT_POKEMONMANSION1F_LAB_SCIENTIST_POST_BATTLE
 	dw_const PokemonMansion1FRivalApproachWaitScript, SCRIPT_POKEMONMANSION1F_RIVAL_APPROACH
 	dw_const PokemonMansion1FRivalStartBattleScript, SCRIPT_POKEMONMANSION1F_RIVAL_START_BATTLE
 	dw_const PokemonMansion1FRivalAfterBattleScript, SCRIPT_POKEMONMANSION1F_RIVAL_AFTER_BATTLE
@@ -302,19 +301,6 @@ PokemonMansion1FHideRival:
 	predef HideObject
 	ret
 
-PokemonMansion1FLabScientistPostBattle:
-	ld a, [wIsInBattle]
-	cp $ff
-	jp z, PokemonMansion1FResetScripts
-	ld hl, wScientistsDefeated
-	set 0, [hl] ; lab scientist 1 (Porygon)
-; Award the stone + its "received" text through DisplayTextID, never a bare
-; PrintText from this map-script tick -- that skips DisplayTextID's shared
-; text/sprite VRAM setup+restore and corrupts the overworld (garbled text +
-; frozen player). Same rule as the Mathus/Nocturn captured-flow postmortem.
-	ld a, TEXT_POKEMONMANSION1F_LAB_SCIENTIST_STONE
-	ldh [hTextID], a
-	call DisplayTextID
 PokemonMansion1FResetScripts:
 	xor a
 	ld [wJoyIgnore], a
@@ -327,11 +313,9 @@ PokemonMansion1F_TextPointers:
 	dw_const PokemonMansion1FScientistText, TEXT_POKEMONMANSION1F_SCIENTIST
 	dw_const PickUpItemText,                TEXT_POKEMONMANSION1F_ESCAPE_ROPE
 	dw_const PickUpItemText,                TEXT_POKEMONMANSION1F_CARBOS
-	dw_const PokemonMansion1FLabScientistText, TEXT_POKEMONMANSION1F_LAB_SCIENTIST
 	dw_const PokemonMansion1FRivalText,     TEXT_POKEMONMANSION1F_RIVAL
 	dw_const PokemonMansion1FSwitchText,    TEXT_POKEMONMANSION1F_SWITCH
 	dw_const PokemonMansion1FPerishText,    TEXT_POKEMONMANSION1F_PERISH
-	dw_const PokemonMansion1FLabScientistStoneText, TEXT_POKEMONMANSION1F_LAB_SCIENTIST_STONE
 
 Mansion1TrainerHeaders:
 	def_trainers
@@ -356,37 +340,6 @@ PokemonMansion1FScientistEndBattleText:
 PokemonMansion1FScientistAfterBattleText:
 	text_far _PokemonMansion1FScientistAfterBattleText
 	text_end
-
-PokemonMansion1FLabScientistText:
-	text_asm
-	ld a, [wScientistsDefeated]
-	bit 0, a
-	jr nz, .afterBeat
-	ld c, 0 ; scientist index -> unique challenge/win text
-	farcall LabScientistBattleInit
-	ldh a, [hSpriteIndex]
-	ld [wSpriteIndex], a
-	call EngageMapTrainer
-	call InitBattleEnemyParameters
-	ld a, SCRIPT_POKEMONMANSION1F_LAB_SCIENTIST_POST_BATTLE
-	ld [wPokemonMansion1FCurScript], a
-	ld [wCurMapScript], a
-	jr .done
-.afterBeat
-	ld hl, .AfterBeatText
-	call PrintText
-.done
-	jp TextScriptEnd
-
-.AfterBeatText:
-	text_far _PokemonMansion1FLabScientistAfterBeatText
-	text_end
-
-; Runs the shared stone award from a proper DisplayTextID/text_asm context.
-PokemonMansion1FLabScientistStoneText:
-	text_asm
-	farcall LabScientistGiveStone
-	jp TextScriptEnd
 
 ; Shows the ambush challenge before the battle (also what the trigger tick's
 ; DisplayTextID lands on) and his parting line after it.

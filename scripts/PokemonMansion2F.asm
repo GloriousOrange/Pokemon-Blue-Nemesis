@@ -59,43 +59,6 @@ PokemonMansion2F_ScriptPointers:
 	dw_const CheckFightingMapTrainers,              SCRIPT_POKEMONMANSION2F_DEFAULT
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_POKEMONMANSION2F_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_POKEMONMANSION2F_END_BATTLE
-	dw_const PokemonMansion2FLabScientist1PostBattle, SCRIPT_POKEMONMANSION2F_LAB_SCIENTIST_1_POST_BATTLE
-	dw_const PokemonMansion2FLabScientist2PostBattle, SCRIPT_POKEMONMANSION2F_LAB_SCIENTIST_2_POST_BATTLE
-
-PokemonMansion2FResetScripts:
-	xor a
-	ld [wJoyIgnore], a
-	ld [wPokemonMansion2FCurScript], a
-	ld [wCurMapScript], a
-	ret
-
-; Awards the stone via DisplayTextID (never a bare PrintText from a map tick).
-PokemonMansion2FLabScientistStoneText:
-	text_asm
-	farcall LabScientistGiveStone
-	jp TextScriptEnd
-
-PokemonMansion2FLabScientist1PostBattle:
-	ld a, [wIsInBattle]
-	cp $ff
-	jp z, PokemonMansion2FResetScripts
-	ld hl, wScientistsDefeated
-	set 1, [hl] ; lab scientist 2 (Electrode)
-	ld a, TEXT_POKEMONMANSION2F_LAB_SCIENTIST_STONE
-	ldh [hTextID], a
-	call DisplayTextID
-	jp PokemonMansion2FResetScripts
-
-PokemonMansion2FLabScientist2PostBattle:
-	ld a, [wIsInBattle]
-	cp $ff
-	jp z, PokemonMansion2FResetScripts
-	ld hl, wScientistsDefeated
-	set 2, [hl] ; lab scientist 3 (Magneton)
-	ld a, TEXT_POKEMONMANSION2F_LAB_SCIENTIST_STONE
-	ldh [hTextID], a
-	call DisplayTextID
-	jp PokemonMansion2FResetScripts
 
 PokemonMansion2F_TextPointers:
 	def_text_pointers
@@ -103,10 +66,7 @@ PokemonMansion2F_TextPointers:
 	dw_const PickUpItemText,                TEXT_POKEMONMANSION2F_CALCIUM
 	dw_const PokemonMansion2FDiary1Text,    TEXT_POKEMONMANSION2F_DIARY1
 	dw_const PokemonMansion2FDiary2Text,    TEXT_POKEMONMANSION2F_DIARY2
-	dw_const PokemonMansion2FLabScientist1Text, TEXT_POKEMONMANSION2F_LAB_SCIENTIST_1
-	dw_const PokemonMansion2FLabScientist2Text, TEXT_POKEMONMANSION2F_LAB_SCIENTIST_2
 	dw_const PokemonMansion2FSwitchText,    TEXT_POKEMONMANSION2F_SWITCH
-	dw_const PokemonMansion2FLabScientistStoneText, TEXT_POKEMONMANSION2F_LAB_SCIENTIST_STONE
 
 Mansion2TrainerHeaders:
 	def_trainers
@@ -138,56 +98,6 @@ PokemonMansion2FDiary1Text:
 
 PokemonMansion2FDiary2Text:
 	text_far _PokemonMansion2FDiary2Text
-	text_end
-
-PokemonMansion2FLabScientist1Text:
-	text_asm
-	ld a, [wScientistsDefeated]
-	bit 1, a
-	jr nz, .afterBeat
-	ld c, 1 ; scientist index -> unique challenge/win text
-	farcall LabScientistBattleInit
-	ldh a, [hSpriteIndex]
-	ld [wSpriteIndex], a
-	call EngageMapTrainer
-	call InitBattleEnemyParameters
-	ld a, SCRIPT_POKEMONMANSION2F_LAB_SCIENTIST_1_POST_BATTLE
-	ld [wPokemonMansion2FCurScript], a
-	ld [wCurMapScript], a
-	jr .done
-.afterBeat
-	ld hl, .AfterBeatText
-	call PrintText
-.done
-	jp TextScriptEnd
-
-.AfterBeatText:
-	text_far _PokemonMansion2FLabScientist1AfterBeatText
-	text_end
-
-PokemonMansion2FLabScientist2Text:
-	text_asm
-	ld a, [wScientistsDefeated]
-	bit 2, a
-	jr nz, .afterBeat
-	ld c, 2 ; scientist index -> unique challenge/win text
-	farcall LabScientistBattleInit
-	ldh a, [hSpriteIndex]
-	ld [wSpriteIndex], a
-	call EngageMapTrainer
-	call InitBattleEnemyParameters
-	ld a, SCRIPT_POKEMONMANSION2F_LAB_SCIENTIST_2_POST_BATTLE
-	ld [wPokemonMansion2FCurScript], a
-	ld [wCurMapScript], a
-	jr .done
-.afterBeat
-	ld hl, .AfterBeatText
-	call PrintText
-.done
-	jp TextScriptEnd
-
-.AfterBeatText:
-	text_far _PokemonMansion2FLabScientist2AfterBeatText
 	text_end
 
 PokemonMansion2FSwitchText:
