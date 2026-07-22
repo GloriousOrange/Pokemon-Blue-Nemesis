@@ -647,10 +647,7 @@ ItemUseTownMap:
 ; BIT_LEVEL_MACHINE_READY); otherwise inert. When active, route through the normal
 ; medicine flow (party menu -> .useLevelStone sets the chosen mon to L100).
 ItemUseLevelStoneFromBag:
-	ld a, [wPostGameMisc]
-	bit BIT_LEVEL_MACHINE_READY, a
-	jp nz, ItemUseMedicine
-	jp ItemUseNotTime
+	jp ItemUseMedicine ; MUTAGENSTONE works straight from the bag (no machine needed)
 
 ItemUseBicycle:
 	ld a, [wIsInBattle]
@@ -1458,7 +1455,6 @@ ItemUseMedicine:
 	ld [hl], e ; current HP = max HP
 	ld a, SFX_HEAL_AILMENT
 	call PlaySound
-	SetEvent EVENT_USED_MUTAGEN_MACHINE ; first use reveals OAK + spawns him in the cave
 	ld hl, .levelStoneRoseText
 	call PrintText
 	jp RemoveUsedItem

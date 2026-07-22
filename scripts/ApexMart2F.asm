@@ -15,12 +15,9 @@ ApexMart2FDefaultScript:
 ApexMart2FScientistPostBattle:
 	ld a, [wIsInBattle]
 	cp $ff
-	jp z, ApexMart2FResetScripts
+	jr z, ApexMart2FResetScripts
 	ld hl, wScientistsDefeated
-	set 1, [hl] ; Emporium scientist 1 defeated
-	ld a, TEXT_APEXMART2F_SCIENTIST_STONE
-	ldh [hTextID], a
-	call DisplayTextID
+	set 1, [hl] ; Emporium scientist 1 defeated (needed to face the roof scientist)
 ApexMart2FResetScripts:
 	xor a
 	ld [wApexMartCurScript], a
@@ -29,12 +26,11 @@ ApexMart2FResetScripts:
 
 ApexMart2F_TextPointers:
 	def_text_pointers
-	dw_const ApexMart2FScientistText,      TEXT_APEXMART2F_SCIENTIST
-	dw_const ApexMart2FScientistStoneText, TEXT_APEXMART2F_SCIENTIST_STONE
+	dw_const ApexMart2FScientistText, TEXT_APEXMART2F_SCIENTIST
 
-; Reuses the shared burned-lab scientist engine (engine/events/lab_scientists.asm):
-; unique challenge/win text by index, a MUTAGENSTONE on the win, and the
-; wScientistsDefeated bit that (all six set) powers the roof machine.
+; Unique challenge/win text comes from the shared scientist engine (index 1,
+; engine/events/lab_scientists.asm). No stone here -- the roof scientist hands
+; over all six MUTAGENSTONEs.
 ApexMart2FScientistText:
 	text_asm
 	ld a, [wScientistsDefeated]
@@ -57,12 +53,6 @@ ApexMart2FScientistText:
 	jp TextScriptEnd
 
 .AfterBeatText:
-	text "Beat all six of"
-	line "us and the ROOF"
-	cont "machine wakes up."
+	text "Discharged."
+	line "Keep climbing."
 	prompt
-
-ApexMart2FScientistStoneText:
-	text_asm
-	farcall LabScientistGiveStone
-	jp TextScriptEnd

@@ -12,13 +12,16 @@ ApexMartRoof_ScriptPointers:
 ApexMartRoofDefaultScript:
 	ret
 
+; On defeat: mark the sixth scientist, hand over all six MUTAGENSTONES, and
+; reveal OAK (EVENT_USED_MUTAGEN_MACHINE -> he appears at the water in the cave).
 ApexMartRoofScientistPostBattle:
 	ld a, [wIsInBattle]
 	cp $ff
 	jp z, ApexMartRoofResetScripts
 	ld hl, wScientistsDefeated
-	set 5, [hl] ; the sixth (roof) scientist -- all six now power the machine
-	ld a, TEXT_APEXMARTROOF_SCIENTIST_STONE
+	set 5, [hl]
+	SetEvent EVENT_USED_MUTAGEN_MACHINE
+	ld a, TEXT_APEXMARTROOF_STONES
 	ldh [hTextID], a
 	call DisplayTextID
 ApexMartRoofResetScripts:
@@ -29,17 +32,23 @@ ApexMartRoofResetScripts:
 
 ApexMartRoof_TextPointers:
 	def_text_pointers
-	dw_const ApexMartRoofScientistText,      TEXT_APEXMARTROOF_SCIENTIST ; object_event 1
-	dw_const ApexMartRoofMachineText,        TEXT_APEXMARTROOF_MACHINE    ; object_event 2
-	dw_const ApexMartRoofScientistStoneText, TEXT_APEXMARTROOF_SCIENTIST_STONE ; internal (stone award)
+	dw_const ApexMartRoofScientistText, TEXT_APEXMARTROOF_SCIENTIST ; object_event 1
+	dw_const ApexMartRoofStonesText,    TEXT_APEXMARTROOF_STONES     ; internal (win handoff)
 
-; The sixth scientist. Once you've used the machine (EVENT_USED_MUTAGEN_MACHINE),
-; he reveals where OAK is instead of the machine hint.
+; The sixth (roof) scientist. You must beat the five below first. Beating him
+; hands over the six MUTAGENSTONES and reveals where OAK is.
 ApexMartRoofScientistText:
 	text_asm
 	ld a, [wScientistsDefeated]
 	bit 5, a
 	jr nz, .afterBeat
+	and %00011111 ; the five floor scientists (bits 0-4)
+	cp %00011111
+	jr z, .fight
+	ld hl, .NeedFloorsText
+	call PrintText
+	jp TextScriptEnd
+.fight
 	ld c, 5 ; scientist index -> unique challenge/win text
 	farcall LabScientistBattleInit
 	ld a, OPP_SCIENTIST
@@ -49,23 +58,16 @@ ApexMartRoofScientistText:
 	ld a, SCRIPT_APEXMARTROOF_POSTBATTLE
 	ld [wApexMartCurScript], a
 	ld [wCurMapScript], a
-	jr .done
+	jp TextScriptEnd
 .afterBeat
-	CheckEvent EVENT_USED_MUTAGEN_MACHINE
-	jr nz, .revealOak
-	ld hl, .UseMachineText
-	call PrintText
-	jr .done
-.revealOak
 	ld hl, .OakRevealText
 	call PrintText
-.done
 	jp TextScriptEnd
 
-.UseMachineText:
-	text "The machine's live"
-	line "now. Feed it a"
-	cont "MUTAGENSTONE."
+.NeedFloorsText:
+	text "Beat all five of"
+	line "us below me"
+	cont "first."
 	prompt
 
 .OakRevealText:
@@ -81,69 +83,25 @@ ApexMartRoofScientistText:
 	line "become."
 	prompt
 
-ApexMartRoofScientistStoneText:
+; The win handoff: six MUTAGENSTONES + the reveal.
+ApexMartRoofStonesText:
 	text_asm
-	farcall LabScientistGiveStone
+	ld hl, .Text
+	call PrintText
+	lb bc, LEVEL_STONE, 6
+	call GiveItem
 	jp TextScriptEnd
 
-; The MUTAGEN machine. Powers up once all six scientists are beaten, then arms
-; the MUTAGENSTONE for use from the BAG (BIT_LEVEL_MACHINE_READY, which clears on
-; map load -- so the stone must be used here, on the roof).
-ApexMartRoofMachineText:
-	text_asm
-	ld a, [wScientistsDefeated]
-	cp %00111111 ; all six scientists beaten?
-	jr z, .ready
-	ld hl, .DeadText
-	call PrintText
-	jp TextScriptEnd
-.ready
-	ld a, [wPartyCount]
-	and a
-	jp z, .doneJp ; guard: AnimateHealingMachine loops on wPartyCount
-	ld hl, .OfferText
-	call PrintText
-	call YesNoChoice
-	ld a, [wCurrentMenuItem]
-	and a
-	jr nz, .declined
-	farcall AnimateHealingMachine
-	call PlayDefaultMusic
-	ld hl, wPostGameMisc
-	set BIT_LEVEL_MACHINE_READY, [hl]
-	ld hl, .ReadyText
-	call PrintText
-	jp TextScriptEnd
-.declined
-	ld hl, .DeclinedText
-	call PrintText
-.doneJp
-	jp TextScriptEnd
+.Text:
+	text "Take our six"
+	line "MUTAGENSTONES."
 
-.DeadText:
-	text "The MUTAGEN"
-	line "machine sits dark."
+	para "Feed one to a"
+	line "#MON from your"
+	cont "BAG -- straight to"
+	cont "level 100."
 
-	para "The SCIENTISTS"
-	line "hold its current."
-	prompt
-
-.OfferText:
-	text "The MUTAGEN"
-	line "machine wakes and"
-	cont "hums."
-
-	para "Charge it up?"
-	prompt
-
-.ReadyText:
-	text "PRIMED!"
-
-	para "Use a MUTAGENSTONE"
-	line "from your BAG on a"
-	cont "#MON, right here."
-	prompt
-
-.DeclinedText:
-	text "It hums, waiting."
+	para "Now... OAK waits"
+	line "in the CAVE, by"
+	cont "the water."
 	prompt

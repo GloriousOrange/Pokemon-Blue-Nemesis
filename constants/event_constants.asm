@@ -167,7 +167,7 @@
 	const_next $278
 	const EVENT_MANSION_SWITCH_ON
 	const EVENT_BEAT_LAB_RIVAL_AMBUSH ; consumed from the const_skip padding below, no enum shift
-	const EVENT_USED_MUTAGEN_MACHINE ; used the roof MUTAGEN machine once; reveals OAK + spawns him in the cave (from padding, no enum shift)
+	const EVENT_USED_MUTAGEN_MACHINE ; beat the roof (6th) Emporium scientist; reveals OAK + spawns him in the cave (from padding, no enum shift)
 	const EVENT_BEAT_OAK ; defeated PROF. OAK in the Archipelago Cave grotto (from padding, no enum shift)
 	const_skip 13
 	const EVENT_BEAT_MANSION_1_TRAINER_0

@@ -83,7 +83,7 @@ KeyItemFlags:
 	dbit FALSE ; MAX_ETHER
 	dbit FALSE ; ELIXER
 	dbit FALSE ; MAX_ELIXER
-	dbit TRUE  ; LEVEL_STONE
+	dbit FALSE ; LEVEL_STONE (MUTAGENSTONE) -- regular stackable item so you can hold several
 	dbit TRUE  ; LAB_KEY
 	dbit TRUE  ; BATTLE_ISLAND_DEED
 	dbit TRUE  ; GF_KEEPSAKE

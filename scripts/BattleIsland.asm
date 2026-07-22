@@ -58,6 +58,22 @@ BattleIslandTooManyMonsText:
 ; away to the house PC (north edge of the island) to store the rest.
 BattleIslandGatekeeperText:
 	text_asm
+; Gate the arena on OAK's ISLAND DEED (won by beating OAK in the cave).
+	ld b, BATTLE_ISLAND_DEED
+	call IsItemInBag
+	jr nz, .hasDeed
+	ld hl, .NoDeedText
+	call PrintText
+	jp TextScriptEnd
+.NoDeedText:
+	text "The ARENA is"
+	line "sealed."
+
+	para "Bring PROF. OAK's"
+	line "ISLAND DEED and"
+	cont "it's yours."
+	prompt
+.hasDeed
 	ld a, [wPartyCount]
 	cp 3 + 1
 	jr c, .partySizeOk
