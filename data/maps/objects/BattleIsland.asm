@@ -1,5 +1,6 @@
 	object_const_def
 	const_export BATTLEISLAND_GATEKEEPER
+	const_export BATTLEISLAND_GIOVANNI
 
 BattleIsland_Object:
 	db $43 ; border block (water)
@@ -13,5 +14,6 @@ BattleIsland_Object:
 
 	def_object_events
 	object_event  5,  4, SPRITE_COOLTRAINER_M, STAY, DOWN, TEXT_BATTLEISLAND_GATEKEEPER
+	object_event 12,  4, SPRITE_GAMBLER, STAY, DOWN, TEXT_BATTLEISLAND_GIOVANNI ; GIOVANNI (off the S.S. Olympia); SPRITE_GAMBLER = suited man, since SPRITE_GIOVANNI isn't in the Fuchsia sprite set
 
 	def_warps_to BATTLE_ISLAND
