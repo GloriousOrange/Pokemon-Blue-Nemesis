@@ -24,6 +24,8 @@ PostGameCheckAllGymsRebeaten::
 	ld a, [wGymRematchFlags]
 	cp %01111111 ; all 7 standard leaders re-beaten?
 	ret nz
+	ld hl, wPostGameMisc
+	set BIT_OAK_ISLAND_UNLOCKED, [hl] ; opens the Pallet ferry to Oak's island
 	lb bc, LAB_KEY, 1
 	call GiveItem
 	ld hl, GymRematchLabKeyText

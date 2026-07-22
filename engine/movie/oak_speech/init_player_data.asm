@@ -125,13 +125,11 @@ ENDC
 
 IF DEF(_SPEEDTEST)
 ; Set AFTER the flag clear above so it survives: jump testers straight into
-; post-game so they can reach the burned lab + Battle Island. Champion-beaten
-; flag + all 6 lab scientists pre-beaten (reveals the B1F stairs); the Lab Key
-; to enter the re-locked lab is in the SPEEDTEST bag above.
+; post-game, and open the Pallet ferry to Oak's island so the endgame
+; department store (fresh scientists to test) + the archipelago are reachable.
 	ld hl, wPostGameMisc
 	set BIT_POST_GAME_STARTED, [hl]
-	ld a, %00111111 ; all 6 burned-lab scientists beaten
-	ld [wScientistsDefeated], a
+	set BIT_OAK_ISLAND_UNLOCKED, [hl]
 ENDC
 
 	jp InitializeToggleableObjectsFlags
