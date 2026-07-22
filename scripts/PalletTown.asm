@@ -201,59 +201,9 @@ PalletTownGirlText:
 	text_far _PalletTownGirlText
 	text_end
 
-; Ferryman: once all gym leaders are re-beaten (BIT_OAK_ISLAND_UNLOCKED),
-; offers passage to OAK's private island (Apex Isle). Uses the fly-warp
-; mechanism (wDestinationMap + BIT_FLY_WARP), which the overworld loop resolves
-; via FlyWarpDataPtr's APEX_ISLE landing coords -- no bird animation (BIT_USED_FLY
-; left clear), same destination path the town-map Fly and Escape Rope use.
 PalletTownFisherText:
-	text_asm
-IF DEF(_SPEEDTEST)
-	jr .open ; testers: ferry always available, no need for a fresh save to set the flag
-ELSE
-	ld a, [wPostGameMisc]
-	bit BIT_OAK_ISLAND_UNLOCKED, a
-	jr nz, .open
-	ld hl, .ClosedText
-	call PrintText
-	jp TextScriptEnd
-ENDC
-.open
-	ld hl, .OfferText
-	call PrintText
-	call YesNoChoice
-	ld a, [wCurrentMenuItem]
-	and a
-	jr nz, .declined
-	ld a, SFX_HEAL_AILMENT
-	call PlaySound
-	ld a, APEX_ISLE
-	ld [wDestinationMap], a
-	ld hl, wStatusFlags6
-	set BIT_FLY_WARP, [hl]
-	jp TextScriptEnd
-.declined
-	ld hl, .DeclinedText
-	call PrintText
-	jp TextScriptEnd
-
-.ClosedText:
-	text "The tide's not"
-	line "right. Nowhere"
-	cont "to take you today."
-	prompt
-
-.OfferText:
-	text "Setting sail for"
-	line "OAK's island."
-
-	para "Climb aboard?"
-	prompt
-
-.DeclinedText:
-	text "Say the word when"
-	line "you're ready."
-	prompt
+	text_far _PalletTownFisherText
+	text_end
 
 PalletTownOaksLabSignText:
 	text_far _PalletTownOaksLabSignText
