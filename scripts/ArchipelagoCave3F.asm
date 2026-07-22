@@ -56,10 +56,10 @@ ArchipelagoCave3FOakText:
 	ld hl, .DefeatText
 	ld de, .VictoryText
 	call SaveEndBattleTextPointers
-	ld a, OPP_PROF_OAK
-	ld [wCurOpponent], a
-	ld a, 4 ; ProfOakData party #4 -- the L100 post-game superboss team
-	ld [wTrainerNo], a
+	ldh a, [hSpriteIndex]
+	ld [wSpriteIndex], a
+	call EngageMapTrainer
+	call InitBattleEnemyParameters
 	ld a, SCRIPT_ARCHIPELAGOCAVE3F_POSTBATTLE
 	ld [wApexMartCurScript], a
 	ld [wCurMapScript], a

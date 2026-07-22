@@ -10,6 +10,6 @@ ApexMartRoof_Object:
 	def_bg_events
 
 	def_object_events
-	object_event 10,  4, SPRITE_SCIENTIST, STAY, DOWN, TEXT_APEXMARTROOF_SCIENTIST
+	object_event 10,  4, SPRITE_SCIENTIST, STAY, DOWN, TEXT_APEXMARTROOF_SCIENTIST, OPP_SCIENTIST, 19
 
 	def_warps_to APEX_MART_ROOF

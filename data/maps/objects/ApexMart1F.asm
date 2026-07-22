@@ -15,6 +15,6 @@ ApexMart1F_Object:
 	def_bg_events
 
 	def_object_events
-	object_event  5,  3, SPRITE_SCIENTIST, STAY, DOWN, TEXT_APEXMART1F_SCIENTIST ; behind the counter, like a clerk
+	object_event  5,  3, SPRITE_SCIENTIST, STAY, DOWN, TEXT_APEXMART1F_SCIENTIST, OPP_SCIENTIST, 14 ; behind the counter, like a clerk
 
 	def_warps_to APEX_MART_1F

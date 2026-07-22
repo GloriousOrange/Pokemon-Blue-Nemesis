@@ -12,6 +12,6 @@ ApexMart4F_Object:
 	def_bg_events
 
 	def_object_events
-	object_event  5,  7, SPRITE_SCIENTIST, STAY, DOWN, TEXT_APEXMART4F_SCIENTIST
+	object_event  5,  7, SPRITE_SCIENTIST, STAY, DOWN, TEXT_APEXMART4F_SCIENTIST, OPP_SCIENTIST, 17
 
 	def_warps_to APEX_MART_4F

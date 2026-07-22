@@ -51,10 +51,10 @@ ApexMartRoofScientistText:
 .fight
 	ld c, 5 ; scientist index -> unique challenge/win text
 	farcall LabScientistBattleInit
-	ld a, OPP_SCIENTIST
-	ld [wCurOpponent], a
-	ld a, 19 ; ScientistData party #19
-	ld [wTrainerNo], a
+	ldh a, [hSpriteIndex]
+	ld [wSpriteIndex], a
+	call EngageMapTrainer
+	call InitBattleEnemyParameters
 	ld a, SCRIPT_APEXMARTROOF_POSTBATTLE
 	ld [wApexMartCurScript], a
 	ld [wCurMapScript], a

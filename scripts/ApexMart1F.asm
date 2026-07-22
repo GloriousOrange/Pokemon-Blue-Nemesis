@@ -28,9 +28,9 @@ ApexMart1F_TextPointers:
 	def_text_pointers
 	dw_const ApexMart1FScientistText, TEXT_APEXMART1F_SCIENTIST
 
-; Unique challenge/win text comes from the shared scientist engine (index 0,
-; engine/events/lab_scientists.asm). No stone here -- the roof scientist hands
-; over all six MUTAGENSTONEs.
+; Unique challenge/win text from the shared scientist engine (index 0,
+; engine/events/lab_scientists.asm). Engages the object's own trainer data
+; (OPP_SCIENTIST + party set) -- same proven flow as the burned-lab scientists.
 ApexMart1FScientistText:
 	text_asm
 	ld a, [wScientistsDefeated]
@@ -38,10 +38,10 @@ ApexMart1FScientistText:
 	jr nz, .afterBeat
 	ld c, 0 ; scientist index -> unique challenge/win text
 	farcall LabScientistBattleInit
-	ld a, OPP_SCIENTIST
-	ld [wCurOpponent], a
-	ld a, 14 ; ScientistData party #14
-	ld [wTrainerNo], a
+	ldh a, [hSpriteIndex]
+	ld [wSpriteIndex], a
+	call EngageMapTrainer
+	call InitBattleEnemyParameters
 	ld a, SCRIPT_APEXMART1F_POSTBATTLE
 	ld [wApexMartCurScript], a
 	ld [wCurMapScript], a
