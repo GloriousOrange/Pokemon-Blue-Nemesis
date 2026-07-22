@@ -411,4 +411,9 @@ ENDM
 	const TOGGLE_SS_OLYMPIA_BOW_BIRD
 	const TOGGLE_SS_OLYMPIA_BOW_RIVAL
 
+; PROF. OAK in the cave grotto: hidden until the roof MUTAGEN machine is used
+; (EVENT_USED_MUTAGEN_MACHINE), then shown by the map script.
+	toggle_consts_for ARCHIPELAGO_CAVE_3F
+	const TOGGLE_ARCHIPELAGO_CAVE_3F_OAK
+
 DEF NUM_TOGGLEABLE_OBJECTS EQU const_value

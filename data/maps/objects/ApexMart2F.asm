@@ -1,3 +1,6 @@
+	object_const_def
+	const_export APEXMART2F_SCIENTIST
+
 ApexMart2F_Object:
 	db $f ; border block
 
@@ -9,5 +12,6 @@ ApexMart2F_Object:
 	def_bg_events
 
 	def_object_events
+	object_event  5,  3, SPRITE_SCIENTIST, STAY, DOWN, TEXT_APEXMART2F_SCIENTIST
 
 	def_warps_to APEX_MART_2F

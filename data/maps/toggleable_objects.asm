@@ -438,6 +438,9 @@ ToggleableObjectStates:
 	toggle_object_state SSOLYMPIABOW_BIRD,  ON
 	toggle_object_state SSOLYMPIABOW_RIVAL, OFF
 
+	toggleable_objects_for ARCHIPELAGO_CAVE_3F
+	toggle_object_state ARCHIPELAGOCAVE3F_OAK, OFF ; hidden until EVENT_USED_MUTAGEN_MACHINE
+
 	assert_table_length NUM_TOGGLEABLE_OBJECTS
 
 	db -1, 1, ON ; end

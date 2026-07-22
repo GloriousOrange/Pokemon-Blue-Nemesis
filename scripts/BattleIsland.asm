@@ -41,37 +41,11 @@ BattleIslandPostBattleScript:
 BattleIsland_TextPointers:
 	def_text_pointers
 	dw_const BattleIslandGatekeeperText, TEXT_BATTLEISLAND_GATEKEEPER ; object_event (id 1)
-	dw_const BattleIslandGiovanniText,   TEXT_BATTLEISLAND_GIOVANNI    ; object_event (id 2)
-	dw_const BattleIslandSignText,       TEXT_BATTLEISLAND_SIGN        ; bg_event (id 3)
+	dw_const BattleIslandSignText,       TEXT_BATTLEISLAND_SIGN        ; bg_event (id 2)
 
 BattleIslandSignText:
 	text_far _BattleIslandSignText
 	text_end
-
-; GIOVANNI, off the S.S. Olympia -- a standalone superboss you can challenge any
-; time (independent of the 26-challenger gauntlet and the boat). Repeatable: each
-; talk restarts the fight. Not bound by the 3-on-3 arena rule (his party #5 is a
-; full 6). Reuses the arena post-battle heal via the Giovanni sentinel.
-BattleIslandGiovanniText:
-	text_asm
-	ld hl, BattleIslandGiovanniArrivesText
-	call PrintText
-	ld hl, wStatusFlags3
-	set BIT_TALKED_TO_TRAINER, [hl]
-	set BIT_PRINT_END_BATTLE_TEXT, [hl]
-	ld hl, BattleIslandChallengerDefeatedText
-	ld de, BattleIslandChallengerVictoryText
-	call SaveEndBattleTextPointers
-	ld a, ARENA_GIOVANNI_SENTINEL
-	ld [wCurArenaChallenger], a
-	ld a, OPP_GIOVANNI
-	ld [wCurOpponent], a
-	ld a, 5 ; Giovanni party #5
-	ld [wTrainerNo], a
-	ld a, SCRIPT_BATTLEISLAND_POSTBATTLE
-	ld [wBattleIslandCurScript], a
-	ld [wCurMapScript], a
-	jp TextScriptEnd
 
 BattleIslandTooManyMonsText:
 	text_far _BattleIslandTooManyMonsText

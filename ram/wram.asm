@@ -2159,7 +2159,8 @@ wMovementFlags:: db
 
 wCompletedInGameTradeFlags:: dw
 
-	ds 2
+wApexMartCurScript:: db ; shared Apex Mart (Oak's Emporium) map-script state -- transient, only one floor is active at a time (carved from padding)
+	ds 1
 
 wWarpedFromWhichWarp:: db
 wWarpedFromWhichMap:: db

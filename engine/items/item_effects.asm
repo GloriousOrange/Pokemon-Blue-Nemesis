@@ -1458,6 +1458,7 @@ ItemUseMedicine:
 	ld [hl], e ; current HP = max HP
 	ld a, SFX_HEAL_AILMENT
 	call PlaySound
+	SetEvent EVENT_USED_MUTAGEN_MACHINE ; first use reveals OAK + spawns him in the cave
 	ld hl, .levelStoneRoseText
 	call PrintText
 	jp RemoveUsedItem
