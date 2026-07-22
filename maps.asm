@@ -1347,3 +1347,41 @@ INCLUDE "data/maps/headers/AgathasRoom.asm"
 INCLUDE "scripts/AgathasRoom.asm"
 INCLUDE "data/maps/objects/AgathasRoom.asm"
 AgathasRoom_Blocks: INCBIN "maps/AgathasRoom.blk"
+
+
+SECTION "Maps ApexMart", ROMX ; Oak's-island department store (clone of Celadon Mart, endgame venue), self-contained like "Maps Archipelago" above
+
+INCLUDE "data/maps/headers/ApexMart1F.asm"
+INCLUDE "scripts/ApexMart1F.asm"
+INCLUDE "data/maps/objects/ApexMart1F.asm"
+ApexMart1F_Blocks: INCBIN "maps/ApexMart1F.blk"
+
+INCLUDE "data/maps/headers/ApexMart2F.asm"
+INCLUDE "scripts/ApexMart2F.asm"
+INCLUDE "data/maps/objects/ApexMart2F.asm"
+ApexMart2F_Blocks: INCBIN "maps/ApexMart2F.blk"
+
+INCLUDE "data/maps/headers/ApexMart3F.asm"
+INCLUDE "scripts/ApexMart3F.asm"
+INCLUDE "data/maps/objects/ApexMart3F.asm"
+ApexMart3F_Blocks: INCBIN "maps/ApexMart3F.blk"
+
+INCLUDE "data/maps/headers/ApexMart4F.asm"
+INCLUDE "scripts/ApexMart4F.asm"
+INCLUDE "data/maps/objects/ApexMart4F.asm"
+ApexMart4F_Blocks: INCBIN "maps/ApexMart4F.blk"
+
+INCLUDE "data/maps/headers/ApexMart5F.asm"
+INCLUDE "scripts/ApexMart5F.asm"
+INCLUDE "data/maps/objects/ApexMart5F.asm"
+ApexMart5F_Blocks: INCBIN "maps/ApexMart5F.blk"
+
+INCLUDE "data/maps/headers/ApexMartRoof.asm"
+INCLUDE "scripts/ApexMartRoof.asm"
+INCLUDE "data/maps/objects/ApexMartRoof.asm"
+ApexMartRoof_Blocks: INCBIN "maps/ApexMartRoof.blk"
+
+INCLUDE "data/maps/headers/ApexMartElevator.asm"
+INCLUDE "scripts/ApexMartElevator.asm"
+INCLUDE "data/maps/objects/ApexMartElevator.asm"
+ApexMartElevator_Blocks: INCBIN "maps/ApexMartElevator.blk"

@@ -402,6 +402,16 @@ DEF FIRST_INDOOR_MAP EQU const_value
 	map_const LORELEIS_ROOM,                  5,  6 ; $F5
 	map_const BRUNOS_ROOM,                    5,  6 ; $F6
 	map_const AGATHAS_ROOM,                   5,  6 ; $F7
+	; Oak's-island department store (clone of Celadon Mart) -- endgame venue,
+	; appended inside the POKEMON_LEAGUE_3 indoor group to avoid adding a new
+	; indoor-map group (keeps NUM_INDOOR_MAP_GROUPS/town_map_entries unchanged).
+	map_const APEX_MART_1F,                  10,  4 ; $F8
+	map_const APEX_MART_2F,                  10,  4 ; $F9
+	map_const APEX_MART_3F,                  10,  4 ; $FA
+	map_const APEX_MART_4F,                  10,  4 ; $FB
+	map_const APEX_MART_5F,                  10,  4 ; $FC
+	map_const APEX_MART_ROOF,                10,  4 ; $FD
+	map_const APEX_MART_ELEVATOR,             2,  2 ; $FE
 	end_indoor_group POKEMON_LEAGUE_3
 DEF NUM_MAPS EQU const_value
 

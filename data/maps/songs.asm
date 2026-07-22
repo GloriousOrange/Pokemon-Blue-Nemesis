@@ -248,4 +248,11 @@ MapSongBanks::
 	db MUSIC_GYM, BANK(Music_Gym) ; LORELEIS_ROOM
 	db MUSIC_DUNGEON1, BANK(Music_Dungeon1) ; BRUNOS_ROOM
 	db MUSIC_POKEMON_TOWER, BANK(Music_PokemonTower) ; AGATHAS_ROOM
+	db MUSIC_POKECENTER, BANK(Music_Pokecenter) ; APEX_MART_1F
+	db MUSIC_POKECENTER, BANK(Music_Pokecenter) ; APEX_MART_2F
+	db MUSIC_POKECENTER, BANK(Music_Pokecenter) ; APEX_MART_3F
+	db MUSIC_POKECENTER, BANK(Music_Pokecenter) ; APEX_MART_4F
+	db MUSIC_POKECENTER, BANK(Music_Pokecenter) ; APEX_MART_5F
+	db MUSIC_POKECENTER, BANK(Music_Pokecenter) ; APEX_MART_ROOF
+	db MUSIC_POKECENTER, BANK(Music_Pokecenter) ; APEX_MART_ELEVATOR
 	assert_table_length NUM_MAPS

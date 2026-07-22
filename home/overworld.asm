@@ -2055,20 +2055,23 @@ LoadMapHeader::
 	ldh [hPreviousTileset], a
 	bit BIT_NO_PREVIOUS_MAP, b
 	ret nz
-	ld hl, MapHeaderPointers
+; Fetch this map's header address from MapHeaderPointers, which was relocated out
+; of Home into ROMX. Switch to its bank, read the 2-byte pointer, then switch back
+; to the map's ROM bank (active from SwitchToMapRomBank above) so the header data
+; the pointer targets is readable. Mirrors SwitchToMapRomBank's MapHeaderBanks read.
 	ld a, [wCurMap]
-	sla a
-	jr nc, .noCarry1
-	inc h
-.noCarry1
-	add l
-	ld l, a
-	jr nc, .noCarry2
-	inc h
-.noCarry2
+	ld c, a
+	ld b, $00
+	sla c
+	rl b ; bc = wCurMap * 2
+	ld a, BANK(MapHeaderPointers)
+	call BankswitchHome
+	ld hl, MapHeaderPointers
+	add hl, bc
 	ld a, [hli]
 	ld h, [hl]
-	ld l, a ; hl = base of map header
+	ld l, a ; hl = base of map header (address in the map's bank)
+	call BankswitchBack
 	ld de, wCurMapHeader
 	ld c, wCurMapHeaderEnd - wCurMapHeader
 .copyFixedHeaderLoop

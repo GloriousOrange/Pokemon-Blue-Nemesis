@@ -42,7 +42,6 @@ INCLUDE "engine/events/display_pokedex.asm"
 SECTION "bank3", ROMX
 
 INCLUDE "engine/joypad.asm"
-INCLUDE "data/maps/songs.asm"
 INCLUDE "engine/overworld/clear_variables.asm"
 INCLUDE "engine/overworld/tyranis_encounter.asm"
 INCLUDE "engine/overworld/player_state.asm"
@@ -434,3 +433,11 @@ INCLUDE "engine/events/starter_ashes.asm"
 SECTION "Map Header Banks", ROMX ; relocated out of bank3 (which filled up with the archipelago's new maps); referenced via BANK(), so any bank works, same technique as "TM Prices" above
 
 INCLUDE "data/maps/map_header_banks.asm"
+
+SECTION "Map Song Banks", ROMX ; relocated out of bank3 (refilled by the Apex Mart maps); MapSongBanks is read via BANK(MapSongBanks), so any bank works
+
+INCLUDE "data/maps/songs.asm"
+
+SECTION "Map Header Pointers", ROMX ; relocated out of ROM0/Home (which overflowed by the Apex Mart maps); its sole reader LoadMapHeader now BankswitchHome's to BANK(MapHeaderPointers) before reading, mirroring SwitchToMapRomBank/MapHeaderBanks
+
+INCLUDE "data/maps/map_header_pointers.asm"
