@@ -92,7 +92,7 @@ FlyWarpDataPtr:
 .IndigoPlateau:  fly_warp INDIGO_PLATEAU,   9,  6
 .SaffronCity:    fly_warp SAFFRON_CITY,     9, 30
 .BattleIsland:   fly_warp BATTLE_ISLAND,    8,  5
-.ApexIsle:       fly_warp APEX_ISLE,        8,  5 ; ferry landing on the north grass, beside the emporium mat
+.ApexIsle:       fly_warp APEX_ISLE,        8,  7 ; ferry landing on the grass just south of the OAK's EMPORIUM door (8,5)
 .Route4:         fly_warp ROUTE_4,         11,  6
 .Route10:        fly_warp ROUTE_10,        11, 20
 .SeafoamIslands: fly_warp SEAFOAM_ISLANDS_1F, 5, 16 ; entrance corridor; the exit-loop bug is fixed in PrepareForSpecialWarp (engine/overworld/special_warps.asm) by forcing wLastMap to ROUTE_20 for this destination instead of here (Fly can't decouple render-map from landing-map width, so redirecting to an outdoor map here corrupts the tile read)

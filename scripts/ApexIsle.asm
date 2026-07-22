@@ -13,7 +13,7 @@ ApexIsleSignText:
 .Text:
 	text "OAK'S EMPORIUM"
 
-	para "Step onto the mat"
-	line "to the north to"
-	cont "enter."
+	para "By appointment to"
+	line "the PROFESSOR"
+	cont "himself."
 	prompt
