@@ -643,11 +643,16 @@ ItemUseTownMap:
 	jp nz, ItemUseNotTime
 	farjp DisplayTownMap
 
-; LEVEL STONE: only usable while standing at an active level machine (which sets
-; BIT_LEVEL_MACHINE_READY); otherwise inert. When active, route through the normal
-; medicine flow (party menu -> .useLevelStone sets the chosen mon to L100).
+; LEVEL STONE: works straight from the bag outside of battle. Blocked mid-battle --
+; .useLevelStone's simulated level-up loop clobbers wCurEnemyLevel/wMonDataLocation/
+; wWhichPokemon/wPokedexNum/wCanEvolveFlags, which the battle engine is actively using
+; for the opponent's mon; using it in battle corrupted the enemy's data and froze the
+; game right as the enemy tried to move next.
 ItemUseLevelStoneFromBag:
-	jp ItemUseMedicine ; MUTAGENSTONE works straight from the bag (no machine needed)
+	ld a, [wIsInBattle]
+	and a
+	jp nz, ItemUseNotTime
+	jp ItemUseMedicine
 
 ItemUseBicycle:
 	ld a, [wIsInBattle]
@@ -1349,13 +1354,17 @@ ItemUseMedicine:
 	ld b, 1
 	jp CalcStats ; recalculate stats
 .useLevelStone
-; lab machine: walk the chosen party mon up to level 100 one simulated level
-; at a time, replaying the same checks a normal battle level-up would (move
-; learning via LearnMoveFromLevelUp, evolution via TryEvolvingMon-style flag
-; + EvolutionAfterBattle) at each level. This lets it evolve through every
-; stage it naturally would and get a shot at every move in its (possibly
-; changing, as it evolves) learnset along the way, instead of just jumping
-; straight to L100 with its original species/moveset.
+; lab machine: jump the chosen party mon straight to level 100 and refresh its
+; moveset with WriteMonMoves, which silently walks the mon's whole learnset
+; and shifts move slots as needed -- no menus, no animations.
+;   Previously this simulated one level at a time (up to ~95 iterations) and
+; called the real LearnMoveFromLevelUp/EvolutionAfterBattle at each step --
+; the same interactive, animated routines used once after a real battle,
+; complete with "forget a move?"/evolution prompts. Run back-to-back with no
+; player there to answer them, that froze and corrupted the screen -- and
+; reproduced even on a lv5 Pidgey outside of battle, proving it wasn't a
+; battle-safety issue but a fundamental bug in the simulation itself.
+; Evolution is intentionally no longer simulated; the stone only levels a mon.
 	push hl
 	ld bc, MON_LEVEL
 	add hl, bc ; hl -> level
@@ -1363,67 +1372,34 @@ ItemUseMedicine:
 	pop hl
 	cp MAX_LEVEL
 	jp z, .vitaminNoEffect ; already level 100
-	ld a, [wWhichPokemon]
-	ld [wLevelStoneTargetMon], a
+
 	push hl
 	ld bc, MON_LEVEL
 	add hl, bc
-	ld a, [hl] ; a = mon's current level
-	pop hl
-	ld [wLevelStoneMoveLevel], a
-
-.levelStoneSimLoop
-	ld a, [wLevelStoneMoveLevel]
-	cp MAX_LEVEL
-	jr nc, .levelStoneSimDone
-	inc a
-	ld [wLevelStoneMoveLevel], a
+	ld a, MAX_LEVEL
+	ld [hl], a
 	ld [wCurEnemyLevel], a
+	pop hl
 
-	; write this simulated level into the mon's real LEVEL byte, so
-	; LoadMonData/CalcStat (used internally below) see the right level
-	call .levelStonePartyBase
-	ld bc, MON_LEVEL
-	add hl, bc
-	ld a, [wLevelStoneMoveLevel]
-	ld [hl], a
-
-	; give it a shot at any move its current species learns at this level
-	call .levelStonePartyBase
-	ld bc, MON_SPECIES
-	add hl, bc
-	ld a, [hl]
-	ld [wPokedexNum], a
-	xor a
-	ld [wMonDataLocation], a
-	ld a, [wLevelStoneTargetMon]
-	ld [wWhichPokemon], a
-	predef LearnMoveFromLevelUp
-
-	; check whether it evolves at this level (level evolutions only, same as
-	; a normal non-traded, non-forced level-up would trigger)
-	ld hl, wCanEvolveFlags
-	xor a
-	ld [hl], a
-	ld a, [wLevelStoneTargetMon]
-	ld c, a
-	ld b, FLAG_SET
-	predef FlagActionPredef
-	predef EvolutionAfterBattle
-
-	jr .levelStoneSimLoop
-
-.levelStoneSimDone
-	; EvolutionAfterBattle's internal party scan may have left wMonHeader
-	; loaded for some OTHER party slot; reload it for our (possibly now
-	; evolved) target before computing its level-100 exp floor.
-	call .levelStonePartyBase
+	push hl
 	ld bc, MON_SPECIES
 	add hl, bc
 	ld a, [hl]
 	ld [wCurSpecies], a
+	ld [wCurPartySpecies], a
+	pop hl
+
+	push hl
+	ld bc, MON_MOVES
+	add hl, bc
+	ld d, h
+	ld e, l ; de -> mon's move slots (WriteMonMoves reads/writes these in place)
+	xor a
+	ld [wLearningMovesFromDayCare], a
+	predef WriteMonMoves
+	pop hl
+
 	call GetMonHeader
-	call .levelStonePartyBase
 	push hl
 	ld d, MAX_LEVEL
 	callfar CalcExperience ; exp floor for level 100 -> hExperience
@@ -1458,13 +1434,6 @@ ItemUseMedicine:
 	ld hl, .levelStoneRoseText
 	call PrintText
 	jp RemoveUsedItem
-
-.levelStonePartyBase
-; returns hl = party struct base for wLevelStoneTargetMon
-	ld a, [wLevelStoneTargetMon]
-	ld hl, wPartyMon1
-	ld bc, PARTYMON_STRUCT_LENGTH
-	jp AddNTimes
 
 .levelStoneRoseText
 	text "Its level shot"
