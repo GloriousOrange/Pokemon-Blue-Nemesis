@@ -97,7 +97,15 @@ BattleIslandScientistTalk:
 	ld a, [wScientistsDefeated]
 	and d
 	jr nz, .beaten
-	ld hl, BattleIslandScientistChallengeText
+	ld a, [wCurArenaChallenger] ; unique challenge line per scientist index
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, BattleIslandLabSciChallengeTexts
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
 	call PrintText
 	ld hl, wStatusFlags3
 	set BIT_TALKED_TO_TRAINER, [hl]
@@ -170,10 +178,61 @@ BattleIslandScientistStonesText:
 	cont "water."
 	prompt
 
-BattleIslandScientistChallengeText:
-	text "SCIENTIST: Hold"
-	line "still. This won't"
-	cont "take long."
+BattleIslandLabSciChallengeTexts:
+	dw BattleIslandLabSci0Challenge
+	dw BattleIslandLabSci1Challenge
+	dw BattleIslandLabSci2Challenge
+	dw BattleIslandLabSci3Challenge
+	dw BattleIslandLabSci4Challenge
+	dw BattleIslandLabSci5Challenge
+
+BattleIslandLabSci0Challenge:
+	text "Your #MON is"
+	line "analog. Soft."
+
+	para "Hold still while I"
+	line "overwrite it."
+	prompt
+
+BattleIslandLabSci1Challenge:
+	text "A #MON is just"
+	line "stored energy."
+
+	para "Let's see how much"
+	line "I can let out."
+	prompt
+
+BattleIslandLabSci2Challenge:
+	text "Life is only parts"
+	line "assembled by"
+	cont "accident."
+
+	para "Let me correct"
+	line "yours."
+	prompt
+
+BattleIslandLabSci3Challenge:
+	text "I've already read"
+	line "this battle to"
+	cont "its end."
+
+	para "You lose."
+	prompt
+
+BattleIslandLabSci4Challenge:
+	text "We died down here"
+	line "once, just to see"
+	cont "what lingered."
+
+	para "Come say hello."
+	prompt
+
+BattleIslandLabSci5Challenge:
+	text "MEW could become"
+	line "anything alive."
+
+	para "So can I -- given"
+	line "your #MON to copy."
 	prompt
 
 BattleIslandLabSciDefeatedText:
