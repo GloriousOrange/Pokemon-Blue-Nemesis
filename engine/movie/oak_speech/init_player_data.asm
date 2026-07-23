@@ -130,6 +130,7 @@ IF DEF(_SPEEDTEST)
 	ld hl, wPostGameMisc
 	set BIT_POST_GAME_STARTED, [hl]
 	set BIT_OAK_ISLAND_UNLOCKED, [hl]
+	SetEvent EVENT_USED_MUTAGEN_MACHINE ; testers: OAK pre-revealed in the cave
 ENDC
 
 	jp InitializeToggleableObjectsFlags

@@ -5,12 +5,9 @@ ArchipelagoCave3F_Script:
 	res BIT_CUR_MAP_LOADED_1, [hl]
 	call nz, ArchipelagoCave3FShowOak
 	call EnableAutoTextBoxDrawing
-	ld hl, ArchipelagoCave3FTrainerHeaders
-	ld de, ArchipelagoCave3F_ScriptPointers
+	ld hl, ArchipelagoCave3F_ScriptPointers
 	ld a, [wApexMartCurScript] ; shared transient endgame script state
-	call ExecuteCurMapScriptInTable
-	ld [wApexMartCurScript], a
-	ret
+	jp CallFunctionInTable
 
 ArchipelagoCave3FShowOak:
 	CheckEvent EVENT_USED_MUTAGEN_MACHINE
@@ -22,14 +19,11 @@ ArchipelagoCave3FShowOak:
 
 ArchipelagoCave3F_ScriptPointers:
 	def_script_pointers
-	dw_const CheckFightingMapTrainers,              SCRIPT_ARCHIPELAGOCAVE3F_DEFAULT
-	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_ARCHIPELAGOCAVE3F_START_BATTLE
-	dw_const EndTrainerBattle,                      SCRIPT_ARCHIPELAGOCAVE3F_END_BATTLE
-	dw_const ArchipelagoCave3FOakPostBattle,        SCRIPT_ARCHIPELAGOCAVE3F_POSTBATTLE
+	dw_const ArchipelagoCave3FDefaultScript, SCRIPT_ARCHIPELAGOCAVE3F_DEFAULT
+	dw_const ArchipelagoCave3FOakPostBattle, SCRIPT_ARCHIPELAGOCAVE3F_POSTBATTLE
 
-ArchipelagoCave3FTrainerHeaders:
-	def_trainers
-	db -1 ; no sight trainers; OAK is engaged manually on talk
+ArchipelagoCave3FDefaultScript:
+	ret
 
 ArchipelagoCave3FOakPostBattle:
 	ld a, [wIsInBattle]
@@ -62,10 +56,10 @@ ArchipelagoCave3FOakText:
 	ld hl, .DefeatText
 	ld de, .VictoryText
 	call SaveEndBattleTextPointers
-	ldh a, [hSpriteIndex]
-	ld [wSpriteIndex], a
-	call EngageMapTrainer
-	call InitBattleEnemyParameters
+	ld a, OPP_PROF_OAK
+	ld [wCurOpponent], a
+	ld a, 4 ; ProfOakData party #4 -- the L100 post-game superboss team
+	ld [wTrainerNo], a
 	ld a, SCRIPT_ARCHIPELAGOCAVE3F_POSTBATTLE
 	ld [wApexMartCurScript], a
 	ld [wCurMapScript], a
