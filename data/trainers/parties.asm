@@ -592,7 +592,7 @@ ProfOakData:
 	db $FF, 66, TAUROS, 67, EXEGGUTOR, 68, ARCANINE, 69, BLASTOISE, 70, GYARADOS, 0
 	db $FF, 66, TAUROS, 67, EXEGGUTOR, 68, ARCANINE, 69, VENUSAUR, 70, GYARADOS, 0
 	db $FF, 66, TAUROS, 67, EXEGGUTOR, 68, ARCANINE, 69, CHARIZARD, 70, GYARADOS, 0
-	db $FF, 99, MEW, 99, ALAKAZAM, 99, DITTO, 99, PORYGON, 99, LAPRAS, 99, TAUROS, 0 ; #4 burned-lab boss (post-game Oak) -- lv99 test: lv100 Earthquake freeze repro (was lv100 MEWTWO, then lv100 ALAKAZAM, both froze on Earthquake)
+	db $FF, 99, MEW, 99, DITTO, 99, PORYGON, 99, LAPRAS, 99, TAUROS, 99, MEWTWO, 0 ; #4 burned-lab boss (post-game Oak) -- MEWTWO restored, moved to last slot; real freeze cause found & fixed (division-by-zero on a crit vs a high-Def/Special mon, engine/battle/core.asm), wasn't Mewtwo/Alakazam specific
 
 ChiefData:
 ; none

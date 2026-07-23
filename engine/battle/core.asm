@@ -4248,6 +4248,12 @@ GetDamageVarsForPlayerAttack:
 	srl b
 	rr c
 ; defensive stat can actually end up as 0, leading to a division by 0 freeze during damage calculation
+; (confirmed: L100 crit vs a high-Defense/Special mon) -- floor it at 1, same as the offensive stat below.
+	ld a, b
+	or c
+	jr nz, .enemyDefenseScaledOk
+	inc c
+.enemyDefenseScaledOk
 ; hl /= 4 (scale player's offensive stat)
 	srl h
 	rr l
@@ -4363,6 +4369,12 @@ GetDamageVarsForEnemyAttack:
 	srl b
 	rr c
 ; defensive stat can actually end up as 0, leading to a division by 0 freeze during damage calculation
+; (confirmed: L100 crit vs a high-Defense/Special mon) -- floor it at 1, same as the offensive stat below.
+	ld a, b
+	or c
+	jr nz, .playerDefenseScaledOk
+	inc c
+.playerDefenseScaledOk
 ; hl /= 4 (scale enemy's offensive stat)
 	srl h
 	rr l
@@ -4603,8 +4615,6 @@ JumpToOHKOMoveEffect:
 	ld a, [wMoveMissed]
 	dec a
 	ret
-
-INCLUDE "data/battle/unused_critical_hit_moves.asm"
 
 ; determines if attack is a critical hit
 ; Azure Heights claims "the fastest pokémon (who are, not coincidentally,
