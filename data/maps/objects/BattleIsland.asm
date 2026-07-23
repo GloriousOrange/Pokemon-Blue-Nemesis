@@ -26,6 +26,6 @@ BattleIsland_Object:
 	object_event 13,  6, SPRITE_GAMBLER, STAY, DOWN, TEXT_BATTLEISLAND_SCIENTIST3
 	object_event  4, 10, SPRITE_GAMBLER, STAY, DOWN, TEXT_BATTLEISLAND_SCIENTIST4
 	object_event 12, 10, SPRITE_GAMBLER, STAY, DOWN, TEXT_BATTLEISLAND_SCIENTIST5
-	object_event  9, 30, SPRITE_GAMBLER, STAY, UP, TEXT_BATTLEISLAND_OAK ; PROF. OAK, south end of the island (SPRITE_GAMBLER placeholder -- OAK's sprite isn't in this map's set)
+	object_event  9, 14, SPRITE_GAMBLER, STAY, UP, TEXT_BATTLEISLAND_OAK ; PROF. OAK, south end of the island (SPRITE_GAMBLER placeholder -- OAK's sprite isn't in this map's set)
 
 	def_warps_to BATTLE_ISLAND
