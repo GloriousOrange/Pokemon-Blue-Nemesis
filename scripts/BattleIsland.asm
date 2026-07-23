@@ -256,11 +256,12 @@ BattleIslandOakPostBattle:
 	ret
 
 BattleIslandOakRewardText:
+; The "ISLAND DEED" is verbal (EVENT_BEAT_OAK gates the arena) -- it's never
+; actually put in the bag, since a real ISLAND DEED item corrupted the bag
+; display for everything listed below it.
 	text_asm
 	ld hl, .Text
 	call PrintText
-	lb bc, BATTLE_ISLAND_DEED, 1
-	call GiveItem
 	lb bc, METRONOME2, 1
 	call GiveItem
 	jp TextScriptEnd
@@ -358,9 +359,9 @@ BattleIslandTooManyMonsText:
 ; away to the house PC (north edge of the island) to store the rest.
 BattleIslandGatekeeperText:
 	text_asm
-; Gate the arena on OAK's ISLAND DEED (won by beating OAK in the cave).
-	ld b, BATTLE_ISLAND_DEED
-	call IsItemInBag
+; Gate the arena on having beaten OAK (his "deed" is verbal, not a bag item --
+; a real ISLAND DEED item corrupted the bag display below it).
+	CheckEvent EVENT_BEAT_OAK
 	jr nz, .hasDeed
 	ld hl, .NoDeedText
 	call PrintText

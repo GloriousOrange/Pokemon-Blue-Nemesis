@@ -102,8 +102,6 @@ ArchipelagoCave3FOakRewardText:
 	text_asm
 	ld hl, .Text
 	call PrintText
-	lb bc, BATTLE_ISLAND_DEED, 1
-	call GiveItem
 	lb bc, METRONOME2, 1
 	call GiveItem
 	jp TextScriptEnd
