@@ -5,7 +5,7 @@ ArchipelagoCave3F_Object:
 	db $19 ; border block (cave wall/floor)
 
 	def_warp_events
-	warp_event 4, 1, ARCHIPELAGO_CAVE_2F, 2 ; stairs up
+	warp_event 4, 1, BATTLE_ISLAND, 3 ; exit back to Battle Island's cave mouth
 
 	def_bg_events
 
