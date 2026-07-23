@@ -1,16 +1,22 @@
 ApexMartRoof_Script:
 	call EnableAutoTextBoxDrawing
-	ld hl, ApexMartRoof_ScriptPointers
+	ld hl, ApexMartRoofTrainerHeaders
+	ld de, ApexMartRoof_ScriptPointers
 	ld a, [wApexMartCurScript]
-	jp CallFunctionInTable
+	call ExecuteCurMapScriptInTable
+	ld [wApexMartCurScript], a
+	ret
 
 ApexMartRoof_ScriptPointers:
 	def_script_pointers
-	dw_const ApexMartRoofDefaultScript,       SCRIPT_APEXMARTROOF_DEFAULT
-	dw_const ApexMartRoofScientistPostBattle, SCRIPT_APEXMARTROOF_POSTBATTLE
+	dw_const CheckFightingMapTrainers,              SCRIPT_APEXMARTROOF_DEFAULT
+	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_APEXMARTROOF_START_BATTLE
+	dw_const EndTrainerBattle,                      SCRIPT_APEXMARTROOF_END_BATTLE
+	dw_const ApexMartRoofScientistPostBattle,       SCRIPT_APEXMARTROOF_POSTBATTLE
 
-ApexMartRoofDefaultScript:
-	ret
+ApexMartRoofTrainerHeaders:
+	def_trainers
+	db -1 ; no sight trainers; the scientist is engaged manually on talk
 
 ; On defeat: mark the sixth scientist, hand over all six MUTAGENSTONES, and
 ; reveal OAK (EVENT_USED_MUTAGEN_MACHINE -> he appears at the water in the cave).

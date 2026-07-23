@@ -5,9 +5,12 @@ ArchipelagoCave3F_Script:
 	res BIT_CUR_MAP_LOADED_1, [hl]
 	call nz, ArchipelagoCave3FShowOak
 	call EnableAutoTextBoxDrawing
-	ld hl, ArchipelagoCave3F_ScriptPointers
+	ld hl, ArchipelagoCave3FTrainerHeaders
+	ld de, ArchipelagoCave3F_ScriptPointers
 	ld a, [wApexMartCurScript] ; shared transient endgame script state
-	jp CallFunctionInTable
+	call ExecuteCurMapScriptInTable
+	ld [wApexMartCurScript], a
+	ret
 
 ArchipelagoCave3FShowOak:
 	CheckEvent EVENT_USED_MUTAGEN_MACHINE
@@ -19,11 +22,14 @@ ArchipelagoCave3FShowOak:
 
 ArchipelagoCave3F_ScriptPointers:
 	def_script_pointers
-	dw_const ArchipelagoCave3FDefaultScript, SCRIPT_ARCHIPELAGOCAVE3F_DEFAULT
-	dw_const ArchipelagoCave3FOakPostBattle, SCRIPT_ARCHIPELAGOCAVE3F_POSTBATTLE
+	dw_const CheckFightingMapTrainers,              SCRIPT_ARCHIPELAGOCAVE3F_DEFAULT
+	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_ARCHIPELAGOCAVE3F_START_BATTLE
+	dw_const EndTrainerBattle,                      SCRIPT_ARCHIPELAGOCAVE3F_END_BATTLE
+	dw_const ArchipelagoCave3FOakPostBattle,        SCRIPT_ARCHIPELAGOCAVE3F_POSTBATTLE
 
-ArchipelagoCave3FDefaultScript:
-	ret
+ArchipelagoCave3FTrainerHeaders:
+	def_trainers
+	db -1 ; no sight trainers; OAK is engaged manually on talk
 
 ArchipelagoCave3FOakPostBattle:
 	ld a, [wIsInBattle]

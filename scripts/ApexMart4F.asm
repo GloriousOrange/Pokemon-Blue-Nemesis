@@ -1,23 +1,29 @@
 ApexMart4F_Script:
 	call EnableAutoTextBoxDrawing
-	ld hl, ApexMart4F_ScriptPointers
+	ld hl, ApexMart4FTrainerHeaders
+	ld de, ApexMart4F_ScriptPointers
 	ld a, [wApexMartCurScript]
-	jp CallFunctionInTable
+	call ExecuteCurMapScriptInTable
+	ld [wApexMartCurScript], a
+	ret
 
 ApexMart4F_ScriptPointers:
 	def_script_pointers
-	dw_const ApexMart4FDefaultScript,       SCRIPT_APEXMART4F_DEFAULT
-	dw_const ApexMart4FScientistPostBattle, SCRIPT_APEXMART4F_POSTBATTLE
+	dw_const CheckFightingMapTrainers,              SCRIPT_APEXMART4F_DEFAULT
+	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_APEXMART4F_START_BATTLE
+	dw_const EndTrainerBattle,                      SCRIPT_APEXMART4F_END_BATTLE
+	dw_const ApexMart4FScientistPostBattle,       SCRIPT_APEXMART4F_POST_BATTLE
 
-ApexMart4FDefaultScript:
-	ret
+ApexMart4FTrainerHeaders:
+	def_trainers
+	db -1 ; no sight trainers; the scientist is engaged manually on talk
 
 ApexMart4FScientistPostBattle:
 	ld a, [wIsInBattle]
 	cp $ff
-	jr z, ApexMart4FResetScripts
+	jp z, ApexMart4FResetScripts
 	ld hl, wScientistsDefeated
-	set 3, [hl] ; Emporium scientist 3 defeated (needed to face the roof scientist)
+	set 3, [hl] ; Emporium scientist 3 defeated
 ApexMart4FResetScripts:
 	xor a
 	ld [wApexMartCurScript], a
@@ -28,9 +34,6 @@ ApexMart4F_TextPointers:
 	def_text_pointers
 	dw_const ApexMart4FScientistText, TEXT_APEXMART4F_SCIENTIST
 
-; Unique challenge/win text from the shared scientist engine (index 3,
-; engine/events/lab_scientists.asm). Engages the object's own trainer data
-; (OPP_SCIENTIST + party set) -- same proven flow as the burned-lab scientists.
 ApexMart4FScientistText:
 	text_asm
 	ld a, [wScientistsDefeated]
@@ -42,7 +45,7 @@ ApexMart4FScientistText:
 	ld [wSpriteIndex], a
 	call EngageMapTrainer
 	call InitBattleEnemyParameters
-	ld a, SCRIPT_APEXMART4F_POSTBATTLE
+	ld a, SCRIPT_APEXMART4F_POST_BATTLE
 	ld [wApexMartCurScript], a
 	ld [wCurMapScript], a
 	jr .done
