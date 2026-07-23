@@ -201,7 +201,7 @@
 	const ICE_BOMB       ; c1 - Ice, 100 dmg, 50% freeze, 100 acc (Lapras niche)
 	const ICE_SCULPTURE  ; c2 - makes a Substitute; damaging it may freeze (Jynx niche)
 	const STAMPEDE       ; c3 - Normal, 150 dmg, 2-turn charge like Dig (Tauros niche)
-	const ROLL           ; c4 - Normal, 100 dmg, 85 acc, lowers user Defense by 2 (Snorlax niche)
+	const ROLL           ; c4 - Normal, 120 dmg, 85 acc, no side effect (Snorlax heavy hitter; self-Defense drop removed -- froze vs transformed mons)
 	const STRUGGLE       ; c5
 DEF NUM_ATTACKS EQU const_value - 1
 
