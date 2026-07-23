@@ -13,7 +13,7 @@ BattleIsland_Object:
 	def_warp_events
 	warp_event  9,  3, BATTLE_ISLAND_HOUSE, 1 ; door of the north-edge house (drawn in the .blk: roof $38 $39 / body $3C $3D, same blocks as the Pallet houses)
 	warp_event  8,  6, BATTLE_ISLAND_GATE, 1 ; arrival point when teleporting in from the Cinnabar lab gate (plain grass = won't auto-retrigger; leave via Fly)
-	warp_event 14,  5, ARCHIPELAGO_CAVE_3F, 1 ; OAK's cave -- visible cave mouth ($06 block) on the east side, straight to the grotto
+	warp_event 14,  6, ARCHIPELAGO_CAVE_3F, 1 ; OAK's cave -- walkable grass tile directly in front of the cave mouth ($06 block above at 14,5)
 
 	def_bg_events
 	bg_event  7,  3, TEXT_BATTLEISLAND_SIGN ; signpost block ($08) beside the house door
