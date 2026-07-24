@@ -31,8 +31,9 @@ If your ROM doesn't match, the patch won't apply correctly — see Troubleshooti
    that supports **BPS** works too.
 3. Pick your vanilla ROM + the `.bps`, tap **Apply**, and save the output.
    Rename it **`PKMN Nemesis.gbc`**.
-4. Open that file in the **Nostalgia** emulator.
-   - ⚠️ **Not Pizza Boy** — it does not run this build correctly.
+4. Open that file in **Pizza Boy GBC** (recommended — runs this build best,
+   full color). **Nostalgia** also works, but currently only renders in
+   black-and-white on this build.
 5. The cartridge title reads **PKMN NEMESIS** in-game, so you can tell it apart
    even if Android hides the filename. It battery-saves like a real cartridge.
 
@@ -45,7 +46,8 @@ Desktop is the same idea with any patcher (e.g. Floating IPS / "Flips").
   copier header. Verify the SHA1/CRC32 first.
 - **Game boots but looks corrupted:** you used the `.ips` on a mismatched ROM.
   Use the `.bps` instead — it would have caught it.
-- **Crashes/freezes on Pizza Boy:** switch to Nostalgia.
+- **No color / black-and-white:** that's Nostalgia — switch to Pizza Boy GBC
+  for full color.
 
 This is an active beta — see `BETA_README.md` in the repo root for the full
 change list and known caveats.

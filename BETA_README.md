@@ -1,22 +1,35 @@
 # Pokemon Nemesis — Beta Notes
 
 Thanks for testing! This is a Pokemon Blue ROM hack. Below is everything
-that's changed from the vanilla game, mechanically — no story spoilers, just
-patch notes. If something looks broken, weird, or unfinished, that's exactly
-what this beta is for; please report it.
+that's changed from the vanilla game, mechanically — no story spoilers beyond
+what you'd naturally discover in the first hour or two, just patch notes. If
+something looks broken, weird, or unfinished, that's exactly what this beta
+is for; please report it.
 
-Runs on Game Boy Color emulators — use **Nostalgia** on Android (Pizza Boy GBC
-does *not* run this build correctly). Saves to battery, same as a real
-cartridge.
+Runs on Game Boy Color emulators. **Pizza Boy GBC is recommended** — it runs
+this build best, in full color. **Nostalgia** also works and battery-saves
+fine, but currently only renders in black-and-white on this build (no other
+known issues on it). Either way, saves work like a real cartridge.
 
 ## New Areas
 
-- **Battle Island** — a post-game arena hub, reached via a hidden underground
-  gate beneath Cinnabar's Pokemon Mansion (after defeating 6 lab scientists),
-  or by Fly once you've discovered it. Features a 26-trainer battle gauntlet
-  (endless rematches after clearing all 26, then a final Giovanni fight),
-  a healer/PC building at the island's north edge, and its own wild-encounter
-  zone.
+- **Battle Island** — reachable once you've beaten every Gym Leader a second
+  time (a full rematch tour, available after the Elite Four). Beating the
+  last rematch marks the island on your map; Fly there anytime after that.
+  It's an open-air post-game hub with:
+  - **6 scientists** standing out in the open, each a one-Pokemon Level 100
+    battle with their own dialogue. Beat all 6 and the last one hands you
+    6 **Mutagenstones** and points you toward Professor Oak, who's made his
+    way to the island's south shore.
+  - **Professor Oak**, a Level 100 superboss with a signature 6-Pokemon team.
+    Beating him unlocks the island's arena and hands over an HM,
+    **Metronome2**.
+  - **The Arena**: a 26-trainer battle gauntlet (party capped at 3 Pokemon
+    per fight — you'll be sent to store extras at the island's PC first).
+    Clear all 26 and Giovanni himself steps up for a final fight; after that,
+    the gauntlet just keeps running endless rematches.
+  - Its own wild-encounter zone, and a healer/PC building at the island's
+    north edge.
 - **The Living-Dex Archipelago** — a chain of 8 seamlessly connected islands
   (plus a 3-floor cave with a hidden "grotto" pool) branching off Battle
   Island. Together they host all 151 catchable Pokemon at Lv. 50-60, with
@@ -28,6 +41,10 @@ cartridge.
   Level 100 trainers spread across its decks and a Rival superboss fight on
   the open deck with its own Level 100 team, followed by a rare in-game
   trade.
+
+The Pokemon Mansion on Cinnabar Island is a normal wild-encounter dungeon
+(with some higher-level, evolved wilds compared to vanilla) — nothing about
+reaching Battle Island runs through it.
 
 ## New Pokemon, Moves & Species Changes
 
@@ -67,23 +84,15 @@ cartridge.
 - **Reworked moves**: Whirlwind is now a 20-power Flying attack that lowers
   the target's accuracy by one stage (it no longer ends/flees the battle);
   Razor Wind hits much harder (base power raised to 140).
+- **Move type reassignments**: a handful of moves changed elemental type for
+  balance/flavor reasons — most notably Guillotine and Vice Grip are now
+  Bug-type instead of Normal.
 - **New/earlier level-up moves** on several Pokemon, including: Charmander
   learns Fire Punch (Lv. 10); Pikachu learns Flash (Lv. 7); Grimer learns Acid
   (Lv. 7); Shellder learns Crystallize (Lv. 25). A few are deliberately placed
   *above* the mon's evolution level to reward keeping it unevolved (see below):
   Kabuto gets Cut (7), Crystallize (22) and Guillotine (42); Rhyhorn gets
   Agility (44); Slowpoke gets Thunder (50).
-- **Status conditions can now stack** — a Pokemon can be, say, burned *and*
-  confused at the same time, where the vanilla game only allowed one at a
-  time. (Note: the battle HUD still only has room to show one status icon,
-  and only one poison/burn tick's worth of end-of-turn damage is applied
-  even when multiple are active — see Known Caveats.)
-- **Type/move changes**: Ghost-type moves are now Special category (not
-  Physical); Guillotine is now Bug-type; Rock Throw moved to TM34 (replacing
-  Bide, which was removed from every Pokemon's compatible-move list);
-  Porygon starts with Mimic instead of Tackle; several Pokemon had extra
-  HM/TM compatibility added (e.g. more Pokemon can learn Fly); Leech Seed now
-  has a 50% chance to also make the target flinch.
 - **5 moves per Pokemon**, not the vanilla 4 — battle menus, the Summary
   screen, and Move Relearner/Mimic are all sized for this.
 - Some items display under new flavor names but work identically to their
@@ -99,17 +108,20 @@ cartridge.
   old Elite Four slot is filled by a new Bug-type specialist with a custom
   team and unique movesets.
 - Every Gym Leader has a full rematch team available post-game, once you've
-  cleared the League — these feed into unlocking Battle Island.
+  cleared the League — these feed into unlocking Battle Island (see above).
 - There's a branching allegiance system around Team Rocket vs. Oak's
   establishment: at a key point you can side with Team Rocket or refuse.
   Your choice changes your overworld sprite, which NPCs treat as friend or
   foe in certain questlines (Silph Co.'s floors play out differently
   depending on your allegiance), unlocks path-specific shops/prizes at the
   Game Corner, and affects which endgame content and legendary birds you
-  encounter. A further "go rogue" branch exists later in the story.
+  encounter. A further "go rogue" branch exists later in the story, tied to
+  a certain encounter at the top of Pokemon Tower.
 - Team Rocket grunts in their hideout give Game Corner coins instead of
   cash on defeat, and the Rocket-loyal path unlocks an exclusive coin-shop
   prize list.
+- On the Loyalist path, Silph Co.'s top floor swaps the usual Giovanni fight
+  for a different boss encounter.
 
 ## Battle & Difficulty
 
@@ -121,6 +133,10 @@ cartridge.
 - The classic Gen 1 "badge boost" bug is fixed: repeatedly raising or lowering
   a stat no longer causes a Pokemon's *other* stats to slowly drift up or down.
   Stats are now recomputed cleanly after every stat-changing move.
+- A separate, obscure Gen 1 engine bug is also fixed: a critical hit against
+  a Pokemon with a very high Defense or Special stat (only really possible at
+  Level 100) could previously cause the game to freeze outright. This only
+  ever surfaced against the game's toughest post-game superbosses.
 - **Cancelling an evolution now sticks.** If you press B to stop a Pokemon
   evolving, it won't ask again until the Pokemon has gained 30 more levels
   (vanilla nagged you every single level-up). This makes it practical to keep a
@@ -138,10 +154,11 @@ cartridge.
   (Safari Zone is unchanged).
 - Vitamin (HP Up/Protein/Iron/Calcium/Carbos) and PP Up pricing/behavior may
   differ from vanilla in places — check the in-game description if unsure.
-- A "Mutagenstone" item can level a Pokemon straight to 100, correctly
-  replaying every evolution and move it would have learned naturally along
-  the way. It's earned through a post-game gauntlet, not handed out for
-  free.
+- **Mutagenstones** can level a Pokemon straight to 100 right from your bag
+  (outside of battle — it can't be used mid-fight), correctly replaying every
+  evolution and move it would have learned naturally along the way instead of
+  just jumping to 100 with its original moveset. They're earned from Battle
+  Island's scientists (see New Areas above), not handed out for free.
 
 ## Megan & the Phone System
 
@@ -164,7 +181,9 @@ NPC dialogue throughout leans into a darker comedic tone — Pokemon are
 casually referenced as food/livestock in this world's flavor text (diners,
 mart chatter, etc.), and there's an ongoing "whose side are you on"
 propaganda thread between the Gyms and the Elite Four that colors a lot of
-incidental dialogue. This is atmospheric flavor and doesn't block or change
+incidental dialogue. The Rival is played straight and serious throughout,
+including a darker opening and a final confrontation on the S.S. Olympia's
+deck (see New Areas). This is atmospheric flavor and doesn't block or change
 core gameplay.
 
 ## Known Beta Caveats
@@ -182,15 +201,17 @@ core gameplay.
   use placeholder or reused sprites/cries rather than fully original art.
   (Alakachamp does now use its own crimson palette so it's easy to tell apart
   from Machamp.)
-- With the new stacking status conditions, the in-battle status icon only
-  shows one condition at a time and end-of-turn poison/burn damage is applied
-  as a single tick, even if a Pokemon carries more than one status. The
-  underlying effects (attack/speed drops, confusion, sleep/freeze skipping
-  turns) all still apply — it's just the on-screen readout that's limited.
+- On Nostalgia specifically, the game currently renders in black-and-white
+  instead of full Game Boy Color palettes. Battery saves and everything else
+  work fine on it — this appears to be an emulator-specific display quirk.
+  Pizza Boy GBC shows full color.
+- After beating Professor Oak on Battle Island, you may find yourself unable
+  to walk (though you can still talk to him). Flying to another town and
+  back clears it. We haven't nailed down the root cause yet.
 - This is an active beta. If you hit a freeze, crash, or obviously broken
   interaction, that's exactly the kind of thing to report — several major
   freeze bugs were found and fixed in the lead-up to this build, but more
-  may surface.
+  may surface, especially around the new Level 100 post-game content.
 
 ## Reporting Issues
 
