@@ -1,21 +1,23 @@
 ; Megan follower companion (Pokemon Nemesis). Once wPostGameMisc's
 ; BIT_GOT_GIRLFRIEND is set (Route 1 recruitment), she trails one tile
-; behind the player on every subsequent map.
+; behind the player on INDOOR maps only (Pokemon Centers, Marts, gyms,
+; houses, etc.) -- Pokemon Centers, Marts, gyms, houses, etc.
+;
+; Outdoor overworld maps are deliberately excluded. Every outdoor
+; sprite-set region (data/maps/sprite_sets.asm) is already at its hard
+; 9-distinct-NPC-type VRAM cap with zero slack, so showing her outdoors
+; would require borrowing an existing NPC type's tiles and hand-deriving
+; which VRAM slot that graphic lands in -- exactly the class of bug that
+; made her Route 1 debut render wrong, and not reliable enough to ship.
+; Indoor maps load NPC tile patterns dynamically per-slot with no such
+; fixed table, so her real SPRITE_MEGAN graphic just works there.
 ;
 ; Pieces that work together:
 ;  - TryAddMeganFollowerSprite (this file): injects her as an extra NPC slot
-;    on INDOOR maps only, called from LoadMapData (home/overworld.asm)
-;    between LoadMapHeader and InitMapSprites, so the normal per-slot
-;    dynamic tile-pattern loading picks up her real SPRITE_MEGAN graphic
-;    like it would any other object_event.
-;  - TryFinishMeganFollowerOutdoorSprite (this file): injects her on
-;    OUTDOOR maps only, called AFTER InitMapSprites, once wSpriteSetID is
-;    valid. Every outdoor sprite-set region (data/maps/sprite_sets.asm) is
-;    already at its hard 9-distinct-NPC-type VRAM cap with zero slack, so
-;    outdoors she borrows the tiles of an existing type already present in
-;    that region (FollowerStandInGraphics/FollowerStandInImageBaseOffset)
-;    instead of her own dedicated graphic, and her IMAGEBASEOFFSET is set
-;    directly rather than computed via the normal tile-loading pass.
+;    on indoor maps, called from LoadMapData (home/overworld.asm) between
+;    LoadMapHeader and InitMapSprites, so the normal per-slot dynamic
+;    tile-pattern loading picks up her graphic like it would any other
+;    object_event.
 ;  - GetFollowerStateData2Ptr lives in home/overworld.asm (not here) so it
 ;    can be called with a plain `call` from both this bank and home-bank
 ;    code (CollisionCheckOnLand) without the af/bc clobbering that comes
@@ -28,8 +30,7 @@
 ;    can never trap the player in a tight space.
 
 ; Called from LoadMapData (home/overworld.asm), between LoadMapHeader and
-; InitMapSprites. Indoor maps only -- outdoor injection happens later, in
-; TryFinishMeganFollowerOutdoorSprite, once wSpriteSetID is valid.
+; InitMapSprites.
 TryAddMeganFollowerSprite::
 	xor a
 	ld [wFollowerSpriteOffset], a
@@ -37,50 +38,9 @@ TryAddMeganFollowerSprite::
 	ld [wFollowerBumpCount], a
 	call ShouldMeganFollow
 	ret nc
-	ld a, [wCurMap]
-	cp FIRST_INDOOR_MAP
-	ret c ; outdoor -- handled later by TryFinishMeganFollowerOutdoorSprite
 	ld a, SPRITE_MEGAN
 	ld [wFollowerPictureIDTemp], a
 	call InjectFollowerSlotCommon
-	ret
-
-; Called from LoadMapData (home/overworld.asm), right after InitMapSprites
-; returns. Outdoor maps only.
-TryFinishMeganFollowerOutdoorSprite::
-	call ShouldMeganFollow
-	ret nc
-	ld a, [wCurMap]
-	cp FIRST_INDOOR_MAP
-	ret nc ; indoor -- already handled by TryAddMeganFollowerSprite
-	ld a, [wSpriteSetID]
-	and a
-	ret z ; shouldn't happen once ShouldMeganFollow passed, but be safe
-	dec a ; 0-indexed
-	ld hl, FollowerStandInGraphics
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld a, [hl]
-	ld [wFollowerPictureIDTemp], a
-	call InjectFollowerSlotCommon
-; now overwrite her IMAGEBASEOFFSET with the hardcoded value for this
-; region, instead of whatever InjectFollowerSlotCommon's normal path left
-; there (it doesn't set one at all -- see below).
-	ld a, [wSpriteSetID]
-	dec a
-	ld hl, FollowerStandInImageBaseOffset
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld a, [hl]
-	ld b, a
-	call GetFollowerStateData2Ptr
-	ret c
-	ld a, l
-	add SPRITESTATEDATA2_IMAGEBASEOFFSET
-	ld l, a
-	ld [hl], b
 	ret
 
 ; Shared checks. Returns carry SET if she should be following on this map,
@@ -91,8 +51,8 @@ ShouldMeganFollow:
 	bit BIT_GOT_GIRLFRIEND, a
 	jr z, .no ; not recruited yet
 	ld a, [wCurMap]
-	cp ROUTE_1
-	jr z, .no ; she's still her own object_event there; avoid a duplicate
+	cp FIRST_INDOOR_MAP
+	jr c, .no ; outdoor map -- not supported, see file header
 	ld a, [wNumSprites]
 	cp NUM_SPRITESTATEDATA_STRUCTS - 1 ; 15 -- map is already completely full
 	jr nc, .no
@@ -186,40 +146,6 @@ InjectFollowerSlotCommon:
 	ld [hli], a
 	ld [hl], a
 	ret
-
-FollowerStandInGraphics:
-	db SPRITE_GIRL           ; SPRITESET_PALLET_VIRIDIAN
-	db SPRITE_COOLTRAINER_F   ; SPRITESET_PEWTER_CERULEAN
-	db SPRITE_GIRL            ; SPRITESET_LAVENDER
-	db SPRITE_COOLTRAINER_F   ; SPRITESET_VERMILION
-	db SPRITE_GIRL            ; SPRITESET_CELADON
-	db SPRITE_COOLTRAINER_F   ; SPRITESET_INDIGO
-	db SPRITE_SILPH_WORKER_F  ; SPRITESET_SAFFRON
-	db SPRITE_COOLTRAINER_F   ; SPRITESET_SILENCE_BRIDGE
-	db SPRITE_BIKER           ; SPRITESET_CYCLING_ROAD
-	db SPRITE_SWIMMER         ; SPRITESET_FUCHSIA
-	db SPRITE_MEGAN           ; SPRITESET_ROUTE_1 (unreachable -- Route 1 is excluded above)
-
-; Hardcoded VRAM image-base-offset each stand-in above is guaranteed to get,
-; derived from its fixed position in that region's 9-member walking list in
-; data/maps/sprite_sets.asm (position N always resolves to offset N+1 --
-; see engine/overworld/map_sprites.asm's InitOutsideMapSprites/
-; LoadMapSpriteTilePatterns, where the player permanently occupies offset 1
-; and the region's list is preloaded into VRAM strictly in list order).
-; NOTE: if sprite_sets.asm's lists are ever reordered, these must be
-; recomputed to match -- they intentionally don't derive automatically.
-FollowerStandInImageBaseOffset:
-	db 4  ; PALLET_VIRIDIAN: GIRL is list position 3
-	db 9  ; PEWTER_CERULEAN: COOLTRAINER_F is list position 8
-	db 3  ; LAVENDER: GIRL is list position 2
-	db 9  ; VERMILION: COOLTRAINER_F is list position 8
-	db 4  ; CELADON: GIRL is list position 3
-	db 6  ; INDIGO: COOLTRAINER_F is list position 5
-	db 5  ; SAFFRON: SILPH_WORKER_F is list position 4
-	db 5  ; SILENCE_BRIDGE: COOLTRAINER_F is list position 4
-	db 2  ; CYCLING_ROAD: BIKER is list position 1
-	db 9  ; FUCHSIA: SWIMMER is list position 8
-	db 3  ; ROUTE_1: unreachable
 
 ; Called once per completed player step (home/overworld.asm, the
 ; "walking animation finished" step-counting checkpoint). Queues Megan's
