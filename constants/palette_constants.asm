@@ -60,4 +60,7 @@ DEF SET_PAL_DEFAULT EQU $ff
 	const PAL_CAVE      ; $23
 	const PAL_GAMEFREAK ; $24
 	const PAL_ALAKACHAMP ; $25 - dedicated crimson palette so Alakachamp reads distinct from Machamp
+	const PAL_GHOSTMON   ; $26 - resurrected-starter spectral purple (see CheckIsGhostPartyMon);
+	                     ; NOT the same as PAL_PURPLEMON, which is a normal species palette
+	                     ; shared by Ekans/Gastly/Miasma/etc. and must stay uniform sepia
 DEF NUM_SGB_PALS EQU const_value

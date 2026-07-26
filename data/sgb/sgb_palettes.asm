@@ -53,4 +53,8 @@ ENDC
 ; Alakachamp's own palette: cream backdrop (matches the game's sepia scenes) with a
 ; crimson body ramp, so the fusion boss stands out from the identical-looking Machamp.
 	RGB 31,28,12, 31,13,11, 21,05,06, 10,02,02 ; PAL_ALAKACHAMP
+; Resurrected-starter ghost palette: same cream backdrop as everything else,
+; but a spectral violet body ramp instead of sepia, so a Ghost-typed party
+; mon (CheckIsGhostPartyMon) reads as visually distinct in battle/status/dex.
+	RGB 31,28,12, 24,18,31, 14,08,24, 05,02,10 ; PAL_GHOSTMON
 	assert_table_length NUM_SGB_PALS

@@ -37,7 +37,7 @@ SetPal_Battle:
 	ld a, [wBattleMonType2]
 	cp GHOST
 	jr nz, .not_player_ghost
-	ld b, PAL_PURPLEMON
+	ld b, PAL_GHOSTMON
 .not_player_ghost:
 	ld a, [wEnemyBattleStatus3]
 	ld hl, wEnemyMonSpecies2
@@ -46,7 +46,7 @@ SetPal_Battle:
 	ld a, [wEnemyMonType2]
 	cp GHOST
 	jr nz, .not_enemy_ghost
-	ld c, PAL_PURPLEMON
+	ld c, PAL_GHOSTMON
 .not_enemy_ghost:
 	ld hl, wPalPacket + 1
 	ld a, [wPlayerHPBarColor]
@@ -90,7 +90,7 @@ SetPal_StatusScreen:
 	call CheckIsGhostPartyMon
 	pop af
 	jr nc, .not_ghost_status
-	ld a, PAL_PURPLEMON
+	ld a, PAL_GHOSTMON
 .not_ghost_status:
 	push af
 	ld hl, wPalPacket + 1
@@ -116,6 +116,13 @@ SetPal_Pokedex:
 	call CopyData
 	ld a, [wCurPartySpecies]
 	call DeterminePaletteIDOutOfBattle
+	push af
+	ld a, [wCurPartySpecies]
+	call CheckIsGhostPartyMon
+	pop af
+	jr nc, .not_ghost_dex
+	ld a, PAL_GHOSTMON
+.not_ghost_dex:
 	ld hl, wPalPacket + 3
 	ld [hl], a
 	ld hl, wPalPacket
@@ -211,6 +218,13 @@ SetPal_PokemonWholeScreen:
 	jr nz, .next
 	ld a, [wWholeScreenPaletteMonSpecies]
 	call DeterminePaletteIDOutOfBattle
+	push af
+	ld a, [wWholeScreenPaletteMonSpecies]
+	call CheckIsGhostPartyMon
+	pop af
+	jr nc, .not_ghost_wholescreen
+	ld a, PAL_GHOSTMON
+.not_ghost_wholescreen:
 .next
 	ld [wPalPacket + 1], a
 	ld hl, wPalPacket
