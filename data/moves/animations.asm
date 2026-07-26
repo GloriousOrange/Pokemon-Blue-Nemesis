@@ -184,7 +184,7 @@ AttackAnimationPointers:
 	dw WrapAnim         ; CRUSH_COIL — reuse Wrap's trapping visuals
 	dw LeechLifeAnim    ; BLOOD_SUCK — reuse Leech Life's drain visuals
 	dw GustAnim         ; HURRICANE — reuse Gust's wind visuals
-	dw IceBeamAnim      ; ICE_SPIKE — reuse Ice Beam's visuals
+	dw IceSpikeAnim     ; ICE_SPIKE — bespoke: single rising ice shard, no beam
 	dw ConfusionAnim    ; MIGRAIN — reuse Confusion's visuals
 	dw WingAttackAnim   ; DIVE — reuse Wing Attack's visuals
 	dw ThunderShockAnim ; STATIC_SHOCK — reuse ThunderShock's visuals
@@ -589,6 +589,13 @@ SurfAnim:
 IceBeamAnim:
 	battle_anim ICE_BEAM, SUBANIM_0_BEAM, 0, 3
 	battle_anim NO_MOVE, SUBANIM_0_ICE_RISE, 0, 16
+	db -1 ; end
+
+; Just the rising ice spike alone, no beam or punch stars beforehand -- a
+; single quick shard, fitting Ice Spike's low power, distinct from Ice Beam
+; (beam+rise) and Ice Punch (stars+rise) which always pair it with something.
+IceSpikeAnim:
+	battle_anim ICE_BEAM, SUBANIM_0_ICE_RISE, 0, 8
 	db -1 ; end
 
 BlizzardAnim:
