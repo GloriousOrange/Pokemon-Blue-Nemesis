@@ -171,7 +171,7 @@ AttackAnimationPointers:
 	dw SludgeAnim       ; BLIGHT_VOMIT
 	dw ConfuseRayAnim   ; MIND_FEVER
 	dw WingAttackAnim   ; PHANTOM_WING
-	dw StringShotAnim   ; WEB_CANNON
+	dw WebCannonAnim    ; WEB_CANNON — bespoke: web toss, hard bind, heavy impact flash
 	dw MegaPunchAnim    ; UPPERCUT
 	dw PayDayAnim       ; JACKPOT — reuse Pay Day's coin-scatter visuals
 	dw AgilityAnim      ; SUPER_INSTINCT — reuse Agility's focus-aura visuals
@@ -708,6 +708,14 @@ PetalDanceAnim:
 
 StringShotAnim:
 	battle_anim STRING_SHOT, SUBANIM_0_STRING_SHOT, 0, 8
+	db -1 ; end
+
+; a single overwhelming web blast: strands launch, then bind hard, then a heavy
+; impact flash sells the "cannon" power -- distinct from String Shot's light toss
+WebCannonAnim:
+	battle_anim STRING_SHOT, SUBANIM_0_STRING_SHOT, 0, 8
+	battle_anim WRAP, SUBANIM_0_BIND, 0, 4
+	battle_anim NO_MOVE, SUBANIM_1_STAR_BIG_MOVING, 1, 6
 	db -1 ; end
 
 DragonRageAnim:
