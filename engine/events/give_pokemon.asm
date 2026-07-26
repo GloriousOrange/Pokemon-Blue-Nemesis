@@ -116,50 +116,69 @@ IF DEF(_SPEEDTEST)
 	ld hl, .NocturnMoves
 	call .GiveBoxedMonWithMoves
 .birdsAlreadyGiven
-; Guarded independently of the birds above so it still fires on saves that
-; already tripped EVENT_GOT_SPEEDTEST_DEBUG_MONS (e.g. mid-playtest saves).
-	CheckEvent EVENT_GOT_SPEEDTEST_PINSIR
+; Each signature-move test mon below is guarded by its own bit in
+; wSpeedtestExtraMonsGiven (NOT an EVENT_* constant -- that shared array is a
+; hard-capped fixed-size resource for real game state, and we ran out of room
+; there partway through adding these debug-only conveniences), so each still
+; fires independently on saves that already have earlier ones.
+	ld hl, wSpeedtestExtraMonsGiven
+	bit 0, [hl]
 	jr nz, .pinsirAlreadyGiven
 	ld a, [wBoxCount]
 	cp MONS_PER_BOX - 1 ; need 1 free box slot for Pinsir
 	jr nc, .pinsirAlreadyGiven
-	SetEvent EVENT_GOT_SPEEDTEST_PINSIR
+	set 0, [hl]
 	lb bc, PINSIR, 100
 	ld hl, .PinsirMoves
 	call .GiveBoxedMonWithMoves
 .pinsirAlreadyGiven
 ; Persian normally learns Jackpot at level 98 -- boxed here at L100 so it's
-; usable immediately, same independent-flag pattern as Pinsir above.
-	CheckEvent EVENT_GOT_SPEEDTEST_PERSIAN
+; usable immediately.
+	ld hl, wSpeedtestExtraMonsGiven
+	bit 1, [hl]
 	jr nz, .persianAlreadyGiven
 	ld a, [wBoxCount]
 	cp MONS_PER_BOX - 1 ; need 1 free box slot for Persian
 	jr nc, .persianAlreadyGiven
-	SetEvent EVENT_GOT_SPEEDTEST_PERSIAN
+	set 1, [hl]
 	lb bc, PERSIAN, 100
 	ld hl, .PersianMoves
 	call .GiveBoxedMonWithMoves
 .persianAlreadyGiven
 ; Hitmonlee normally learns Super Instinct at level 22 -- boxed here at L100.
-	CheckEvent EVENT_GOT_SPEEDTEST_HITMONLEE
+	ld hl, wSpeedtestExtraMonsGiven
+	bit 2, [hl]
 	jr nz, .hitmonleeAlreadyGiven
 	ld a, [wBoxCount]
 	cp MONS_PER_BOX - 1 ; need 1 free box slot for Hitmonlee
 	jr nc, .hitmonleeAlreadyGiven
-	SetEvent EVENT_GOT_SPEEDTEST_HITMONLEE
+	set 2, [hl]
 	lb bc, HITMONLEE, 100
 	ld hl, .HitmonleeMoves
 	call .GiveBoxedMonWithMoves
 .hitmonleeAlreadyGiven
 ; Magmar normally learns Hot Oil at level 36 -- boxed here at L100.
-	CheckEvent EVENT_GOT_SPEEDTEST_MAGMAR
-	ret nz
+	ld hl, wSpeedtestExtraMonsGiven
+	bit 3, [hl]
+	jr nz, .magmarAlreadyGiven
 	ld a, [wBoxCount]
 	cp MONS_PER_BOX - 1 ; need 1 free box slot for Magmar
-	ret nc
-	SetEvent EVENT_GOT_SPEEDTEST_MAGMAR
+	jr nc, .magmarAlreadyGiven
+	set 3, [hl]
 	lb bc, MAGMAR, 100
 	ld hl, .MagmarMoves
+	call .GiveBoxedMonWithMoves
+.magmarAlreadyGiven
+; Beedrill normally learns Crystallize at level 22 -- boxed here at L100.
+	ld hl, wSpeedtestExtraMonsGiven
+	bit 4, [hl]
+	ret nz
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 1 ; need 1 free box slot for Beedrill
+	ret nc
+	set 4, [hl]
+	lb bc, BEEDRILL, 100
+	ld hl, .BeedrillMoves
 	call .GiveBoxedMonWithMoves
 ENDC
 	ret
@@ -171,6 +190,7 @@ ENDC
 .PersianMoves:    db JACKPOT, SLASH, SCREECH, BITE, FURY_SWIPES
 .HitmonleeMoves:  db SUPER_INSTINCT, HI_JUMP_KICK, ROLLING_KICK, DOUBLE_KICK, MEGA_KICK
 .MagmarMoves:     db HOT_OIL, FIRE_PUNCH, FLAMETHROWER, SMOKESCREEN, CONFUSE_RAY
+.BeedrillMoves:   db CRYSTALLIZE, CHAOS_STING, TWINEEDLE, PIN_MISSILE, AGILITY
 
 ; b = species, c = level, hl = pointer to a NUM_MOVES-byte moveset
 .GiveBoxedMonWithMoves:

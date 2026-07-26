@@ -2271,6 +2271,12 @@ wStarterAshesNick::    ds NAME_LENGTH          ; saved starter nickname (11 byte
 ; landed in the party (count grew) or the box (count unchanged)
 wGhostEncounterPartyCount:: db
 
+; One bit per SPEEDTEST-only signature-move test mon (see
+; SpeedtestGiveDebugMons) -- the shared event-flag array (EVENT_* constants)
+; is a hard-capped, fixed-size resource for real game state; these are
+; debug-only conveniences and don't need to share that budget.
+wSpeedtestExtraMonsGiven:: db
+
 wMainDataEnd::
 
 

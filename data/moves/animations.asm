@@ -175,7 +175,7 @@ AttackAnimationPointers:
 	dw MegaPunchAnim    ; UPPERCUT
 	dw JackpotAnim      ; JACKPOT — bespoke: Pay Day's coin bounce fires 4x
 	dw SuperInstinctAnim ; SUPER_INSTINCT — bespoke: focus spiral + reflex flash
-	dw HardenAnim       ; CRYSTALLIZE — reuse Harden's hardening shimmer
+	dw CrystallizeAnim  ; CRYSTALLIZE — bespoke: rising crystal shards + shield flash
 	dw TwineedleAnim    ; CHAOS_STING — reuse Twineedle's stinger visuals
 	dw WrapAnim         ; CHOKEHOLD — reuse Wrap's trapping visuals
 	dw CometPunchAnim   ; ROCK_FISTS — reuse Comet Punch's multi-hit fists
@@ -895,6 +895,16 @@ HardenAnim:
 	battle_anim HARDEN, SE_LIGHT_SCREEN_PALETTE
 	battle_anim NO_MOVE, SUBANIM_0_CIRCLE_1_SQUARE_CLOSING, 1, 6
 	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
+	db -1 ; end
+
+; Ice Punch's rising crystal shards (the body crystallizing) followed by
+; Barrier's shimmering shield flash -- distinct from Harden's plain closing
+; circle, and fits boosting both Defense AND Special rather than just Defense.
+CrystallizeAnim:
+	battle_anim CRYSTALLIZE, SE_LIGHT_SCREEN_PALETTE
+	battle_anim NO_MOVE, SUBANIM_0_ICE_RISE, 0, 8
+	battle_anim NO_MOVE, SUBANIM_1_BARRIER, 1, 6
 	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
 	db -1 ; end
 
