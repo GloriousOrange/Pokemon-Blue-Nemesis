@@ -176,7 +176,7 @@ AttackAnimationPointers:
 	dw JackpotAnim      ; JACKPOT — bespoke: Pay Day's coin bounce fires 4x
 	dw SuperInstinctAnim ; SUPER_INSTINCT — bespoke: focus spiral + reflex flash
 	dw CrystallizeAnim  ; CRYSTALLIZE — bespoke: rising crystal shards + shield flash
-	dw TwineedleAnim    ; CHAOS_STING — reuse Twineedle's stinger visuals
+	dw ChaosStingAnim   ; CHAOS_STING — bespoke: sting + flickering status icons
 	dw WrapAnim         ; CHOKEHOLD — reuse Wrap's trapping visuals
 	dw CometPunchAnim   ; ROCK_FISTS — reuse Comet Punch's multi-hit fists
 	dw HotOilAnim       ; HOT_OIL — bespoke: oil toss + drip, then ignites
@@ -490,6 +490,16 @@ PoisonStingAnim:
 TwineedleAnim:
 	battle_anim TWINEEDLE, SUBANIM_0_STAR_TWICE, 0, 5
 	battle_anim TWINEEDLE, SUBANIM_0_STAR_TWICE, 0, 5
+	db -1 ; end
+
+; A single sting, then a fast flicker through poison/paralyze/confuse status
+; icons -- represents the 30% chance of any random status, distinct from
+; Twineedle's plain double-sting.
+ChaosStingAnim:
+	battle_anim TWINEEDLE, SUBANIM_0_STAR_TWICE, 0, 5
+	battle_anim NO_MOVE, SUBANIM_0_STATUS_POISONED, 0, 3
+	battle_anim NO_MOVE, SUBANIM_0_STATUS_PARALYZED, 0, 3
+	battle_anim NO_MOVE, SUBANIM_0_STATUS_CONFUSED, 0, 3
 	db -1 ; end
 
 PinMissileAnim:
