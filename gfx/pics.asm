@@ -338,12 +338,18 @@ AlakachampPicFront::   INCBIN "gfx/pokemon/front/machamp.pic"   ; Alakachamp reu
 AlakachampPicBack::    INCBIN "gfx/pokemon/back/machampb.pic"
 
 ; Player battle back sprites for the Hero (Scientist), Loyalist (Rocket), and
-; Traitor overworld disguises, matching LoadWalkingPlayerSpriteGraphics'
-; BIT_ROCKET_LOYALTY / BIT_PLAYER_TRAITOR branches (home/overworld.asm).
-; Selected by LoadPlayerBackPic (engine/battle/core.asm).
+; Traitor overworld disguises. No longer used by LoadPlayerBackPic (the
+; player's own trainer sprite was removed from the battle-start slide-in --
+; see BlankPicBack below), kept in case they're wanted again later.
 ScientistPicBack::     INCBIN "gfx/player/scientistb.pic"
 RocketPicBack::        INCBIN "gfx/player/rocketb.pic"
 TraitorPicBack::       INCBIN "gfx/player/traitorb.pic"
+
+; Blank 32x32 pic used by LoadPlayerBackPic (engine/battle/core.asm) for all
+; non-Old-Man battles, so the existing slide-in OAM/tilemap mechanics in
+; SlidePlayerAndEnemySilhouettesOnScreen keep working unchanged, but nothing
+; visible actually slides in for the player's own trainer sprite.
+BlankPicBack::         INCBIN "gfx/player/blankb.pic"
 
 
 SECTION "Trainer Pics", ROMX

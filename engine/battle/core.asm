@@ -6512,27 +6512,13 @@ LoadPlayerBackPic:
 	ld a, [wBattleType]
 	dec a ; is it the old man tutorial?
 	jr z, .oldMan
-; Hero path battles as the Scientist disguise, Loyalist path as the Rocket
-; disguise, Traitor path (overrides both) as the Nemesis back sprite --
-; matches the overworld sprite picked by LoadWalkingPlayerSpriteGraphics
-; (home/overworld.asm).
-	ld a, [wPostGameMisc]
-	bit BIT_PLAYER_TRAITOR, a
-	jr nz, .traitor
-	bit BIT_ROCKET_LOYALTY, a
-	jr nz, .rocket
-	ld de, ScientistPicBack
-	ld a, BANK(ScientistPicBack)
-	jr .next
-.rocket
-	ld de, RocketPicBack
-	ld a, BANK(RocketPicBack)
-	ASSERT BANK(ScientistPicBack) == BANK(RocketPicBack)
-	jr .next
-.traitor
-	ld de, TraitorPicBack
-	ld a, BANK(TraitorPicBack)
-	ASSERT BANK(ScientistPicBack) == BANK(TraitorPicBack)
+; The player's own trainer sprite no longer slides in for normal battles --
+; BlankPicBack is a blank pic, so the OAM/tilemap mechanics below (shared
+; with the Old Man tutorial and with SlidePlayerAndEnemySilhouettesOnScreen)
+; don't need to change at all; nothing visible just ends up drawn. Pokemon
+; back sprites are a separate, unrelated asset/code path and are unaffected.
+	ld de, BlankPicBack
+	ld a, BANK(BlankPicBack)
 	jr .next
 .oldMan
 	ld de, OldManPicBack
