@@ -127,11 +127,7 @@ MainMenu:
 InitOptions:
 	ld a, 1 << BIT_FAST_TEXT_DELAY
 	ld [wLetterPrintingDelayFlags], a
-IF DEF(_SPEEDTEST)
-	ld a, (1 << BIT_BATTLE_ANIMATION) | TEXT_DELAY_FAST ; battle animations off by default
-ELSE
-	ld a, TEXT_DELAY_FAST
-ENDC
+	ld a, TEXT_DELAY_FAST ; battle animations on by default (testers want to see them)
 	ld [wOptions], a
 	ret
 

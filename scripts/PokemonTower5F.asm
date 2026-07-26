@@ -51,6 +51,13 @@ PokemonTower5FDefaultScript:
 	ld a, TEXT_POKEMONTOWER5F_GHOSTSTIRS
 	ldh [hTextID], a
 	call DisplayTextID
+; The zone-entry code above set BIT_NO_BATTLES to block random encounters
+; during the heal/flavor sequence -- NewBattle silently no-ops while it's set
+; WITHOUT clearing wCurOpponent, which would permanently soft-lock movement
+; (every frame re-tries and re-bails forever). Clear it so this battle can
+; actually start.
+	ld hl, wStatusFlags4
+	res BIT_NO_BATTLES, [hl]
 	ld a, [wPartyCount]
 	ld [wGhostEncounterPartyCount], a
 	ld a, [wStarterAshesSpecies]
