@@ -102,10 +102,18 @@ SECTION "Battle Engine 2", ROMX
 
 INCLUDE "engine/gfx/load_pokedex_tiles.asm"
 INCLUDE "engine/overworld/map_sprites.asm"
-INCLUDE "engine/overworld/emotion_bubbles.asm"
 INCLUDE "engine/events/evolve_trade.asm"
 INCLUDE "engine/battle/move_effects/substitute.asm"
 INCLUDE "engine/menus/pc.asm"
+
+; Floated out of "Battle Engine 2" (bank $5, shared with "NPC Sprites 2") to
+; make room for MeganSprite (gfx/sprites/megan.png). EmotionBubble is only
+; ever reached via `predef EmotionBubble`, which resolves the bank
+; automatically, so this is safe to relocate freely -- same reasoning as the
+; other floats added tonight (GivePokemon, Elevator Shake, Predefs).
+SECTION "Emotion Bubbles", ROMX
+
+INCLUDE "engine/overworld/emotion_bubbles.asm"
 
 
 SECTION "Play Time", ROMX
