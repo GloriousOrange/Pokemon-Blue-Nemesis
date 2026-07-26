@@ -131,13 +131,24 @@ IF DEF(_SPEEDTEST)
 ; Persian normally learns Jackpot at level 98 -- boxed here at L100 so it's
 ; usable immediately, same independent-flag pattern as Pinsir above.
 	CheckEvent EVENT_GOT_SPEEDTEST_PERSIAN
-	ret nz
+	jr nz, .persianAlreadyGiven
 	ld a, [wBoxCount]
 	cp MONS_PER_BOX - 1 ; need 1 free box slot for Persian
-	ret nc
+	jr nc, .persianAlreadyGiven
 	SetEvent EVENT_GOT_SPEEDTEST_PERSIAN
 	lb bc, PERSIAN, 100
 	ld hl, .PersianMoves
+	call .GiveBoxedMonWithMoves
+.persianAlreadyGiven
+; Hitmonlee normally learns Super Instinct at level 22 -- boxed here at L100.
+	CheckEvent EVENT_GOT_SPEEDTEST_HITMONLEE
+	ret nz
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 1 ; need 1 free box slot for Hitmonlee
+	ret nc
+	SetEvent EVENT_GOT_SPEEDTEST_HITMONLEE
+	lb bc, HITMONLEE, 100
+	ld hl, .HitmonleeMoves
 	call .GiveBoxedMonWithMoves
 ENDC
 	ret
@@ -147,6 +158,7 @@ ENDC
 .NocturnMoves:    db MIND_FEVER, PHANTOM_WING, NIGHT_SHADE, GUST, CONFUSE_RAY
 .PinsirMoves:     db WEB_CANNON, VICEGRIP, TWINEEDLE, SWORDS_DANCE, SEISMIC_TOSS
 .PersianMoves:    db JACKPOT, SLASH, SCREECH, BITE, FURY_SWIPES
+.HitmonleeMoves:  db SUPER_INSTINCT, HI_JUMP_KICK, ROLLING_KICK, DOUBLE_KICK, MEGA_KICK
 
 ; b = species, c = level, hl = pointer to a NUM_MOVES-byte moveset
 .GiveBoxedMonWithMoves:

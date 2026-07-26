@@ -174,7 +174,7 @@ AttackAnimationPointers:
 	dw WebCannonAnim    ; WEB_CANNON — bespoke: web toss, hard bind, heavy impact flash
 	dw MegaPunchAnim    ; UPPERCUT
 	dw JackpotAnim      ; JACKPOT — bespoke: Pay Day's coin bounce fires 4x
-	dw AgilityAnim      ; SUPER_INSTINCT — reuse Agility's focus-aura visuals
+	dw SuperInstinctAnim ; SUPER_INSTINCT — bespoke: focus spiral + reflex flash
 	dw HardenAnim       ; CRYSTALLIZE — reuse Harden's hardening shimmer
 	dw TwineedleAnim    ; CHAOS_STING — reuse Twineedle's stinger visuals
 	dw WrapAnim         ; CHOKEHOLD — reuse Wrap's trapping visuals
@@ -821,6 +821,16 @@ MeditateAnim:
 
 AgilityAnim:
 	battle_anim AGILITY, SE_LIGHT_SCREEN_PALETTE
+	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
+	db -1 ; end
+
+; Focus Energy's inward-spiraling balls (sharpened senses) plus a sudden flash
+; (the moment reflexes kick in) -- distinct from Agility's plain flash, fits
+; accuracy+evasion better than a pure speed-boost visual.
+SuperInstinctAnim:
+	battle_anim SUPER_INSTINCT, SE_LIGHT_SCREEN_PALETTE
+	battle_anim NO_MOVE, SE_SPIRAL_BALLS_INWARD
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
 	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
 	db -1 ; end
 
