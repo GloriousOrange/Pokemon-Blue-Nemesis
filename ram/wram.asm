@@ -1830,6 +1830,24 @@ wSpriteSetID:: db
 
 wObjectDataPointerTemp:: dw
 
+; Megan follower companion (engine/events/megan_follower.asm). 0 = not
+; present on the current map; else hCurrentSpriteOffset-style value
+; (her slot index * 16) for her injected wSpriteNNStateData1/2 slot.
+wFollowerSpriteOffset:: db
+; Consumed once by the UpdateNPCSprite patch (engine/overworld/movement.asm)
+; to force her next single-tile step: 0=none/idle, else FOLLOWER_STEP_*.
+wFollowerPendingStep:: db
+; Where the player was standing at the end of their previous completed step
+; -- her walking target for the next step.
+wFollowerPrevMapY:: db
+wFollowerPrevMapX:: db
+; Consecutive frames the player has been blocked walking into her tile
+; (CollisionCheckOnLand patch, home/overworld.asm) -- swap-through triggers
+; once this reaches FOLLOWER_SWAP_THRESHOLD, so she can't trap the player.
+wFollowerBumpCount:: db
+; Scratch byte, only live during InjectFollowerSlotCommon.
+wFollowerPictureIDTemp:: db
+
 	ds 2
 
 ; the tile shown outside the boundaries of the map

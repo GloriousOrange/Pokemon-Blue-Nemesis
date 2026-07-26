@@ -466,3 +466,7 @@ INCLUDE "data/maps/songs.asm"
 SECTION "Map Header Pointers", ROMX ; relocated out of ROM0/Home (which overflowed by the Apex Mart maps); its sole reader LoadMapHeader now BankswitchHome's to BANK(MapHeaderPointers) before reading, mirroring SwitchToMapRomBank/MapHeaderBanks
 
 INCLUDE "data/maps/map_header_pointers.asm"
+
+SECTION "Megan Follower", ROMX ; floating -- all entry points are farcall'd (home/overworld.asm) or same-bank calls (engine/overworld/movement.asm's UpdateNPCSprite patch reads its state via WRAM, not a call)
+
+INCLUDE "engine/events/megan_follower.asm"
