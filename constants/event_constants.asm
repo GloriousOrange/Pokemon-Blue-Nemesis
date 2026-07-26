@@ -819,6 +819,9 @@ DEF INDIGO_PLATEAU_EVENTS_END EQU const_value - 1
 	const EVENT_GOT_ALAKACHAMP_TRADE
 	const EVENT_SS_OLYMPIA_UNLOCKED
 	const EVENT_GOT_SPEEDTEST_DEBUG_MONS
+	const EVENT_GOT_SPEEDTEST_PINSIR ; guarded independently of the birds above,
+	                                  ; so it still fires on saves that already
+	                                  ; tripped EVENT_GOT_SPEEDTEST_DEBUG_MONS
 
 ; End of events
 	const_next $A00

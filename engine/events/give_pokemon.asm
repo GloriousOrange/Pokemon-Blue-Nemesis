@@ -94,14 +94,15 @@ BoxIsFullText:
 ; gift) -- LoadMovePPs then derives correct PP from the patched move IDs.
 SpeedtestGiveDebugMons::
 IF DEF(_SPEEDTEST)
-; Need 4 free box slots -- SendNewMonToBox has no overflow guard of its own,
-; so depositing into a (nearly) full box would corrupt it. If there's no
-; room, bail WITHOUT setting the flag so it retries on a later Continue.
-	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 2 ; need 3 free box slots for the legendary-bird test roster
-	ret nc
+; SendNewMonToBox has no overflow guard of its own, so depositing into a
+; (nearly) full box would corrupt it -- each grant below checks its own room
+; and bails WITHOUT setting its flag if there isn't enough, so it retries on
+; a later Continue.
 	CheckEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
-	ret nz
+	jr nz, .birdsAlreadyGiven
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 2 ; need 3 free box slots for the legendary-bird roster
+	jr nc, .birdsAlreadyGiven
 	SetEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
 ; The legendary-bird test roster, at L100 with signature moves first so they
 ; can be tried immediately from storage.
@@ -114,12 +115,25 @@ IF DEF(_SPEEDTEST)
 	lb bc, NOCTURN, 100
 	ld hl, .NocturnMoves
 	call .GiveBoxedMonWithMoves
+.birdsAlreadyGiven
+; Guarded independently of the birds above so it still fires on saves that
+; already tripped EVENT_GOT_SPEEDTEST_DEBUG_MONS (e.g. mid-playtest saves).
+	CheckEvent EVENT_GOT_SPEEDTEST_PINSIR
+	ret nz
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 1 ; need 1 free box slot for Pinsir
+	ret nc
+	SetEvent EVENT_GOT_SPEEDTEST_PINSIR
+	lb bc, PINSIR, 100
+	ld hl, .PinsirMoves
+	call .GiveBoxedMonWithMoves
 ENDC
 	ret
 
 .TyranisMoves:    db DOUBLE_DRILL, HYPER_BEAMS, SKY_ATTACK, BODY_SLAM, FLY
 .MiasmaMoves:     db CARRION_WIND, BLIGHT_VOMIT, DRILL_PECK, TOXIC, FLY
 .NocturnMoves:    db MIND_FEVER, PHANTOM_WING, NIGHT_SHADE, GUST, CONFUSE_RAY
+.PinsirMoves:     db WEB_CANNON, VICEGRIP, TWINEEDLE, SWORDS_DANCE, SEISMIC_TOSS
 
 ; b = species, c = level, hl = pointer to a NUM_MOVES-byte moveset
 .GiveBoxedMonWithMoves:
