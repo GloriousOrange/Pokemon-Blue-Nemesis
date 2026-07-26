@@ -89,7 +89,7 @@ PokemonTower5FGhostBattleScript:
 	call PatchCaughtGhostStarterType
 	ld a, URN_OF_ASHES
 	ldh [hItemToRemoveID], a
-	call RemoveItemByID
+	farcall RemoveItemByID
 	lb bc, TM_NIGHT_SHADE, 1
 	call GiveItem
 	lb bc, TM_CONFUSE_RAY, 1

@@ -13,12 +13,17 @@ PrintBeginningBattleText:
 .notPokemonTower
 	ld a, [wEnemyMonSpecies2]
 	call PlayCry
+	call IsStarterGhostEncounter
+	jr z, .ghostStarterAppeared
 	ld hl, WildMonAppearedText
 	ld a, [wMoveMissed]
 	and a
 	jr z, .notFishing
 	ld hl, HookedMonAttackedText
 .notFishing
+	jr .wildBattle
+.ghostStarterAppeared
+	ld hl, GhostStarterAppearedText
 	jr .wildBattle
 .trainerBattle
 	call .playSFX
@@ -77,8 +82,32 @@ PrintBeginningBattleText:
 	ld hl, TyranisScreechText
 	jp PrintText
 
+; Z set => the current wild encounter is the player's pending starter-ghost
+; fight (species matches the saved ashes, ashes exist, ritual not yet done).
+; Lets the purified-zone encounter say "The Ghost of X appeared!" instead of
+; the generic "Monster X appeared!" without touching the shared template
+; text (wEnemyMonNick, e.g. "ARTICUNO", already fits NAME_LENGTH either way).
+IsStarterGhostEncounter:
+	CheckEvent EVENT_STARTER_RESURRECTED
+	jr nz, .no
+	CheckEvent EVENT_STARTER_BECAME_ASHES
+	jr z, .no
+	ld a, [wStarterAshesSpecies]
+	ld b, a
+	ld a, [wEnemyMonSpecies2]
+	cp b
+	ret
+.no
+	ld a, 1
+	cp 0
+	ret
+
 WildMonAppearedText:
 	text_far _WildMonAppearedText
+	text_end
+
+GhostStarterAppearedText:
+	text_far _GhostStarterAppearedText
 	text_end
 
 TyranisScreechText:

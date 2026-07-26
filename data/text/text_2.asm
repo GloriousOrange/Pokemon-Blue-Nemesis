@@ -1251,6 +1251,13 @@ _WildMonAppearedText::
 	line "appeared!"
 	prompt
 
+_GhostStarterAppearedText::
+	text "@"
+	text_ram wEnemyMonNick
+	text_start
+	line "'s ghost appeared!"
+	prompt
+
 _HookedMonAttackedText::
 	text "The hooked"
 	line "@"
