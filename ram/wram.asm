@@ -2266,6 +2266,11 @@ wStarterAshesLevel::   db                      ; saved starter level
 wStarterAshesOTID::    dw                      ; saved starter OT ID (2 bytes)
 wStarterAshesNick::    ds NAME_LENGTH          ; saved starter nickname (11 bytes)
 
+; party count snapshotted right before the Pokemon Tower 5F ghost-starter wild
+; encounter, so the post-battle script can tell whether a successful catch
+; landed in the party (count grew) or the box (count unchanged)
+wGhostEncounterPartyCount:: db
+
 wMainDataEnd::
 
 

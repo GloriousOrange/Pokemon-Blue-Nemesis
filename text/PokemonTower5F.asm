@@ -84,16 +84,10 @@ _PokemonTower5FChanneler1NormalText::
 
 _PokemonTower5FChanneler1SensesAshesText::
 	text "A lost spirit"
-	line "calls out to me."
-	cont "But where are"
-	cont "its remains...?"
-	done
-
-_PokemonTower5FChanneler1PartyFullText::
-	text "The spirits sense"
-	line "no room for more."
-	cont "Return when your"
-	cont "team has space."
+	line "calls out from"
+	cont "the urn you carry."
+	cont "Stand upon the"
+	cont "sealed ground."
 	done
 
 _PokemonTower5FPurificationText::
@@ -102,6 +96,19 @@ _PokemonTower5FPurificationText::
 	cont "between two worlds."
 	cont "It learned secrets"
 	cont "of the dark."
+	done
+
+_PokemonTower5FGhostStirsText::
+	text "The ashes stir..."
+	line "A wrathful spirit"
+	cont "rises to fight!"
+	done
+
+_PokemonTower5FGhostFledText::
+	text "The spirit slips"
+	line "back into ash..."
+	cont "Perhaps it will"
+	cont "rise again."
 	done
 
 _PokemonTower5FChanneler1AfterText::
