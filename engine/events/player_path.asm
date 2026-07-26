@@ -35,8 +35,8 @@ GetWalkingPlayerSpriteGraphics::
 	jr nz, .traitor
 	bit BIT_ROCKET_LOYALTY, a
 	jr nz, .rocket
-	ld de, ScientistSprite
-	ld a, BANK(ScientistSprite)
+	ld de, PlayerScientistSprite
+	ld a, BANK(PlayerScientistSprite)
 	jr .done
 .rocket
 	ld de, RocketSprite

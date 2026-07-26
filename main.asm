@@ -82,14 +82,23 @@ INCLUDE "gfx/font.asm"
 
 SECTION "Battle Engine 1", ROMX
 
-INCLUDE "engine/overworld/is_player_just_outside_map.asm"
 INCLUDE "engine/pokemon/status_screen.asm"
 INCLUDE "engine/menus/party_menu.asm"
 INCLUDE "gfx/player.asm"
-INCLUDE "engine/overworld/turn_sprite.asm"
 INCLUDE "engine/menus/start_sub_menus.asm"
 INCLUDE "engine/items/tms.asm"
 INCLUDE "engine/battle/end_of_battle.asm"
+
+; Floated out of "Battle Engine 1" (bank $4, shared with "NPC Sprites 1") to
+; make room for PlayerScientistSprite. Both are only ever reached via
+; callfar/farcall (IsPlayerJustOutsideMap from wild_encounters.asm,
+; UpdateSpriteFacingOffsetAndDelayMovement from home/text_script.asm), which
+; resolve the bank automatically, so relocating them is safe -- same
+; reasoning as tonight's other floats.
+SECTION "Player Sprite Helpers", ROMX
+
+INCLUDE "engine/overworld/is_player_just_outside_map.asm"
+INCLUDE "engine/overworld/turn_sprite.asm"
 INCLUDE "engine/battle/wild_encounters.asm"
 INCLUDE "engine/battle/move_effects/recoil.asm"
 INCLUDE "engine/battle/move_effects/conversion.asm"
