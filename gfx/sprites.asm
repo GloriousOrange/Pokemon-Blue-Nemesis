@@ -1,7 +1,6 @@
 SECTION "NPC Sprites 1", ROMX
 
 ScientistSprite::        INCBIN "gfx/sprites/scientist.2bpp"
-PlayerScientistSprite::  INCBIN "gfx/sprites/scientist_player.2bpp" ; player's Hero-path disguise: darker hair than the generic NPC scientist
 RockerSprite::           INCBIN "gfx/sprites/rocker.2bpp"
 SwimmerSprite::          INCBIN "gfx/sprites/swimmer.2bpp"
 SafariZoneWorkerSprite:: INCBIN "gfx/sprites/safari_zone_worker.2bpp"
