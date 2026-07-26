@@ -2275,7 +2275,8 @@ wGhostEncounterPartyCount:: db
 ; SpeedtestGiveDebugMons) -- the shared event-flag array (EVENT_* constants)
 ; is a hard-capped, fixed-size resource for real game state; these are
 ; debug-only conveniences and don't need to share that budget.
-wSpeedtestExtraMonsGiven:: db
+wSpeedtestExtraMonsGiven::  db
+wSpeedtestExtraMonsGiven2:: db ; ran out of bits in the first byte
 
 wMainDataEnd::
 

@@ -184,13 +184,73 @@ IF DEF(_SPEEDTEST)
 ; Zubat normally learns Blood Suck at level 32 -- boxed here at L100.
 	ld hl, wSpeedtestExtraMonsGiven
 	bit 5, [hl]
-	ret nz
+	jr nz, .zubatAlreadyGiven
 	ld a, [wBoxCount]
 	cp MONS_PER_BOX - 1 ; need 1 free box slot for Zubat
-	ret nc
+	jr nc, .zubatAlreadyGiven
 	set 5, [hl]
 	lb bc, ZUBAT, 100
 	ld hl, .ZubatMoves
+	call .GiveBoxedMonWithMoves
+.zubatAlreadyGiven
+; Gyarados normally learns Hurricane at level 42 -- boxed here at L100.
+	ld hl, wSpeedtestExtraMonsGiven
+	bit 6, [hl]
+	jr nz, .gyaradosAlreadyGiven
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 1 ; need 1 free box slot for Gyarados
+	jr nc, .gyaradosAlreadyGiven
+	set 6, [hl]
+	lb bc, GYARADOS, 100
+	ld hl, .GyaradosMoves
+	call .GiveBoxedMonWithMoves
+.gyaradosAlreadyGiven
+; Electabuzz niche move Static Shock -- boxed here at L100.
+	ld hl, wSpeedtestExtraMonsGiven
+	bit 7, [hl]
+	jr nz, .electabuzzAlreadyGiven
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 1 ; need 1 free box slot for Electabuzz
+	jr nc, .electabuzzAlreadyGiven
+	set 7, [hl]
+	lb bc, ELECTABUZZ, 100
+	ld hl, .ElectabuzzMoves
+	call .GiveBoxedMonWithMoves
+.electabuzzAlreadyGiven
+; Aerodactyl niche move Gravity Slam -- boxed here at L100.
+	ld hl, wSpeedtestExtraMonsGiven2
+	bit 0, [hl]
+	jr nz, .aerodactylAlreadyGiven
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 1 ; need 1 free box slot for Aerodactyl
+	jr nc, .aerodactylAlreadyGiven
+	set 0, [hl]
+	lb bc, AERODACTYL, 100
+	ld hl, .AerodactylMoves
+	call .GiveBoxedMonWithMoves
+.aerodactylAlreadyGiven
+; Scyther niche move Stealth -- boxed here at L100.
+	ld hl, wSpeedtestExtraMonsGiven2
+	bit 1, [hl]
+	jr nz, .scytherAlreadyGiven
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 1 ; need 1 free box slot for Scyther
+	jr nc, .scytherAlreadyGiven
+	set 1, [hl]
+	lb bc, SCYTHER, 100
+	ld hl, .ScytherMoves
+	call .GiveBoxedMonWithMoves
+.scytherAlreadyGiven
+; Lapras niche move Ice Bomb -- boxed here at L100.
+	ld hl, wSpeedtestExtraMonsGiven2
+	bit 2, [hl]
+	ret nz
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 1 ; need 1 free box slot for Lapras
+	ret nc
+	set 2, [hl]
+	lb bc, LAPRAS, 100
+	ld hl, .LaprasMoves
 	call .GiveBoxedMonWithMoves
 ENDC
 	ret
@@ -198,12 +258,17 @@ ENDC
 .TyranisMoves:    db DOUBLE_DRILL, HYPER_BEAMS, SKY_ATTACK, BODY_SLAM, FLY
 .MiasmaMoves:     db CARRION_WIND, BLIGHT_VOMIT, DRILL_PECK, TOXIC, FLY
 .NocturnMoves:    db MIND_FEVER, PHANTOM_WING, NIGHT_SHADE, GUST, CONFUSE_RAY
-.PinsirMoves:     db WEB_CANNON, VICEGRIP, TWINEEDLE, SWORDS_DANCE, SEISMIC_TOSS
+.PinsirMoves:     db WEB_CANNON, VIBRATE, TWINEEDLE, SWORDS_DANCE, SEISMIC_TOSS
 .PersianMoves:    db JACKPOT, SLASH, SCREECH, BITE, FURY_SWIPES
 .HitmonleeMoves:  db SUPER_INSTINCT, HI_JUMP_KICK, ROLLING_KICK, DOUBLE_KICK, MEGA_KICK
 .MagmarMoves:     db HOT_OIL, FIRE_PUNCH, FLAMETHROWER, SMOKESCREEN, CONFUSE_RAY
 .BeedrillMoves:   db CRYSTALLIZE, CHAOS_STING, TWINEEDLE, PIN_MISSILE, AGILITY
 .ZubatMoves:      db BLOOD_SUCK, BITE, WING_ATTACK, CONFUSE_RAY, SUPERSONIC
+.GyaradosMoves:   db HURRICANE, DRAGON_RAGE, HYDRO_PUMP, BITE, THRASH
+.ElectabuzzMoves: db STATIC_SHOCK, THUNDERPUNCH, QUICK_ATTACK, SCREECH, LIGHT_SCREEN
+.AerodactylMoves: db GRAVITY_SLAM, WING_ATTACK, ROCK_SLIDE, BITE, HYPER_BEAM
+.ScytherMoves:    db STEALTH, SLASH, SWORDS_DANCE, AGILITY, QUICK_ATTACK
+.LaprasMoves:     db ICE_BOMB, SURF, ICE_BEAM, BODY_SLAM, CONFUSE_RAY
 
 ; b = species, c = level, hl = pointer to a NUM_MOVES-byte moveset
 .GiveBoxedMonWithMoves:

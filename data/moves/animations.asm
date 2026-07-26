@@ -183,16 +183,16 @@ AttackAnimationPointers:
 	dw ConfuseRayAnim   ; BAD_TOUCH — reuse Confuse Ray's visuals
 	dw WrapAnim         ; CRUSH_COIL — reuse Wrap's trapping visuals
 	dw BloodSuckAnim    ; BLOOD_SUCK — bespoke: bite + poison flicker + drain
-	dw GustAnim         ; HURRICANE — reuse Gust's wind visuals
+	dw HurricaneAnim    ; HURRICANE — bespoke: fast tornado + water columns + shake
 	dw IceSpikeAnim     ; ICE_SPIKE — bespoke: single rising ice shard, no beam
 	dw ConfusionAnim    ; MIGRAIN — reuse Confusion's visuals
 	dw WingAttackAnim   ; DIVE — reuse Wing Attack's visuals
-	dw ThunderShockAnim ; STATIC_SHOCK — reuse ThunderShock's visuals
-	dw RockSlideAnim    ; GRAVITY_SLAM — reuse Rock Slide's visuals
-	dw SwordsDanceAnim  ; VIBRATE — reuse Swords Dance's visuals
-	dw MinimizeAnim     ; STEALTH — reuse Minimize's visuals
+	dw StaticShockAnim  ; STATIC_SHOCK — bespoke: spark + paralyze flicker
+	dw GravitySlamAnim  ; GRAVITY_SLAM — bespoke: rocks fall + shake + paralyze flicker
+	dw VibrateAnim      ; VIBRATE — bespoke: flash + user shakes/buzzes
+	dw StealthAnim      ; STEALTH — bespoke: Double Team-style flicker
 	dw ConstrictAnim    ; TANGLE — reuse Constrict's visuals
-	dw BlizzardAnim     ; ICE_BOMB — reuse Blizzard's visuals
+	dw IceBombAnim      ; ICE_BOMB — bespoke: double ice-fall + small explosion
 	dw SubstituteAnim   ; ICE_SCULPTURE — reuse Substitute's visuals
 	dw TakeDownAnim     ; STAMPEDE — reuse Take Down's visuals
 	dw BodySlamAnim     ; ROLL — reuse Body Slam's visuals
@@ -350,6 +350,15 @@ SwordsDanceAnim:
 	battle_anim SWORDS_DANCE, SUBANIM_1_SWORDS_CIRCLING, 1, 6
 	db -1 ; end
 
+; A boost flash, then the user visibly shakes/buzzes -- literally "vibrates"
+; -- instead of Swords Dance's circling blades, which don't fit an
+; Attack+Speed boost with no weapon involved.
+VibrateAnim:
+	battle_anim VIBRATE, SE_LIGHT_SCREEN_PALETTE
+	battle_anim NO_MOVE, SE_SHAKE_BACK_AND_FORTH
+	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
+	db -1 ; end
+
 CutAnim:
 	battle_anim CUT, SE_DARK_SCREEN_FLASH
 	battle_anim NO_MOVE, SUBANIM_0_SLICE, 0, 4
@@ -358,6 +367,15 @@ CutAnim:
 GustAnim:
 	battle_anim GUST, SUBANIM_1_TORNADO, 1, 6
 	battle_anim NO_MOVE, SUBANIM_0_STAR_THRICE, 0, 6
+	db -1 ; end
+
+; A faster tornado, then a water-column storm surge, then a heavy shake for
+; the impact -- a full storm rather than Gust's plain wind, fitting Gyarados's
+; Water/Dragon fury and Hurricane's high crit ratio.
+HurricaneAnim:
+	battle_anim GUST, SUBANIM_1_TORNADO, 1, 4
+	battle_anim NO_MOVE, SUBANIM_0_WATER_COLUMNS, 0, 6
+	battle_anim NO_MOVE, SE_SHAKE_SCREEN
 	db -1 ; end
 
 WingAttackAnim:
@@ -603,6 +621,14 @@ BlizzardAnim:
 	battle_anim HYDRO_PUMP, SUBANIM_0_ICE_FALL, 0, 4
 	db -1 ; end
 
+; Ice falls twice like Blizzard, then a small explosion on the target --
+; the "bomb" going off -- instead of Blizzard's plain double ice-fall.
+IceBombAnim:
+	battle_anim BLIZZARD, SUBANIM_0_ICE_FALL, 0, 4
+	battle_anim NO_MOVE, SUBANIM_0_ICE_FALL, 0, 4
+	battle_anim NO_MOVE, SUBANIM_1_EXPLOSION_SMALL_ENEMY, 1, 4
+	db -1 ; end
+
 PsyBeamAnim:
 	battle_anim PSYBEAM, SUBANIM_0_BEAM, 0, 3
 	battle_anim NO_MOVE, SE_FLASH_SCREEN_LONG
@@ -779,6 +805,13 @@ ThunderShockAnim:
 	battle_anim THUNDERSHOCK, SUBANIM_1_LIGHTNING_BALL, 1, 2
 	db -1 ; end
 
+; ThunderShock's spark, then a paralyze-status flicker -- fits Static Shock's
+; guaranteed paralysis instead of leaving it as a plain, unremarkable zap.
+StaticShockAnim:
+	battle_anim THUNDERSHOCK, SUBANIM_1_LIGHTNING_BALL, 1, 2
+	battle_anim NO_MOVE, SUBANIM_0_STATUS_PARALYZED, 0, 4
+	db -1 ; end
+
 ThunderBoltAnim:
 	battle_anim THUNDERBOLT, SUBANIM_1_LIGHTNING_BALL, 1, 1
 	battle_anim THUNDERBOLT, SUBANIM_1_LIGHTNING_BALL, 1, 1
@@ -929,6 +962,17 @@ MinimizeAnim:
 	battle_anim MINIMIZE, SE_LIGHT_SCREEN_PALETTE
 	battle_anim NO_MOVE, SE_SPIRAL_BALLS_INWARD
 	battle_anim NO_MOVE, SE_MINIMIZE_MON
+	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
+	db -1 ; end
+
+; A condensed version of Double Team's flicker (dark palette + brief delay +
+; flash) -- reads as "hard to pin down" rather than Minimize's shrinking,
+; which fits an evasion boost better since Double Team is the vanilla
+; evasion-boost move using this exact visual language.
+StealthAnim:
+	battle_anim STEALTH, SE_DARK_SCREEN_PALETTE
+	battle_anim NO_MOVE, SE_DELAY_ANIMATION_10
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
 	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
 	db -1 ; end
 
@@ -1228,6 +1272,16 @@ RockSlideAnim:
 	battle_anim ROCK_SLIDE, SUBANIM_0_ROCKS_LIFT, 0, 4
 	battle_anim ROCK_SLIDE, SUBANIM_0_ROCKS_TOSS, 0, 3
 	battle_anim HYPER_FANG, SUBANIM_1_STAR_BIG_MOVING, 1, 6
+	db -1 ; end
+
+; Rocks lift, then crash straight down onto the target (rather than being
+; tossed), a heavy screen shake for the slam, then a paralyze flicker -- fits
+; Gravity Slam's guaranteed paralysis and its heavier, more direct impact.
+GravitySlamAnim:
+	battle_anim ROCK_SLIDE, SUBANIM_0_ROCKS_LIFT, 0, 4
+	battle_anim NO_MOVE, SUBANIM_0_ROCKS_FALL_ENEMY, 0, 4
+	battle_anim NO_MOVE, SE_SHAKE_SCREEN
+	battle_anim NO_MOVE, SUBANIM_0_STATUS_PARALYZED, 0, 4
 	db -1 ; end
 
 HyperFangAnim:
