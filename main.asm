@@ -278,6 +278,12 @@ SECTION "GivePokemon", ROMX
 INCLUDE "engine/events/give_pokemon.asm"
 
 
+; Floating (unpinned in layout.link) as of tonight -- was fixed to bank $13
+; (shared with "Trainer Pics"/"Maps 9"), which kept overflowing every time a
+; new trainer pic (Mathus, now Megan) grew "Trainer Pics" in the same bank.
+; GetPredefPointer's only caller (Predef:: in home/predef.asm) already does
+; `ld a, BANK(GetPredefPointer)` before jumping to it, so this -- and the
+; PredefPointers table INCLUDEd within it -- can live in any bank freely.
 SECTION "Predefs", ROMX
 
 INCLUDE "engine/predefs.asm"

@@ -48,6 +48,7 @@ TrainerDataPointers:
 	dw AgathaData
 	dw LanceData
 	dw GeneralMathusData
+	dw MeganData
 	assert_table_length NUM_TRAINERS
 
 ; if first byte != $FF, then
@@ -140,8 +141,7 @@ LassData:
 ; Celadon Gym
 	db 23, BELLSPROUT, WEEPINBELL, 0
 	db 23, ODDISH, GLOOM, 0
-	db $ff, 8, LICKITUNG, 7, SLOWPOKE, 6, JIGGLYPUFF, 0 ; #19 Megan (max L8, outside Mt. Moon)
-	db 2, SLOWPOKE, 0 ; #20 Megan (Route 1, meet-cute)
+	db $ff, 8, LICKITUNG, 7, SLOWPOKE, 6, JIGGLYPUFF, 0 ; #19 unused (was an earlier planned 2nd Megan encounter)
 
 SailorData:
 ; SS Anne Stern
@@ -983,3 +983,8 @@ LanceData:
 ; also spends the player's Master Ball.
 GeneralMathusData:
 	db $FF, 30, NOCTURN, 0
+
+; Route 1, meet-cute (moved off the generic Lass class so battle text says
+; "MEGAN wants to fight!" instead of "LASS wants to fight!")
+MeganData:
+	db 2, SLOWPOKE, 0
