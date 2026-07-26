@@ -43,6 +43,28 @@ TryAddMeganFollowerSprite::
 	call InjectFollowerSlotCommon
 	ret
 
+; Called from LoadMapData (home/overworld.asm), right after InitMapSprites
+; returns -- her IMAGEBASEOFFSET is only valid once that's finished, so this
+; can't run any earlier. Forces her visible on her very first frame, instead
+; of leaving IMAGEINDEX at $ff (invisible, set by InjectFollowerSlotCommon's
+; MOVEMENTSTATUS=1) until she happens to take her first queued step.
+TryShowMeganFollowerSprite::
+	ld a, [wFollowerSpriteOffset]
+	and a
+	ret z
+	ldh [hCurrentSpriteOffset], a
+	farcall InitializeSpriteScreenPosition
+	call GetFollowerStateData2Ptr
+	ld a, l
+	add SPRITESTATEDATA2_IMAGEBASEOFFSET
+	ld l, a
+	ld a, [hl] ; her IMAGEBASEOFFSET
+	dec a
+	swap a
+	ldh [hTilePlayerStandingOn], a ; matches UpdateNonPlayerSprite's own (imagebaseoffset-1)*16 computation
+	farcall UpdateSpriteImage
+	ret
+
 ; Shared checks. Returns carry SET if she should be following on this map,
 ; clear otherwise (and the caller should bail out having already cleared
 ; wFollowerSpriteOffset).
@@ -75,12 +97,21 @@ InjectFollowerSlotCommon:
 	ld [wNumSprites], a ; her new slot number (1-15)
 	swap a              ; hCurrentSpriteOffset-style value (index * 16)
 	ld [wFollowerSpriteOffset], a
-; StateData1: picture ID + initial facing (match the player's for now)
+; StateData1: picture ID + initial facing (match the player's for now).
+; MOVEMENTSTATUS is set to 1 (ready) directly rather than left at 0 --
+; skipping InitializeSpriteStatus's "fresh sprite" bootstrap entirely, since
+; TryShowMeganFollowerSprite (called after InitMapSprites, once her
+; IMAGEBASEOFFSET is valid) does that setup itself so she's visible from
+; her very first frame instead of only after she takes her first step.
 	ld h, HIGH(wSpritePlayerStateData1)
 	ld a, [wFollowerSpriteOffset]
 	ld l, a
 	ld a, [wFollowerPictureIDTemp]
 	ld [hl], a ; x#SPRITESTATEDATA1_PICTUREID
+	ld a, [wFollowerSpriteOffset]
+	add SPRITESTATEDATA1_MOVEMENTSTATUS
+	ld l, a
+	ld [hl], 1
 	ld a, [wFollowerSpriteOffset]
 	add SPRITESTATEDATA1_FACINGDIRECTION
 	ld l, a
@@ -128,6 +159,17 @@ InjectFollowerSlotCommon:
 	add SPRITESTATEDATA2_MOVEMENTBYTE1
 	ld l, a
 	ld [hl], WALK
+; YDISPLACEMENT/XDISPLACEMENT: normally set to 8 by InitializeSpriteStatus,
+; which we're skipping (see above) -- CanWalkOntoTile's displacement
+; tracking expects these initialized.
+	ld a, [wFollowerSpriteOffset]
+	add SPRITESTATEDATA2_YDISPLACEMENT
+	ld l, a
+	ld [hl], 8
+	ld a, [wFollowerSpriteOffset]
+	add SPRITESTATEDATA2_XDISPLACEMENT
+	ld l, a
+	ld [hl], 8
 ; zero her wMapSpriteExtraData and wMapSpriteData entries
 	ld a, [wFollowerSpriteOffset]
 	swap a

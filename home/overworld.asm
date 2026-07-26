@@ -2449,6 +2449,7 @@ LoadMapData::
 	call LoadMapHeader
 	farcall TryAddMeganFollowerSprite ; inject her as an extra NPC slot before tile patterns load, if she's following (indoor maps only)
 	farcall InitMapSprites ; load tile pattern data for sprites
+	farcall TryShowMeganFollowerSprite ; make her visible immediately, once her IMAGEBASEOFFSET is valid
 	call LoadTileBlockMap
 	call LoadTilesetTilePatternData
 	call LoadCurrentMapView

@@ -482,7 +482,7 @@ InitializeSpriteStatus:
 	ret
 
 ; calculates the sprite's screen position from its map position and the player position
-InitializeSpriteScreenPosition:
+InitializeSpriteScreenPosition::
 	ld h, HIGH(wSpriteStateData2)
 	ldh a, [hCurrentSpriteOffset]
 	add SPRITESTATEDATA2_MAPY
@@ -587,7 +587,7 @@ CheckSpriteAvailability:
 .done
 	ret
 
-UpdateSpriteImage:
+UpdateSpriteImage::
 	ld h, HIGH(wSpriteStateData1)
 	ldh a, [hCurrentSpriteOffset]
 	add $8
