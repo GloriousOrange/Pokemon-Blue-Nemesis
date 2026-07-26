@@ -1,3 +1,27 @@
+; Prints the currently-loaded mon's (wLoadedMon, set by LoadMonData) OWN
+; stored type fields, instead of re-deriving type from its species' base
+; stats like PrintMonType below does. Needed for mons whose type has been
+; patched away from their species default at runtime (e.g. RestoreStarterAsGhost's
+; GHOST secondary type) -- battle already reads type this way (LoadBattleMonFromParty
+; bulk-copies the party struct, type fields included), but the status screen
+; previously called PrintMonType, which ignored the patch and always showed
+; the species' vanilla type.
+; hl = dest addr
+PrintLoadedMonType::
+	call GetPredefRegisters
+	push hl
+	ld a, [wLoadedMonType1]
+	call PrintType
+	ld a, [wLoadedMonType1]
+	ld b, a
+	ld a, [wLoadedMonType2]
+	cp b
+	pop hl
+	jr z, EraseType2Text
+	ld bc, SCREEN_WIDTH * 2
+	add hl, bc
+	jr PrintType
+
 ; [wCurSpecies] = pokemon ID
 ; hl = dest addr
 PrintMonType:
