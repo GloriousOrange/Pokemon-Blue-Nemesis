@@ -182,7 +182,7 @@ AttackAnimationPointers:
 	dw HotOilAnim       ; HOT_OIL — bespoke: oil toss + drip, then ignites
 	dw ConfuseRayAnim   ; BAD_TOUCH — reuse Confuse Ray's visuals
 	dw WrapAnim         ; CRUSH_COIL — reuse Wrap's trapping visuals
-	dw LeechLifeAnim    ; BLOOD_SUCK — reuse Leech Life's drain visuals
+	dw BloodSuckAnim    ; BLOOD_SUCK — bespoke: bite + poison flicker + drain
 	dw GustAnim         ; HURRICANE — reuse Gust's wind visuals
 	dw IceSpikeAnim     ; ICE_SPIKE — bespoke: single rising ice shard, no beam
 	dw ConfusionAnim    ; MIGRAIN — reuse Confusion's visuals
@@ -1133,6 +1133,17 @@ BarrageAnim:
 LeechLifeAnim:
 	battle_anim LEECH_LIFE, SUBANIM_0_STAR_THRICE, 0, 8
 	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	battle_anim NO_MOVE, SUBANIM_0_CIRCLES_1_SQUARES_CENTERING_ENEMY, 0, 6
+	battle_anim NO_MOVE, SUBANIM_0_CIRCLE_1_SQUARE_TOSS_BACK, 0, 6
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	db -1 ; end
+
+; Bite's fangs sinking in (instead of Leech Life's bug-bite stars), a quick
+; poison-tinted flicker to sell the venomous bite, then the same life-drain
+; visual as Leech Life -- distinct opening, same established drain language.
+BloodSuckAnim:
+	battle_anim BITE, SUBANIM_0_STAR_THRICE, 0, 8
+	battle_anim NO_MOVE, SUBANIM_0_STATUS_POISONED, 0, 4
 	battle_anim NO_MOVE, SUBANIM_0_CIRCLES_1_SQUARES_CENTERING_ENEMY, 0, 6
 	battle_anim NO_MOVE, SUBANIM_0_CIRCLE_1_SQUARE_TOSS_BACK, 0, 6
 	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH

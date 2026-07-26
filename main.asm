@@ -401,10 +401,12 @@ INCLUDE "data/moves/animations.asm"
 INCLUDE "data/battle_anims/subanimations.asm"
 INCLUDE "data/battle_anims/frame_blocks.asm"
 INCLUDE "engine/movie/evolution.asm"
-INCLUDE "engine/overworld/elevator.asm"
 
 SECTION "TM Prices", ROMX ; relocated out of bank1E (which filled up); GetMachinePrice is called via BANK(), so any bank works
 INCLUDE "engine/items/tm_prices.asm"
+
+SECTION "Elevator Shake", ROMX ; relocated out of bank1E (refilled by new move animations); ShakeElevator is only called via farjp/farcall, so any bank works
+INCLUDE "engine/overworld/elevator.asm"
 
 SECTION "Dust Smoke", ROMX ; relocated out of bank1E (refilled by new moves); AnimateBoulderDust / LoadSmokeTileFourTimes are only called via farcall/callfar, so any bank works
 INCLUDE "engine/overworld/dust_smoke.asm"

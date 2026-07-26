@@ -172,13 +172,25 @@ IF DEF(_SPEEDTEST)
 ; Beedrill normally learns Crystallize at level 22 -- boxed here at L100.
 	ld hl, wSpeedtestExtraMonsGiven
 	bit 4, [hl]
-	ret nz
+	jr nz, .beedrillAlreadyGiven
 	ld a, [wBoxCount]
 	cp MONS_PER_BOX - 1 ; need 1 free box slot for Beedrill
-	ret nc
+	jr nc, .beedrillAlreadyGiven
 	set 4, [hl]
 	lb bc, BEEDRILL, 100
 	ld hl, .BeedrillMoves
+	call .GiveBoxedMonWithMoves
+.beedrillAlreadyGiven
+; Zubat normally learns Blood Suck at level 32 -- boxed here at L100.
+	ld hl, wSpeedtestExtraMonsGiven
+	bit 5, [hl]
+	ret nz
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 1 ; need 1 free box slot for Zubat
+	ret nc
+	set 5, [hl]
+	lb bc, ZUBAT, 100
+	ld hl, .ZubatMoves
 	call .GiveBoxedMonWithMoves
 ENDC
 	ret
@@ -191,6 +203,7 @@ ENDC
 .HitmonleeMoves:  db SUPER_INSTINCT, HI_JUMP_KICK, ROLLING_KICK, DOUBLE_KICK, MEGA_KICK
 .MagmarMoves:     db HOT_OIL, FIRE_PUNCH, FLAMETHROWER, SMOKESCREEN, CONFUSE_RAY
 .BeedrillMoves:   db CRYSTALLIZE, CHAOS_STING, TWINEEDLE, PIN_MISSILE, AGILITY
+.ZubatMoves:      db BLOOD_SUCK, BITE, WING_ATTACK, CONFUSE_RAY, SUPERSONIC
 
 ; b = species, c = level, hl = pointer to a NUM_MOVES-byte moveset
 .GiveBoxedMonWithMoves:
