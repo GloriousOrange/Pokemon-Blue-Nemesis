@@ -179,7 +179,7 @@ AttackAnimationPointers:
 	dw TwineedleAnim    ; CHAOS_STING — reuse Twineedle's stinger visuals
 	dw WrapAnim         ; CHOKEHOLD — reuse Wrap's trapping visuals
 	dw CometPunchAnim   ; ROCK_FISTS — reuse Comet Punch's multi-hit fists
-	dw FirePunchAnim    ; HOT_OIL — reuse Fire Punch's flame visuals
+	dw HotOilAnim       ; HOT_OIL — bespoke: oil toss + drip, then ignites
 	dw ConfuseRayAnim   ; BAD_TOUCH — reuse Confuse Ray's visuals
 	dw WrapAnim         ; CRUSH_COIL — reuse Wrap's trapping visuals
 	dw LeechLifeAnim    ; BLOOD_SUCK — reuse Leech Life's drain visuals
@@ -305,6 +305,15 @@ JackpotAnim:
 FirePunchAnim:
 	battle_anim FIRE_PUNCH, SUBANIM_0_STAR_THRICE, 0, 6
 	battle_anim NO_MOVE, SUBANIM_1_FLAMES, 1, 6
+	db -1 ; end
+
+; Sludge's blob-toss + drip (oil splashing onto the target and coating them),
+; then it ignites -- distinct from Fire Punch's fist-impact visual, and fits
+; Hot Oil's guaranteed burn (the oil catching fire, not a punch landing).
+HotOilAnim:
+	battle_anim SLUDGE, SUBANIM_1_BLOB_TOSS, 1, 6
+	battle_anim NO_MOVE, SUBANIM_1_BLOB_DRIP_ENEMY, 1, 6
+	battle_anim FIRE_PUNCH, SUBANIM_1_FLAMES, 1, 6
 	db -1 ; end
 
 IcePunchAnim:

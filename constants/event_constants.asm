@@ -824,6 +824,7 @@ DEF INDIGO_PLATEAU_EVENTS_END EQU const_value - 1
 	                                  ; tripped EVENT_GOT_SPEEDTEST_DEBUG_MONS
 	const EVENT_GOT_SPEEDTEST_PERSIAN ; same independent-flag pattern, for Jackpot
 	const EVENT_GOT_SPEEDTEST_HITMONLEE ; same pattern, for Super Instinct
+	const EVENT_GOT_SPEEDTEST_MAGMAR ; same pattern, for Hot Oil
 
 ; End of events
 	const_next $A00

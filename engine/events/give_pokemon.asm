@@ -142,13 +142,24 @@ IF DEF(_SPEEDTEST)
 .persianAlreadyGiven
 ; Hitmonlee normally learns Super Instinct at level 22 -- boxed here at L100.
 	CheckEvent EVENT_GOT_SPEEDTEST_HITMONLEE
-	ret nz
+	jr nz, .hitmonleeAlreadyGiven
 	ld a, [wBoxCount]
 	cp MONS_PER_BOX - 1 ; need 1 free box slot for Hitmonlee
-	ret nc
+	jr nc, .hitmonleeAlreadyGiven
 	SetEvent EVENT_GOT_SPEEDTEST_HITMONLEE
 	lb bc, HITMONLEE, 100
 	ld hl, .HitmonleeMoves
+	call .GiveBoxedMonWithMoves
+.hitmonleeAlreadyGiven
+; Magmar normally learns Hot Oil at level 36 -- boxed here at L100.
+	CheckEvent EVENT_GOT_SPEEDTEST_MAGMAR
+	ret nz
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 1 ; need 1 free box slot for Magmar
+	ret nc
+	SetEvent EVENT_GOT_SPEEDTEST_MAGMAR
+	lb bc, MAGMAR, 100
+	ld hl, .MagmarMoves
 	call .GiveBoxedMonWithMoves
 ENDC
 	ret
@@ -159,6 +170,7 @@ ENDC
 .PinsirMoves:     db WEB_CANNON, VICEGRIP, TWINEEDLE, SWORDS_DANCE, SEISMIC_TOSS
 .PersianMoves:    db JACKPOT, SLASH, SCREECH, BITE, FURY_SWIPES
 .HitmonleeMoves:  db SUPER_INSTINCT, HI_JUMP_KICK, ROLLING_KICK, DOUBLE_KICK, MEGA_KICK
+.MagmarMoves:     db HOT_OIL, FIRE_PUNCH, FLAMETHROWER, SMOKESCREEN, CONFUSE_RAY
 
 ; b = species, c = level, hl = pointer to a NUM_MOVES-byte moveset
 .GiveBoxedMonWithMoves:
