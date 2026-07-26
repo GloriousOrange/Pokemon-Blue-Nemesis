@@ -135,6 +135,8 @@ DEF FIRST_SE_ID EQU const_value
 	const SUBANIM_0_SAFARI_ROCK
 	const SUBANIM_0_SAFARI_BAIT
 	const SUBANIM_0_STAR_HIGH
+	const SUBANIM_1_STAR_BIG_MOVING_MIRRORED ; same trajectory as SUBANIM_1_STAR_BIG_MOVING,
+	                                          ; COORDFLIP instead of HFLIP -- Double Drill's 2nd hit
 DEF NUM_SUBANIMS EQU const_value
 
 ; types of subanimations

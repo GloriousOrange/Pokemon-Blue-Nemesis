@@ -164,7 +164,7 @@ AttackAnimationPointers:
 	dw SuperFangAnim
 	dw SlashAnim
 	dw SubstituteAnim
-	dw DrillPeckAnim    ; DOUBLE_DRILL — reuse drill peck visuals
+	dw DoubleDrillAnim  ; DOUBLE_DRILL — bespoke: 2 fast crossing hits (2nd mirrored)
 	dw HyperBeamsAnim   ; HYPER_BEAMS — double-beam variant
 	dw MetronomeAnim    ; METRONOME2 — reuse metronome visuals
 	dw ToxicAnim        ; CARRION_WIND
@@ -610,6 +610,14 @@ PeckAnim:
 
 DrillPeckAnim:
 	battle_anim DRILL_PECK, SUBANIM_1_STAR_BIG_MOVING, 1, 6
+	db -1 ; end
+
+; Double Drill's two hits, twice as fast as a single Drill Peck strike (delay
+; 3 vs Drill Peck's 6) and the 2nd hit uses the COORDFLIP mirrored variant, so
+; the pair reads as crossing strikes rather than the same hit repeating.
+DoubleDrillAnim:
+	battle_anim DRILL_PECK, SUBANIM_1_STAR_BIG_MOVING, 1, 3
+	battle_anim NO_MOVE, SUBANIM_1_STAR_BIG_MOVING_MIRRORED, 1, 3
 	db -1 ; end
 
 SubmissionAnim:

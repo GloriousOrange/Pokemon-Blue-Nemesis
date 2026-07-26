@@ -86,6 +86,7 @@ SubanimationPointers:
 	dw Subanim_0SafariRock
 	dw Subanim_0SafariBait
 	dw Subanim_0StarHigh
+	dw Subanim_1StarBigMovingMirrored
 	assert_table_length NUM_SUBANIMS
 
 ; format:
@@ -100,6 +101,14 @@ ENDM
 
 Subanim_1StarBigMoving:
 	subanim SUBANIMTYPE_HFLIP, 3
+	db FRAMEBLOCK_02, BASECOORD_1A, FRAMEBLOCKMODE_00
+	db FRAMEBLOCK_02, BASECOORD_10, FRAMEBLOCKMODE_00
+	db FRAMEBLOCK_02, BASECOORD_03, FRAMEBLOCKMODE_00
+; Same trajectory as Subanim_1StarBigMoving, but COORDFLIP mirrors the base
+; coordinates (both axes) instead of HFLIP -- Double Drill's 2nd hit, so the
+; two strikes read as crossing from opposite corners rather than repeating.
+Subanim_1StarBigMovingMirrored:
+	subanim SUBANIMTYPE_COORDFLIP, 3
 	db FRAMEBLOCK_02, BASECOORD_1A, FRAMEBLOCKMODE_00
 	db FRAMEBLOCK_02, BASECOORD_10, FRAMEBLOCKMODE_00
 	db FRAMEBLOCK_02, BASECOORD_03, FRAMEBLOCKMODE_00
