@@ -91,11 +91,6 @@ PokemonMansion1FDefaultScript:
 	ld [wJoyIgnore], a
 	ld a, PLAYER_DIR_UP
 	ld [wPlayerMovingDirection], a
-	ld a, POKEMONMANSION1F_RIVAL
-	ld [wEmotionBubbleSpriteIndex], a
-	xor a ; EXCLAMATION_BUBBLE
-	ld [wWhichEmotionBubble], a
-	predef EmotionBubble
 	ld a, SFX_STOP_ALL_MUSIC
 	ld [wNewSoundID], a
 	call PlaySound
