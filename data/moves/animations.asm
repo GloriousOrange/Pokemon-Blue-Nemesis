@@ -173,7 +173,7 @@ AttackAnimationPointers:
 	dw WingAttackAnim   ; PHANTOM_WING
 	dw WebCannonAnim    ; WEB_CANNON — bespoke: web toss, hard bind, heavy impact flash
 	dw MegaPunchAnim    ; UPPERCUT
-	dw PayDayAnim       ; JACKPOT — reuse Pay Day's coin-scatter visuals
+	dw JackpotAnim      ; JACKPOT — bespoke: Pay Day's coin bounce fires 4x
 	dw AgilityAnim      ; SUPER_INSTINCT — reuse Agility's focus-aura visuals
 	dw HardenAnim       ; CRYSTALLIZE — reuse Harden's hardening shimmer
 	dw TwineedleAnim    ; CHAOS_STING — reuse Twineedle's stinger visuals
@@ -290,6 +290,16 @@ MegaPunchAnim:
 PayDayAnim:
 	battle_anim POUND, SUBANIM_0_STAR_TWICE, 0, 8
 	battle_anim PAY_DAY, SUBANIM_0_COIN_BOUNCE, 0, 4
+	db -1 ; end
+
+; Pay Day, but the coin bounce fires 4 times instead of once (faster each time)
+; for a much bigger scatter of coins -- matches Jackpot's bigger cash payout.
+JackpotAnim:
+	battle_anim POUND, SUBANIM_0_STAR_TWICE, 0, 8
+	battle_anim PAY_DAY, SUBANIM_0_COIN_BOUNCE, 0, 3
+	battle_anim NO_MOVE, SUBANIM_0_COIN_BOUNCE, 0, 3
+	battle_anim NO_MOVE, SUBANIM_0_COIN_BOUNCE, 0, 3
+	battle_anim NO_MOVE, SUBANIM_0_COIN_BOUNCE, 0, 3
 	db -1 ; end
 
 FirePunchAnim:

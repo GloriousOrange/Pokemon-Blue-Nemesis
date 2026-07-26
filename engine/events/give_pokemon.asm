@@ -119,13 +119,25 @@ IF DEF(_SPEEDTEST)
 ; Guarded independently of the birds above so it still fires on saves that
 ; already tripped EVENT_GOT_SPEEDTEST_DEBUG_MONS (e.g. mid-playtest saves).
 	CheckEvent EVENT_GOT_SPEEDTEST_PINSIR
-	ret nz
+	jr nz, .pinsirAlreadyGiven
 	ld a, [wBoxCount]
 	cp MONS_PER_BOX - 1 ; need 1 free box slot for Pinsir
-	ret nc
+	jr nc, .pinsirAlreadyGiven
 	SetEvent EVENT_GOT_SPEEDTEST_PINSIR
 	lb bc, PINSIR, 100
 	ld hl, .PinsirMoves
+	call .GiveBoxedMonWithMoves
+.pinsirAlreadyGiven
+; Persian normally learns Jackpot at level 98 -- boxed here at L100 so it's
+; usable immediately, same independent-flag pattern as Pinsir above.
+	CheckEvent EVENT_GOT_SPEEDTEST_PERSIAN
+	ret nz
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 1 ; need 1 free box slot for Persian
+	ret nc
+	SetEvent EVENT_GOT_SPEEDTEST_PERSIAN
+	lb bc, PERSIAN, 100
+	ld hl, .PersianMoves
 	call .GiveBoxedMonWithMoves
 ENDC
 	ret
@@ -134,6 +146,7 @@ ENDC
 .MiasmaMoves:     db CARRION_WIND, BLIGHT_VOMIT, DRILL_PECK, TOXIC, FLY
 .NocturnMoves:    db MIND_FEVER, PHANTOM_WING, NIGHT_SHADE, GUST, CONFUSE_RAY
 .PinsirMoves:     db WEB_CANNON, VICEGRIP, TWINEEDLE, SWORDS_DANCE, SEISMIC_TOSS
+.PersianMoves:    db JACKPOT, SLASH, SCREECH, BITE, FURY_SWIPES
 
 ; b = species, c = level, hl = pointer to a NUM_MOVES-byte moveset
 .GiveBoxedMonWithMoves:
