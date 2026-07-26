@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/grimer.pic", 0, 1 ; sprite dimensions
 	dw GrimerPicFront, GrimerPicBack
 
-	db POUND, DISABLE, NO_MOVE, NO_MOVE ; level 1 learnset
+	db VENOM_BITE, POUND, DISABLE, NO_MOVE ; level 1 learnset (Venom Bite added for starter STAB)
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

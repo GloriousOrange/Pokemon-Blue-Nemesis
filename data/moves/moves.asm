@@ -207,5 +207,13 @@ Moves:
 	move ICE_SCULPTURE, ICE_SCULPTURE_EFFECT,        0, ICE,          100, 10
 	move STAMPEDE,     CHARGE_EFFECT,              150, NORMAL,       100,  5
 	move ROLL,         NO_ADDITIONAL_EFFECT,      120, NORMAL,        85, 15
+	move VENOM_BITE,   NO_ADDITIONAL_EFFECT,       35, POISON,       100, 25
+	move MUD_SLAP,     NO_ADDITIONAL_EFFECT,       35, GROUND,       100, 25
+	move MANDIBLE_BITE, NO_ADDITIONAL_EFFECT,      35, BUG,          100, 25
+	move PALM_STRIKE,  NO_ADDITIONAL_EFFECT,       35, FIGHTING,     100, 25
+	move SCORCH,       NO_ADDITIONAL_EFFECT,       35, FIRE,         100, 25
+	move SPARK,        NO_ADDITIONAL_EFFECT,       35, ELECTRIC,     100, 25
+	move PSY_CHOP,     NO_ADDITIONAL_EFFECT,       35, PSYCHIC_TYPE, 100, 25
+	move DRAGON_BREATH, NO_ADDITIONAL_EFFECT,      35, DRAGON,       100, 25
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
 	assert_table_length NUM_ATTACKS

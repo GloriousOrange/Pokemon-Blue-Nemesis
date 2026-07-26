@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/diglett.pic", 0, 1 ; sprite dimensions
 	dw DiglettPicFront, DiglettPicBack
 
-	db SCRATCH, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
+	db MUD_SLAP, SCRATCH, NO_MOVE, NO_MOVE ; level 1 learnset (Mud Slap added for starter STAB)
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

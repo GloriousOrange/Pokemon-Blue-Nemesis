@@ -202,7 +202,19 @@
 	const ICE_SCULPTURE  ; c2 - makes a Substitute; damaging it may freeze (Jynx niche)
 	const STAMPEDE       ; c3 - Normal, 150 dmg, 2-turn charge like Dig (Tauros niche)
 	const ROLL           ; c4 - Normal, 120 dmg, 85 acc, no side effect (Snorlax heavy hitter; self-Defense drop removed -- froze vs transformed mons)
-	const STRUGGLE       ; c5
+; Fixed 35-power STAB fillers for starters whose level-1 moveset had no
+; same-type move at all (see scripts/gen_tables.py's StarterSpeciesTable).
+; Grass/Water/Flying already had a 35-power move (Vine Whip/Clamp/Peck) to
+; reuse; these 8 cover the remaining types that didn't.
+	const VENOM_BITE     ; c5 - Poison, 35 dmg (Ekans/Nidoran/Grimer starter STAB filler)
+	const MUD_SLAP       ; c6 - Ground, 35 dmg (Sandshrew/Diglett/Geodude/Onix/Rhyhorn starter STAB filler)
+	const MANDIBLE_BITE  ; c7 - Bug, 35 dmg (Paras/Venonat/Scyther starter STAB filler)
+	const PALM_STRIKE    ; c8 - Fighting, 35 dmg (Mankey/Hitmonchan starter STAB filler)
+	const SCORCH         ; c9 - Fire, 35 dmg (Growlithe starter STAB filler)
+	const SPARK          ; ca - Electric, 35 dmg (Magnemite/Voltorb/Electabuzz starter STAB filler)
+	const PSY_CHOP       ; cb - Psychic, 35 dmg (Drowzee/Jynx/Mew starter STAB filler)
+	const DRAGON_BREATH  ; cc - Dragon, 35 dmg (Dratini starter STAB filler)
+	const STRUGGLE       ; cd
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

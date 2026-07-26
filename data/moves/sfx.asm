@@ -197,6 +197,14 @@ MoveSoundTable:
 	db SFX_BATTLE_2C,          $d8, $04 ; ICE_SCULPTURE (match reused Substitute sfx)
 	db SFX_SUPER_EFFECTIVE,    $00, $a0 ; STAMPEDE (match reused Take Down sfx)
 	db SFX_BATTLE_20,          $00, $c0 ; ROLL (match reused Body Slam sfx)
+	db SFX_BATTLE_1B,          $00, $80 ; VENOM_BITE (match reused Poison Sting sfx)
+	db SFX_BATTLE_1B,          $01, $a0 ; MUD_SLAP (match reused Sand Attack sfx)
+	db SFX_BATTLE_1E,          $00, $80 ; MANDIBLE_BITE (match reused Bite sfx)
+	db SFX_BATTLE_0C,          $10, $80 ; PALM_STRIKE (match reused Karate Chop sfx)
+	db SFX_BATTLE_19,          $10, $a0 ; SCORCH (match reused Ember sfx)
+	db SFX_BATTLE_2F,          $00, $20 ; SPARK (match reused ThunderShock sfx)
+	db SFX_BATTLE_14,          $00, $20 ; PSY_CHOP (match reused Confusion sfx)
+	db SFX_BATTLE_29,          $f0, $80 ; DRAGON_BREATH (match reused Dragon Rage sfx)
 	db SFX_BATTLE_0B,          $00, $80 ; STRUGGLE
 	assert_table_length NUM_ATTACKS
 	db SFX_BATTLE_0B,          $00, $80

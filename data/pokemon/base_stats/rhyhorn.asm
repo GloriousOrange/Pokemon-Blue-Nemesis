@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/rhyhorn.pic", 0, 1 ; sprite dimensions
 	dw RhyhornPicFront, RhyhornPicBack
 
-	db HORN_ATTACK, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
+	db MUD_SLAP, HORN_ATTACK, NO_MOVE, NO_MOVE ; level 1 learnset (Mud Slap added for starter STAB)
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

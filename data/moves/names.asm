@@ -197,5 +197,13 @@ MoveNames::
 	li "ICE STATUE"
 	li "STAMPEDE"
 	li "ROLL"
+	li "VENOM BITE"
+	li "MUD SLAP"
+	li "BUG BITE"
+	li "PALM STRIKE"
+	li "SCORCH"
+	li "SPARK"
+	li "PSY CHOP"
+	li "DRAGONBREATH"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS

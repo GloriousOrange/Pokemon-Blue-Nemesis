@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/kabuto.pic", 0, 1 ; sprite dimensions
 	dw KabutoPicFront, KabutoPicBack
 
-	db SCRATCH, HARDEN, NO_MOVE, NO_MOVE ; level 1 learnset
+	db CLAMP, SCRATCH, HARDEN, NO_MOVE ; level 1 learnset (Clamp added for starter STAB)
 	db GROWTH_FAST ; growth rate
 
 	; tm/hm learnset

@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/growlithe.pic", 0, 1 ; sprite dimensions
 	dw GrowlithePicFront, GrowlithePicBack
 
-	db BITE, ROAR, NO_MOVE, NO_MOVE ; level 1 learnset
+	db SCORCH, BITE, ROAR, NO_MOVE ; level 1 learnset (Scorch added for starter STAB)
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

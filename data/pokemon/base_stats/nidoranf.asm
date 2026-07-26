@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/nidoranf.pic", 0, 1 ; sprite dimensions
 	dw NidoranFPicFront, NidoranFPicBack
 
-	db GROWL, TACKLE, NO_MOVE, NO_MOVE ; level 1 learnset
+	db VENOM_BITE, GROWL, TACKLE, NO_MOVE ; level 1 learnset (Venom Bite added for starter STAB)
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

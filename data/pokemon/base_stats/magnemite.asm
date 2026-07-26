@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/magnemite.pic", 0, 1 ; sprite dimensions
 	dw MagnemitePicFront, MagnemitePicBack
 
-	db TACKLE, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
+	db SPARK, TACKLE, NO_MOVE, NO_MOVE ; level 1 learnset (Spark added for starter STAB)
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

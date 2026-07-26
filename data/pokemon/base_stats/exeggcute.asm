@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/exeggcute.pic", 0, 1 ; sprite dimensions
 	dw ExeggcutePicFront, ExeggcutePicBack
 
-	db BARRAGE, HYPNOSIS, NO_MOVE, NO_MOVE ; level 1 learnset
+	db VINE_WHIP, BARRAGE, HYPNOSIS, NO_MOVE ; level 1 learnset (Vine Whip added for starter STAB)
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

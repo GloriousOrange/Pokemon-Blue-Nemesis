@@ -196,6 +196,14 @@ AttackAnimationPointers:
 	dw SubstituteAnim   ; ICE_SCULPTURE — reuse Substitute's visuals
 	dw TakeDownAnim     ; STAMPEDE — reuse Take Down's visuals
 	dw BodySlamAnim     ; ROLL — reuse Body Slam's visuals
+	dw PoisonStingAnim  ; VENOM_BITE — reuse Poison Sting's visuals
+	dw SandAttackAnim   ; MUD_SLAP — reuse Sand Attack's visuals
+	dw BiteAnim         ; MANDIBLE_BITE — reuse Bite's visuals
+	dw KarateChopAnim   ; PALM_STRIKE — reuse Karate Chop's visuals
+	dw EmberAnim        ; SCORCH — reuse Ember's visuals
+	dw ThunderShockAnim ; SPARK — reuse ThunderShock's visuals
+	dw ConfusionAnim    ; PSY_CHOP — reuse Confusion's visuals
+	dw DragonRageAnim   ; DRAGON_BREATH — reuse Dragon Rage's visuals
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim
