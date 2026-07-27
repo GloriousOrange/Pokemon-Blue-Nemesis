@@ -4,7 +4,7 @@ MACRO overworld_sprite
 	db BANK(\1)
 ENDM
 
-SpriteSheetPointerTable:
+SpriteSheetPointerTable::
 	table_width 4
 	; graphics, tile count
 	overworld_sprite RedSprite, 12              ; SPRITE_RED
@@ -68,6 +68,7 @@ SpriteSheetPointerTable:
 	overworld_sprite LoreleiSprite, 12          ; SPRITE_LORELEI
 	overworld_sprite SeelSprite, 12             ; SPRITE_SEEL
 	overworld_sprite MeganSprite, 12            ; SPRITE_MEGAN
+	overworld_sprite MathusSprite, 12           ; SPRITE_MATHUS
 	overworld_sprite PokeBallSprite, 4          ; SPRITE_POKE_BALL
 	overworld_sprite FossilSprite, 4            ; SPRITE_FOSSIL
 	overworld_sprite BoulderSprite, 4           ; SPRITE_BOULDER

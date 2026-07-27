@@ -2080,6 +2080,10 @@ wArenaChallengersDefeated:: ds 26 ; one byte per arena challenger (0 = unbeaten,
 wGymRematchFlags::          db   ; bitfield: gym leaders re-beaten (post-game rematch)
 wScientistsDefeated::       db   ; bitfield: burned-lab scientists defeated
 wPostGameMisc::             db   ; OAK_DEFEATED / GIOVANNI_DEFEATED / LAB_KEY / DEED bits
+; player's chosen overworld look (a SPRITE_* id), picked at the start of a new
+; game via PickPlayerSprite; see GetWalkingPlayerSpriteGraphics for how the
+; Hero/Loyalist/Traitor path affects which sprite actually shows
+wPlayerChosenSprite::       db
 wBattleIslandCurScript::    db   ; Battle Island arena map-script state
 wCurArenaChallenger::       db   ; index (0-25) of the arena challenger being fought ($ff = Giovanni)
 wMeganVisitedFlags::        ds 4 ; bit per Megan location (PokeCenters/gyms/caves/etc.) = first-visit-gift given

@@ -50,6 +50,8 @@ OakSpeech:
 	call LoadTextBoxTilePatterns
 	call PrepareOakSpeech
 	predef InitPlayerData2
+	call SetPokedexAllSeen
+	farcall PickPlayerSprite
 ; intro naming: offer a preset-name menu (NEW NAME + suggestions) for the
 ; player, then the brother (rival). Picking NEW NAME opens the keyboard.
 ; No pics or speech -- this is the dark minimal intro. Empty custom names are
@@ -77,6 +79,9 @@ OakSpeech:
 	cp '@' ; empty name?
 	jr z, .askPlayerName
 .askBrotherName
+	call ClearScreen
+	ld hl, BrotherIntroText
+	call PrintText
 	call ClearScreen
 	ld de, DefaultNamesRival
 	call DisplayIntroNameTextBox
@@ -176,6 +181,11 @@ DifficultyNormalName:
 	db "NORMAL@"
 DifficultyHardName:
 	db "HARD@"
+
+BrotherIntroText:
+	text "Now name your"
+	line "brother."
+	done
 
 OpeningColdOpenText:
 	text "The war nearly"
@@ -281,3 +291,20 @@ IntroDisplayPicCenteredOrUpperRight:
 	xor a
 	ldh [hStartTileID], a
 	predef_jump CopyUncompressedPicToTilemap
+
+; Nemesis: the CODEX starts fully "seen" on every new game (Owned is left
+; alone -- that's still earned by actually catching/evolving/gifting).
+SetPokedexAllSeen:
+	ld hl, wPokedexSeen
+IF NUM_POKEMON / 8 != 0
+	ld b, NUM_POKEMON / 8
+	ld a, %11111111
+.loop
+	ld [hli], a
+	dec b
+	jr nz, .loop
+ENDC
+IF NUM_POKEMON % 8 != 0
+	ld [hl], (1 << (NUM_POKEMON % 8)) - 1
+ENDC
+	ret

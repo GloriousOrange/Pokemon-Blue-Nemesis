@@ -109,11 +109,7 @@ INCLUDE "engine/math/random.asm"
 
 SECTION "Battle Engine 2", ROMX
 
-INCLUDE "engine/gfx/load_pokedex_tiles.asm"
 INCLUDE "engine/overworld/map_sprites.asm"
-INCLUDE "engine/events/evolve_trade.asm"
-INCLUDE "engine/battle/move_effects/substitute.asm"
-INCLUDE "engine/menus/pc.asm"
 
 ; Floated out of "Battle Engine 2" (bank $5, shared with "NPC Sprites 2") to
 ; make room for MeganSprite (gfx/sprites/megan.png). EmotionBubble is only
@@ -123,6 +119,40 @@ INCLUDE "engine/menus/pc.asm"
 SECTION "Emotion Bubbles", ROMX
 
 INCLUDE "engine/overworld/emotion_bubbles.asm"
+
+; Floated out of "Battle Engine 2" (bank $5, shared with "NPC Sprites 2") to
+; make room for MathusSprite (gfx/sprites/mathus.png). LoadPokedexTilePatterns
+; is only ever reached via `callfar`, so it's safe to relocate freely -- same
+; reasoning as the EmotionBubbles float above.
+SECTION "Load Pokedex Tiles", ROMX
+
+INCLUDE "engine/gfx/load_pokedex_tiles.asm"
+
+; Floated out of "Battle Engine 2" (bank $5, shared with "NPC Sprites 2") to
+; make room for MathusSprite (gfx/sprites/mathus.png). InGameTrade_CheckForTradeEvo
+; is only ever reached via `callfar`, so it's safe to relocate freely -- same
+; reasoning as the floats above.
+SECTION "InGameTrade Evo Check", ROMX
+
+INCLUDE "engine/events/evolve_trade.asm"
+
+; Floated out of "Battle Engine 2" (bank $5, shared with "NPC Sprites 2") to
+; make room for MathusSprite (gfx/sprites/mathus.png). SubstituteEffect_ is
+; only ever reached via `jpfar`/`farcall`, so it's safe to relocate freely --
+; same reasoning as the floats above.
+SECTION "Substitute Effect", ROMX
+
+INCLUDE "engine/battle/move_effects/substitute.asm"
+
+; Floated out of "Battle Engine 2" (bank $5, shared with "NPC Sprites 2") to
+; make room for MathusSprite (gfx/sprites/mathus.png, now the standard full
+; 24-tile size after an earlier undersized attempt read as a garbled sprite
+; in-game). ActivatePC is reached via a bank-aware indirect call
+; (home/map_objects.asm sets b=BANK(ActivatePC) before jumping to it), so
+; it's safe to relocate freely -- same reasoning as the floats above.
+SECTION "Activate PC", ROMX
+
+INCLUDE "engine/menus/pc.asm"
 
 
 SECTION "Play Time", ROMX
@@ -244,6 +274,11 @@ SECTION "PlayerPath", ROMX
 ; branching-path helpers (GetPlayerPath) + the Nocturn go-rogue choice
 ; (NocturnGoRogueChoice), reached via callfar once the Nocturn-obtain script exists
 INCLUDE "engine/events/player_path.asm"
+
+SECTION "Pick Player Sprite", ROMX
+; player-sprite-choice screen shown before naming; reached only via
+; farcall PickPlayerSprite from OakSpeech (oak_speech.asm)
+INCLUDE "engine/movie/oak_speech/pick_player_sprite.asm"
 
 SECTION "Megan", ROMX
 ; girlfriend interaction shared by every Megan NPC; reached only via farcall MeganTalk

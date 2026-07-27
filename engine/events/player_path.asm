@@ -27,24 +27,30 @@ GetPlayerPath::
 ; The sprite's bank is stashed in wBuffer rather than returned in a register:
 ; farcall's Bankswitch clobbers af/bc on its way back to the home bank, so b
 ; can't carry the bank home the way non-farcalled callers usually do it.
-; Hero: Scientist, Loyalist: Rocket, Traitor (overrides both): Blue (twin
-; brothers). farcall'd from LoadWalkingPlayerSpriteGraphics (home/overworld.asm).
+; Hero (default) and Traitor (went rogue) both show the player's own chosen
+; look (wPlayerChosenSprite, picked at game start via PickPlayerSprite);
+; Loyalist (joined Team Rocket) overrides to the Rocket grunt look, and going
+; Traitor from there reverts back to the player's own chosen look.
+; farcall'd from LoadWalkingPlayerSpriteGraphics (home/overworld.asm).
 GetWalkingPlayerSpriteGraphics::
 	ld a, [wPostGameMisc]
 	bit BIT_PLAYER_TRAITOR, a
-	jr nz, .traitor
+	jr nz, .customSprite
 	bit BIT_ROCKET_LOYALTY, a
 	jr nz, .rocket
+.customSprite
+	ld a, [wPlayerChosenSprite]
+	and a
+	jr z, .heroFallback ; no selection made (e.g. a save predating this feature)
+	call GetChosenSpriteGraphics ; home-bank; in: a=SPRITE_* id; out: de=ptr, a=bank
+	jr .done
+.heroFallback
 	ld de, ScientistSprite
 	ld a, BANK(ScientistSprite)
 	jr .done
 .rocket
 	ld de, RocketSprite
 	ld a, BANK(RocketSprite)
-	jr .done
-.traitor
-	ld de, BlueSprite
-	ld a, BANK(BlueSprite)
 .done
 	ld [wBuffer], a
 	ret
