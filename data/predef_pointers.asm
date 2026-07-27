@@ -85,6 +85,7 @@ PredefPointers::
 	add_predef UpdateHPBar2
 	add_predef DrawEnemyHUDAndHPBar
 	add_predef LoadTownMap_Nest
+	add_predef ShowPokedexMovesScreen
 	add_predef PrintMonType
 	add_predef EmotionBubble
 	add_predef EmptyFunc ; return immediately

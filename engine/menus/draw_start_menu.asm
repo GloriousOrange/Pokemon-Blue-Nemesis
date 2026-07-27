@@ -75,7 +75,7 @@ DrawStartMenu::
 	ret
 
 StartMenuPokedexText:
-	db "POKéDEX@"
+	db "CODEX@"
 
 StartMenuPokemonText:
 	db "POKéMON@"

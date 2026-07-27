@@ -1,5 +1,5 @@
 _DexCompletionText::
-	text "#DEX comp-"
+	text "CODEX comp-"
 	line "letion is:"
 
 	para "@"
@@ -111,7 +111,7 @@ _DexRatingText_Own140To149::
 	done
 
 _DexRatingText_Own150To151::
-	text "Your #DEX is"
+	text "Your CODEX is"
 	line "entirely complete!"
 	cont "Every species,"
 	cont "conquered."

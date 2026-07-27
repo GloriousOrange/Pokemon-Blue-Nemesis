@@ -95,7 +95,7 @@ _ViridianForestTrainerTips2Text::
 
 	para "Contact PROF.OAK"
 	line "via PC to get"
-	cont "your #DEX"
+	cont "your CODEX"
 	cont "evaluated!"
 	done
 

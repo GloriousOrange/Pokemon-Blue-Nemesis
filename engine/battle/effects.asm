@@ -421,6 +421,9 @@ RollEffect:
 IceSculptureEffect:
 	jpfar IceSculptureEffect_
 
+GlitterWingEffect:
+	jpfar GlitterWingEffect_
+
 DrainHPEffect:
 	jpfar DrainHPEffect_
 

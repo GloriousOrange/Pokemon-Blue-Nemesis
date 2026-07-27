@@ -8,7 +8,7 @@ ItemNames::
 	li "BICYCLE"
 	li "?????" ; SURFBOARD
 	li "SAFARI BALL"
-	li "POKéDEX"
+	li "CODEX"
 	li "MOON STONE"
 	li "ANTIDOTE"
 	li "BURN HEAL"

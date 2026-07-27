@@ -214,7 +214,8 @@
 	const SPARK          ; ca - Electric, 35 dmg (Magnemite/Voltorb/Electabuzz starter STAB filler)
 	const PSY_CHOP       ; cb - Psychic, 35 dmg (Drowzee/Jynx/Mew starter STAB filler)
 	const DRAGON_BREATH  ; cc - Dragon, 35 dmg (Dratini starter STAB filler)
-	const STRUGGLE       ; cd
+	const GLITTER_WING   ; cd - Bug, 35 dmg, 100 acc, ~30% sleep (Butterfree)
+	const STRUGGLE       ; ce
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

@@ -215,5 +215,6 @@ Moves:
 	move SPARK,        NO_ADDITIONAL_EFFECT,       35, ELECTRIC,     100, 25
 	move PSY_CHOP,     NO_ADDITIONAL_EFFECT,       35, PSYCHIC_TYPE, 100, 25
 	move DRAGON_BREATH, NO_ADDITIONAL_EFFECT,      35, DRAGON,       100, 25
+	move GLITTER_WING, GLITTER_WING_EFFECT,        35, BUG,          100, 10
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
 	assert_table_length NUM_ATTACKS

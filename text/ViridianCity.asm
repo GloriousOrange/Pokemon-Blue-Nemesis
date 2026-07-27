@@ -112,10 +112,10 @@ _ViridianCityOldManHadMyCoffeeNowText::
 
 _ViridianCityOldManKnowHowToCatchPokemonText::
 	text "I see you're using"
-	line "a #DEX."
+	line "a CODEX."
 
 	para "When you catch a"
-	line "#MON, #DEX"
+	line "#MON, CODEX"
 	cont "is automatically"
 	cont "updated."
 

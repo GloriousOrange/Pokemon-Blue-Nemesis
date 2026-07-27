@@ -205,6 +205,7 @@ MoveSoundTable:
 	db SFX_BATTLE_2F,          $00, $20 ; SPARK (match reused ThunderShock sfx)
 	db SFX_BATTLE_14,          $00, $20 ; PSY_CHOP (match reused Confusion sfx)
 	db SFX_BATTLE_29,          $f0, $80 ; DRAGON_BREATH (match reused Dragon Rage sfx)
+	db SFX_BATTLE_1C,          $01, $c0 ; GLITTER_WING (match reused Sleep Powder sfx)
 	db SFX_BATTLE_0B,          $00, $80 ; STRUGGLE
 	assert_table_length NUM_ATTACKS
 	db SFX_BATTLE_0B,          $00, $80

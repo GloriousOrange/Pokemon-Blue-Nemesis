@@ -104,4 +104,5 @@
 	const ICE_BOMB_EFFECT            ; $61 - Nemesis: damage + 50% freeze (Lapras)
 	const ROLL_EFFECT                ; $62 - Nemesis: damage + lower user's own Defense by 2 (Snorlax)
 	const ICE_SCULPTURE_EFFECT       ; $63 - Nemesis: makes a frost Substitute; damaging it may freeze (Jynx)
+	const GLITTER_WING_EFFECT        ; $64 - Nemesis: damage + ~30% chance to sleep (Butterfree)
 DEF NUM_MOVE_EFFECTS EQU const_value - 1

@@ -8,7 +8,7 @@
 ;    * db level, move
 ; - db 0 ; no more level-up moves
 
-EvosMovesPointerTable:
+EvosMovesPointerTable::
 	table_width 2
 	dw RhydonEvosMoves
 	dw KangaskhanEvosMoves
@@ -542,13 +542,13 @@ PinsirEvosMoves:
 	db 0
 ; Learnset
 	db 20, TWINEEDLE
+	db 23, WEB_CANNON ; moved from level 70 (user request 2026-07-26)
 	db 25, SEISMIC_TOSS
 	db 30, GUILLOTINE
 	db 36, FOCUS_ENERGY
 	db 43, PIN_MISSILE
 	db 49, SLASH
 	db 55, VIBRATE
-	db 70, WEB_CANNON
 	db 98, SWORDS_DANCE ; moved from level 54 (user request 2026-07-10)
 	db 0
 
@@ -1433,6 +1433,7 @@ KakunaEvosMoves:
 	db EVOLVE_LEVEL, 10, BEEDRILL
 	db 0
 ; Learnset
+	db 9, WEB_CANNON ; user request 2026-07-26
 	db 0
 
 BeedrillEvosMoves:
@@ -1549,7 +1550,7 @@ ButterfreeEvosMoves:
 	db 17, SLEEP_POWDER
 	db 21, SUPERSONIC
 	db 26, WHIRLWIND
-	db 28, WEB_CANNON
+	db 28, GLITTER_WING ; replaced Web Cannon (user request 2026-07-26)
 	db 32, PSYBEAM
 	db 0
 

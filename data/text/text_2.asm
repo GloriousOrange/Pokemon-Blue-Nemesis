@@ -119,7 +119,7 @@ _YeahText::
 	text_end
 
 _DexSeenOwnedText::
-	text "#DEX   Seen:@"
+	text "CODEX     Seen:@"
 	text_decimal wDexRatingNumMonsSeen, 1, 3
 	text_start
 	line "         Owned:@"
@@ -127,7 +127,7 @@ _DexSeenOwnedText::
 	text_end
 
 _DexRatingText::
-	text "#DEX Rating<COLON>"
+	text "CODEX Rating<COLON>"
 	done
 
 _GymStatueText1::
@@ -1688,7 +1688,7 @@ _OhFineThenText::
 
 _GetDexRatedText::
 	text "Want to get your"
-	line "#DEX rated?"
+	line "CODEX rated?"
 	done
 
 _ClosedOaksPCText::
@@ -1700,7 +1700,7 @@ _AccessedOaksPCText::
 	text "Accessed PROF."
 	line "OAK's PC."
 
-	para "Accessed #DEX"
+	para "Accessed CODEX"
 	line "Rating System."
 	prompt
 

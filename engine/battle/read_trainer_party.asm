@@ -235,7 +235,7 @@ ReadTrainer:
 	ld [hli], a
 	ld a, GROWTH
 	ld [hl], a
-; Butterfree (mon2) -- Psychic, Sleep Powder, Dream Eater, Stun Spore, Web Cannon
+; Butterfree (mon2) -- Psychic, Sleep Powder, Dream Eater, Stun Spore, Glitter Wing
 	ld hl, wEnemyMon2Moves
 	ld a, PSYCHIC_M
 	ld [hli], a
@@ -245,7 +245,7 @@ ReadTrainer:
 	ld [hli], a
 	ld a, STUN_SPORE
 	ld [hli], a
-	ld a, WEB_CANNON
+	ld a, GLITTER_WING
 	ld [hl], a
 ; Pinsir (mon5) -- Guillotine, Twineedle, Web Cannon, Slash, Swords Dance
 	ld hl, wEnemyMon5Moves

@@ -204,6 +204,7 @@ AttackAnimationPointers:
 	dw ThunderShockAnim ; SPARK — reuse ThunderShock's visuals
 	dw ConfusionAnim    ; PSY_CHOP — reuse Confusion's visuals
 	dw DragonRageAnim   ; DRAGON_BREATH — reuse Dragon Rage's visuals
+	dw SleepPowderAnim  ; GLITTER_WING — reuse Sleep Powder's shimmering visuals
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim

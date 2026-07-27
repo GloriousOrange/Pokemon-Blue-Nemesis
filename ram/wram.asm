@@ -1569,6 +1569,18 @@ wMoveNum:: db
 ; concatenated move name list where intermediate '@' are replaced with '<NEXT>'
 wMovesString:: ds NUM_MOVES * MOVE_NAME_LENGTH
 
+; CODEX "MOVES" screen: total level-up learnset entry count for the currently
+; viewed species (from CountLearnsetEntries) and a redraw-loop row counter.
+; The learnset itself isn't buffered -- GetLearnsetEntry re-walks the ROM
+; table per row, so this doesn't cost WRAM0 space (which is extremely tight).
+; Scroll position reuses wListScrollOffset (already save/restored by
+; HandlePokedexSideMenu around this whole screen).
+wPokedexMovesCount:: db
+wPokedexMovesRowIndex:: db
+; stable copy of the species index for the row loop, since GetLearnsetEntry
+; returns its move id through the byte aliased with wPokedexNum
+wPokedexMovesSpecies:: db
+
 wUnusedCurMapTilesetCopy:: db
 
 ; wWalkBikeSurfState is sometimes copied here, but it doesn't seem to be used for anything

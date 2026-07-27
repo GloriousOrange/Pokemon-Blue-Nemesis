@@ -269,3 +269,42 @@ FrostSubstituteFreezeCheck:
 FrostSubstituteFrozeText:
 	text_far _FrostSubstituteFrozeText ; "<USER> was frozen solid!"
 	text_end
+
+; --- Glitter Wing (Butterfree) -----------------------------------------------
+; After its 35-power Bug damage, a ~30% chance to put the target to sleep.
+; Honors the single-status rule (no Gen 1 type is immune to sleep). Sleep is a
+; 1-7 turn counter (SLP_MASK), not a single status bit, so it's rolled and
+; written directly like vanilla SleepEffect -- just re-hosted on the home
+; Random call since this body is floated to a different bank.
+GlitterWingEffect_:
+	ldh a, [hWhoseTurn]
+	and a
+	ld a, [wEnemyBattleStatus2]
+	jr z, .subChecked
+	ld a, [wPlayerBattleStatus2]
+.subChecked
+	bit HAS_SUBSTITUTE_UP, a
+	ret nz ; can't sleep through a substitute
+	call Random
+	cp 30 percent + 1
+	ret nc ; 70% of the time: no sleep
+	ldh a, [hWhoseTurn]
+	and a
+	ld hl, wEnemyMonStatus
+	jr z, .gotTarget
+	ld hl, wBattleMonStatus
+.gotTarget
+	ld a, [hl]
+	and a
+	ret nz ; single-status: don't sleep an already-statused mon
+.setSleepCounter
+	call Random
+	and SLP_MASK
+	jr z, .setSleepCounter
+	ld [hl], a ; single-status: sleep counter replaces the (empty) status byte
+	ld hl, GlitterWingFellAsleepText
+	jp PrintText
+
+GlitterWingFellAsleepText:
+	text_far _FellAsleepText
+	text_end

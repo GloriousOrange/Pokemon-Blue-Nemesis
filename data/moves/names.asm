@@ -205,5 +205,6 @@ MoveNames::
 	li "SPARK"
 	li "PSY CHOP"
 	li "DRAGONBREATH"
+	li "GLITTER WING"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS
