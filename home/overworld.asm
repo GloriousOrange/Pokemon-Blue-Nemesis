@@ -298,7 +298,6 @@ OverworldLoopLessDelay::
 	and a
 	jp nz, CheckMapConnections ; it seems like this check will never succeed (the other place where CheckMapConnections is run works)
 ; walking animation finished
-	farcall MeganFollowerOnPlayerStep ; queue her next trailing step, if she's following
 	ld a, [wStatusFlags5]
 	bit BIT_SCRIPTED_MOVEMENT_STATE, a
 	jr nz, .doneStepCounting ; if button presses are being simulated, don't count steps
@@ -1240,110 +1239,13 @@ IsSpriteInFrontOfPlayer2::
 	inc a
 	ld l, a ; hl = x#SPRITESTATEDATA1_MOVEMENTSTATUS
 	set BIT_FACE_PLAYER, [hl]
-; Megan follower (engine/events/megan_follower.asm) is a dynamically-injected
-; slot, not a real object_event -- there's no per-map dialogue entry for
-; her, so let her still turn to face the player above, but don't let
-; DisplayTextID try to read a stale/garbage text ID for her slot.
-	ld a, [wFollowerSpriteOffset]
-	and a
-	jr z, .notFollowerTalk
-	swap a
-	cp e
-	jr nz, .notFollowerTalk
-	xor a
-	ldh [hTextID], a
-	ret
-.notFollowerTalk
 	ld a, e
 	ldh [hTextID], a
-	ret
-
-; Megan follower (engine/events/megan_follower.asm) helper. Lives here (home
-; bank) rather than in that file's own floating bank so it can be reached
-; with a plain `call` from both banks -- a farcall's Bankswitch clobbers af
-; on the way back, which would lose the hl this returns.
-; Output: hl = her StateData2 struct base. Carry set (hl undefined) if no
-; follower is active on the current map.
-GetFollowerStateData2Ptr::
-	ld a, [wFollowerSpriteOffset]
-	and a
-	jr z, .none
-	ld l, a
-	ld h, HIGH(wSpritePlayerStateData2)
-	and a
-	ret
-.none
-	scf
 	ret
 
 ; function to check if the player will jump down a ledge and check if the tile ahead is passable (when not surfing)
 ; sets the carry flag if there is a collision, and unsets it if there isn't a collision
 CollisionCheckOnLand::
-; Megan follower swap-through (engine/events/megan_follower.asm): if she's
-; been blocking the exact tile the player is trying to walk into for a
-; while, let the player swap places with her instead of staying blocked
-; forever, so she can never trap the player in a tight space.
-	ld a, [wFollowerSpriteOffset]
-	and a
-	jr z, .clearFollowerBump
-	ld a, [wSpritePlayerStateData2MapY]
-	ld b, a
-	ld a, [wSpritePlayerStateData2MapX]
-	ld c, a
-	ld a, [wPlayerDirection]
-	cp PLAYER_DIR_UP
-	jr nz, .checkFollowerDown
-	dec b
-	jr .haveFollowerTarget
-.checkFollowerDown
-	cp PLAYER_DIR_DOWN
-	jr nz, .checkFollowerLeft
-	inc b
-	jr .haveFollowerTarget
-.checkFollowerLeft
-	cp PLAYER_DIR_LEFT
-	jr nz, .checkFollowerRight
-	dec c
-	jr .haveFollowerTarget
-.checkFollowerRight
-	inc c
-.haveFollowerTarget
-	call GetFollowerStateData2Ptr
-	ld a, l
-	add SPRITESTATEDATA2_MAPY
-	ld l, a
-	ld a, [hl] ; her MAPY
-	cp b
-	jr nz, .clearFollowerBump
-	inc l
-	ld a, [hl] ; her MAPX
-	cp c
-	jr nz, .clearFollowerBump
-; she's exactly blocking the target tile
-	ld hl, wFollowerBumpCount
-	ld a, [hl]
-	cp FOLLOWER_SWAP_THRESHOLD
-	jr nc, .doFollowerSwap
-	inc [hl]
-	jr .afterFollowerCheck
-.doFollowerSwap
-	xor a
-	ld [wFollowerBumpCount], a
-	call GetFollowerStateData2Ptr
-	ld a, l
-	add SPRITESTATEDATA2_MAPY
-	ld l, a
-	ld a, [wSpritePlayerStateData2MapY]
-	ld [hl], a
-	inc l
-	ld a, [wSpritePlayerStateData2MapX]
-	ld [hl], a
-	and a ; clear carry -- no collision, let the player walk through
-	ret
-.clearFollowerBump
-	xor a
-	ld [wFollowerBumpCount], a
-.afterFollowerCheck
 	ld a, [wMovementFlags]
 	bit BIT_LEDGE_OR_FISHING, a
 	jr nz, .noCollision
@@ -2447,9 +2349,7 @@ LoadMapData::
 	ld [wSpriteSetID], a
 	call LoadTextBoxTilePatterns
 	call LoadMapHeader
-	farcall TryAddMeganFollowerSprite ; inject her as an extra NPC slot before tile patterns load, if she's following (indoor maps only)
 	farcall InitMapSprites ; load tile pattern data for sprites
-	farcall TryShowMeganFollowerSprite ; make her visible immediately, once her IMAGEBASEOFFSET is valid
 	call LoadTileBlockMap
 	call LoadTilesetTilePatternData
 	call LoadCurrentMapView

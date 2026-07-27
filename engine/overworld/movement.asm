@@ -153,38 +153,6 @@ UpdateNPCSprite:
 	add $6
 	ld l, a
 	ld a, [hl]       ; x#SPRITESTATEDATA2_MOVEMENTBYTE1
-; Megan follower (engine/events/megan_follower.asm): if this slot is her
-; reserved slot, skip the normal STAY/WALK/scripted decision entirely and
-; either take the one queued step or do nothing -- her direction is always
-; chosen for her, never random, and she never uses scripted movement.
-	push af
-	ld a, [wFollowerSpriteOffset]
-	and a
-	jr z, .notFollowerSlot
-	ldh a, [hCurrentSpriteOffset]
-	ld b, a
-	ld a, [wFollowerSpriteOffset]
-	cp b
-	jr nz, .notFollowerSlot
-	pop af
-	ld a, [wFollowerPendingStep]
-	and a
-	ret z ; nothing queued -- stay put
-	push af ; GetTileSpriteStandsOn clobbers b (and everything else), so
-	        ; the pending direction has to survive on the stack, not in a register
-	xor a
-	ld [wFollowerPendingStep], a
-	call GetTileSpriteStandsOn ; hl = pointer to the tile she's standing on
-	pop af
-	cp FOLLOWER_STEP_DOWN
-	jp z, .moveDown
-	cp FOLLOWER_STEP_UP
-	jp z, .moveUp
-	cp FOLLOWER_STEP_LEFT
-	jp z, .moveLeft
-	jp .moveRight
-.notFollowerSlot
-	pop af
 	inc a
 	jr z, .randomMovement  ; value STAY
 	inc a
@@ -482,7 +450,7 @@ InitializeSpriteStatus:
 	ret
 
 ; calculates the sprite's screen position from its map position and the player position
-InitializeSpriteScreenPosition::
+InitializeSpriteScreenPosition:
 	ld h, HIGH(wSpriteStateData2)
 	ldh a, [hCurrentSpriteOffset]
 	add SPRITESTATEDATA2_MAPY
@@ -587,7 +555,7 @@ CheckSpriteAvailability:
 .done
 	ret
 
-UpdateSpriteImage::
+UpdateSpriteImage:
 	ld h, HIGH(wSpriteStateData1)
 	ldh a, [hCurrentSpriteOffset]
 	add $8
