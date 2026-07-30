@@ -600,7 +600,7 @@ SendSGBPackets:
 	push de
 	call InitCGBPalettes
 	pop hl
-	call EmptyFunc3
+	call ApplyCGBAttributes
 	ret
 .notCGB
 	push de
@@ -609,28 +609,285 @@ SendSGBPackets:
 	jp SendSGBPacket
 
 InitCGBPalettes:
-	ld a, $80 ; index 0 with auto-increment
-	ldh [rBGPI], a
-	inc hl
-	ld c, $20
-.loop
+; hl = a PAL_SET packet. Remembers which four SuperPalettes rows it selects,
+; then loads them as real Game Boy Color palettes.
+;
+; The vanilla version of this routine was a stub that wrote 32 stray bytes and
+; was unreachable anyway (RunPaletteCommand used to return early unless
+; [wOnSGB]), which is why the SGB palettes never showed up on a CGB.
+	push hl
+	inc hl ; skip the command byte
+	ld de, wCGBPalIndices
+	ld c, 4
+.copyIndices
 	ld a, [hli]
-	inc hl
-	add a
-	add a
-	add a
-	ld de, SuperPalettes
-	add e
-	jr nc, .noCarry
-	inc d
-.noCarry
-	ld a, [de]
-	ldh [rBGPD], a
+	inc hl ; PAL_SET stores each palette index as a word
+	ld [de], a
+	inc de
 	dec c
+	jr nz, .copyIndices
+	pop hl
+	; fallthrough
+
+ApplyCGBPalettes::
+; Rebuilds the four background palettes and both object palettes from
+; wCGBPalIndices, mapped through the shade values shadowed from rBGP/rOBP*.
+	ld a, $80 ; color 0, auto-increment
+	ldh [rBGPI], a
+	ld a, [wCGBShadowBGP]
+	ld b, a
+	ld hl, wCGBPalIndices
+	ld d, 4
+.bgLoop
+	ld a, [hli]
+	push hl
+	push bc
+	push de
+	ld c, LOW(rBGPD)
+	call WriteCGBPalette
+	pop de
+	pop bc
+	pop hl
+	dec d
+	jr nz, .bgLoop
+
+; Sprites always use the screen's main palette (index 0), the same one the SGB
+; code applies to the whole screen. Both object palettes are written because
+; OAM entries with no palette bits set land on object palette 0.
+	ld a, $80
+	ldh [rOBPI], a
+	ld a, [wCGBShadowOBP0]
+	ld b, a
+	ld a, [wCGBPalIndices]
+	ld c, LOW(rOBPD)
+	call WriteCGBPalette
+	ld a, [wCGBShadowOBP1]
+	ld b, a
+	ld a, [wCGBPalIndices]
+	ld c, LOW(rOBPD)
+	jp WriteCGBPalette
+
+WriteCGBPalette:
+; a = SuperPalettes row index
+; b = DMG shade mapping (two bits per color, low bits first)
+; c = LOW(rBGPD) or LOW(rOBPD)
+; Writes four BGR555 colors to the palette port at c.
+	ld e, a
+	ld a, [wColorScheme]
+	cp COLOR_SCHEME_NEON
+	ld hl, NeonPalette
+	jr z, .gotRow ; neon is one flat ramp shared by every palette
+	ld l, e
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, hl ; each row is 4 colors * 2 bytes
+	ld de, SuperPalettes
+	add hl, de
+.gotRow
+	ld d, 4 ; four colors per palette
+.colorLoop
+	ld a, b
+	and %11 ; which shade this color index maps to
+	srl b
+	srl b
+	add a ; two bytes per color
+	push hl
+	add l
+	ld l, a
+	jr nc, .noCarry
+	inc h
+.noCarry
+	ld a, [hli]
+	ldh [c], a
+	ld a, [hl]
+	ldh [c], a
+	pop hl
+	dec d
+	jr nz, .colorLoop
+	ret
+
+; The uniform ramp the neon color scheme paints everything in: what the DMG
+; would draw as white becomes red, and the three darker shades become bright
+; green, deep blue and black.
+NeonPalette:
+	RGB 31,02,06, 02,31,10, 01,05,22, 00,00,00
+
+ApplyCGBAttributes:
+; hl = an ATTR_BLK packet. Paints its regions into the background attribute map
+; so each area of the screen picks up the palette the SGB code assigned it.
+	ld a, [wOnCGB]
+	and a
+	ret z
+
+; ROM packets are constant, so re-applying an unchanged one would only cost a
+; blank frame (e.g. every time a battle HP bar changes color). Packets built in
+; WRAM can change without the pointer changing, so those are always applied.
+	ld a, h
+	cp $c0 ; is the packet built in WRAM rather than stored in ROM?
+	jr nc, .apply
+	ld a, [wCGBLastBlkPacket]
+	cp l
+	jr nz, .apply
+	ld a, [wCGBLastBlkPacket + 1]
+	cp h
+	ret z
+.apply
+	ld a, l
+	ld [wCGBLastBlkPacket], a
+	ld a, h
+	ld [wCGBLastBlkPacket + 1], a
+
+; VRAM is only safely writable with the LCD off. Every caller is changing what
+; is on screen anyway, and the fill takes a fraction of a frame.
+	ldh a, [rLCDC]
+	ld d, a
+	and LCDC_ON
+	jr z, .lcdAlreadyOff
+	push hl
+	push de
+	call DisableLCD
+	pop de
+	pop hl
+.lcdAlreadyOff
+	push de ; saved rLCDC
+
+	ld a, 1
+	ldh [rVBK], a ; the attribute map is in VRAM bank 1
+
+	inc hl ; skip the command byte
+	ld a, [hli]
+	and a
+	jr z, .done
+	ld b, a ; number of data sets
+.setLoop
+	push bc
+	ld a, [hli]
+	ld b, a ; control: which regions this set affects
+	ld a, [hli]
+	ld c, a ; palette numbers, two bits per region
+	bit 2, b ; does it repaint everything outside the block?
+	jr z, .noOutside
+	swap a
+	and %11
+	push hl
+	push bc
+	call FillCGBAttrMap
+	pop bc
+	pop hl
+.noOutside
+	ld a, b
+	and %011 ; does it paint the block itself or its border?
+	jr z, .skipRect
+	ld a, c
+	and %11
+	push af ; the block's palette
+	ld a, [hli]
+	ld b, a ; x1
+	ld a, [hli]
+	ld c, a ; y1
+	ld a, [hli]
+	ld d, a ; x2
+	ld a, [hli]
+	ld e, a ; y2
+	pop af
+	push hl
+	call FillCGBAttrRect
+	pop hl
+	jr .nextSet
+.skipRect
+	ld de, 4 ; step over the unused coordinates
+	add hl, de
+.nextSet
+	pop bc
+	dec b
+	jr nz, .setLoop
+.done
+	xor a
+	ldh [rVBK], a
+	pop af ; restore rLCDC as it was, LCD on or off
+	ldh [rLCDC], a
+	ret
+
+FillCGBAttrMap:
+; a = palette number. Fills both background attribute maps, so the palette
+; survives the overworld scrolling tiles in from off screen, and applies to the
+; window layer (vBGMap1) as well as the background.
+	ld d, a
+	ld hl, vBGMap0
+	ld bc, 2 * TILEMAP_AREA
+.loop
+	ld a, d
+	ld [hli], a
+	dec bc
+	ld a, b
+	or c
 	jr nz, .loop
 	ret
 
-EmptyFunc3:
+FillCGBAttrRect:
+; a = palette number, b = x1, c = y1, d = x2, e = y2 (inclusive, screen tiles).
+; Painted into both attribute maps for the same reason as FillCGBAttrMap.
+	push bc
+	push de
+	push af
+	ld hl, vBGMap0
+	call .fillOneMap
+	pop af
+	pop de
+	pop bc
+	push bc
+	push de
+	push af
+	ld hl, vBGMap1
+	call .fillOneMap
+	pop af
+	pop de
+	pop bc
+	ret
+
+.fillOneMap
+; hl = attribute map base, a = palette, b/c/d/e = x1/y1/x2/y2
+	push af
+; rows = y2 - y1 + 1
+	ld a, e
+	sub c
+	inc a
+	ld e, a
+; columns = x2 - x1 + 1
+	ld a, d
+	sub b
+	inc a
+	ld d, a
+; step down to row y1
+	ld a, c
+	and a
+	jr z, .gotRow
+.rowOffset
+	push de
+	ld de, TILEMAP_WIDTH
+	add hl, de
+	pop de
+	dec a
+	jr nz, .rowOffset
+.gotRow
+; then across to column x1
+	ld c, b
+	ld b, 0
+	add hl, bc
+	pop af
+.rowLoop
+	push hl
+	ld c, d ; columns
+.colLoop
+	ld [hli], a
+	dec c
+	jr nz, .colLoop
+	pop hl
+	ld bc, TILEMAP_WIDTH
+	add hl, bc
+	dec e
+	jr nz, .rowLoop
 	ret
 
 CopySGBBorderTiles:

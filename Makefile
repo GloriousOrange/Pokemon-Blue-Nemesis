@@ -55,6 +55,7 @@ RGBGFXFLAGS  ?= -Weverything
 	red \
 	blue \
 	blue_debug \
+	nemesis \
 	red_vc \
 	blue_vc \
 	clean \
@@ -68,6 +69,15 @@ blue:       pokeblue.gbc
 blue_debug: pokeblue_debug.gbc
 red_vc:     pokered.patch
 blue_vc:    pokeblue.patch
+
+# The build friends get: the same ROM as `make blue`, restamped with the Nemesis
+# cartridge title. Keep -c here -- it sets the CGB flag ($143 = $80), which is
+# what makes the color palettes work on a Game Boy Color and on phone emulators.
+# Without it rgbfix pads the title over that byte and the game falls back to
+# whatever colors the emulator invents.
+nemesis: pokeblue.gbc
+	cp pokeblue.gbc "PKMN Nemesis.gbc"
+	$(RGBFIX) -jsv -n 0 -k 01 -l 0x33 -m MBC3+RAM+BATTERY -r 03 -p 0x00 -c -t "PKMN NEMESIS" "PKMN Nemesis.gbc"
 
 clean: tidy
 	find gfx \
@@ -167,7 +177,7 @@ pokeblue_vc.gbc:    RGBLINKFLAGS += -p 0x00
 
 RGBFIXFLAGS += -jsv -n 0 -k 01 -l 0x33 -m MBC3+RAM+BATTERY -r 03
 pokered.gbc:        RGBFIXFLAGS += -p 0x00 -t "POKEMON RED"
-pokeblue.gbc:       RGBFIXFLAGS += -p 0x00 -t "POKEMON BLUE"
+pokeblue.gbc:       RGBFIXFLAGS += -p 0x00 -c -t "POKEMON BLUE"
 pokeblue_debug.gbc: RGBFIXFLAGS += -p 0xff -t "POKEMON BLUE"
 pokered_vc.gbc:     RGBFIXFLAGS += -p 0x00 -t "POKEMON RED"
 pokeblue_vc.gbc:    RGBFIXFLAGS += -p 0x00 -t "POKEMON BLUE"

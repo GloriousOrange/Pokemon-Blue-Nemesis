@@ -30,6 +30,13 @@ Init::
 
 	ld sp, wStack
 
+; _Start records whether we booted on a Game Boy Color, and this wipes all of
+; WRAM0, so carry the answer across in d (nothing below touches it). On a soft
+; reset WRAM still holds the value from the original boot, so this is correct
+; there too.
+	ld a, [wOnCGB]
+	ld d, a
+
 	ld hl, STARTOF(WRAM0)
 	ld bc, SIZEOF(WRAM0)
 .loop
@@ -39,6 +46,9 @@ Init::
 	ld a, b
 	or c
 	jr nz, .loop
+
+	ld a, d
+	ld [wOnCGB], a
 
 	call ClearVram
 

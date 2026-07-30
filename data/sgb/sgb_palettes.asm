@@ -1,21 +1,27 @@
 SuperPalettes:
 ; entries correspond to PAL_* constants
-; Restored to the original per-town/per-species vanilla Blue palette (see
-; commit d51c38d5, which had recolored every row to a uniform gold/sepia ramp
-; -- reverted per user request for a more diverse, colorful look).
+; Per-town/per-species vanilla Blue palettes (commit d51c38d5 recolored every row
+; to a uniform gold/sepia ramp; that was reverted for a more diverse, colorful
+; look), with one deliberate change: the shared third color of every town and
+; route row -- the slot the overworld tileset uses for water -- is a deep blue
+; instead of vanilla's pale sky blue, so water reads as deep water.
+;
+; These rows feed both the SGB packets and, on a Game Boy Color, the real
+; hardware palettes (see InitCGBPalettes in engine/gfx/palettes.asm). The neon
+; color scheme ignores this table entirely and uses NeonPalette instead.
 	table_width 2 * 4
-	RGB 31,29,31, 21,28,11, 20,26,31, 03,02,02 ; PAL_ROUTE
-	RGB 31,29,31, 25,28,27, 20,26,31, 03,02,02 ; PAL_PALLET
-	RGB 31,29,31, 17,26,03, 20,26,31, 03,02,02 ; PAL_VIRIDIAN
-	RGB 31,29,31, 23,25,16, 20,26,31, 03,02,02 ; PAL_PEWTER
-	RGB 31,29,31, 17,20,30, 20,26,31, 03,02,02 ; PAL_CERULEAN
-	RGB 31,29,31, 27,20,27, 20,26,31, 03,02,02 ; PAL_LAVENDER
-	RGB 31,29,31, 30,18,00, 20,26,31, 03,02,02 ; PAL_VERMILION
-	RGB 31,29,31, 16,30,22, 20,26,31, 03,02,02 ; PAL_CELADON
-	RGB 31,29,31, 31,15,22, 20,26,31, 03,02,02 ; PAL_FUCHSIA
-	RGB 31,29,31, 26,10,06, 20,26,31, 03,02,02 ; PAL_CINNABAR
-	RGB 31,29,31, 22,14,24, 20,26,31, 03,02,02 ; PAL_INDIGO
-	RGB 31,29,31, 27,27,03, 20,26,31, 03,02,02 ; PAL_SAFFRON
+	RGB 31,29,31, 21,28,11, 03,10,28, 03,02,02 ; PAL_ROUTE
+	RGB 31,29,31, 25,28,27, 03,10,28, 03,02,02 ; PAL_PALLET
+	RGB 31,29,31, 17,26,03, 03,10,28, 03,02,02 ; PAL_VIRIDIAN
+	RGB 31,29,31, 23,25,16, 03,10,28, 03,02,02 ; PAL_PEWTER
+	RGB 31,29,31, 17,20,30, 03,10,28, 03,02,02 ; PAL_CERULEAN
+	RGB 31,29,31, 27,20,27, 03,10,28, 03,02,02 ; PAL_LAVENDER
+	RGB 31,29,31, 30,18,00, 03,10,28, 03,02,02 ; PAL_VERMILION
+	RGB 31,29,31, 16,30,22, 03,10,28, 03,02,02 ; PAL_CELADON
+	RGB 31,29,31, 31,15,22, 03,10,28, 03,02,02 ; PAL_FUCHSIA
+	RGB 31,29,31, 26,10,06, 03,10,28, 03,02,02 ; PAL_CINNABAR
+	RGB 31,29,31, 22,14,24, 03,10,28, 03,02,02 ; PAL_INDIGO
+	RGB 31,29,31, 27,27,03, 03,10,28, 03,02,02 ; PAL_SAFFRON
 	RGB 31,29,31, 20,26,31, 17,23,10, 03,02,02 ; PAL_TOWNMAP
 IF DEF(_RED)
 	RGB 31,29,31, 30,30,17, 17,23,10, 21,00,04 ; PAL_LOGO1

@@ -4,7 +4,7 @@ _Start::
 	xor a
 	jr .ok
 .cgb
-	ld a, FALSE
+	ld a, TRUE ; vanilla hardcoded this to FALSE: it had no CGB palette support
 .ok
 	ld [wOnCGB], a
 	jp Init

@@ -462,8 +462,15 @@ DisplayOptionMenu:
 	hlcoord 1, 11
 	ld de, BattleStyleOptionText
 	call PlaceString
+	hlcoord 1, 15
+	ld de, ColorSchemeOptionText
+	call PlaceString
+	call PrintColorSchemeOption
 	hlcoord 2, 16
 	ld de, OptionMenuCancelText
+	call PlaceString
+	hlcoord 10, 16
+	ld de, ColorSchemeHintText
 	call PlaceString
 	xor a
 	ld [wCurrentMenuItem], a
@@ -487,6 +494,8 @@ DisplayOptionMenu:
 	call JoypadLowSensitivity
 	ldh a, [hJoy5]
 	ld b, a
+	bit B_PAD_SELECT, b ; select cycles the color scheme
+	jr nz, .toggleColorScheme
 	and ~PAD_SELECT ; any key besides select pressed?
 	jr z, .getJoypadStateLoop
 	bit B_PAD_B, b
@@ -503,6 +512,25 @@ DisplayOptionMenu:
 	ld a, SFX_PRESS_AB
 	call PlaySound
 	ret
+.toggleColorScheme
+	ld a, [wColorScheme]
+	inc a
+	cp NUM_COLOR_SCHEMES
+	jr c, .gotColorScheme
+	xor a
+.gotColorScheme
+	ld [wColorScheme], a
+	call PrintColorSchemeOption
+; Repaint from the palettes already selected for this screen, so the change is
+; visible immediately rather than at the next palette command.
+	ld a, [wOnCGB]
+	and a
+	jr z, .colorSchemeDone
+	farcall ApplyCGBPalettes
+.colorSchemeDone
+	ld a, SFX_PRESS_AB
+	call PlaySound
+	jp .loop
 .eraseOldMenuCursor
 	ld [wTopMenuItemX], a
 	call EraseMenuCursor
@@ -608,6 +636,28 @@ BattleStyleOptionText:
 
 OptionMenuCancelText:
 	db "CANCEL@"
+
+ColorSchemeOptionText:
+	db "COLOR@"
+
+ColorSchemeHintText:
+	db "SEL:COLOR@"
+
+; Both values are padded to the same width so switching leaves no leftovers.
+ColorSchemeDiverseText:
+	db "DIVERSE@"
+ColorSchemeNeonText:
+	db "NEON   @"
+
+PrintColorSchemeOption:
+	ld de, ColorSchemeDiverseText
+	ld a, [wColorScheme]
+	cp COLOR_SCHEME_NEON
+	jr nz, .gotText
+	ld de, ColorSchemeNeonText
+.gotText
+	hlcoord 8, 15
+	jp PlaceString
 
 ; sets the options variable according to the current placement of the menu cursors in the options menu
 SetOptionsFromCursorPositions:

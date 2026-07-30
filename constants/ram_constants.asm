@@ -35,6 +35,12 @@ DEF TEXT_DELAY_MASK EQU %111
 	const BIT_BATTLE_SHIFT     ; 6
 	const BIT_BATTLE_ANIMATION ; 7
 
+; wColorScheme
+	const_def
+	const COLOR_SCHEME_DIVERSE ; 0 ; per-town/per-species palettes (default)
+	const COLOR_SCHEME_NEON    ; 1 ; uniform high-contrast neon ramp
+DEF NUM_COLOR_SCHEMES EQU const_value
+
 DEF TEXT_DELAY_FAST   EQU %001 ; 1
 DEF TEXT_DELAY_MEDIUM EQU %011 ; 3
 DEF TEXT_DELAY_SLOW   EQU %101 ; 5

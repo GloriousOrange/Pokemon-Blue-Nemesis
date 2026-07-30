@@ -1044,7 +1044,7 @@ wScriptedNPCWalkCounter:: db
 
 	ds 1
 
-; always 0 since full CGB support was not implemented
+; nonzero when running on a Game Boy Color (set by _Start); drives the CGB palette engine
 wOnCGB:: db
 
 ; if running on SGB, it's 1, else it's 0
@@ -2093,7 +2093,12 @@ wLevelStoneTargetMon::      db   ; scratch: target party slot, re-armed each loo
 wOakRemarkStarterIndex::    db   ; scratch: StarterSpeciesTable index, saved before wPokedexNum is reused for the dex number
 wPostGameFlagsEnd::
 
-	ds 17 ; was ds 56; 39 bytes carved out above for wPostGameFlags
+; which color scheme the Game Boy Color palette engine uses
+; (COLOR_SCHEME_DIVERSE / COLOR_SCHEME_NEON, toggled on the OPTION screen).
+; Lives in Main Data so it is kept in the save file.
+wColorScheme:: db
+
+	ds 16 ; was ds 56; 40 bytes carved out above for wPostGameFlags and wColorScheme
 
 wObtainedHiddenItemsFlags:: flag_array MAX_HIDDEN_ITEMS
 
@@ -2295,6 +2300,29 @@ wSpeedtestExtraMonsGiven::  db
 wSpeedtestExtraMonsGiven2:: db ; ran out of bits in the first byte
 
 wMainDataEnd::
+
+
+SECTION "CGB Palette State", WRAM0
+
+; --- Game Boy Color palette engine state (engine/gfx/palettes.asm) ---
+; Not saved: all of it is rebuilt by the next palette command.
+
+; the four SuperPalettes rows selected by the most recent PAL_SET packet
+wCGBPalIndices:: ds 4
+
+; Shadow copies of the DMG palette registers. On CGB those registers do nothing,
+; so every write goes through SetGBPalShades, which records the shade mapping
+; here and rebuilds the real color palettes from it. This is what makes the
+; existing rBGP-based fades still fade on a Game Boy Color.
+wCGBShadowBGP::  db
+wCGBShadowOBP0:: db
+wCGBShadowOBP1:: db
+
+; the ATTR_BLK packet whose regions are currently painted into the attribute
+; map, so repeat palette commands (e.g. HP bar recolors) skip the VRAM work
+wCGBLastBlkPacket:: dw
+
+ENDSECTION
 
 
 SECTION "Current Box Data", WRAM0
