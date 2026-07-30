@@ -59,6 +59,41 @@ SetGBPalShades::
 	pop bc
 	ret
 
+SyncCGBPalettesToDMGRegs::
+; Called once a frame from VBlank. Plenty of code fades or flashes the screen by
+; writing rBGP/rOBP0/rOBP1 straight -- the intro, the credits, battle
+; transitions, move animations -- and none of it goes through SetGBPalShades.
+; Those registers do nothing at all on a Game Boy Color, so without this the
+; screen simply stops responding: the Game Freak intro stayed washed out and
+; battle flashes never flashed. Catch such a write on the frame it happens and
+; rebuild the real palettes from the same shade mapping.
+;
+; Sits after the VRAM transfers in VBlank, so a rebuild never delays them, and
+; costs about a dozen cycles on the frames where nothing changed.
+	ld a, [wOnCGB]
+	and a
+	ret z
+	ldh a, [rBGP]
+	ld hl, wCGBShadowBGP
+	cp [hl]
+	jr nz, .rebuild
+	ldh a, [rOBP0]
+	ld hl, wCGBShadowOBP0
+	cp [hl]
+	jr nz, .rebuild
+	ldh a, [rOBP1]
+	ld hl, wCGBShadowOBP1
+	cp [hl]
+	ret z
+.rebuild
+	ldh a, [rBGP]
+	ld [wCGBShadowBGP], a
+	ldh a, [rOBP0]
+	ld [wCGBShadowOBP0], a
+	ldh a, [rOBP1]
+	ld [wCGBShadowOBP1], a
+	farjp ApplyCGBPalettes
+
 RunDefaultPaletteCommand::
 	ld b, SET_PAL_DEFAULT
 RunPaletteCommand::

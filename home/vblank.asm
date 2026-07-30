@@ -27,6 +27,7 @@ VBlank::
 	call VBlankCopyDouble
 	call UpdateMovingBgTiles
 	call hDMARoutine
+	call SyncCGBPalettesToDMGRegs
 	ld a, BANK(PrepareOAMData)
 	ldh [hLoadedROMBank], a
 	ld [rROMB], a
