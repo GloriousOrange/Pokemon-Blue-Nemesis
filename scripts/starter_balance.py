@@ -5,7 +5,7 @@ Nemesis solo-run viability: rank pickable starters by early-game damage output.
 Two separate questions, kept apart on purpose:
   1. RAW OFFENCE  - expected damage vs a neutral L5 Rattata (no type luck either
      way), i.e. "does this thing have a decent move at all".
-  2. THE FIRST GATE - can it actually beat Megan's L2 Slowpoke on Route 1,
+  2. THE FIRST GATE - can it actually beat Megan's Route 1 Slowpoke,
      including who moves first.
 
 Model: DV 8 both sides, no stat exp, no crits, STAB 1.5x, real type chart,
@@ -134,6 +134,16 @@ def best(ac, al, dc, dl, moves):
     return b, bd
 
 
+# Megan's Route 1 level, read from her party data so this tracks balance changes
+MEGAN_LEVEL = 1
+for line in open(f"{BASE}/data/trainers/parties.asm"):
+    m = re.match(r"MeganData:", line)
+    if m:
+        MEGAN_LEVEL = None
+    elif MEGAN_LEVEL is None:
+        m = re.match(r"\s*db\s+(\d+),", line)
+        MEGAN_LEVEL = int(m.group(1)) if m else 1
+
 starters = []
 grab = False
 for line in open(f"{BASE}/scripts/OaksLab.asm"):
@@ -160,12 +170,12 @@ for s in starters:
              power=eff_power(nb) if nb else 0)
 
     # 2. the Megan gate, with turn order
-    shp, ohp = stat(mon(s)["hp"], 5, hp=True), stat(mon("SLOWPOKE")["hp"], 2, hp=True)
-    _, mydmg = best(sp5, 5, "SLOWPOKE", 2, mv5)
-    _, theirdmg = best("SLOWPOKE", 2, sp5, 5, mon("SLOWPOKE")["moves"])
+    shp, ohp = stat(mon(s)["hp"], 5, hp=True), stat(mon("SLOWPOKE")["hp"], MEGAN_LEVEL, hp=True)
+    _, mydmg = best(sp5, 5, "SLOWPOKE", MEGAN_LEVEL, mv5)
+    _, theirdmg = best("SLOWPOKE", MEGAN_LEVEL, sp5, 5, mon("SLOWPOKE")["moves"])
     my_turns = math.inf if mydmg <= 0 else math.ceil(ohp / mydmg)
     their_turns = math.inf if theirdmg <= 0 else math.ceil(shp / theirdmg)
-    faster = stat(mon(s)["spd"], 5) >= stat(mon("SLOWPOKE")["spd"], 2)
+    faster = stat(mon(s)["spd"], 5) >= stat(mon("SLOWPOKE")["spd"], MEGAN_LEVEL)
     win = my_turns <= their_turns if faster else my_turns < their_turns
     r.update(my_turns=my_turns, their_turns=their_turns, faster=faster, win=win)
 
@@ -195,7 +205,7 @@ rows.sort(key=lambda r: r["neutral_dmg"])
 
 print(f"{len(rows)} starters, sorted by raw damage vs a neutral L5 Rattata\n")
 print(f"{'starter':13} {'types':11} {'best move L5':14} {'pow':>3} {'dmg':>5} "
-      f"{'Megan L2 Slowpoke':>19} {'next own move':>20} {'evo':>4}")
+      f"{'Megan Route 1':>19} {'next own move':>20} {'evo':>4}")
 print("-" * 100)
 for r in rows:
     gate = ("WINS " if r["win"] else "LOSES") + \
@@ -218,5 +228,5 @@ for r in rows:
               f"next own move: {('L'+str(r['up_lv'])+' '+r['up_mv']) if r['up_mv'] else 'none by L30'}"
               f"   (evo L{r['evo_lv']})" if r["evo_lv"] else "")
 
-print("\n=== loses the Megan fight at L5 ===")
+print(f"\n=== loses the Megan fight at L5 (her Slowpoke is L{MEGAN_LEVEL}) ===")
 print("  " + ", ".join(r["name"] for r in rows if not r["win"]))
