@@ -2110,16 +2110,22 @@ wMeganTrainedFlags:: ds 2
 ; way the Apex Mart floors share theirs; only one can be on screen at a time.
 wMeganSparCurScript:: db
 
-; Queue position for the Game Boy Color palette rebuild: 0 when idle, otherwise
-; 1 + the palette VBlank should write next (1-4 = background palettes 0-3,
-; 5 and 6 = the two object palettes). Palette RAM is only writable outside LCD
-; mode 3, so the work is handed to VBlank a palette at a time rather than done
-; wherever the palette happens to change.
+; Palette RAM is only writable outside LCD mode 3, so a Game Boy Color palette
+; can only safely reach the hardware during VBlank -- where very little room is
+; left once the tilemap transfers have run. So the colors are worked out into
+; wCGBPalBuffer first (plain WRAM, safe to compute at any time) and VBlank only
+; has to copy the eight bytes across.
+;
+; wCGBPalSync is 0 when the buffer holds nothing to write, otherwise 1 + the
+; palette it holds: 1-5 are background palettes 0-4 (4 being water's own), 6 and
+; 7 the two object palettes. wCGBPalNextToPrepare is how far the rebuild has got.
+wCGBPalBuffer:: ds 8
 wCGBPalSync:: db
+wCGBPalNextToPrepare:: db
 
 ; Keep this slack in step with the bytes carved out above: shrinking Main Data by
 ; even one byte shifts every section after it and invalidates existing saves.
-	ds 12 ; was ds 56; 44 bytes carved out above for wPostGameFlags, wColorScheme, wMeganTrainedFlags, wMeganSparCurScript and wCGBPalSync
+	ds 3 ; was ds 56; 53 bytes carved out above for wPostGameFlags, wColorScheme, wMeganTrainedFlags, wMeganSparCurScript and the CGB palette queue
 
 wObtainedHiddenItemsFlags:: flag_array MAX_HIDDEN_ITEMS
 

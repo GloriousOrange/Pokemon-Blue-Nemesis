@@ -48,6 +48,17 @@ RedrawRowOrColumn::
 	ldh a, [hRedrawRowOrColumnMode]
 	and a
 	ret z
+	push af ; the mode, which .drawTiles clears as it consumes it
+	call .drawTiles
+	pop bc ; b = the mode again
+	ld a, [wOnCGB]
+	and a
+	ret z
+	ld d, b ; farcall wants b for the bank, so hand the mode over in d
+	farjp MarkRedrawnAttributes ; give any water that scrolled in its own palette
+
+.drawTiles
+	ldh a, [hRedrawRowOrColumnMode]
 	ld b, a
 	xor a
 	ldh [hRedrawRowOrColumnMode], a

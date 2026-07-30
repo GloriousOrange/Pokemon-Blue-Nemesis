@@ -2375,6 +2375,9 @@ LoadMapData::
 	jr nz, .vramCopyLoop
 	ld a, $01
 	ld [wUpdateSpritesEnabled], a
+; the map view is in VRAM and the screen is still off, so this is the cheap
+; moment to give every water tile its own palette
+	farcall MarkWaterAttributes
 	call EnableLCD
 	ld b, SET_PAL_OVERWORLD
 	call RunPaletteCommand

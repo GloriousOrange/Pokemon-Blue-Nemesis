@@ -630,100 +630,119 @@ InitCGBPalettes:
 	; fallthrough
 
 ApplyCGBPalettes::
-; Ask for the four background palettes and both object palettes to be rebuilt
-; from wCGBPalIndices, mapped through the shade values shadowed from rBGP/rOBP*.
+; Ask for the whole set to be rebuilt from wCGBPalIndices, mapped through the
+; shade values shadowed from rBGP/rOBP*.
 ;
-; The rebuild itself does NOT happen here unless the LCD is off. Palette RAM is
-; unwritable during LCD mode 3, so writing it from whatever code happened to
-; change a palette meant colors were dropped at random -- which is what left
-; menu text unreadable every other time it was opened. With the screen on the
-; job is queued for VBlank instead, which is the only place the write is
-; guaranteed to land.
-	ld a, 1
+; With the screen on, none of it happens here. Palette RAM is unwritable during
+; LCD mode 3, so writing it from whatever code happened to change a palette
+; dropped colors at random -- which is what left menu text unreadable every other
+; time it was opened. The colors are worked out into wCGBPalBuffer instead, and
+; VBlank copies them across a palette per frame. With the screen off there is
+; nothing to wait for, so the whole set goes out on the spot.
+	xor a
 	ld [wCGBPalSync], a
+	ld [wCGBPalNextToPrepare], a
+	call PrepareNextCGBPalette
 	ldh a, [rLCDC]
 	and LCDC_ON
 	ret nz
-; screen off: palette RAM is free, so do the lot now and skip the wait
 .allAtOnce
-	call ApplyNextCGBPalette
+	call BlitQueuedCGBPalette
+	call PrepareNextCGBPalette
 	ld a, [wCGBPalSync]
 	and a
 	jr nz, .allAtOnce
 	ret
 
-ApplyCGBPalettesInVBlank::
-; Work through the queue for as long as this frame's VBlank has room. Walking
-; the whole queue in one go costs about eight scanlines, which VBlank does not
-; have to spare once the tilemap transfers have run -- and overrunning it means
-; the game's own VRAM writes start landing during rendering, which showed up as
-; distorted sprites.
-.loop
-	ldh a, [rLY]
-	sub 144 ; VBlank runs from line 144 to line 153, and one palette takes a bit
-	cp 153 - 144 ; over a line, so line 153 is too late to start another
-	ret nc ; (a plain `cp 153` would read the wrap to line 0 as time to spare)
-	call ApplyNextCGBPalette
-	ld a, [wCGBPalSync]
-	and a
-	jr nz, .loop
-	ret
-
-ApplyNextCGBPalette:
-; Writes one palette and advances the queue, wrapping to idle after the last.
+BlitQueuedCGBPalette::
+; Copies the eight bytes in the buffer into the palette the queue named, then
+; empties the buffer. This runs at the top of VBlank, where eight byte writes
+; always fit. Working a palette out in place instead cost over a scanline, and
+; on screens whose tilemap transfers run to the end of VBlank there was never
+; room for it -- so the queue stalled and a palette change never appeared at all.
 	ld a, [wCGBPalSync]
 	and a
 	ret z
 	dec a
-	ld e, a ; e = which palette, 0-5
 	cp 5
-	ld a, 0 ; `ld` leaves the comparison's flags alone
-	jr z, .storeNext
-	ld a, e
-	add 2
-.storeNext
-	ld [wCGBPalSync], a
-
-	ld a, e
-	cp 4
 	jr nc, .objectPalette
-; background palette e, from its own row
 	add a
 	add a
 	add a
 	or $80 ; color 0 of that palette, auto-incrementing
 	ldh [rBGPI], a
+	ld c, LOW(rBGPD)
+	jr .copy
+.objectPalette
+	sub 5
+	add a
+	add a
+	add a
+	or $80
+	ldh [rOBPI], a
+	ld c, LOW(rOBPD)
+.copy
+	ld hl, wCGBPalBuffer
+	REPT 2 * 4
+	ld a, [hli]
+	ldh [c], a
+	ENDR
+	xor a
+	ld [wCGBPalSync], a
+	ret
+
+PrepareNextCGBPalette::
+; Works out the next palette's eight bytes into the buffer. This only touches
+; WRAM, so it is safe to run past the end of VBlank -- which is why it is done
+; after the tilemap transfers rather than ahead of them.
+	ld a, [wCGBPalSync]
+	and a
+	ret nz ; the buffer still holds one that has not been written yet
+	ld a, [wCGBPalNextToPrepare]
+	cp NUM_CGB_PALETTES
+	ret nc ; the whole set has been through
+	ld e, a
+	inc a
+	ld [wCGBPalNextToPrepare], a
+	ld a, e
+	inc a
+	ld [wCGBPalSync], a
+
+	ld a, e
+	cp 4
+	jr z, .waterPalette
+	jr nc, .objectPalette
+; background palette e, from its own row
 	ld hl, wCGBPalIndices
 	ld d, 0
 	add hl, de
 	ld a, [wCGBShadowBGP]
 	ld b, a
 	ld a, [hl] ; row index
-	ld c, LOW(rBGPD)
 	jp WriteCGBPalette
+
+.waterPalette
+; Background palette 4, which the attribute map hands to water tiles only.
+	ld a, [wCGBShadowBGP]
+	ld b, a
+	ld a, [wCGBPalIndices] ; the map's own row, deepened
+	jp WriteCGBWaterPalette
 
 .objectPalette
 ; Sprites get their own palette rather than the screen's. Sharing the screen's
 ; row is what an SGB does, but there the whole picture is tinted the same way;
 ; here it made an NPC's body take the map's accent colour -- on a route, sprite
 ; bodies came out white with grass-green shading and vanished into the grass,
-; leaving only their black outlines readable. Both object palettes are written
+; leaving only their black outlines readable. Both object palettes are prepared
 ; because OAM entries with no palette bits set land on object palette 0.
-	sub 4
-	add a
-	add a
-	add a
-	or $80
-	ldh [rOBPI], a
 	ld a, e
-	cp 4
+	cp 5
 	ld a, [wCGBShadowOBP0]
 	jr z, .gotShades
 	ld a, [wCGBShadowOBP1]
 .gotShades
 	ld b, a
 	call GetSpritePaletteRow
-	ld c, LOW(rOBPD)
 	jp WriteCGBPaletteAt
 
 GetSpritePaletteRow:
@@ -753,8 +772,9 @@ WriteCGBPalette:
 	ld de, SuperPalettes
 	add hl, de
 WriteCGBPaletteAt:
-; hl = four BGR555 colors, b = shade mapping, c = palette port
-	ld d, 4 ; four colors per palette
+; hl = four BGR555 colors, b = shade mapping. Fills wCGBPalBuffer.
+	ld de, wCGBPalBuffer
+	ld c, 4 ; four colors per palette
 .colorLoop
 	ld a, b
 	and %11 ; which shade this color index maps to
@@ -768,13 +788,79 @@ WriteCGBPaletteAt:
 	inc h
 .noCarry
 	ld a, [hli]
-	ldh [c], a
+	ld [de], a
+	inc de
 	ld a, [hl]
-	ldh [c], a
+	ld [de], a
+	inc de
 	pop hl
-	dec d
+	dec c
 	jr nz, .colorLoop
 	ret
+
+WriteCGBWaterPalette:
+; As WriteCGBPalette, but whatever the row puts in shade 2 comes out deep blue.
+; That slot is shared by water, tree shading and the flowers on the path, so
+; deepening it in the row itself turned the flowers vivid and the trees navy;
+; deepening it here affects only the tiles the attribute map sends to this
+; palette. Fades still work, because the shade mapping is still what picks the
+; colors -- water goes dark with everything else.
+	ld e, a
+	ld a, [wColorScheme]
+	cp COLOR_SCHEME_NEON
+	ld hl, NeonPalette
+	jr z, WriteCGBPaletteAt ; neon is one flat ramp, already blue in shade 2
+	ld l, e
+	ld h, 0
+	add hl, hl
+	add hl, hl
+	add hl, hl
+	ld de, SuperPalettes
+	add hl, de
+	ld de, wCGBPalBuffer
+	ld c, 4
+.colorLoop
+	ld a, b
+	and %11
+	srl b
+	srl b
+	cp 2
+	jr z, .deepWater
+	add a
+	push hl
+	add l
+	ld l, a
+	jr nc, .noCarry
+	inc h
+.noCarry
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ld a, [hl]
+	ld [de], a
+	inc de
+	pop hl
+	jr .nextColor
+.deepWater
+	ld a, LOW(DEEP_WATER)
+	ld [de], a
+	inc de
+	ld a, HIGH(DEEP_WATER)
+	ld [de], a
+	inc de
+.nextColor
+	dec c
+	jr nz, .colorLoop
+	ret
+
+
+; The background palette water gets to itself, and the color it puts wherever the
+; map's row would have used shade 2. Palettes 0-3 are the ones the SGB packets
+; assign to screen regions, so 4 is free for tile-driven use.
+DEF WATER_PAL EQU 4
+; four background palettes, water's own, and the two object palettes
+DEF NUM_CGB_PALETTES EQU 7
+DEF DEEP_WATER EQU palred 03 + palgreen 10 + palblue 28
 
 ; People, not scenery: a warm neutral ramp so a sprite reads the same against
 ; grass, sand, cave floor or a shop tile. Shade 0 is the large flat areas
@@ -879,10 +965,138 @@ ApplyCGBAttributes:
 	dec b
 	jr nz, .setLoop
 .done
+	call MarkWaterAttributes ; the region fills above flatten it, so redo it here
 	xor a
 	ldh [rVBK], a
 	pop af ; restore rLCDC as it was, LCD on or off
 	ldh [rLCDC], a
+	ret
+
+MarkWaterAttributes::
+; Hand every water tile on the map background palette 4, so water can be deep
+; blue while the tree shading and path flowers that share its color slot in the
+; palette rows stay pale.
+;
+; Only tilesets that animate their water use tile $14 for it -- indoors that
+; tile is something else entirely, so the whole pass is skipped there.
+;
+; Must be called with the LCD off: it walks the whole 32x32 map, switching VRAM
+; banks per tile, which is far too slow for a VBlank. Scrolling is kept up to
+; date by MarkRedrawnAttributes instead.
+	ld a, [wOnCGB]
+	and a
+	ret z ; on a DMG rVBK does nothing, so this would write over the tiles
+	ldh a, [hTileAnimations]
+	and a
+	ret z
+	ld hl, vBGMap0
+	ld bc, TILEMAP_AREA
+.loop
+	xor a
+	ldh [rVBK], a
+	ld a, [hl]
+	cp $14 ; the water tile
+	ld a, 0 ; `ld` leaves the comparison's flags alone
+	jr nz, .notWater
+	ld a, WATER_PAL
+.notWater
+; every cell is written, not just the water: the previous map's shoreline would
+; otherwise leave palette 4 behind on cells that are dry land here
+	ld e, a
+	ld a, 1
+	ldh [rVBK], a
+	ld a, e
+	ld [hl], a
+	inc hl
+	dec bc
+	ld a, b
+	or c
+	jr nz, .loop
+	ret
+
+MarkRedrawnAttributes::
+; d = the row/column mode RedrawRowOrColumn just handled. Mirrors the tiles it
+; wrote into the attribute map, so water scrolling in from off screen arrives
+; with its own palette. Runs in VBlank, but only on the frames where a new row
+; or column actually appeared -- a few percent of them, since one covers two
+; tiles of walking.
+	ld a, [wOnCGB]
+	and a
+	ret z
+	ldh a, [hTileAnimations]
+	and a
+	ret z
+	ld b, d ; before de becomes the destination pointer
+	ld a, 1
+	ldh [rVBK], a
+	ld hl, wRedrawRowOrColumnSrcTiles
+	ldh a, [hRedrawRowOrColumnDest]
+	ld e, a
+	ldh a, [hRedrawRowOrColumnDest + 1]
+	ld d, a
+	dec b
+	jr nz, .row
+.column
+	ld c, SCREEN_HEIGHT
+.columnLoop
+	call .writeAttr
+	inc de
+	call .writeAttr
+	ld a, TILEMAP_WIDTH - 1
+	add e
+	ld e, a
+	jr nc, .noCarry
+	inc d
+.noCarry
+; wrap from the bottom of the map back to the top, as the tile pass does
+	ld a, d
+	and HIGH(TILEMAP_AREA - 1)
+	or HIGH(vBGMap0)
+	ld d, a
+	dec c
+	jr nz, .columnLoop
+	jr .finish
+.row
+	push de
+	call .rowHalf ; upper half
+	pop de
+	ld a, TILEMAP_WIDTH
+	add e
+	ld e, a
+	call .rowHalf ; lower half
+.finish
+	xor a
+	ldh [rVBK], a
+	ret
+
+.rowHalf
+	ld c, SCREEN_WIDTH / 2
+.rowLoop
+	call .writeAttr
+	inc de
+	call .writeAttr
+; wrap from the right edge back to the left, as the tile pass does
+	ld a, e
+	inc a
+	and %11111
+	ld b, a
+	ld a, e
+	and %11100000
+	or b
+	ld e, a
+	dec c
+	jr nz, .rowLoop
+	ret
+
+.writeAttr
+; hl = next source tile, de = where it went. Leaves de alone.
+	ld a, [hli]
+	cp $14
+	ld a, 0 ; `ld` leaves the comparison's flags alone
+	jr nz, .plain
+	ld a, WATER_PAL
+.plain
+	ld [de], a
 	ret
 
 FillCGBAttrMap:

@@ -20,6 +20,8 @@ VBlank::
 	ldh [rWY], a
 .ok
 
+	call SyncCGBPalettesToDMGRegs ; one palette, before the transfers eat VBlank
+
 	call AutoBgMapTransfer
 	call VBlankCopyBgMap
 	call RedrawRowOrColumn
@@ -27,7 +29,7 @@ VBlank::
 	call VBlankCopyDouble
 	call UpdateMovingBgTiles
 	call hDMARoutine
-	call SyncCGBPalettesToDMGRegs
+	call ServeCGBPaletteQueue ; and the rest of them, if the frame has room
 	ld a, BANK(PrepareOAMData)
 	ldh [hLoadedROMBank], a
 	ld [rROMB], a

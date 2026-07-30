@@ -40,12 +40,29 @@ SetGBPalShades::
 ; those registers do nothing at all.
 	ld a, b
 	ldh [rBGP], a
-	ld [wCGBShadowBGP], a
 	ld a, c
 	ldh [rOBP0], a
-	ld [wCGBShadowOBP0], a
 	ld a, d
 	ldh [rOBP1], a
+; Only queue a color rebuild when the shades actually moved. The overworld loop
+; calls LoadGBPal every single frame with the same values, and queueing on each
+; one left VBlank rebuilding palettes forever, using up the room the tilemap
+; transfers need.
+	ld a, [wCGBShadowBGP]
+	cp b
+	jr nz, .changed
+	ld a, [wCGBShadowOBP0]
+	cp c
+	jr nz, .changed
+	ld a, [wCGBShadowOBP1]
+	cp d
+	ret z
+.changed
+	ld a, b
+	ld [wCGBShadowBGP], a
+	ld a, c
+	ld [wCGBShadowOBP0], a
+	ld a, d
 	ld [wCGBShadowOBP1], a
 	ld a, [wOnCGB]
 	and a
@@ -60,18 +77,29 @@ SetGBPalShades::
 	ret
 
 SyncCGBPalettesToDMGRegs::
-; Called once a frame from VBlank. Plenty of code fades or flashes the screen by
-; writing rBGP/rOBP0/rOBP1 straight -- the intro, the credits, battle
-; transitions, move animations -- and none of it goes through SetGBPalShades.
-; Those registers do nothing at all on a Game Boy Color, so without this the
-; screen simply stops responding: the Game Freak intro stayed washed out and
-; battle flashes never flashed. Catch such a write on the frame it happens and
-; rebuild the real palettes from the same shade mapping.
+; Top of VBlank: hand the hardware whatever colors are waiting in the buffer.
+; Palette RAM is only writable outside LCD mode 3, and this is the one point in
+; the frame with room to spare -- the tilemap transfers below run VBlank right
+; down to its last line.
+	ld a, [wOnCGB]
+	and a
+	ret z
+	ld a, [wCGBPalSync]
+	and a
+	ret z
+	farjp BlitQueuedCGBPalette
+
+ServeCGBPaletteQueue::
+; End of VBlank: notice anything that changed the DMG palette registers behind
+; our back, and work out the next palette's colors ready for the next frame.
 ;
-; Sits after the VRAM transfers in VBlank and costs about a dozen cycles on the
-; frames where nothing changed. VBlank is also the only place palette RAM is
-; reliably writable, so this is where the queued rebuild gets served -- a
-; palette at a time, for as long as the frame has room.
+; Plenty of code fades or flashes the screen by writing rBGP/rOBP0/rOBP1 straight
+; -- the intro, the credits, battle transitions, move animations -- and none of
+; it goes through SetGBPalShades. Those registers do nothing at all on a Game Boy
+; Color, so without this the screen simply stops responding: the Game Freak intro
+; stayed washed out and battle flashes never flashed.
+;
+; Only WRAM is touched here, so running past the end of VBlank costs nothing.
 	ld a, [wOnCGB]
 	and a
 	ret z
@@ -86,7 +114,7 @@ SyncCGBPalettesToDMGRegs::
 	ldh a, [rOBP1]
 	ld hl, wCGBShadowOBP1
 	cp [hl]
-	jr z, .serveQueue
+	jr z, .prepare
 .changed
 	ldh a, [rBGP]
 	ld [wCGBShadowBGP], a
@@ -94,13 +122,11 @@ SyncCGBPalettesToDMGRegs::
 	ld [wCGBShadowOBP0], a
 	ldh a, [rOBP1]
 	ld [wCGBShadowOBP1], a
-	ld a, 1
+	xor a ; start the rebuild over with the new shades
 	ld [wCGBPalSync], a
-.serveQueue
-	ld a, [wCGBPalSync]
-	and a
-	ret z
-	farjp ApplyCGBPalettesInVBlank
+	ld [wCGBPalNextToPrepare], a
+.prepare
+	farjp PrepareNextCGBPalette
 
 RunDefaultPaletteCommand::
 	ld b, SET_PAL_DEFAULT
