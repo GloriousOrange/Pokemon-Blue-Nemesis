@@ -68,31 +68,39 @@ SyncCGBPalettesToDMGRegs::
 ; battle flashes never flashed. Catch such a write on the frame it happens and
 ; rebuild the real palettes from the same shade mapping.
 ;
-; Sits after the VRAM transfers in VBlank, so a rebuild never delays them, and
-; costs about a dozen cycles on the frames where nothing changed.
+; Sits after the VRAM transfers in VBlank and costs about a dozen cycles on the
+; frames where nothing changed. VBlank is also the only place palette RAM is
+; reliably writable, so this is where the queued rebuild gets served -- a
+; palette at a time, for as long as the frame has room.
 	ld a, [wOnCGB]
 	and a
 	ret z
 	ldh a, [rBGP]
 	ld hl, wCGBShadowBGP
 	cp [hl]
-	jr nz, .rebuild
+	jr nz, .changed
 	ldh a, [rOBP0]
 	ld hl, wCGBShadowOBP0
 	cp [hl]
-	jr nz, .rebuild
+	jr nz, .changed
 	ldh a, [rOBP1]
 	ld hl, wCGBShadowOBP1
 	cp [hl]
-	ret z
-.rebuild
+	jr z, .serveQueue
+.changed
 	ldh a, [rBGP]
 	ld [wCGBShadowBGP], a
 	ldh a, [rOBP0]
 	ld [wCGBShadowOBP0], a
 	ldh a, [rOBP1]
 	ld [wCGBShadowOBP1], a
-	farjp ApplyCGBPalettes
+	ld a, 1
+	ld [wCGBPalSync], a
+.serveQueue
+	ld a, [wCGBPalSync]
+	and a
+	ret z
+	farjp ApplyCGBPalettesInVBlank
 
 RunDefaultPaletteCommand::
 	ld b, SET_PAL_DEFAULT

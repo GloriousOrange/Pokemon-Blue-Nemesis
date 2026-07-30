@@ -630,41 +630,97 @@ InitCGBPalettes:
 	; fallthrough
 
 ApplyCGBPalettes::
-; Rebuilds the four background palettes and both object palettes from
-; wCGBPalIndices, mapped through the shade values shadowed from rBGP/rOBP*.
-	ld a, $80 ; color 0, auto-increment
+; Ask for the four background palettes and both object palettes to be rebuilt
+; from wCGBPalIndices, mapped through the shade values shadowed from rBGP/rOBP*.
+;
+; The rebuild itself does NOT happen here unless the LCD is off. Palette RAM is
+; unwritable during LCD mode 3, so writing it from whatever code happened to
+; change a palette meant colors were dropped at random -- which is what left
+; menu text unreadable every other time it was opened. With the screen on the
+; job is queued for VBlank instead, which is the only place the write is
+; guaranteed to land.
+	ld a, 1
+	ld [wCGBPalSync], a
+	ldh a, [rLCDC]
+	and LCDC_ON
+	ret nz
+; screen off: palette RAM is free, so do the lot now and skip the wait
+.allAtOnce
+	call ApplyNextCGBPalette
+	ld a, [wCGBPalSync]
+	and a
+	jr nz, .allAtOnce
+	ret
+
+ApplyCGBPalettesInVBlank::
+; Work through the queue for as long as this frame's VBlank has room. Walking
+; the whole queue in one go costs about eight scanlines, which VBlank does not
+; have to spare once the tilemap transfers have run -- and overrunning it means
+; the game's own VRAM writes start landing during rendering, which showed up as
+; distorted sprites.
+.loop
+	ldh a, [rLY]
+	sub 144 ; VBlank runs from line 144 to line 153, and one palette takes a bit
+	cp 153 - 144 ; over a line, so line 153 is too late to start another
+	ret nc ; (a plain `cp 153` would read the wrap to line 0 as time to spare)
+	call ApplyNextCGBPalette
+	ld a, [wCGBPalSync]
+	and a
+	jr nz, .loop
+	ret
+
+ApplyNextCGBPalette:
+; Writes one palette and advances the queue, wrapping to idle after the last.
+	ld a, [wCGBPalSync]
+	and a
+	ret z
+	dec a
+	ld e, a ; e = which palette, 0-5
+	cp 5
+	ld a, 0 ; `ld` leaves the comparison's flags alone
+	jr z, .storeNext
+	ld a, e
+	add 2
+.storeNext
+	ld [wCGBPalSync], a
+
+	ld a, e
+	cp 4
+	jr nc, .objectPalette
+; background palette e, from its own row
+	add a
+	add a
+	add a
+	or $80 ; color 0 of that palette, auto-incrementing
 	ldh [rBGPI], a
+	ld hl, wCGBPalIndices
+	ld d, 0
+	add hl, de
 	ld a, [wCGBShadowBGP]
 	ld b, a
-	ld hl, wCGBPalIndices
-	ld d, 4
-.bgLoop
-	ld a, [hli]
-	push hl
-	push bc
-	push de
+	ld a, [hl] ; row index
 	ld c, LOW(rBGPD)
-	call WriteCGBPalette
-	pop de
-	pop bc
-	pop hl
-	dec d
-	jr nz, .bgLoop
+	jp WriteCGBPalette
 
+.objectPalette
 ; Sprites get their own palette rather than the screen's. Sharing the screen's
 ; row is what an SGB does, but there the whole picture is tinted the same way;
 ; here it made an NPC's body take the map's accent colour -- on a route, sprite
 ; bodies came out white with grass-green shading and vanished into the grass,
 ; leaving only their black outlines readable. Both object palettes are written
 ; because OAM entries with no palette bits set land on object palette 0.
-	ld a, $80
+	sub 4
+	add a
+	add a
+	add a
+	or $80
 	ldh [rOBPI], a
+	ld a, e
+	cp 4
 	ld a, [wCGBShadowOBP0]
-	ld b, a
-	call GetSpritePaletteRow
-	ld c, LOW(rOBPD)
-	call WriteCGBPaletteAt
+	jr z, .gotShades
 	ld a, [wCGBShadowOBP1]
+.gotShades
 	ld b, a
 	call GetSpritePaletteRow
 	ld c, LOW(rOBPD)
