@@ -30,6 +30,7 @@ ViridianGym_ScriptPointers:
 	dw_const EndTrainerBattle,                      SCRIPT_VIRIDIANGYM_END_BATTLE
 	dw_const ViridianGymGiovanniPostBattle,         SCRIPT_VIRIDIANGYM_GIOVANNI_POST_BATTLE
 	dw_const ViridianGymPlayerSpinningScript,       SCRIPT_VIRIDIANGYM_PLAYER_SPINNING
+	dw_const ViridianGymMeganTrained,               SCRIPT_VIRIDIANGYM_MEGAN_TRAINED
 
 ViridianGymDefaultScript:
 	ld a, [wYCoord]
@@ -165,6 +166,18 @@ ViridianGymReceiveTM27:
 	ld [wToggleableObjectIndex], a
 	predef ShowObject
 	SetEvents EVENT_2ND_ROUTE22_RIVAL_BATTLE, EVENT_ROUTE22_RIVAL_WANTS_BATTLE
+	jp ViridianGymResetScripts
+
+ViridianGymMeganTrained:
+; Aftermath of Megan's optional training battle. Losing leaves the flag clear so
+; she will spar again, the same way a lost gym leader fight can be retried.
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld a, 19 ; set again rather than trusting it to survive the battle
+	ld [wMeganLocIndex], a
+	farcall MeganMarkTrained
+.reset
 	jp ViridianGymResetScripts
 
 ViridianGym_TextPointers:
@@ -424,7 +437,12 @@ ViridianGymMeganText:
 	text_asm
 	ld a, 19 ; Megan location index
 	ld [wMeganLocIndex], a
-	farcall MeganTalk
+	farcall MeganSparOffer ; offers a training battle, else heals as usual
+	jr nc, .done
+	ld a, SCRIPT_VIRIDIANGYM_MEGAN_TRAINED
+	ld [wViridianGymCurScript], a
+	ld [wCurMapScript], a
+.done
 	jp TextScriptEnd
 
 ViridianGymGymGuideText:

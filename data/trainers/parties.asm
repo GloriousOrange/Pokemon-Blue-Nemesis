@@ -987,4 +987,22 @@ GeneralMathusData:
 ; Route 1, meet-cute (moved off the generic Lass class so battle text says
 ; "MEGAN wants to fight!" instead of "LASS wants to fight!")
 MeganData:
-	db 2, SLOWPOKE, 0
+	db 1, SLOWPOKE, 0
+; Optional training battles, one per gym, offered by her gym NPC before you
+; challenge the leader. The party index is derived from her location index
+; (see MeganGymOffer), so these must stay in gym order:
+; Pewter, Cerulean, Vermilion, Celadon, Fuchsia, Saffron, Cinnabar, Viridian.
+; Levels sit just under each leader's team, except Viridian, which is meant to
+; outclass Norman as a final sparring partner. Slowpoke evolves at 37, so the
+; last three are Slowbro.
+	db 10, SLOWPOKE, 0 ; #2 Pewter    (Brock 12-14)
+	db 16, SLOWPOKE, 0 ; #3 Cerulean  (Misty 18-21)
+	db 20, SLOWPOKE, 0 ; #4 Vermilion (Surge 18-24)
+	db 26, SLOWPOKE, 0 ; #5 Celadon   (Erika 24-29)
+	db 32, SLOWPOKE, 0 ; #6 Fuchsia   (Koga 37-43)
+	db 38, SLOWBRO, 0  ; #7 Saffron   (Sabrina 37-43)
+	db 44, SLOWBRO, 0  ; #8 Cinnabar  (Blaine 40-47)
+	db 55, SLOWBRO, 0  ; #9 Viridian  (Norman 46-53)
+; The two endgame sparring stops, both optional like the gyms.
+	db 70, SLOWBRO, 0  ; #10 Indigo Plateau lobby, before the Elite Four
+	db 100, SLOWBRO, 0 ; #11 Battle Island

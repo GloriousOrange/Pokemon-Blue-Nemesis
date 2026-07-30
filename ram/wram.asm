@@ -2098,7 +2098,21 @@ wPostGameFlagsEnd::
 ; Lives in Main Data so it is kept in the save file.
 wColorScheme:: db
 
-	ds 16 ; was ds 56; 40 bytes carved out above for wPostGameFlags and wColorScheme
+; One bit per sparring location, indexed by her MeganData party minus 2: bits 0-7
+; are the eight gyms in badge order, bit 8 the Indigo Plateau lobby, bit 9 Battle
+; Island. Set once she has been beaten there. A bitfield rather than ten event
+; flags because the event array only had four slots left, and growing it would
+; shift everything after wEventFlags and break existing saves.
+wMeganTrainedFlags:: ds 2
+
+; Map-script state for the two Megan sparring stops that had no script table of
+; their own (Indigo Plateau lobby, Battle Island house). They share one byte the
+; way the Apex Mart floors share theirs; only one can be on screen at a time.
+wMeganSparCurScript:: db
+
+; Keep this slack in step with the bytes carved out above: shrinking Main Data by
+; even one byte shifts every section after it and invalidates existing saves.
+	ds 13 ; was ds 56; 43 bytes carved out above for wPostGameFlags, wColorScheme, wMeganTrainedFlags and wMeganSparCurScript
 
 wObtainedHiddenItemsFlags:: flag_array MAX_HIDDEN_ITEMS
 

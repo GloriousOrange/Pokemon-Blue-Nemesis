@@ -1,5 +1,39 @@
 BattleIslandHouse_Script:
-	jp EnableAutoTextBoxDrawing
+	call EnableAutoTextBoxDrawing
+	ld hl, BattleIslandHouseTrainerHeaders
+	ld de, BattleIslandHouse_ScriptPointers
+	ld a, [wMeganSparCurScript]
+	call ExecuteCurMapScriptInTable
+	ld [wMeganSparCurScript], a
+	ret
+
+BattleIslandHouse_ScriptPointers:
+	def_script_pointers
+	dw_const BattleIslandHouseDefaultScript, SCRIPT_BATTLEISLANDHOUSE_DEFAULT
+	dw_const BattleIslandHouseMeganTrained,  SCRIPT_BATTLEISLANDHOUSE_MEGAN_TRAINED
+
+BattleIslandHouseTrainerHeaders:
+	def_trainers
+	db -1 ; Megan is engaged from her own text, not on sight
+
+BattleIslandHouseDefaultScript:
+	ret
+
+; Aftermath of her Battle Island sparring match (Slowbro L100). Losing leaves the
+; flag clear so she will spar again.
+BattleIslandHouseMeganTrained:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld a, MEGAN_LOC_BATTLE_ISLAND
+	ld [wMeganLocIndex], a
+	farcall MeganMarkTrained
+.reset
+	xor a
+	ld [wJoyIgnore], a
+	ld [wMeganSparCurScript], a
+	ld [wCurMapScript], a
+	ret
 
 BattleIslandHouse_TextPointers:
 	def_text_pointers
@@ -19,9 +53,14 @@ BattleIslandHouse_TextPointers:
 BattleIslandHouseNurseText:
 	text_asm
 	farcall SetLastBlackoutMap
-	ld a, 29 ; Megan location index -- Battle Island (heal-only)
+	ld a, MEGAN_LOC_BATTLE_ISLAND ; heal-only, but she will spar here too
 	ld [wMeganLocIndex], a
-	farcall MeganTalk
+	farcall MeganSparOffer
+	jr nc, .done
+	ld a, SCRIPT_BATTLEISLANDHOUSE_MEGAN_TRAINED
+	ld [wMeganSparCurScript], a
+	ld [wCurMapScript], a
+.done
 	jp TextScriptEnd
 
 ; The PC is a shared hidden event (data/events/hidden_events.asm ->

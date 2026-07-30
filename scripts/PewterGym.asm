@@ -36,6 +36,7 @@ PewterGym_ScriptPointers:
 	dw_const EndTrainerBattle,                      SCRIPT_PEWTERGYM_END_BATTLE
 	dw_const PewterGymBrockPostBattle,              SCRIPT_PEWTERGYM_BROCK_POST_BATTLE
 	dw_const PewterGymRematchDefeated,              SCRIPT_PEWTERGYM_REMATCH_DEFEATED
+	dw_const PewterGymMeganTrained,                 SCRIPT_PEWTERGYM_MEGAN_TRAINED
 
 PewterGymBrockPostBattle:
 	ld a, [wIsInBattle]
@@ -94,6 +95,18 @@ PewterGymRematchDefeated:
 	ld [wPewterGymCurScript], a
 	ld [wCurMapScript], a
 	ret
+
+PewterGymMeganTrained:
+; Aftermath of Megan's optional training battle. Losing leaves the flag clear so
+; she will spar again, the same way a lost gym leader fight can be retried.
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld a, 12 ; set again rather than trusting it to survive the battle
+	ld [wMeganLocIndex], a
+	farcall MeganMarkTrained
+.reset
+	jp PewterGymResetScripts
 
 PewterGym_TextPointers:
 	def_text_pointers
@@ -212,7 +225,12 @@ PewterGymMeganText:
 	text_asm
 	ld a, 12 ; Megan location index
 	ld [wMeganLocIndex], a
-	farcall MeganTalk
+	farcall MeganSparOffer ; offers a training battle, else heals as usual
+	jr nc, .done
+	ld a, SCRIPT_PEWTERGYM_MEGAN_TRAINED
+	ld [wPewterGymCurScript], a
+	ld [wCurMapScript], a
+.done
 	jp TextScriptEnd
 
 PewterGymGuideText:

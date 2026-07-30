@@ -36,6 +36,7 @@ CeruleanGym_ScriptPointers:
 	dw_const EndTrainerBattle,                      SCRIPT_CERULEANGYM_END_BATTLE
 	dw_const CeruleanGymMistyPostBattleScript,      SCRIPT_CERULEANGYM_MISTY_POST_BATTLE
 	dw_const CeruleanGymRematchDefeated,            SCRIPT_CERULEANGYM_REMATCH_DEFEATED
+	dw_const CeruleanGymMeganTrained,               SCRIPT_CERULEANGYM_MEGAN_TRAINED
 
 CeruleanGymRematchDefeated:
 	ld a, [wIsInBattle]
@@ -84,6 +85,18 @@ CeruleanGymReceiveTM11:
 	; deactivate gym trainers
 	SetEvents EVENT_BEAT_CERULEAN_GYM_TRAINER_0, EVENT_BEAT_CERULEAN_GYM_TRAINER_1
 
+	jp CeruleanGymResetScripts
+
+CeruleanGymMeganTrained:
+; Aftermath of Megan's optional training battle. Losing leaves the flag clear so
+; she will spar again, the same way a lost gym leader fight can be retried.
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld a, 13 ; set again rather than trusting it to survive the battle
+	ld [wMeganLocIndex], a
+	farcall MeganMarkTrained
+.reset
 	jp CeruleanGymResetScripts
 
 CeruleanGym_TextPointers:
@@ -222,7 +235,12 @@ CeruleanGymMeganText:
 	text_asm
 	ld a, 13 ; Megan location index
 	ld [wMeganLocIndex], a
-	farcall MeganTalk
+	farcall MeganSparOffer ; offers a training battle, else heals as usual
+	jr nc, .done
+	ld a, SCRIPT_CERULEANGYM_MEGAN_TRAINED
+	ld [wCeruleanGymCurScript], a
+	ld [wCurMapScript], a
+.done
 	jp TextScriptEnd
 
 CeruleanGymGymGuideText:

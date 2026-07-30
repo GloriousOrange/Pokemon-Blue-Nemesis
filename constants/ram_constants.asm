@@ -35,6 +35,14 @@ DEF TEXT_DELAY_MASK EQU %111
 	const BIT_BATTLE_SHIFT     ; 6
 	const BIT_BATTLE_ANIMATION ; 7
 
+; wMeganLocIndex: which Megan NPC is being talked to. Indexes MeganGiftTable and
+; MeganSparPartyTable (engine/overworld/megan.asm). The eight gyms run
+; consecutively from MEGAN_LOC_FIRST_GYM in badge order.
+DEF MEGAN_LOC_FIRST_GYM     EQU 12
+DEF MEGAN_LOC_VICTORY_ROAD  EQU 25
+DEF MEGAN_LOC_BATTLE_ISLAND EQU 29
+DEF MEGAN_LOC_INDIGO_LOBBY  EQU 30
+
 ; wColorScheme
 	const_def
 	const COLOR_SCHEME_DIVERSE ; 0 ; per-town/per-species palettes (default)
