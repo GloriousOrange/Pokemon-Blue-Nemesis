@@ -31,9 +31,9 @@ If your ROM doesn't match, the patch won't apply correctly — see Troubleshooti
    that supports **BPS** works too.
 3. Pick your vanilla ROM + the `.bps`, tap **Apply**, and save the output.
    Rename it **`PKMN Nemesis.gbc`**.
-4. Open that file in **Pizza Boy GBC** (recommended — runs this build best,
-   full color). **Nostalgia** also works, but currently only renders in
-   black-and-white on this build.
+4. Open that file in any Game Boy Color emulator — **Pizza Boy GBC**,
+   **Nostalgia**, mGBA, etc. Nemesis is a real GBC game now, so every emulator
+   shows the same intended colors instead of guessing its own.
 5. The cartridge title reads **PKMN NEMESIS** in-game, so you can tell it apart
    even if Android hides the filename. It battery-saves like a real cartridge.
 
@@ -46,8 +46,21 @@ Desktop is the same idea with any patcher (e.g. Floating IPS / "Flips").
   copier header. Verify the SHA1/CRC32 first.
 - **Game boots but looks corrupted:** you used the `.ips` on a mismatched ROM.
   Use the `.bps` instead — it would have caught it.
-- **No color / black-and-white:** that's Nostalgia — switch to Pizza Boy GBC
-  for full color.
+- **No color / black-and-white:** your emulator is running the game as an
+  original Game Boy. Turn off any "force DMG / original Game Boy" setting so it
+  runs in Game Boy Color mode.
+
+## Color schemes
+
+Nemesis ships two. On the **OPTION** screen (Start menu → OPTION), press
+**SELECT** to switch the `COLOR` setting:
+
+- **DIVERSE** (default) — each town, route and species gets its own palette,
+  with deep blue water.
+- **NEON** — one high-contrast ramp for the whole game: red where the Game Boy
+  would draw white, plus bright green, deep blue and black.
+
+The choice is stored in your save file.
 
 This is an active beta — see `BETA_README.md` in the repo root for the full
 change list and known caveats.

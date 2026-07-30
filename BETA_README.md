@@ -6,10 +6,12 @@ what you'd naturally discover in the first hour or two, just patch notes. If
 something looks broken, weird, or unfinished, that's exactly what this beta
 is for; please report it.
 
-Runs on Game Boy Color emulators. **Pizza Boy GBC is recommended** — it runs
-this build best, in full color. **Nostalgia** also works and battery-saves
-fine, but currently only renders in black-and-white on this build (no other
-known issues on it). Either way, saves work like a real cartridge.
+Runs on Game Boy Color emulators — Pizza Boy GBC, Nostalgia, mGBA and friends
+all show the same colors now, because Nemesis is a real GBC game rather than a
+black-and-white game the emulator has to colorize by guessing. Saves work like a
+real cartridge. Two color schemes ship with it: press **SELECT** on the OPTION
+screen to switch `COLOR` between **DIVERSE** (per-town palettes, deep blue
+water) and **NEON** (one high-contrast red/green/blue ramp for everything).
 
 ## New Areas
 
@@ -201,10 +203,10 @@ core gameplay.
   use placeholder or reused sprites/cries rather than fully original art.
   (Alakachamp does now use its own crimson palette so it's easy to tell apart
   from Machamp.)
-- On Nostalgia specifically, the game currently renders in black-and-white
-  instead of full Game Boy Color palettes. Battery saves and everything else
-  work fine on it — this appears to be an emulator-specific display quirk.
-  Pizza Boy GBC shows full color.
+- Screen-flash effects that work by flickering the Game Boy's own palette
+  registers (some battle-move flashes, and palette effects in the credits, slots
+  and intro) don't flash in Game Boy Color mode yet — they hold the current
+  colors instead. The moves, animations and screens themselves work normally.
 - After beating Professor Oak on Battle Island, you may find yourself unable
   to walk (though you can still talk to him). Flying to another town and
   back clears it. We haven't nailed down the root cause yet.
