@@ -651,21 +651,33 @@ ApplyCGBPalettes::
 	dec d
 	jr nz, .bgLoop
 
-; Sprites always use the screen's main palette (index 0), the same one the SGB
-; code applies to the whole screen. Both object palettes are written because
-; OAM entries with no palette bits set land on object palette 0.
+; Sprites get their own palette rather than the screen's. Sharing the screen's
+; row is what an SGB does, but there the whole picture is tinted the same way;
+; here it made an NPC's body take the map's accent colour -- on a route, sprite
+; bodies came out white with grass-green shading and vanished into the grass,
+; leaving only their black outlines readable. Both object palettes are written
+; because OAM entries with no palette bits set land on object palette 0.
 	ld a, $80
 	ldh [rOBPI], a
 	ld a, [wCGBShadowOBP0]
 	ld b, a
-	ld a, [wCGBPalIndices]
+	call GetSpritePaletteRow
 	ld c, LOW(rOBPD)
-	call WriteCGBPalette
+	call WriteCGBPaletteAt
 	ld a, [wCGBShadowOBP1]
 	ld b, a
-	ld a, [wCGBPalIndices]
+	call GetSpritePaletteRow
 	ld c, LOW(rOBPD)
-	jp WriteCGBPalette
+	jp WriteCGBPaletteAt
+
+GetSpritePaletteRow:
+; -> hl = the four colors sprites are drawn in
+	ld a, [wColorScheme]
+	cp COLOR_SCHEME_NEON
+	ld hl, NeonPalette
+	ret z
+	ld hl, SpritePalette
+	ret
 
 WriteCGBPalette:
 ; a = SuperPalettes row index
@@ -676,7 +688,7 @@ WriteCGBPalette:
 	ld a, [wColorScheme]
 	cp COLOR_SCHEME_NEON
 	ld hl, NeonPalette
-	jr z, .gotRow ; neon is one flat ramp shared by every palette
+	jr z, WriteCGBPaletteAt ; neon is one flat ramp shared by every palette
 	ld l, e
 	ld h, 0
 	add hl, hl
@@ -684,7 +696,8 @@ WriteCGBPalette:
 	add hl, hl ; each row is 4 colors * 2 bytes
 	ld de, SuperPalettes
 	add hl, de
-.gotRow
+WriteCGBPaletteAt:
+; hl = four BGR555 colors, b = shade mapping, c = palette port
 	ld d, 4 ; four colors per palette
 .colorLoop
 	ld a, b
@@ -706,6 +719,13 @@ WriteCGBPalette:
 	dec d
 	jr nz, .colorLoop
 	ret
+
+; People, not scenery: a warm neutral ramp so a sprite reads the same against
+; grass, sand, cave floor or a shop tile. Shade 0 is the large flat areas
+; (clothing), shade 1 the shading the DMG drew in light grey, shade 3 the
+; outline, kept at the same near-black the background rows use.
+SpritePalette:
+	RGB 31,28,24, 25,18,14, 15,11,11, 03,02,02
 
 ; The uniform ramp the neon color scheme paints everything in: what the DMG
 ; would draw as white becomes red, and the three darker shades become bright
