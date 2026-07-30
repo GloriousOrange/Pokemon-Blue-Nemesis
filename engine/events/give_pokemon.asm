@@ -101,19 +101,14 @@ IF DEF(_SPEEDTEST)
 	CheckEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
 	jr nz, .birdsAlreadyGiven
 	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 2 ; need 3 free box slots for the legendary-bird roster
+	cp MONS_PER_BOX - 1 ; need 1 free box slot for Tyranis
 	jr nc, .birdsAlreadyGiven
 	SetEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
-; The legendary-bird test roster, at L100 with signature moves first so they
-; can be tried immediately from storage.
+; Tyranis at L100 with its signature move first so it can be tried immediately
+; from storage. Miasma and Nocturn used to be handed over here too; storage is
+; kept to three mons now so the box is quick to read.
 	lb bc, TYRANIS, 100
 	ld hl, .TyranisMoves
-	call .GiveBoxedMonWithMoves
-	lb bc, MIASMA, 100
-	ld hl, .MiasmaMoves
-	call .GiveBoxedMonWithMoves
-	lb bc, NOCTURN, 100
-	ld hl, .NocturnMoves
 	call .GiveBoxedMonWithMoves
 .birdsAlreadyGiven
 ; Each signature-move test mon below is guarded by its own bit in
@@ -132,43 +127,6 @@ IF DEF(_SPEEDTEST)
 	ld hl, .PinsirMoves
 	call .GiveBoxedMonWithMoves
 .pinsirAlreadyGiven
-; Persian normally learns Jackpot at level 98 -- boxed here at L100 so it's
-; usable immediately.
-	ld hl, wSpeedtestExtraMonsGiven
-	bit 1, [hl]
-	jr nz, .persianAlreadyGiven
-	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 1 ; need 1 free box slot for Persian
-	jr nc, .persianAlreadyGiven
-	set 1, [hl]
-	lb bc, PERSIAN, 100
-	ld hl, .PersianMoves
-	call .GiveBoxedMonWithMoves
-.persianAlreadyGiven
-; Hitmonlee normally learns Super Instinct at level 22 -- boxed here at L100.
-	ld hl, wSpeedtestExtraMonsGiven
-	bit 2, [hl]
-	jr nz, .hitmonleeAlreadyGiven
-	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 1 ; need 1 free box slot for Hitmonlee
-	jr nc, .hitmonleeAlreadyGiven
-	set 2, [hl]
-	lb bc, HITMONLEE, 100
-	ld hl, .HitmonleeMoves
-	call .GiveBoxedMonWithMoves
-.hitmonleeAlreadyGiven
-; Magmar normally learns Hot Oil at level 36 -- boxed here at L100.
-	ld hl, wSpeedtestExtraMonsGiven
-	bit 3, [hl]
-	jr nz, .magmarAlreadyGiven
-	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 1 ; need 1 free box slot for Magmar
-	jr nc, .magmarAlreadyGiven
-	set 3, [hl]
-	lb bc, MAGMAR, 100
-	ld hl, .MagmarMoves
-	call .GiveBoxedMonWithMoves
-.magmarAlreadyGiven
 ; Beedrill normally learns Crystallize at level 22 -- boxed here at L100.
 	ld hl, wSpeedtestExtraMonsGiven
 	bit 4, [hl]
@@ -181,94 +139,12 @@ IF DEF(_SPEEDTEST)
 	ld hl, .BeedrillMoves
 	call .GiveBoxedMonWithMoves
 .beedrillAlreadyGiven
-; Zubat normally learns Blood Suck at level 32 -- boxed here at L100.
-	ld hl, wSpeedtestExtraMonsGiven
-	bit 5, [hl]
-	jr nz, .zubatAlreadyGiven
-	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 1 ; need 1 free box slot for Zubat
-	jr nc, .zubatAlreadyGiven
-	set 5, [hl]
-	lb bc, ZUBAT, 100
-	ld hl, .ZubatMoves
-	call .GiveBoxedMonWithMoves
-.zubatAlreadyGiven
-; Gyarados normally learns Hurricane at level 42 -- boxed here at L100.
-	ld hl, wSpeedtestExtraMonsGiven
-	bit 6, [hl]
-	jr nz, .gyaradosAlreadyGiven
-	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 1 ; need 1 free box slot for Gyarados
-	jr nc, .gyaradosAlreadyGiven
-	set 6, [hl]
-	lb bc, GYARADOS, 100
-	ld hl, .GyaradosMoves
-	call .GiveBoxedMonWithMoves
-.gyaradosAlreadyGiven
-; Electabuzz niche move Static Shock -- boxed here at L100.
-	ld hl, wSpeedtestExtraMonsGiven
-	bit 7, [hl]
-	jr nz, .electabuzzAlreadyGiven
-	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 1 ; need 1 free box slot for Electabuzz
-	jr nc, .electabuzzAlreadyGiven
-	set 7, [hl]
-	lb bc, ELECTABUZZ, 100
-	ld hl, .ElectabuzzMoves
-	call .GiveBoxedMonWithMoves
-.electabuzzAlreadyGiven
-; Aerodactyl niche move Gravity Slam -- boxed here at L100.
-	ld hl, wSpeedtestExtraMonsGiven2
-	bit 0, [hl]
-	jr nz, .aerodactylAlreadyGiven
-	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 1 ; need 1 free box slot for Aerodactyl
-	jr nc, .aerodactylAlreadyGiven
-	set 0, [hl]
-	lb bc, AERODACTYL, 100
-	ld hl, .AerodactylMoves
-	call .GiveBoxedMonWithMoves
-.aerodactylAlreadyGiven
-; Scyther niche move Stealth -- boxed here at L100.
-	ld hl, wSpeedtestExtraMonsGiven2
-	bit 1, [hl]
-	jr nz, .scytherAlreadyGiven
-	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 1 ; need 1 free box slot for Scyther
-	jr nc, .scytherAlreadyGiven
-	set 1, [hl]
-	lb bc, SCYTHER, 100
-	ld hl, .ScytherMoves
-	call .GiveBoxedMonWithMoves
-.scytherAlreadyGiven
-; Lapras niche move Ice Bomb -- boxed here at L100.
-	ld hl, wSpeedtestExtraMonsGiven2
-	bit 2, [hl]
-	ret nz
-	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 1 ; need 1 free box slot for Lapras
-	ret nc
-	set 2, [hl]
-	lb bc, LAPRAS, 100
-	ld hl, .LaprasMoves
-	call .GiveBoxedMonWithMoves
 ENDC
 	ret
 
 .TyranisMoves:    db DOUBLE_DRILL, HYPER_BEAMS, SKY_ATTACK, BODY_SLAM, FLY
-.MiasmaMoves:     db CARRION_WIND, BLIGHT_VOMIT, DRILL_PECK, TOXIC, FLY
-.NocturnMoves:    db MIND_FEVER, PHANTOM_WING, NIGHT_SHADE, GUST, CONFUSE_RAY
 .PinsirMoves:     db WEB_CANNON, VIBRATE, TWINEEDLE, SWORDS_DANCE, SEISMIC_TOSS
-.PersianMoves:    db JACKPOT, SLASH, SCREECH, BITE, FURY_SWIPES
-.HitmonleeMoves:  db SUPER_INSTINCT, HI_JUMP_KICK, ROLLING_KICK, DOUBLE_KICK, MEGA_KICK
-.MagmarMoves:     db HOT_OIL, FIRE_PUNCH, FLAMETHROWER, SMOKESCREEN, CONFUSE_RAY
 .BeedrillMoves:   db CRYSTALLIZE, CHAOS_STING, TWINEEDLE, PIN_MISSILE, AGILITY
-.ZubatMoves:      db BLOOD_SUCK, BITE, WING_ATTACK, CONFUSE_RAY, SUPERSONIC
-.GyaradosMoves:   db HURRICANE, DRAGON_RAGE, HYDRO_PUMP, BITE, THRASH
-.ElectabuzzMoves: db STATIC_SHOCK, THUNDERPUNCH, QUICK_ATTACK, SCREECH, LIGHT_SCREEN
-.AerodactylMoves: db GRAVITY_SLAM, WING_ATTACK, ROCK_SLIDE, BITE, HYPER_BEAM
-.ScytherMoves:    db STEALTH, SLASH, SWORDS_DANCE, AGILITY, QUICK_ATTACK
-.LaprasMoves:     db ICE_BOMB, SURF, ICE_BEAM, BODY_SLAM, CONFUSE_RAY
 
 ; b = species, c = level, hl = pointer to a NUM_MOVES-byte moveset
 .GiveBoxedMonWithMoves:
