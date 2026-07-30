@@ -50,18 +50,13 @@ IndigoPlateauLobbyMeganTrained:
 IndigoPlateauLobby_TextPointers:
 	def_text_pointers
 	dw_const IndigoPlateauLobbyNurseText,            TEXT_INDIGOPLATEAULOBBY_NURSE
-	dw_const IndigoPlateauLobbyGymGuideText,         TEXT_INDIGOPLATEAULOBBY_GYM_GUIDE
+	dw_const IndigoPlateauLobbyMeganText,            TEXT_INDIGOPLATEAULOBBY_MEGAN
 	dw_const IndigoPlateauLobbyCooltrainerFText,     TEXT_INDIGOPLATEAULOBBY_COOLTRAINER_F
 	dw_const IndigoPlateauLobbyClerkText,            TEXT_INDIGOPLATEAULOBBY_CLERK
 	dw_const IndigoPlateauLobbyLinkReceptionistText, TEXT_INDIGOPLATEAULOBBY_LINK_RECEPTIONIST
-	dw_const IndigoPlateauLobbyMeganText,            TEXT_INDIGOPLATEAULOBBY_MEGAN
 
 IndigoPlateauLobbyNurseText:
 	script_pokecenter_nurse
-
-IndigoPlateauLobbyGymGuideText:
-	text_far _IndigoPlateauLobbyGymGuideText
-	text_end
 
 IndigoPlateauLobbyCooltrainerFText:
 	text_far _IndigoPlateauLobbyCooltrainerFText
