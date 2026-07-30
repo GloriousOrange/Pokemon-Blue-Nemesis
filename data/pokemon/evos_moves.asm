@@ -990,8 +990,8 @@ PoliwagEvosMoves:
 	db EVOLVE_LEVEL, 25, POLIWHIRL
 	db 0
 ; Learnset
+	db 11, WATER_GUN ; was L19; as a starter Poliwag had only 20-power Bubble until then
 	db 16, HYPNOSIS
-	db 19, WATER_GUN
 	db 25, DOUBLESLAP
 	db 31, BODY_SLAM
 	db 38, AMNESIA
@@ -1055,6 +1055,10 @@ DittoEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+; Ditto never evolves and vanilla gives it no level-up moves at all, so a Ditto
+; starter would be stuck on one 35-power move for the whole game.
+	db 15, HEADBUTT
+	db 30, BODY_SLAM
 	db 0
 
 MeowthEvosMoves:
@@ -1074,7 +1078,7 @@ KrabbyEvosMoves:
 	db EVOLVE_LEVEL, 28, KINGLER
 	db 0
 ; Learnset
-	db 20, VICEGRIP
+	db 12, VICEGRIP ; was L20; as a starter Krabby had only 20-power Bubble until then
 	db 25, GUILLOTINE
 	db 30, STOMP
 	db 35, CRABHAMMER
@@ -1201,9 +1205,9 @@ HorseaEvosMoves:
 	db EVOLVE_LEVEL, 32, SEADRA
 	db 0
 ; Learnset
+	db 10, WATER_GUN ; was L30; as a starter Horsea sat on 20-power Bubble for 25 levels
 	db 19, SMOKESCREEN
 	db 24, LEER
-	db 30, WATER_GUN
 	db 37, AGILITY
 	db 45, HYDRO_PUMP
 	db 0
@@ -1440,7 +1444,8 @@ BeedrillEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 12, FURY_ATTACK
+	db 10, FURY_ATTACK ; was L12, so evolving at 10 is immediately felt: a Weedle
+	                   ; starter is on 25-power Poison Sting until this lands
 	db 16, FOCUS_ENERGY
 	db 20, TWINEEDLE
 	db 22, CRYSTALLIZE
@@ -2070,7 +2075,7 @@ SquirtleEvosMoves:
 	db 0
 ; Learnset
 	db 8, BUBBLE
-	db 15, WATER_GUN
+	db 12, WATER_GUN ; was L15, to match the other Bubble starters
 	db 22, BITE
 	db 28, WITHDRAW
 	db 35, SKULL_BASH
@@ -2144,10 +2149,11 @@ OddishEvosMoves:
 	db EVOLVE_LEVEL, 21, GLOOM
 	db 0
 ; Learnset
+	db 12, ACID ; was L24; Oddish's L15-19 additions are all powders, so as a
+	            ; starter it had 20-power Absorb and nothing else until L24
 	db 15, POISONPOWDER
 	db 17, STUN_SPORE
 	db 19, SLEEP_POWDER
-	db 24, ACID
 	db 33, PETAL_DANCE
 	db 46, SOLARBEAM
 	db 0
