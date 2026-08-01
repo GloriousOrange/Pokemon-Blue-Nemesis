@@ -1807,6 +1807,7 @@ PidgeotEvosMoves:
 	db 21, WHIRLWIND
 	db 31, WING_ATTACK
 	db 44, AGILITY
+	db 48, HYPER_BEAM
 	db 54, MIRROR_MOVE
 	db 0
 
