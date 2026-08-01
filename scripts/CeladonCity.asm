@@ -92,12 +92,41 @@ CeladonCityPoliwrathText:
 	call PlayCry
 	jp TextScriptEnd
 
+; Both Celadon street Rockets used to sneer at the player regardless of path,
+; which reads wrong once you're wearing the same uniform.  Same treatment as the
+; Silph Co flavor Rockets: the line reflects how the player is seen, nothing else.
 CeladonCityRocket1Text:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _CeladonCityRocket1Text
+	text_end
+.LoyalistText:
+	text_far _CeladonCityRocket1LoyalistText
 	text_end
 
 CeladonCityRocket2Text:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _CeladonCityRocket2Text
+	text_end
+.LoyalistText:
+	text_far _CeladonCityRocket2LoyalistText
 	text_end
 
 CeladonCityTrainerTips1Text:

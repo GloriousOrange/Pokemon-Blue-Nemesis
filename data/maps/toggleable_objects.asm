@@ -197,7 +197,7 @@ ToggleableObjectStates:
 	toggle_object_state POWERPLANT_ELECTRODE2, ON
 	toggle_object_state POWERPLANT_VOLTORB6,   ON
 	toggle_object_state POWERPLANT_ZAPDOS,     ON
-	toggle_object_state POWERPLANT_CARBOS,     ON
+	toggle_object_state POWERPLANT_TM_CONFUSE_RAY,     ON
 	toggle_object_state POWERPLANT_HP_UP,      ON
 	toggle_object_state POWERPLANT_RARE_CANDY, ON
 	toggle_object_state POWERPLANT_TM_THUNDER, ON
@@ -208,7 +208,7 @@ ToggleableObjectStates:
 	toggle_object_state VICTORYROAD2F_TM_SUBMISSION, ON
 	toggle_object_state VICTORYROAD2F_FULL_HEAL,     ON
 	toggle_object_state VICTORYROAD2F_TM_MEGA_KICK,  ON
-	toggle_object_state VICTORYROAD2F_GUARD_SPEC,    ON
+	toggle_object_state VICTORYROAD2F_TM_GHOST_BEAM,    ON
 	toggle_object_state VICTORYROAD2F_BOULDER3,      ON
 
 	toggleable_objects_for BILLS_HOUSE
@@ -375,7 +375,7 @@ ToggleableObjectStates:
 	toggle_object_state SAFARIZONENORTH_TM_SKULL_BASH, ON
 
 	toggleable_objects_for SAFARI_ZONE_WEST
-	toggle_object_state SAFARIZONEWEST_MAX_POTION,     ON
+	toggle_object_state SAFARIZONEWEST_TM_NIGHT_SHADE,     ON
 	toggle_object_state SAFARIZONEWEST_TM_DOUBLE_TEAM, ON
 	toggle_object_state SAFARIZONEWEST_MAX_REVIVE,     ON
 	toggle_object_state SAFARIZONEWEST_GOLD_TEETH,     ON

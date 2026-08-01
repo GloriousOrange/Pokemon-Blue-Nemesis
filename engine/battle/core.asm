@@ -6296,7 +6296,8 @@ GetCurrentMove:
 	ld [wNameListType], a
 	call GetName
 	ld de, wNameBuffer
-	jp CopyToStringBuffer
+	call CopyToStringBuffer
+	farjp ApplyHyperBeamPower ; Hyper Beam's power is computed, not read from the table
 
 LoadEnemyMonData:
 	ld a, [wLinkState]

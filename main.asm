@@ -458,6 +458,9 @@ INCLUDE "gfx/fishing.asm"
 INCLUDE "data/moves/animations.asm"
 INCLUDE "data/battle_anims/subanimations.asm"
 INCLUDE "data/battle_anims/frame_blocks.asm"
+
+SECTION "Evolution Animation", ROMX ; relocated out of bank1E (refilled by GHOST_BEAM's animation); EvolveMon is only ever reached via callfar, so any bank works -- same reasoning as the floats below
+
 INCLUDE "engine/movie/evolution.asm"
 
 SECTION "TM Prices", ROMX ; relocated out of bank1E (which filled up); GetMachinePrice is called via BANK(), so any bank works
@@ -501,3 +504,8 @@ INCLUDE "data/maps/songs.asm"
 SECTION "Map Header Pointers", ROMX ; relocated out of ROM0/Home (which overflowed by the Apex Mart maps); its sole reader LoadMapHeader now BankswitchHome's to BANK(MapHeaderPointers) before reading, mirroring SwitchToMapRomBank/MapHeaderBanks
 
 INCLUDE "data/maps/map_header_pointers.asm"
+
+
+SECTION "Hyper Beam Power", ROMX ; ApplyHyperBeamPower is only reached via farjp, so any bank works; kept out of "Battle Core", which is full
+
+INCLUDE "engine/battle/hyper_beam_power.asm"

@@ -215,7 +215,8 @@
 	const PSY_CHOP       ; cb - Psychic, 35 dmg (Drowzee/Jynx/Mew starter STAB filler)
 	const DRAGON_BREATH  ; cc - Dragon, 35 dmg (Dratini starter STAB filler)
 	const GLITTER_WING   ; cd - Bug, 35 dmg, 100 acc, ~30% sleep (Butterfree)
-	const STRUGGLE       ; ce
+	const GHOST_BEAM     ; ce - Ghost, 150 dmg, recharge; TM53 (ghost-starter answer to Psychics)
+	const STRUGGLE       ; cf
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

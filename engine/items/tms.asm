@@ -7,6 +7,8 @@ CanLearnTM:
 	jr z, .ghostMoveAlwaysLearnable
 	cp CONFUSE_RAY
 	jr z, .ghostMoveAlwaysLearnable
+	cp GHOST_BEAM
+	jr z, .ghostMoveAlwaysLearnable
 	cp METRONOME2 ; Oak's reward HM is learnable by every species
 	jr z, .ghostMoveAlwaysLearnable
 	ld a, [wCurPartySpecies]

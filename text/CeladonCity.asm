@@ -86,6 +86,18 @@ _CeladonCityRocket2Text::
 	line "ROCKET's way!"
 	done
 
+_CeladonCityRocket1LoyalistText::
+	text "Staring won't get"
+	line "you promoted,"
+	cont "rookie."
+	done
+
+_CeladonCityRocket2LoyalistText::
+	text "This street is"
+	line "ROCKET turf now."
+	cont "Ours. Enjoy it."
+	done
+
 _CeladonCityTrainerTips1Text::
 	text "TRAINER TIPS"
 

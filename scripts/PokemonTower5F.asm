@@ -90,10 +90,9 @@ PokemonTower5FGhostBattleScript:
 	ld a, URN_OF_ASHES
 	ldh [hItemToRemoveID], a
 	farcall RemoveItemByID
-	lb bc, TM_NIGHT_SHADE, 1
-	call GiveItem
-	lb bc, TM_CONFUSE_RAY, 1
-	call GiveItem
+	; The ghost TMs are no longer handed over here -- Night Shade waits in the
+	; SAFARI ZONE, Confuse Ray in the POWER PLANT, Ghost Beam in VICTORY ROAD,
+	; and all three are on the Rocket Merchant's shelf at the INDIGO PLATEAU.
 	SetEvent EVENT_STARTER_RESURRECTED
 	ld hl, PokemonTower5FPurificationText
 	call PrintText

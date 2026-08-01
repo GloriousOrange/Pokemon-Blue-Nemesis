@@ -3,7 +3,7 @@ SafariZoneWest_Script:
 
 SafariZoneWest_TextPointers:
 	def_text_pointers
-	dw_const PickUpItemText,                         TEXT_SAFARIZONEWEST_MAX_POTION
+	dw_const PickUpItemText,                         TEXT_SAFARIZONEWEST_TM_NIGHT_SHADE
 	dw_const PickUpItemText,                         TEXT_SAFARIZONEWEST_TM_DOUBLE_TEAM
 	dw_const PickUpItemText,                         TEXT_SAFARIZONEWEST_MAX_REVIVE
 	dw_const PickUpItemText,                         TEXT_SAFARIZONEWEST_GOLD_TEETH

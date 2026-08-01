@@ -205,6 +205,7 @@ AttackAnimationPointers:
 	dw ConfusionAnim    ; PSY_CHOP — reuse Confusion's visuals
 	dw DragonRageAnim   ; DRAGON_BREATH — reuse Dragon Rage's visuals
 	dw SleepPowderAnim  ; GLITTER_WING — reuse Sleep Powder's shimmering visuals
+	dw GhostBeamAnim    ; GHOST_BEAM
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim
@@ -660,6 +661,19 @@ HyperBeamAnim:
 	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
 	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
 	battle_anim MEGA_PUNCH, SUBANIM_1_STAR_BIG_MOVING, 1, 6
+	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
+	db -1 ; end
+
+GhostBeamAnim:
+; Hyper Beam's beam held under the dark screen palette, finished with Night
+; Shade's wavy distortion and Confuse Ray's star toss instead of Hyper Beam's
+; bright star burst -- so it reads black/violet rather than white.
+	battle_anim LEECH_SEED, SE_DARK_SCREEN_PALETTE
+	battle_anim NO_MOVE, SE_SPIRAL_BALLS_INWARD
+	battle_anim HYPER_BEAM, SUBANIM_0_BEAM, 0, 2
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	battle_anim NO_MOVE, SE_WAVY_SCREEN
+	battle_anim NO_MOVE, SUBANIM_1_STAR_BIG_TOSS, 1, 6
 	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
 	db -1 ; end
 
