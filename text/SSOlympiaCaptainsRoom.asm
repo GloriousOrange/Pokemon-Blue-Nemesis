@@ -5,9 +5,11 @@ _SSOlympiaCaptainsRoomTrashText::
 
 _SSOlympiaCaptainsRoomLogbookText::
 	text "The captain's log"
-	line "ends abruptly. The"
-	cont "last entry: 'they've"
-	cont "taken the bridge.'"
+	line "ends abruptly."
+
+	para "Last entry:"
+	line "'They've taken"
+	cont "the bridge.'"
 	done
 _SSOlympiaCaptainsRoomRocket1BattleText::
 	text "You picked the"
