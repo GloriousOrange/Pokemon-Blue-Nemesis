@@ -1,8 +1,8 @@
 _CeladonMansionRoofHouseHikerText::
 	text "TEAM ROCKET stole"
-	line "my last EEVEE."
+	line "my last PORYGON."
 
-	para "I finally got my"
-	line "hands on a new"
-	cont "one!"
+	para "Took me months to"
+	line "code another. Go"
+	cont "on, it's yours."
 	done

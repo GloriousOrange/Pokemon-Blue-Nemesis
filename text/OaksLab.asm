@@ -281,9 +281,8 @@ _OaksLabRivalIPickedTheWrongPokemonText::
 	prompt
 
 _OaksLabRivalAmIGreatOrWhatText::
-	text "Yours is weak."
-	line "Bury it and"
-	cont "start again."
+	text "We both knew"
+	line "I'd win."
 	prompt
 
 _OaksLabRivalSmellYouLaterText::

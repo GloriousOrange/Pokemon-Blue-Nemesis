@@ -21,6 +21,18 @@ InitPlayerData2:
 	ld hl, wNumBoxItems
 	call InitializeEmptyList
 
+; Every player starts with a TOWN MAP filed in the PC's item storage, so it is
+; there from the first save whether or not they go and talk to DAISY.
+	ld hl, wNumBoxItems
+	ld a, 1
+	ld [hli], a ; one item stored
+	ld a, TOWN_MAP
+	ld [hli], a
+	ld a, 1
+	ld [hli], a ; quantity
+	ld a, -1
+	ld [hl], a ; end of list
+
 DEF START_MONEY EQU $3000
 	ld hl, wPlayerMoney + 1
 	ld a, HIGH(START_MONEY)
