@@ -240,17 +240,23 @@ INCLUDE "engine/battle/scroll_draw_trainer_pic.asm"
 INCLUDE "engine/battle/trainer_ai.asm"
 INCLUDE "engine/battle/draw_hud_pokeball_gfx.asm"
 INCLUDE "engine/pokemon/evos_moves.asm"
-INCLUDE "engine/battle/move_effects/heal.asm"
 
 
-; moved out of Battle Engine 7 (bank $E is full after the extra moves + the
-; evolution-suppress code); reached only via jpfar ReflectLightScreenEffect_ so
-; it can float to any bank
+; Moved out of Battle Engine 7 (bank $E is full after the extra moves + the
+; evolution-suppress code); all three bodies are reached only via jpfar, so the
+; section can float to any bank.
+;
+; heal.asm and transform.asm MUST stay in this section, alongside
+; reflect_light_screen.asm. They reach Battle Core through its
+; EffectCallBattleCore helper with a plain `call`, which only resolves at
+; runtime while they share that helper's bank. Splitting them into separate
+; sections links cleanly but lands the call on bank padding and runs off the
+; end of the bank into VRAM -- an intermittent crash that depends on whatever
+; tiles happen to be loaded.
 SECTION "Reflect Light Screen Effect", ROMX
 
 INCLUDE "engine/battle/move_effects/reflect_light_screen.asm"
-
-SECTION "Transform Effect", ROMX ; floated out of Battle Engine 7 (bank $E full); reached only via jpfar TransformEffect_ so any bank works
+INCLUDE "engine/battle/move_effects/heal.asm"
 INCLUDE "engine/battle/move_effects/transform.asm"
 
 SECTION "Nemesis Niche Effects", ROMX ; floated out of the full Battle Core bank; reached via jpfar wrappers in effects.asm + callfar from AttackSubstitute, so any bank works

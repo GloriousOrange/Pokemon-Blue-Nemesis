@@ -102,9 +102,9 @@ IndigoPlateauLobbyRocketMerchantText:
 .MartInventory:
 ; count, then item ids -- the same layout script_mart emits, minus its leading
 ; opcode byte, since LoadItemList is entered directly here.
-	db 8
-	db TM_GHOST_BEAM, TM_NIGHT_SHADE, TM_CONFUSE_RAY, ULTRA_BALL
-	db FULL_RESTORE, MAX_REVIVE, RARE_CANDY, PP_UP
+	db 9
+	db TM_GHOST_BEAM, TM_NIGHT_SHADE, TM_CONFUSE_RAY, TM_FISSURE
+	db ULTRA_BALL, FULL_RESTORE, MAX_REVIVE, RARE_CANDY, PP_UP
 	db -1 ; end
 
 ; She heals here like everywhere else, and offers one last sparring match

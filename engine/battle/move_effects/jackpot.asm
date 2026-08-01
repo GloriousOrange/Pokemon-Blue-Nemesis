@@ -8,7 +8,7 @@ JackpotEffect_:
 	ld hl, wPayDayMoney
 	ld [hli], a             ; wPayDayMoney+0 = 0 (most-significant BCD byte)
 ; roll the hundreds place: 3..10 with equal odds; 10 is the $1000 jackpot
-	call BattleRandom
+	call Random ; home-bank Random: this file is not in the Battle Core bank
 	and $07                 ; 0..7
 	add 3                   ; 3..10
 	cp 10
@@ -23,7 +23,7 @@ JackpotEffect_:
 ; a = 3..9 is already a valid single BCD nibble ($03..$09)
 	ld [hli], a             ; wPayDayMoney+1 = $0h (hundreds digit)
 ; low two digits: a uniformly random 00..99, stored as packed BCD
-	call BattleRandom
+	call Random ; home-bank Random: this file is not in the Battle Core bank
 .reduce
 	cp 100
 	jr c, .under100
