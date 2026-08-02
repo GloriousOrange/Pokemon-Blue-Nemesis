@@ -1,12 +1,13 @@
 VermilionDock_Script:
 	call EnableAutoTextBoxDrawing
+	call VermilionDockSetBerthScript
 	call VermilionDockCheckOlympiaGuard
 	CheckEventHL EVENT_STARTED_WALKING_OUT_OF_DOCK
 	jr nz, .walking_out_of_dock
 	CheckEventReuseHL EVENT_GOT_HM01
 	ret z
 	ld a, [wDestinationWarpID]
-	cp $1
+	cp $1 ; arrived down the gangway (warp 2, stored 0-based)
 	ret nz
 	CheckEventReuseHL EVENT_SS_ANNE_LEFT
 	jp z, VermilionDockSSAnneLeavesScript
@@ -209,20 +210,64 @@ VermilionDock_EraseSSAnne:
 	call DelayFrames
 	ret
 
-; S.S. Olympia's berth (14,3) stays blocked by a guard until the player has
-; beaten the Champion and holds a Master Ball -- then he steps aside for
-; good (toggleable-object flag, persists in SRAM; matches Pokemon Tower 1F's
-; guard-blocks-the-tile-then-hides technique).
-VermilionDockCheckOlympiaGuard:
+; Which ship is tied up at the gangway (14,2).
+;
+;   before the S.S. Anne sails : the Anne, exactly as vanilla
+;   after she sails            : nothing -- the warp is retired
+;   after the Champion falls   : the S.S. Olympia
+;
+; The Olympia used to have a berth warp of its own at (14,3). That is a WALL in
+; ship_port's collision, so it could never be stepped on -- which is why the
+; ship was never reachable. Both ships share this gangway now.
+;
+; Note the departure cutscene's own `dec [wNumberOfWarps]` only holds for the
+; visit it runs in: warp counts reload from the map's object data on every map
+; load. So the retire has to be redone on each entry, clamped so that running
+; every frame can't chew through the rest of the list.
+VermilionDockSetBerthScript:
+	CheckEvent EVENT_SS_ANNE_LEFT
+	ret z
 	CheckEvent EVENT_BEAT_CHAMPION_RIVAL
-	ret z
-	ld b, MASTER_BALL
-	call IsItemInBag
-	ret z
+	jr nz, .olympiaIsIn
+; no ship: drop the gangway warp
+	ld a, [wNumberOfWarps]
+	cp 2 ; only while the gangway is still listed
+	ret nz
+	dec a
+	ld [wNumberOfWarps], a
+	ret
+.olympiaIsIn
+; keep the warp, repoint it. Entry 1 is the gangway; the bytes are Y, X, warp
+; ID, map ID, so +2 is the destination warp and +3 the destination map.
+	ld a, 2
+	ld [wNumberOfWarps], a
+	ld hl, wWarpEntries + 1 * 4 + 2
+	xor a
+	ld [hli], a ; arrive at the Olympia's own gangway (her warp 1)
+	ld [hl], SS_OLYMPIA_1F
+	ret
+
+; The GENTLEMAN stands on (14,1), the one-tile corridor between the dock
+; entrance and the gangway, so he genuinely blocks boarding. He is only there
+; once the Champion has been beaten -- before that the dock reads as vanilla --
+; and he steps aside as soon as the party is down to the single Pokemon the
+; cruise allows.
+;
+; He used to also demand a MASTER BALL in the bag, which is the other reason
+; nobody ever saw this ship: the MASTER BALL moved to Giovanni's Hideout, and
+; anyone who spent theirs on a legendary could never board at all.
+VermilionDockCheckOlympiaGuard:
 	ld a, TOGGLE_VERMILION_DOCK_OLYMPIA_GUARD
 	ld [wToggleableObjectIndex], a
-	predef HideObject
-	ret
+	CheckEvent EVENT_BEAT_CHAMPION_RIVAL
+	jr z, .stepAside ; no cruise yet -- keep the dock clear
+	ld a, [wPartyCount]
+	dec a
+	jr nz, .blockTheWay ; more than one Pokemon: he holds the gangway
+.stepAside
+	predef_jump HideObject
+.blockTheWay
+	predef_jump ShowObject
 
 VermilionDock_TextPointers:
 	def_text_pointers

@@ -5,13 +5,23 @@ VermilionDock_Object:
 	db $f ; border block
 
 	def_warp_events
+; Back to vanilla's two warps. The S.S. Olympia used to have its own berth warp
+; at (14,3), which is why nobody could ever board her: (14,3) is a WALL in
+; ship_port's collision, so the tile could never be stepped on. Both ships now
+; share this one gangway and VermilionDockSetBerthScript repoints it.
+;
+; The gangway must also stay LAST -- VermilionDockSSAnneLeavesScript retires it
+; with `dec [wNumberOfWarps]`, which only ever drops the final warp.
 	warp_event 14,  0, LAST_MAP, 6
 	warp_event 14,  2, SS_ANNE_1F, 2
-	warp_event 14,  3, SS_OLYMPIA_1F, 1 ; S.S. Olympia's own dock berth, opens post-Champion (guard blocks it until then)
 
 	def_bg_events
 
 	def_object_events
-	object_event 14,  3, SPRITE_GENTLEMAN, STAY, LEFT, TEXT_VERMILIONDOCK_OLYMPIA_GUARD
+; (14,1) is the single-tile corridor between the dock entrance and the gangway,
+; so standing here he genuinely blocks boarding. Shown only once the Champion is
+; beaten and only while the party is the wrong size -- see
+; VermilionDockCheckOlympiaGuard.
+	object_event 14,  1, SPRITE_GENTLEMAN, STAY, DOWN, TEXT_VERMILIONDOCK_OLYMPIA_GUARD
 
 	def_warps_to VERMILION_DOCK
