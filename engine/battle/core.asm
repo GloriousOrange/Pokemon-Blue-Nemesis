@@ -4648,21 +4648,19 @@ CriticalHitTest:
 	ld c, [hl]                   ; read move id
 	ld a, [de]
 	bit GETTING_PUMPED, a        ; test for focus energy
-	jr nz, .focusEnergyUsed
+	jr nz, .capCritRate          ; focus energy pegs the rate, see below
 	sla b                        ; (effective (base speed/2)*2)
 	jr nc, .noFocusEnergyUsed
-	ld b, $ff                    ; cap at 255/256
-	jr .noFocusEnergyUsed
 ; Vanilla shifted RIGHT here, so FOCUS ENERGY and DIRE HIT gave a QUARTER of the
 ; normal crit rate instead of quadrupling it -- the most famous dud in Gen 1.
 ;
 ; The intended 4x would be three left shifts, but base Speed over ~32 overflows
 ; the 255 cap anyway, so every Pokemon that matters ends up pinned there. Peg it
-; directly instead: same result, and it costs the same bytes as the `srl` it
-; replaces, which this bank cannot spare (it is within a few bytes of full).
-; The caller halves this again for a normal move, landing at ~50% crit.
-.focusEnergyUsed
-	ld b, $ff
+; directly instead -- and since the doubling above lands on this same cap when it
+; overflows, both paths share it. The caller halves this again for a normal move,
+; landing at ~50% crit (measured: tools/crit_probe.py).
+.capCritRate
+	ld b, $ff                    ; cap at 255/256
 .noFocusEnergyUsed
 	ld hl, HighCriticalMoves     ; table of high critical hit moves
 .Loop

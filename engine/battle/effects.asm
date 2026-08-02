@@ -1337,6 +1337,14 @@ FlinchSideEffect:
 	ld b, 10 percent + 1 ; chance of flinch (FLINCH_SIDE_EFFECT1)
 	jr z, .gotEffectChance
 	ld b, 30 percent + 1 ; chance of flinch otherwise
+; CRUSH_JAW flinches half the time rather than the usual 30%. The move id sits
+; one byte below the effect (wPlayerMoveNum/wPlayerMoveEffect are adjacent, and
+; so are the enemy's), so read it back off de rather than branching on turn again.
+	dec de
+	ld a, [de]
+	cp CRUSH_JAW
+	jr nz, .gotEffectChance
+	ld b, 50 percent + 1 ; chance of flinch (CRUSH_JAW)
 .gotEffectChance
 	call BattleRandom
 	cp b

@@ -220,7 +220,10 @@
 	const HYDRO_JET      ; d0 - Water, 90 dmg, 30% flinch (unevolved Squirtle, L40)
 	const GIGA_DRAIN     ; d1 - Grass, 75 dmg, drains the full amount (unevolved Bulbasaur, L40)
 	const GHOST_BEAM     ; d2 - Ghost, 150 dmg, recharge; TM53 (ghost-starter answer to Psychics)
-	const STRUGGLE       ; d3
+	const SHADOW_PUNCH   ; d3 - Ghost, 80 dmg, 33% Spc drop (Gengar's repeatable STAB; GHOST_BEAM recharges, PHANTOM_WING stays Nocturn's)
+	const GRANIT_CLAMP   ; d4 - Rock, 90 dmg, high crit (Pinsirite's damage; misspelled to hit the 12-char name ceiling)
+	const CRUSH_JAW      ; d5 - Normal, 80 dmg, 50% flinch (Gyarados)
+	const STRUGGLE       ; d6
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

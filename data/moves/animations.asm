@@ -210,6 +210,9 @@ AttackAnimationPointers:
 	dw HydroPumpAnim    ; HYDRO_JET -- reuse Hydro Pump's water columns
 	dw MegaDrainAnim    ; GIGA_DRAIN -- reuse Mega Drain's visuals
 	dw GhostBeamAnim    ; GHOST_BEAM
+	dw NightShadeAnim   ; SHADOW_PUNCH -- reuse Night Shade's spectral visuals
+	dw RockThrowAnim    ; GRANIT_CLAMP -- reuse Rock Throw's visuals
+	dw BiteAnim         ; CRUSH_JAW -- reuse Bite's visuals
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim

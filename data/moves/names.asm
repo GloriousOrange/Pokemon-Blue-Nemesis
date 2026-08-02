@@ -211,5 +211,8 @@ MoveNames::
 	li "HYDRO JET"
 	li "GIGA DRAIN"
 	li "GHOST BEAM"
+	li "SHADOW PUNCH"
+	li "GRANIT CLAMP"
+	li "CRUSH JAW"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS

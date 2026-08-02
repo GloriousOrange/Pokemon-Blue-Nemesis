@@ -211,6 +211,9 @@ MoveSoundTable:
 	db SFX_BATTLE_2A,          $00, $80 ; HYDRO_JET (reuse hydro pump sfx)
 	db SFX_BATTLE_24,          $40, $c0 ; GIGA_DRAIN (reuse mega drain sfx)
 	db SFX_BATTLE_36,          $00, $80 ; GHOST_BEAM (reuse hyper beam sfx)
+	db SFX_NOT_VERY_EFFECTIVE, $f0, $e0 ; SHADOW_PUNCH (match reused Night Shade sfx)
+	db SFX_BATTLE_14,          $01, $e0 ; GRANIT_CLAMP (match reused Rock Throw sfx)
+	db SFX_BATTLE_1E,          $00, $80 ; CRUSH_JAW (match reused Bite sfx)
 	db SFX_BATTLE_0B,          $00, $80 ; STRUGGLE
 	assert_table_length NUM_ATTACKS
 	db SFX_BATTLE_0B,          $00, $80
