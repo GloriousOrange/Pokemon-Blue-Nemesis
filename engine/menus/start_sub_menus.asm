@@ -117,7 +117,14 @@ PhoneCall_Oak:
 	bit BIT_PLAYER_TRAITOR, a
 	jr z, .greet
 	ld hl, PhoneOakTraitorText
+	jr .print
 .greet
+; Hero path, hideout still standing: this call is where OAK actually sends you
+; after GIOVANNI, so his "you stormed my base" line has something behind it.
+	CheckEvent EVENT_BEAT_ROCKET_HIDEOUT_GIOVANNI
+	jr nz, .print
+	ld hl, PhoneOakHideoutBriefingText
+.print
 	call PrintText
 	call SaveScreenTilesToBuffer2
 	ld hl, wMiscFlags
@@ -130,6 +137,22 @@ PhoneCall_Oak:
 	ld hl, PhoneOakGoodbyeText
 	call PrintText
 	jp CloseStartMenu
+
+PhoneOakHideoutBriefingText:
+	text "OAK: TEAM ROCKET"
+	line "runs the GAME"
+	cont "CORNER in CELADON."
+
+	para "Their base is"
+	line "under it, and"
+	cont "GIOVANNI is down"
+	cont "there."
+
+	para "Find him. Find"
+	line "what he's hiding"
+	cont "before he moves"
+	cont "it."
+	done
 
 ; GIOVANNI: Loyalist-only. Delivers the Pokemon Tower mission briefing after
 ; Silph Co is cleared -- on the Loyalist path Giovanni's 11F map object is

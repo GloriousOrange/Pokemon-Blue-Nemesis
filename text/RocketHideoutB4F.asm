@@ -43,6 +43,13 @@ _RocketHideoutB4FGiovanniHopeWeMeetAgainText::
 	para "This belonged to"
 	line "him. It's yours"
 	cont "now."
+
+	para "Do you know why"
+	line "OAK sent you"
+	cont "here?"
+
+	para "Or are you just"
+	line "his pawn?"
 	done
 
 _RocketHideoutB4FGiovanniLoyalistRankText::
