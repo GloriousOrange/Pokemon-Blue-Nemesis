@@ -325,10 +325,10 @@ DEF ANY_FACING EQU $d0
 	; PrintCinnabarQuiz argument: ([hGymGateAnswer] << 4) | [hGymGateIndex]
 	hidden_event 15,  7, PrintCinnabarQuiz, (FALSE << 4) | 1
 	hidden_event 10,  1, PrintCinnabarQuiz, (TRUE  << 4) | 2
-	hidden_event  9,  7, PrintCinnabarQuiz, (TRUE  << 4) | 3
-	hidden_event  9, 13, PrintCinnabarQuiz, (TRUE  << 4) | 4
+	hidden_event  9,  7, PrintCinnabarQuiz, (FALSE << 4) | 3
+	hidden_event  9, 13, PrintCinnabarQuiz, (FALSE << 4) | 4
 	hidden_event  1, 13, PrintCinnabarQuiz, (FALSE << 4) | 5
-	hidden_event  1,  7, PrintCinnabarQuiz, (TRUE  << 4) | 6
+	hidden_event  1,  7, PrintCinnabarQuiz, (FALSE << 4) | 6
 	db -1 ; end
 
 	hidden_events_for CINNABAR_POKECENTER
