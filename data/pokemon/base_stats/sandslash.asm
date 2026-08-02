@@ -11,7 +11,7 @@
 	dw SandslashPicFront, SandslashPicBack
 
 	db SCRATCH, SAND_ATTACK, NO_MOVE, NO_MOVE ; level 1 learnset
-	db GROWTH_MEDIUM_FAST ; growth rate
+	db GROWTH_FAST ; growth rate (matches its pre-evolution; a slower curve here made levels drop on evolving)
 
 	; tm/hm learnset
 	tmhm SWORDS_DANCE, TOXIC, BODY_SLAM, TAKE_DOWN, DOUBLE_EDGE,  \

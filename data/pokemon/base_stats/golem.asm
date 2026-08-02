@@ -11,7 +11,7 @@
 	dw GolemPicFront, GolemPicBack
 
 	db TACKLE, DEFENSE_CURL, NO_MOVE, NO_MOVE ; level 1 learnset
-	db GROWTH_MEDIUM_SLOW ; growth rate
+	db GROWTH_FAST ; growth rate (matches its pre-evolution; a slower curve here made levels drop on evolving)
 
 	; tm/hm learnset
 	tmhm MEGA_PUNCH, MEGA_KICK, TOXIC, BODY_SLAM, TAKE_DOWN,  \

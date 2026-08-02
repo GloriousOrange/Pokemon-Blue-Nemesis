@@ -978,7 +978,10 @@ MarkWaterAttributes::
 ; palette rows stay pale.
 ;
 ; Only tilesets that animate their water use tile $14 for it -- indoors that
-; tile is something else entirely, so the whole pass is skipped there.
+; tile is something else entirely, so no cell is marked as water there. The
+; clearing half of the pass still has to run on those maps: skipping it outright
+; left the previous map's shoreline marked, which is why Pallet Town's water
+; showed up as a blue patch on the floor of Oak's Lab.
 ;
 ; Must be called with the LCD off: it walks the whole 32x32 map, switching VRAM
 ; banks per tile, which is far too slow for a VBlank. Scrolling is kept up to
@@ -986,32 +989,44 @@ MarkWaterAttributes::
 	ld a, [wOnCGB]
 	and a
 	ret z ; on a DMG rVBK does nothing, so this would write over the tiles
+; b = 1 when this tileset's $14 really is water, 0 when we only clear
 	ldh a, [hTileAnimations]
 	and a
-	ret z
+	ld b, 0
+	jr z, .gotWaterFlag
+	inc b
+.gotWaterFlag
 	ld hl, vBGMap0
-	ld bc, TILEMAP_AREA
+	ld de, TILEMAP_AREA
 .loop
 	xor a
 	ldh [rVBK], a
-	ld a, [hl]
+	ld a, [hl] ; the tile itself lives in bank 0
+	ld c, 0 ; default attribute: this cell is not water
+	bit 0, b ; `bit` leaves a alone, so the tile survives for the compare
+	jr z, .writeAttr
 	cp $14 ; the water tile
-	ld a, 0 ; `ld` leaves the comparison's flags alone
-	jr nz, .notWater
-	ld a, WATER_PAL
-.notWater
+	jr nz, .writeAttr
+	ld c, WATER_PAL
+.writeAttr
 ; every cell is written, not just the water: the previous map's shoreline would
 ; otherwise leave palette 4 behind on cells that are dry land here
-	ld e, a
 	ld a, 1
 	ldh [rVBK], a
-	ld a, e
+	ld a, c
 	ld [hl], a
 	inc hl
-	dec bc
-	ld a, b
-	or c
+	dec de
+	ld a, d
+	or e
 	jr nz, .loop
+; Leave the tile bank selected. Callers carry straight on writing tiles (the
+; overworld's map-load path enables the LCD and loads sprite graphics next), and
+; returning with bank 1 still latched sent those writes into the attribute map
+; instead -- garbled strips that a text box redrew away and the next map redraw
+; brought back.
+	xor a
+	ldh [rVBK], a
 	ret
 
 MarkRedrawnAttributes::
