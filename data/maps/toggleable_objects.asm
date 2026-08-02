@@ -274,7 +274,7 @@ ToggleableObjectStates:
 	toggle_object_state ROCKETHIDEOUTB4F_HP_UP,         ON
 	toggle_object_state ROCKETHIDEOUTB4F_TM_RAZOR_WIND, ON
 	toggle_object_state ROCKETHIDEOUTB4F_IRON,          ON
-	toggle_object_state ROCKETHIDEOUTB4F_SILPH_SCOPE,   OFF
+	toggle_object_state ROCKETHIDEOUTB4F_MASTER_BALL,   OFF
 	toggle_object_state ROCKETHIDEOUTB4F_LIFT_KEY,      OFF
 
 	toggleable_objects_for SILPH_CO_2F

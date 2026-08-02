@@ -370,7 +370,7 @@ SilphCo11FSilphPresidentText:
 	ld hl, .Text
 .print
 	call PrintText
-	lb bc, MASTER_BALL, 1
+	lb bc, SILPH_SCOPE, 1
 	call GiveItem
 	jr nc, .bag_full
 	ld hl, .ReceivedMasterBallText

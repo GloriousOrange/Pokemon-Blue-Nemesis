@@ -31,17 +31,12 @@ _SilphCo11FSilphPresidentMasterBallDescriptionText::
 	line "can't buy that"
 	cont "anywhere!"
 
-	para "It's our secret"
-	line "prototype MASTER"
-	cont "BALL!"
+	para "It's our SILPH"
+	line "SCOPE prototype!"
 
-	para "It will catch any"
-	line "#MON without"
-	cont "fail!"
-
-	para "You should be"
-	line "quiet about using"
-	cont "it, though."
+	para "It sees what the"
+	line "eye cannot. Take"
+	cont "it to the TOWER."
 	done
 
 _SilphCo11FSilphPresidentNoRoomText::

@@ -82,7 +82,7 @@ RocketHideoutB4F_TextPointers:
 	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_HP_UP
 	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_TM_RAZOR_WIND
 	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_IRON
-	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_SILPH_SCOPE
+	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_MASTER_BALL
 	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_LIFT_KEY
 	dw_const RocketHideoutB4FGiovanniHopeWeMeetAgainText, TEXT_ROCKETHIDEOUTB4F_GIOVANNI_HOPE_WE_MEET_AGAIN
 
