@@ -4648,14 +4648,21 @@ CriticalHitTest:
 	ld c, [hl]                   ; read move id
 	ld a, [de]
 	bit GETTING_PUMPED, a        ; test for focus energy
-	jr nz, .focusEnergyUsed      ; bug: using focus energy causes a shift to the right instead of left,
-	                             ; resulting in 1/4 the usual crit chance
+	jr nz, .focusEnergyUsed
 	sla b                        ; (effective (base speed/2)*2)
 	jr nc, .noFocusEnergyUsed
 	ld b, $ff                    ; cap at 255/256
 	jr .noFocusEnergyUsed
+; Vanilla shifted RIGHT here, so FOCUS ENERGY and DIRE HIT gave a QUARTER of the
+; normal crit rate instead of quadrupling it -- the most famous dud in Gen 1.
+;
+; The intended 4x would be three left shifts, but base Speed over ~32 overflows
+; the 255 cap anyway, so every Pokemon that matters ends up pinned there. Peg it
+; directly instead: same result, and it costs the same bytes as the `srl` it
+; replaces, which this bank cannot spare (it is within a few bytes of full).
+; The caller halves this again for a normal move, landing at ~50% crit.
 .focusEnergyUsed
-	srl b
+	ld b, $ff
 .noFocusEnergyUsed
 	ld hl, HighCriticalMoves     ; table of high critical hit moves
 .Loop
