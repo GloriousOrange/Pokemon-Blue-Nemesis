@@ -1,46 +1,47 @@
 _SSOlympiaKitchenCook1Text::
-	text "Rockets took over"
-	line "the galley too..."
-	done
-_SSOlympiaKitchenCook2Text::
-	text "Rockets took over"
-	line "the galley too..."
-	done
-_SSOlympiaKitchenCook3Text::
-	text "Rockets took over"
-	line "the galley too..."
-	done
-_SSOlympiaKitchenCook4Text::
-	text "Rockets took over"
-	line "the galley too..."
-	done
-_SSOlympiaKitchenCook5Text::
-	text "Rockets took over"
-	line "the galley too..."
-	done
-_SSOlympiaKitchenCook6Text::
-	text "Rockets took over"
-	line "the galley too..."
-	done
-_SSOlympiaKitchenCook7Text::
-	text "Rockets took over"
-	line "the galley too..."
-	done
-_SSOlympiaKitchenRocket1BattleText::
-	text "Team ROCKET owns"
-	line "this ship now."
-	cont "Turn back or get"
-	cont "thrown out a"
-	cont "porthole!"
+	text "Six hundred meals"
+	line "a night! No time"
+	cont "to chat!"
 	done
 
-_SSOlympiaKitchenRocket1EndBattleText::
-	text "Fine, FINE! Get"
-	line "off my back!"
+_SSOlympiaKitchenCook2Text::
+	text "The LEAGUE eats"
+	line "well on my watch."
+	done
+
+_SSOlympiaKitchenCook3Text::
+	text "Mind the hot pans!"
+	done
+
+_SSOlympiaKitchenCook4Text::
+	text "Fresh from the"
+	line "morning nets."
+	done
+
+_SSOlympiaKitchenCook5Text::
+	text "The cake is for"
+	line "the captain."
+	cont "Do not touch it."
+	done
+
+_SSOlympiaKitchenCook6Text::
+	text "Sea air makes"
+	line "everyone hungry."
+	done
+
+_SSOlympiaKitchenCook7Text::
+	text "Out of my kitchen,"
+	line "please!"
+	done
+
+_SSOlympiaKitchenBeautyBattleText::
+	text "One quick match?"
+	done
+
+_SSOlympiaKitchenBeautyEndBattleText::
+	text "Oh dear!"
 	prompt
 
-_SSOlympiaKitchenRocket1AfterBattleText::
-	text "Go on, then. See"
-	line "how far you get."
+_SSOlympiaKitchenBeautyAfterBattleText::
+	text "Well played."
 	done
-

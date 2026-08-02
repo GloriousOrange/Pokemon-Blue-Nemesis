@@ -1,44 +1,42 @@
 _SSOlympia1FWaiterText::
-	text "This deck is off"
-	line "limits to guests."
+	text "Drinks are free"
+	line "on the promenade"
+	cont "deck. Enjoy!"
 	done
 
 _SSOlympia1FSailorText::
-	text "The boss took over"
-	line "the whole ship..."
+	text "Half the LEAGUE"
+	line "booked passage"
+	cont "this year!"
 	done
 
-_SSOlympia1FRocket1BattleText::
-	text "You picked the"
-	line "wrong deck to"
-	cont "snoop around on,"
-	cont "kid."
+_SSOlympia1FBrockBattleText::
+	text "First holiday in"
+	line "nine years. Still"
+	cont "packed my GOLEM."
 	done
 
-_SSOlympia1FRocket1EndBattleText::
-	text "The boss is gonna"
-	line "hear about"
-	cont "this..."
+_SSOlympia1FBrockEndBattleText::
+	text "Ha! Worth it."
 	prompt
 
-_SSOlympia1FRocket1AfterBattleText::
-	text "I'm not fighting"
-	line "you again."
+_SSOlympia1FBrockAfterBattleText::
+	text "No gym, no badge."
+	line "Just the sea and"
+	cont "a good match."
 	done
 
-_SSOlympia1FRocket2BattleText::
-	text "The boss doesn't"
-	line "like visitors."
-	cont "Neither do I!"
+_SSOlympia1FMistyBattleText::
+	text "The pool up top is"
+	line "lovely. My STARMIE"
+	cont "still prefers sea."
 	done
 
-_SSOlympia1FRocket2EndBattleText::
-	text "H-how did you get"
-	line "so strong?!"
+_SSOlympia1FMistyEndBattleText::
+	text "You swim well!"
 	prompt
 
-_SSOlympia1FRocket2AfterBattleText::
-	text "Team ROCKET rules"
-	line "this ship."
-	cont "Remember that."
+_SSOlympia1FMistyAfterBattleText::
+	text "Come find me at"
+	line "the pool later!"
 	done

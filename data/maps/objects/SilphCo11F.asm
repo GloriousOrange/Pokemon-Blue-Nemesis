@@ -25,7 +25,7 @@ SilphCo11F_Object:
 	object_event  6,  9, SPRITE_GIOVANNI, STAY, DOWN, TEXT_SILPHCO11F_GIOVANNI, OPP_GIOVANNI, 2
 ; The hero path's counterpart to the loyalist pupil below: same tile, same job,
 ; and exactly one of the two is ever shown (SilphCo11FSetBossObjectScript).
-	object_event  7, 14, SPRITE_ROCKET, STAY, LEFT, TEXT_SILPHCO11F_ROCKET1, OPP_ROCKET, 63
+	object_event  7, 14, SPRITE_ROCKET, STAY, LEFT, TEXT_SILPHCO11F_ROCKET1, OPP_ROCKET, 43
 	object_event 15,  9, SPRITE_ROCKET, STAY, UP, TEXT_SILPHCO11F_ROCKET2, OPP_ROCKET, 40
 ; Loyalist path only. The pupil is a mandatory fight on the way to OAK, so he's
 ; placed where he cannot be walked around: the room below the card-key door is

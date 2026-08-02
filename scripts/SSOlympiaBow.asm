@@ -119,15 +119,15 @@ SSOlympiaBow_TextPointers:
 	dw_const SSOlympiaBowSuperNerdText, TEXT_SSOLYMPIABOW_SUPER_NERD
 	dw_const SSOlympiaBowBirdText, TEXT_SSOLYMPIABOW_BIRD
 	dw_const SSOlympiaBowRivalText, TEXT_SSOLYMPIABOW_RIVAL
-	dw_const SSOlympiaBowRocket1Text, TEXT_SSOLYMPIABOW_ROCKET1
-	dw_const SSOlympiaBowRocket2Text, TEXT_SSOLYMPIABOW_ROCKET2
+	dw_const SSOlympiaBowSailorText, TEXT_SSOLYMPIABOW_SAILOR
+	dw_const SSOlympiaBowSwimmerText, TEXT_SSOLYMPIABOW_SWIMMER
 
 SSOlympiaBowTrainerHeaders:
 	def_trainers 3
 SSOlympiaBowTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_BOW_ROCKET_0, 3, SSOlympiaBowRocket1BattleText, SSOlympiaBowRocket1EndBattleText, SSOlympiaBowRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_BOW_TRAINER_0, 3, SSOlympiaBowSailorBattleText, SSOlympiaBowSailorEndBattleText, SSOlympiaBowSailorAfterBattleText
 SSOlympiaBowTrainerHeader1:
-	trainer EVENT_BEAT_SS_OLYMPIA_BOW_ROCKET_1, 3, SSOlympiaBowRocket2BattleText, SSOlympiaBowRocket2EndBattleText, SSOlympiaBowRocket2AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_BOW_TRAINER_1, 3, SSOlympiaBowSwimmerBattleText, SSOlympiaBowSwimmerEndBattleText, SSOlympiaBowSwimmerAfterBattleText
 	db -1 ; end
 
 SSOlympiaBowSuperNerdText:
@@ -160,13 +160,13 @@ SSOlympiaBowRivalText:
 	text_far _SSOlympiaBowRivalAmbushText
 	text_end
 
-SSOlympiaBowRocket1Text:
+SSOlympiaBowSailorText:
 	text_asm
 	ld hl, SSOlympiaBowTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SSOlympiaBowRocket2Text:
+SSOlympiaBowSwimmerText:
 	text_asm
 	ld hl, SSOlympiaBowTrainerHeader1
 	call TalkToTrainer
@@ -180,26 +180,26 @@ SSOlympiaBowRivalVictoryText:
 	text_far _SSOlympiaBowRivalVictoryText
 	text_end
 
-SSOlympiaBowRocket1BattleText:
-	text_far _SSOlympiaBowRocket1BattleText
+SSOlympiaBowSailorBattleText:
+	text_far _SSOlympiaBowSailorBattleText
 	text_end
 
-SSOlympiaBowRocket1EndBattleText:
-	text_far _SSOlympiaBowRocket1EndBattleText
+SSOlympiaBowSailorEndBattleText:
+	text_far _SSOlympiaBowSailorEndBattleText
 	text_end
 
-SSOlympiaBowRocket1AfterBattleText:
-	text_far _SSOlympiaBowRocket1AfterBattleText
+SSOlympiaBowSailorAfterBattleText:
+	text_far _SSOlympiaBowSailorAfterBattleText
 	text_end
 
-SSOlympiaBowRocket2BattleText:
-	text_far _SSOlympiaBowRocket2BattleText
+SSOlympiaBowSwimmerBattleText:
+	text_far _SSOlympiaBowSwimmerBattleText
 	text_end
 
-SSOlympiaBowRocket2EndBattleText:
-	text_far _SSOlympiaBowRocket2EndBattleText
+SSOlympiaBowSwimmerEndBattleText:
+	text_far _SSOlympiaBowSwimmerEndBattleText
 	text_end
 
-SSOlympiaBowRocket2AfterBattleText:
-	text_far _SSOlympiaBowRocket2AfterBattleText
+SSOlympiaBowSwimmerAfterBattleText:
+	text_far _SSOlympiaBowSwimmerAfterBattleText
 	text_end

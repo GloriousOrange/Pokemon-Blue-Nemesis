@@ -16,53 +16,53 @@ SSOlympia2F_ScriptPointers:
 SSOlympia2F_TextPointers:
 	def_text_pointers
 	dw_const SSOlympia2FWaiterText, TEXT_SSOLYMPIA2F_WAITER
-	dw_const SSOlympia2FRocket1Text, TEXT_SSOLYMPIA2F_ROCKET1
-	dw_const SSOlympia2FRocket2Text, TEXT_SSOLYMPIA2F_ROCKET2
+	dw_const SSOlympia2FSabrinaText, TEXT_SSOLYMPIA2F_SABRINA
+	dw_const SSOlympia2FBlaineText, TEXT_SSOLYMPIA2F_BLAINE
 
 SSOlympia2FTrainerHeaders:
 	def_trainers 6
 SSOlympia2FTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_2F_ROCKET_0, 3, SSOlympia2FRocket1BattleText, SSOlympia2FRocket1EndBattleText, SSOlympia2FRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_2F_TRAINER_0, 3, SSOlympia2FSabrinaBattleText, SSOlympia2FSabrinaEndBattleText, SSOlympia2FSabrinaAfterBattleText
 SSOlympia2FTrainerHeader1:
-	trainer EVENT_BEAT_SS_OLYMPIA_2F_ROCKET_1, 3, SSOlympia2FRocket2BattleText, SSOlympia2FRocket2EndBattleText, SSOlympia2FRocket2AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_2F_TRAINER_1, 3, SSOlympia2FBlaineBattleText, SSOlympia2FBlaineEndBattleText, SSOlympia2FBlaineAfterBattleText
 	db -1 ; end
 
 SSOlympia2FWaiterText:
 	text_far _SSOlympia2FWaiterText
 	text_end
 
-SSOlympia2FRocket1Text:
+SSOlympia2FSabrinaText:
 	text_asm
 	ld hl, SSOlympia2FTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SSOlympia2FRocket2Text:
+SSOlympia2FBlaineText:
 	text_asm
 	ld hl, SSOlympia2FTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SSOlympia2FRocket1BattleText:
-	text_far _SSOlympia2FRocket1BattleText
+SSOlympia2FSabrinaBattleText:
+	text_far _SSOlympia2FSabrinaBattleText
 	text_end
 
-SSOlympia2FRocket1EndBattleText:
-	text_far _SSOlympia2FRocket1EndBattleText
+SSOlympia2FSabrinaEndBattleText:
+	text_far _SSOlympia2FSabrinaEndBattleText
 	text_end
 
-SSOlympia2FRocket1AfterBattleText:
-	text_far _SSOlympia2FRocket1AfterBattleText
+SSOlympia2FSabrinaAfterBattleText:
+	text_far _SSOlympia2FSabrinaAfterBattleText
 	text_end
 
-SSOlympia2FRocket2BattleText:
-	text_far _SSOlympia2FRocket2BattleText
+SSOlympia2FBlaineBattleText:
+	text_far _SSOlympia2FBlaineBattleText
 	text_end
 
-SSOlympia2FRocket2EndBattleText:
-	text_far _SSOlympia2FRocket2EndBattleText
+SSOlympia2FBlaineEndBattleText:
+	text_far _SSOlympia2FBlaineEndBattleText
 	text_end
 
-SSOlympia2FRocket2AfterBattleText:
-	text_far _SSOlympia2FRocket2AfterBattleText
+SSOlympia2FBlaineAfterBattleText:
+	text_far _SSOlympia2FBlaineAfterBattleText
 	text_end

@@ -1,6 +1,6 @@
 	object_const_def
 	const_export SSOLYMPIA3F_SAILOR
-	const_export SSOLYMPIA3F_ROCKET1
+	const_export SSOLYMPIA3F_BRUNO
 
 SSOlympia3F_Object:
 	db $c ; border block
@@ -13,6 +13,6 @@ SSOlympia3F_Object:
 
 	def_object_events
 	object_event  9,  3, SPRITE_SAILOR, WALK, LEFT_RIGHT, TEXT_SSOLYMPIA3F_SAILOR
-	object_event 14,  3, SPRITE_ROCKET, STAY, LEFT, TEXT_SSOLYMPIA3F_ROCKET1, OPP_ROCKET, 47
+	object_event 14,  3, SPRITE_HIKER, STAY, LEFT, TEXT_SSOLYMPIA3F_BRUNO, OPP_BRUNO, 2
 
 	def_warps_to SS_OLYMPIA_3F

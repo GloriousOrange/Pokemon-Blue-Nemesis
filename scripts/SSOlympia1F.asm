@@ -17,15 +17,15 @@ SSOlympia1F_TextPointers:
 	def_text_pointers
 	dw_const SSOlympia1FWaiterText, TEXT_SSOLYMPIA1F_WAITER
 	dw_const SSOlympia1FSailorText, TEXT_SSOLYMPIA1F_SAILOR
-	dw_const SSOlympia1FRocket1Text, TEXT_SSOLYMPIA1F_ROCKET1
-	dw_const SSOlympia1FRocket2Text, TEXT_SSOLYMPIA1F_ROCKET2
+	dw_const SSOlympia1FBrockText, TEXT_SSOLYMPIA1F_BROCK
+	dw_const SSOlympia1FMistyText, TEXT_SSOLYMPIA1F_MISTY
 
 SSOlympia1FTrainerHeaders:
 	def_trainers 4
 SSOlympia1FTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_1F_ROCKET_0, 3, SSOlympia1FRocket1BattleText, SSOlympia1FRocket1EndBattleText, SSOlympia1FRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_1F_TRAINER_0, 3, SSOlympia1FBrockBattleText, SSOlympia1FBrockEndBattleText, SSOlympia1FBrockAfterBattleText
 SSOlympia1FTrainerHeader1:
-	trainer EVENT_BEAT_SS_OLYMPIA_1F_ROCKET_1, 3, SSOlympia1FRocket2BattleText, SSOlympia1FRocket2EndBattleText, SSOlympia1FRocket2AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_1F_TRAINER_1, 3, SSOlympia1FMistyBattleText, SSOlympia1FMistyEndBattleText, SSOlympia1FMistyAfterBattleText
 	db -1 ; end
 
 SSOlympia1FWaiterText:
@@ -36,38 +36,38 @@ SSOlympia1FSailorText:
 	text_far _SSOlympia1FSailorText
 	text_end
 
-SSOlympia1FRocket1Text:
+SSOlympia1FBrockText:
 	text_asm
 	ld hl, SSOlympia1FTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SSOlympia1FRocket2Text:
+SSOlympia1FMistyText:
 	text_asm
 	ld hl, SSOlympia1FTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SSOlympia1FRocket1BattleText:
-	text_far _SSOlympia1FRocket1BattleText
+SSOlympia1FBrockBattleText:
+	text_far _SSOlympia1FBrockBattleText
 	text_end
 
-SSOlympia1FRocket1EndBattleText:
-	text_far _SSOlympia1FRocket1EndBattleText
+SSOlympia1FBrockEndBattleText:
+	text_far _SSOlympia1FBrockEndBattleText
 	text_end
 
-SSOlympia1FRocket1AfterBattleText:
-	text_far _SSOlympia1FRocket1AfterBattleText
+SSOlympia1FBrockAfterBattleText:
+	text_far _SSOlympia1FBrockAfterBattleText
 	text_end
 
-SSOlympia1FRocket2BattleText:
-	text_far _SSOlympia1FRocket2BattleText
+SSOlympia1FMistyBattleText:
+	text_far _SSOlympia1FMistyBattleText
 	text_end
 
-SSOlympia1FRocket2EndBattleText:
-	text_far _SSOlympia1FRocket2EndBattleText
+SSOlympia1FMistyEndBattleText:
+	text_far _SSOlympia1FMistyEndBattleText
 	text_end
 
-SSOlympia1FRocket2AfterBattleText:
-	text_far _SSOlympia1FRocket2AfterBattleText
+SSOlympia1FMistyAfterBattleText:
+	text_far _SSOlympia1FMistyAfterBattleText
 	text_end

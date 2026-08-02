@@ -1,44 +1,35 @@
 _SSOlympia2FWaiterText::
-	text "N-nobody told me"
-	line "there'd be pirates"
-	cont "on this cruise!"
+	text "The buffet is open"
+	line "all night, sir!"
 	done
 
-_SSOlympia2FRocket1BattleText::
-	text "Another"
-	line "do-gooder, huh?"
-	cont "Let's see what"
-	cont "you've got."
+_SSOlympia2FSabrinaBattleText::
+	text "I foresaw this"
+	line "match three days"
+	cont "ago. I came away."
 	done
 
-_SSOlympia2FRocket1EndBattleText::
-	text "Not bad. Still"
-	line "won't save you"
-	cont "from what's up"
-	cont "top."
+_SSOlympia2FSabrinaEndBattleText::
+	text "As predicted."
 	prompt
 
-_SSOlympia2FRocket1AfterBattleText::
-	text "...Whatever. Move"
-	line "along."
+_SSOlympia2FSabrinaAfterBattleText::
+	text "Even I cannot"
+	line "predict what the"
+	cont "buffet will serve."
 	done
 
-_SSOlympia2FRocket2BattleText::
-	text "Halt! Nobody sets"
-	line "foot on the S.S."
-	cont "OLYMPIA without"
-	cont "the boss's"
-	cont "say-so!"
+_SSOlympia2FBlaineBattleText::
+	text "Riddle me this:"
+	line "what burns at sea?"
+	cont "My CHARIZARD!"
 	done
 
-_SSOlympia2FRocket2EndBattleText::
-	text "Ugh! I'm just a"
-	line "grunt, I don't"
-	cont "get paid enough"
-	cont "for this!"
+_SSOlympia2FBlaineEndBattleText::
+	text "Hoo! Doused!"
 	prompt
 
-_SSOlympia2FRocket2AfterBattleText::
-	text "Just get out of"
-	line "my sight."
+_SSOlympia2FBlaineAfterBattleText::
+	text "No quiz machines"
+	line "aboard. A pity."
 	done

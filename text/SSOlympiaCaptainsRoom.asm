@@ -1,31 +1,23 @@
 _SSOlympiaCaptainsRoomTrashText::
-	text "Just empty crates"
-	line "and spilled fuel."
+	text "Empty bottles and"
+	line "confetti."
 	done
 
 _SSOlympiaCaptainsRoomLogbookText::
-	text "The captain's log"
-	line "ends abruptly."
+	text "THE LOG READS:"
 
-	para "Last entry:"
-	line "'They've taken"
-	cont "the bridge.'"
-	done
-_SSOlympiaCaptainsRoomRocket1BattleText::
-	text "You picked the"
-	line "wrong deck to"
-	cont "snoop around on,"
-	cont "kid."
+	para "Fair weather. All"
+	line "hands at ease."
 	done
 
-_SSOlympiaCaptainsRoomRocket1EndBattleText::
-	text "The boss is gonna"
-	line "hear about"
-	cont "this..."
+_SSOlympiaCaptainsRoomFisherBattleText::
+	text "Care for a match?"
+	done
+
+_SSOlympiaCaptainsRoomFisherEndBattleText::
+	text "Reeled right in."
 	prompt
 
-_SSOlympiaCaptainsRoomRocket1AfterBattleText::
-	text "I'm not fighting"
-	line "you again."
+_SSOlympiaCaptainsRoomFisherAfterBattleText::
+	text "Nice one."
 	done
-

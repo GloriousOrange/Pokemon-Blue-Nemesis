@@ -16,33 +16,33 @@ SSOlympia3F_ScriptPointers:
 SSOlympia3F_TextPointers:
 	def_text_pointers
 	dw_const SSOlympia3FSailorText, TEXT_SSOLYMPIA3F_SAILOR
-	dw_const SSOlympia3FRocket1Text, TEXT_SSOLYMPIA3F_ROCKET1
+	dw_const SSOlympia3FBrunoText, TEXT_SSOLYMPIA3F_BRUNO
 
 SSOlympia3FTrainerHeaders:
 	def_trainers 0
 SSOlympia3FTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_3F_ROCKET_0, 3, SSOlympia3FRocket1BattleText, SSOlympia3FRocket1EndBattleText, SSOlympia3FRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_3F_TRAINER_0, 3, SSOlympia3FBrunoBattleText, SSOlympia3FBrunoEndBattleText, SSOlympia3FBrunoAfterBattleText
 	db -1 ; end
 
 SSOlympia3FSailorText:
 	text_far _SSOlympia3FSailorText
 	text_end
-SSOlympia3FRocket1Text:
+SSOlympia3FBrunoText:
 	text_asm
 	ld hl, SSOlympia3FTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 
-SSOlympia3FRocket1BattleText:
-	text_far _SSOlympia3FRocket1BattleText
+SSOlympia3FBrunoBattleText:
+	text_far _SSOlympia3FBrunoBattleText
 	text_end
 
-SSOlympia3FRocket1EndBattleText:
-	text_far _SSOlympia3FRocket1EndBattleText
+SSOlympia3FBrunoEndBattleText:
+	text_far _SSOlympia3FBrunoEndBattleText
 	text_end
 
-SSOlympia3FRocket1AfterBattleText:
-	text_far _SSOlympia3FRocket1AfterBattleText
+SSOlympia3FBrunoAfterBattleText:
+	text_far _SSOlympia3FBrunoAfterBattleText
 	text_end
 

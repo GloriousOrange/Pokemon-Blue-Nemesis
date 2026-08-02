@@ -15,14 +15,14 @@ SSOlympiaCaptainsRoom_ScriptPointers:
 
 SSOlympiaCaptainsRoom_TextPointers:
 	def_text_pointers
-	dw_const SSOlympiaCaptainsRoomRocket1Text, TEXT_SSOLYMPIACAPTAINSROOM_ROCKET1
+	dw_const SSOlympiaCaptainsRoomFisherText, TEXT_SSOLYMPIACAPTAINSROOM_FISHER
 	dw_const SSOlympiaCaptainsRoomTrashText, TEXT_SSOLYMPIACAPTAINSROOM_TRASH
 	dw_const SSOlympiaCaptainsRoomLogbookText, TEXT_SSOLYMPIACAPTAINSROOM_LOGBOOK
 
 SSOlympiaCaptainsRoomTrainerHeaders:
 	def_trainers 6
 SSOlympiaCaptainsRoomTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_CAPTAINS_ROOM_ROCKET_0, 3, SSOlympiaCaptainsRoomRocket1BattleText, SSOlympiaCaptainsRoomRocket1EndBattleText, SSOlympiaCaptainsRoomRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_CAPTAINS_ROOM_ROCKET_0, 3, SSOlympiaCaptainsRoomFisherBattleText, SSOlympiaCaptainsRoomFisherEndBattleText, SSOlympiaCaptainsRoomFisherAfterBattleText
 	db -1 ; end
 
 SSOlympiaCaptainsRoomTrashText:
@@ -32,22 +32,22 @@ SSOlympiaCaptainsRoomTrashText:
 SSOlympiaCaptainsRoomLogbookText:
 	text_far _SSOlympiaCaptainsRoomLogbookText
 	text_end
-SSOlympiaCaptainsRoomRocket1Text:
+SSOlympiaCaptainsRoomFisherText:
 	text_asm
 	ld hl, SSOlympiaCaptainsRoomTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 
-SSOlympiaCaptainsRoomRocket1BattleText:
-	text_far _SSOlympiaCaptainsRoomRocket1BattleText
+SSOlympiaCaptainsRoomFisherBattleText:
+	text_far _SSOlympiaCaptainsRoomFisherBattleText
 	text_end
 
-SSOlympiaCaptainsRoomRocket1EndBattleText:
-	text_far _SSOlympiaCaptainsRoomRocket1EndBattleText
+SSOlympiaCaptainsRoomFisherEndBattleText:
+	text_far _SSOlympiaCaptainsRoomFisherEndBattleText
 	text_end
 
-SSOlympiaCaptainsRoomRocket1AfterBattleText:
-	text_far _SSOlympiaCaptainsRoomRocket1AfterBattleText
+SSOlympiaCaptainsRoomFisherAfterBattleText:
+	text_far _SSOlympiaCaptainsRoomFisherAfterBattleText
 	text_end
 

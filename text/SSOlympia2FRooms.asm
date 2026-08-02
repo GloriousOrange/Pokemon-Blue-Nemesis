@@ -1,73 +1,70 @@
 _SSOlympia2FRoomsGrampsText::
-	text "Back in my day,"
-	line "this ship had"
-	cont "actual SAILORS."
+	text "I sailed this ship"
+	line "forty years ago."
+	cont "She still floats!"
 	done
 
 _SSOlympia2FRoomsLittleBoyText::
-	text "I wanna see a"
-	line "ROCKET get beat up!"
+	text "Dad says LANCE is"
+	line "on board. LANCE!"
 	done
 
 _SSOlympia2FRoomsBrunetteGirlText::
-	text "This isn't the"
-	line "cruise I paid for."
+	text "The cabins are"
+	line "small, but the"
+	cont "view is endless."
 	done
 
 _SSOlympia2FRoomsBeautyText::
-	text "Get us off this"
-	line "ship, would you?"
-	done
-_SSOlympia2FRoomsRocket1BattleText::
-	text "Team ROCKET owns"
-	line "this ship now."
-	cont "Turn back or get"
-	cont "thrown out a"
-	cont "porthole!"
+	text "I came for the sun"
+	line "deck, not the"
+	cont "battles."
 	done
 
-_SSOlympia2FRoomsRocket1EndBattleText::
-	text "Fine, FINE! Get"
-	line "off my back!"
+_SSOlympia2FRoomsNormanBattleText::
+	text "My beasts needed"
+	line "the open air. So"
+	cont "did I."
+	done
+
+_SSOlympia2FRoomsNormanEndBattleText::
+	text "Fine herding!"
 	prompt
 
-_SSOlympia2FRoomsRocket1AfterBattleText::
-	text "Go on, then. See"
-	line "how far you get."
+_SSOlympia2FRoomsNormanAfterBattleText::
+	text "Come to VIRIDIAN"
+	line "for the HARMONY"
+	cont "badge sometime."
 	done
 
-_SSOlympia2FRoomsRocket2BattleText::
-	text "You picked the"
-	line "wrong deck to"
-	cont "snoop around on,"
-	cont "kid."
+_SSOlympia2FRoomsGiovanniBattleText::
+	text "No business today."
+	line "Just a man and"
+	cont "his PERSIAN."
 	done
 
-_SSOlympia2FRoomsRocket2EndBattleText::
-	text "The boss is gonna"
-	line "hear about"
-	cont "this..."
+_SSOlympia2FRoomsGiovanniEndBattleText::
+	text "...Hmph."
 	prompt
 
-_SSOlympia2FRoomsRocket2AfterBattleText::
-	text "I'm not fighting"
-	line "you again."
+_SSOlympia2FRoomsGiovanniAfterBattleText::
+	text "Do not read into"
+	line "it. I am on"
+	cont "holiday."
 	done
 
-_SSOlympia2FRoomsRocket3BattleText::
-	text "The boss doesn't"
-	line "like visitors."
-	cont "Neither do I!"
+_SSOlympia2FRoomsLoreleiBattleText::
+	text "I ride my LAPRAS"
+	line "beside the ship"
+	cont "each morning."
 	done
 
-_SSOlympia2FRoomsRocket3EndBattleText::
-	text "H-how did you get"
-	line "so strong?!"
+_SSOlympia2FRoomsLoreleiEndBattleText::
+	text "Chilling work."
 	prompt
 
-_SSOlympia2FRoomsRocket3AfterBattleText::
-	text "Team ROCKET rules"
-	line "this ship."
-	cont "Remember that."
+_SSOlympia2FRoomsLoreleiAfterBattleText::
+	text "The northern route"
+	line "is colder. I like"
+	cont "it better."
 	done
-

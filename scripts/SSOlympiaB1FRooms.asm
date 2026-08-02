@@ -20,18 +20,18 @@ SSOlympiaB1FRooms_TextPointers:
 	dw_const PickUpItemText, TEXT_SSOLYMPIAB1FROOMS_ETHER
 	dw_const PickUpItemText, TEXT_SSOLYMPIAB1FROOMS_TM_REST
 	dw_const PickUpItemText, TEXT_SSOLYMPIAB1FROOMS_MAX_POTION
-	dw_const SSOlympiaB1FRoomsRocket1Text, TEXT_SSOLYMPIAB1FROOMS_ROCKET1
-	dw_const SSOlympiaB1FRoomsRocket2Text, TEXT_SSOLYMPIAB1FROOMS_ROCKET2
-	dw_const SSOlympiaB1FRoomsRocket3Text, TEXT_SSOLYMPIAB1FROOMS_ROCKET3
+	dw_const SSOlympiaB1FRoomsTobyText, TEXT_SSOLYMPIAB1FROOMS_TOBY
+	dw_const SSOlympiaB1FRoomsOakText, TEXT_SSOLYMPIAB1FROOMS_OAK
+	dw_const SSOlympiaB1FRoomsNerdText, TEXT_SSOLYMPIAB1FROOMS_NERD
 
 SSOlympiaB1FRoomsTrainerHeaders:
 	def_trainers 5
 SSOlympiaB1FRoomsTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_B1FROOMS_ROCKET_0, 3, SSOlympiaB1FRoomsRocket1BattleText, SSOlympiaB1FRoomsRocket1EndBattleText, SSOlympiaB1FRoomsRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_B1FROOMS_TRAINER_0, 3, SSOlympiaB1FRoomsTobyBattleText, SSOlympiaB1FRoomsTobyEndBattleText, SSOlympiaB1FRoomsTobyAfterBattleText
 SSOlympiaB1FRoomsTrainerHeader1:
-	trainer EVENT_BEAT_SS_OLYMPIA_B1FROOMS_ROCKET_1, 3, SSOlympiaB1FRoomsRocket2BattleText, SSOlympiaB1FRoomsRocket2EndBattleText, SSOlympiaB1FRoomsRocket2AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_B1FROOMS_TRAINER_1, 3, SSOlympiaB1FRoomsOakBattleText, SSOlympiaB1FRoomsOakEndBattleText, SSOlympiaB1FRoomsOakAfterBattleText
 SSOlympiaB1FRoomsTrainerHeader2:
-	trainer EVENT_BEAT_SS_OLYMPIA_B1FROOMS_ROCKET_2, 3, SSOlympiaB1FRoomsRocket3BattleText, SSOlympiaB1FRoomsRocket3EndBattleText, SSOlympiaB1FRoomsRocket3AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_B1FROOMS_TRAINER_2, 3, SSOlympiaB1FRoomsNerdBattleText, SSOlympiaB1FRoomsNerdEndBattleText, SSOlympiaB1FRoomsNerdAfterBattleText
 	db -1 ; end
 
 SSOlympiaB1FRoomsSuperNerdText:
@@ -41,58 +41,58 @@ SSOlympiaB1FRoomsSuperNerdText:
 SSOlympiaB1FRoomsMachokeText:
 	text_far _SSOlympiaB1FRoomsMachokeText
 	text_end
-SSOlympiaB1FRoomsRocket1Text:
+SSOlympiaB1FRoomsTobyText:
 	text_asm
 	ld hl, SSOlympiaB1FRoomsTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SSOlympiaB1FRoomsRocket2Text:
+SSOlympiaB1FRoomsOakText:
 	text_asm
 	ld hl, SSOlympiaB1FRoomsTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SSOlympiaB1FRoomsRocket3Text:
+SSOlympiaB1FRoomsNerdText:
 	text_asm
 	ld hl, SSOlympiaB1FRoomsTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 
-SSOlympiaB1FRoomsRocket1BattleText:
-	text_far _SSOlympiaB1FRoomsRocket1BattleText
+SSOlympiaB1FRoomsTobyBattleText:
+	text_far _SSOlympiaB1FRoomsTobyBattleText
 	text_end
 
-SSOlympiaB1FRoomsRocket1EndBattleText:
-	text_far _SSOlympiaB1FRoomsRocket1EndBattleText
+SSOlympiaB1FRoomsTobyEndBattleText:
+	text_far _SSOlympiaB1FRoomsTobyEndBattleText
 	text_end
 
-SSOlympiaB1FRoomsRocket1AfterBattleText:
-	text_far _SSOlympiaB1FRoomsRocket1AfterBattleText
+SSOlympiaB1FRoomsTobyAfterBattleText:
+	text_far _SSOlympiaB1FRoomsTobyAfterBattleText
 	text_end
 
-SSOlympiaB1FRoomsRocket2BattleText:
-	text_far _SSOlympiaB1FRoomsRocket2BattleText
+SSOlympiaB1FRoomsOakBattleText:
+	text_far _SSOlympiaB1FRoomsOakBattleText
 	text_end
 
-SSOlympiaB1FRoomsRocket2EndBattleText:
-	text_far _SSOlympiaB1FRoomsRocket2EndBattleText
+SSOlympiaB1FRoomsOakEndBattleText:
+	text_far _SSOlympiaB1FRoomsOakEndBattleText
 	text_end
 
-SSOlympiaB1FRoomsRocket2AfterBattleText:
-	text_far _SSOlympiaB1FRoomsRocket2AfterBattleText
+SSOlympiaB1FRoomsOakAfterBattleText:
+	text_far _SSOlympiaB1FRoomsOakAfterBattleText
 	text_end
 
-SSOlympiaB1FRoomsRocket3BattleText:
-	text_far _SSOlympiaB1FRoomsRocket3BattleText
+SSOlympiaB1FRoomsNerdBattleText:
+	text_far _SSOlympiaB1FRoomsNerdBattleText
 	text_end
 
-SSOlympiaB1FRoomsRocket3EndBattleText:
-	text_far _SSOlympiaB1FRoomsRocket3EndBattleText
+SSOlympiaB1FRoomsNerdEndBattleText:
+	text_far _SSOlympiaB1FRoomsNerdEndBattleText
 	text_end
 
-SSOlympiaB1FRoomsRocket3AfterBattleText:
-	text_far _SSOlympiaB1FRoomsRocket3AfterBattleText
+SSOlympiaB1FRoomsNerdAfterBattleText:
+	text_far _SSOlympiaB1FRoomsNerdAfterBattleText
 	text_end
 

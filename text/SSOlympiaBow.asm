@@ -40,42 +40,28 @@ _SSOlympiaBowRivalVictoryText::
 	line "close."
 	done
 
-_SSOlympiaBowRocket1BattleText::
-	text "Another"
-	line "do-gooder, huh?"
-	cont "Let's see what"
-	cont "you've got."
+_SSOlympiaBowSailorBattleText::
+	text "Fancy a scrap?"
 	done
 
-_SSOlympiaBowRocket1EndBattleText::
-	text "Not bad. Still"
-	line "won't save you"
-	cont "from what's up"
-	cont "top."
+_SSOlympiaBowSailorEndBattleText::
+	text "You got me!"
 	prompt
 
-_SSOlympiaBowRocket1AfterBattleText::
-	text "...Whatever. Move"
-	line "along."
+_SSOlympiaBowSailorAfterBattleText::
+	text "Good match!"
 	done
 
-_SSOlympiaBowRocket2BattleText::
-	text "Halt! Nobody sets"
-	line "foot on the S.S."
-	cont "OLYMPIA without"
-	cont "the boss's"
-	cont "say-so!"
+_SSOlympiaBowSwimmerBattleText::
+	text "Race me? No--"
+	line "let us battle!"
 	done
 
-_SSOlympiaBowRocket2EndBattleText::
-	text "Ugh! I'm just a"
-	line "grunt, I don't"
-	cont "get paid enough"
-	cont "for this!"
+_SSOlympiaBowSwimmerEndBattleText::
+	text "Out of my depth!"
 	prompt
 
-_SSOlympiaBowRocket2AfterBattleText::
-	text "Just get out of"
-	line "my sight."
+_SSOlympiaBowSwimmerAfterBattleText::
+	text "The water is warm"
+	line "further south."
 	done
-

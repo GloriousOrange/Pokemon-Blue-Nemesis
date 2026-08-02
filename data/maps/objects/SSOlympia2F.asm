@@ -1,7 +1,7 @@
 	object_const_def
 	const_export SSOLYMPIA2F_WAITER
-	const_export SSOLYMPIA2F_ROCKET1
-	const_export SSOLYMPIA2F_ROCKET2
+	const_export SSOLYMPIA2F_SABRINA
+	const_export SSOLYMPIA2F_BLAINE
 
 SSOlympia2F_Object:
 	db $c ; border block
@@ -21,7 +21,7 @@ SSOlympia2F_Object:
 
 	def_object_events
 	object_event  3,  7, SPRITE_WAITER, WALK, UP_DOWN, TEXT_SSOLYMPIA2F_WAITER
-	object_event 12,  5, SPRITE_ROCKET, STAY, DOWN, TEXT_SSOLYMPIA2F_ROCKET1, OPP_ROCKET, 45
-	object_event 24,  5, SPRITE_ROCKET, STAY, DOWN, TEXT_SSOLYMPIA2F_ROCKET2, OPP_ROCKET, 46
+	object_event 12,  5, SPRITE_GIRL, STAY, DOWN, TEXT_SSOLYMPIA2F_SABRINA, OPP_SABRINA, 3
+	object_event 24,  5, SPRITE_MIDDLE_AGED_MAN, STAY, DOWN, TEXT_SSOLYMPIA2F_BLAINE, OPP_BLAINE, 3
 
 	def_warps_to SS_OLYMPIA_2F

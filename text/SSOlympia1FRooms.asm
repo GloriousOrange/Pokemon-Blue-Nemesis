@@ -1,83 +1,77 @@
 _SSOlympia1FRoomsGirl1Text::
-	text "They locked us in"
-	line "our cabins!"
+	text "Three gym leaders"
+	line "on one boat! I"
+	cont "brought my album."
 	done
 
 _SSOlympia1FRoomsMiddleAgedManText::
-	text "Team ROCKET seized"
-	line "this whole ship."
+	text "I saved two years"
+	line "for this cruise."
 	done
 
 _SSOlympia1FRoomsLittleGirlText::
-	text "I'm scared..."
+	text "My WIGGLYTUFF gets"
+	line "the top bunk."
 	done
 
 _SSOlympia1FRoomsWigglytuffText::
-	text "WIGGLYTUFF!"
+	text "WIGGLYTUFF: Wig!"
 	done
 
 _SSOlympia1FRoomsGirl2Text::
-	text "Please get us out"
-	line "of here!"
+	text "Someone said OAK"
+	line "is aboard. OAK!"
 	done
 
 _SSOlympia1FRoomsGentleman3Text::
-	text "I demand a refund"
-	line "on this cruise!"
-	done
-_SSOlympia1FRoomsRocket1BattleText::
-	text "The boss doesn't"
-	line "like visitors."
-	cont "Neither do I!"
+	text "No business talk"
+	line "at sea. That is"
+	cont "the rule."
 	done
 
-_SSOlympia1FRoomsRocket1EndBattleText::
-	text "H-how did you get"
-	line "so strong?!"
+_SSOlympia1FRoomsSurgeBattleText::
+	text "No drills, no"
+	line "uniform. Just me"
+	cont "and my RAICHU!"
+	done
+
+_SSOlympia1FRoomsSurgeEndBattleText::
+	text "Hah! Good jolt."
 	prompt
 
-_SSOlympia1FRoomsRocket1AfterBattleText::
-	text "Team ROCKET rules"
-	line "this ship."
-	cont "Remember that."
+_SSOlympia1FRoomsSurgeAfterBattleText::
+	text "Shore leave suits"
+	line "me. Enjoy the"
+	cont "cruise, kid!"
 	done
 
-_SSOlympia1FRoomsRocket2BattleText::
-	text "Another"
-	line "do-gooder, huh?"
-	cont "Let's see what"
-	cont "you've got."
+_SSOlympia1FRoomsErikaBattleText::
+	text "The sun deck grows"
+	line "such lovely"
+	cont "flowers..."
 	done
 
-_SSOlympia1FRoomsRocket2EndBattleText::
-	text "Not bad. Still"
-	line "won't save you"
-	cont "from what's up"
-	cont "top."
+_SSOlympia1FRoomsErikaEndBattleText::
+	text "Oh! How lively."
 	prompt
 
-_SSOlympia1FRoomsRocket2AfterBattleText::
-	text "...Whatever. Move"
-	line "along."
+_SSOlympia1FRoomsErikaAfterBattleText::
+	text "I may nap here"
+	line "until FUCHSIA."
 	done
 
-_SSOlympia1FRoomsRocket3BattleText::
-	text "Halt! Nobody sets"
-	line "foot on the S.S."
-	cont "OLYMPIA without"
-	cont "the boss's"
-	cont "say-so!"
+_SSOlympia1FRoomsKogaBattleText::
+	text "Even a ninja takes"
+	line "a holiday. Do not"
+	cont "tell my students."
 	done
 
-_SSOlympia1FRoomsRocket3EndBattleText::
-	text "Ugh! I'm just a"
-	line "grunt, I don't"
-	cont "get paid enough"
-	cont "for this!"
+_SSOlympia1FRoomsKogaEndBattleText::
+	text "...Impressive."
 	prompt
 
-_SSOlympia1FRoomsRocket3AfterBattleText::
-	text "Just get out of"
-	line "my sight."
+_SSOlympia1FRoomsKogaAfterBattleText::
+	text "Sea air clears the"
+	line "lungs. Mine, at"
+	cont "least."
 	done
-

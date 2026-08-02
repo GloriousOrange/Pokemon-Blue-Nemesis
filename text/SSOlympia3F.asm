@@ -1,23 +1,19 @@
 _SSOlympia3FSailorText::
-	text "I used to work"
-	line "this ship, before"
-	cont "ROCKET took over."
-	done
-_SSOlympia3FRocket1BattleText::
-	text "Team ROCKET owns"
-	line "this ship now."
-	cont "Turn back or get"
-	cont "thrown out a"
-	cont "porthole!"
+	text "Sun deck's up top."
+	line "Mind the railing!"
 	done
 
-_SSOlympia3FRocket1EndBattleText::
-	text "Fine, FINE! Get"
-	line "off my back!"
+_SSOlympia3FBrunoBattleText::
+	text "The dojo shut for"
+	line "a week. My arms"
+	cont "disagreed."
+	done
+
+_SSOlympia3FBrunoEndBattleText::
+	text "Good! Strong!"
 	prompt
 
-_SSOlympia3FRocket1AfterBattleText::
-	text "Go on, then. See"
-	line "how far you get."
+_SSOlympia3FBrunoAfterBattleText::
+	text "Train on deck at"
+	line "dawn with me."
 	done
-
