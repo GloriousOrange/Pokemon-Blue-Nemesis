@@ -309,8 +309,7 @@ INCLUDE "data/trainers/names.asm"
 
 INCLUDE "engine/battle/misc.asm"
 
-; read_trainer_party.asm was floated out to its own section in main.asm:
-; "Battle Engine 7" is full, and ReadTrainer is only reached via callfar.
+INCLUDE "engine/battle/read_trainer_party.asm"
 
 INCLUDE "data/trainers/special_moves.asm"
 

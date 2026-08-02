@@ -124,12 +124,6 @@ ReadTrainer:
 	jr z, .MaybeRival2Special
 	cp BUG_CATCHER
 	jp z, .MaybeToby
-	cp JR_TRAINER_M
-	jp z, .MaybeNuggetBridge
-	cp LASS
-	jp z, .MaybeNuggetBridge
-	cp YOUNGSTER
-	jp z, .MaybeNuggetBridge
 	jp .FinishUp ; nope
 .GiveTeamMoves
 	ld a, [hl]
@@ -223,113 +217,6 @@ ReadTrainer:
 	ld a, RECOVER
 	ld [hl], a
 	jp .FinishUp
-.MaybeNuggetBridge
-; The Nugget Bridge line is the custom-move proving ground: five trainers, six
-; level 100 mons each, every moveset replaced with Nemesis moves and no vanilla
-; moves at all, so one walk across exercises every move added since vanilla.
-; Works out which of the five this is (0-4 in e), then copies 6x5 moves in.
-	ld a, [wTrainerNo]
-	ld c, a
-	ld a, b
-	cp JR_TRAINER_M
-	jr nz, .nbNotJrM
-	ld a, c
-	cp 2
-	ld e, 0
-	jr z, .nbCopy
-	cp 3
-	ld e, 1
-	jr z, .nbCopy
-	jp .FinishUp
-.nbNotJrM
-	cp LASS
-	jr nz, .nbNotLass
-	ld a, c
-	cp 7
-	ld e, 2
-	jr z, .nbCopy
-	cp 8
-	ld e, 3
-	jr z, .nbCopy
-	jp .FinishUp
-.nbNotLass
-	ld a, c
-	cp 4 ; YOUNGSTER #4
-	ld e, 4
-	jr z, .nbCopy
-	jp .FinishUp
-.nbCopy
-; hl = .nbTable + e * 30
-	ld hl, .nbTable
-	ld bc, 30
-.nbSeek
-	ld a, e
-	and a
-	jr z, .nbSeekDone
-	add hl, bc
-	dec e
-	jr .nbSeek
-.nbSeekDone
-	ld de, wEnemyMon1Moves
-	ld c, PARTY_LENGTH
-.nbMonLoop
-	push bc
-	ld b, NUM_MOVES
-.nbMoveLoop
-	ld a, [hli]
-	ld [de], a
-	inc de
-	dec b
-	jr nz, .nbMoveLoop
-; step de on to the next mon's move block
-	push hl
-	ld hl, (wEnemyMon2Moves - wEnemyMon1Moves) - NUM_MOVES
-	add hl, de
-	ld d, h
-	ld e, l
-	pop hl
-	pop bc
-	dec c
-	jr nz, .nbMonLoop
-	jp .FinishUp
-
-.nbTable
-; bridge trainer 1
-	db HYPER_BEAMS, CARRION_WIND, BLIGHT_VOMIT, MIND_FEVER, PHANTOM_WING
-	db WEB_CANNON, UPPERCUT, JACKPOT, SUPER_INSTINCT, CRYSTALLIZE
-	db CHAOS_STING, CHOKEHOLD, ROCK_FISTS, HOT_OIL, BAD_TOUCH
-	db CRUSH_COIL, BLOOD_SUCK, HURRICANE, ICE_SPIKE, MIGRAIN
-	db DIVE, STATIC_SHOCK, GRAVITY_SLAM, VIBRATE, STEALTH
-	db TANGLE, ICE_BOMB, ICE_SCULPTURE, STAMPEDE, ROLL
-; bridge trainer 2
-	db VENOM_BITE, MUD_SLAP, MANDIBLE_BITE, PALM_STRIKE, SCORCH
-	db SPARK, PSY_CHOP, DRAGON_BREATH, GLITTER_WING, TELEKINESIS
-	db FLAME_WHIP, HYDRO_JET, GIGA_DRAIN, GHOST_BEAM, HYPER_BEAMS
-	db CARRION_WIND, BLIGHT_VOMIT, MIND_FEVER, PHANTOM_WING, WEB_CANNON
-	db UPPERCUT, JACKPOT, SUPER_INSTINCT, CRYSTALLIZE, CHAOS_STING
-	db CHOKEHOLD, ROCK_FISTS, HOT_OIL, BAD_TOUCH, CRUSH_COIL
-; bridge trainer 3
-	db BLOOD_SUCK, HURRICANE, ICE_SPIKE, MIGRAIN, DIVE
-	db STATIC_SHOCK, GRAVITY_SLAM, VIBRATE, STEALTH, TANGLE
-	db ICE_BOMB, ICE_SCULPTURE, STAMPEDE, ROLL, VENOM_BITE
-	db MUD_SLAP, MANDIBLE_BITE, PALM_STRIKE, SCORCH, SPARK
-	db PSY_CHOP, DRAGON_BREATH, GLITTER_WING, TELEKINESIS, FLAME_WHIP
-	db HYDRO_JET, GIGA_DRAIN, GHOST_BEAM, HYPER_BEAMS, CARRION_WIND
-; bridge trainer 4
-	db BLIGHT_VOMIT, MIND_FEVER, PHANTOM_WING, WEB_CANNON, UPPERCUT
-	db JACKPOT, SUPER_INSTINCT, CRYSTALLIZE, CHAOS_STING, CHOKEHOLD
-	db ROCK_FISTS, HOT_OIL, BAD_TOUCH, CRUSH_COIL, BLOOD_SUCK
-	db HURRICANE, ICE_SPIKE, MIGRAIN, DIVE, STATIC_SHOCK
-	db GRAVITY_SLAM, VIBRATE, STEALTH, TANGLE, ICE_BOMB
-	db ICE_SCULPTURE, STAMPEDE, ROLL, VENOM_BITE, MUD_SLAP
-; bridge trainer 5
-	db MANDIBLE_BITE, PALM_STRIKE, SCORCH, SPARK, PSY_CHOP
-	db DRAGON_BREATH, GLITTER_WING, TELEKINESIS, FLAME_WHIP, HYDRO_JET
-	db GIGA_DRAIN, GHOST_BEAM, HYPER_BEAMS, CARRION_WIND, BLIGHT_VOMIT
-	db MIND_FEVER, PHANTOM_WING, WEB_CANNON, UPPERCUT, JACKPOT
-	db SUPER_INSTINCT, CRYSTALLIZE, CHAOS_STING, CHOKEHOLD, ROCK_FISTS
-	db HOT_OIL, BAD_TOUCH, CRUSH_COIL, BLOOD_SUCK, HURRICANE
-
 .MaybeToby
 ; Elite Four Bug Catcher Toby (BugCatcherData #16). Custom movesets:
 ; Parasect (mon1) -- Spore + Slash, plus Cut (Bug) so it can hit Ghosts that

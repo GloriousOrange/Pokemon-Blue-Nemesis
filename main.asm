@@ -515,8 +515,3 @@ INCLUDE "data/maps/map_header_pointers.asm"
 SECTION "Hyper Beam Power", ROMX ; ApplyHyperBeamPower is only reached via farjp, so any bank works; kept out of "Battle Core", which is full
 
 INCLUDE "engine/battle/hyper_beam_power.asm"
-
-
-SECTION "Read Trainer Party", ROMX ; floated out of "Battle Engine 7" (full) to fit the Nugget Bridge custom-move table; ReadTrainer is only ever reached via callfar, so any bank works
-
-INCLUDE "engine/battle/read_trainer_party.asm"
