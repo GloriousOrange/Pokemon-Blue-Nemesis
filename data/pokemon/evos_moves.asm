@@ -1372,6 +1372,7 @@ ZubatEvosMoves:
 	db EVOLVE_LEVEL, 22, GOLBAT
 	db 0
 ; Learnset
+	db 9, DOUBLE_TEAM
 	db 10, SUPERSONIC
 	db 15, BITE
 	db 21, CONFUSE_RAY
@@ -1691,6 +1692,7 @@ CloysterEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 31, EXPLOSION
 	db 50, SPIKE_CANNON
 	db 0
 

@@ -10,7 +10,7 @@ DrainHPEffect_:
 	ld [hld], a
 	jr .checkZero
 .noHalving
-; Leech Life and Giga Drain give back every point they dealt, so wDamage is left
+; Leech Life, Giga Drain and Blood Suck give back every point they dealt, so wDamage is left
 ; alone. Both paths reach .checkZero with hl on the high byte and a on the low.
 	inc hl
 	ld a, [hl]
@@ -119,6 +119,8 @@ DrainHPEffect_:
 	cp LEECH_LIFE
 	jr z, .fullDrain
 	cp GIGA_DRAIN
+	jr z, .fullDrain
+	cp BLOOD_SUCK
 	jr z, .fullDrain
 	pop hl
 	and a ; clear carry
