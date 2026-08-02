@@ -42,6 +42,8 @@ FRAME_BUDGET = 60             # frames to let ReadTrainer finish before calling 
 EXPECTED = {
     ("RIVAL3", 41): [("ALAKACHAMP", 100, "UPPERCUT")],
 }
+# NOTE: aboard the Olympia the moves come from MutagenMovesets, not the
+# learnset, so pass --map SS_OLYMPIA_BOW to see what the deck fight really uses.
 
 DEFAULT_CASES = [("RIVAL3", 41)]
 
@@ -101,6 +103,18 @@ def build_stub(bank, addr):
     ])
 
 
+def parse_maps():
+    """map_const NAME, w, h -- sequential ids from 0."""
+    names, value = {}, 0
+    for line in open(os.path.join(ROOT, "constants/map_constants.asm")):
+        line = line.split(";")[0].strip()
+        m = re.match(r"map_const\s+(\w+)\s*,", line)
+        if m:
+            names[m.group(1)] = value
+            value += 1
+    return names
+
+
 def parse_types():
     """Type constants use const_next gaps, so track const_value explicitly."""
     names, value = {}, 0
@@ -120,7 +134,8 @@ def parse_types():
     return names
 
 
-def read_party(pyboy, sym, opp_id, trainer_no, num_moves, rival_starter=None):
+def read_party(pyboy, sym, opp_id, trainer_no, num_moves, rival_starter=None,
+               cur_map=None):
     mem = pyboy.memory
     mem[0xFFFF] = 0x00
     mem[0xFF0F] = 0x00
@@ -132,6 +147,8 @@ def read_party(pyboy, sym, opp_id, trainer_no, num_moves, rival_starter=None):
     mem[0xFFD4] = 0xA5
     if rival_starter is not None:
         mem[sym["wRivalStarter"][1]] = rival_starter
+    if cur_map is not None:
+        mem[sym["wCurMap"][1]] = cur_map
 
     stub = build_stub(*sym["ReadTrainer"])
     for off, byte in enumerate(stub):
@@ -180,6 +197,15 @@ def main():
     num_moves = int(re.search(r"DEF NUM_MOVES EQU (\d+)", battle).group(1))
 
     args = list(sys.argv[1:])
+    all_maps = parse_maps()
+    cur_map = None
+    if "--map" in args:
+        i = args.index("--map")
+        map_name = args[i + 1]
+        del args[i:i + 2]
+        if map_name not in all_maps:
+            sys.exit(f"unknown map {map_name}")
+        cur_map = all_maps[map_name]
     starter = None
     if "--rival-starter" in args:
         i = args.index("--rival-starter")
@@ -200,7 +226,8 @@ def main():
 
     sym = load_symbols("ReadTrainer", "wLinkState", "wIsInBattle", "wCurOpponent",
                        "wTrainerNo", "wEnemyPartyCount", "wEnemyMon1Species",
-                       "wEnemyMon1Moves", "wEnemyMon1Level", "wRivalStarter")
+                       "wEnemyMon1Moves", "wEnemyMon1Level", "wRivalStarter",
+                       "wCurMap")
     types = parse_types()
 
     pyboy = PyBoy(ROM, window="null", cgb=True)
@@ -209,8 +236,10 @@ def main():
     failures = []
     for cls, no in cases:
         opp = 200 + classes[cls]
-        count, party = read_party(pyboy, sym, opp, no, num_moves, starter)
+        count, party = read_party(pyboy, sym, opp, no, num_moves, starter, cur_map)
         extra = f"  [wRivalStarter={species.get(starter, starter)}]" if starter else ""
+        if cur_map is not None:
+            extra += f"  [map={[k for k, v in all_maps.items() if v == cur_map][0]}]"
         print(f"\n{cls} #{no}  (wCurOpponent={opp})  party of {count}{extra}")
         for i, (sp, lvl, mv, ty) in enumerate(party, 1):
             names = [moves.get(m, f"${m:02x}") for m in mv if m]

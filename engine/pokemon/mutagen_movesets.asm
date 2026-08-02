@@ -1,3 +1,36 @@
+ApplyOlympiaTrainerMoveset::
+; Called from ReadTrainer's .FinishUp for every trainer battle. Off the
+; S.S. OLYMPIA it does nothing.
+;
+; Aboard, every trainer carries exactly one L100 Pokemon, so mon1 is the whole
+; team -- and its moves come from the curated MutagenMovesets row for its
+; species rather than from whatever its learnset happens to end on. This is the
+; "one table, two consumers" wiring: the player's mutagenated mons and the
+; ship's trainers read the same rows, so a trainer's signature move only has to
+; appear in that species' row. No LoneMoves entry, no per-trainer case here.
+;
+; A species with no curated row yet keeps its learnset moves, so the ship stays
+; playable while the table is still being filled in.
+	ld a, [wCurMap]
+	ld b, a
+	ld hl, .Decks
+.findDeck
+	ld a, [hli]
+	cp -1
+	ret z ; ashore: leave the party exactly as ReadTrainer built it
+	cp b
+	jr nz, .findDeck
+
+	ld a, [wEnemyMon1Species]
+	and a
+	ret z ; no mon loaded; nothing to re-arm
+	ld [wCurPartySpecies], a
+	ld de, wEnemyMon1Moves
+	jp ApplyMutagenMoveset ; tail call; its hl return means nothing to ReadTrainer
+
+.Decks:
+INCLUDE "data/maps/ss_olympia_decks.asm"
+
 ApplyMutagenMoveset::
 ; Writes the curated Mutagenstone moveset for [wCurPartySpecies] into the
 ; NUM_MOVES move slots at de, and fills in each move's full PP to match.

@@ -239,10 +239,7 @@ IsOnSSOlympia:
 	ret
 
 .Decks:
-	db SS_OLYMPIA_1F, SS_OLYMPIA_2F, SS_OLYMPIA_3F, SS_OLYMPIA_B1F
-	db SS_OLYMPIA_BOW, SS_OLYMPIA_KITCHEN, SS_OLYMPIA_CAPTAINS_ROOM
-	db SS_OLYMPIA_1F_ROOMS, SS_OLYMPIA_2F_ROOMS, SS_OLYMPIA_B1F_ROOMS
-	db -1 ; end
+INCLUDE "data/maps/ss_olympia_decks.asm"
 
 PhoneNoSignalText:
 	text "No signal!"

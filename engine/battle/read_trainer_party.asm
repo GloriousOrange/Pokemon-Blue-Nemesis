@@ -136,7 +136,11 @@ ReadTrainer:
 ; before patching any of them.
 	ld a, [wTrainerNo]
 	cp 41
-	jr z, .OlympiaDeckRival
+; The deck fight is a lone Alakachamp and its moves come from the Olympia hook
+; in .FinishUp, so it needs no patch -- but it must still be diverted here, or
+; it would fall into .OlympiaRival below and have its species overwritten with
+; the rival's dead starter.
+	jp z, .FinishUp
 	cp 38
 	jp nc, .OlympiaRival
 .ChampionRival ; give moves to his team
@@ -184,14 +188,6 @@ ReadTrainer:
 ; so patch the empty 5th slot to its signature move, Uppercut.
 	ld a, UPPERCUT
 	ld [wEnemyMon3Moves + 4], a
-	jp .FinishUp
-.OlympiaDeckRival
-; Same Alakachamp, but it is the only mon aboard the deck fight, so the empty
-; 5th slot to patch is mon1's. Superseded once ship trainers read
-; MutagenMovesets -- UPPERCUT is already the first move of Alakachamp's curated
-; row, so this whole case goes away then.
-	ld a, UPPERCUT
-	ld [wEnemyMon1Moves + 4], a
 	jp .FinishUp
 .MaybeLoyalistScientist
 ; Silph Co 11F Loyalist path scientist (data/trainers/parties.asm #21): Porygon
@@ -292,6 +288,10 @@ ReadTrainer:
 	ld a, SWORDS_DANCE
 	ld [hl], a
 .FinishUp
+; Aboard the S.S. OLYMPIA, re-arm the trainer's lone mon from the curated
+; MutagenMovesets table. No-op everywhere else, so this sits on the shared
+; path rather than being repeated per trainer class.
+	callfar ApplyOlympiaTrainerMoveset
 ; clear wAmountMoneyWon addresses
 	xor a
 	ld de, wAmountMoneyWon
