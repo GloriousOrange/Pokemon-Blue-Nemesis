@@ -65,3 +65,27 @@ _SSOlympiaBowSwimmerAfterBattleText::
 	text "The water is warm"
 	line "further south."
 	done
+
+_SSOlympiaBowRockerBattleText::
+	text "Care for a match?"
+	done
+
+_SSOlympiaBowRockerEndBattleText::
+	text "You got me!"
+	prompt
+
+_SSOlympiaBowRockerAfterBattleText::
+	text "Good match!"
+	done
+
+_SSOlympiaBowJugglerBattleText::
+	text "One quick battle?"
+	done
+
+_SSOlympiaBowJugglerEndBattleText::
+	text "Oh, beaten!"
+	prompt
+
+_SSOlympiaBowJugglerAfterBattleText::
+	text "Well played!"
+	done

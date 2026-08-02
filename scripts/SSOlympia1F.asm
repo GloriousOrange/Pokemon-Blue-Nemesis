@@ -19,6 +19,8 @@ SSOlympia1F_TextPointers:
 	dw_const SSOlympia1FSailorText, TEXT_SSOLYMPIA1F_SAILOR
 	dw_const SSOlympia1FBrockText, TEXT_SSOLYMPIA1F_BROCK
 	dw_const SSOlympia1FMistyText, TEXT_SSOLYMPIA1F_MISTY
+	dw_const SSOlympia1FYoungsterText, TEXT_SSOLYMPIA1F_YOUNGSTER
+	dw_const SSOlympia1FLassText, TEXT_SSOLYMPIA1F_LASS
 
 SSOlympia1FTrainerHeaders:
 	def_trainers 4
@@ -26,6 +28,10 @@ SSOlympia1FTrainerHeader0:
 	trainer EVENT_BEAT_SS_OLYMPIA_1F_TRAINER_0, 3, SSOlympia1FBrockBattleText, SSOlympia1FBrockEndBattleText, SSOlympia1FBrockAfterBattleText
 SSOlympia1FTrainerHeader1:
 	trainer EVENT_BEAT_SS_OLYMPIA_1F_TRAINER_1, 3, SSOlympia1FMistyBattleText, SSOlympia1FMistyEndBattleText, SSOlympia1FMistyAfterBattleText
+SSOlympia1FTrainerHeader2:
+	trainer_in wOlympiaTrainerFlags, 6, 2, SSOlympia1FYoungsterBattleText, SSOlympia1FYoungsterEndBattleText, SSOlympia1FYoungsterAfterBattleText
+SSOlympia1FTrainerHeader3:
+	trainer_in wOlympiaTrainerFlags, 7, 2, SSOlympia1FLassBattleText, SSOlympia1FLassEndBattleText, SSOlympia1FLassAfterBattleText
 	db -1 ; end
 
 SSOlympia1FWaiterText:
@@ -70,4 +76,40 @@ SSOlympia1FMistyEndBattleText:
 
 SSOlympia1FMistyAfterBattleText:
 	text_far _SSOlympia1FMistyAfterBattleText
+	text_end
+
+SSOlympia1FYoungsterText:
+	text_asm
+	ld hl, SSOlympia1FTrainerHeader2
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympia1FYoungsterBattleText:
+	text_far _SSOlympia1FYoungsterBattleText
+	text_end
+
+SSOlympia1FYoungsterEndBattleText:
+	text_far _SSOlympia1FYoungsterEndBattleText
+	text_end
+
+SSOlympia1FYoungsterAfterBattleText:
+	text_far _SSOlympia1FYoungsterAfterBattleText
+	text_end
+
+SSOlympia1FLassText:
+	text_asm
+	ld hl, SSOlympia1FTrainerHeader3
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympia1FLassBattleText:
+	text_far _SSOlympia1FLassBattleText
+	text_end
+
+SSOlympia1FLassEndBattleText:
+	text_far _SSOlympia1FLassEndBattleText
+	text_end
+
+SSOlympia1FLassAfterBattleText:
+	text_far _SSOlympia1FLassAfterBattleText
 	text_end

@@ -33,3 +33,27 @@ _SSOlympia2FBlaineAfterBattleText::
 	text "No quiz machines"
 	line "aboard. A pity."
 	done
+
+_SSOlympia2FBikerBattleText::
+	text "Care for a match?"
+	done
+
+_SSOlympia2FBikerEndBattleText::
+	text "You got me!"
+	prompt
+
+_SSOlympia2FBikerAfterBattleText::
+	text "Good match!"
+	done
+
+_SSOlympia2FCueBallBattleText::
+	text "One quick battle?"
+	done
+
+_SSOlympia2FCueBallEndBattleText::
+	text "Oh, beaten!"
+	prompt
+
+_SSOlympia2FCueBallAfterBattleText::
+	text "Well played!"
+	done

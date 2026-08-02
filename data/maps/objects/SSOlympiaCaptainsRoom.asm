@@ -1,5 +1,6 @@
 	object_const_def
 	const_export SSOLYMPIACAPTAINSROOM_FISHER
+	const_export SSOLYMPIACAPTAINSROOM_BLACKBELT
 
 SSOlympiaCaptainsRoom_Object:
 	db $c ; border block
@@ -13,5 +14,6 @@ SSOlympiaCaptainsRoom_Object:
 
 	def_object_events
 	object_event  4,  2, SPRITE_FISHER, STAY, UP, TEXT_SSOLYMPIACAPTAINSROOM_FISHER, OPP_FISHER, 13
+	object_event  2,  5, SPRITE_HIKER, STAY, DOWN, TEXT_SSOLYMPIACAPTAINSROOM_BLACKBELT, OPP_BLACKBELT, 11
 
 	def_warps_to SS_OLYMPIA_CAPTAINS_ROOM

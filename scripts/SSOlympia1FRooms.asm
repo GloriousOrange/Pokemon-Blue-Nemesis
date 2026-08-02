@@ -25,6 +25,8 @@ SSOlympia1FRooms_TextPointers:
 	dw_const SSOlympia1FRoomsSurgeText, TEXT_SSOLYMPIA1FROOMS_SURGE
 	dw_const SSOlympia1FRoomsErikaText, TEXT_SSOLYMPIA1FROOMS_ERIKA
 	dw_const SSOlympia1FRoomsKogaText, TEXT_SSOLYMPIA1FROOMS_KOGA
+	dw_const SSOlympia1FRoomsJrTrainerMText, TEXT_SSOLYMPIA1FROOMS_JRTRAINERM
+	dw_const SSOlympia1FRoomsJrTrainerFText, TEXT_SSOLYMPIA1FROOMS_JRTRAINERF
 
 SSOlympia1FRoomsTrainerHeaders:
 	def_trainers 7
@@ -34,6 +36,10 @@ SSOlympia1FRoomsTrainerHeader1:
 	trainer EVENT_BEAT_SS_OLYMPIA_1FROOMS_TRAINER_1, 3, SSOlympia1FRoomsErikaBattleText, SSOlympia1FRoomsErikaEndBattleText, SSOlympia1FRoomsErikaAfterBattleText
 SSOlympia1FRoomsTrainerHeader2:
 	trainer EVENT_BEAT_SS_OLYMPIA_1FROOMS_TRAINER_2, 3, SSOlympia1FRoomsKogaBattleText, SSOlympia1FRoomsKogaEndBattleText, SSOlympia1FRoomsKogaAfterBattleText
+SSOlympia1FRoomsTrainerHeader3:
+	trainer_in wOlympiaTrainerFlags, 2, 2, SSOlympia1FRoomsJrTrainerMBattleText, SSOlympia1FRoomsJrTrainerMEndBattleText, SSOlympia1FRoomsJrTrainerMAfterBattleText
+SSOlympia1FRoomsTrainerHeader4:
+	trainer_in wOlympiaTrainerFlags, 3, 2, SSOlympia1FRoomsJrTrainerFBattleText, SSOlympia1FRoomsJrTrainerFEndBattleText, SSOlympia1FRoomsJrTrainerFAfterBattleText
 	db -1 ; end
 
 SSOlympia1FRoomsGirl1Text:
@@ -117,3 +123,38 @@ SSOlympia1FRoomsKogaAfterBattleText:
 	text_far _SSOlympia1FRoomsKogaAfterBattleText
 	text_end
 
+SSOlympia1FRoomsJrTrainerMText:
+	text_asm
+	ld hl, SSOlympia1FRoomsTrainerHeader3
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympia1FRoomsJrTrainerMBattleText:
+	text_far _SSOlympia1FRoomsJrTrainerMBattleText
+	text_end
+
+SSOlympia1FRoomsJrTrainerMEndBattleText:
+	text_far _SSOlympia1FRoomsJrTrainerMEndBattleText
+	text_end
+
+SSOlympia1FRoomsJrTrainerMAfterBattleText:
+	text_far _SSOlympia1FRoomsJrTrainerMAfterBattleText
+	text_end
+
+SSOlympia1FRoomsJrTrainerFText:
+	text_asm
+	ld hl, SSOlympia1FRoomsTrainerHeader4
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympia1FRoomsJrTrainerFBattleText:
+	text_far _SSOlympia1FRoomsJrTrainerFBattleText
+	text_end
+
+SSOlympia1FRoomsJrTrainerFEndBattleText:
+	text_far _SSOlympia1FRoomsJrTrainerFEndBattleText
+	text_end
+
+SSOlympia1FRoomsJrTrainerFAfterBattleText:
+	text_far _SSOlympia1FRoomsJrTrainerFAfterBattleText
+	text_end

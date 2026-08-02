@@ -45,3 +45,15 @@ _SSOlympiaKitchenBeautyEndBattleText::
 _SSOlympiaKitchenBeautyAfterBattleText::
 	text "Well played."
 	done
+
+_SSOlympiaKitchenBugCatcherBattleText::
+	text "Care for a match?"
+	done
+
+_SSOlympiaKitchenBugCatcherEndBattleText::
+	text "You got me!"
+	prompt
+
+_SSOlympiaKitchenBugCatcherAfterBattleText::
+	text "Good match!"
+	done

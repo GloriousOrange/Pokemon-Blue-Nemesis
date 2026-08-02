@@ -17,3 +17,27 @@ _SSOlympia3FBrunoAfterBattleText::
 	text "Train on deck at"
 	line "dawn with me."
 	done
+
+_SSOlympia3FBirdKeeperBattleText::
+	text "Care for a match?"
+	done
+
+_SSOlympia3FBirdKeeperEndBattleText::
+	text "You got me!"
+	prompt
+
+_SSOlympia3FBirdKeeperAfterBattleText::
+	text "Good match!"
+	done
+
+_SSOlympia3FCooltrainerFBattleText::
+	text "One quick battle?"
+	done
+
+_SSOlympia3FCooltrainerFEndBattleText::
+	text "Oh, beaten!"
+	prompt
+
+_SSOlympia3FCooltrainerFAfterBattleText::
+	text "Well played!"
+	done

@@ -23,11 +23,14 @@ SSOlympiaKitchen_TextPointers:
 	dw_const SSOlympiaKitchenCook6Text, TEXT_SSOLYMPIAKITCHEN_COOK6
 	dw_const SSOlympiaKitchenCook7Text, TEXT_SSOLYMPIAKITCHEN_COOK7
 	dw_const SSOlympiaKitchenBeautyText, TEXT_SSOLYMPIAKITCHEN_BEAUTY
+	dw_const SSOlympiaKitchenBugCatcherText, TEXT_SSOLYMPIAKITCHEN_BUGCATCHER
 
 SSOlympiaKitchenTrainerHeaders:
 	def_trainers 5
 SSOlympiaKitchenTrainerHeader0:
 	trainer EVENT_BEAT_SS_OLYMPIA_KITCHEN_TRAINER_0, 3, SSOlympiaKitchenBeautyBattleText, SSOlympiaKitchenBeautyEndBattleText, SSOlympiaKitchenBeautyAfterBattleText
+SSOlympiaKitchenTrainerHeader1:
+	trainer_in wOlympiaTrainerFlags2, 6, 2, SSOlympiaKitchenBugCatcherBattleText, SSOlympiaKitchenBugCatcherEndBattleText, SSOlympiaKitchenBugCatcherAfterBattleText
 	db -1 ; end
 
 SSOlympiaKitchenCook1Text:
@@ -70,3 +73,20 @@ SSOlympiaKitchenBeautyAfterBattleText:
 	text_far _SSOlympiaKitchenBeautyAfterBattleText
 	text_end
 
+SSOlympiaKitchenBugCatcherText:
+	text_asm
+	ld hl, SSOlympiaKitchenTrainerHeader1
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympiaKitchenBugCatcherBattleText:
+	text_far _SSOlympiaKitchenBugCatcherBattleText
+	text_end
+
+SSOlympiaKitchenBugCatcherEndBattleText:
+	text_far _SSOlympiaKitchenBugCatcherEndBattleText
+	text_end
+
+SSOlympiaKitchenBugCatcherAfterBattleText:
+	text_far _SSOlympiaKitchenBugCatcherAfterBattleText
+	text_end

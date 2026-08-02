@@ -18,6 +18,8 @@ SSOlympia2F_TextPointers:
 	dw_const SSOlympia2FWaiterText, TEXT_SSOLYMPIA2F_WAITER
 	dw_const SSOlympia2FSabrinaText, TEXT_SSOLYMPIA2F_SABRINA
 	dw_const SSOlympia2FBlaineText, TEXT_SSOLYMPIA2F_BLAINE
+	dw_const SSOlympia2FBikerText, TEXT_SSOLYMPIA2F_BIKER
+	dw_const SSOlympia2FCueBallText, TEXT_SSOLYMPIA2F_CUEBALL
 
 SSOlympia2FTrainerHeaders:
 	def_trainers 6
@@ -25,6 +27,10 @@ SSOlympia2FTrainerHeader0:
 	trainer EVENT_BEAT_SS_OLYMPIA_2F_TRAINER_0, 3, SSOlympia2FSabrinaBattleText, SSOlympia2FSabrinaEndBattleText, SSOlympia2FSabrinaAfterBattleText
 SSOlympia2FTrainerHeader1:
 	trainer EVENT_BEAT_SS_OLYMPIA_2F_TRAINER_1, 3, SSOlympia2FBlaineBattleText, SSOlympia2FBlaineEndBattleText, SSOlympia2FBlaineAfterBattleText
+SSOlympia2FTrainerHeader2:
+	trainer_in wOlympiaTrainerFlags, 0, 2, SSOlympia2FBikerBattleText, SSOlympia2FBikerEndBattleText, SSOlympia2FBikerAfterBattleText
+SSOlympia2FTrainerHeader3:
+	trainer_in wOlympiaTrainerFlags, 1, 2, SSOlympia2FCueBallBattleText, SSOlympia2FCueBallEndBattleText, SSOlympia2FCueBallAfterBattleText
 	db -1 ; end
 
 SSOlympia2FWaiterText:
@@ -65,4 +71,40 @@ SSOlympia2FBlaineEndBattleText:
 
 SSOlympia2FBlaineAfterBattleText:
 	text_far _SSOlympia2FBlaineAfterBattleText
+	text_end
+
+SSOlympia2FBikerText:
+	text_asm
+	ld hl, SSOlympia2FTrainerHeader2
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympia2FBikerBattleText:
+	text_far _SSOlympia2FBikerBattleText
+	text_end
+
+SSOlympia2FBikerEndBattleText:
+	text_far _SSOlympia2FBikerEndBattleText
+	text_end
+
+SSOlympia2FBikerAfterBattleText:
+	text_far _SSOlympia2FBikerAfterBattleText
+	text_end
+
+SSOlympia2FCueBallText:
+	text_asm
+	ld hl, SSOlympia2FTrainerHeader3
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympia2FCueBallBattleText:
+	text_far _SSOlympia2FCueBallBattleText
+	text_end
+
+SSOlympia2FCueBallEndBattleText:
+	text_far _SSOlympia2FCueBallEndBattleText
+	text_end
+
+SSOlympia2FCueBallAfterBattleText:
+	text_far _SSOlympia2FCueBallAfterBattleText
 	text_end

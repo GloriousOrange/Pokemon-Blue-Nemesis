@@ -1928,7 +1928,10 @@ wCurrentBoxNum:: db
 ; number of HOF teams
 wNumHoFTeams:: db
 
-wUnusedMapVariable:: db
+; Was wUnusedMapVariable: written once by ClearVariablesOnEnterMap and never
+; read. That clear is now gone, which makes this a persistent saved byte -- it
+; holds the one OLYMPIA trainer flag that would not fit the 24 bits above.
+wOlympiaTrainerFlags2:: db
 
 wPlayerCoins:: dw ; BCD
 
@@ -2125,7 +2128,14 @@ wCGBPalNextToPrepare:: db
 
 ; Keep this slack in step with the bytes carved out above: shrinking Main Data by
 ; even one byte shifts every section after it and invalidates existing saves.
-	ds 3 ; was ds 56; 53 bytes carved out above for wPostGameFlags, wColorScheme, wMeganTrainedFlags, wMeganSparCurScript and the CGB palette queue
+; Beaten-flags for the S.S. OLYMPIA's second wave of trainers. Carved from the
+; reserved slack IN PLACE -- same trick as wMeganTrainedFlags above -- because
+; the event array is full (const_next $A00 is a hard cap) and growing it would
+; shift wEventFlags and invalidate every existing save. Taking exactly the 3
+; bytes the slack already held keeps Main Data the same size.
+; Bit layout is fixed by the `trainer` macro's assert (bit % 8 must equal the
+; trainer's CURRENT_TRAINER_BIT % 8); see constants/olympia_trainer_flags.asm.
+wOlympiaTrainerFlags:: ds 3
 
 wObtainedHiddenItemsFlags:: flag_array MAX_HIDDEN_ITEMS
 

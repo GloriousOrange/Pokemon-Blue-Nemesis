@@ -121,6 +121,8 @@ SSOlympiaBow_TextPointers:
 	dw_const SSOlympiaBowRivalText, TEXT_SSOLYMPIABOW_RIVAL
 	dw_const SSOlympiaBowSailorText, TEXT_SSOLYMPIABOW_SAILOR
 	dw_const SSOlympiaBowSwimmerText, TEXT_SSOLYMPIABOW_SWIMMER
+	dw_const SSOlympiaBowRockerText, TEXT_SSOLYMPIABOW_ROCKER
+	dw_const SSOlympiaBowJugglerText, TEXT_SSOLYMPIABOW_JUGGLER
 
 SSOlympiaBowTrainerHeaders:
 	def_trainers 3
@@ -128,6 +130,10 @@ SSOlympiaBowTrainerHeader0:
 	trainer EVENT_BEAT_SS_OLYMPIA_BOW_TRAINER_0, 3, SSOlympiaBowSailorBattleText, SSOlympiaBowSailorEndBattleText, SSOlympiaBowSailorAfterBattleText
 SSOlympiaBowTrainerHeader1:
 	trainer EVENT_BEAT_SS_OLYMPIA_BOW_TRAINER_1, 3, SSOlympiaBowSwimmerBattleText, SSOlympiaBowSwimmerEndBattleText, SSOlympiaBowSwimmerAfterBattleText
+SSOlympiaBowTrainerHeader2:
+	trainer_in wOlympiaTrainerFlags, 21, 2, SSOlympiaBowRockerBattleText, SSOlympiaBowRockerEndBattleText, SSOlympiaBowRockerAfterBattleText
+SSOlympiaBowTrainerHeader3:
+	trainer_in wOlympiaTrainerFlags, 22, 2, SSOlympiaBowJugglerBattleText, SSOlympiaBowJugglerEndBattleText, SSOlympiaBowJugglerAfterBattleText
 	db -1 ; end
 
 SSOlympiaBowSuperNerdText:
@@ -202,4 +208,40 @@ SSOlympiaBowSwimmerEndBattleText:
 
 SSOlympiaBowSwimmerAfterBattleText:
 	text_far _SSOlympiaBowSwimmerAfterBattleText
+	text_end
+
+SSOlympiaBowRockerText:
+	text_asm
+	ld hl, SSOlympiaBowTrainerHeader2
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympiaBowRockerBattleText:
+	text_far _SSOlympiaBowRockerBattleText
+	text_end
+
+SSOlympiaBowRockerEndBattleText:
+	text_far _SSOlympiaBowRockerEndBattleText
+	text_end
+
+SSOlympiaBowRockerAfterBattleText:
+	text_far _SSOlympiaBowRockerAfterBattleText
+	text_end
+
+SSOlympiaBowJugglerText:
+	text_asm
+	ld hl, SSOlympiaBowTrainerHeader3
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympiaBowJugglerBattleText:
+	text_far _SSOlympiaBowJugglerBattleText
+	text_end
+
+SSOlympiaBowJugglerEndBattleText:
+	text_far _SSOlympiaBowJugglerEndBattleText
+	text_end
+
+SSOlympiaBowJugglerAfterBattleText:
+	text_far _SSOlympiaBowJugglerAfterBattleText
 	text_end

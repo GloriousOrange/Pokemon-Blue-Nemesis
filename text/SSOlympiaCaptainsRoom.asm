@@ -21,3 +21,15 @@ _SSOlympiaCaptainsRoomFisherEndBattleText::
 _SSOlympiaCaptainsRoomFisherAfterBattleText::
 	text "Nice one."
 	done
+
+_SSOlympiaCaptainsRoomBlackbeltBattleText::
+	text "Care for a match?"
+	done
+
+_SSOlympiaCaptainsRoomBlackbeltEndBattleText::
+	text "You got me!"
+	prompt
+
+_SSOlympiaCaptainsRoomBlackbeltAfterBattleText::
+	text "Good match!"
+	done

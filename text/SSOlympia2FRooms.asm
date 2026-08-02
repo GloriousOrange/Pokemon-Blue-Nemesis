@@ -68,3 +68,27 @@ _SSOlympia2FRoomsLoreleiAfterBattleText::
 	line "is colder. I like"
 	cont "it better."
 	done
+
+_SSOlympia2FRoomsPokemaniacBattleText::
+	text "Care for a match?"
+	done
+
+_SSOlympia2FRoomsPokemaniacEndBattleText::
+	text "You got me!"
+	prompt
+
+_SSOlympia2FRoomsPokemaniacAfterBattleText::
+	text "Good match!"
+	done
+
+_SSOlympia2FRoomsGamblerBattleText::
+	text "One quick battle?"
+	done
+
+_SSOlympia2FRoomsGamblerEndBattleText::
+	text "Oh, beaten!"
+	prompt
+
+_SSOlympia2FRoomsGamblerAfterBattleText::
+	text "Well played!"
+	done

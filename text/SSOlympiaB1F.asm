@@ -34,3 +34,27 @@ _SSOlympiaB1FLanceAfterBattleText::
 	line "better from up"
 	cont "there."
 	done
+
+_SSOlympiaB1FHikerBattleText::
+	text "Care for a match?"
+	done
+
+_SSOlympiaB1FHikerEndBattleText::
+	text "You got me!"
+	prompt
+
+_SSOlympiaB1FHikerAfterBattleText::
+	text "Good match!"
+	done
+
+_SSOlympiaB1FBurglarBattleText::
+	text "One quick battle?"
+	done
+
+_SSOlympiaB1FBurglarEndBattleText::
+	text "Oh, beaten!"
+	prompt
+
+_SSOlympiaB1FBurglarAfterBattleText::
+	text "Well played!"
+	done

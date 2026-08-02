@@ -23,6 +23,8 @@ SSOlympiaB1FRooms_TextPointers:
 	dw_const SSOlympiaB1FRoomsTobyText, TEXT_SSOLYMPIAB1FROOMS_TOBY
 	dw_const SSOlympiaB1FRoomsOakText, TEXT_SSOLYMPIAB1FROOMS_OAK
 	dw_const SSOlympiaB1FRoomsNerdText, TEXT_SSOLYMPIAB1FROOMS_NERD
+	dw_const SSOlympiaB1FRoomsEngineerText, TEXT_SSOLYMPIAB1FROOMS_ENGINEER
+	dw_const SSOlympiaB1FRoomsPsychicTrText, TEXT_SSOLYMPIAB1FROOMS_PSYCHICTR
 
 SSOlympiaB1FRoomsTrainerHeaders:
 	def_trainers 5
@@ -32,6 +34,10 @@ SSOlympiaB1FRoomsTrainerHeader1:
 	trainer EVENT_BEAT_SS_OLYMPIA_B1FROOMS_TRAINER_1, 3, SSOlympiaB1FRoomsOakBattleText, SSOlympiaB1FRoomsOakEndBattleText, SSOlympiaB1FRoomsOakAfterBattleText
 SSOlympiaB1FRoomsTrainerHeader2:
 	trainer EVENT_BEAT_SS_OLYMPIA_B1FROOMS_TRAINER_2, 3, SSOlympiaB1FRoomsNerdBattleText, SSOlympiaB1FRoomsNerdEndBattleText, SSOlympiaB1FRoomsNerdAfterBattleText
+SSOlympiaB1FRoomsTrainerHeader3:
+	trainer_in wOlympiaTrainerFlags, 16, 2, SSOlympiaB1FRoomsEngineerBattleText, SSOlympiaB1FRoomsEngineerEndBattleText, SSOlympiaB1FRoomsEngineerAfterBattleText
+SSOlympiaB1FRoomsTrainerHeader4:
+	trainer_in wOlympiaTrainerFlags, 17, 2, SSOlympiaB1FRoomsPsychicTrBattleText, SSOlympiaB1FRoomsPsychicTrEndBattleText, SSOlympiaB1FRoomsPsychicTrAfterBattleText
 	db -1 ; end
 
 SSOlympiaB1FRoomsSuperNerdText:
@@ -96,3 +102,38 @@ SSOlympiaB1FRoomsNerdAfterBattleText:
 	text_far _SSOlympiaB1FRoomsNerdAfterBattleText
 	text_end
 
+SSOlympiaB1FRoomsEngineerText:
+	text_asm
+	ld hl, SSOlympiaB1FRoomsTrainerHeader3
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympiaB1FRoomsEngineerBattleText:
+	text_far _SSOlympiaB1FRoomsEngineerBattleText
+	text_end
+
+SSOlympiaB1FRoomsEngineerEndBattleText:
+	text_far _SSOlympiaB1FRoomsEngineerEndBattleText
+	text_end
+
+SSOlympiaB1FRoomsEngineerAfterBattleText:
+	text_far _SSOlympiaB1FRoomsEngineerAfterBattleText
+	text_end
+
+SSOlympiaB1FRoomsPsychicTrText:
+	text_asm
+	ld hl, SSOlympiaB1FRoomsTrainerHeader4
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympiaB1FRoomsPsychicTrBattleText:
+	text_far _SSOlympiaB1FRoomsPsychicTrBattleText
+	text_end
+
+SSOlympiaB1FRoomsPsychicTrEndBattleText:
+	text_far _SSOlympiaB1FRoomsPsychicTrEndBattleText
+	text_end
+
+SSOlympiaB1FRoomsPsychicTrAfterBattleText:
+	text_far _SSOlympiaB1FRoomsPsychicTrAfterBattleText
+	text_end

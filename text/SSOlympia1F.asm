@@ -40,3 +40,27 @@ _SSOlympia1FMistyAfterBattleText::
 	text "Come find me at"
 	line "the pool later!"
 	done
+
+_SSOlympia1FYoungsterBattleText::
+	text "Care for a match?"
+	done
+
+_SSOlympia1FYoungsterEndBattleText::
+	text "You got me!"
+	prompt
+
+_SSOlympia1FYoungsterAfterBattleText::
+	text "Good match!"
+	done
+
+_SSOlympia1FLassBattleText::
+	text "One quick battle?"
+	done
+
+_SSOlympia1FLassEndBattleText::
+	text "Oh, beaten!"
+	prompt
+
+_SSOlympia1FLassAfterBattleText::
+	text "Well played!"
+	done

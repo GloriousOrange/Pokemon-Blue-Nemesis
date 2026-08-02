@@ -75,3 +75,27 @@ _SSOlympia1FRoomsKogaAfterBattleText::
 	line "lungs. Mine, at"
 	cont "least."
 	done
+
+_SSOlympia1FRoomsJrTrainerMBattleText::
+	text "Care for a match?"
+	done
+
+_SSOlympia1FRoomsJrTrainerMEndBattleText::
+	text "You got me!"
+	prompt
+
+_SSOlympia1FRoomsJrTrainerMAfterBattleText::
+	text "Good match!"
+	done
+
+_SSOlympia1FRoomsJrTrainerFBattleText::
+	text "One quick battle?"
+	done
+
+_SSOlympia1FRoomsJrTrainerFEndBattleText::
+	text "Oh, beaten!"
+	prompt
+
+_SSOlympia1FRoomsJrTrainerFAfterBattleText::
+	text "Well played!"
+	done

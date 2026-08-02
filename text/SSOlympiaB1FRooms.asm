@@ -50,3 +50,27 @@ _SSOlympiaB1FRoomsNerdEndBattleText::
 _SSOlympiaB1FRoomsNerdAfterBattleText::
 	text "Good match!"
 	done
+
+_SSOlympiaB1FRoomsEngineerBattleText::
+	text "Care for a match?"
+	done
+
+_SSOlympiaB1FRoomsEngineerEndBattleText::
+	text "You got me!"
+	prompt
+
+_SSOlympiaB1FRoomsEngineerAfterBattleText::
+	text "Good match!"
+	done
+
+_SSOlympiaB1FRoomsPsychicTrBattleText::
+	text "One quick battle?"
+	done
+
+_SSOlympiaB1FRoomsPsychicTrEndBattleText::
+	text "Oh, beaten!"
+	prompt
+
+_SSOlympiaB1FRoomsPsychicTrAfterBattleText::
+	text "Well played!"
+	done
