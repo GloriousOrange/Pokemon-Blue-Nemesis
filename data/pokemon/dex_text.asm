@@ -1090,12 +1090,12 @@ _MewtwoDexEntry::
 _SnorlaxDexEntry::
 _MewthreeDexEntry::
 	text "The armor was"
-	next "bolted on to keep"
-	next "the clone docile."
+	next "bolted into bone."
+	next "Its vocal cords"
 
-	page "It stopped"
-	next "struggling years"
-	next "ago."
+	page "were removed. It"
+	next "speaks only in"
+	next "telekinetic ruin."
 	dex
 
 	text "Very lazy. Just"
