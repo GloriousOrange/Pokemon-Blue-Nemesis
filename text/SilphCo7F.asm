@@ -277,3 +277,57 @@ _SilphCo7FFlavorScientistText::
 	para "You're not"
 	line "getting past me."
 	done
+
+; Loyalist path: SILPH staff standing where the ROCKETs stand on the hero path.
+
+_SilphCo7FDefender1BattleText::
+	text "You're the one"
+	line "they let in the"
+	cont "front door."
+	done
+
+_SilphCo7FDefender1EndBattleText::
+	text "We should have"
+	line "locked it."
+	prompt
+
+_SilphCo7FDefender1AfterBattleText::
+	text "Everyone above me"
+	line "is unarmed."
+	cont "Remember that."
+	done
+
+
+_SilphCo7FDefender2BattleText::
+	text "My family is on"
+	line "the eighth floor."
+	cont "Turn around."
+	done
+
+_SilphCo7FDefender2EndBattleText::
+	text "Please..."
+	prompt
+
+_SilphCo7FDefender2AfterBattleText::
+	text "If you go up"
+	line "there, don't let"
+	cont "them see you."
+	done
+
+
+_SilphCo7FDefender3BattleText::
+	text "I've seen what"
+	line "your lot do to"
+	cont "#MON."
+	done
+
+_SilphCo7FDefender3EndBattleText::
+	text "And now to me."
+	prompt
+
+_SilphCo7FDefender3AfterBattleText::
+	text "We fed them. We"
+	line "named them. You"
+	cont "just take them."
+	done
+

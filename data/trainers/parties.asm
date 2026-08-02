@@ -457,6 +457,8 @@ RockerData:
 ; Route 12
 	db 29, VOLTORB, ELECTRODE, 0
 	db 100, JYNX, SANDSLASH, PIDGEOT, 0 ; ARENA #26 (rocker)
+; Silph Co. 5F loyalist path -- stands in for the ROCKER (JUGGLER #1), same team
+	db 29, KADABRA, MR_MIME, 0                         ; #129
 
 JugglerData:
 ; Silph Co. 5F
@@ -635,6 +637,28 @@ ScientistData:
 	db 100, PORYGON, ELECTRODE, DITTO, 0 ; ARENA #3 (scientist)
 ; Silph Co. 11F Loyalist path (replaces the Giovanni fight)
 	db $FF, 38, PORYGON, 39, TAUROS, 37, FEAROW, 0 ; #21
+; --- Silph Co. loyalist path: SILPH staff defending the building. Each team is
+; --- copied verbatim from the ROCKET whose tile this trainer shares, so both
+; --- paths fight the same 28 battles at the same difficulty.
+	db 29, CUBONE, ZUBAT, 0                            ; #22 Silph 2F  (copy of ROCKET #23)
+	db 25, GOLBAT, ZUBAT, ZUBAT, RATICATE, ZUBAT, 0    ; #23 Silph 2F  (copy of ROCKET #24)
+	db 28, RATICATE, HYPNO, RATICATE, 0                ; #24 Silph 3F  (copy of ROCKET #25)
+	db 29, MACHOP, DROWZEE, 0                          ; #25 Silph 4F  (copy of ROCKET #26)
+	db 28, EKANS, ZUBAT, CUBONE, 0                     ; #26 Silph 4F  (copy of ROCKET #27)
+	db 33, ARBOK, 0                                    ; #27 Silph 5F  (copy of ROCKET #28)
+	db 33, HYPNO, 0                                    ; #28 Silph 5F  (copy of ROCKET #29)
+	db 29, MACHOP, MACHOKE, 0                          ; #29 Silph 6F  (copy of ROCKET #30)
+	db 28, ZUBAT, ZUBAT, GOLBAT, 0                     ; #30 Silph 6F  (copy of ROCKET #31)
+	db 26, RATICATE, ARBOK, KOFFING, GOLBAT, 0         ; #31 Silph 7F  (copy of ROCKET #32)
+	db 29, CUBONE, CUBONE, 0                           ; #32 Silph 7F  (copy of ROCKET #33)
+	db 29, SANDSHREW, SANDSLASH, 0                     ; #33 Silph 7F  (copy of ROCKET #34)
+	db 26, RATICATE, ZUBAT, GOLBAT, RATTATA, 0         ; #34 Silph 8F  (copy of ROCKET #35)
+	db 28, WEEZING, GOLBAT, KOFFING, 0                 ; #35 Silph 8F  (copy of ROCKET #36)
+	db 28, DROWZEE, GRIMER, MACHOP, 0                  ; #36 Silph 9F  (copy of ROCKET #37)
+	db 28, GOLBAT, DROWZEE, HYPNO, 0                   ; #37 Silph 9F  (copy of ROCKET #38)
+	db 33, MACHOKE, 0                                  ; #38 Silph 10F (copy of ROCKET #39)
+	db 25, RATTATA, RATTATA, ZUBAT, RATTATA, EKANS, 0  ; #39 Silph 11F (copy of ROCKET #40)
+
 
 GiovanniData:
 ; Rocket Hideout B4F

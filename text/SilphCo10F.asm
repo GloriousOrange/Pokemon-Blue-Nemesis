@@ -74,3 +74,22 @@ _SilphCo10FFlavorScientistText::
 	para "OAK's not handing"
 	line "over the keys."
 	done
+
+; Loyalist path: SILPH staff standing where the ROCKETs stand on the hero path.
+
+_SilphCo10FDefender1BattleText::
+	text "Tenth floor. This"
+	line "is where we make"
+	cont "our stand."
+	done
+
+_SilphCo10FDefender1EndBattleText::
+	text "Such as it was."
+	prompt
+
+_SilphCo10FDefender1AfterBattleText::
+	text "The PRESIDENT is"
+	line "above us. Please"
+	cont "don't hurt him."
+	done
+

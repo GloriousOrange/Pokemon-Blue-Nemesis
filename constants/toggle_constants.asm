@@ -427,4 +427,48 @@ ENDM
 	toggle_consts_for ARCHIPELAGO_CAVE_3F
 	const TOGGLE_ARCHIPELAGO_CAVE_3F_OAK
 
+; Loyalist-path SILPH staff who share a tile with a ROCKET (exactly one of the
+; pair is shown, see each floor's SetFactionObjectsScript). Appended here rather
+; than inside each map's block above so no existing index shifts -- see the
+; note on toggle_consts_appended_for.
+
+	toggle_consts_appended_for SILPH_CO_2F
+	const TOGGLE_SILPH_CO_2F_DEFENDER1
+	const TOGGLE_SILPH_CO_2F_DEFENDER2
+
+	toggle_consts_appended_for SILPH_CO_3F
+	const TOGGLE_SILPH_CO_3F_DEFENDER1
+
+	toggle_consts_appended_for SILPH_CO_4F
+	const TOGGLE_SILPH_CO_4F_DEFENDER1
+	const TOGGLE_SILPH_CO_4F_DEFENDER2
+
+	toggle_consts_appended_for SILPH_CO_5F
+	const TOGGLE_SILPH_CO_5F_DEFENDER1
+	const TOGGLE_SILPH_CO_5F_DEFENDER2
+	const TOGGLE_SILPH_CO_5F_DEFENDER3
+
+	toggle_consts_appended_for SILPH_CO_6F
+	const TOGGLE_SILPH_CO_6F_DEFENDER1
+	const TOGGLE_SILPH_CO_6F_DEFENDER2
+
+	toggle_consts_appended_for SILPH_CO_7F
+	const TOGGLE_SILPH_CO_7F_DEFENDER1
+	const TOGGLE_SILPH_CO_7F_DEFENDER2
+	const TOGGLE_SILPH_CO_7F_DEFENDER3
+
+	toggle_consts_appended_for SILPH_CO_8F
+	const TOGGLE_SILPH_CO_8F_DEFENDER1
+	const TOGGLE_SILPH_CO_8F_DEFENDER2
+
+	toggle_consts_appended_for SILPH_CO_9F
+	const TOGGLE_SILPH_CO_9F_DEFENDER1
+	const TOGGLE_SILPH_CO_9F_DEFENDER2
+
+	toggle_consts_appended_for SILPH_CO_10F
+	const TOGGLE_SILPH_CO_10F_DEFENDER1
+
+	toggle_consts_appended_for SILPH_CO_11F
+	const TOGGLE_SILPH_CO_11F_DEFENDER1
+
 DEF NUM_TOGGLEABLE_OBJECTS EQU const_value

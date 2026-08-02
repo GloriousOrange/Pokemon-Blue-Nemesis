@@ -137,3 +137,39 @@ _SilphCo6FFlavorScientistText::
 	para "This floor's still"
 	line "under lockdown."
 	done
+
+; Loyalist path: SILPH staff standing where the ROCKETs stand on the hero path.
+
+_SilphCo6FDefender1BattleText::
+	text "Sixth floor is"
+	line "restricted. Even"
+	cont "to your BOSS."
+	done
+
+_SilphCo6FDefender1EndBattleText::
+	text "Especially to him."
+	prompt
+
+_SilphCo6FDefender1AfterBattleText::
+	text "He's been up here"
+	line "before. With"
+	cont "papers. Signed."
+	done
+
+
+_SilphCo6FDefender2BattleText::
+	text "Get away from the"
+	line "terminals!"
+	done
+
+_SilphCo6FDefender2EndBattleText::
+	text "It's all backed"
+	line "up anyway."
+	prompt
+
+_SilphCo6FDefender2AfterBattleText::
+	text "Wipe the drives."
+	line "We keep copies"
+	cont "in SAFFRON GYM."
+	done
+

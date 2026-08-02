@@ -448,6 +448,48 @@ ToggleableObjectStates:
 	toggleable_objects_for ARCHIPELAGO_CAVE_3F
 	toggle_object_state ARCHIPELAGOCAVE3F_OAK, OFF ; hidden until EVENT_USED_MUTAGEN_MACHINE
 
+; Loyalist-path SILPH staff, appended so no existing toggle index moves.
+; All start OFF; each floor's map script shows either these or the ROCKETs.
+
+	toggleable_objects_appended_for SILPH_CO_2F
+	toggle_object_state SILPHCO2F_DEFENDER1, OFF
+	toggle_object_state SILPHCO2F_DEFENDER2, OFF
+
+	toggleable_objects_appended_for SILPH_CO_3F
+	toggle_object_state SILPHCO3F_DEFENDER1, OFF
+
+	toggleable_objects_appended_for SILPH_CO_4F
+	toggle_object_state SILPHCO4F_DEFENDER1, OFF
+	toggle_object_state SILPHCO4F_DEFENDER2, OFF
+
+	toggleable_objects_appended_for SILPH_CO_5F
+	toggle_object_state SILPHCO5F_DEFENDER1, OFF
+	toggle_object_state SILPHCO5F_DEFENDER2, OFF
+	toggle_object_state SILPHCO5F_DEFENDER3, OFF
+
+	toggleable_objects_appended_for SILPH_CO_6F
+	toggle_object_state SILPHCO6F_DEFENDER1, OFF
+	toggle_object_state SILPHCO6F_DEFENDER2, OFF
+
+	toggleable_objects_appended_for SILPH_CO_7F
+	toggle_object_state SILPHCO7F_DEFENDER1, OFF
+	toggle_object_state SILPHCO7F_DEFENDER2, OFF
+	toggle_object_state SILPHCO7F_DEFENDER3, OFF
+
+	toggleable_objects_appended_for SILPH_CO_8F
+	toggle_object_state SILPHCO8F_DEFENDER1, OFF
+	toggle_object_state SILPHCO8F_DEFENDER2, OFF
+
+	toggleable_objects_appended_for SILPH_CO_9F
+	toggle_object_state SILPHCO9F_DEFENDER1, OFF
+	toggle_object_state SILPHCO9F_DEFENDER2, OFF
+
+	toggleable_objects_appended_for SILPH_CO_10F
+	toggle_object_state SILPHCO10F_DEFENDER1, OFF
+
+	toggleable_objects_appended_for SILPH_CO_11F
+	toggle_object_state SILPHCO11F_DEFENDER1, OFF
+
 	assert_table_length NUM_TOGGLEABLE_OBJECTS
 
 	db -1, 1, ON ; end

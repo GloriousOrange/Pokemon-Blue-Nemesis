@@ -13,6 +13,7 @@ SilphCo7F_GateCallbackScript:
 	bit BIT_CUR_MAP_LOADED_1, [hl]
 	res BIT_CUR_MAP_LOADED_1, [hl]
 	ret z
+	call SilphCo7FSetFactionObjectsScript
 	ld hl, .GateCoordinates
 	call SilphCo7F_SetCardKeyDoorYScript
 	call SilphCo7F_UnlockedDoorEventScript
@@ -289,6 +290,9 @@ SilphCo7F_TextPointers:
 	dw_const SilphCo7FRivalWaitedHereText,    TEXT_SILPHCO7F_RIVAL_WAITED_HERE
 	dw_const SilphCo7FRivalDefeatedText,      TEXT_SILPHCO7F_RIVAL_DEFEATED
 	dw_const SilphCo7FRivalGoodLuckToYouText, TEXT_SILPHCO7F_RIVAL_GOOD_LUCK_TO_YOU
+	dw_const SilphCo7FDefender1Text, TEXT_SILPHCO7F_DEFENDER1
+	dw_const SilphCo7FDefender2Text, TEXT_SILPHCO7F_DEFENDER2
+	dw_const SilphCo7FDefender3Text, TEXT_SILPHCO7F_DEFENDER3
 
 SilphCo7TrainerHeaders:
 	def_trainers 5
@@ -300,6 +304,12 @@ SilphCo7TrainerHeader2:
 	trainer EVENT_BEAT_SILPH_CO_7F_TRAINER_2, 3, SilphCo7FRocket2BattleText, SilphCo7FRocket2EndBattleText, SilphCo7FRocket2AfterBattleText
 SilphCo7TrainerHeader3:
 	trainer EVENT_BEAT_SILPH_CO_7F_TRAINER_3, 4, SilphCo7FRocket3BattleText, SilphCo7FRocket3EndBattleText, SilphCo7FRocket3AfterBattleText
+SilphCo7TrainerHeader5:
+	trainer EVENT_BEAT_SILPH_CO_7F_TRAINER_4, 2, SilphCo7FDefender1BattleText, SilphCo7FDefender1EndBattleText, SilphCo7FDefender1AfterBattleText
+SilphCo7TrainerHeader6:
+	trainer EVENT_BEAT_SILPH_CO_7F_TRAINER_5, 3, SilphCo7FDefender2BattleText, SilphCo7FDefender2EndBattleText, SilphCo7FDefender2AfterBattleText
+SilphCo7TrainerHeader7:
+	trainer EVENT_BEAT_SILPH_CO_7F_TRAINER_6, 4, SilphCo7FDefender3BattleText, SilphCo7FDefender3EndBattleText, SilphCo7FDefender3AfterBattleText
 	db -1 ; end
 
 SilphCo7FSilphWorkerM1Text:
@@ -618,4 +628,112 @@ SilphCo7FFlavorScientistText:
 
 .Text:
 	text_far _SilphCo7FFlavorScientistText
+	text_end
+
+; TEAM ROCKET holds this floor. On the hero path they fight you and the SILPH
+; staff stay hidden; on the loyalist path they are comrades, so the staff
+; defend the building instead. Each pair shares a tile, so exactly one of the
+; two is ever shown. Skipped once the boss has fallen -- by then
+; SilphCo11FTeamRocketLeavesScript has cleared this floor for good, and
+; re-showing anyone here on the next map load would undo that.
+SilphCo7FSetFactionObjectsScript:
+	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
+	ret nz
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	jr nz, .loyalist
+	ld hl, .Defenders
+	call SilphCo7FHideObjectList
+	ld hl, .Rockets
+	jp SilphCo7FShowObjectList
+.loyalist
+	ld hl, .Rockets
+	call SilphCo7FHideObjectList
+	ld hl, .Defenders
+	jp SilphCo7FShowObjectList
+
+.Rockets:
+	db TOGGLE_SILPH_CO_7F_1
+	db TOGGLE_SILPH_CO_7F_3
+	db TOGGLE_SILPH_CO_7F_4
+	db -1 ; end
+
+.Defenders:
+	db TOGGLE_SILPH_CO_7F_DEFENDER1
+	db TOGGLE_SILPH_CO_7F_DEFENDER2
+	db TOGGLE_SILPH_CO_7F_DEFENDER3
+	db -1 ; end
+
+SilphCo7FShowObjectList:
+	ld a, [hli]
+	cp -1
+	ret z
+	push hl
+	ld [wToggleableObjectIndex], a
+	predef ShowObject
+	pop hl
+	jr SilphCo7FShowObjectList
+
+SilphCo7FHideObjectList:
+	ld a, [hli]
+	cp -1
+	ret z
+	push hl
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	pop hl
+	jr SilphCo7FHideObjectList
+
+SilphCo7FDefender1Text:
+	text_asm
+	ld hl, SilphCo7TrainerHeader5
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SilphCo7FDefender1BattleText:
+	text_far _SilphCo7FDefender1BattleText
+	text_end
+
+SilphCo7FDefender1EndBattleText:
+	text_far _SilphCo7FDefender1EndBattleText
+	text_end
+
+SilphCo7FDefender1AfterBattleText:
+	text_far _SilphCo7FDefender1AfterBattleText
+	text_end
+
+SilphCo7FDefender2Text:
+	text_asm
+	ld hl, SilphCo7TrainerHeader6
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SilphCo7FDefender2BattleText:
+	text_far _SilphCo7FDefender2BattleText
+	text_end
+
+SilphCo7FDefender2EndBattleText:
+	text_far _SilphCo7FDefender2EndBattleText
+	text_end
+
+SilphCo7FDefender2AfterBattleText:
+	text_far _SilphCo7FDefender2AfterBattleText
+	text_end
+
+SilphCo7FDefender3Text:
+	text_asm
+	ld hl, SilphCo7TrainerHeader7
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SilphCo7FDefender3BattleText:
+	text_far _SilphCo7FDefender3BattleText
+	text_end
+
+SilphCo7FDefender3EndBattleText:
+	text_far _SilphCo7FDefender3EndBattleText
+	text_end
+
+SilphCo7FDefender3AfterBattleText:
+	text_far _SilphCo7FDefender3AfterBattleText
 	text_end

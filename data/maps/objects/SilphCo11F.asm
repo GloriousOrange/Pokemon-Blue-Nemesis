@@ -5,6 +5,7 @@
 	const_export SILPHCO11F_ROCKET1
 	const_export SILPHCO11F_ROCKET2
 	const_export SILPHCO11F_PUPIL
+	const_export SILPHCO11F_DEFENDER1
 	const_export SILPHCO11F_OAK
 
 SilphCo11F_Object:
@@ -33,6 +34,9 @@ SilphCo11F_Object:
 ; through one or the other. Keep him out of the doorway itself (6-7, 12-13) --
 ; those are the boss trigger coords and OAK's walk-down lane.
 	object_event  7, 14, SPRITE_SCIENTIST, STAY, LEFT, TEXT_SILPHCO11F_PUPIL, OPP_SCIENTIST, 21
+; Loyalist path: SILPH staff holding the tile the ROCKET holds on the hero
+; path. Exactly one of each pair is shown -- see SetFactionObjectsScript.
+	object_event 15,  9, SPRITE_SCIENTIST, STAY, UP, TEXT_SILPHCO11F_DEFENDER1, OPP_SCIENTIST, 39
 	object_event  6,  9, SPRITE_OAK, STAY, DOWN, TEXT_SILPHCO11F_OAK, OPP_PROF_OAK, 5
 
 	def_warps_to SILPH_CO_11F

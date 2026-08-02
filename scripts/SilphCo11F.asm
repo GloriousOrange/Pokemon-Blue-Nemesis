@@ -13,6 +13,7 @@ SilphCo11FGateCallbackScript:
 	bit BIT_CUR_MAP_LOADED_1, [hl]
 	res BIT_CUR_MAP_LOADED_1, [hl]
 	ret z
+	call SilphCo11FSetFactionObjectsScript
 	call SilphCo11FSetBossObjectScript
 	ld hl, SilphCo11GateCoords
 	call SilphCo11F_SetCardKeyDoorYScript
@@ -179,6 +180,27 @@ SilphCo11FTeamRocketLeavesScript:
 	db TOGGLE_SILPH_CO_11F_1
 	db TOGGLE_SILPH_CO_11F_2
 	db TOGGLE_SILPH_CO_11F_3
+; The loyalist path's SILPH staff clear out with everyone else. They are already
+; hidden on the hero path, so hiding them again there costs nothing.
+	db TOGGLE_SILPH_CO_2F_DEFENDER1
+	db TOGGLE_SILPH_CO_2F_DEFENDER2
+	db TOGGLE_SILPH_CO_3F_DEFENDER1
+	db TOGGLE_SILPH_CO_4F_DEFENDER1
+	db TOGGLE_SILPH_CO_4F_DEFENDER2
+	db TOGGLE_SILPH_CO_5F_DEFENDER1
+	db TOGGLE_SILPH_CO_5F_DEFENDER2
+	db TOGGLE_SILPH_CO_5F_DEFENDER3
+	db TOGGLE_SILPH_CO_6F_DEFENDER1
+	db TOGGLE_SILPH_CO_6F_DEFENDER2
+	db TOGGLE_SILPH_CO_7F_DEFENDER1
+	db TOGGLE_SILPH_CO_7F_DEFENDER2
+	db TOGGLE_SILPH_CO_7F_DEFENDER3
+	db TOGGLE_SILPH_CO_8F_DEFENDER1
+	db TOGGLE_SILPH_CO_8F_DEFENDER2
+	db TOGGLE_SILPH_CO_9F_DEFENDER1
+	db TOGGLE_SILPH_CO_9F_DEFENDER2
+	db TOGGLE_SILPH_CO_10F_DEFENDER1
+	db TOGGLE_SILPH_CO_11F_DEFENDER1
 	db -1 ; end
 
 SilphCo11FResetCurScript:
@@ -384,6 +406,7 @@ SilphCo11F_TextPointers:
 	dw_const SilphCo11FPupilText,                     TEXT_SILPHCO11F_PUPIL
 	dw_const SilphCo11FOakText,                       TEXT_SILPHCO11F_OAK
 	dw_const SilphCo11FOakYieldsText,                 TEXT_SILPHCO11F_OAK_YIELDS
+	dw_const SilphCo11FDefender1Text, TEXT_SILPHCO11F_DEFENDER1
 
 SilphCo11TrainerHeaders:
 	def_trainers 4
@@ -393,6 +416,8 @@ SilphCo11TrainerHeader1:
 	trainer EVENT_BEAT_SILPH_CO_11F_TRAINER_1, 3, SilphCo11FRocket2BattleText, SilphCo11FRocket2EndBattleText, SilphCo11FRocket2AfterBattleText
 SilphCo11TrainerHeader2:
 	trainer EVENT_BEAT_SILPH_CO_11F_TRAINER_2, 3, SilphCo11FPupilBattleText, SilphCo11FPupilEndBattleText, SilphCo11FPupilAfterBattleText
+SilphCo11TrainerHeader4:
+	trainer EVENT_BEAT_SILPH_CO_11F_TRAINER_3, 3, SilphCo11FDefender1BattleText, SilphCo11FDefender1EndBattleText, SilphCo11FDefender1AfterBattleText
 	db -1 ; end
 
 SilphCo11FSilphPresidentText:
@@ -627,4 +652,72 @@ SilphCo10FPorygonText: ; unreferenced
 
 .Text:
 	text_far _SilphCo10FPorygonText
+	text_end
+
+; TEAM ROCKET holds this floor. On the hero path they fight you and the SILPH
+; staff stay hidden; on the loyalist path they are comrades, so the staff
+; defend the building instead. Each pair shares a tile, so exactly one of the
+; two is ever shown. Skipped once the boss has fallen -- by then
+; SilphCo11FTeamRocketLeavesScript has cleared this floor for good, and
+; re-showing anyone here on the next map load would undo that.
+SilphCo11FSetFactionObjectsScript:
+	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
+	ret nz
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	jr nz, .loyalist
+	ld hl, .Defenders
+	call SilphCo11FHideObjectList
+	ld hl, .Rockets
+	jp SilphCo11FShowObjectList
+.loyalist
+	ld hl, .Rockets
+	call SilphCo11FHideObjectList
+	ld hl, .Defenders
+	jp SilphCo11FShowObjectList
+
+.Rockets:
+	db TOGGLE_SILPH_CO_11F_3
+	db -1 ; end
+
+.Defenders:
+	db TOGGLE_SILPH_CO_11F_DEFENDER1
+	db -1 ; end
+
+SilphCo11FShowObjectList:
+	ld a, [hli]
+	cp -1
+	ret z
+	push hl
+	ld [wToggleableObjectIndex], a
+	predef ShowObject
+	pop hl
+	jr SilphCo11FShowObjectList
+
+SilphCo11FHideObjectList:
+	ld a, [hli]
+	cp -1
+	ret z
+	push hl
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	pop hl
+	jr SilphCo11FHideObjectList
+
+SilphCo11FDefender1Text:
+	text_asm
+	ld hl, SilphCo11TrainerHeader4
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SilphCo11FDefender1BattleText:
+	text_far _SilphCo11FDefender1BattleText
+	text_end
+
+SilphCo11FDefender1EndBattleText:
+	text_far _SilphCo11FDefender1EndBattleText
+	text_end
+
+SilphCo11FDefender1AfterBattleText:
+	text_far _SilphCo11FDefender1AfterBattleText
 	text_end

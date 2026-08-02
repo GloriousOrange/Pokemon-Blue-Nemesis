@@ -627,8 +627,8 @@
 	const EVENT_BEAT_SILPH_CO_2F_TRAINER_1
 	const EVENT_BEAT_SILPH_CO_2F_TRAINER_2
 	const EVENT_BEAT_SILPH_CO_2F_TRAINER_3
-	const EVENT_BEAT_SILPH_CO_2F_TRAINER_4 ; former flavor Rocket (obj index 6, bit 6)
-	const EVENT_BEAT_SILPH_CO_2F_TRAINER_5 ; former flavor Scientist (obj index 7, bit 7)
+	const EVENT_BEAT_SILPH_CO_2F_TRAINER_4 ; loyalist twin (obj index 6, bit 6)
+	const EVENT_BEAT_SILPH_CO_2F_TRAINER_5 ; loyalist twin (obj index 7, bit 7)
 	const_skip 5
 	const EVENT_SILPH_CO_2_UNLOCKED_DOOR1
 	const EVENT_SILPH_CO_2_UNLOCKED_DOOR2
@@ -636,14 +636,17 @@
 	const_skip 2
 	const EVENT_BEAT_SILPH_CO_3F_TRAINER_0
 	const EVENT_BEAT_SILPH_CO_3F_TRAINER_1
-	const_skip 4
+	const EVENT_BEAT_SILPH_CO_3F_TRAINER_2 ; loyalist twin (obj index 4, bit 4)
+	const_skip 3
 	const EVENT_SILPH_CO_3_UNLOCKED_DOOR1
 	const EVENT_SILPH_CO_3_UNLOCKED_DOOR2
 	const_skip 8
 	const EVENT_BEAT_SILPH_CO_4F_TRAINER_0
 	const EVENT_BEAT_SILPH_CO_4F_TRAINER_1
 	const EVENT_BEAT_SILPH_CO_4F_TRAINER_2
-	const_skip 3
+	const EVENT_BEAT_SILPH_CO_4F_TRAINER_3 ; loyalist twin (obj index 5, bit 5)
+	const EVENT_BEAT_SILPH_CO_4F_TRAINER_4 ; loyalist twin (obj index 6, bit 6)
+	const_skip 1
 	const EVENT_SILPH_CO_4_UNLOCKED_DOOR1
 	const EVENT_SILPH_CO_4_UNLOCKED_DOOR2
 	const_skip 8
@@ -651,15 +654,20 @@
 	const EVENT_BEAT_SILPH_CO_5F_TRAINER_1
 	const EVENT_BEAT_SILPH_CO_5F_TRAINER_2
 	const EVENT_BEAT_SILPH_CO_5F_TRAINER_3
-	const_skip 2
+	const EVENT_BEAT_SILPH_CO_5F_TRAINER_4 ; loyalist twin (obj index 6, bit 6)
+	const EVENT_BEAT_SILPH_CO_5F_TRAINER_5 ; loyalist twin (obj index 7, bit 7)
 	const EVENT_SILPH_CO_5_UNLOCKED_DOOR1
 	const EVENT_SILPH_CO_5_UNLOCKED_DOOR2
 	const EVENT_SILPH_CO_5_UNLOCKED_DOOR3
-	const_skip 11
+	const_skip 5
+	const EVENT_BEAT_SILPH_CO_5F_TRAINER_6 ; loyalist twin (obj index 8, bit 0)
+	const_skip 5
 	const EVENT_BEAT_SILPH_CO_6F_TRAINER_0
 	const EVENT_BEAT_SILPH_CO_6F_TRAINER_1
 	const EVENT_BEAT_SILPH_CO_6F_TRAINER_2
-	const_skip 6
+	const EVENT_BEAT_SILPH_CO_6F_TRAINER_3 ; loyalist twin (obj index 9, bit 1)
+	const EVENT_BEAT_SILPH_CO_6F_TRAINER_4 ; loyalist twin (obj index 10, bit 2)
+	const_skip 4
 	const EVENT_SILPH_CO_6_UNLOCKED_DOOR
 	const EVENT_BEAT_SILPH_CO_RIVAL
 	const_skip 4
@@ -667,7 +675,9 @@
 	const EVENT_BEAT_SILPH_CO_7F_TRAINER_1
 	const EVENT_BEAT_SILPH_CO_7F_TRAINER_2
 	const EVENT_BEAT_SILPH_CO_7F_TRAINER_3
-	const_skip 3
+	const EVENT_BEAT_SILPH_CO_7F_TRAINER_4 ; loyalist twin (obj index 9, bit 1)
+	const EVENT_BEAT_SILPH_CO_7F_TRAINER_5 ; loyalist twin (obj index 10, bit 2)
+	const EVENT_BEAT_SILPH_CO_7F_TRAINER_6 ; loyalist twin (obj index 11, bit 3)
 	const EVENT_SILPH_CO_7_UNLOCKED_DOOR1
 	const EVENT_SILPH_CO_7_UNLOCKED_DOOR2
 	const EVENT_SILPH_CO_7_UNLOCKED_DOOR3
@@ -675,16 +685,16 @@
 	const EVENT_BEAT_SILPH_CO_8F_TRAINER_0
 	const EVENT_BEAT_SILPH_CO_8F_TRAINER_1
 	const EVENT_BEAT_SILPH_CO_8F_TRAINER_2
-	const EVENT_BEAT_SILPH_CO_8F_TRAINER_3 ; former flavor Rocket (obj index 5, bit 5)
-	const EVENT_BEAT_SILPH_CO_8F_TRAINER_4 ; former flavor Scientist (obj index 6, bit 6)
+	const EVENT_BEAT_SILPH_CO_8F_TRAINER_3 ; loyalist twin (obj index 5, bit 5)
+	const EVENT_BEAT_SILPH_CO_8F_TRAINER_4 ; loyalist twin (obj index 6, bit 6)
 	const_skip 1
 	const EVENT_SILPH_CO_8_UNLOCKED_DOOR
 	const_skip 9
 	const EVENT_BEAT_SILPH_CO_9F_TRAINER_0
 	const EVENT_BEAT_SILPH_CO_9F_TRAINER_1
 	const EVENT_BEAT_SILPH_CO_9F_TRAINER_2
-	const EVENT_BEAT_SILPH_CO_9F_TRAINER_3 ; former flavor Rocket (obj index 5, bit 5)
-	const EVENT_BEAT_SILPH_CO_9F_TRAINER_4 ; former flavor Scientist (obj index 6, bit 6)
+	const EVENT_BEAT_SILPH_CO_9F_TRAINER_3 ; loyalist twin (obj index 5, bit 5)
+	const EVENT_BEAT_SILPH_CO_9F_TRAINER_4 ; loyalist twin (obj index 6, bit 6)
 	const_skip 1
 	const EVENT_SILPH_CO_9_UNLOCKED_DOOR1
 	const EVENT_SILPH_CO_9_UNLOCKED_DOOR2
@@ -693,13 +703,14 @@
 	const_skip 5
 	const EVENT_BEAT_SILPH_CO_10F_TRAINER_0
 	const EVENT_BEAT_SILPH_CO_10F_TRAINER_1
-	const_skip 5
+	const EVENT_BEAT_SILPH_CO_10F_TRAINER_2 ; loyalist twin (obj index 3, bit 3)
+	const_skip 4
 	const EVENT_SILPH_CO_10_UNLOCKED_DOOR
 	const_skip 11
 	const EVENT_BEAT_SILPH_CO_11F_TRAINER_0
 	const EVENT_BEAT_SILPH_CO_11F_TRAINER_1
 	const EVENT_BEAT_SILPH_CO_11F_TRAINER_2 ; OAK's pupil (loyalist path); took a spare slot so nothing renumbers
-	const_skip
+	const EVENT_BEAT_SILPH_CO_11F_TRAINER_3 ; loyalist twin (obj index 7, bit 7)
 	const EVENT_SILPH_CO_11_UNLOCKED_DOOR
 	const_skip 4
 	const EVENT_GOT_MASTER_BALL

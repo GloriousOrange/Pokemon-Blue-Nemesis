@@ -243,3 +243,23 @@ _SilphCo10FPorygonText::
 	text "The monitor has"
 	line "#MON on it!"
 	done
+
+; Loyalist path: SILPH staff standing where the ROCKETs stand on the hero path.
+
+_SilphCo11FDefender1BattleText::
+	text "You will not"
+	line "reach the"
+	cont "PRESIDENT."
+	done
+
+_SilphCo11FDefender1EndBattleText::
+	text "I tried. I did"
+	line "try."
+	prompt
+
+_SilphCo11FDefender1AfterBattleText::
+	text "He's just an old"
+	line "man in an office."
+	cont "Leave him be."
+	done
+
