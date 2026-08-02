@@ -515,3 +515,8 @@ INCLUDE "data/maps/map_header_pointers.asm"
 SECTION "Hyper Beam Power", ROMX ; ApplyHyperBeamPower is only reached via farjp, so any bank works; kept out of "Battle Core", which is full
 
 INCLUDE "engine/battle/hyper_beam_power.asm"
+
+SECTION "Mutagen Movesets", ROMX ; ApplyMutagenMoveset is only reached via callfar and reads its table out of its own bank, so any bank works
+
+INCLUDE "engine/pokemon/mutagen_movesets.asm"
+INCLUDE "data/pokemon/mutagen_movesets.asm"

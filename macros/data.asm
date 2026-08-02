@@ -93,3 +93,14 @@ MACRO? dname
 	db \1
 	ds n - CHARLEN(\1), '@'
 ENDM
+
+; used in data/pokemon/mutagen_movesets.asm
+; species id followed by exactly NUM_MOVES move ids -- the assert matters because
+; a short row would silently shift every following row by a byte
+MACRO? mutagen_moveset
+	ASSERT _NARG == NUM_MOVES + 1, "mutagen_moveset needs a species and exactly NUM_MOVES moves"
+	REPT _NARG
+		db \1
+		SHIFT
+	ENDR
+ENDM

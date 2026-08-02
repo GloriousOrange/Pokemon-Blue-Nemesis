@@ -100,3 +100,6 @@ DEF WILDDATA_LENGTH EQU 1 + NUM_WILDMONS * 2
 ; PP in box_struct (see macros/ram.asm)
 DEF PP_UP_MASK EQU %11000000 ; number of PP Up used
 DEF PP_MASK    EQU %00111111 ; currently remaining PP
+
+; data/pokemon/mutagen_movesets.asm row: species id + NUM_MOVES move ids
+DEF MUTAGEN_MOVESET_LENGTH EQU 1 + NUM_MOVES

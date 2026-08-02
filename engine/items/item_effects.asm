@@ -1396,7 +1396,15 @@ ItemUseMedicine:
 	ld e, l ; de -> mon's move slots (WriteMonMoves reads/writes these in place)
 	xor a
 	ld [wLearningMovesFromDayCare], a
+; Prefer this species' curated Mutagenstone set. It comes back hl = 0 when the
+; species has no row yet, leaving de untouched so the old learnset-derived
+; behaviour below still covers everything that isn't curated.
+	callfar ApplyMutagenMoveset ; de survives Bankswitch; only a/bc/hl are clobbered
+	ld a, l
+	and a
+	jr nz, .movesWritten
 	predef WriteMonMoves
+.movesWritten
 	pop hl
 
 	call GetMonHeader
