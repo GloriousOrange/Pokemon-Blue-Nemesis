@@ -147,8 +147,17 @@ GainExperience:
 	ld a, [wWhichPokemon]
 	ld hl, wPartyMonNicks
 	call GetPartyMonName
+; With EXP ALL in the bag every party member gains from every battle, so a line
+; each turns the end of a fight into a wall of text to mash through. The name is
+; still fetched above because the level-up announcement below needs it -- only
+; the per-mon "gained N EXP" line is dropped, never the level-up.
+; IsItemInBag is in the home bank, so this plain call is safe from here.
+	ld b, EXP_ALL
+	call IsItemInBag
+	jr nz, .skipGainedText ; z means it is NOT in the bag
 	ld hl, GainedText
 	call PrintText
+.skipGainedText
 	xor a ; PLAYER_PARTY_DATA
 	ld [wMonDataLocation], a
 	call LoadMonData
