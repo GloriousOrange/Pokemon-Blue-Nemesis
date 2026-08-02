@@ -979,7 +979,7 @@ HardenAnim:
 ; circle, and fits boosting both Defense AND Special rather than just Defense.
 CrystallizeAnim:
 	battle_anim CRYSTALLIZE, SE_LIGHT_SCREEN_PALETTE
-	battle_anim NO_MOVE, SUBANIM_0_ICE_RISE, 0, 8
+	battle_anim NO_MOVE, SUBANIM_0_ICE_RISE_SELF, 0, 8
 	battle_anim NO_MOVE, SUBANIM_1_BARRIER, 1, 6
 	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
 	db -1 ; end

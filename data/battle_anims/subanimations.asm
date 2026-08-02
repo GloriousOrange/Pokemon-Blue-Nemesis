@@ -87,6 +87,7 @@ SubanimationPointers:
 	dw Subanim_0SafariBait
 	dw Subanim_0StarHigh
 	dw Subanim_1StarBigMovingMirrored
+	dw Subanim_0IceRiseSelf
 	assert_table_length NUM_SUBANIMS
 
 ; format:
@@ -318,6 +319,19 @@ Subanim_0Beam:
 
 Subanim_0IceRise:
 	subanim SUBANIMTYPE_HFLIP, 4
+	db FRAMEBLOCK_1F, BASECOORD_24, FRAMEBLOCKMODE_00
+	db FRAMEBLOCK_20, BASECOORD_20, FRAMEBLOCKMODE_00
+	db FRAMEBLOCK_21, BASECOORD_1A, FRAMEBLOCKMODE_00
+	db FRAMEBLOCK_22, BASECOORD_15, FRAMEBLOCKMODE_00
+
+; Subanim_0IceRise's frame blocks, declared SUBANIMTYPE_ENEMY instead of
+; SUBANIMTYPE_HFLIP. The engine flips an ENEMY-typed subanimation onto the
+; player's side when the player is the one acting and leaves it in place when the
+; enemy acts -- which is what a self-targeting move wants. The plain HFLIP
+; version is authored at the foe's coordinates and is correct for the attacking
+; ice moves that share it (Ice Beam, Blizzard), so it can't just be retyped.
+Subanim_0IceRiseSelf:
+	subanim SUBANIMTYPE_ENEMY, 4
 	db FRAMEBLOCK_1F, BASECOORD_24, FRAMEBLOCKMODE_00
 	db FRAMEBLOCK_20, BASECOORD_20, FRAMEBLOCKMODE_00
 	db FRAMEBLOCK_21, BASECOORD_1A, FRAMEBLOCKMODE_00

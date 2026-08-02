@@ -137,6 +137,8 @@ DEF FIRST_SE_ID EQU const_value
 	const SUBANIM_0_STAR_HIGH
 	const SUBANIM_1_STAR_BIG_MOVING_MIRRORED ; same trajectory as SUBANIM_1_STAR_BIG_MOVING,
 	                                          ; COORDFLIP instead of HFLIP -- Double Drill's 2nd hit
+	const SUBANIM_0_ICE_RISE_SELF             ; SUBANIM_0_ICE_RISE's frames, typed ENEMY so they
+	                                          ; land on the user -- Crystallize buffs itself
 DEF NUM_SUBANIMS EQU const_value
 
 ; types of subanimations
