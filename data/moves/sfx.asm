@@ -206,6 +206,7 @@ MoveSoundTable:
 	db SFX_BATTLE_14,          $00, $20 ; PSY_CHOP (match reused Confusion sfx)
 	db SFX_BATTLE_29,          $f0, $80 ; DRAGON_BREATH (match reused Dragon Rage sfx)
 	db SFX_BATTLE_1C,          $01, $c0 ; GLITTER_WING (match reused Sleep Powder sfx)
+	db SFX_PSYCHIC_M,          $00, $80 ; TELEKINESIS (reuse psychic sfx)
 	db SFX_BATTLE_19,          $21, $e0 ; FLAME_WHIP (reuse flamethrower sfx)
 	db SFX_BATTLE_2A,          $00, $80 ; HYDRO_JET (reuse hydro pump sfx)
 	db SFX_BATTLE_24,          $40, $c0 ; GIGA_DRAIN (reuse mega drain sfx)

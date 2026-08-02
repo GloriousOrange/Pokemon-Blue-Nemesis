@@ -206,6 +206,7 @@ MoveNames::
 	li "PSY CHOP"
 	li "DRAGONBREATH"
 	li "GLITTER WING"
+	li "TELEKINESIS"
 	li "FLAME WHIP"
 	li "HYDRO JET"
 	li "GIGA DRAIN"
