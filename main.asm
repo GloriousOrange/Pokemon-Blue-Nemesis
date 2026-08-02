@@ -235,8 +235,6 @@ SECTION "Battle Engine 7", ROMX
 INCLUDE "data/moves/moves.asm"
 INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/cries.asm"
-INCLUDE "engine/battle/unused_stats_functions.asm"
-INCLUDE "engine/battle/scroll_draw_trainer_pic.asm"
 INCLUDE "engine/battle/trainer_ai.asm"
 INCLUDE "engine/battle/draw_hud_pokeball_gfx.asm"
 INCLUDE "engine/pokemon/evos_moves.asm"
@@ -511,6 +509,14 @@ SECTION "Map Header Pointers", ROMX ; relocated out of ROM0/Home (which overflow
 
 INCLUDE "data/maps/map_header_pointers.asm"
 
+
+SECTION "Scroll Trainer Pic", ROMX ; floated out of Battle Engine 7 for the S.S. Olympia rosters; _ScrollTrainerPicAfterBattle is jpfar-only and DrawTrainerPicColumn has no callers outside this file, so any bank works
+
+INCLUDE "engine/battle/scroll_draw_trainer_pic.asm"
+
+SECTION "Selected Stats", ROMX ; floated out of Battle Engine 7 to make room for the S.S. Olympia's rosters; DoubleSelectedStats/HalveSelectedStats are only reached via callfar/jpfar from DoubleOrHalveSelectedStats, so any bank works
+
+INCLUDE "engine/battle/unused_stats_functions.asm"
 
 SECTION "Hyper Beam Power", ROMX ; ApplyHyperBeamPower is only reached via farjp, so any bank works; kept out of "Battle Core", which is full
 
