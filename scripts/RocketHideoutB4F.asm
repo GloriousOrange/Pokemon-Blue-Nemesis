@@ -110,8 +110,14 @@ RocketHideoutB4FGiovanniText:
 	ld hl, wStatusFlags3
 	set BIT_TALKED_TO_TRAINER, [hl]
 	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistEndBattleText
+	jr nz, .gotEndText
 	ld hl, .WhatCannotBeText
-	ld de, .WhatCannotBeText
+.gotEndText
+	ld d, h
+	ld e, l
 	call SaveEndBattleTextPointers
 	ldh a, [hSpriteIndex]
 	ld [wSpriteIndex], a
@@ -137,6 +143,9 @@ RocketHideoutB4FGiovanniText:
 	text_far _RocketHideoutB4FGiovanniLoyalistImpressedText
 	text_end
 
+.LoyalistEndBattleText:
+	text_far _RocketHideoutB4FGiovanniLoyalistEndBattleText
+	text_end
 .WhatCannotBeText:
 	text_far _RocketHideoutB4FGiovanniWhatCannotBeText
 	text_end
