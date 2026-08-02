@@ -307,4 +307,15 @@ ENDC
 IF NUM_POKEMON % 8 != 0
 	ld [hl], (1 << (NUM_POKEMON % 8)) - 1
 ENDC
+; ...except the five that aren't in the original 151. Those stay ??? until the
+; player actually lays eyes on them, so finding one still means something.
+MACRO codex_starts_unseen
+	ld hl, wPokedexSeen + (DEX_\1 - 1) / 8
+	res (DEX_\1 - 1) % 8, [hl]
+ENDM
+	codex_starts_unseen TYRANIS
+	codex_starts_unseen MIASMA
+	codex_starts_unseen NOCTURN
+	codex_starts_unseen ALAKACHAMP
+	codex_starts_unseen MEWTHREE
 	ret
