@@ -2081,6 +2081,7 @@ SquirtleEvosMoves:
 	db 22, BITE
 	db 28, WITHDRAW
 	db 35, SKULL_BASH
+	db 40, HYDRO_JET ; only an unevolved SQUIRTLE ever reaches this
 	db 42, HYDRO_PUMP
 	db 0
 
