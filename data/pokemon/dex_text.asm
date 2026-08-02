@@ -1088,6 +1088,16 @@ _MewtwoDexEntry::
 	dex
 
 _SnorlaxDexEntry::
+_MewthreeDexEntry::
+	text "The armor was"
+	next "bolted on to keep"
+	next "the clone docile."
+
+	page "It stopped"
+	next "struggling years"
+	next "ago."
+	dex
+
 	text "Very lazy. Just"
 	next "eats and sleeps."
 	next "As its rotund"

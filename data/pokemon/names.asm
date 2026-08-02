@@ -194,4 +194,5 @@ MonsterNames::
 	dname "MIASMA"
 	dname "NOCTURN"
 	dname "ALAKACHAMP"
+	dname "MEWTHREE"
 	assert_table_length NUM_POKEMON_INDEXES

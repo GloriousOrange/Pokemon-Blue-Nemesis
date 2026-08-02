@@ -201,6 +201,7 @@
 	const MIASMA             ; $C0
 	const NOCTURN            ; $C1
 	const ALAKACHAMP         ; $C2
+	const MEWTHREE           ; $C3
 
 DEF NUM_POKEMON_INDEXES EQU const_value - 1
 

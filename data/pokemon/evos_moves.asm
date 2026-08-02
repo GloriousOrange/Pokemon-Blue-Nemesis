@@ -204,6 +204,7 @@ EvosMovesPointerTable::
 	dw MiasmaEvosMoves
 	dw NocturnEvosMoves
 	dw AlakachampEvosMoves
+	dw MewthreeEvosMoves
 	assert_table_length NUM_POKEMON_INDEXES
 
 RhydonEvosMoves:
@@ -2240,6 +2241,18 @@ NocturnEvosMoves:
 ; Learnset
 	db 40, PHANTOM_WING
 	db 50, MIND_FEVER
+	db 0
+
+MewthreeEvosMoves:
+; Evolutions
+	db 0
+; Learnset
+	db 63, BARRIER
+	db 66, PSYCHIC_M
+	db 70, RECOVER
+	db 75, MIST
+	db 81, AMNESIA
+	db 99, TELEKINESIS ; the armored clone's signature
 	db 0
 
 AlakachampEvosMoves:

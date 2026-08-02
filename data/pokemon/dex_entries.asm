@@ -194,6 +194,7 @@ PokedexEntryPointers:
 	dw MiasmaDexEntry
 	dw NocturnDexEntry
 	dw AlakachampDexEntry
+	dw MewthreeDexEntry
 	assert_table_length NUM_POKEMON_INDEXES
 
 ; string: species name
@@ -962,6 +963,13 @@ MewtwoDexEntry:
 	db 6,7
 	dw 2690
 	text_far _MewtwoDexEntry
+	text_end
+
+MewthreeDexEntry:
+	db "ARMORED@"
+	db 6,9
+	dw 4120
+	text_far _MewthreeDexEntry
 	text_end
 
 SnorlaxDexEntry:
