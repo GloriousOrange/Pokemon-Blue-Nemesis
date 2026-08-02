@@ -89,6 +89,9 @@ reaching Battle Island runs through it.
 - **Move type reassignments**: a handful of moves changed elemental type for
   balance/flavor reasons — most notably Guillotine and Vice Grip are now
   Bug-type instead of Normal.
+- **Golduck is Water/Psychic**, the type it always looked like it should be.
+  It can now learn TM29 Psychic to go with it (Psyduck stays pure Water — the
+  psychic half arrives on evolution).
 - **New/earlier level-up moves** on several Pokemon, including: Charmander
   learns Fire Punch (Lv. 10); Pikachu learns Flash (Lv. 7); Grimer learns Acid
   (Lv. 7); Shellder learns Crystallize (Lv. 25). A few are deliberately placed
@@ -139,6 +142,13 @@ reaching Battle Island runs through it.
   a Pokemon with a very high Defense or Special stat (only really possible at
   Level 100) could previously cause the game to freeze outright. This only
   ever surfaced against the game's toughest post-game superbosses.
+- **Focus Energy and Dire Hit finally work.** In vanilla Gen 1 they *quartered*
+  your critical-hit rate instead of quadrupling it — using them made you
+  strictly worse off. Now a Focus Energy'd Pokemon crits roughly half the time
+  with an ordinary attack, so spending the turn is genuinely worth it. Note
+  that enemy trainers get the same benefit, and that moves which already have a
+  high crit rate (Slash, Crabhammer, Razor Leaf) were near-guaranteed crits
+  anyway, so Focus Energy adds nothing on top of those.
 - **Cancelling an evolution now sticks.** If you press B to stop a Pokemon
   evolving, it won't ask again until the Pokemon has gained 30 more levels
   (vanilla nagged you every single level-up). This makes it practical to keep a
