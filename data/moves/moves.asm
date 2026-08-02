@@ -193,7 +193,7 @@ Moves:
 	move HOT_OIL,      HOT_OIL_EFFECT,              40, FIRE,         100, 10
 	move BAD_TOUCH,    CONFUSION_EFFECT,             0, NORMAL,       100, 10
 	move CRUSH_COIL,   TRAPPING_EFFECT,             30, POISON,        85, 15
-	move BLOOD_SUCK,   DRAIN_HP_EFFECT,             80, POISON,       100, 10
+	move BLOOD_SUCK,   DRAIN_HP_EFFECT,             70, POISON,       100, 10
 	move HURRICANE,    NO_ADDITIONAL_EFFECT,        80, DRAGON,       100, 10
 	move ICE_SPIKE,    NO_ADDITIONAL_EFFECT,        25, ICE,          100, 20
 	move MIGRAIN,      NO_ADDITIONAL_EFFECT,        30, PSYCHIC_TYPE, 100, 20
