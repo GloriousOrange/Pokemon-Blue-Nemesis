@@ -94,57 +94,66 @@ BoxIsFullText:
 ; gift) -- LoadMovePPs then derives correct PP from the patched move IDs.
 SpeedtestGiveDebugMons::
 IF DEF(_SPEEDTEST)
-; SendNewMonToBox has no overflow guard of its own, so depositing into a
-; (nearly) full box would corrupt it -- each grant below checks its own room
-; and bails WITHOUT setting its flag if there isn't enough, so it retries on
-; a later Continue.
+; Ten level 100 mons straight into the PC box on the next "Continue", carrying
+; the moves that still need eyes on them. Web Cannon, Hot Oil and Crystallize
+; are deliberately absent -- those are confirmed working.
+;
+; SendNewMonToBox has no overflow guard, so bail without setting the flag if
+; the box lacks room; it retries on a later Continue.
 	CheckEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
-	jr nz, .birdsAlreadyGiven
+	ret nz
 	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 1 ; need 1 free box slot for Tyranis
-	jr nc, .birdsAlreadyGiven
+	cp MONS_PER_BOX - 10 ; need ten free slots
+	ret nc
 	SetEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
-; Tyranis at L100 with its signature move first so it can be tried immediately
-; from storage. Miasma and Nocturn used to be handed over here too; storage is
-; kept to three mons now so the box is quick to read.
-	lb bc, TYRANIS, 100
-	ld hl, .TyranisMoves
+	lb bc, MEWTHREE, 100
+	ld hl, .MewthreeMoves
 	call .GiveBoxedMonWithMoves
-.birdsAlreadyGiven
-; Each signature-move test mon below is guarded by its own bit in
-; wSpeedtestExtraMonsGiven (NOT an EVENT_* constant -- that shared array is a
-; hard-capped fixed-size resource for real game state, and we ran out of room
-; there partway through adding these debug-only conveniences), so each still
-; fires independently on saves that already have earlier ones.
-	ld hl, wSpeedtestExtraMonsGiven
-	bit 0, [hl]
-	jr nz, .pinsirAlreadyGiven
-	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 1 ; need 1 free box slot for Pinsir
-	jr nc, .pinsirAlreadyGiven
-	set 0, [hl]
-	lb bc, PINSIR, 100
-	ld hl, .PinsirMoves
+	lb bc, ALAKACHAMP, 100
+	ld hl, .AlakachampBoxMoves
 	call .GiveBoxedMonWithMoves
-.pinsirAlreadyGiven
-; Beedrill normally learns Crystallize at level 22 -- boxed here at L100.
-	ld hl, wSpeedtestExtraMonsGiven
-	bit 4, [hl]
-	jr nz, .beedrillAlreadyGiven
-	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 1 ; need 1 free box slot for Beedrill
-	jr nc, .beedrillAlreadyGiven
-	set 4, [hl]
-	lb bc, BEEDRILL, 100
-	ld hl, .BeedrillMoves
+	lb bc, ZUBAT, 100
+	ld hl, .ZubatMoves
 	call .GiveBoxedMonWithMoves
-.beedrillAlreadyGiven
+	lb bc, BULBASAUR, 100
+	ld hl, .BulbasaurMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, SQUIRTLE, 100
+	ld hl, .SquirtleMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, CHARMANDER, 100
+	ld hl, .CharmanderMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, PIDGEOT, 100
+	ld hl, .PidgeotMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, JYNX, 100
+	ld hl, .JynxMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, LAPRAS, 100
+	ld hl, .LaprasMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, GENGAR, 100
+	ld hl, .GengarMoves
+	call .GiveBoxedMonWithMoves
 ENDC
 	ret
 
-.TyranisMoves:    db DOUBLE_DRILL, HYPER_BEAMS, SKY_ATTACK, BODY_SLAM, FLY
-.PinsirMoves:     db WEB_CANNON, VIBRATE, TWINEEDLE, SWORDS_DANCE, SEISMIC_TOSS
-.BeedrillMoves:   db CRYSTALLIZE, CHAOS_STING, TWINEEDLE, PIN_MISSILE, AGILITY
+; MewThree: its own sprites, stats and Telekinesis have never been seen in play
+.MewthreeMoves:    db TELEKINESIS, PSYCHIC_M, RECOVER, ICE_BEAM, AMNESIA
+.AlakachampBoxMoves: db UPPERCUT, PSYCHIC_M, EARTHQUAKE, SUBMISSION, SWORDS_DANCE
+; Zubat carries both full-drain moves
+.ZubatMoves:       db LEECH_LIFE, BLOOD_SUCK, DOUBLE_TEAM, CONFUSE_RAY, WING_ATTACK
+; the three level 40 unevolved-starter moves
+.BulbasaurMoves:   db GIGA_DRAIN, RAZOR_LEAF, SLEEP_POWDER, GROWTH, LEECH_SEED
+.SquirtleMoves:    db HYDRO_JET, SURF, ICE_BEAM, WITHDRAW, SKULL_BASH
+.CharmanderMoves:  db FLAME_WHIP, FLAMETHROWER, SLASH, DIG, SWORDS_DANCE
+; Hyper Beam's power is now Attack + Speed; Pidgeot takes the NORMAL -30 branch
+.PidgeotMoves:     db HYPER_BEAM, WING_ATTACK, AGILITY, MIRROR_MOVE, FLY
+.JynxMoves:        db ICE_SCULPTURE, ICE_BEAM, PSYCHIC_M, LOVELY_KISS, BODY_SLAM
+.LaprasMoves:      db ICE_BOMB, SURF, PSYCHIC_M, BODY_SLAM, CONFUSE_RAY
+; Ghost Beam, and Ghost-beats-Psychic which is false in vanilla
+.GengarMoves:      db GHOST_BEAM, NIGHT_SHADE, CONFUSE_RAY, HYPNOSIS, PSYCHIC_M
 
 ; b = species, c = level, hl = pointer to a NUM_MOVES-byte moveset
 .GiveBoxedMonWithMoves:
