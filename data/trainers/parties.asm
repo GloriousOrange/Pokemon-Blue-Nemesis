@@ -449,7 +449,7 @@ PsychicData:
 	db 33, SLOWPOKE, SLOWPOKE, SLOWBRO, 0
 	db 38, SLOWBRO, 0
 
-	db 99, ALAKAZAM, HYPNO, MR_MIME, 0 ; ARENA #20 (psychic) -- lv99 test: lv100 Earthquake freeze repro
+	db 100, ALAKAZAM, HYPNO, MR_MIME, 0 ; ARENA #20 (psychic)
 
 RockerData:
 ; Vermilion Gym
