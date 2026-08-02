@@ -2068,6 +2068,7 @@ CharmanderEvosMoves:
 	db 22, RAGE
 	db 30, SLASH
 	db 38, FLAMETHROWER
+	db 40, FLAME_WHIP ; only an unevolved CHARMANDER ever reaches this
 	db 46, FIRE_SPIN
 	db 0
 

@@ -215,10 +215,11 @@
 	const PSY_CHOP       ; cb - Psychic, 35 dmg (Drowzee/Jynx/Mew starter STAB filler)
 	const DRAGON_BREATH  ; cc - Dragon, 35 dmg (Dratini starter STAB filler)
 	const GLITTER_WING   ; cd - Bug, 35 dmg, 100 acc, ~30% sleep (Butterfree)
-	const HYDRO_JET      ; ce - Water, 90 dmg, 10% flinch (unevolved Squirtle, L40)
-	const GIGA_DRAIN     ; cf - Grass, 75 dmg, drains the full amount (unevolved Bulbasaur, L40)
-	const GHOST_BEAM     ; d0 - Ghost, 150 dmg, recharge; TM53 (ghost-starter answer to Psychics)
-	const STRUGGLE       ; d1
+	const FLAME_WHIP     ; ce - Fire, 100 dmg, 30% burn (unevolved Charmander, L40)
+	const HYDRO_JET      ; cf - Water, 90 dmg, 30% flinch (unevolved Squirtle, L40)
+	const GIGA_DRAIN     ; d0 - Grass, 75 dmg, drains the full amount (unevolved Bulbasaur, L40)
+	const GHOST_BEAM     ; d1 - Ghost, 150 dmg, recharge; TM53 (ghost-starter answer to Psychics)
+	const STRUGGLE       ; d2
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

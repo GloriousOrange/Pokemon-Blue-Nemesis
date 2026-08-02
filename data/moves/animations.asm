@@ -205,6 +205,7 @@ AttackAnimationPointers:
 	dw ConfusionAnim    ; PSY_CHOP — reuse Confusion's visuals
 	dw DragonRageAnim   ; DRAGON_BREATH — reuse Dragon Rage's visuals
 	dw SleepPowderAnim  ; GLITTER_WING — reuse Sleep Powder's shimmering visuals
+	dw FlamethrowerAnim ; FLAME_WHIP -- reuse Flamethrower's visuals
 	dw HydroPumpAnim    ; HYDRO_JET -- reuse Hydro Pump's water columns
 	dw MegaDrainAnim    ; GIGA_DRAIN -- reuse Mega Drain's visuals
 	dw GhostBeamAnim    ; GHOST_BEAM
