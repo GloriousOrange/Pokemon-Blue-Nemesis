@@ -316,9 +316,10 @@ ENDM
 	const TOGGLE_SILPH_CO_11F_2                ; B8
 	const TOGGLE_SILPH_CO_11F_3                ; B9
 	const TOGGLE_SILPH_CO_11F_4                ; BA
-
-	toggle_consts_for BATTLE_ISLAND_GATE
-	const TOGGLE_BATTLE_ISLAND_GATE_1          ; BA unused placeholder (gate map has no real toggleable objects)
+	; BB was an unused BATTLE_ISLAND_GATE placeholder kept only to preserve the
+	; table count. Reclaimed for OAK so his slot costs no global renumbering --
+	; every index from here on is unchanged, so old saves stay valid.
+	const TOGGLE_SILPH_CO_11F_5                ; BB
 
 	toggle_consts_for POKEMON_MANSION_2F
 	const TOGGLE_POKEMON_MANSION_2F_ITEM       ; BB X

@@ -698,7 +698,8 @@
 	const_skip 11
 	const EVENT_BEAT_SILPH_CO_11F_TRAINER_0
 	const EVENT_BEAT_SILPH_CO_11F_TRAINER_1
-	const_skip 2
+	const EVENT_BEAT_SILPH_CO_11F_TRAINER_2 ; OAK's pupil (loyalist path); took a spare slot so nothing renumbers
+	const_skip
 	const EVENT_SILPH_CO_11_UNLOCKED_DOOR
 	const_skip 4
 	const EVENT_GOT_MASTER_BALL

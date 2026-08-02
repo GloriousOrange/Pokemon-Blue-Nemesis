@@ -24,14 +24,19 @@ SilphCo11FGateCallbackScript:
 	lb bc, 6, 3
 	predef_jump ReplaceTileBlock
 
-; Loyalist path: Giovanni doesn't fight his own recruits, so the floor boss
-; here is a rival Scientist instead (see SilphCo11FDefaultScript). Swap which
-; of the two same-tile object_events is visible to match the player's path.
+; Loyalist path: Giovanni doesn't fight his own recruits, so the floor boss here
+; is OAK instead -- you turned on him, so he came for you himself. His pupil (a
+; Scientist) guards the approach and has to be beaten first. Hero path sees
+; Giovanni and neither of the other two. All three share the map, so show
+; exactly the ones this path needs.
 SilphCo11FSetBossObjectScript:
 	ld a, [wPostGameMisc]
 	bit BIT_ROCKET_LOYALTY, a
 	jr nz, .loyalist
 	ld a, TOGGLE_SILPH_CO_11F_4
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	ld a, TOGGLE_SILPH_CO_11F_5
 	ld [wToggleableObjectIndex], a
 	predef HideObject
 	ld a, TOGGLE_SILPH_CO_11F_1
@@ -41,6 +46,9 @@ SilphCo11FSetBossObjectScript:
 	ld a, TOGGLE_SILPH_CO_11F_1
 	ld [wToggleableObjectIndex], a
 	predef HideObject
+	ld a, TOGGLE_SILPH_CO_11F_5
+	ld [wToggleableObjectIndex], a
+	predef ShowObject
 	ld a, TOGGLE_SILPH_CO_11F_4
 	ld [wToggleableObjectIndex], a
 	predef_jump ShowObject
@@ -188,6 +196,8 @@ SilphCo11F_ScriptPointers:
 SilphCo11FDefaultScript:
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
 	ret nz
+	call SilphCo11FIsBossApproachBlockedScript
+	jp c, CheckFightingMapTrainers
 	ld hl, .PlayerCoordsArray
 	call ArePlayerCoordsInArray
 	jp nc, CheckFightingMapTrainers
@@ -199,7 +209,7 @@ SilphCo11FDefaultScript:
 	ld [wJoyIgnore], a
 	ld a, [wPostGameMisc]
 	bit BIT_ROCKET_LOYALTY, a
-	ld a, TEXT_SILPHCO11F_LOYALIST_SCIENTIST
+	ld a, TEXT_SILPHCO11F_OAK
 	jr nz, .got_text
 	ld a, TEXT_SILPHCO11F_GIOVANNI
 .got_text
@@ -224,14 +234,30 @@ SilphCo11FDefaultScript:
 	db NPC_MOVEMENT_DOWN
 	db -1 ; end
 
-; Loyalist path fights a rival Scientist here instead of Giovanni (Giovanni
-; doesn't fight his own recruits) -- see SilphCo11FSetBossObjectScript.
+; Loyalist path fights OAK here instead of Giovanni (Giovanni doesn't fight his
+; own recruits) -- see SilphCo11FSetBossObjectScript.
 SilphCo11FGetBossSpriteIndex:
 	ld a, [wPostGameMisc]
 	bit BIT_ROCKET_LOYALTY, a
-	ld a, SILPHCO11F_LOYALIST_SCIENTIST
+	ld a, SILPHCO11F_OAK
 	ret nz
 	ld a, SILPHCO11F_GIOVANNI
+	ret
+
+; Carry set = the player can't trigger the boss cutscene yet. Only the loyalist
+; path gates: OAK won't come down until his pupil has been beaten. In practice
+; the pupil's sight line is unavoidable on the way here, so this is a belt-and-
+; braces guard -- it also stops a player who saved mid-floor from skipping him.
+SilphCo11FIsBossApproachBlockedScript:
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	jr z, .clear
+	CheckEvent EVENT_BEAT_SILPH_CO_11F_TRAINER_2
+	jr nz, .clear
+	scf
+	ret
+.clear
+	and a
 	ret
 
 SilphCo11FSetPlayerAndSpriteFacingDirectionScript:
@@ -263,11 +289,12 @@ SilphCo11FGiovanniAfterBattleScript:
 	ld [wJoyIgnore], a
 	ld a, [wPostGameMisc]
 	bit BIT_ROCKET_LOYALTY, a
-	jr nz, .skip_after_text ; the Scientist already delivered his line as the end-battle text
+	ld a, TEXT_SILPHCO11F_OAK_YIELDS
+	jr nz, .got_after_text
 	ld a, TEXT_SILPHCO11F_GIOVANNI_YOU_RUINED_OUR_PLANS
+.got_after_text
 	ldh [hTextID], a
 	call DisplayTextID
-.skip_after_text
 	call GBFadeOutToBlack
 	call SilphCo11FTeamRocketLeavesScript
 	call UpdateSprites
@@ -322,8 +349,8 @@ SilphCo11FGiovanniStartBattleScript:
 	ld a, [wPostGameMisc]
 	bit BIT_ROCKET_LOYALTY, a
 	jr z, .hero
-	ld hl, SilphCo11FLoyalistScientistDefeatedText
-	ld de, SilphCo11FLoyalistScientistDefeatedText
+	ld hl, SilphCo11FOakDefeatedText
+	ld de, SilphCo11FOakDefeatedText
 	call SaveEndBattleTextPointers
 	jr .continue
 .hero
@@ -348,8 +375,9 @@ SilphCo11F_TextPointers:
 	dw_const SilphCo11FRocket1Text,                   TEXT_SILPHCO11F_ROCKET1
 	dw_const SilphCo11FRocket2Text,                   TEXT_SILPHCO11F_ROCKET2
 	dw_const SilphCo11FGiovanniYouRuinedOurPlansText, TEXT_SILPHCO11F_GIOVANNI_YOU_RUINED_OUR_PLANS
-	dw_const SilphCo11FLoyalistScientistText,         TEXT_SILPHCO11F_LOYALIST_SCIENTIST
-	dw_const SilphCo11FLoyalistScientistDefeatedText, TEXT_SILPHCO11F_LOYALIST_SCIENTIST_DEFEATED
+	dw_const SilphCo11FPupilText,                     TEXT_SILPHCO11F_PUPIL
+	dw_const SilphCo11FOakText,                       TEXT_SILPHCO11F_OAK
+	dw_const SilphCo11FOakYieldsText,                 TEXT_SILPHCO11F_OAK_YIELDS
 
 SilphCo11TrainerHeaders:
 	def_trainers 4
@@ -357,6 +385,8 @@ SilphCo11TrainerHeader0:
 	trainer EVENT_BEAT_SILPH_CO_11F_TRAINER_0, 4, SilphCo11FRocket1BattleText, SilphCo11FRocket1EndBattleText, SilphCo11FRocket1AfterBattleText
 SilphCo11TrainerHeader1:
 	trainer EVENT_BEAT_SILPH_CO_11F_TRAINER_1, 3, SilphCo11FRocket2BattleText, SilphCo11FRocket2EndBattleText, SilphCo11FRocket2AfterBattleText
+SilphCo11TrainerHeader2:
+	trainer EVENT_BEAT_SILPH_CO_11F_TRAINER_2, 3, SilphCo11FPupilBattleText, SilphCo11FPupilEndBattleText, SilphCo11FPupilAfterBattleText
 	db -1 ; end
 
 SilphCo11FSilphPresidentText:
@@ -483,28 +513,51 @@ SilphCo11FGiovanniYouRuinedOurPlansText:
 	text_far _SilphCo11FGiovanniYouRuinedOurPlansText
 	text_end
 
-SilphCo11FLoyalistScientistText:
+SilphCo11FPupilText:
+	text_asm
+	ld hl, SilphCo11TrainerHeader2
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SilphCo11FPupilBattleText:
+	text_far _SilphCo11FPupilBattleText
+	text_end
+
+SilphCo11FPupilEndBattleText:
+	text_far _SilphCo11FPupilEndBattleText
+	text_end
+
+SilphCo11FPupilAfterBattleText:
+	text_far _SilphCo11FPupilAfterBattleText
+	text_end
+
+; OAK is the loyalist path's floor boss -- same shape as SilphCo11FGiovanniText
+; on the hero path. The challenge line is what the cutscene prints as he walks
+; down to meet you (SilphCo11FDefaultScript sets hTextID to this).
+SilphCo11FOakText:
 	text_asm
 	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
-	jr z, .preBattle
-	ld hl, .PostBattleText
+	ld hl, .AfterText
+	jr nz, .print
+	ld hl, .ChallengeText
+.print
 	call PrintText
 	jp TextScriptEnd
-.preBattle
-	ld hl, .Text
-	call PrintText
-	jp TextScriptEnd
 
-.Text:
-	text_far _SilphCo11FLoyalistScientistText
+.ChallengeText:
+	text_far _SilphCo11FOakChallengeText
 	text_end
 
-.PostBattleText:
-	text_far _SilphCo11FLoyalistScientistPostBattleText
+.AfterText:
+	text_far _SilphCo11FOakAfterText
 	text_end
 
-SilphCo11FLoyalistScientistDefeatedText:
-	text_far _SilphCo11FLoyalistScientistDefeatedText
+SilphCo11FOakDefeatedText:
+	text_far _SilphCo11FOakDefeatedText
+	text_end
+
+SilphCo11FOakYieldsText:
+	text_far _SilphCo11FOakYieldsText
 	text_end
 
 SilphCo11FRocket1Text:

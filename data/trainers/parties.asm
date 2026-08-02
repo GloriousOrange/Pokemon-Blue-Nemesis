@@ -593,6 +593,7 @@ ProfOakData:
 	db $FF, 66, TAUROS, 67, EXEGGUTOR, 68, ARCANINE, 69, VENUSAUR, 70, GYARADOS, 0
 	db $FF, 66, TAUROS, 67, EXEGGUTOR, 68, ARCANINE, 69, CHARIZARD, 70, GYARADOS, 0
 	db $FF, 99, MEW, 99, DITTO, 99, PORYGON, 99, LAPRAS, 99, TAUROS, 99, MEWTWO, 0 ; #4 burned-lab boss (post-game Oak) -- MEWTWO restored, moved to last slot; real freeze cause found & fixed (division-by-zero on a crit vs a high-Def/Special mon, engine/battle/core.asm), wasn't Mewtwo/Alakazam specific
+	db 40, NIDOKING, ALAKAZAM, ARCANINE, BLASTOISE, 0 ; #5 Silph Co. 11F, ROCKET loyalist path
 
 ChiefData:
 ; none

@@ -134,27 +134,70 @@ _SilphCo11FGiovanniYouRuinedOurPlansText::
 	line "shall return!"
 	done
 
-_SilphCo11FLoyalistScientistText::
-	text "I'm here to"
-	line "remind OAK who"
-	cont "his most"
-	cont "valuable pupil"
-	cont "is."
+_SilphCo11FPupilBattleText::
+	text "Nobody gets past"
+	line "me to PROF.OAK."
+
+	para "I'm here to"
+	line "remind him who"
+	cont "his most valuable"
+	cont "pupil is."
 
 	para "ME!"
 	done
 
-_SilphCo11FLoyalistScientistDefeatedText::
-	text "Fine,"
-	line "take it then."
-	cont "The device is"
-	cont "yours."
+_SilphCo11FPupilEndBattleText::
+	text "You're not even"
+	line "supposed to be"
+	cont "up here!"
 	prompt
 
-_SilphCo11FLoyalistScientistPostBattleText::
-	text "Fine, take it"
-	line "then. The device"
-	cont "is yours."
+_SilphCo11FPupilAfterBattleText::
+	text "Go on, then."
+	line "He's waiting."
+
+	para "He knew you'd"
+	line "come. He always"
+	cont "knows."
+	done
+
+_SilphCo11FOakChallengeText::
+	text "OAK: You little"
+	line "TRAITOR."
+
+	para "Have you no sense"
+	line "of LOYALTY?"
+	done
+
+_SilphCo11FOakDefeatedText::
+	text "I was unprepared"
+	line "for such a fight."
+
+	para "That won't happen"
+	line "next time."
+	prompt
+
+_SilphCo11FOakYieldsText::
+	text "OAK: Fine, the"
+	line "SILPH SCOPE is"
+	cont "yours."
+
+	para "Perhaps this is"
+	line "destiny."
+
+	para "Take it to the"
+	line "#MON TOWER..."
+
+	para "...and face your"
+	line "fate."
+	done
+
+_SilphCo11FOakAfterText::
+	text "OAK: The #MON"
+	line "TOWER is waiting."
+
+	para "Go and meet your"
+	line "fate."
 	done
 
 _SilphCo11FRocket1BattleText::

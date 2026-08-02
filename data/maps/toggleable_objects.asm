@@ -345,10 +345,8 @@ ToggleableObjectStates:
 	toggle_object_state SILPHCO11F_GIOVANNI,           ON
 	toggle_object_state SILPHCO11F_ROCKET1,            ON
 	toggle_object_state SILPHCO11F_ROCKET2,            ON
-	toggle_object_state SILPHCO11F_LOYALIST_SCIENTIST, OFF
-
-	toggleable_objects_for BATTLE_ISLAND_GATE
-	toggle_object_state $02, ON ; unused placeholder (preserves table counts; gate map has no real toggleable objects)
+	toggle_object_state SILPHCO11F_PUPIL,              OFF
+	toggle_object_state SILPHCO11F_OAK,                OFF ; reclaimed the old BATTLE_ISLAND_GATE placeholder slot
 
 	toggleable_objects_for POKEMON_MANSION_2F
 	toggle_object_state POKEMONMANSION2F_CALCIUM, ON
