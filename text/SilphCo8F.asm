@@ -38,12 +38,12 @@ _SilphCo8FScientistBattleText::
 	done
 
 _SilphCo8FScientistHeroBattleText::
-	text "One of OAK's"
-	line "too, huh?"
+	text "The lab coat"
+	line "fooled you, did"
+	cont "it?"
 
-	para "Watch yourself,"
-	line "it's not safe up"
-	cont "here."
+	para "Good. That's what"
+	line "it's for."
 	done
 
 _SilphCo8FScientistEndBattleText::

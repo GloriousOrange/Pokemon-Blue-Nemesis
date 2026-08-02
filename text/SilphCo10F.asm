@@ -40,11 +40,10 @@ _SilphCo10FScientistBattleText::
 	done
 
 _SilphCo10FScientistHeroBattleText::
-	text "Oh -- OAK's kid."
-
-	para "Try not to touch"
-	line "anything, would"
-	cont "you?"
+	text "Nine floors of us"
+	line "and you still"
+	cont "thought we were"
+	cont "the victims."
 	done
 
 _SilphCo10FScientistEndBattleText::

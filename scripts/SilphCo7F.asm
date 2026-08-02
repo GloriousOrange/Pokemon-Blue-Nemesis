@@ -304,11 +304,11 @@ SilphCo7TrainerHeader2:
 	trainer EVENT_BEAT_SILPH_CO_7F_TRAINER_2, 3, SilphCo7FRocket2BattleText, SilphCo7FRocket2EndBattleText, SilphCo7FRocket2AfterBattleText
 SilphCo7TrainerHeader3:
 	trainer EVENT_BEAT_SILPH_CO_7F_TRAINER_3, 4, SilphCo7FRocket3BattleText, SilphCo7FRocket3EndBattleText, SilphCo7FRocket3AfterBattleText
-SilphCo7TrainerHeader5:
+SilphCo7TrainerHeader4:
 	trainer EVENT_BEAT_SILPH_CO_7F_TRAINER_4, 2, SilphCo7FDefender1BattleText, SilphCo7FDefender1EndBattleText, SilphCo7FDefender1AfterBattleText
-SilphCo7TrainerHeader6:
+SilphCo7TrainerHeader5:
 	trainer EVENT_BEAT_SILPH_CO_7F_TRAINER_5, 3, SilphCo7FDefender2BattleText, SilphCo7FDefender2EndBattleText, SilphCo7FDefender2AfterBattleText
-SilphCo7TrainerHeader7:
+SilphCo7TrainerHeader6:
 	trainer EVENT_BEAT_SILPH_CO_7F_TRAINER_6, 4, SilphCo7FDefender3BattleText, SilphCo7FDefender3EndBattleText, SilphCo7FDefender3AfterBattleText
 	db -1 ; end
 
@@ -478,8 +478,22 @@ SilphCo7FScientistText:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+; "You mistook me for a SILPH worker?" only lands on the hero path.
 SilphCo7FScientistBattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HeroText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HeroText:
 	text_far _SilphCo7FScientistBattleText
+	text_end
+.LoyalistText:
+	text_far _SilphCo7FScientistLoyalistBattleText
 	text_end
 
 SilphCo7FScientistEndBattleText:
@@ -686,7 +700,7 @@ SilphCo7FHideObjectList:
 
 SilphCo7FDefender1Text:
 	text_asm
-	ld hl, SilphCo7TrainerHeader5
+	ld hl, SilphCo7TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
@@ -704,7 +718,7 @@ SilphCo7FDefender1AfterBattleText:
 
 SilphCo7FDefender2Text:
 	text_asm
-	ld hl, SilphCo7TrainerHeader6
+	ld hl, SilphCo7TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 
@@ -722,7 +736,7 @@ SilphCo7FDefender2AfterBattleText:
 
 SilphCo7FDefender3Text:
 	text_asm
-	ld hl, SilphCo7TrainerHeader7
+	ld hl, SilphCo7TrainerHeader6
 	call TalkToTrainer
 	jp TextScriptEnd
 

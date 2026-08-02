@@ -115,9 +115,9 @@ SilphCo2TrainerHeader2:
 	trainer EVENT_BEAT_SILPH_CO_2F_TRAINER_2, 3, SilphCo2FRocket1BattleText, SilphCo2FRocket1EndBattleText, SilphCo2FRocket1AfterBattleText
 SilphCo2TrainerHeader3:
 	trainer EVENT_BEAT_SILPH_CO_2F_TRAINER_3, 3, SilphCo2FRocket2BattleText, SilphCo2FRocket2EndBattleText, SilphCo2FRocket2AfterBattleText
-SilphCo2TrainerHeader5:
+SilphCo2TrainerHeader4:
 	trainer EVENT_BEAT_SILPH_CO_2F_TRAINER_4, 3, SilphCo2FDefender1BattleText, SilphCo2FDefender1EndBattleText, SilphCo2FDefender1AfterBattleText
-SilphCo2TrainerHeader6:
+SilphCo2TrainerHeader5:
 	trainer EVENT_BEAT_SILPH_CO_2F_TRAINER_5, 3, SilphCo2FDefender2BattleText, SilphCo2FDefender2EndBattleText, SilphCo2FDefender2AfterBattleText
 	db -1 ; end
 
@@ -181,16 +181,58 @@ SilphCo2FRocket2Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+; All three of this one's lines are the disguise gag -- he plays a terrified
+; SILPH employee, then admits he's a ROCKET. None of that works once you're
+; wearing the uniform yourself, so the loyalist gets a man who really is staff.
 SilphCo2FScientist1BattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HeroText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HeroText:
 	text_far _SilphCo2FScientist1BattleText
+	text_end
+.LoyalistText:
+	text_far _SilphCo2FScientist1LoyalistBattleText
 	text_end
 
 SilphCo2FScientist1EndBattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HeroText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HeroText:
 	text_far _SilphCo2FScientist1EndBattleText
+	text_end
+.LoyalistText:
+	text_far _SilphCo2FScientist1LoyalistEndBattleText
 	text_end
 
 SilphCo2FScientist1AfterBattleText:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HeroText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HeroText:
 	text_far _SilphCo2FScientist1AfterBattleText
+	text_end
+.LoyalistText:
+	text_far _SilphCo2FScientist1LoyalistAfterBattleText
 	text_end
 
 SilphCo2FScientist2BattleText:
@@ -334,7 +376,7 @@ SilphCo2FHideObjectList:
 
 SilphCo2FDefender1Text:
 	text_asm
-	ld hl, SilphCo2TrainerHeader5
+	ld hl, SilphCo2TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 
@@ -352,7 +394,7 @@ SilphCo2FDefender1AfterBattleText:
 
 SilphCo2FDefender2Text:
 	text_asm
-	ld hl, SilphCo2TrainerHeader6
+	ld hl, SilphCo2TrainerHeader5
 	call TalkToTrainer
 	jp TextScriptEnd
 

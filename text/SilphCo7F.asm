@@ -331,3 +331,10 @@ _SilphCo7FDefender3AfterBattleText::
 	cont "just take them."
 	done
 
+_SilphCo7FScientistLoyalistBattleText::
+	text "I'm a researcher,"
+	line "not a target."
+
+	para "Back out of my"
+	line "lab."
+	done

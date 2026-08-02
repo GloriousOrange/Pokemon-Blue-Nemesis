@@ -144,9 +144,9 @@ SilphCo9TrainerHeader1:
 	trainer EVENT_BEAT_SILPH_CO_9F_TRAINER_1, 2, SilphCo9FScientistBattleText, SilphCo9FScientistEndBattleText, SilphCo9FScientistAfterBattleText
 SilphCo9TrainerHeader2:
 	trainer EVENT_BEAT_SILPH_CO_9F_TRAINER_2, 4, SilphCo9FRocket2BattleText, SilphCo9FRocket2EndBattleText, SilphCo9FRocket2AfterBattleText
-SilphCo9TrainerHeader4:
+SilphCo9TrainerHeader3:
 	trainer EVENT_BEAT_SILPH_CO_9F_TRAINER_3, 4, SilphCo9FDefender1BattleText, SilphCo9FDefender1EndBattleText, SilphCo9FDefender1AfterBattleText
-SilphCo9TrainerHeader5:
+SilphCo9TrainerHeader4:
 	trainer EVENT_BEAT_SILPH_CO_9F_TRAINER_4, 4, SilphCo9FDefender2BattleText, SilphCo9FDefender2EndBattleText, SilphCo9FDefender2AfterBattleText
 	db -1 ; end
 
@@ -350,7 +350,7 @@ SilphCo9FHideObjectList:
 
 SilphCo9FDefender1Text:
 	text_asm
-	ld hl, SilphCo9TrainerHeader4
+	ld hl, SilphCo9TrainerHeader3
 	call TalkToTrainer
 	jp TextScriptEnd
 
@@ -368,7 +368,7 @@ SilphCo9FDefender1AfterBattleText:
 
 SilphCo9FDefender2Text:
 	text_asm
-	ld hl, SilphCo9TrainerHeader5
+	ld hl, SilphCo9TrainerHeader4
 	call TalkToTrainer
 	jp TextScriptEnd
 

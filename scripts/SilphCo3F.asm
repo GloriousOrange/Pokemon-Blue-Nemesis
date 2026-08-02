@@ -73,7 +73,7 @@ SilphCo3TrainerHeader0:
 	trainer EVENT_BEAT_SILPH_CO_3F_TRAINER_0, 2, SilphCo3FRocketBattleText, SilphCo3FRocketEndBattleText, SilphCo3FRocketAfterBattleText
 SilphCo3TrainerHeader1:
 	trainer EVENT_BEAT_SILPH_CO_3F_TRAINER_1, 3, SilphCo3FScientistBattleText, SilphCo3FScientistEndBattleText, SilphCo3FScientistAfterBattleText
-SilphCo3TrainerHeader3:
+SilphCo3TrainerHeader2:
 	trainer EVENT_BEAT_SILPH_CO_3F_TRAINER_2, 2, SilphCo3FDefender1BattleText, SilphCo3FDefender1EndBattleText, SilphCo3FDefender1AfterBattleText
 	db -1 ; end
 
@@ -216,7 +216,7 @@ SilphCo3FHideObjectList:
 
 SilphCo3FDefender1Text:
 	text_asm
-	ld hl, SilphCo3TrainerHeader3
+	ld hl, SilphCo3TrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 

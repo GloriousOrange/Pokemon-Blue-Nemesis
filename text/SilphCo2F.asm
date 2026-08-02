@@ -199,3 +199,19 @@ _SilphCo2FDefender2AfterBattleText::
 	cont "lines first."
 	done
 
+_SilphCo2FScientist1LoyalistBattleText::
+	text "Stay back! I'm"
+	line "not trained for"
+	cont "this!"
+	done
+
+_SilphCo2FScientist1LoyalistEndBattleText::
+	text "I'm not paid"
+	line "enough for this."
+	prompt
+
+_SilphCo2FScientist1LoyalistAfterBattleText::
+	text "I really do work"
+	line "for SILPH. Only"
+	cont "SILPH."
+	done

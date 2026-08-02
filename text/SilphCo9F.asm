@@ -43,11 +43,10 @@ _SilphCo9FScientistBattleText::
 	done
 
 _SilphCo9FScientistHeroBattleText::
-	text "Careful in here."
-	line "OAK send you?"
+	text "SILPH pays me."
 
-	para "Don't touch the"
-	line "equipment."
+	para "TEAM ROCKET pays"
+	line "me rather better."
 	done
 
 _SilphCo9FScientistEndBattleText::

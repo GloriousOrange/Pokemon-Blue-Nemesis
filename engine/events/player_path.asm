@@ -57,8 +57,8 @@ GetWalkingPlayerSpriteGraphics::
 
 ; Silph Co faction gate. Returns NZ when the trainer currently being considered
 ; is an ALLY on the player's path (so it must NOT engage or battle), Z otherwise.
-; Loyalist (BIT_ROCKET_LOYALTY set) -> Rockets are allies; Hero (clear) ->
-; Scientists are allies. Only applies on the Silph Co floors. The trainer's class
+; Loyalist (BIT_ROCKET_LOYALTY set) -> Rockets are allies. The hero path has no
+; ally class. Only applies on the Silph Co floors. The trainer's class
 ; is read from wMapSpriteExtraData[wSpriteIndex], the same addressing EngageMapTrainer
 ; uses. Callable from the home-bank engagement code via `callfar`: Bankswitch's
 ; return path touches no flags, so the Z/NZ verdict survives the bank switch.
@@ -78,13 +78,13 @@ CheckSilphAllyTrainer::
 	ld a, [wPostGameMisc]
 	bit BIT_ROCKET_LOYALTY, a
 	ld a, b
-	jr z, .hero
+	jr z, .normal
 	cp OPP_ROCKET ; Loyalist: your fellow Rockets don't fight you
 	jr z, .ally
-	jr .normal
-.hero
-	cp OPP_SCIENTIST ; Hero: Oak's Scientists don't fight you
-	jr z, .ally
+; The hero path has no ally class here. SILPH's SCIENTISTs are TEAM ROCKET
+; plants -- they say so when you beat them -- so letting them wave OAK's kid
+; through was both out of character and lopsided: the hero fought 18 trainers
+; in this building to the loyalist's 28. Now both fight all 28.
 .normal
 	xor a ; Z = engage normally
 	ret
