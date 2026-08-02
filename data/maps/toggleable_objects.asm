@@ -38,6 +38,15 @@ MACRO toggle_object_state
 	db \2 ; OFF/ON
 ENDM
 
+; Same as `toggleable_objects_for`, but for a map that already has a block
+; above. Defines no ToggleData_ label and asserts no position, so these entries
+; can be appended at the end of the table -- which is the only way to add a
+; toggle without shifting every later index and breaking existing saves. See
+; the matching note in constants/toggle_constants.asm.
+MACRO toggleable_objects_appended_for
+	DEF toggle_map_id = \1
+ENDM
+
 ToggleableObjectStates:
 ; entries correspond to TOGGLE_* constants (see constants/toggle_constants.asm)
 	table_width 3

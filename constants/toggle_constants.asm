@@ -6,6 +6,16 @@ MACRO toggle_consts_for
 	DEF TOGGLEMAP{\1}_NAME EQUS "\1"
 ENDM
 
+; For toggles added to a map that already has a block above. A toggle's global
+; index is its position in this list, and that index is a bit in the SAVED
+; wToggleableObjectFlags array -- so inserting into an existing block shifts
+; every later toggle and corrupts existing saves. Declare additions at the
+; BOTTOM of this file instead, under `toggle_consts_appended_for`, which skips
+; the map-block bookkeeping. MarkTownVisitedAndLoadToggleableObjects scans the
+; whole table, so a map's entries no longer have to be contiguous.
+MACRO toggle_consts_appended_for
+ENDM
+
 ; ToggleableObjectStates indexes (see data/maps/toggleable_objects.asm)
 ; This lists the object_events that can be toggled by ShowObject/HideObject.
 ; The constants marked with an X are never used, because those object_events
