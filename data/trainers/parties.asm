@@ -517,11 +517,10 @@ TamerData:
 	db $FF, 46, TAUROS, 53, SNORLAX, 47, CHANSEY, 50, KANGASKHAN, 48, EEVEE, 51, PERSIAN, 0 ; #1 NORMAN
 
 	db 100, TAUROS, GYARADOS, CHARIZARD, 0 ; ARENA #2 (tamer, was #25 ref)
-; PROVISIONAL -- needs Josh's call. OPP_TAMER is no longer a generic class:
-; it is the BEAST TAMER who runs Viridian Gym (Normal type, Harmony badge),
-; so ARBOK is the wrong species and this is really a 17th *named* trainer
-; aboard rather than background scenery. Do not ship as-is.
-	db 100, ARBOK, 0 ; 3 -- S.S. Olympia (Tamer) PROVISIONAL
+; NORMAN, the Beast Tamer who runs Viridian Gym (Normal type, the Harmony
+; badge). A named leader aboard, not background scenery -- OPP_TAMER stopped
+; being a generic class when he took the gym.
+	db 100, TAUROS, 0 ; 3 -- S.S. Olympia (NORMAN)
 
 BirdKeeperData:
 ; Route 13
