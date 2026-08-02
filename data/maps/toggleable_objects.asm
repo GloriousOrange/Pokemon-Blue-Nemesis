@@ -441,9 +441,13 @@ ToggleableObjectStates:
 	toggleable_objects_for VERMILION_DOCK
 	toggle_object_state VERMILIONDOCK_OLYMPIA_GUARD, ON
 
+; The rival now just stands on the deck from the moment you walk out (Josh,
+; 2026-08-02) -- he used to fly in as the bird and "transform". The bird stays
+; parked OFF rather than being deleted: toggle indices are global and saved, so
+; removing one renumbers every later index and breaks existing saves.
 	toggleable_objects_for SS_OLYMPIA_BOW
-	toggle_object_state SSOLYMPIABOW_BIRD,  ON
-	toggle_object_state SSOLYMPIABOW_RIVAL, OFF
+	toggle_object_state SSOLYMPIABOW_BIRD,  OFF
+	toggle_object_state SSOLYMPIABOW_RIVAL, ON
 
 	toggleable_objects_for ARCHIPELAGO_CAVE_3F
 	toggle_object_state ARCHIPELAGOCAVE3F_OAK, OFF ; hidden until EVENT_USED_MUTAGEN_MACHINE

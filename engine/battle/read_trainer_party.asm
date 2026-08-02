@@ -130,11 +130,13 @@ ReadTrainer:
 	ld [wEnemyMon5Moves + 2], a
 	jp .FinishUp
 .MaybeChampionOrOlympiaRival
-; RIVAL3 covers both the Champion fight (trainer_no 1-37, per-starter) and the
-; S.S. Olympia deck superboss (trainer_no 38-40, one per path) -- their
-; rosters don't share a shape (Pidgeot/ghost-starter in slots 1/6 vs
-; Zapdos/Alakachamp), so branch on wTrainerNo before patching either.
+; RIVAL3 covers the Champion fight (trainer_no 1-37, per-starter), the six-mon
+; superboss (38-40, one per path) and the S.S. Olympia deck fight (41, a lone
+; Alakachamp) -- their rosters don't share a shape, so branch on wTrainerNo
+; before patching any of them.
 	ld a, [wTrainerNo]
+	cp 41
+	jr z, .OlympiaDeckRival
 	cp 38
 	jp nc, .OlympiaRival
 .ChampionRival ; give moves to his team
@@ -160,6 +162,14 @@ ReadTrainer:
 ; no patch -- it's natively GHOST/POISON already.
 	ld a, UPPERCUT
 	ld [wEnemyMon6Moves + 4], a
+	jp .FinishUp
+.OlympiaDeckRival
+; Same Alakachamp, but it is the only mon aboard the deck fight, so the empty
+; 5th slot to patch is mon1's. Superseded once ship trainers read
+; MutagenMovesets -- UPPERCUT is already the first move of Alakachamp's curated
+; row, so this whole case goes away then.
+	ld a, UPPERCUT
+	ld [wEnemyMon1Moves + 4], a
 	jp .FinishUp
 .MaybeLoyalistScientist
 ; Silph Co 11F Loyalist path scientist (data/trainers/parties.asm #21): Porygon

@@ -16,14 +16,20 @@ SSOlympiaBow_ScriptPointers:
 	dw_const SSOlympiaBowRivalStartBattleScript,    SCRIPT_SSOLYMPIABOW_RIVAL_START_BATTLE
 	dw_const SSOlympiaBowRivalAfterBattleScript,    SCRIPT_SSOLYMPIABOW_RIVAL_AFTER_BATTLE
 
-; The deck rival superboss: a bird (visible from the start, see the Super
-; Nerd's foreshadowing line) circles until the player nears the far end of
-; the deck, then "transforms" into the rival -- two overlapping toggled
-; objects at the same tile (no runtime sprite-swap API; same technique as
-; the Tower 1F faction guards). Trigger-then-defer shape (arm sound, toggle,
-; poll BIT_SCRIPTED_NPC_MOVEMENT next tick, THEN text) matches the
-; Route22/Silph-7F/burned-lab rival approaches -- see their postmortems for
-; why a bare same-tick text box freezes.
+; The deck rival: he is simply standing out on the deck when the player walks
+; out, and challenges once they near the far end. He used to fly in as a bird
+; that "transformed" into him (two overlapping toggled objects at one tile);
+; Josh cut that 2026-08-02 -- he is just there now.
+;
+; The bird object and both toggle constants are deliberately KEPT. Toggle
+; indices are global and live in wToggleableObjectFlags inside the saved "Main
+; Data" block, so deleting one renumbers every later index and corrupts existing
+; saves. The bird is simply parked OFF in data/maps/toggleable_objects.asm and
+; never shown; see feedback_toggleable_object_gotchas.
+;
+; Trigger-then-defer shape (arm sound, poll BIT_SCRIPTED_NPC_MOVEMENT next tick,
+; THEN text) still matches the Route22/Silph-7F/burned-lab rival approaches --
+; see their postmortems for why a bare same-tick text box freezes.
 SSOlympiaBowDefaultScript:
 	CheckEvent EVENT_BEAT_SS_OLYMPIA_RIVAL
 	jp nz, CheckFightingMapTrainers
@@ -42,12 +48,6 @@ SSOlympiaBowDefaultScript:
 	ld c, BANK(Music_MeetRival)
 	ld a, MUSIC_MEET_RIVAL
 	call PlayMusic
-	ld a, TOGGLE_SS_OLYMPIA_BOW_BIRD
-	ld [wToggleableObjectIndex], a
-	predef HideObject
-	ld a, TOGGLE_SS_OLYMPIA_BOW_RIVAL
-	ld [wToggleableObjectIndex], a
-	predef ShowObject
 	call Delay3
 	ld a, SCRIPT_SSOLYMPIABOW_RIVAL_APPROACH
 	ld [wSSOlympiaBowCurScript], a
@@ -87,25 +87,11 @@ SSOlympiaBowRivalStartBattleScript:
 	call SaveEndBattleTextPointers
 	ld a, OPP_RIVAL3
 	ld [wCurOpponent], a
-; Pick the path-tier team: trainer_no 38/39/40 = Hero/Loyalist/Traitor
-; (data/trainers/parties.asm). Inlined rather than `call GetPlayerPath` --
-; that helper lives in another bank, and a plain cross-bank `call` jumps
-; into garbage (and this repo's farcall clobbers `a` on bank-restore, so it
-; can't return a value in `a` either). Traitor overrides Loyalist, matching
-; GetPlayerPath's precedence.
-	ld a, [wPostGameMisc]
-	bit BIT_PLAYER_TRAITOR, a
-	jr nz, .traitorTeam
-	bit BIT_ROCKET_LOYALTY, a
-	jr nz, .loyalistTeam
-	ld a, 38 ; Hero (Tyranis)
-	jr .setTeam
-.loyalistTeam
-	ld a, 39 ; Loyalist (Miasma)
-	jr .setTeam
-.traitorTeam
-	ld a, 40 ; Traitor (Nocturn)
-.setTeam
+; Trainer 41: one L100 Alakachamp, the ship's one-Pokemon rule applied to its
+; final fight (data/trainers/parties.asm). No GetPlayerPath branch any more --
+; the path-tier birds belonged to the six-mon roster, which is moving elsewhere,
+; so all three paths now meet the same deck fight.
+	ld a, 41
 	ld [wTrainerNo], a
 	ld a, SCRIPT_SSOLYMPIABOW_RIVAL_AFTER_BATTLE
 	ld [wSSOlympiaBowCurScript], a

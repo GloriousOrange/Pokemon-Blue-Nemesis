@@ -941,18 +941,30 @@ Rival3Data:
 	; trainer 37 — rival starter: PINSIR
 	db $FF, 61, PIDGEOT, 59, ALAKAZAM, 61, RHYDON, 63, ARCANINE, 63, EXEGGUTOR, 65, PINSIR, 0
 
-; S.S. Olympia deck superboss (endgame). All L100: Zapdos, Articuno, Moltres,
-; a vengeful Gengar (his dead starter's ghost -- already natively GHOST/POISON,
-; no type patch needed), his path-tier bird (Tyranis/Miasma/Nocturn), and
-; Alakachamp (comes with Double Team/Counter/Psychic/Mind Fever from its own
-; base-stats learnset; Uppercut is patched into the 5th slot in ReadTrainer).
+; The six-mon rival superboss. All L100: Zapdos, Articuno, Moltres, a vengeful
+; Gengar (his dead starter's ghost -- already natively GHOST/POISON, no type
+; patch needed), his path-tier bird (Tyranis/Miasma/Nocturn), and Alakachamp
+; (comes with Double Team/Counter/Psychic/Mind Fever from its own base-stats
+; learnset; Uppercut is patched into the 5th slot in ReadTrainer).
 ; Selected by GetPlayerPath (0/1/2 -> trainer 38/39/40).
+;
+; UNREFERENCED as of the Olympia vacation re-theme (2026-08-02): the deck fight
+; is now the one-Pokemon trainer 41 below, since every trainer aboard carries
+; exactly one mon. Josh is relocating this fight elsewhere, so the three path
+; rosters are kept intact and ready -- do NOT delete them.
 	; trainer 38 — Hero path (Tyranis)
 	db $FF, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 100, GENGAR, 100, TYRANIS, 100, ALAKACHAMP, 0
 	; trainer 39 — Loyalist path (Miasma)
 	db $FF, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 100, GENGAR, 100, MIASMA, 100, ALAKACHAMP, 0
 	; trainer 40 — Traitor path (Nocturn)
 	db $FF, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 100, GENGAR, 100, NOCTURN, 100, ALAKACHAMP, 0
+
+; S.S. Olympia deck rival (endgame). One L100 Alakachamp, per the ship's
+; one-Pokemon rule -- the same rule the player is held to aboard. Path-agnostic:
+; with the birds gone there is nothing left to vary, so all three paths meet the
+; same fight and this needs no GetPlayerPath branch.
+	; trainer 41 — S.S. Olympia deck
+	db $FF, 100, ALAKACHAMP, 0
 
 LoreleiData:
 	db $FF, 54, DEWGONG, 53, CLOYSTER, 54, SLOWBRO, 56, JYNX, 56, LAPRAS, 0
