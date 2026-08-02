@@ -50,7 +50,11 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld [hl], a
 	ld hl, wNumBagItems
-	ld a, 11
+	ld a, 12
+	ld [hli], a
+	ld a, HM_CUT ; the Cascade Badge is granted below, so bushes are cuttable
+	ld [hli], a
+	ld a, 1
 	ld [hli], a
 	ld a, EXP_ALL ; whole party levels while testing, and it silences the
 	ld [hli], a   ; per-mon exp messages (see GainExperience)
