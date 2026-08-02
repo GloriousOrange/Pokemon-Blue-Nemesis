@@ -153,7 +153,19 @@ IF DEF(_SPEEDTEST)
 	SetEvent EVENT_USED_MUTAGEN_MACHINE ; testers: OAK pre-revealed in the cave
 ENDC
 
+IF DEF(_SPEEDTEST)
+	call InitializeToggleableObjectsFlags
+; The CERULEAN CAVE doorman is only ever removed by the Hall of Fame script, and
+; a speed-test run never gets there -- so hide him up front, otherwise MEWTHREE
+; is unreachable for testing. Set the flag directly rather than via HideObject:
+; that ends in UpdateSprites, which has no map to work on this early.
+	ld hl, wToggleableObjectFlags
+	ld c, TOGGLE_CERULEAN_CAVE_GUY
+	ld b, FLAG_SET ; "removed"
+	jp ToggleableObjectFlagAction
+ELSE
 	jp InitializeToggleableObjectsFlags
+ENDC
 
 InitializeEmptyList:
 	xor a ; count
