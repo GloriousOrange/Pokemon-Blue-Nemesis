@@ -67,5 +67,6 @@ MutagenMovesets::
 
 ; --- curated ahead of the ship ---
 	mutagen_moveset MAGMAR,      FIRE_BLAST,     HOT_OIL,       HYPER_BEAM,    CONFUSE_RAY,  BODY_SLAM
+	mutagen_moveset TAUROS,      HYPER_BEAM,     STAMPEDE,      THUNDERBOLT,   BLIZZARD,     BODY_SLAM
 
 	db 0 ; end of table -- species with no row above fall back to WriteMonMoves
