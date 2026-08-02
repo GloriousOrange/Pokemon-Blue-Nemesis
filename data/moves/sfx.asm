@@ -206,6 +206,7 @@ MoveSoundTable:
 	db SFX_BATTLE_14,          $00, $20 ; PSY_CHOP (match reused Confusion sfx)
 	db SFX_BATTLE_29,          $f0, $80 ; DRAGON_BREATH (match reused Dragon Rage sfx)
 	db SFX_BATTLE_1C,          $01, $c0 ; GLITTER_WING (match reused Sleep Powder sfx)
+	db SFX_BATTLE_24,          $40, $c0 ; GIGA_DRAIN (reuse mega drain sfx)
 	db SFX_BATTLE_36,          $00, $80 ; GHOST_BEAM (reuse hyper beam sfx)
 	db SFX_BATTLE_0B,          $00, $80 ; STRUGGLE
 	assert_table_length NUM_ATTACKS

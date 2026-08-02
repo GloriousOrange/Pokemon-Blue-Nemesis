@@ -1828,6 +1828,7 @@ BulbasaurEvosMoves:
 	db 20, POISONPOWDER
 	db 27, RAZOR_LEAF
 	db 34, GROWTH
+	db 40, GIGA_DRAIN ; only an unevolved BULBASAUR ever reaches this
 	db 41, SLEEP_POWDER
 	db 48, SOLARBEAM
 	db 0
