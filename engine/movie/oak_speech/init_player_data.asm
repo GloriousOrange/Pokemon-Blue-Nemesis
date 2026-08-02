@@ -50,7 +50,11 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld [hl], a
 	ld hl, wNumBagItems
-	ld a, 10
+	ld a, 11
+	ld [hli], a
+	ld a, EXP_ALL ; whole party levels while testing, and it silences the
+	ld [hli], a   ; per-mon exp messages (see GainExperience)
+	ld a, 1
 	ld [hli], a
 	ld a, RARE_CANDY
 	ld [hli], a
