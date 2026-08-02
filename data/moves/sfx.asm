@@ -214,6 +214,7 @@ MoveSoundTable:
 	db SFX_NOT_VERY_EFFECTIVE, $f0, $e0 ; SHADOW_PUNCH (match reused Night Shade sfx)
 	db SFX_BATTLE_14,          $01, $e0 ; GRANIT_CLAMP (match reused Rock Throw sfx)
 	db SFX_BATTLE_1E,          $00, $80 ; CRUSH_JAW (match reused Bite sfx)
+	db SFX_DAMAGE,             $10, $40 ; THIRD_RAIL (match reused DIG sfx)
 	db SFX_BATTLE_0B,          $00, $80 ; STRUGGLE
 	assert_table_length NUM_ATTACKS
 	db SFX_BATTLE_0B,          $00, $80

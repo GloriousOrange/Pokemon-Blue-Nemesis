@@ -223,7 +223,8 @@
 	const SHADOW_PUNCH   ; d3 - Ghost, 80 dmg, 33% Spc drop (Gengar's repeatable STAB; GHOST_BEAM recharges, PHANTOM_WING stays Nocturn's)
 	const GRANIT_CLAMP   ; d4 - Rock, 90 dmg, high crit (Pinsirite's damage; misspelled to hit the 12-char name ceiling)
 	const CRUSH_JAW      ; d5 - Normal, 80 dmg, 50% flinch (Gyarados)
-	const STRUGGLE       ; d6
+	const THIRD_RAIL     ; d6 - Electric DIG: burrow a turn, erupt electrified (DIGNEMITE's STAB)
+	const STRUGGLE       ; d7
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

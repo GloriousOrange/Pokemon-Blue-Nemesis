@@ -224,5 +224,6 @@ Moves:
 	move SHADOW_PUNCH, SPECIAL_DOWN_SIDE_EFFECT,    80, GHOST,        100, 10
 	move GRANIT_CLAMP, NO_ADDITIONAL_EFFECT,        90, ROCK,         100, 10
 	move CRUSH_JAW,    FLINCH_SIDE_EFFECT2,         80, NORMAL,       100, 15
+	move THIRD_RAIL,   CHARGE_EFFECT,              100, ELECTRIC,     100, 10
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
 	assert_table_length NUM_ATTACKS

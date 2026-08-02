@@ -214,5 +214,6 @@ MoveNames::
 	li "SHADOW PUNCH"
 	li "GRANIT CLAMP"
 	li "CRUSH JAW"
+	li "THIRD RAIL"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS

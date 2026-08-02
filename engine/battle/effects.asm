@@ -271,8 +271,8 @@ ChaosStingEffect:
 	dec a
 	jr z, .burn
 	dec a
-	jp z, .freeze
-	jp .paralyze
+	jr z, .freeze
+	jr .paralyze
 .poison
 	bit PSN, [hl]
 	ret nz ; already poisoned
@@ -1377,7 +1377,10 @@ ChargeEffect:
 .notFly
 	ld a, [de]
 	cp DIG
+	jr z, .burrows
+	cp THIRD_RAIL ; DIG with an electric payload -- burrows exactly the same way
 	jr nz, .notDigOrFly
+.burrows
 	set INVULNERABLE, [hl] ; mon is now invulnerable to typical attacks (fly/dig)
 	ld b, SLIDE_DOWN_ANIM
 .notDigOrFly

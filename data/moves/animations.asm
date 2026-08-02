@@ -213,6 +213,7 @@ AttackAnimationPointers:
 	dw NightShadeAnim   ; SHADOW_PUNCH -- reuse Night Shade's spectral visuals
 	dw RockThrowAnim    ; GRANIT_CLAMP -- reuse Rock Throw's visuals
 	dw BiteAnim         ; CRUSH_JAW -- reuse Bite's visuals
+	dw DigAnim          ; THIRD_RAIL -- it is DIG, so reuse DIG's burrow visuals
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim
