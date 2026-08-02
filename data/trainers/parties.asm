@@ -949,15 +949,25 @@ Rival3Data:
 ; Selected by GetPlayerPath (0/1/2 -> trainer 38/39/40).
 ;
 ; UNREFERENCED as of the Olympia vacation re-theme (2026-08-02): the deck fight
-; is now the one-Pokemon trainer 41 below, since every trainer aboard carries
-; exactly one mon. Josh is relocating this fight elsewhere, so the three path
-; rosters are kept intact and ready -- do NOT delete them.
+; is now the one-Pokemon trainer 41 below. Josh is relocating this fight
+; elsewhere, so the three path rosters are kept ready -- do NOT delete them.
+;
+; mon1 is his dead starter fighting on as a true ghost. It is NOT Gengar any
+; more (Josh, 2026-08-02): ReadTrainer (.OlympiaRival) overwrites mon1's species
+; with wRivalStarter and forces both its types to GHOST. The species written
+; below is only a fallback for a save with no starter recorded -- he could have
+; started with any of the 37 species in Rival3StarterTable, and patching at
+; battle-load time is what keeps this at three rosters instead of 37 per path.
+;
+; mons 4-6 are PLACEHOLDERS. They are meant to be the three new mutant species
+; (PINSIRITE plus two still undesigned); the legendary birds are standing in so
+; the fight stays playable until those exist. Replace them, don't ship them.
 	; trainer 38 — Hero path (Tyranis)
-	db $FF, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 100, GENGAR, 100, TYRANIS, 100, ALAKACHAMP, 0
+	db $FF, 100, GENGAR, 100, TYRANIS, 100, ALAKACHAMP, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 0
 	; trainer 39 — Loyalist path (Miasma)
-	db $FF, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 100, GENGAR, 100, MIASMA, 100, ALAKACHAMP, 0
+	db $FF, 100, GENGAR, 100, MIASMA, 100, ALAKACHAMP, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 0
 	; trainer 40 — Traitor path (Nocturn)
-	db $FF, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 100, GENGAR, 100, NOCTURN, 100, ALAKACHAMP, 0
+	db $FF, 100, GENGAR, 100, NOCTURN, 100, ALAKACHAMP, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 0
 
 ; S.S. Olympia deck rival (endgame). One L100 Alakachamp, per the ship's
 ; one-Pokemon rule -- the same rule the player is held to aboard. Path-agnostic:

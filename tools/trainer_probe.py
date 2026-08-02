@@ -45,6 +45,9 @@ EXPECTED = {
 
 DEFAULT_CASES = [("RIVAL3", 41)]
 
+# MON_TYPE sits 5 bytes into the party struct (species, HP word, box level, status)
+MON_TYPE_OFFSET = 5
+
 
 def parse_consts(path):
     names, value = {}, None
@@ -98,7 +101,26 @@ def build_stub(bank, addr):
     ])
 
 
-def read_party(pyboy, sym, opp_id, trainer_no, num_moves):
+def parse_types():
+    """Type constants use const_next gaps, so track const_value explicitly."""
+    names, value = {}, 0
+    for line in open(os.path.join(ROOT, "constants/type_constants.asm")):
+        line = line.split(";")[0].strip()
+        if line == "const_def":
+            value = 0
+            continue
+        m = re.match(r"const_next\s+(\d+)$", line)
+        if m:
+            value = int(m.group(1))
+            continue
+        m = re.match(r"const\s+(\w+)$", line)
+        if m:
+            names[value] = m.group(1)
+            value += 1
+    return names
+
+
+def read_party(pyboy, sym, opp_id, trainer_no, num_moves, rival_starter=None):
     mem = pyboy.memory
     mem[0xFFFF] = 0x00
     mem[0xFF0F] = 0x00
@@ -108,6 +130,8 @@ def read_party(pyboy, sym, opp_id, trainer_no, num_moves):
     mem[sym["wTrainerNo"][1]] = trainer_no
     mem[0xFFD3] = 0x5A                    # hRandomAdd/Sub feed the DV roll
     mem[0xFFD4] = 0xA5
+    if rival_starter is not None:
+        mem[sym["wRivalStarter"][1]] = rival_starter
 
     stub = build_stub(*sym["ReadTrainer"])
     for off, byte in enumerate(stub):
@@ -141,6 +165,8 @@ def read_party(pyboy, sym, opp_id, trainer_no, num_moves):
             mem[species_base + off],
             mem[level_base + off],
             [mem[moves_base + off + m] for m in range(num_moves)],
+            (mem[species_base + off + MON_TYPE_OFFSET],
+             mem[species_base + off + MON_TYPE_OFFSET + 1]),
         ))
     return count, party
 
@@ -153,8 +179,19 @@ def main():
     battle = open(os.path.join(ROOT, "constants/battle_constants.asm")).read()
     num_moves = int(re.search(r"DEF NUM_MOVES EQU (\d+)", battle).group(1))
 
+    args = list(sys.argv[1:])
+    starter = None
+    if "--rival-starter" in args:
+        i = args.index("--rival-starter")
+        starter_name = args[i + 1]
+        del args[i:i + 2]
+        all_species = parse_consts("constants/pokemon_constants.asm")
+        if starter_name not in all_species:
+            sys.exit(f"unknown species {starter_name}")
+        starter = all_species[starter_name]
+
     cases = []
-    for arg in sys.argv[1:]:
+    for arg in args:
         cls, _, no = arg.partition(":")
         if cls not in classes:
             sys.exit(f"unknown trainer class {cls}")
@@ -163,7 +200,8 @@ def main():
 
     sym = load_symbols("ReadTrainer", "wLinkState", "wIsInBattle", "wCurOpponent",
                        "wTrainerNo", "wEnemyPartyCount", "wEnemyMon1Species",
-                       "wEnemyMon1Moves", "wEnemyMon1Level")
+                       "wEnemyMon1Moves", "wEnemyMon1Level", "wRivalStarter")
+    types = parse_types()
 
     pyboy = PyBoy(ROM, window="null", cgb=True)
     pyboy.tick(120, False)
@@ -171,11 +209,14 @@ def main():
     failures = []
     for cls, no in cases:
         opp = 200 + classes[cls]
-        count, party = read_party(pyboy, sym, opp, no, num_moves)
-        print(f"\n{cls} #{no}  (wCurOpponent={opp})  party of {count}")
-        for i, (sp, lvl, mv) in enumerate(party, 1):
+        count, party = read_party(pyboy, sym, opp, no, num_moves, starter)
+        extra = f"  [wRivalStarter={species.get(starter, starter)}]" if starter else ""
+        print(f"\n{cls} #{no}  (wCurOpponent={opp})  party of {count}{extra}")
+        for i, (sp, lvl, mv, ty) in enumerate(party, 1):
             names = [moves.get(m, f"${m:02x}") for m in mv if m]
-            print(f"  {i}. L{lvl:<3} {species.get(sp, f'${sp:02x}'):<12} {', '.join(names)}")
+            t1, t2 = (types.get(t, f"${t:02x}") for t in ty)
+            tstr = t1 if t1 == t2 else f"{t1}/{t2}"
+            print(f"  {i}. L{lvl:<3} {species.get(sp, f'${sp:02x}'):<12} {tstr:<14} {', '.join(names)}")
 
         want = EXPECTED.get((cls, no))
         if want:
@@ -184,7 +225,7 @@ def main():
             for i, (wsp, wlvl, wmove) in enumerate(want):
                 if i >= len(party):
                     break
-                sp, lvl, mv = party[i]
+                sp, lvl, mv, _ty = party[i]
                 got_names = [moves.get(m) for m in mv if m]
                 if species.get(sp) != wsp:
                     failures.append(f"{cls} #{no} mon{i+1}: {species.get(sp)} != {wsp}")

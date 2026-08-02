@@ -156,12 +156,34 @@ ReadTrainer:
 	ld [hl], GHOST
 	jp .FinishUp
 .OlympiaRival
-; Alakachamp (mon6) comes with Double Team/Counter/Psychic/Mind Fever from its
-; own base-stats learnset (4 of 5 slots); patch the empty 5th slot to its
-; signature move, Uppercut. The Gengar (mon4, his dead starter's ghost) needs
-; no patch -- it's natively GHOST/POISON already.
+; mon1 is the rival's dead starter, fighting on as a true ghost. The roster
+; can't name it -- he could have started with any of the 37 species in
+; Rival3StarterTable -- so patch the species in from wRivalStarter instead of
+; carrying 37 rosters per path. This is safe as a late swap because
+; LoadEnemyMonData re-derives the mon from its species header and recalculates
+; its stats when it is actually sent out (see core.asm, GetMonHeader/CalcStats).
+	ld a, [wRivalStarter]
+	and a
+	jr z, .olympiaGhostTypes ; no starter recorded: keep the roster's fallback
+	ld [wEnemyMon1Species], a
+	ld [wCurPartySpecies], a
+; AddPartyMon already filled its move slots from the *roster's* species
+; learnset, which is the wrong mon now. Take the curated Mutagenstone row for
+; the real species; if that species has no row yet ApplyMutagenMoveset returns
+; without touching the slots, leaving the fallback's moves in place.
+	ld de, wEnemyMon1Moves
+	callfar ApplyMutagenMoveset
+.olympiaGhostTypes
+; Force both types to GHOST, which grants the pure-Ghost physical immunity --
+; the same treatment the Route 22 dead starter gets in .MaybeRival2Special.
+	ld a, GHOST
+	ld [wEnemyMon1Type], a
+	ld [wEnemyMon1Type + 1], a
+; Alakachamp is mon3 in this roster (it was mon6 before the re-theme). It comes
+; with Double Team/Counter/Psychic/Mind Fever from its own base-stats learnset,
+; so patch the empty 5th slot to its signature move, Uppercut.
 	ld a, UPPERCUT
-	ld [wEnemyMon6Moves + 4], a
+	ld [wEnemyMon3Moves + 4], a
 	jp .FinishUp
 .OlympiaDeckRival
 ; Same Alakachamp, but it is the only mon aboard the deck fight, so the empty
