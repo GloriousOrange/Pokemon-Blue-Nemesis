@@ -12,6 +12,15 @@ StartMenu_Pokedex::
 ; gated on having met Megan (BIT_GOT_GIRLFRIEND) in DrawStartMenu.
 ; (Label kept as StartMenu_Megan because home/start_menu.asm dispatches to it.)
 StartMenu_Megan::
+; Out at sea on the S.S. OLYMPIA there's no signal, so the contact list never
+; opens. This also stops the cruise's one-Pokemon rule being sidestepped by
+; calling MEGAN for a free heal or OAK for remote box access mid-voyage.
+	call IsOnSSOlympia
+	jr z, .haveSignal
+	ld hl, PhoneNoSignalText
+	call PrintText
+	jp CloseStartMenu
+.haveSignal
 ; PhoneMenu_Draw sets BIT_DOUBLE_SPACED_MENU for its own 1-row-apart contact list; save/restore
 ; hUILayoutFlags around the whole interaction so it doesn't leak into the Start Menu's own
 ; 2-row-apart cursor (that bug: the Start Menu cursor renders one row off after using PHONE).
@@ -208,6 +217,36 @@ PhoneBossWaitingText:
 PhoneBossDoneText:
 	text_far _SilphCo11FGiovanniPostMiasmaText
 	text_end
+
+; NZ = the player is aboard the S.S. OLYMPIA. Her ten decks are scattered
+; through the map list rather than contiguous, so this is a table rather than a
+; range check like IsSilphCoMap.
+IsOnSSOlympia:
+	ld a, [wCurMap]
+	ld b, a
+	ld hl, .Decks
+.loop
+	ld a, [hli]
+	cp -1
+	jr z, .ashore
+	cp b
+	jr nz, .loop
+	ld a, 1
+	and a ; NZ = aboard
+	ret
+.ashore
+	xor a ; Z = ashore
+	ret
+
+.Decks:
+	db SS_OLYMPIA_1F, SS_OLYMPIA_2F, SS_OLYMPIA_3F, SS_OLYMPIA_B1F
+	db SS_OLYMPIA_BOW, SS_OLYMPIA_KITCHEN, SS_OLYMPIA_CAPTAINS_ROOM
+	db SS_OLYMPIA_1F_ROOMS, SS_OLYMPIA_2F_ROOMS, SS_OLYMPIA_B1F_ROOMS
+	db -1 ; end
+
+PhoneNoSignalText:
+	text "No signal!"
+	prompt
 
 PhoneMeganGreetingText:
 	text "MEGAN: Hi, honey!"
