@@ -732,6 +732,7 @@ RocketData:
 	db 100, PERSIAN, TAUROS, GOLEM, 0                        ; 60 -- B1F Rooms
 	db 100, FEAROW, RAPIDASH, VAPOREON, 0                      ; 61 -- B1F Rooms
 	db 100, CLOYSTER, GOLDUCK, JYNX, 0                           ; 62 -- B1F Rooms
+	db $FF, 38, MUK, 39, RATICATE, 37, ZUBAT, 0 ; 63 -- Silph Co. 11F hero-path gatekeeper (ZUBAT knows BLOOD_SUCK from its own learnset, level 32)
 
 CooltrainerMData:
 ; Viridian Gym (Normal-type reskin)

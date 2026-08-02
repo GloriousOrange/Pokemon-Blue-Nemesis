@@ -39,11 +39,17 @@ SilphCo11FSetBossObjectScript:
 	ld a, TOGGLE_SILPH_CO_11F_5
 	ld [wToggleableObjectIndex], a
 	predef HideObject
+; ROCKET1 needs no ShowObject here: he starts visible and is hidden for good by
+; SilphCo11FTeamRocketLeavesScript once the boss falls. Re-showing him on every
+; map load would bring him back after TEAM ROCKET has left the building.
 	ld a, TOGGLE_SILPH_CO_11F_1
 	ld [wToggleableObjectIndex], a
 	predef_jump ShowObject
 .loyalist
 	ld a, TOGGLE_SILPH_CO_11F_1
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	ld a, TOGGLE_SILPH_CO_11F_2 ; ROCKET1 shares the pupil's tile -- hero path only
 	ld [wToggleableObjectIndex], a
 	predef HideObject
 	ld a, TOGGLE_SILPH_CO_11F_5
@@ -566,21 +572,10 @@ SilphCo11FRocket1Text:
 	call TalkToTrainer
 	jp TextScriptEnd
 
+; No loyalist variant any more -- this ROCKET is only shown on the hero path,
+; where he's the last thing between you and Giovanni.
 SilphCo11FRocket1BattleText:
-	text_asm
-	ld a, [wPostGameMisc]
-	bit BIT_ROCKET_LOYALTY, a
-	ld hl, .LoyalistText
-	jr nz, .print
-	ld hl, .HostileText
-.print
-	call PrintText
-	jp TextScriptEnd
-.HostileText:
 	text_far _SilphCo11FRocket1BattleText
-	text_end
-.LoyalistText:
-	text_far _SilphCo11FRocket1LoyalistBattleText
 	text_end
 
 SilphCo11FRocket1EndBattleText:

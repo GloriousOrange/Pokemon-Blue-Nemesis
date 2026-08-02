@@ -201,26 +201,19 @@ _SilphCo11FOakAfterText::
 	done
 
 _SilphCo11FRocket1BattleText::
-	text "Stop right there!"
-	line "Don't you move!"
-	done
-
-_SilphCo11FRocket1LoyalistBattleText::
-	text "The guy up ahead"
-	line "is pretty tough."
-	cont "It's gotta be"
-	cont "you that takes"
-	cont "him on."
+	text "My promotion is"
+	line "guaranteed if I"
+	cont "beat you."
 	done
 
 _SilphCo11FRocket1EndBattleText::
-	text "Don't..."
-	line "Please!"
+	text "Awww, demoted!"
 	prompt
 
 _SilphCo11FRocket1AfterBattleText::
-	text "So, you want to"
-	line "see my BOSS?"
+	text "My career is"
+	line "ruined thanks"
+	cont "to you!"
 	done
 
 _SilphCo11FRocket2BattleText::
