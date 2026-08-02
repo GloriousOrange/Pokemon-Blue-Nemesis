@@ -115,11 +115,11 @@ ENDC
 	ASSERT wObtainedBadges + 1 == wUnusedObtainedBadges
 	ld [hl], a
 
-IF !DEF(_SPEEDTEST)
-	ld hl, wTownVisitedFlag + 1
-	set 3, [hl]              ; bit 11 = BATTLE_ISLAND always flyable
-	; (the SPEEDTEST block just below writes this bit as part of %00001111)
-ENDC
+; BATTLE ISLAND is deliberately NOT flyable from the start: it is stocked with
+; level 100 arena trainers, and a player could fly straight there and be wiped.
+; PostGameCheckAllGymsRebeaten unlocks it once all the gym leaders have been
+; re-beaten. The SPEEDTEST block below still grants it outright, since testers
+; want to get there directly.
 
 IF DEF(_SPEEDTEST)
 ; Every town flyable from the start, and the Boulder/Cascade/Rainbow/Soul/
