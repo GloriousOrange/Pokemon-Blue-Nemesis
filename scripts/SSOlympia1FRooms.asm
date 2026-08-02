@@ -12,6 +12,7 @@ SSOlympia1FRooms_ScriptPointers:
 	dw_const CheckFightingMapTrainers,              SCRIPT_SSOLYMPIA1FROOMS_DEFAULT
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_SSOLYMPIA1FROOMS_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_SSOLYMPIA1FROOMS_END_BATTLE
+	dw_const SSOlympia1FRoomsMeganTrained,          SCRIPT_SSOLYMPIA1FROOMS_MEGAN_TRAINED
 
 SSOlympia1FRooms_TextPointers:
 	def_text_pointers
@@ -27,6 +28,7 @@ SSOlympia1FRooms_TextPointers:
 	dw_const SSOlympia1FRoomsKogaText, TEXT_SSOLYMPIA1FROOMS_KOGA
 	dw_const SSOlympia1FRoomsJrTrainerMText, TEXT_SSOLYMPIA1FROOMS_JRTRAINERM
 	dw_const SSOlympia1FRoomsJrTrainerFText, TEXT_SSOLYMPIA1FROOMS_JRTRAINERF
+	dw_const SSOlympia1FRoomsMeganText, TEXT_SSOLYMPIA1FROOMS_MEGAN
 
 SSOlympia1FRoomsTrainerHeaders:
 	def_trainers 7
@@ -158,3 +160,39 @@ SSOlympia1FRoomsJrTrainerFEndBattleText:
 SSOlympia1FRoomsJrTrainerFAfterBattleText:
 	text_far _SSOlympia1FRoomsJrTrainerFAfterBattleText
 	text_end
+
+; MEGAN's cabin. Same shared sparring machinery as her gym stops: MeganSparOffer
+; prints the offer, arms the battle and returns carry set, or just heals and
+; returns carry clear.
+SSOlympia1FRoomsMeganText:
+	text_asm
+; Blacking out aboard must not dump the player back at a mainland POKeMON
+; CENTER -- they wake up here. wLastBlackoutMap is written directly rather than
+; through SetLastBlackoutMap, which stores wLastMap (the deck outside) instead
+; of the cabin itself. SS_OLYMPIA_1F_ROOMS has its own FlyWarpDataPtr entry so
+; the blackout path can find landing coordinates for it.
+	ld a, SS_OLYMPIA_1F_ROOMS
+	ld [wLastBlackoutMap], a
+	ld a, MEGAN_LOC_SS_OLYMPIA
+	ld [wMeganLocIndex], a
+	farcall MeganSparOffer
+	jr nc, .done
+	ld a, SCRIPT_SSOLYMPIA1FROOMS_MEGAN_TRAINED
+	ld [wSSOlympia1FRoomsCurScript], a
+	ld [wCurMapScript], a
+.done
+	jp TextScriptEnd
+
+SSOlympia1FRoomsMeganTrained:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld a, MEGAN_LOC_SS_OLYMPIA
+	ld [wMeganLocIndex], a
+	farcall MeganMarkTrained
+.reset
+	xor a
+	ld [wJoyIgnore], a
+	ld [wSSOlympia1FRoomsCurScript], a
+	ld [wCurMapScript], a
+	ret

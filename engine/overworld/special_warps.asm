@@ -153,6 +153,17 @@ LoadSpecialWarpData:
 	jr nz, .copyWarpDataLoop2
 	xor a ; OVERWORLD
 	ld [wCurMapTileset], a
+; Every other fly/blackout destination is outdoors, but MEGAN's cabin is a ship
+; interior -- forcing OVERWORLD here would load the wrong blockset and draw the
+; cabin as garbage. `a` must still be 0 on entry to .done, hence the push/pop.
+	push af
+	ld a, [wCurMap]
+	cp SS_OLYMPIA_1F_ROOMS
+	jr nz, .keepOverworldTileset
+	ld a, SHIP
+	ld [wCurMapTileset], a
+.keepOverworldTileset
+	pop af
 .done
 	ld [wYOffsetSinceLastSpecialWarp], a
 	ld [wXOffsetSinceLastSpecialWarp], a

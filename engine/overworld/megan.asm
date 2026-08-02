@@ -139,7 +139,7 @@ MeganGiftTable:
 	db POTION,     1 ; 28 Viridian Forest South Gate
 	db 0,          0 ; 29 Battle Island house (heal-only, no gift)
 	db 0,          0 ; 30 Indigo Plateau Lobby (heal-only, no gift)
-	ds 2             ; 31: spare
+	db 0,          0 ; 31 S.S. Olympia cabin (heal-only, no gift)
 
 MeganGreetingText:
 	text "MEGAN: Hi, honey!"
@@ -231,6 +231,7 @@ MeganSparPartyTable:
 	ds 9, 0 ; 20-28 Rocket HQ, Silph, caves, forest gate: no sparring
 	db 11 ; 29 Battle Island       Slowbro L100
 	db 10 ; 30 Indigo Plateau Lobby Slowbro L70
+	db 12 ; 31 S.S. Olympia cabin    Slowbro L100
 
 ; -> hl = the flag byte for this location, a = its bit mask
 MeganGetTrainedMask:
