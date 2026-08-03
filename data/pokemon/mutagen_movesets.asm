@@ -121,4 +121,11 @@ MutagenMovesets::
 	mutagen_moveset JYNX,        BLIZZARD,       PSYCHIC_M,     LOVELY_KISS,   REFLECT,      SUBSTITUTE
 	mutagen_moveset KABUTOPS,    SWORDS_DANCE,   SLASH,         SURF,          BODY_SLAM,    REST
 
+; --- reduced list, sixth batch of 5 (2026-08-03) ---
+	mutagen_moveset KANGASKHAN,  EARTHQUAKE,     BODY_SLAM,     ROCK_SLIDE,    SUBSTITUTE,   REST
+	mutagen_moveset KINGLER,     SWORDS_DANCE,   CRABHAMMER,    GUILLOTINE,    BODY_SLAM,    SURF
+	mutagen_moveset LICKITUNG,   EARTHQUAKE,     ICE_BEAM,      BODY_SLAM,     DISABLE,      REST
+	mutagen_moveset MAROWAK,     BONEMERANG,     EARTHQUAKE,    FOCUS_ENERGY,  SUBSTITUTE,   REST
+	mutagen_moveset MEW,         PSYCHIC_M,      EARTHQUAKE,    ICE_BEAM,      THUNDERBOLT,  SOFTBOILED
+
 	db 0 ; end of table -- species with no row above fall back to WriteMonMoves
