@@ -78,4 +78,16 @@ MutagenMovesets::
 	mutagen_moveset NINEFROST,   FIRE_BLAST,     BLIZZARD,      SWIFT,         CONFUSE_RAY,  RECOVER
 	mutagen_moveset DIGNEMITE,   EARTHQUAKE,     THUNDERBOLT,   STATIC_SHOCK,  SCREECH,      THIRD_RAIL
 
+; --- reduced 58-species list, first batch of 5 (2026-08-02) ---
+; Pre-evolutions (Bulbasaur, Charmander, etc.) are NOT listed separately --
+; once Mutagenstone evolution-on-use exists, they'll evolve to their final
+; form and read this table under THAT species' row. Until then they fall back
+; to WriteMonMoves like any other uncurated species; see the "Evolution on
+; use" section of the plan for why that's deliberate, not a gap.
+	mutagen_moveset AERODACTYL,  SKY_ATTACK,     GRAVITY_SLAM,  EARTHQUAKE,    HYPER_BEAM,   AGILITY
+	mutagen_moveset ARTICUNO,    BLIZZARD,       SKY_ATTACK,    HYPER_BEAM,    REFLECT,      SWIFT
+	mutagen_moveset BLASTOISE,   SURF,           ICE_BEAM,      EARTHQUAKE,    BODY_SLAM,    TOXIC
+	mutagen_moveset BUTTERFREE,  PSYCHIC_M,      MEGA_DRAIN,    SOLARBEAM,     REFLECT,      SWIFT
+	mutagen_moveset CHANSEY,     SEISMIC_TOSS,   TOXIC,         THUNDER_WAVE,  SOFTBOILED,   THUNDERBOLT
+
 	db 0 ; end of table -- species with no row above fall back to WriteMonMoves
