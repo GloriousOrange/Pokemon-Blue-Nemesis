@@ -90,4 +90,14 @@ MutagenMovesets::
 	mutagen_moveset BUTTERFREE,  PSYCHIC_M,      MEGA_DRAIN,    SOLARBEAM,     REFLECT,      SWIFT
 	mutagen_moveset CHANSEY,     SEISMIC_TOSS,   TOXIC,         THUNDER_WAVE,  SOFTBOILED,   THUNDERBOLT
 
+; --- reduced 58-species list, second batch of 5 (2026-08-02) ---
+; DITTO deliberately has no row and never will -- Josh: "it only learns moves
+; via TM or HM" and this mod gives it none at all (empty tmhm list), so there
+; is no broader movepool to draw a curated upgrade from. Standing exclusion,
+; see tools/mutagen_remaining.py.
+	mutagen_moveset CLEFAIRY,    SEISMIC_TOSS,   THUNDER_WAVE,  REFLECT,       METRONOME,    TOXIC
+	mutagen_moveset CLOYSTER,    SURF,           BLIZZARD,      EXPLOSION,     TOXIC,        REST
+	mutagen_moveset DEWGONG,     SURF,           ICE_BEAM,      REST,          SUBSTITUTE,   BODY_SLAM
+	mutagen_moveset DODRIO,      DRILL_PECK,     TRI_ATTACK,    AGILITY,       BODY_SLAM,    DOUBLE_EDGE
+
 	db 0 ; end of table -- species with no row above fall back to WriteMonMoves
