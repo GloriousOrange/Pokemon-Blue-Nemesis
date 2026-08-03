@@ -100,4 +100,11 @@ MutagenMovesets::
 	mutagen_moveset DEWGONG,     SURF,           ICE_BEAM,      REST,          SUBSTITUTE,   BODY_SLAM
 	mutagen_moveset DODRIO,      DRILL_PECK,     TRI_ATTACK,    AGILITY,       BODY_SLAM,    DOUBLE_EDGE
 
+; --- reduced list, third batch of 5 (2026-08-03) ---
+	mutagen_moveset DUGTRIO,     EARTHQUAKE,     ROCK_SLIDE,    FISSURE,       SLASH,        SUBSTITUTE
+	mutagen_moveset EEVEE,       BODY_SLAM,      SWIFT,         SUBSTITUTE,    REFLECT,      REST
+	mutagen_moveset ELECTABUZZ,  THUNDERPUNCH,   STATIC_SHOCK,  THUNDER,       PSYCHIC_M,    COUNTER
+	mutagen_moveset EXEGGCUTE,   SLEEP_POWDER,   REFLECT,       PSYCHIC_M,     SUBSTITUTE,   EXPLOSION
+	mutagen_moveset EXEGGUTOR,   PSYCHIC_M,      SOLARBEAM,     HYPNOSIS,      EXPLOSION,    REST
+
 	db 0 ; end of table -- species with no row above fall back to WriteMonMoves
