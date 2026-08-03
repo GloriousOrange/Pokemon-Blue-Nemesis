@@ -156,4 +156,14 @@ MutagenMovesets::
 	mutagen_moveset SNORLAX,     BODY_SLAM,      AMNESIA,       REST,          EARTHQUAKE,   SUBSTITUTE
 	mutagen_moveset STARYU,      SURF,           RECOVER,       LIGHT_SCREEN,  SWIFT,        THUNDER_WAVE
 
+; --- reduced list, eleventh and final batch (2026-08-03) ---
+	mutagen_moveset TANGELA,     SOLARBEAM,      SLEEP_POWDER,  STUN_SPORE,    REST,         SUBSTITUTE
+	mutagen_moveset TYRANIS,     DOUBLE_DRILL,   HYPER_BEAMS,   BODY_SLAM,     SAND_ATTACK,  SWIFT
+	mutagen_moveset VAPOREON,    SURF,           ICE_BEAM,      ACID_ARMOR,    REST,         SUBSTITUTE
+	mutagen_moveset VENOMOTH,    SLEEP_POWDER,   PSYCHIC_M,     MEGA_DRAIN,    STUN_SPORE,   SUBSTITUTE
+	mutagen_moveset VICTREEBEL,  SWORDS_DANCE,   RAZOR_LEAF,    ACID,          STUN_SPORE,   SUBSTITUTE
+	mutagen_moveset VULPIX,      FLAMETHROWER,   CONFUSE_RAY,   SWIFT,         TOXIC,        SUBSTITUTE
+	mutagen_moveset WEEPINBELL,  MEGA_DRAIN,     SOLARBEAM,     STUN_SPORE,    POISONPOWDER, REFLECT
+	mutagen_moveset ZAPDOS,      THUNDERBOLT,    DRILL_PECK,    THUNDER_WAVE,  LIGHT_SCREEN, AGILITY
+
 	db 0 ; end of table -- species with no row above fall back to WriteMonMoves
