@@ -107,4 +107,18 @@ MutagenMovesets::
 	mutagen_moveset EXEGGCUTE,   SLEEP_POWDER,   REFLECT,       PSYCHIC_M,     SUBSTITUTE,   EXPLOSION
 	mutagen_moveset EXEGGUTOR,   PSYCHIC_M,      SOLARBEAM,     HYPNOSIS,      EXPLOSION,    REST
 
+; --- reduced list, fourth batch of 5 (2026-08-03) ---
+	mutagen_moveset FARFETCHD,   SWORDS_DANCE,   SLASH,         AGILITY,       DOUBLE_EDGE,  SUBSTITUTE
+	mutagen_moveset FEAROW,      DRILL_PECK,     AGILITY,       DOUBLE_EDGE,   SWIFT,        SUBSTITUTE
+	mutagen_moveset FLAREON,     FIRE_BLAST,     BODY_SLAM,     HYPER_BEAM,    SWIFT,        SUBSTITUTE
+	mutagen_moveset GLOOM,       SLEEP_POWDER,   STUN_SPORE,    MEGA_DRAIN,    REFLECT,      REST
+	mutagen_moveset GOLBAT,      WING_ATTACK,    MEGA_DRAIN,    CONFUSE_RAY,   TOXIC,        SUBSTITUTE
+
+; --- reduced list, fifth batch of 5 (2026-08-03) ---
+	mutagen_moveset GROWLITHE,   FLAMETHROWER,   AGILITY,       REFLECT,       TOXIC,        SUBSTITUTE
+	mutagen_moveset HITMONCHAN,  FIRE_PUNCH,     ICE_PUNCH,     THUNDERPUNCH,  MEGA_PUNCH,   COUNTER
+	mutagen_moveset JIGGLYPUFF,  DISABLE,        THUNDER_WAVE,  SEISMIC_TOSS,  SUBSTITUTE,   REST
+	mutagen_moveset JYNX,        BLIZZARD,       PSYCHIC_M,     LOVELY_KISS,   REFLECT,      SUBSTITUTE
+	mutagen_moveset KABUTOPS,    SWORDS_DANCE,   SLASH,         SURF,          BODY_SLAM,    REST
+
 	db 0 ; end of table -- species with no row above fall back to WriteMonMoves
