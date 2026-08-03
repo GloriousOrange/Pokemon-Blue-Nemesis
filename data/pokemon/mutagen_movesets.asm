@@ -128,4 +128,11 @@ MutagenMovesets::
 	mutagen_moveset MAROWAK,     BONEMERANG,     EARTHQUAKE,    FOCUS_ENERGY,  SUBSTITUTE,   REST
 	mutagen_moveset MEW,         PSYCHIC_M,      EARTHQUAKE,    ICE_BEAM,      THUNDERBOLT,  SOFTBOILED
 
+; --- reduced list, seventh batch of 5 (2026-08-03) ---
+	mutagen_moveset MEWTHREE,    TELEKINESIS,    BARRIER,       MIST,          PSYCHIC_M,    REST
+	mutagen_moveset MIASMA,      SMOKESCREEN,    DRILL_PECK,    BLIGHT_VOMIT,  CARRION_WIND, SWIFT
+	mutagen_moveset MOLTRES,     FIRE_BLAST,     SKY_ATTACK,    AGILITY,       SUBSTITUTE,   REST
+	mutagen_moveset NIDORINA,    BODY_SLAM,      ICE_BEAM,      THUNDERBOLT,   TOXIC,        SUBSTITUTE
+	mutagen_moveset NIDORINO,    FOCUS_ENERGY,   HORN_DRILL,    BODY_SLAM,     ICE_BEAM,     SUBSTITUTE
+
 	db 0 ; end of table -- species with no row above fall back to WriteMonMoves

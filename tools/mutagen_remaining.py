@@ -103,8 +103,19 @@ def resolve_evo_label(label_upper, species):
 
 def load_evos_moves(species):
     text = (ROOT / "data/pokemon/evos_moves.asm").read_text()
-    blocks = re.findall(
-        r"(\w+)EvosMoves:\n((?:.*\n)*?)(?=\n\w+EvosMoves:|\Z)", text)
+    # Split on the actual label POSITIONS, not a lookahead -- an earlier
+    # version's `(?=\n\w+EvosMoves:|\Z)` lookahead required the next label to
+    # immediately follow a bare newline, which breaks whenever a multi-line
+    # comment sits between two blocks (e.g. PinsiriteEvosMoves's own header
+    # comment). That silently merged MewthreeEvosMoves's block with the three
+    # mutant species' blocks that follow it, since the lookahead only found
+    # its next match after skipping all of them. Slicing between successive
+    # label positions is boundary-proof regardless of what's between blocks.
+    marks = list(re.finditer(r"(\w+)EvosMoves:", text))
+    blocks = []
+    for i, m in enumerate(marks):
+        end = marks[i + 1].start() if i + 1 < len(marks) else len(text)
+        blocks.append((m.group(1), text[m.end():end]))
     level_evo = {}
     learnsets = {}
     for label, body in blocks:
