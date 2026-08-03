@@ -142,4 +142,11 @@ MutagenMovesets::
 	mutagen_moveset PARASECT,    SPORE,          SLASH,         SWORDS_DANCE,  MEGA_DRAIN,   SUBSTITUTE
 	mutagen_moveset PIKACHU,     THUNDERBOLT,    SEISMIC_TOSS,  THUNDER_WAVE,  REFLECT,      SUBSTITUTE
 
+; --- reduced list, ninth batch of 5 (2026-08-03) ---
+	mutagen_moveset POLIWHIRL,   EARTHQUAKE,     BUBBLEBEAM,    BODY_SLAM,     COUNTER,      SUBSTITUTE
+	mutagen_moveset PORYGON,     SPORE,          DREAM_EATER,   RECOVER,       PSYCHIC_M,    THUNDERBOLT
+	mutagen_moveset RAPIDASH,    FIRE_BLAST,     BODY_SLAM,     DOUBLE_EDGE,   AGILITY,      SUBSTITUTE
+	mutagen_moveset SANDSLASH,   EARTHQUAKE,     SLASH,         SWORDS_DANCE,  ROCK_SLIDE,   REST
+	mutagen_moveset SCYTHER,     SWORDS_DANCE,   FOCUS_ENERGY,  SLASH,         TWINEEDLE,    AGILITY
+
 	db 0 ; end of table -- species with no row above fall back to WriteMonMoves
