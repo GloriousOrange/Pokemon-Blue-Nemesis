@@ -11,6 +11,10 @@ IF DEF(_TESTPARTY)
 ; Test-party build: drop the 5 test mons into the party on first PC open.
 	farcall GiveTestParty
 ENDC
+IF DEF(_LANDOSPEEDTEST)
+; Landon's build: drop his 6 L10 box mons in on first PC open.
+	farcall GiveLandoBoxMons
+ENDC
 	call SaveScreenTilesToBuffer2
 	ld a, SFX_TURN_ON_PC
 	call PlaySound

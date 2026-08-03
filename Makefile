@@ -134,6 +134,16 @@ endif
 ifdef SPEEDTEST
 $(pokeblue_obj):       RGBASMFLAGS += -D _SPEEDTEST
 endif
+
+# Landon's own speed-test build: `make blue LANDOSPEEDTEST=1`. Builds on top of
+# SPEEDTEST (same max cash / badges / flyable towns / post-game unlock) but
+# swaps in his specific kit -- 6 L10 mons in the PC box, Fly-only HMs, and a
+# few TMs -- see the _LANDOSPEEDTEST branches in init_player_data.asm and
+# give_pokemon.asm. Restamp the output as usual (rgbfix + rename) before
+# handing him the ROM.
+ifdef LANDOSPEEDTEST
+$(pokeblue_obj):       RGBASMFLAGS += -D _SPEEDTEST -D _LANDOSPEEDTEST
+endif
 $(pokered_vc_obj):     RGBASMFLAGS += -D _RED -D _RED_VC
 $(pokeblue_vc_obj):    RGBASMFLAGS += -D _BLUE -D _BLUE_VC
 

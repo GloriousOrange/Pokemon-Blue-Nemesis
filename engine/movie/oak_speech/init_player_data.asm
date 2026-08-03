@@ -50,12 +50,20 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld [hl], a
 	ld hl, wNumBagItems
+IF DEF(_LANDOSPEEDTEST)
+	ld a, 13 ; no HM_CUT/HM_SURF (Fly-only), plus 3 TMs -- 12 - 2 + 3
+ELSE
 	ld a, 12
+ENDC
 	ld [hli], a
+IF DEF(_LANDOSPEEDTEST)
+; Landon's build: Fly-only HMs -- no Cut, no Surf.
+ELSE
 	ld a, HM_CUT ; the Cascade Badge is granted below, so bushes are cuttable
 	ld [hli], a
 	ld a, 1
 	ld [hli], a
+ENDC
 	ld a, EXP_ALL ; whole party levels while testing, and it silences the
 	ld [hli], a   ; per-mon exp messages (see GainExperience)
 	ld a, 1
@@ -80,10 +88,14 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld a, 1
 	ld [hli], a
+IF DEF(_LANDOSPEEDTEST)
+; no HM_SURF -- see above
+ELSE
 	ld a, HM_SURF
 	ld [hli], a
 	ld a, 1
 	ld [hli], a
+ENDC
 	; SILPH SCOPE + MASTER BALL so testers can reach Pokemon Tower / the Mathus
 	; quest without doing the Hideout+Silph Co questline first.
 	ld a, SILPH_SCOPE
@@ -102,6 +114,22 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld a, 6
 	ld [hli], a
+IF DEF(_LANDOSPEEDTEST)
+; Landon's requested TMs, one each -- teach them to whichever of his 6 L10
+; box mons he wants (see GiveLandoBoxMons in engine/events/give_pokemon.asm).
+	ld a, TM_BODY_SLAM
+	ld [hli], a
+	ld a, 1
+	ld [hli], a
+	ld a, TM_THUNDERBOLT
+	ld [hli], a
+	ld a, 1
+	ld [hli], a
+	ld a, TM_ICE_BEAM
+	ld [hli], a
+	ld a, 1
+	ld [hli], a
+ENDC
 	ld a, $ff ; terminator
 	ld [hl], a
 ENDC
@@ -150,7 +178,7 @@ IF DEF(_SPEEDTEST)
 	ld hl, wPostGameMisc
 	set BIT_POST_GAME_STARTED, [hl]
 	set BIT_OAK_ISLAND_UNLOCKED, [hl]
-	SetEvent EVENT_USED_MUTAGEN_MACHINE ; testers: OAK pre-revealed in the cave
+	SetEvent EVENT_USED_MUTAGEN_MACHINE ; testers: OAK pre-revealed on Battle Island
 ENDC
 
 IF DEF(_SPEEDTEST)

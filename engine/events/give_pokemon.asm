@@ -181,6 +181,51 @@ ENDC
 	callfar SendNewMonToBox
 	ret
 
+; Landon's custom speed-test kit (user request 2026-08-03): the first time any
+; PC is opened, silently deposits 6 L10 starters/early mons -- Bulbasaur,
+; Squirtle, Charmander, Pikachu, Pidgey, Weedle -- straight into the PC box,
+; keeping each one's natural level-10 learnset (no custom moveset patch, unlike
+; SpeedtestGiveDebugMons above). Compile with `make blue LANDOSPEEDTEST=1`.
+GiveLandoBoxMons::
+IF DEF(_LANDOSPEEDTEST)
+	CheckEvent EVENT_GOT_LANDO_SPEEDTEST_MONS
+	ret nz
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 6 ; need six free slots
+	ret nc
+	SetEvent EVENT_GOT_LANDO_SPEEDTEST_MONS
+	lb bc, BULBASAUR, 10
+	call .GiveNaturalBoxedMon
+	lb bc, SQUIRTLE, 10
+	call .GiveNaturalBoxedMon
+	lb bc, CHARMANDER, 10
+	call .GiveNaturalBoxedMon
+	lb bc, PIKACHU, 10
+	call .GiveNaturalBoxedMon
+	lb bc, PIDGEY, 10
+	call .GiveNaturalBoxedMon
+	lb bc, WEEDLE, 10
+	call .GiveNaturalBoxedMon
+ENDC
+	ret
+
+IF DEF(_LANDOSPEEDTEST)
+; b = species, c = level -- unmodified natural learnset for that level
+.GiveNaturalBoxedMon:
+	ld a, b
+	ld [wCurPartySpecies], a
+	ld a, c
+	ld [wCurEnemyLevel], a
+	xor a
+	ld [wEnemyBattleStatus3], a
+	ld a, [wCurPartySpecies]
+	ld [wEnemyMonSpecies2], a
+	callfar LoadEnemyMonData
+	call SetPokedexOwnedFlag
+	callfar SendNewMonToBox
+	ret
+ENDC
+
 ; Test-party kit (user request 2026-07-15): the first time the bedroom PC is
 ; opened, silently drops five L100 mons -- Alakachamp, a Web Cannon Pinsir, and
 ; the three legendary birds -- straight into the PARTY with hand-picked movesets,
