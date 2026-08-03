@@ -106,7 +106,7 @@ Ghost-form sprite preview for the species that support it -- in the
 | Growlithe | Flamethrower | Agility | Reflect | Toxic | Substitute |
 | Hitmonchan | Fire Punch | Ice Punch | Thunderpunch | Mega Punch | Counter |
 | Jigglypuff | Disable | Thunder Wave | Seismic Toss | Substitute | Rest |
-| Jynx | Blizzard | Psychic | Lovely Kiss | Reflect | Substitute |
+| Jynx | Blizzard | Psychic | Lovely Kiss | Reflect | Ice Statue |
 | Kabutops | Swords Dance | Slash | Surf | Body Slam | Rest |
 | Kangaskhan | Earthquake | Body Slam | Rock Slide | Substitute | Rest |
 | Kingler | Swords Dance | Crabhammer | Guillotine | Body Slam | Surf |

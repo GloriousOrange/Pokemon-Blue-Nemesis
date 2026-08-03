@@ -118,7 +118,7 @@ MutagenMovesets::
 	mutagen_moveset GROWLITHE,   FLAMETHROWER,   AGILITY,       REFLECT,       TOXIC,        SUBSTITUTE
 	mutagen_moveset HITMONCHAN,  FIRE_PUNCH,     ICE_PUNCH,     THUNDERPUNCH,  MEGA_PUNCH,   COUNTER
 	mutagen_moveset JIGGLYPUFF,  DISABLE,        THUNDER_WAVE,  SEISMIC_TOSS,  SUBSTITUTE,   REST
-	mutagen_moveset JYNX,        BLIZZARD,       PSYCHIC_M,     LOVELY_KISS,   REFLECT,      SUBSTITUTE
+	mutagen_moveset JYNX,        BLIZZARD,       PSYCHIC_M,     LOVELY_KISS,   REFLECT,      ICE_SCULPTURE
 	mutagen_moveset KABUTOPS,    SWORDS_DANCE,   SLASH,         SURF,          BODY_SLAM,    REST
 
 ; --- reduced list, sixth batch of 5 (2026-08-03) ---
