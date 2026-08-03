@@ -48,6 +48,7 @@ TrainerDataPointers:
 	dw AgathaData
 	dw LanceData
 	dw GeneralMathusData
+	dw MeganData
 	assert_table_length NUM_TRAINERS
 
 ; if first byte != $FF, then
@@ -82,6 +83,7 @@ YoungsterData:
 	db 17, SPEAROW, RATTATA, RATTATA, SPEAROW, 0
 
 	db 100, RATICATE, FEAROW, PRIMEAPE, 0 ; ARENA #22 (youngster)
+	db 100, RATICATE, 0 ; 15 -- S.S. Olympia (Youngster)
 
 BugCatcherData:
 ; Viridian Forest
@@ -111,6 +113,8 @@ BugCatcherData:
 ; Toby -- Elite Four Bug Catcher (took Bruno's slot). Custom movesets for
 ; Parasect/Butterfree/Pinsir are applied in ReadTrainer (.MaybeToby).
 	db $FF, 55, PARASECT, 55, BUTTERFREE, 56, BEEDRILL, 57, SCYTHER, 58, PINSIR, 0 ; #16 TOBY
+	db 100, PINSIR, 0 ; 17 -- S.S. Olympia (TOBY)
+	db 100, BEEDRILL, 0 ; 18 -- S.S. Olympia (Bug Catcher)
 
 LassData:
 ; Route 3
@@ -140,8 +144,8 @@ LassData:
 ; Celadon Gym
 	db 23, BELLSPROUT, WEEPINBELL, 0
 	db 23, ODDISH, GLOOM, 0
-	db $ff, 8, LICKITUNG, 7, SLOWPOKE, 6, JIGGLYPUFF, 0 ; #19 Megan (max L8, outside Mt. Moon)
-	db 2, SLOWPOKE, 0 ; #20 Megan (Route 1, meet-cute)
+	db $ff, 8, LICKITUNG, 7, SLOWPOKE, 6, JIGGLYPUFF, 0 ; #19 unused (was an earlier planned 2nd Megan encounter)
+	db 100, CLEFABLE, 0 ; 20 -- S.S. Olympia (Lass)
 
 SailorData:
 ; SS Anne Stern
@@ -155,6 +159,7 @@ SailorData:
 	db 20, MACHOP, 0
 ; Vermilion Gym
 	db 21, PIKACHU, PIKACHU, 0
+	db 100, POLIWRATH, 0 ; 9 -- S.S. Olympia (Sailor)
 
 JrTrainerMData:
 ; Pewter Gym
@@ -175,6 +180,7 @@ JrTrainerMData:
 	db 29, NIDORAN_M, NIDORINO, 0
 
 	db 100, NIDOKING, BLASTOISE, PIDGEOT, 0 ; ARENA #19 (jr trainer m)
+	db 100, NIDOKING, 0 ; 11 -- S.S. Olympia (Jr.Trainer M)
 
 JrTrainerFData:
 ; Cerulean Gym
@@ -215,6 +221,7 @@ JrTrainerFData:
 	db 30, TENTACOOL, HORSEA, SEEL, 0
 
 	db 100, NIDOQUEEN, EXEGGUTOR, PARASECT, 0 ; ARENA #13 (jr trainer f)
+	db 100, WIGGLYTUFF, 0 ; 26 -- S.S. Olympia (Jr.Trainer F)
 
 PokemaniacData:
 ; Route 10
@@ -232,6 +239,7 @@ PokemaniacData:
 	db $ff, 50, MOLTRES, 42, MAGMAR, 44, ARCANINE, 38, FLAREON, 0
 
 	db 100, VICTREEBEL, PERSIAN, SLOWBRO, 0 ; ARENA #6 (pokemaniac)
+	db 100, RHYDON, 0 ; 10 -- S.S. Olympia (Pokemaniac)
 
 SuperNerdData:
 ; Mt. Moon 1F
@@ -253,6 +261,7 @@ SuperNerdData:
 	db 37, GROWLITHE, VULPIX, 0
 
 	db 100, DITTO, KANGASKHAN, LICKITUNG, 0 ; ARENA #23 (super nerd)
+	db 100, MAGNETON, 0 ; 14 -- S.S. Olympia (Super Nerd)
 
 HikerData:
 ; Mt. Moon 1F
@@ -280,6 +289,7 @@ HikerData:
 	db $ff, 50, ARTICUNO, 42, JYNX, 44, LAPRAS, 38, DEWGONG, 0
 
 	db 100, ONIX, RHYDON, GOLEM, 0 ; ARENA #2 (hiker)
+	db 100, ONIX, 0 ; 17 -- S.S. Olympia (Hiker)
 
 BikerData:
 ; Route 13
@@ -313,6 +323,7 @@ BikerData:
 	db 29, KOFFING, MUK, 0
 
 	db 100, MUK, WEEZING, ARBOK, 0 ; ARENA #5 (biker)
+	db 100, MUK, 0 ; 17 -- S.S. Olympia (Biker)
 
 BurglarData:
 ; Unused
@@ -331,6 +342,7 @@ BurglarData:
 	db 34, GROWLITHE, PONYTA, 0
 
 	db 100, RAPIDASH, RATICATE, HYPNO, 0 ; ARENA #9 (burglar)
+	db 100, ARCANINE, 0 ; 11 -- S.S. Olympia (Burglar)
 
 EngineerData:
 ; Unused
@@ -340,6 +352,7 @@ EngineerData:
 	db 18, MAGNEMITE, MAGNEMITE, MAGNETON, 0
 
 	db 100, ELECTRODE, MAGNETON, RAICHU, 0 ; ARENA #12 (engineer)
+	db 100, ELECTRODE, 0 ; 5 -- S.S. Olympia (Engineer)
 
 UnusedJugglerData:
 ; none
@@ -363,6 +376,7 @@ FisherData:
 	db 24, MAGIKARP, MAGIKARP, 0
 
 	db 100, SEADRA, GYARADOS, OMASTAR, 0 ; ARENA #8 (fisher)
+	db 100, GYARADOS, 0 ; 13 -- S.S. Olympia (Fisher)
 
 SwimmerData:
 ; Cerulean Gym
@@ -386,6 +400,7 @@ SwimmerData:
 	db 32, POLIWHIRL, TENTACOOL, SEADRA, 0
 
 	db 100, CLOYSTER, SEAKING, GOLDUCK, 0 ; ARENA #24 (swimmer)
+	db 100, TENTACRUEL, 0 ; 17 -- S.S. Olympia (Swimmer)
 
 CueBallData:
 ; Route 16
@@ -400,6 +415,7 @@ CueBallData:
 	db 29, PRIMEAPE, MACHOKE, 0
 ; Route 21
 	db 31, TENTACOOL, TENTACOOL, TENTACRUEL, 0
+	db 100, PRIMEAPE, 0 ; 10 -- S.S. Olympia (Cue Ball)
 
 GamblerData:
 ; Route 11
@@ -415,6 +431,7 @@ GamblerData:
 	db 24, GROWLITHE, VULPIX, 0
 
 	db 100, CHANSEY, PINSIR, ALAKAZAM, 0 ; ARENA #17 (gambler)
+	db 100, GOLDUCK, 0 ; 9 -- S.S. Olympia (Gambler)
 
 BeautyData:
 ; Celadon Gym
@@ -441,6 +458,7 @@ BeautyData:
 	db 30, SEADRA, HORSEA, SEADRA, 0
 
 	db 100, LAPRAS, JYNX, WIGGLYTUFF, 0 ; ARENA #10 (beauty)
+	db 100, VILEPLUME, 0 ; 17 -- S.S. Olympia (Beauty)
 
 PsychicData:
 ; Saffron Gym
@@ -450,6 +468,7 @@ PsychicData:
 	db 38, SLOWBRO, 0
 
 	db 100, ALAKAZAM, HYPNO, MR_MIME, 0 ; ARENA #20 (psychic)
+	db 100, HYPNO, 0 ; 6 -- S.S. Olympia (Psychic)
 
 RockerData:
 ; Vermilion Gym
@@ -457,6 +476,9 @@ RockerData:
 ; Route 12
 	db 29, VOLTORB, ELECTRODE, 0
 	db 100, JYNX, SANDSLASH, PIDGEOT, 0 ; ARENA #26 (rocker)
+; Silph Co. 5F loyalist path -- stands in for the ROCKER (JUGGLER #1), same team
+	db 29, KADABRA, MR_MIME, 0                         ; #129
+	db 100, JOLTEON, 0 ; 5 -- S.S. Olympia (Rocker)
 
 JugglerData:
 ; Silph Co. 5F
@@ -487,6 +509,7 @@ JugglerData:
 ; Viridian Gym reskin -- Normal-type rosters (was Tamer 3 / 4)
 	db 43, TAUROS, KANGASKHAN, 0             ; #14 (Viridian ex-Rocker1)
 	db 44, EEVEE, PERSIAN, 0                 ; #15 (Viridian ex-Rocker2)
+	db 100, MR_MIME, 0 ; 16 -- S.S. Olympia (Juggler)
 
 TamerData:
 ; Norman -- Viridian Gym leader (the game's only remaining Tamer).
@@ -494,6 +517,10 @@ TamerData:
 	db $FF, 46, TAUROS, 53, SNORLAX, 47, CHANSEY, 50, KANGASKHAN, 48, EEVEE, 51, PERSIAN, 0 ; #1 NORMAN
 
 	db 100, TAUROS, GYARADOS, CHARIZARD, 0 ; ARENA #2 (tamer, was #25 ref)
+; NORMAN, the Beast Tamer who runs Viridian Gym (Normal type, the Harmony
+; badge). A named leader aboard, not background scenery -- OPP_TAMER stopped
+; being a generic class when he took the gym.
+	db 100, TAUROS, 0 ; 3 -- S.S. Olympia (NORMAN)
 
 BirdKeeperData:
 ; Route 13
@@ -522,6 +549,7 @@ BirdKeeperData:
 	db 28, SPEAROW, DODUO, FEAROW, 0
 
 	db 100, ZAPDOS, MOLTRES, ARTICUNO, 0 ; ARENA #21 (bird keeper)
+	db 100, PIDGEOT, 0 ; 19 -- S.S. Olympia (Bird Keeper)
 
 BlackbeltData:
 ; Fighting Dojo
@@ -538,6 +566,7 @@ BlackbeltData:
 	db 43, MACHOKE, MACHOP, MACHOKE, 0
 
 	db 100, HITMONLEE, HITMONCHAN, MACHAMP, 0 ; ARENA #14 (blackbelt)
+	db 100, HITMONLEE, 0 ; 11 -- S.S. Olympia (Blackbelt)
 
 Rival1Data:
 	db 5, SQUIRTLE, 0
@@ -592,7 +621,9 @@ ProfOakData:
 	db $FF, 66, TAUROS, 67, EXEGGUTOR, 68, ARCANINE, 69, BLASTOISE, 70, GYARADOS, 0
 	db $FF, 66, TAUROS, 67, EXEGGUTOR, 68, ARCANINE, 69, VENUSAUR, 70, GYARADOS, 0
 	db $FF, 66, TAUROS, 67, EXEGGUTOR, 68, ARCANINE, 69, CHARIZARD, 70, GYARADOS, 0
-	db $FF, 100, MEW, 100, MEWTWO, 100, DITTO, 100, PORYGON, 100, LAPRAS, 100, TAUROS, 0 ; #4 burned-lab boss (post-game Oak)
+	db $FF, 99, MEW, 99, DITTO, 99, PORYGON, 99, LAPRAS, 99, TAUROS, 99, MEWTWO, 0 ; #4 burned-lab boss (post-game Oak) -- MEWTWO restored, moved to last slot; real freeze cause found & fixed (division-by-zero on a crit vs a high-Def/Special mon, engine/battle/core.asm), wasn't Mewtwo/Alakazam specific
+	db 40, NIDOKING, ALAKAZAM, ARCANINE, BLASTOISE, 0 ; #5 Silph Co. 11F, ROCKET loyalist path
+	db 100, MEWTWO, 0 ; 6 -- S.S. Olympia (OAK)
 
 ChiefData:
 ; none
@@ -634,6 +665,28 @@ ScientistData:
 	db 100, PORYGON, ELECTRODE, DITTO, 0 ; ARENA #3 (scientist)
 ; Silph Co. 11F Loyalist path (replaces the Giovanni fight)
 	db $FF, 38, PORYGON, 39, TAUROS, 37, FEAROW, 0 ; #21
+; --- Silph Co. loyalist path: SILPH staff defending the building. Each team is
+; --- copied verbatim from the ROCKET whose tile this trainer shares, so both
+; --- paths fight the same 28 battles at the same difficulty.
+	db 29, CUBONE, ZUBAT, 0                            ; #22 Silph 2F  (copy of ROCKET #23)
+	db 25, GOLBAT, ZUBAT, ZUBAT, RATICATE, ZUBAT, 0    ; #23 Silph 2F  (copy of ROCKET #24)
+	db 28, RATICATE, HYPNO, RATICATE, 0                ; #24 Silph 3F  (copy of ROCKET #25)
+	db 29, MACHOP, DROWZEE, 0                          ; #25 Silph 4F  (copy of ROCKET #26)
+	db 28, EKANS, ZUBAT, CUBONE, 0                     ; #26 Silph 4F  (copy of ROCKET #27)
+	db 33, ARBOK, 0                                    ; #27 Silph 5F  (copy of ROCKET #28)
+	db 33, HYPNO, 0                                    ; #28 Silph 5F  (copy of ROCKET #29)
+	db 29, MACHOP, MACHOKE, 0                          ; #29 Silph 6F  (copy of ROCKET #30)
+	db 28, ZUBAT, ZUBAT, GOLBAT, 0                     ; #30 Silph 6F  (copy of ROCKET #31)
+	db 26, RATICATE, ARBOK, KOFFING, GOLBAT, 0         ; #31 Silph 7F  (copy of ROCKET #32)
+	db 29, CUBONE, CUBONE, 0                           ; #32 Silph 7F  (copy of ROCKET #33)
+	db 29, SANDSHREW, SANDSLASH, 0                     ; #33 Silph 7F  (copy of ROCKET #34)
+	db 26, RATICATE, ZUBAT, GOLBAT, RATTATA, 0         ; #34 Silph 8F  (copy of ROCKET #35)
+	db 28, WEEZING, GOLBAT, KOFFING, 0                 ; #35 Silph 8F  (copy of ROCKET #36)
+	db 28, DROWZEE, GRIMER, MACHOP, 0                  ; #36 Silph 9F  (copy of ROCKET #37)
+	db 28, GOLBAT, DROWZEE, HYPNO, 0                   ; #37 Silph 9F  (copy of ROCKET #38)
+	db 33, MACHOKE, 0                                  ; #38 Silph 10F (copy of ROCKET #39)
+	db 25, RATTATA, RATTATA, ZUBAT, RATTATA, EKANS, 0  ; #39 Silph 11F (copy of ROCKET #40)
+
 
 GiovanniData:
 ; Rocket Hideout B4F
@@ -644,6 +697,7 @@ GiovanniData:
 	db $FF, 45, RHYHORN, 42, DUGTRIO, 44, NIDOQUEEN, 45, NIDOKING, 50, RHYDON, 0
 	db $FF, 68, RHYDON, 66, DUGTRIO, 67, NIDOKING, 65, NIDOQUEEN, 69, GOLEM, 70, SANDSLASH, 0 ; #4 Viridian gym post-game rematch
 	db $FF, 100, MEWTWO, 100, RHYDON, 100, NIDOKING, 100, PERSIAN, 100, SANDSLASH, 100, GOLEM, 0 ; #5 Battle Island final boss
+	db 100, PERSIAN, 0 ; 6 -- S.S. Olympia (GIOVANNI)
 
 RocketData:
 ; Mt. Moon B2F
@@ -710,27 +764,7 @@ RocketData:
 
 	db 100, MUK, GOLBAT, GENGAR, 0 ; ARENA #11 (rocket)
 
-; S.S. Olympia (endgame Rocket-crewed ship), all L100, trainer nos 43-62
-	db 100, RATICATE, ARBOK, 0                ; 43 -- 1F
-	db 100, WEEZING, MUK, 0                   ; 44 -- 1F
-	db 100, PERSIAN, GOLEM, 0                 ; 45 -- 2F
-	db 100, TAUROS, FEAROW, 0                 ; 46 -- 2F
-	db 100, VAPOREON, CLOYSTER, 0              ; 47 -- 3F
-	db 100, JYNX, MR_MIME, 0                  ; 48 -- B1F
-	db 100, GOLDUCK, CLOYSTER, 0                ; 49 -- B1F
-	db 100, VICTREEBEL, VILEPLUME, 0            ; 50 -- Bow
-	db 100, RAPIDASH, FLAREON, 0                ; 51 -- Bow
-	db 100, JOLTEON, PERSIAN, 0                  ; 52 -- Kitchen
-	db 100, MUK, WEEZING, ARBOK, 0                ; 53 -- Captain's Room (boss-tier)
-	db 100, RATICATE, PERSIAN, TAUROS, 0            ; 54 -- 1F Rooms
-	db 100, GOLEM, FEAROW, RAPIDASH, 0               ; 55 -- 1F Rooms
-	db 100, VAPOREON, CLOYSTER, GOLDUCK, 0             ; 56 -- 1F Rooms
-	db 100, VICTREEBEL, VILEPLUME, JYNX, 0               ; 57 -- 2F Rooms
-	db 100, FLAREON, JOLTEON, MR_MIME, 0                 ; 58 -- 2F Rooms
-	db 100, ARBOK, WEEZING, MUK, 0                          ; 59 -- 2F Rooms
-	db 100, PERSIAN, TAUROS, GOLEM, 0                        ; 60 -- B1F Rooms
-	db 100, FEAROW, RAPIDASH, VAPOREON, 0                      ; 61 -- B1F Rooms
-	db 100, CLOYSTER, GOLDUCK, JYNX, 0                           ; 62 -- B1F Rooms
+	db $FF, 38, MUK, 39, RATICATE, 37, ZUBAT, 0 ; 43 -- Silph Co. 11F hero-path gatekeeper (ZUBAT knows BLOOD_SUCK from its own learnset, level 32)
 
 CooltrainerMData:
 ; Viridian Gym (Normal-type reskin)
@@ -767,38 +801,47 @@ CooltrainerFData:
 	db 45, IVYSAUR, VENUSAUR, 0
 	db 45, NIDORINA, NIDOQUEEN, 0
 	db 43, PERSIAN, NINETALES, RAICHU, 0
+	db 100, NIDOQUEEN, 0 ; 9 -- S.S. Olympia (Cooltrainer F)
 
 BrunoData:
 ; Now the Fighting Dojo master (moved from the Elite Four). One Onix -> Golem.
 	db $FF, 53, GOLEM, 55, HITMONCHAN, 55, HITMONLEE, 56, ONIX, 58, MACHAMP, 0
+	db 100, MACHAMP, 0 ; 2 -- S.S. Olympia (BRUNO)
 
 BrockData:
 	db $FF, 12, GEODUDE, 14, ONIX, 0
 	db $FF, 68, GOLEM, 66, ONIX, 67, RHYDON, 65, OMASTAR, 69, KABUTOPS, 70, AERODACTYL, 0 ; #2 post-game rematch
+	db 100, GOLEM, 0 ; 3 -- S.S. Olympia (BROCK)
 
 MistyData:
 	db $FF, 18, STARYU, 21, STARMIE, 0
 	db $FF, 68, STARMIE, 66, GYARADOS, 67, LAPRAS, 65, BLASTOISE, 69, CLOYSTER, 70, VAPOREON, 0 ; #2 post-game rematch
+	db 100, STARMIE, 0 ; 3 -- S.S. Olympia (MISTY)
 
 LtSurgeData:
 	db $FF, 21, VOLTORB, 18, PIKACHU, 24, RAICHU, 0
 	db $FF, 68, RAICHU, 66, ELECTRODE, 67, MAGNETON, 65, JOLTEON, 69, ELECTABUZZ, 70, TAUROS, 0 ; #2 post-game rematch
+	db 100, RAICHU, 0 ; 3 -- S.S. Olympia (LT.SURGE)
 
 ErikaData:
 	db $FF, 29, VICTREEBEL, 24, TANGELA, 29, VILEPLUME, 0
 	db $FF, 68, VENUSAUR, 66, VILEPLUME, 67, VICTREEBEL, 65, EXEGGUTOR, 69, TANGELA, 70, PARASECT, 0 ; #2 post-game rematch
+	db 100, VENUSAUR, 0 ; 3 -- S.S. Olympia (ERIKA)
 
 KogaData:
 	db $FF, 37, KOFFING, 39, MUK, 37, KOFFING, 43, WEEZING, 0
 	db $FF, 68, MUK, 66, WEEZING, 67, VENOMOTH, 65, TENTACRUEL, 69, GENGAR, 70, ARBOK, 0 ; #2 post-game rematch
+	db 100, WEEZING, 0 ; 3 -- S.S. Olympia (KOGA)
 
 BlaineData:
 	db $FF, 42, GROWLITHE, 40, PONYTA, 42, RAPIDASH, 47, ARCANINE, 0
 	db $FF, 68, ARCANINE, 66, NINETALES, 67, RAPIDASH, 65, MAGMAR, 69, FLAREON, 70, CHARIZARD, 0 ; #2 post-game rematch
+	db 100, CHARIZARD, 0 ; 3 -- S.S. Olympia (BLAINE)
 
 SabrinaData:
 	db $FF, 38, KADABRA, 37, MR_MIME, 38, VENOMOTH, 43, ALAKAZAM, 0
 	db $FF, 68, ALAKAZAM, 66, MR_MIME, 67, EXEGGUTOR, 65, HYPNO, 69, SLOWBRO, 70, STARMIE, 0 ; #2 post-game rematch
+	db 100, ALAKAZAM, 0 ; 3 -- S.S. Olympia (SABRINA)
 
 GentlemanData:
 ; SS Anne 1F Rooms
@@ -915,21 +958,44 @@ Rival3Data:
 	; trainer 37 — rival starter: PINSIR
 	db $FF, 61, PIDGEOT, 59, ALAKAZAM, 61, RHYDON, 63, ARCANINE, 63, EXEGGUTOR, 65, PINSIR, 0
 
-; S.S. Olympia deck superboss (endgame). All L100: Zapdos, Articuno, Moltres,
-; a vengeful Gengar (his dead starter's ghost -- already natively GHOST/POISON,
-; no type patch needed), his path-tier bird (Tyranis/Miasma/Nocturn), and
-; Alakachamp (comes with Double Team/Counter/Psychic/Mind Fever from its own
-; base-stats learnset; Uppercut is patched into the 5th slot in ReadTrainer).
+; The six-mon rival superboss. All L100: Zapdos, Articuno, Moltres, a vengeful
+; Gengar (his dead starter's ghost -- already natively GHOST/POISON, no type
+; patch needed), his path-tier bird (Tyranis/Miasma/Nocturn), and Alakachamp
+; (comes with Double Team/Counter/Psychic/Mind Fever from its own base-stats
+; learnset; Uppercut is patched into the 5th slot in ReadTrainer).
 ; Selected by GetPlayerPath (0/1/2 -> trainer 38/39/40).
+;
+; UNREFERENCED as of the Olympia vacation re-theme (2026-08-02): the deck fight
+; is now the one-Pokemon trainer 41 below. Josh is relocating this fight
+; elsewhere, so the three path rosters are kept ready -- do NOT delete them.
+;
+; mon1 is his dead starter fighting on as a true ghost. It is NOT Gengar any
+; more (Josh, 2026-08-02): ReadTrainer (.OlympiaRival) overwrites mon1's species
+; with wRivalStarter and forces both its types to GHOST. The species written
+; below is only a fallback for a save with no starter recorded -- he could have
+; started with any of the 37 species in Rival3StarterTable, and patching at
+; battle-load time is what keeps this at three rosters instead of 37 per path.
+;
+; mons 4-6 are PLACEHOLDERS. They are meant to be the three new mutant species
+; (PINSIRITE plus two still undesigned); the legendary birds are standing in so
+; the fight stays playable until those exist. Replace them, don't ship them.
 	; trainer 38 — Hero path (Tyranis)
-	db $FF, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 100, GENGAR, 100, TYRANIS, 100, ALAKACHAMP, 0
+	db $FF, 100, GENGAR, 100, TYRANIS, 100, ALAKACHAMP, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 0
 	; trainer 39 — Loyalist path (Miasma)
-	db $FF, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 100, GENGAR, 100, MIASMA, 100, ALAKACHAMP, 0
+	db $FF, 100, GENGAR, 100, MIASMA, 100, ALAKACHAMP, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 0
 	; trainer 40 — Traitor path (Nocturn)
-	db $FF, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 100, GENGAR, 100, NOCTURN, 100, ALAKACHAMP, 0
+	db $FF, 100, GENGAR, 100, NOCTURN, 100, ALAKACHAMP, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 0
+
+; S.S. Olympia deck rival (endgame). One L100 Alakachamp, per the ship's
+; one-Pokemon rule -- the same rule the player is held to aboard. Path-agnostic:
+; with the birds gone there is nothing left to vary, so all three paths meet the
+; same fight and this needs no GetPlayerPath branch.
+	; trainer 41 — S.S. Olympia deck
+	db $FF, 100, ALAKACHAMP, 0
 
 LoreleiData:
 	db $FF, 54, DEWGONG, 53, CLOYSTER, 54, SLOWBRO, 56, JYNX, 56, LAPRAS, 0
+	db 100, LAPRAS, 0 ; 2 -- S.S. Olympia (LORELEI)
 
 ChannelerData:
 ; Unused
@@ -974,12 +1040,38 @@ ChannelerData:
 
 AgathaData:
 	db $FF, 56, GENGAR, 56, GOLBAT, 55, HAUNTER, 58, ARBOK, 60, GENGAR, 0
+	db 100, GENGAR, 0 ; 2 -- S.S. Olympia (AGATHA)
 
 LanceData:
 	db $FF, 58, GYARADOS, 56, DRAGONAIR, 56, DRAGONAIR, 60, AERODACTYL, 62, DRAGONITE, 0
+	db 100, DRAGONITE, 0 ; 2 -- S.S. Olympia (LANCE)
 
 ; Pokemon Tower 6F. A normal trainer fight; winning it hands Nocturn over via
 ; GivePokemon in the after-battle script (scripts/PokemonTower6F.asm), which
 ; also spends the player's Master Ball.
 GeneralMathusData:
 	db $FF, 30, NOCTURN, 0
+
+; Route 1, meet-cute (moved off the generic Lass class so battle text says
+; "MEGAN wants to fight!" instead of "LASS wants to fight!")
+MeganData:
+	db 1, SLOWPOKE, 0
+; Optional training battles, one per gym, offered by her gym NPC before you
+; challenge the leader. The party index is derived from her location index
+; (see MeganGymOffer), so these must stay in gym order:
+; Pewter, Cerulean, Vermilion, Celadon, Fuchsia, Saffron, Cinnabar, Viridian.
+; Levels sit just under each leader's team, except Viridian, which is meant to
+; outclass Norman as a final sparring partner. Slowpoke evolves at 37, so the
+; last three are Slowbro.
+	db 10, SLOWPOKE, 0 ; #2 Pewter    (Brock 12-14)
+	db 16, SLOWPOKE, 0 ; #3 Cerulean  (Misty 18-21)
+	db 20, SLOWPOKE, 0 ; #4 Vermilion (Surge 18-24)
+	db 26, SLOWPOKE, 0 ; #5 Celadon   (Erika 24-29)
+	db 32, SLOWPOKE, 0 ; #6 Fuchsia   (Koga 37-43)
+	db 38, SLOWBRO, 0  ; #7 Saffron   (Sabrina 37-43)
+	db 44, SLOWBRO, 0  ; #8 Cinnabar  (Blaine 40-47)
+	db 55, SLOWBRO, 0  ; #9 Viridian  (Norman 46-53)
+; The two endgame sparring stops, both optional like the gyms.
+	db 70, SLOWBRO, 0  ; #10 Indigo Plateau lobby, before the Elite Four
+	db 100, SLOWBRO, 0 ; #11 Battle Island
+	db 100, SLOWBRO, 0 ; 12 -- S.S. Olympia (MEGAN)

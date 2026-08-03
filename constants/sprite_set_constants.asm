@@ -12,6 +12,7 @@
 	const SPRITESET_SILENCE_BRIDGE  ; 08
 	const SPRITESET_CYCLING_ROAD    ; 09
 	const SPRITESET_FUCHSIA         ; 0a
+	const SPRITESET_ROUTE_1         ; 0b - own set (not shared w/ Pallet/Viridian/Cinnabar) so Megan's tiles get preloaded
 DEF NUM_SPRITE_SETS EQU const_value - 1
 
 ; split sprite set ids

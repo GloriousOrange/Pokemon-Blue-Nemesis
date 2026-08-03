@@ -36,21 +36,6 @@ PokemonMansion3F_ScriptPointers:
 	dw_const PokemonMansion3FDefaultScript,         SCRIPT_POKEMONMANSION3F_DEFAULT
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_POKEMONMANSION3F_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_POKEMONMANSION3F_END_BATTLE
-	dw_const PokemonMansion3FLabScientistPostBattle, SCRIPT_POKEMONMANSION3F_LAB_SCIENTIST_POST_BATTLE
-
-PokemonMansion3FLabScientistPostBattle:
-	ld a, [wIsInBattle]
-	cp $ff
-	jr z, .reset
-	ld hl, wScientistsDefeated
-	set 3, [hl] ; lab scientist 4 (Alakazam)
-	farcall LabScientistGiveStone
-.reset
-	xor a
-	ld [wJoyIgnore], a
-	ld [wPokemonMansion3FCurScript], a
-	ld [wCurMapScript], a
-	ret
 
 PokemonMansion3FDefaultScript:
 	ld hl, .holeCoords
@@ -105,7 +90,6 @@ PokemonMansion3F_TextPointers:
 	dw_const PickUpItemText,                TEXT_POKEMONMANSION3F_MAX_POTION
 	dw_const PickUpItemText,                TEXT_POKEMONMANSION3F_IRON
 	dw_const PokemonMansion3FDiaryText,     TEXT_POKEMONMANSION3F_DIARY
-	dw_const PokemonMansion3FLabScientistText, TEXT_POKEMONMANSION3F_LAB_SCIENTIST
 	dw_const PokemonMansion2FSwitchText,    TEXT_POKEMONMANSION3F_SWITCH ; This switch uses the text script from the 2F.
 
 Mansion3TrainerHeaders:
@@ -156,26 +140,3 @@ PokemonMansion3FDiaryText:
 	text_far _PokemonMansion3FDiaryText
 	text_end
 
-PokemonMansion3FLabScientistText:
-	text_asm
-	ld a, [wScientistsDefeated]
-	bit 3, a
-	jr nz, .afterBeat
-	farcall LabScientistBattleInit
-	ldh a, [hSpriteIndex]
-	ld [wSpriteIndex], a
-	call EngageMapTrainer
-	call InitBattleEnemyParameters
-	ld a, SCRIPT_POKEMONMANSION3F_LAB_SCIENTIST_POST_BATTLE
-	ld [wPokemonMansion3FCurScript], a
-	ld [wCurMapScript], a
-	jr .done
-.afterBeat
-	ld hl, .AfterBeatText
-	call PrintText
-.done
-	jp TextScriptEnd
-
-.AfterBeatText:
-	text_far _PokemonMansion3FLabScientistAfterBeatText
-	text_end

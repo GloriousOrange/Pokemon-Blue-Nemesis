@@ -17,10 +17,23 @@ PokemonTower5F_Object:
 
 	def_object_events
 	object_event 12,  8, SPRITE_CHANNELER, STAY, NONE, TEXT_POKEMONTOWER5F_CHANNELER1
+; Speed-testing kit: the sight-triggered channelers get NONE facing, which
+; removes their sight-battle radius entirely, so they can't ambush the
+; tester regardless of room layout (flipping LEFT/RIGHT still missed one --
+; NONE is the reliable version). Same object count/order either way -- just
+; the facing byte differs -- so this doesn't renumber anything or touch
+; existing saves.
+IF DEF(_SPEEDTEST)
+	object_event 17,  7, SPRITE_CHANNELER, STAY, NONE, TEXT_POKEMONTOWER5F_CHANNELER2, OPP_CHANNELER, 14
+	object_event 14,  3, SPRITE_CHANNELER, STAY, NONE, TEXT_POKEMONTOWER5F_CHANNELER3, OPP_CHANNELER, 16
+	object_event  6, 10, SPRITE_CHANNELER, STAY, NONE, TEXT_POKEMONTOWER5F_CHANNELER4, OPP_CHANNELER, 17
+	object_event  9, 16, SPRITE_CHANNELER, STAY, NONE, TEXT_POKEMONTOWER5F_CHANNELER5, OPP_CHANNELER, 18
+ELSE
 	object_event 17,  7, SPRITE_CHANNELER, STAY, LEFT, TEXT_POKEMONTOWER5F_CHANNELER2, OPP_CHANNELER, 14
 	object_event 14,  3, SPRITE_CHANNELER, STAY, LEFT, TEXT_POKEMONTOWER5F_CHANNELER3, OPP_CHANNELER, 16
 	object_event  6, 10, SPRITE_CHANNELER, STAY, RIGHT, TEXT_POKEMONTOWER5F_CHANNELER4, OPP_CHANNELER, 17
 	object_event  9, 16, SPRITE_CHANNELER, STAY, RIGHT, TEXT_POKEMONTOWER5F_CHANNELER5, OPP_CHANNELER, 18
+ENDC
 	object_event  6, 14, SPRITE_POKE_BALL, STAY, NONE, TEXT_POKEMONTOWER5F_NUGGET, NUGGET
 
 	def_warps_to POKEMON_TOWER_5F

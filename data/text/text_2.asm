@@ -119,7 +119,7 @@ _YeahText::
 	text_end
 
 _DexSeenOwnedText::
-	text "#DEX   Seen:@"
+	text "CODEX     Seen:@"
 	text_decimal wDexRatingNumMonsSeen, 1, 3
 	text_start
 	line "         Owned:@"
@@ -127,7 +127,7 @@ _DexSeenOwnedText::
 	text_end
 
 _DexRatingText::
-	text "#DEX Rating<COLON>"
+	text "CODEX Rating<COLON>"
 	done
 
 _GymStatueText1::
@@ -338,38 +338,43 @@ _CinnabarGymQuizIntroText::
 	prompt
 
 _CinnabarQuizQuestionsText1::
-	text "CATERPIE evolves"
-	line "into BUTTERFREE?"
+	text "WEB CANNON slows"
+	line "opponents by 6"
+	cont "stages?"
 	done
 
 _CinnabarQuizQuestionsText2::
-	text "There are 9"
-	line "certified #MON"
-	cont "LEAGUE BADGEs?"
+	text "CRYSTALLIZE only"
+	line "raises the"
+	cont "DEFENSE stat?"
 	done
 
 _CinnabarQuizQuestionsText3::
-	text "POLIWAG evolves 3"
-	line "times?"
+	text "Some moves can"
+	line "only be learned"
+	cont "by unevolved, high"
+	cont "level #MON?"
 	done
 
 _CinnabarQuizQuestionsText4::
-	text "Are thunder moves"
-	line "effective against"
-	cont "ground element-"
-	cont "type #MON?"
+	text "Cancel evolution"
+	line "and your #MON"
+	cont "tries again after"
+	cont "30 more levels?"
 	done
 
 _CinnabarQuizQuestionsText5::
-	text "#MON of the"
-	line "same kind and"
-	cont "level are not"
-	cont "identical?"
+	text "GHOST moves are"
+	line "super effective"
+	cont "against PSYCHIC"
+	cont "types?"
 	done
 
 _CinnabarQuizQuestionsText6::
-	text "TM28 contains"
-	line "TOMBSTONER?"
+	text "HYPER BEAM's power"
+	line "comes from ATTACK"
+	cont "and SPEED added"
+	cont "together?"
 	done
 
 _CinnabarGymQuizCorrectText::
@@ -1251,6 +1256,13 @@ _WildMonAppearedText::
 	line "appeared!"
 	prompt
 
+_GhostStarterAppearedText::
+	text "@"
+	text_ram wEnemyMonNick
+	text_start
+	line "'s ghost appeared!"
+	prompt
+
 _HookedMonAttackedText::
 	text "The hooked"
 	line "@"
@@ -1681,7 +1693,7 @@ _OhFineThenText::
 
 _GetDexRatedText::
 	text "Want to get your"
-	line "#DEX rated?"
+	line "CODEX rated?"
 	done
 
 _ClosedOaksPCText::
@@ -1693,7 +1705,7 @@ _AccessedOaksPCText::
 	text "Accessed PROF."
 	line "OAK's PC."
 
-	para "Accessed #DEX"
+	para "Accessed CODEX"
 	line "Rating System."
 	prompt
 

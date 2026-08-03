@@ -38,6 +38,7 @@ FuchsiaGym_ScriptPointers:
 	dw_const EndTrainerBattle,                      SCRIPT_FUCHSIAGYM_END_BATTLE
 	dw_const FuchsiaGymKogaPostBattleScript,        SCRIPT_FUCHSIAGYM_KOGA_POST_BATTLE
 	dw_const FuchsiaGymRematchDefeated,             SCRIPT_FUCHSIAGYM_REMATCH_DEFEATED
+	dw_const FuchsiaGymMeganTrained,                SCRIPT_FUCHSIAGYM_MEGAN_TRAINED
 
 FuchsiaGymRematchDefeated:
 	ld a, [wIsInBattle]
@@ -86,6 +87,18 @@ FuchsiaGymReceiveTM06:
 	; deactivate gym trainers
 	SetEventRange EVENT_BEAT_FUCHSIA_GYM_TRAINER_0, EVENT_BEAT_FUCHSIA_GYM_TRAINER_5
 
+	jp FuchsiaGymResetScripts
+
+FuchsiaGymMeganTrained:
+; Aftermath of Megan's optional training battle. Losing leaves the flag clear so
+; she will spar again, the same way a lost gym leader fight can be retried.
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld a, 16 ; set again rather than trusting it to survive the battle
+	ld [wMeganLocIndex], a
+	farcall MeganMarkTrained
+.reset
 	jp FuchsiaGymResetScripts
 
 FuchsiaGym_TextPointers:
@@ -307,7 +320,12 @@ FuchsiaGymMeganText:
 	text_asm
 	ld a, 16 ; Megan location index
 	ld [wMeganLocIndex], a
-	farcall MeganTalk
+	farcall MeganSparOffer ; offers a training battle, else heals as usual
+	jr nc, .done
+	ld a, SCRIPT_FUCHSIAGYM_MEGAN_TRAINED
+	ld [wFuchsiaGymCurScript], a
+	ld [wCurMapScript], a
+.done
 	jp TextScriptEnd
 
 FuchsiaGymGymGuideText:

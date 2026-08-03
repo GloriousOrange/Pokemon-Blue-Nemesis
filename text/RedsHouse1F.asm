@@ -29,8 +29,8 @@ _RedsHouse1FTVCloysterSoupText::
 	text "It's a commercial"
 	line "for CLOYSTER SOUP."
 
-	para "Now with more"
-	line "shell than ever!"
+	para "Now with extra"
+	line "spice!"
 	done
 
 _RedsHouse1FTVDittoJelloText::

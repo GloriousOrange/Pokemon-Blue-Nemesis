@@ -1,0 +1,296 @@
+import { loadData } from "./data.js";
+import { TeamState, MAX_TEAM_SIZE } from "./team.js";
+import { computeCoverage } from "./coverage.js";
+import { buildMovepool } from "./movepool.js";
+import { createTile, createTeamSlot, spriteSrc } from "./sprites.js";
+
+const team = new TeamState();
+let data = null;
+let speciesOrder = [];
+let filterText = "";
+let detailSpecies = null;
+let activeTab = "levelUp";
+
+const el = {
+  grid: document.getElementById("sprite-grid"),
+  gridCount: document.getElementById("grid-count"),
+  teamSlots: document.getElementById("team-slots"),
+  coverage: document.getElementById("coverage"),
+  search: document.getElementById("search"),
+  overlay: document.getElementById("detail-overlay"),
+  panel: document.getElementById("detail-panel"),
+};
+
+async function init() {
+  data = await loadData();
+  speciesOrder = Object.keys(data.species).sort(
+    (a, b) => data.species[a].dex_number - data.species[b].dex_number
+  );
+
+  el.search.addEventListener("input", (e) => {
+    filterText = e.target.value.trim().toLowerCase();
+    renderGrid();
+  });
+
+  el.overlay.addEventListener("click", (e) => {
+    if (e.target === el.overlay) closeDetail();
+  });
+
+  renderGrid();
+  renderTeam();
+  renderCoverage();
+}
+
+function matchesFilter(speciesKey) {
+  if (!filterText) return true;
+  const rec = data.species[speciesKey];
+  if (rec.display_name.toLowerCase().includes(filterText)) return true;
+  if (speciesKey.toLowerCase().includes(filterText)) return true;
+  return rec.types.some((t) => t.toLowerCase().includes(filterText));
+}
+
+function renderGrid() {
+  el.grid.innerHTML = "";
+  const callbacks = {
+    onToggleTeam: (sp) => {
+      const changed = team.toggle(sp);
+      if (!changed) return; // team full, ignored
+      renderGrid();
+      renderTeam();
+      renderCoverage();
+      if (detailSpecies === sp) renderDetail();
+    },
+    onToggleGhost: (sp) => {
+      team.toggleGhost(sp);
+      renderGrid();
+      if (team.has(sp)) renderTeam();
+      if (detailSpecies === sp) renderDetail();
+    },
+    onOpenDetail: (sp) => openDetail(sp),
+  };
+
+  let shown = 0;
+  for (const sp of speciesOrder) {
+    if (!matchesFilter(sp)) continue;
+    shown++;
+    el.grid.appendChild(createTile(data, team, sp, callbacks));
+  }
+  el.gridCount.textContent = `${shown} / ${speciesOrder.length}`;
+}
+
+function renderTeam() {
+  el.teamSlots.innerHTML = "";
+  const callbacks = {
+    onRemove: (sp) => {
+      team.remove(sp);
+      renderGrid();
+      renderTeam();
+      renderCoverage();
+      if (detailSpecies === sp) renderDetail();
+    },
+  };
+  for (let i = 0; i < MAX_TEAM_SIZE; i++) {
+    const sp = team.members[i] || null;
+    el.teamSlots.appendChild(createTeamSlot(data, team, sp, callbacks));
+  }
+}
+
+function typeChipRow(types, weakSet) {
+  const row = document.createElement("div");
+  row.className = "type-chip-row";
+  for (const t of types) {
+    const chip = document.createElement("span");
+    chip.className = "type-chip" + (weakSet && weakSet.has(t) ? " weak" : "");
+    chip.textContent = t.replace("_TYPE", "");
+    row.appendChild(chip);
+  }
+  return row;
+}
+
+function renderCoverage() {
+  el.coverage.innerHTML = "";
+  if (team.members.length === 0) {
+    const note = document.createElement("p");
+    note.className = "empty-note";
+    note.textContent = "Add up to 6 Pokémon to see type coverage, gaps, and weaknesses.";
+    el.coverage.appendChild(note);
+    return;
+  }
+
+  const { coverage, gaps, weaknesses } = computeCoverage(data, team.members);
+
+  const covBox = document.createElement("div");
+  covBox.className = "coverage-box coverage";
+  covBox.innerHTML = "<h3>Type coverage</h3>";
+  covBox.appendChild(
+    coverage.length
+      ? typeChipRow(coverage)
+      : Object.assign(document.createElement("p"), { className: "empty-note", textContent: "No offensive moves yet." })
+  );
+  el.coverage.appendChild(covBox);
+
+  const gapBox = document.createElement("div");
+  gapBox.className = "coverage-box gaps";
+  gapBox.innerHTML = "<h3>Coverage gaps</h3>";
+  gapBox.appendChild(
+    gaps.length
+      ? typeChipRow(gaps)
+      : Object.assign(document.createElement("p"), { className: "empty-note", textContent: "No blind spots — every type is either resisted or answered." })
+  );
+  el.coverage.appendChild(gapBox);
+
+  const weakBox = document.createElement("div");
+  weakBox.className = "coverage-box weaknesses";
+  weakBox.innerHTML = "<h3>Team weaknesses</h3>";
+  if (weaknesses.length) {
+    const row = document.createElement("div");
+    row.className = "type-chip-row";
+    for (const w of weaknesses) {
+      const chip = document.createElement("span");
+      chip.className = "type-chip weak";
+      chip.title = w.members.map((s) => data.species[s].display_name).join(", ");
+      chip.innerHTML = `${w.type.replace("_TYPE", "")}<span class="count">×${w.count}</span>`;
+      row.appendChild(chip);
+    }
+    weakBox.appendChild(row);
+  } else {
+    weakBox.innerHTML += '<p class="empty-note">No shared weaknesses.</p>';
+  }
+  el.coverage.appendChild(weakBox);
+}
+
+function openDetail(speciesKey) {
+  detailSpecies = speciesKey;
+  activeTab = "levelUp";
+  el.overlay.hidden = false;
+  renderDetail();
+}
+
+function closeDetail() {
+  el.overlay.hidden = true;
+  detailSpecies = null;
+}
+
+function renderMoveList(entries, kind) {
+  const ul = document.createElement("ul");
+  ul.className = "move-list";
+  if (entries.length === 0) {
+    const li = document.createElement("li");
+    li.textContent = "—";
+    ul.appendChild(li);
+    return ul;
+  }
+  for (const mv of entries) {
+    const li = document.createElement("li");
+    const left = document.createElement("span");
+    let prefix = "";
+    if (kind === "levelUp") prefix = `L${mv.level} · `;
+    if (kind === "tmhm") prefix = `${mv.tm_number || "?"} · `;
+    left.textContent = `${prefix}${mv.display_name}`;
+    const right = document.createElement("span");
+    right.className = "move-meta";
+    right.textContent = `${mv.type ? mv.type.replace("_TYPE", "") : "?"} · ${mv.power ?? "—"} pow · ${mv.accuracy ?? "—"}% · ${mv.pp ?? "—"}pp`;
+    li.appendChild(left);
+    li.appendChild(right);
+    ul.appendChild(li);
+  }
+  return ul;
+}
+
+function renderDetail() {
+  if (!detailSpecies) return;
+  const sp = detailSpecies;
+  const rec = data.species[sp];
+  const ghostOn = team.isGhostView(sp);
+  const pool = buildMovepool(data, sp);
+
+  el.panel.innerHTML = "";
+
+  const closeBtn = document.createElement("button");
+  closeBtn.className = "detail-close";
+  closeBtn.textContent = "✕";
+  closeBtn.addEventListener("click", closeDetail);
+  el.panel.appendChild(closeBtn);
+
+  const head = document.createElement("div");
+  head.className = "detail-head";
+  const img = document.createElement("img");
+  img.src = spriteSrc(data, sp, ghostOn);
+  img.alt = rec.display_name;
+  head.appendChild(img);
+  const headText = document.createElement("div");
+  headText.innerHTML = `<h2>${rec.display_name}</h2>`;
+  headText.appendChild(typeChipRow(rec.types));
+  head.appendChild(headText);
+  el.panel.appendChild(head);
+
+  const stats = document.createElement("div");
+  stats.className = "stat-grid";
+  for (const [label, key] of [["HP", "hp"], ["ATK", "atk"], ["DEF", "def"], ["SPD", "spd"], ["SPC", "spc"]]) {
+    const cell = document.createElement("div");
+    cell.innerHTML = `${rec.base_stats[key]}<span>${label}</span>`;
+    stats.appendChild(cell);
+  }
+  el.panel.appendChild(stats);
+
+  const addBtn = document.createElement("button");
+  const inTeam = team.has(sp);
+  addBtn.className = "detail-add-btn" + (inTeam ? " remove" : "");
+  addBtn.textContent = inTeam ? "Remove from team" : "Add to team";
+  addBtn.disabled = !inTeam && team.isFull();
+  addBtn.addEventListener("click", () => {
+    team.toggle(sp);
+    renderGrid();
+    renderTeam();
+    renderCoverage();
+    renderDetail();
+  });
+  el.panel.appendChild(addBtn);
+
+  if (rec.ghost_eligible) {
+    const ghostBtn = document.createElement("button");
+    ghostBtn.className = "detail-ghost-btn";
+    ghostBtn.textContent = ghostOn ? "👻 Showing Ghost form — tap to revert" : "👻 Preview Ghost form";
+    ghostBtn.addEventListener("click", () => {
+      team.toggleGhost(sp);
+      renderGrid();
+      if (team.has(sp)) renderTeam();
+      renderDetail();
+    });
+    el.panel.appendChild(ghostBtn);
+  }
+
+  const tabs = document.createElement("div");
+  tabs.className = "tabs";
+  const tabDefs = [
+    ["levelUp", "Level-up"],
+    ["tmhm", "TM/HM"],
+    ["mutagen", "Mutagenated"],
+  ];
+  for (const [key, label] of tabDefs) {
+    const btn = document.createElement("button");
+    btn.className = "tab-btn" + (activeTab === key ? " active" : "");
+    btn.type = "button";
+    btn.textContent = label;
+    btn.addEventListener("click", () => {
+      activeTab = key;
+      renderDetail();
+    });
+    tabs.appendChild(btn);
+  }
+  el.panel.appendChild(tabs);
+
+  if (activeTab === "mutagen" && pool.mutagenNote) {
+    const note = document.createElement("p");
+    note.className = "move-note";
+    note.textContent = pool.mutagenNote;
+    el.panel.appendChild(note);
+  }
+  const listSource = { levelUp: pool.levelUp, tmhm: pool.tmhm, mutagen: pool.mutagen }[activeTab];
+  el.panel.appendChild(renderMoveList(listSource, activeTab));
+}
+
+init().catch((err) => {
+  console.error(err);
+  el.grid.innerHTML = `<p style="color:#ff6b7b">Failed to load team builder data: ${err.message}</p>`;
+});

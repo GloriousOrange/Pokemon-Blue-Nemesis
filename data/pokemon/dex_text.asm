@@ -1088,6 +1088,46 @@ _MewtwoDexEntry::
 	dex
 
 _SnorlaxDexEntry::
+_MewthreeDexEntry::
+	text "The armor was"
+	next "bolted into bone."
+	next "Its vocal cords"
+
+	page "were removed. It"
+	next "speaks only in"
+	next "telekinetic ruin."
+	dex
+
+_PinsiriteDexEntry::
+	text "Its shell turned"
+	next "to living stone."
+	next "The horns crack"
+
+	page "boulders in a"
+	next "single pinch."
+	next "It never rusts."
+	dex
+
+_NinefrostDexEntry::
+	text "Its nine tails"
+	next "burn ice-blue."
+	next "Flame and frost"
+
+	page "share one body"
+	next "and hate every"
+	next "moment of it."
+	dex
+
+_DignemiteDexEntry::
+	text "Its plated hide"
+	next "sparks when it"
+	next "digs. The charge"
+
+	page "builds until it"
+	next "punches through"
+	next "solid bedrock."
+	dex
+
 	text "Very lazy. Just"
 	next "eats and sleeps."
 	next "As its rotund"

@@ -130,11 +130,17 @@ ReadTrainer:
 	ld [wEnemyMon5Moves + 2], a
 	jp .FinishUp
 .MaybeChampionOrOlympiaRival
-; RIVAL3 covers both the Champion fight (trainer_no 1-37, per-starter) and the
-; S.S. Olympia deck superboss (trainer_no 38-40, one per path) -- their
-; rosters don't share a shape (Pidgeot/ghost-starter in slots 1/6 vs
-; Zapdos/Alakachamp), so branch on wTrainerNo before patching either.
+; RIVAL3 covers the Champion fight (trainer_no 1-37, per-starter), the six-mon
+; superboss (38-40, one per path) and the S.S. Olympia deck fight (41, a lone
+; Alakachamp) -- their rosters don't share a shape, so branch on wTrainerNo
+; before patching any of them.
 	ld a, [wTrainerNo]
+	cp 41
+; The deck fight is a lone Alakachamp and its moves come from the Olympia hook
+; in .FinishUp, so it needs no patch -- but it must still be diverted here, or
+; it would fall into .OlympiaRival below and have its species overwritten with
+; the rival's dead starter.
+	jp z, .FinishUp
 	cp 38
 	jp nc, .OlympiaRival
 .ChampionRival ; give moves to his team
@@ -154,12 +160,34 @@ ReadTrainer:
 	ld [hl], GHOST
 	jp .FinishUp
 .OlympiaRival
-; Alakachamp (mon6) comes with Double Team/Counter/Psychic/Mind Fever from its
-; own base-stats learnset (4 of 5 slots); patch the empty 5th slot to its
-; signature move, Uppercut. The Gengar (mon4, his dead starter's ghost) needs
-; no patch -- it's natively GHOST/POISON already.
+; mon1 is the rival's dead starter, fighting on as a true ghost. The roster
+; can't name it -- he could have started with any of the 37 species in
+; Rival3StarterTable -- so patch the species in from wRivalStarter instead of
+; carrying 37 rosters per path. This is safe as a late swap because
+; LoadEnemyMonData re-derives the mon from its species header and recalculates
+; its stats when it is actually sent out (see core.asm, GetMonHeader/CalcStats).
+	ld a, [wRivalStarter]
+	and a
+	jr z, .olympiaGhostTypes ; no starter recorded: keep the roster's fallback
+	ld [wEnemyMon1Species], a
+	ld [wCurPartySpecies], a
+; AddPartyMon already filled its move slots from the *roster's* species
+; learnset, which is the wrong mon now. Take the curated Mutagenstone row for
+; the real species; if that species has no row yet ApplyMutagenMoveset returns
+; without touching the slots, leaving the fallback's moves in place.
+	ld de, wEnemyMon1Moves
+	callfar ApplyMutagenMoveset
+.olympiaGhostTypes
+; Force both types to GHOST, which grants the pure-Ghost physical immunity --
+; the same treatment the Route 22 dead starter gets in .MaybeRival2Special.
+	ld a, GHOST
+	ld [wEnemyMon1Type], a
+	ld [wEnemyMon1Type + 1], a
+; Alakachamp is mon3 in this roster (it was mon6 before the re-theme). It comes
+; with Double Team/Counter/Psychic/Mind Fever from its own base-stats learnset,
+; so patch the empty 5th slot to its signature move, Uppercut.
 	ld a, UPPERCUT
-	ld [wEnemyMon6Moves + 4], a
+	ld [wEnemyMon3Moves + 4], a
 	jp .FinishUp
 .MaybeLoyalistScientist
 ; Silph Co 11F Loyalist path scientist (data/trainers/parties.asm #21): Porygon
@@ -235,7 +263,7 @@ ReadTrainer:
 	ld [hli], a
 	ld a, GROWTH
 	ld [hl], a
-; Butterfree (mon2) -- Psychic, Sleep Powder, Dream Eater, Stun Spore, Web Cannon
+; Butterfree (mon2) -- Psychic, Sleep Powder, Dream Eater, Stun Spore, Glitter Wing
 	ld hl, wEnemyMon2Moves
 	ld a, PSYCHIC_M
 	ld [hli], a
@@ -245,7 +273,7 @@ ReadTrainer:
 	ld [hli], a
 	ld a, STUN_SPORE
 	ld [hli], a
-	ld a, WEB_CANNON
+	ld a, GLITTER_WING
 	ld [hl], a
 ; Pinsir (mon5) -- Guillotine, Twineedle, Web Cannon, Slash, Swords Dance
 	ld hl, wEnemyMon5Moves
@@ -260,6 +288,10 @@ ReadTrainer:
 	ld a, SWORDS_DANCE
 	ld [hl], a
 .FinishUp
+; Aboard the S.S. OLYMPIA, re-arm the trainer's lone mon from the curated
+; MutagenMovesets table. No-op everywhere else, so this sits on the shared
+; path rather than being repeated per trainer class.
+	callfar ApplyOlympiaTrainerMoveset
 ; clear wAmountMoneyWon addresses
 	xor a
 	ld de, wAmountMoneyWon

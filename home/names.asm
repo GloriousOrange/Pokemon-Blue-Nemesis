@@ -31,19 +31,12 @@ GetItemName::
 	ld a, [wNamedObjectIndex]
 	and a
 	jr z, .Finish  ; item ID 0 = no item, avoid infinite loop in GetName
-	cp HM01 ; is this a TM/HM?
-	jr nc, .Machine
-
 	ld [wNameListIndex], a
 	ld a, ITEM_NAME
 	ld [wNameListType], a
 	ld a, BANK(ItemNames)
 	ld [wPredefBank], a
-	call GetName
-	jr .Finish
-
-.Machine
-	call GetMachineName
+	call GetName ; GetName routes TM/HM item ids (>= HM01) to GetMachineName itself
 .Finish
 	ld de, wNameBuffer
 	pop bc

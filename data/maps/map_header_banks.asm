@@ -249,4 +249,11 @@ MapHeaderBanks::
 	db BANK(LoreleisRoom_h)
 	db BANK(BrunosRoom_h)
 	db BANK(AgathasRoom_h)
+	db BANK(ApexMart1F_h)
+	db BANK(ApexMart2F_h)
+	db BANK(ApexMart3F_h)
+	db BANK(ApexMart4F_h)
+	db BANK(ApexMart5F_h)
+	db BANK(ApexMartRoof_h)
+	db BANK(ApexMartElevator_h)
 	assert_table_length NUM_MAPS

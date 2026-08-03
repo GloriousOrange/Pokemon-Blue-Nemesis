@@ -50,9 +50,27 @@ OakSpeech:
 	call LoadTextBoxTilePatterns
 	call PrepareOakSpeech
 	predef InitPlayerData2
-; minimal intro naming: ask the player's name, then their brother's (the rival).
-; No preset-name menu, no pics, no speech. Empty entries are re-asked.
+	call SetPokedexAllSeen
+	farcall PickPlayerSprite
+; intro naming: offer a preset-name menu (NEW NAME + suggestions) for the
+; player, then the brother (rival). Picking NEW NAME opens the keyboard.
+; No pics or speech -- this is the dark minimal intro. Empty custom names are
+; re-asked (loops back to the menu).
 .askPlayerName
+	call ClearScreen
+	ld de, DefaultNamesPlayer
+	call DisplayIntroNameTextBox
+	ld a, [wCurrentMenuItem]
+	and a ; NEW NAME (item 0)?
+	jr z, .playerCustomName
+	ld hl, DefaultNamesPlayerList
+	call GetDefaultName ; selected suggestion -> wNameBuffer
+	ld hl, wNameBuffer
+	ld de, wPlayerName
+	ld bc, NAME_LENGTH
+	call CopyData
+	jr .askBrotherName
+.playerCustomName
 	ld hl, wPlayerName
 	xor a ; NAME_PLAYER_SCREEN
 	ld [wNamingScreenType], a
@@ -61,6 +79,23 @@ OakSpeech:
 	cp '@' ; empty name?
 	jr z, .askPlayerName
 .askBrotherName
+	call ClearScreen
+	ld hl, BrotherIntroText
+	call PrintText
+	call ClearScreen
+	ld de, DefaultNamesRival
+	call DisplayIntroNameTextBox
+	ld a, [wCurrentMenuItem]
+	and a ; NEW NAME (item 0)?
+	jr z, .brotherCustomName
+	ld hl, DefaultNamesRivalList
+	call GetDefaultName ; selected suggestion -> wNameBuffer
+	ld hl, wNameBuffer
+	ld de, wRivalName
+	ld bc, NAME_LENGTH
+	call CopyData
+	jr .namesChosen
+.brotherCustomName
 	ld hl, wRivalName
 	ld a, NAME_RIVAL_SCREEN
 	ld [wNamingScreenType], a
@@ -68,6 +103,7 @@ OakSpeech:
 	ld a, [wStringBuffer]
 	cp '@' ; empty name?
 	jr z, .askBrotherName
+.namesChosen
 	call ClearScreen
 ; one-time difficulty choice, asked here (LCD is on, so the menu renders)
 ; rather than in the RedsHouse2F map tick where PrintText is unreliable.
@@ -145,6 +181,11 @@ DifficultyNormalName:
 	db "NORMAL@"
 DifficultyHardName:
 	db "HARD@"
+
+BrotherIntroText:
+	text "Now name your"
+	line "brother."
+	done
 
 OpeningColdOpenText:
 	text "The war nearly"
@@ -250,3 +291,31 @@ IntroDisplayPicCenteredOrUpperRight:
 	xor a
 	ldh [hStartTileID], a
 	predef_jump CopyUncompressedPicToTilemap
+
+; Nemesis: the CODEX starts fully "seen" on every new game (Owned is left
+; alone -- that's still earned by actually catching/evolving/gifting).
+SetPokedexAllSeen:
+	ld hl, wPokedexSeen
+IF NUM_POKEMON / 8 != 0
+	ld b, NUM_POKEMON / 8
+	ld a, %11111111
+.loop
+	ld [hli], a
+	dec b
+	jr nz, .loop
+ENDC
+IF NUM_POKEMON % 8 != 0
+	ld [hl], (1 << (NUM_POKEMON % 8)) - 1
+ENDC
+; ...except the five that aren't in the original 151. Those stay ??? until the
+; player actually lays eyes on them, so finding one still means something.
+MACRO codex_starts_unseen
+	ld hl, wPokedexSeen + (DEX_\1 - 1) / 8
+	res (DEX_\1 - 1) % 8, [hl]
+ENDM
+	codex_starts_unseen TYRANIS
+	codex_starts_unseen MIASMA
+	codex_starts_unseen NOCTURN
+	codex_starts_unseen ALAKACHAMP
+	codex_starts_unseen MEWTHREE
+	ret

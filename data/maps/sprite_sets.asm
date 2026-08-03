@@ -14,7 +14,7 @@ MapSpriteSets:
 	db SPRITESET_INDIGO          ; INDIGO_PLATEAU
 	db SPRITESET_SAFFRON         ; SAFFRON_CITY
 	db SPRITESET_FUCHSIA         ; BATTLE_ISLAND
-	db SPRITESET_PALLET_VIRIDIAN ; ROUTE_1
+	db SPRITESET_ROUTE_1         ; ROUTE_1
 	db SPLITSET_ROUTE_2          ; ROUTE_2
 	db SPRITESET_PEWTER_CERULEAN ; ROUTE_3
 	db SPRITESET_PEWTER_CERULEAN ; ROUTE_4
@@ -194,5 +194,20 @@ SpriteSets:
 	db SPRITE_YOUNGSTER
 	db SPRITE_POKE_BALL
 	db SPRITE_FOSSIL
+
+; SPRITESET_ROUTE_1 -- the actual sprites used on Route 1 (Youngster x2,
+; Megan), padded with unused fillers from the old shared PALLET_VIRIDIAN set
+; (Pallet Town/Viridian City/Cinnabar Island keep using that set unchanged).
+	db SPRITE_YOUNGSTER
+	db SPRITE_MEGAN
+	db SPRITE_BLUE
+	db SPRITE_GIRL
+	db SPRITE_FISHER
+	db SPRITE_COOLTRAINER_M
+	db SPRITE_GAMBLER
+	db SPRITE_OAK
+	db SPRITE_SWIMMER
+	db SPRITE_POKE_BALL
+	db SPRITE_GAMBLER_ASLEEP
 
 	assert_table_length NUM_SPRITE_SETS

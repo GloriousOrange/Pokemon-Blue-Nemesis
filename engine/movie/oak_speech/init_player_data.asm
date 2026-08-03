@@ -21,6 +21,18 @@ InitPlayerData2:
 	ld hl, wNumBoxItems
 	call InitializeEmptyList
 
+; Every player starts with a TOWN MAP filed in the PC's item storage, so it is
+; there from the first save whether or not they go and talk to DAISY.
+	ld hl, wNumBoxItems
+	ld a, 1
+	ld [hli], a ; one item stored
+	ld a, TOWN_MAP
+	ld [hli], a
+	ld a, 1
+	ld [hli], a ; quantity
+	ld a, -1
+	ld [hl], a ; end of list
+
 DEF START_MONEY EQU $3000
 	ld hl, wPlayerMoney + 1
 	ld a, HIGH(START_MONEY)
@@ -38,7 +50,15 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld [hl], a
 	ld hl, wNumBagItems
-	ld a, 7
+	ld a, 12
+	ld [hli], a
+	ld a, HM_CUT ; the Cascade Badge is granted below, so bushes are cuttable
+	ld [hli], a
+	ld a, 1
+	ld [hli], a
+	ld a, EXP_ALL ; whole party levels while testing, and it silences the
+	ld [hli], a   ; per-mon exp messages (see GainExperience)
+	ld a, 1
 	ld [hli], a
 	ld a, RARE_CANDY
 	ld [hli], a
@@ -60,6 +80,10 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld a, 1
 	ld [hli], a
+	ld a, HM_SURF
+	ld [hli], a
+	ld a, 1
+	ld [hli], a
 	; SILPH SCOPE + MASTER BALL so testers can reach Pokemon Tower / the Mathus
 	; quest without doing the Hideout+Silph Co questline first.
 	ld a, SILPH_SCOPE
@@ -68,7 +92,15 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld a, MASTER_BALL
 	ld [hli], a
+	ld a, 90
+	ld [hli], a
+	ld a, LAB_KEY ; enter the post-game re-locked burned Cinnabar lab
+	ld [hli], a
 	ld a, 1
+	ld [hli], a
+	ld a, LEVEL_STONE ; "MUTAGENSTONE" x6 to test the lab machine's L100 upgrade
+	ld [hli], a
+	ld a, 6
 	ld [hli], a
 	ld a, $ff ; terminator
 	ld [hl], a
@@ -83,8 +115,11 @@ ENDC
 	ASSERT wObtainedBadges + 1 == wUnusedObtainedBadges
 	ld [hl], a
 
-	ld hl, wTownVisitedFlag + 1
-	set 3, [hl]              ; bit 11 = BATTLE_ISLAND always flyable
+; BATTLE ISLAND is deliberately NOT flyable from the start: it is stocked with
+; level 100 arena trainers, and a player could fly straight there and be wiped.
+; PostGameCheckAllGymsRebeaten unlocks it once all the gym leaders have been
+; re-beaten. The SPEEDTEST block below still grants it outright, since testers
+; want to get there directly.
 
 IF DEF(_SPEEDTEST)
 ; Every town flyable from the start, and the Boulder/Cascade/Rainbow/Soul/
@@ -108,7 +143,29 @@ ENDC
 	ld bc, wPostGameFlagsEnd - wGameProgressFlags ; also clears wPostGameFlags (arena/post-game state)
 	call FillMemory ; clear all game progress flags
 
+IF DEF(_SPEEDTEST)
+; Set AFTER the flag clear above so it survives: jump testers straight into
+; post-game, and open the Pallet ferry to Oak's island so the endgame
+; department store (fresh scientists to test) + the archipelago are reachable.
+	ld hl, wPostGameMisc
+	set BIT_POST_GAME_STARTED, [hl]
+	set BIT_OAK_ISLAND_UNLOCKED, [hl]
+	SetEvent EVENT_USED_MUTAGEN_MACHINE ; testers: OAK pre-revealed in the cave
+ENDC
+
+IF DEF(_SPEEDTEST)
+	call InitializeToggleableObjectsFlags
+; The CERULEAN CAVE doorman is only ever removed by the Hall of Fame script, and
+; a speed-test run never gets there -- so hide him up front, otherwise MEWTHREE
+; is unreachable for testing. Set the flag directly rather than via HideObject:
+; that ends in UpdateSprites, which has no map to work on this early.
+	ld hl, wToggleableObjectFlags
+	ld c, TOGGLE_CERULEAN_CAVE_GUY
+	ld b, FLAG_SET ; "removed"
+	jp ToggleableObjectFlagAction
+ELSE
 	jp InitializeToggleableObjectsFlags
+ENDC
 
 InitializeEmptyList:
 	xor a ; count

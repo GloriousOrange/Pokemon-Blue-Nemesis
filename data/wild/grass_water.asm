@@ -248,6 +248,13 @@ WildDataPointers:
 	dw NothingWildMons
 	dw NothingWildMons
 	dw NothingWildMons
+	dw NothingWildMons ; APEX_MART_1F
+	dw NothingWildMons ; APEX_MART_2F
+	dw NothingWildMons ; APEX_MART_3F
+	dw NothingWildMons ; APEX_MART_4F
+	dw NothingWildMons ; APEX_MART_5F
+	dw NothingWildMons ; APEX_MART_ROOF
+	dw NothingWildMons ; APEX_MART_ELEVATOR
 	assert_table_length NUM_MAPS
 	dw -1 ; end
 

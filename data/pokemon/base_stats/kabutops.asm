@@ -4,14 +4,14 @@
 	;   hp  atk  def  spd  spc
 
 	db ROCK, WATER ; type
-	db 45 ; catch rate
+	db 90 ; catch rate
 	db 201 ; base exp
 
 	INCBIN "gfx/pokemon/front/kabutops.pic", 0, 1 ; sprite dimensions
 	dw KabutopsPicFront, KabutopsPicBack
 
 	db SCRATCH, HARDEN, ABSORB, NO_MOVE ; level 1 learnset
-	db GROWTH_MEDIUM_FAST ; growth rate
+	db GROWTH_FAST ; growth rate (matches its pre-evolution; a slower curve here made levels drop on evolving)
 
 	; tm/hm learnset
 	tmhm RAZOR_WIND, SWORDS_DANCE, MEGA_KICK, TOXIC, BODY_SLAM,  \

@@ -26,7 +26,7 @@ LeechSeedEffect_:
 ; the target's BattleStatus2; BattleStatus1 (which holds FLINCHED) sits one
 ; byte before it in WRAM, so dec hl reaches it. Also clear NEEDS_TO_RECHARGE
 ; on the flinched target, exactly as ClearHyperBeam/FlinchSideEffect do.
-	call BattleRandom
+	call Random ; home-bank Random: this file is not in the Battle Core bank
 	cp 50 percent + 1
 	jr nc, .noFlinch
 	res NEEDS_TO_RECHARGE, [hl]

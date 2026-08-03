@@ -77,13 +77,20 @@ _CeladonCityPoliwrathText::
 	text_end
 
 _CeladonCityRocket1Text::
-	text "What are you"
-	line "staring at?"
+	text "Hee-hee! I stole a"
+	line "PORYGON and sold"
+	cont "it for game coins!"
 	done
 
 _CeladonCityRocket2Text::
 	text "Keep out of TEAM"
 	line "ROCKET's way!"
+	done
+
+_CeladonCityRocket2LoyalistText::
+	text "This street is"
+	line "ROCKET turf now."
+	cont "Ours. Enjoy it."
 	done
 
 _CeladonCityTrainerTips1Text::

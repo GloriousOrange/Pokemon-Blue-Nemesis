@@ -22,12 +22,15 @@ SSOlympiaKitchen_TextPointers:
 	dw_const SSOlympiaKitchenCook5Text, TEXT_SSOLYMPIAKITCHEN_COOK5
 	dw_const SSOlympiaKitchenCook6Text, TEXT_SSOLYMPIAKITCHEN_COOK6
 	dw_const SSOlympiaKitchenCook7Text, TEXT_SSOLYMPIAKITCHEN_COOK7
-	dw_const SSOlympiaKitchenRocket1Text, TEXT_SSOLYMPIAKITCHEN_ROCKET1
+	dw_const SSOlympiaKitchenBeautyText, TEXT_SSOLYMPIAKITCHEN_BEAUTY
+	dw_const SSOlympiaKitchenBugCatcherText, TEXT_SSOLYMPIAKITCHEN_BUGCATCHER
 
 SSOlympiaKitchenTrainerHeaders:
 	def_trainers 5
 SSOlympiaKitchenTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_KITCHEN_ROCKET_0, 3, SSOlympiaKitchenRocket1BattleText, SSOlympiaKitchenRocket1EndBattleText, SSOlympiaKitchenRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_KITCHEN_TRAINER_0, 3, SSOlympiaKitchenBeautyBattleText, SSOlympiaKitchenBeautyEndBattleText, SSOlympiaKitchenBeautyAfterBattleText
+SSOlympiaKitchenTrainerHeader1:
+	trainer_in wOlympiaTrainerFlags2, 6, 2, SSOlympiaKitchenBugCatcherBattleText, SSOlympiaKitchenBugCatcherEndBattleText, SSOlympiaKitchenBugCatcherAfterBattleText
 	db -1 ; end
 
 SSOlympiaKitchenCook1Text:
@@ -51,22 +54,39 @@ SSOlympiaKitchenCook6Text:
 SSOlympiaKitchenCook7Text:
 	text_far _SSOlympiaKitchenCook7Text
 	text_end
-SSOlympiaKitchenRocket1Text:
+SSOlympiaKitchenBeautyText:
 	text_asm
 	ld hl, SSOlympiaKitchenTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 
-SSOlympiaKitchenRocket1BattleText:
-	text_far _SSOlympiaKitchenRocket1BattleText
+SSOlympiaKitchenBeautyBattleText:
+	text_far _SSOlympiaKitchenBeautyBattleText
 	text_end
 
-SSOlympiaKitchenRocket1EndBattleText:
-	text_far _SSOlympiaKitchenRocket1EndBattleText
+SSOlympiaKitchenBeautyEndBattleText:
+	text_far _SSOlympiaKitchenBeautyEndBattleText
 	text_end
 
-SSOlympiaKitchenRocket1AfterBattleText:
-	text_far _SSOlympiaKitchenRocket1AfterBattleText
+SSOlympiaKitchenBeautyAfterBattleText:
+	text_far _SSOlympiaKitchenBeautyAfterBattleText
 	text_end
 
+SSOlympiaKitchenBugCatcherText:
+	text_asm
+	ld hl, SSOlympiaKitchenTrainerHeader1
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympiaKitchenBugCatcherBattleText:
+	text_far _SSOlympiaKitchenBugCatcherBattleText
+	text_end
+
+SSOlympiaKitchenBugCatcherEndBattleText:
+	text_far _SSOlympiaKitchenBugCatcherEndBattleText
+	text_end
+
+SSOlympiaKitchenBugCatcherAfterBattleText:
+	text_far _SSOlympiaKitchenBugCatcherAfterBattleText
+	text_end

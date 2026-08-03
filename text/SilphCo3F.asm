@@ -65,3 +65,22 @@ _SilphCo3FFlavorScientistText::
 	para "don't touch the"
 	line "MEOWTH cages!"
 	done
+
+; Loyalist path: SILPH staff standing where the ROCKETs stand on the hero path.
+
+_SilphCo3FDefender1BattleText::
+	text "I have worked here"
+	line "eleven years."
+	cont "I'm not moving."
+	done
+
+_SilphCo3FDefender1EndBattleText::
+	text "Eleven years..."
+	prompt
+
+_SilphCo3FDefender1AfterBattleText::
+	text "Do what you like"
+	line "with the labs."
+	cont "I'm staying put."
+	done
+

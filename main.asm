@@ -42,7 +42,6 @@ INCLUDE "engine/events/display_pokedex.asm"
 SECTION "bank3", ROMX
 
 INCLUDE "engine/joypad.asm"
-INCLUDE "data/maps/songs.asm"
 INCLUDE "engine/overworld/clear_variables.asm"
 INCLUDE "engine/overworld/tyranis_encounter.asm"
 INCLUDE "engine/overworld/player_state.asm"
@@ -83,14 +82,23 @@ INCLUDE "gfx/font.asm"
 
 SECTION "Battle Engine 1", ROMX
 
-INCLUDE "engine/overworld/is_player_just_outside_map.asm"
 INCLUDE "engine/pokemon/status_screen.asm"
 INCLUDE "engine/menus/party_menu.asm"
 INCLUDE "gfx/player.asm"
-INCLUDE "engine/overworld/turn_sprite.asm"
 INCLUDE "engine/menus/start_sub_menus.asm"
 INCLUDE "engine/items/tms.asm"
 INCLUDE "engine/battle/end_of_battle.asm"
+
+; Floated out of "Battle Engine 1" (bank $4, shared with "NPC Sprites 1") to
+; make room for PlayerScientistSprite. Both are only ever reached via
+; callfar/farcall (IsPlayerJustOutsideMap from wild_encounters.asm,
+; UpdateSpriteFacingOffsetAndDelayMovement from home/text_script.asm), which
+; resolve the bank automatically, so relocating them is safe -- same
+; reasoning as tonight's other floats.
+SECTION "Player Sprite Helpers", ROMX
+
+INCLUDE "engine/overworld/is_player_just_outside_map.asm"
+INCLUDE "engine/overworld/turn_sprite.asm"
 INCLUDE "engine/battle/wild_encounters.asm"
 INCLUDE "engine/battle/move_effects/recoil.asm"
 INCLUDE "engine/battle/move_effects/conversion.asm"
@@ -101,11 +109,49 @@ INCLUDE "engine/math/random.asm"
 
 SECTION "Battle Engine 2", ROMX
 
-INCLUDE "engine/gfx/load_pokedex_tiles.asm"
 INCLUDE "engine/overworld/map_sprites.asm"
+
+; Floated out of "Battle Engine 2" (bank $5, shared with "NPC Sprites 2") to
+; make room for MeganSprite (gfx/sprites/megan.png). EmotionBubble is only
+; ever reached via `predef EmotionBubble`, which resolves the bank
+; automatically, so this is safe to relocate freely -- same reasoning as the
+; other floats added tonight (GivePokemon, Elevator Shake, Predefs).
+SECTION "Emotion Bubbles", ROMX
+
 INCLUDE "engine/overworld/emotion_bubbles.asm"
+
+; Floated out of "Battle Engine 2" (bank $5, shared with "NPC Sprites 2") to
+; make room for MathusSprite (gfx/sprites/mathus.png). LoadPokedexTilePatterns
+; is only ever reached via `callfar`, so it's safe to relocate freely -- same
+; reasoning as the EmotionBubbles float above.
+SECTION "Load Pokedex Tiles", ROMX
+
+INCLUDE "engine/gfx/load_pokedex_tiles.asm"
+
+; Floated out of "Battle Engine 2" (bank $5, shared with "NPC Sprites 2") to
+; make room for MathusSprite (gfx/sprites/mathus.png). InGameTrade_CheckForTradeEvo
+; is only ever reached via `callfar`, so it's safe to relocate freely -- same
+; reasoning as the floats above.
+SECTION "InGameTrade Evo Check", ROMX
+
 INCLUDE "engine/events/evolve_trade.asm"
+
+; Floated out of "Battle Engine 2" (bank $5, shared with "NPC Sprites 2") to
+; make room for MathusSprite (gfx/sprites/mathus.png). SubstituteEffect_ is
+; only ever reached via `jpfar`/`farcall`, so it's safe to relocate freely --
+; same reasoning as the floats above.
+SECTION "Substitute Effect", ROMX
+
 INCLUDE "engine/battle/move_effects/substitute.asm"
+
+; Floated out of "Battle Engine 2" (bank $5, shared with "NPC Sprites 2") to
+; make room for MathusSprite (gfx/sprites/mathus.png, now the standard full
+; 24-tile size after an earlier undersized attempt read as a garbled sprite
+; in-game). ActivatePC is reached via a bank-aware indirect call
+; (home/map_objects.asm sets b=BANK(ActivatePC) before jumping to it), so
+; it's safe to relocate freely -- same reasoning as the floats above.
+SECTION "Activate PC", ROMX
+
 INCLUDE "engine/menus/pc.asm"
 
 
@@ -187,23 +233,39 @@ INCLUDE "engine/slots/game_corner_slots.asm"
 SECTION "Battle Engine 7", ROMX
 
 INCLUDE "data/moves/moves.asm"
-INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/cries.asm"
-INCLUDE "engine/battle/unused_stats_functions.asm"
-INCLUDE "engine/battle/scroll_draw_trainer_pic.asm"
 INCLUDE "engine/battle/trainer_ai.asm"
 INCLUDE "engine/battle/draw_hud_pokeball_gfx.asm"
 INCLUDE "engine/pokemon/evos_moves.asm"
-INCLUDE "engine/battle/move_effects/heal.asm"
-INCLUDE "engine/battle/move_effects/transform.asm"
+
+; Floated out of Battle Engine 7 (which the S.S. Olympia's 2026-08-02 mutants
+; pushed over) rather than scrounging a few more bytes -- BaseStats grows every
+; time a new species is added, so it will just overflow again next time.
+; Reached only via `ld a, BANK(BaseStats)` (home/pokemon.asm), so any bank works.
+SECTION "Base Stats", ROMX
+
+INCLUDE "data/pokemon/base_stats.asm"
 
 
-; moved out of Battle Engine 7 (bank $E is full after the extra moves + the
-; evolution-suppress code); reached only via jpfar ReflectLightScreenEffect_ so
-; it can float to any bank
+; Moved out of Battle Engine 7 (bank $E is full after the extra moves + the
+; evolution-suppress code); all three bodies are reached only via jpfar, so the
+; section can float to any bank.
+;
+; heal.asm and transform.asm MUST stay in this section, alongside
+; reflect_light_screen.asm. They reach Battle Core through its
+; EffectCallBattleCore helper with a plain `call`, which only resolves at
+; runtime while they share that helper's bank. Splitting them into separate
+; sections links cleanly but lands the call on bank padding and runs off the
+; end of the bank into VRAM -- an intermittent crash that depends on whatever
+; tiles happen to be loaded.
 SECTION "Reflect Light Screen Effect", ROMX
 
 INCLUDE "engine/battle/move_effects/reflect_light_screen.asm"
+INCLUDE "engine/battle/move_effects/heal.asm"
+INCLUDE "engine/battle/move_effects/transform.asm"
+
+SECTION "Nemesis Niche Effects", ROMX ; floated out of the full Battle Core bank; reached via jpfar wrappers in effects.asm + callfar from AttackSubstitute, so any bank works
+INCLUDE "engine/battle/move_effects/niche_effects.asm"
 
 
 SECTION "Trade Animation GFX", ROMX
@@ -223,6 +285,11 @@ SECTION "PlayerPath", ROMX
 ; branching-path helpers (GetPlayerPath) + the Nocturn go-rogue choice
 ; (NocturnGoRogueChoice), reached via callfar once the Nocturn-obtain script exists
 INCLUDE "engine/events/player_path.asm"
+
+SECTION "Pick Player Sprite", ROMX
+; player-sprite-choice screen shown before naming; reached only via
+; farcall PickPlayerSprite from OakSpeech (oak_speech.asm)
+INCLUDE "engine/movie/oak_speech/pick_player_sprite.asm"
 
 SECTION "Megan", ROMX
 ; girlfriend interaction shared by every Megan NPC; reached only via farcall MeganTalk
@@ -274,6 +341,12 @@ SECTION "GivePokemon", ROMX
 INCLUDE "engine/events/give_pokemon.asm"
 
 
+; Floating (unpinned in layout.link) as of tonight -- was fixed to bank $13
+; (shared with "Trainer Pics"/"Maps 9"), which kept overflowing every time a
+; new trainer pic (Mathus, now Megan) grew "Trainer Pics" in the same bank.
+; GetPredefPointer's only caller (Predef:: in home/predef.asm) already does
+; `ld a, BANK(GetPredefPointer)` before jumping to it, so this -- and the
+; PredefPointers table INCLUDEd within it -- can live in any bank freely.
 SECTION "Predefs", ROMX
 
 INCLUDE "engine/predefs.asm"
@@ -366,8 +439,20 @@ INCLUDE "engine/battle/battle_transitions.asm"
 INCLUDE "engine/items/town_map.asm"
 INCLUDE "engine/gfx/mon_icons.asm"
 INCLUDE "engine/events/in_game_trades.asm"
-INCLUDE "engine/gfx/palettes.asm"
 INCLUDE "engine/menus/save.asm"
+
+; Floated out of "bank1C" (which the S.S. Olympia mutants' 3 new PAL_ rows in
+; data/sgb/sgb_palettes.asm pushed over) into its own section. This has to
+; move as ONE unit, not just the data table: every `ld hl/de, SuperPalettes`
+; reference lives inside this same file and is a plain `ld`, not a
+; callfar-resolved address, so the code and its data must share a bank. Every
+; EXTERNAL caller of this file's exported routines (ApplyCGBPalettes,
+; BlitQueuedCGBPalette, PrepareNextCGBPalette, MarkWaterAttributes,
+; MarkRedrawnAttributes) already uses farcall/farjp, so relocating the whole
+; file is safe.
+SECTION "GFX Palettes", ROMX
+
+INCLUDE "engine/gfx/palettes.asm"
 
 
 SECTION "Itemfinder 1", ROMX
@@ -392,16 +477,40 @@ SECTION "bank1E", ROMX
 
 INCLUDE "engine/battle/animations.asm"
 INCLUDE "engine/overworld/cut2.asm"
-INCLUDE "engine/overworld/dust_smoke.asm"
 INCLUDE "gfx/fishing.asm"
 INCLUDE "data/moves/animations.asm"
 INCLUDE "data/battle_anims/subanimations.asm"
 INCLUDE "data/battle_anims/frame_blocks.asm"
+
+SECTION "Evolution Animation", ROMX ; relocated out of bank1E (refilled by GHOST_BEAM's animation); EvolveMon is only ever reached via callfar, so any bank works -- same reasoning as the floats below
+
 INCLUDE "engine/movie/evolution.asm"
-INCLUDE "engine/overworld/elevator.asm"
 
 SECTION "TM Prices", ROMX ; relocated out of bank1E (which filled up); GetMachinePrice is called via BANK(), so any bank works
 INCLUDE "engine/items/tm_prices.asm"
+
+SECTION "Elevator Shake", ROMX ; relocated out of bank1E (refilled by new move animations); ShakeElevator is only called via farjp/farcall, so any bank works
+INCLUDE "engine/overworld/elevator.asm"
+
+SECTION "Dust Smoke", ROMX ; relocated out of bank1E (refilled by new moves); AnimateBoulderDust / LoadSmokeTileFourTimes are only called via farcall/callfar, so any bank works
+INCLUDE "engine/overworld/dust_smoke.asm"
+
+SECTION "Mansion Postgame Wild", ROMX ; loaded via FarCopyData, so any bank works
+; Fully-evolved forms of the normal burned-Mansion mons at L50-60, with a rare
+; (1% -- last slot) Charizard. Swapped over wGrassRate/wGrassMons post-game by
+; LoadWildData when the player is on a Mansion floor and the Champion is beaten.
+PokemonMansionPostGameWildMons::
+	db 2 ; encounter rate
+	db 53, MUK
+	db 55, WEEZING
+	db 54, RAPIDASH
+	db 50, MUK
+	db 56, NINETALES
+	db 58, WEEZING
+	db 57, RAPIDASH
+	db 58, MAGMAR
+	db 60, NINETALES
+	db 60, CHARIZARD
 
 SECTION "Starter Ashes", ROMX
 
@@ -410,3 +519,29 @@ INCLUDE "engine/events/starter_ashes.asm"
 SECTION "Map Header Banks", ROMX ; relocated out of bank3 (which filled up with the archipelago's new maps); referenced via BANK(), so any bank works, same technique as "TM Prices" above
 
 INCLUDE "data/maps/map_header_banks.asm"
+
+SECTION "Map Song Banks", ROMX ; relocated out of bank3 (refilled by the Apex Mart maps); MapSongBanks is read via BANK(MapSongBanks), so any bank works
+
+INCLUDE "data/maps/songs.asm"
+
+SECTION "Map Header Pointers", ROMX ; relocated out of ROM0/Home (which overflowed by the Apex Mart maps); its sole reader LoadMapHeader now BankswitchHome's to BANK(MapHeaderPointers) before reading, mirroring SwitchToMapRomBank/MapHeaderBanks
+
+INCLUDE "data/maps/map_header_pointers.asm"
+
+
+SECTION "Scroll Trainer Pic", ROMX ; floated out of Battle Engine 7 for the S.S. Olympia rosters; _ScrollTrainerPicAfterBattle is jpfar-only and DrawTrainerPicColumn has no callers outside this file, so any bank works
+
+INCLUDE "engine/battle/scroll_draw_trainer_pic.asm"
+
+SECTION "Selected Stats", ROMX ; floated out of Battle Engine 7 to make room for the S.S. Olympia's rosters; DoubleSelectedStats/HalveSelectedStats are only reached via callfar/jpfar from DoubleOrHalveSelectedStats, so any bank works
+
+INCLUDE "engine/battle/unused_stats_functions.asm"
+
+SECTION "Hyper Beam Power", ROMX ; ApplyHyperBeamPower is only reached via farjp, so any bank works; kept out of "Battle Core", which is full
+
+INCLUDE "engine/battle/hyper_beam_power.asm"
+
+SECTION "Mutagen Movesets", ROMX ; ApplyMutagenMoveset is only reached via callfar and reads its table out of its own bank, so any bank works
+
+INCLUDE "engine/pokemon/mutagen_movesets.asm"
+INCLUDE "data/pokemon/mutagen_movesets.asm"

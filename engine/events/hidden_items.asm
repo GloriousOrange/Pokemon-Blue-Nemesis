@@ -1,3 +1,14 @@
+HiddenObjectDeclineAPress:
+; Called by a hidden object handler that has nothing to do -- the item was
+; already picked up, or the player has no COIN CASE.  Storing $ff back in
+; hItemAlreadyFound tells the overworld A-press handler the press was NOT
+; consumed, so it carries on to the NPC/sign check and then to
+; TryPlayerHMTileInteraction.  Without this, a bush or patch of grass that
+; hides an item swallows every later A press and can never be cut by hand.
+	ld a, $ff
+	ldh [hItemAlreadyFound], a
+	ret
+
 HiddenItems:
 	ld hl, HiddenItemCoords
 	call FindHiddenItemOrCoinsIndex
@@ -9,7 +20,7 @@ HiddenItems:
 	predef FlagActionPredef
 	ld a, c
 	and a
-	ret nz
+	jp nz, HiddenObjectDeclineAPress ; already picked up
 	call EnableAutoTextBoxDrawing
 	ld a, 1
 	ld [wDoNotWaitForButtonPressAfterDisplayingText], a
@@ -54,7 +65,7 @@ HiddenCoins:
 	predef GetQuantityOfItemInBag
 	ld a, b
 	and a
-	ret z
+	jp z, HiddenObjectDeclineAPress ; no COIN CASE
 	ld hl, HiddenCoinCoords
 	call FindHiddenItemOrCoinsIndex
 	ld [wHiddenItemOrCoinsIndex], a
@@ -65,7 +76,7 @@ HiddenCoins:
 	predef FlagActionPredef
 	ld a, c
 	and a
-	ret nz
+	jp nz, HiddenObjectDeclineAPress ; already picked up
 	xor a
 	ldh [hUnusedCoinsByte], a
 	ldh [hCoins], a

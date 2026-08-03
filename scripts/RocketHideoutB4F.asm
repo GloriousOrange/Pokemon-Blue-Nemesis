@@ -82,7 +82,7 @@ RocketHideoutB4F_TextPointers:
 	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_HP_UP
 	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_TM_RAZOR_WIND
 	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_IRON
-	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_SILPH_SCOPE
+	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_MASTER_BALL
 	dw_const PickUpItemText,                              TEXT_ROCKETHIDEOUTB4F_LIFT_KEY
 	dw_const RocketHideoutB4FGiovanniHopeWeMeetAgainText, TEXT_ROCKETHIDEOUTB4F_GIOVANNI_HOPE_WE_MEET_AGAIN
 
@@ -110,8 +110,14 @@ RocketHideoutB4FGiovanniText:
 	ld hl, wStatusFlags3
 	set BIT_TALKED_TO_TRAINER, [hl]
 	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistEndBattleText
+	jr nz, .gotEndText
 	ld hl, .WhatCannotBeText
-	ld de, .WhatCannotBeText
+.gotEndText
+	ld d, h
+	ld e, l
 	call SaveEndBattleTextPointers
 	ldh a, [hSpriteIndex]
 	ld [wSpriteIndex], a
@@ -137,6 +143,9 @@ RocketHideoutB4FGiovanniText:
 	text_far _RocketHideoutB4FGiovanniLoyalistImpressedText
 	text_end
 
+.LoyalistEndBattleText:
+	text_far _RocketHideoutB4FGiovanniLoyalistEndBattleText
+	text_end
 .WhatCannotBeText:
 	text_far _RocketHideoutB4FGiovanniWhatCannotBeText
 	text_end

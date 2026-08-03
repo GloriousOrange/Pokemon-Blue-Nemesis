@@ -542,6 +542,7 @@ MachineDescriptionPointers:
 	dw MachineSubstituteDesc  ; TM50 SUBSTITUTE
 	dw MachineNightShadeDesc  ; TM51 NIGHT_SHADE
 	dw MachineConfuseRayDesc  ; TM52 CONFUSE_RAY
+	dw MachineGhostBeamDesc   ; TM53 GHOST_BEAM
 
 MachineCutDesc:
 	text "CUT"
@@ -827,4 +828,10 @@ MachineNightShadeDesc:
 MachineConfuseRayDesc:
 	text "CONFUSE RAY"
 	line "Confuses the foe."
+	prompt
+
+MachineGhostBeamDesc:
+	text "GHOST BEAM"
+	line "A ruinous blast;"
+	cont "must recharge."
 	prompt

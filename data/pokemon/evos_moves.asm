@@ -8,7 +8,7 @@
 ;    * db level, move
 ; - db 0 ; no more level-up moves
 
-EvosMovesPointerTable:
+EvosMovesPointerTable::
 	table_width 2
 	dw RhydonEvosMoves
 	dw KangaskhanEvosMoves
@@ -204,6 +204,10 @@ EvosMovesPointerTable:
 	dw MiasmaEvosMoves
 	dw NocturnEvosMoves
 	dw AlakachampEvosMoves
+	dw MewthreeEvosMoves
+	dw PinsiriteEvosMoves
+	dw NinefrostEvosMoves
+	dw DignemiteEvosMoves
 	assert_table_length NUM_POKEMON_INDEXES
 
 RhydonEvosMoves:
@@ -426,6 +430,7 @@ LaprasEvosMoves:
 	db 31, CONFUSE_RAY
 	db 38, ICE_BEAM
 	db 46, HYDRO_PUMP
+	db 55, ICE_BOMB
 	db 0
 
 ArcanineEvosMoves:
@@ -442,6 +447,7 @@ MewEvosMoves:
 	db 20, MEGA_PUNCH
 	db 30, METRONOME
 	db 40, PSYCHIC_M
+	db 55, METRONOME2
 	db 0
 
 GyaradosEvosMoves:
@@ -452,6 +458,7 @@ GyaradosEvosMoves:
 	db 25, DRAGON_RAGE
 	db 32, LEER
 	db 41, HYDRO_PUMP
+	db 42, HURRICANE
 	db 52, HYPER_BEAM
 	db 0
 
@@ -503,6 +510,7 @@ ScytherEvosMoves:
 	db 29, SLASH
 	db 35, SWORDS_DANCE
 	db 42, AGILITY
+	db 55, STEALTH
 	db 0
 
 StaryuEvosMoves:
@@ -510,6 +518,7 @@ StaryuEvosMoves:
 	db EVOLVE_ITEM, WATER_STONE, 1, STARMIE
 	db 0
 ; Learnset
+	db 10, CONFUSION
 	db 17, WATER_GUN
 	db 22, HARDEN
 	db 27, RECOVER
@@ -517,6 +526,7 @@ StaryuEvosMoves:
 	db 37, MINIMIZE
 	db 42, LIGHT_SCREEN
 	db 47, HYDRO_PUMP
+	db 50, MEGA_DRAIN
 	db 0
 
 BlastoiseEvosMoves:
@@ -536,12 +546,13 @@ PinsirEvosMoves:
 	db 0
 ; Learnset
 	db 20, TWINEEDLE
+	db 23, WEB_CANNON ; moved from level 70 (user request 2026-07-26)
 	db 25, SEISMIC_TOSS
 	db 30, GUILLOTINE
 	db 36, FOCUS_ENERGY
-	db 37, WEB_CANNON
 	db 43, PIN_MISSILE
 	db 49, SLASH
+	db 55, VIBRATE
 	db 98, SWORDS_DANCE ; moved from level 54 (user request 2026-07-10)
 	db 0
 
@@ -551,6 +562,7 @@ TangelaEvosMoves:
 ; Learnset
 	db 29, ABSORB
 	db 32, POISONPOWDER
+	db 33, TANGLE
 	db 36, STUN_SPORE
 	db 39, SLEEP_POWDER
 	db 45, SLAM
@@ -605,7 +617,7 @@ FearowEvosMoves:
 
 PidgeyEvosMoves:
 ; Evolutions
-	db EVOLVE_LEVEL, 18, PIDGEOTTO
+	db EVOLVE_LEVEL, 15, PIDGEOTTO
 	db 0
 ; Learnset
 	db 5, SAND_ATTACK
@@ -788,7 +800,7 @@ MagmarEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 36, HOT_OIL
+	db 30, HOT_OIL
 	db 36, LEER
 	db 39, CONFUSE_RAY
 	db 43, FIRE_PUNCH
@@ -809,6 +821,7 @@ ElectabuzzEvosMoves:
 ; Learnset
 	db 34, THUNDERSHOCK
 	db 37, SCREECH
+	db 40, STATIC_SHOCK
 	db 42, THUNDERPUNCH
 	db 49, LIGHT_SCREEN
 	db 54, THUNDER
@@ -889,6 +902,7 @@ TaurosEvosMoves:
 	db 35, LEER
 	db 44, RAGE
 	db 51, TAKE_DOWN
+	db 55, STAMPEDE
 	db 0
 
 MissingNo3DEvosMoves:
@@ -980,8 +994,8 @@ PoliwagEvosMoves:
 	db EVOLVE_LEVEL, 25, POLIWHIRL
 	db 0
 ; Learnset
+	db 11, WATER_GUN ; was L19; as a starter Poliwag had only 20-power Bubble until then
 	db 16, HYPNOSIS
-	db 19, WATER_GUN
 	db 25, DOUBLESLAP
 	db 31, BODY_SLAM
 	db 38, AMNESIA
@@ -997,6 +1011,7 @@ JynxEvosMoves:
 	db 31, ICE_PUNCH
 	db 39, BODY_SLAM
 	db 47, THRASH
+	db 55, ICE_SCULPTURE
 	db 58, BLIZZARD
 	db 0
 
@@ -1004,33 +1019,50 @@ MoltresEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 51, LEER
-	db 55, AGILITY
-	db 60, SKY_ATTACK
+	db 12, EMBER
+	db 18, WING_ATTACK
+	db 25, LEER
+	db 31, FLAMETHROWER
+	db 38, AGILITY
+	db 45, SKY_ATTACK
+	db 52, FIRE_BLAST
 	db 0
 
 ArticunoEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 51, BLIZZARD
-	db 55, AGILITY
-	db 60, MIST
+	db 6, AURORA_BEAM
+	db 12, WING_ATTACK
+	db 18, AGILITY
+	db 25, MIST
+	db 31, ICE_BEAM
+	db 38, REFLECT
+	db 45, SKY_ATTACK
+	db 52, BLIZZARD
 	db 0
 
 ZapdosEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 51, THUNDER
-	db 55, AGILITY
-	db 60, LIGHT_SCREEN
+	db 12, THUNDER_WAVE
+	db 18, AGILITY
+	db 25, DRILL_PECK
+	db 31, THUNDERBOLT
+	db 38, LIGHT_SCREEN
+	db 45, SKY_ATTACK
+	db 52, THUNDER
 	db 0
 
 DittoEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+; Ditto never evolves and vanilla gives it no level-up moves at all, so a Ditto
+; starter would be stuck on one 35-power move for the whole game.
+	db 15, HEADBUTT
+	db 30, BODY_SLAM
 	db 0
 
 MeowthEvosMoves:
@@ -1050,7 +1082,7 @@ KrabbyEvosMoves:
 	db EVOLVE_LEVEL, 28, KINGLER
 	db 0
 ; Learnset
-	db 20, VICEGRIP
+	db 12, VICEGRIP ; was L20; as a starter Krabby had only 20-power Bubble until then
 	db 25, GUILLOTINE
 	db 30, STOMP
 	db 35, CRABHAMMER
@@ -1177,9 +1209,9 @@ HorseaEvosMoves:
 	db EVOLVE_LEVEL, 32, SEADRA
 	db 0
 ; Learnset
+	db 10, WATER_GUN ; was L30; as a starter Horsea sat on 20-power Bubble for 25 levels
 	db 19, SMOKESCREEN
 	db 24, LEER
-	db 30, WATER_GUN
 	db 37, AGILITY
 	db 45, HYDRO_PUMP
 	db 0
@@ -1343,6 +1375,7 @@ ZubatEvosMoves:
 	db EVOLVE_LEVEL, 22, GOLBAT
 	db 0
 ; Learnset
+	db 9, DOUBLE_TEAM
 	db 10, SUPERSONIC
 	db 15, BITE
 	db 21, CONFUSE_RAY
@@ -1409,13 +1442,15 @@ KakunaEvosMoves:
 	db EVOLVE_LEVEL, 10, BEEDRILL
 	db 0
 ; Learnset
+	db 9, WEB_CANNON ; user request 2026-07-26
 	db 0
 
 BeedrillEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 12, FURY_ATTACK
+	db 10, FURY_ATTACK ; was L12, so evolving at 10 is immediately felt: a Weedle
+	                   ; starter is on 25-power Poison Sting until this lands
 	db 16, FOCUS_ENERGY
 	db 20, TWINEEDLE
 	db 22, CRYSTALLIZE
@@ -1525,7 +1560,7 @@ ButterfreeEvosMoves:
 	db 17, SLEEP_POWDER
 	db 21, SUPERSONIC
 	db 26, WHIRLWIND
-	db 26, WEB_CANNON
+	db 28, GLITTER_WING ; replaced Web Cannon (user request 2026-07-26)
 	db 32, PSYBEAM
 	db 0
 
@@ -1584,11 +1619,15 @@ MewtwoEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 63, RECOVER
-	db 67, ICE_BEAM
-	db 73, THUNDERBOLT
-	db 79, AMNESIA
-	db 85, PSYCHIC_M
+	db 9, LIGHT_SCREEN
+	db 16, SWIFT
+	db 23, PSYBEAM
+	db 30, BARRIER
+	db 37, RECOVER
+	db 42, PSYCHIC_M
+	db 49, AMNESIA
+	db 56, ICE_BEAM
+	db 63, THUNDERBOLT
 	db 0
 
 SnorlaxEvosMoves:
@@ -1598,6 +1637,7 @@ SnorlaxEvosMoves:
 	db 35, BODY_SLAM
 	db 41, HARDEN
 	db 48, DOUBLE_EDGE
+	db 55, ROLL
 	db 56, HYPER_BEAM
 	db 0
 
@@ -1606,6 +1646,7 @@ MagikarpEvosMoves:
 	db EVOLVE_LEVEL, 20, GYARADOS
 	db 0
 ; Learnset
+	db 10, WATER_GUN
 	db 15, TACKLE
 	db 0
 
@@ -1654,6 +1695,7 @@ CloysterEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
+	db 31, EXPLOSION
 	db 50, SPIKE_CANNON
 	db 0
 
@@ -1751,7 +1793,7 @@ AlakazamEvosMoves:
 
 PidgeottoEvosMoves:
 ; Evolutions
-	db EVOLVE_LEVEL, 36, PIDGEOT
+	db EVOLVE_LEVEL, 30, PIDGEOT
 	db 0
 ; Learnset
 	db 5, SAND_ATTACK
@@ -1771,6 +1813,7 @@ PidgeotEvosMoves:
 	db 21, WHIRLWIND
 	db 31, WING_ATTACK
 	db 44, AGILITY
+	db 48, HYPER_BEAM
 	db 54, MIRROR_MOVE
 	db 0
 
@@ -1791,6 +1834,7 @@ BulbasaurEvosMoves:
 	db 20, POISONPOWDER
 	db 27, RAZOR_LEAF
 	db 34, GROWTH
+	db 40, GIGA_DRAIN ; only an unevolved BULBASAUR ever reaches this
 	db 41, SLEEP_POWDER
 	db 48, SOLARBEAM
 	db 0
@@ -1985,6 +2029,7 @@ AerodactylEvosMoves:
 	db 38, BITE
 	db 45, TAKE_DOWN
 	db 54, HYPER_BEAM
+	db 55, GRAVITY_SLAM
 	db 0
 
 MissingNoACEvosMoves:
@@ -2029,6 +2074,7 @@ CharmanderEvosMoves:
 	db 22, RAGE
 	db 30, SLASH
 	db 38, FLAMETHROWER
+	db 40, FLAME_WHIP ; only an unevolved CHARMANDER ever reaches this
 	db 46, FIRE_SPIN
 	db 0
 
@@ -2038,10 +2084,11 @@ SquirtleEvosMoves:
 	db 0
 ; Learnset
 	db 8, BUBBLE
-	db 15, WATER_GUN
+	db 12, WATER_GUN ; was L15, to match the other Bubble starters
 	db 22, BITE
 	db 28, WITHDRAW
 	db 35, SKULL_BASH
+	db 40, HYDRO_JET ; only an unevolved SQUIRTLE ever reaches this
 	db 42, HYDRO_PUMP
 	db 0
 
@@ -2112,10 +2159,11 @@ OddishEvosMoves:
 	db EVOLVE_LEVEL, 21, GLOOM
 	db 0
 ; Learnset
+	db 12, ACID ; was L24; Oddish's L15-19 additions are all powders, so as a
+	            ; starter it had 20-power Absorb and nothing else until L24
 	db 15, POISONPOWDER
 	db 17, STUN_SPORE
 	db 19, SLEEP_POWDER
-	db 24, ACID
 	db 33, PETAL_DANCE
 	db 46, SOLARBEAM
 	db 0
@@ -2198,6 +2246,56 @@ NocturnEvosMoves:
 ; Learnset
 	db 40, PHANTOM_WING
 	db 50, MIND_FEVER
+	db 0
+
+MewthreeEvosMoves:
+; Evolutions
+	db 0
+; Learnset
+	db 63, BARRIER
+	db 66, PSYCHIC_M
+	db 70, RECOVER
+	db 75, MIST
+	db 81, AMNESIA
+	db 99, TELEKINESIS ; the armored clone's signature
+	db 0
+
+; S.S. OLYMPIA clearing-prize mutants (2026-08-02). No evolutions -- these are
+; already the final/only form. Learnset spreads each species' approved
+; MutagenMovesets kit (data/pokemon/mutagen_movesets.asm) across levels 15-95,
+; so a naturally leveled copy converges on the same 5 moves the Mutagenstone
+; grants directly at L100 -- one design, not two.
+PinsiriteEvosMoves:
+	db 0
+; Learnset -- converges on the curated kit (WEB_CANNON/GUILLOTINE/VIBRATE/
+; DOUBLE_TEAM/GRANIT_CLAMP) by L95
+	db 15, VIBRATE
+	db 35, DOUBLE_TEAM
+	db 55, WEB_CANNON
+	db 75, GUILLOTINE
+	db 95, GRANIT_CLAMP
+	db 0
+
+NinefrostEvosMoves:
+	db 0
+; Learnset -- converges on the curated kit (FIRE_BLAST/BLIZZARD/SWIFT/
+; CONFUSE_RAY/RECOVER) by L95
+	db 15, CONFUSE_RAY
+	db 35, SWIFT
+	db 55, RECOVER
+	db 75, FIRE_BLAST
+	db 95, BLIZZARD
+	db 0
+
+DignemiteEvosMoves:
+	db 0
+; Learnset -- converges on the curated kit (EARTHQUAKE/THUNDERBOLT/
+; STATIC_SHOCK/SCREECH/THIRD_RAIL) by L95
+	db 15, SCREECH
+	db 35, STATIC_SHOCK
+	db 55, THIRD_RAIL
+	db 75, THUNDERBOLT
+	db 95, EARTHQUAKE
 	db 0
 
 AlakachampEvosMoves:

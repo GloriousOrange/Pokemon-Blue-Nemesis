@@ -41,7 +41,7 @@ SleepEffect:
 	                        ; including the event where the target already has another status
 	ld a, [de]
 	ld b, a
-	and SLP_MASK
+	and a ; single-status: any existing status blocks sleep
 	jr z, .notAlreadySleeping ; can't affect a mon that is already asleep
 	ld hl, AlreadyAsleepText
 	jp PrintText
@@ -57,12 +57,7 @@ SleepEffect:
 	call BattleRandom
 	and SLP_MASK
 	jr z, .setSleepCounter
-; Nemesis: OR the counter in so an existing PSN/BRN/FRZ/PAR status is preserved
-	ld b, a
-	ld a, [de]
-	and %11111000
-	or b
-	ld [de], a
+	ld [de], a ; single-status: sleep replaces any prior status bits
 	call PlayCurrentMoveAnimation2
 	ld hl, FellAsleepText
 	jp PrintText
@@ -87,11 +82,11 @@ PoisonEffect:
 	ld de, wEnemyMoveEffect
 .poisonEffect
 	call CheckTargetSubstitute
-	jr nz, .noEffect ; can't poison a substitute target
+	jp nz, .noEffect ; can't poison a substitute target
 	ld a, [hli]
 	ld b, a
-	bit PSN, a
-	jr nz, .noEffect ; Nemesis: only skip if already poisoned; other statuses can stack
+	and a
+	jp nz, .noEffect ; single-status: any existing status blocks poison
 	ld a, [hli]
 	cp POISON ; can't poison a poison-type target
 	jr z, .noEffect
@@ -100,11 +95,23 @@ PoisonEffect:
 	jr z, .noEffect
 	ld a, [de]
 	cp POISON_SIDE_EFFECT1
-	ld b, 20 percent + 1 ; chance of poisoning
-	jr z, .sideEffectTest
+	jr z, .inflictPoison ; Nemesis: Poison Sting (the only POISON_SIDE_EFFECT1 move) always poisons
 	cp POISON_SIDE_EFFECT2
-	ld b, 40 percent + 1 ; chance of poisoning
-	jr z, .sideEffectTest
+	jr nz, .notSideEffect2
+	ld b, 40 percent + 1 ; chance of poisoning (Smog / Sludge)
+; Twineedle's effect was swapped to POISON_SIDE_EFFECT2 above, but it gets a
+; higher poison chance than Smog/Sludge: 50%.
+	ldh a, [hWhoseTurn]
+	and a
+	ld a, [wPlayerMoveNum]
+	jr z, .gotPoisonMoveNum
+	ld a, [wEnemyMoveNum]
+.gotPoisonMoveNum
+	cp TWINEEDLE
+	jr nz, .sideEffectTest
+	ld b, 50 percent + 1 ; Twineedle poison chance
+	jr .sideEffectTest
+.notSideEffect2
 	push hl
 	push de
 	call MoveHitTest ; apply accuracy tests
@@ -205,6 +212,9 @@ CarrionWindEffect:
 	ld de, wPlayerBattleStatus3
 	ld bc, wPlayerToxicCounter
 .gotPoisonTarget
+	ld a, [hl]
+	and a
+	jr nz, .poisonImmune ; single-status: don't badly-poison an already-statused mon (still flinched)
 	inc hl
 	ld a, [hli] ; type 1 (status byte skipped)
 	cp POISON
@@ -251,8 +261,9 @@ ChaosStingEffect:
 	ld hl, wBattleMonStatus
 	ld de, wBattleMonType1
 .gotTarget
-	bit FRZ, [hl]
-	ret nz ; a frozen target is already fully locked; don't layer onto freeze
+	ld a, [hl]
+	and a
+	ret nz ; single-status: don't add a status to an already-statused mon
 ; roll the ailment: 0 = poison, 1 = burn, 2 = freeze, 3 = paralysis
 	call BattleRandom
 	and $03
@@ -260,8 +271,8 @@ ChaosStingEffect:
 	dec a
 	jr z, .burn
 	dec a
-	jp z, .freeze
-	jp .paralyze
+	jr z, .freeze
+	jr .paralyze
 .poison
 	bit PSN, [hl]
 	ret nz ; already poisoned
@@ -323,30 +334,95 @@ ChaosStingResetToxic:
 ; burned). Like Chaos Sting's burn branch but guaranteed, no random roll. Being
 ; a damaging move whose effect is NOT in the SpecialEffects list, this runs
 ; after damage, same dispatch path as Body Slam's paralysis chance.
+; Nemesis: Hot Oil (Magmar). Body floated to "Nemesis Niche Effects" to free room
+; in the packed Battle Core bank; reached through this thin jpfar wrapper.
 HotOilEffect:
+	jpfar HotOilEffect_
+
+; WEB_CANNON: a damaging Bug move (10 power) that, after its damage, drops the
+; target's Speed to the minimum (-6) in a single hit and has a 35% chance to
+; make it flinch. Runs after damage (WEB_CANNON_EFFECT is not in SpecialEffects,
+; same dispatch as Chaos Sting / Body Slam's paralysis chance).
+WebCannonEffect:
 	call CheckTargetSubstitute
-	ret nz ; can't burn through a substitute
+	ret nz ; a substitute blocks the debuff + flinch
+; drop the target's Speed to -6 (stat-mod index 2; neutral = 7, minimum = 1)
 	ldh a, [hWhoseTurn]
 	and a
-	ld hl, wEnemyMonStatus
-	ld de, wEnemyMonType1
-	jr z, .gotTarget
-	ld hl, wBattleMonStatus
-	ld de, wBattleMonType1
-.gotTarget
-	bit BRN, [hl]
-	ret nz ; already burned
-	ld a, [de]
-	cp FIRE
-	ret z ; Fire-type is immune to burn
-	inc de
-	ld a, [de]
-	cp FIRE
-	ret z
-	set BRN, [hl]
-	call HalveAttackDueToBurn
-	ld hl, BurnedText
-	jp PrintText
+	ld hl, wEnemyMonStatMods + 2 ; player attacking -> enemy is the target
+	jr z, .gotSpeedMod
+	ld hl, wPlayerMonStatMods + 2 ; enemy attacking -> player is the target
+.gotSpeedMod
+	ld a, [hl]
+	cp 1 ; already at -6? then skip the drop and its message
+	jr z, .flinch
+	ld [hl], 1 ; Speed mod -> -6 in one hit
+	ldh a, [hWhoseTurn]
+	and a
+	ld a, 1 ; player used it -> recalc the enemy mon's stats
+	jr z, .recalc
+	xor a ; enemy used it -> recalc the player mon's stats
+.recalc
+	call RecalcModifiedStatsFor
+	ld b, 3 ; SPEED, for PrintStatText
+	call PrintStatText
+	ld hl, MonsStatsFellText
+	call PrintText
+.flinch
+	call BattleRandom
+	cp 35 percent + 1
+	ret nc ; 65% of the time: no flinch
+	ldh a, [hWhoseTurn]
+	and a
+	ld hl, wEnemyBattleStatus1 ; player attacking -> flinch the enemy
+	jr z, .gotStatus
+	ld hl, wPlayerBattleStatus1 ; enemy attacking -> flinch the player
+.gotStatus
+	set FLINCHED, [hl]
+	jp ClearHyperBeam
+
+; Nemesis: shared by Static Shock (Electabuzz) and Gravity Slam (Aerodactyl).
+; Body floated to "Nemesis Niche Effects" to keep the packed Battle Core bank
+; within budget; reached through this thin jpfar wrapper.
+StaticShockEffect:
+	jpfar StaticShockEffect_
+
+; Nemesis: Vibrate (Pinsir's niche). Raises the user's own Attack AND Speed by
+; two stages each -- same double-through-StatModifierUpEffect trick as
+; CrystallizeEffect (the move-effect byte is reloaded from move data each turn,
+; so clobbering it here is safe).
+VibrateEffect:
+	ldh a, [hWhoseTurn]
+	and a
+	ld hl, wPlayerMoveEffect
+	jr z, .gotEffectPtr
+	ld hl, wEnemyMoveEffect
+.gotEffectPtr
+	ld [hl], ATTACK_UP2_EFFECT
+	push hl
+	call StatModifierUpEffect
+	pop hl
+	ld [hl], SPEED_UP2_EFFECT
+	jp StatModifierUpEffect
+
+; Nemesis niche moves. Their bodies are floated out of the full Battle Core bank
+; into "Nemesis Niche Effects" and reached through these thin jpfar wrappers
+; (same pattern as the vanilla effects just above/below).
+; See engine/battle/move_effects/niche_effects.asm.
+TangleEffect:
+	jpfar TangleEffect_
+
+IceBombEffect:
+	jpfar IceBombEffect_
+
+RollEffect:
+	jpfar RollEffect_
+
+IceSculptureEffect:
+	jpfar IceSculptureEffect_
+
+GlitterWingEffect:
+	jpfar GlitterWingEffect_
 
 DrainHPEffect:
 	jpfar DrainHPEffect_
@@ -379,8 +455,8 @@ FreezeBurnParalyzeEffect:
 	and a
 	jp nz, .opponentAttacker
 	ld a, [wEnemyMonStatus]
-	and 1 << FRZ
-	jp nz, CheckDefrost ; Nemesis: only a frozen target short-circuits (thaw on fire); other statuses stack
+	and a
+	jp nz, CheckDefrost ; single-status: any existing status blocks a new one (frozen thaws on fire, else fails)
 	ld a, [wPlayerMoveType]
 	ld b, a
 	ld a, [wEnemyMonType1]
@@ -441,8 +517,8 @@ FreezeBurnParalyzeEffect:
 	jp PrintText
 .opponentAttacker
 	ld a, [wBattleMonStatus] ; mostly same as above with addresses swapped for opponent
-	and 1 << FRZ
-	jp nz, CheckDefrost ; Nemesis: only a frozen target short-circuits; other statuses stack
+	and a
+	jp nz, CheckDefrost ; single-status: any existing status blocks a new one
 	ld a, [wEnemyMoveType]
 	ld b, a
 	ld a, [wBattleMonType1]
@@ -579,6 +655,14 @@ CrystallizeEffect:
 	pop hl
 	ld [hl], SPECIAL_UP1_EFFECT
 	jp StatModifierUpEffect
+
+; Nemesis: argless helper so the floated Roll effect can refresh the acting mon's
+; own live stats after a self-inflicted stat drop. RecalcModifiedStatsFor takes
+; its side in `a` (0 = player, nonzero = enemy), which a callfar from another bank
+; would clobber; setting it here, in-bank, keeps the argument intact.
+RecalcSelfStats:
+	ldh a, [hWhoseTurn]
+	jp RecalcModifiedStatsFor
 
 RecalcModifiedStatsFor:
 ; Nemesis bug fix for the vanilla "badge boost" bug. Recompute ONE mon's four
@@ -833,28 +917,8 @@ StatModifierDownEffect:
 	ld a, [bc]
 	bit INVULNERABLE, a ; fly/dig
 	jp nz, MoveMissed
-; WEB_CANNON: custom Bug move -- drops target Speed to the minimum (-6) in one hit.
-; Special-cased here so the generic -1/-2 path below is left untouched. Once the
-; target is already at -6, it falls through to CantLowerAnymore instead of
-; re-applying endlessly.
-	ldh a, [hWhoseTurn]
-	and a
-	ld a, [wPlayerMoveNum]
-	jr z, .gotMoveNumForWebCannon
-	ld a, [wEnemyMoveNum]
-.gotMoveNumForWebCannon
-	cp WEB_CANNON
-	jr nz, .notWebCannon
-	ld c, 2 ; SPEED stat-mod index
-	ld b, $0
-	add hl, bc ; hl -> target's Speed stat mod
-	ld a, [hl]
-	cp 2 ; already at -6 (mod stored as 1)?
-	jp c, CantLowerAnymore ; if so, don't keep "lowering" it
-	ld b, 1 ; drop Speed to the minimum (-6) in one hit
-	ld c, 2 ; ensure SPEED index for the stat recalc below
-	jr .ok
-.notWebCannon
+; (Web Cannon no longer routes through here -- it's a damaging move with its
+; own WebCannonEffect that runs after damage.)
 	ld a, [de]
 	sub ATTACK_DOWN1_EFFECT
 	cp EVASION_DOWN1_EFFECT + $3 - ATTACK_DOWN1_EFFECT ; covers all -1 effects
@@ -1002,6 +1066,8 @@ MonsStatsFellText:
 	jr z, .playerTurn
 	ld a, [wEnemyMoveEffect]
 .playerTurn
+	cp WEB_CANNON_EFFECT ; Web Cannon drops Speed a full -6 -> its own "massively fell" text
+	jr z, .massively
 ; check if the move's effect decreases a stat by 2
 	cp BIDE_EFFECT
 	ret c
@@ -1009,6 +1075,15 @@ MonsStatsFellText:
 	ret nc
 	ld hl, GreatlyFellText
 	ret
+.massively
+	ld hl, MassivelyFellText
+	ret
+
+MassivelyFellText:
+; Web Cannon's -6 Speed drop; a complete "massively fell!" line of its own.
+	text_pause
+	text_far _MassivelyFellText
+	text_end
 
 GreatlyFellText:
 	text_pause
@@ -1243,6 +1318,7 @@ TwoToFiveAttacksEffect:
 .twineedle
 	ld a, POISON_SIDE_EFFECT2
 	ld [hl], a ; set Twineedle's effect to poison effect
+	ld a, $2 ; Twineedle always hits exactly twice
 	jr .saveNumberOfHits
 
 FlinchSideEffect:
@@ -1261,6 +1337,14 @@ FlinchSideEffect:
 	ld b, 10 percent + 1 ; chance of flinch (FLINCH_SIDE_EFFECT1)
 	jr z, .gotEffectChance
 	ld b, 30 percent + 1 ; chance of flinch otherwise
+; CRUSH_JAW flinches half the time rather than the usual 30%. The move id sits
+; one byte below the effect (wPlayerMoveNum/wPlayerMoveEffect are adjacent, and
+; so are the enemy's), so read it back off de rather than branching on turn again.
+	dec de
+	ld a, [de]
+	cp CRUSH_JAW
+	jr nz, .gotEffectChance
+	ld b, 50 percent + 1 ; chance of flinch (CRUSH_JAW)
 .gotEffectChance
 	call BattleRandom
 	cp b
@@ -1293,7 +1377,10 @@ ChargeEffect:
 .notFly
 	ld a, [de]
 	cp DIG
+	jr z, .burrows
+	cp THIRD_RAIL ; DIG with an electric payload -- burrows exactly the same way
 	jr nz, .notDigOrFly
+.burrows
 	set INVULNERABLE, [hl] ; mon is now invulnerable to typical attacks (fly/dig)
 	ld b, SLIDE_DOWN_ANIM
 .notDigOrFly
@@ -1325,10 +1412,17 @@ ChargeMoveEffectText:
 	cp FLY
 	ld hl, FlewUpHighText
 	jr z, .gotText
+	cp STAMPEDE
+	ld hl, BeganToChargeText
+	jr z, .gotText
 	cp DIG
 	ld hl, DugAHoleText
 .gotText
 	ret
+
+BeganToChargeText:
+	text_far _BeganToChargeText
+	text_end
 
 MadeWhirlwindText:
 	text_far _MadeWhirlwindText
@@ -1461,8 +1555,8 @@ MindFeverBurn:
 	ld hl, wBattleMonStatus ; enemy attacking -> burn the player
 .gotTarget
 	ld a, [hli]
-	bit BRN, a
-	ret nz ; already burned -> skip (would re-halve attack)
+	and a
+	ret nz ; single-status: any existing status blocks Mind Fever's burn
 	ld a, [hli]
 	cp FIRE
 	ret z ; Fire-types can't be burned

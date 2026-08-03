@@ -94,38 +94,66 @@ BoxIsFullText:
 ; gift) -- LoadMovePPs then derives correct PP from the patched move IDs.
 SpeedtestGiveDebugMons::
 IF DEF(_SPEEDTEST)
-; Need 4 free box slots -- SendNewMonToBox has no overflow guard of its own,
-; so depositing into a (nearly) full box would corrupt it. If there's no
-; room, bail WITHOUT setting the flag so it retries on a later Continue.
-	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 3
-	ret nc
+; Ten level 100 mons straight into the PC box on the next "Continue", carrying
+; the moves that still need eyes on them. Web Cannon, Hot Oil and Crystallize
+; are deliberately absent -- those are confirmed working.
+;
+; SendNewMonToBox has no overflow guard, so bail without setting the flag if
+; the box lacks room; it retries on a later Continue.
 	CheckEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
 	ret nz
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 10 ; need ten free slots
+	ret nc
 	SetEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
-	lb bc, STARMIE, 100
-	ld hl, .StarmieMoves
+	lb bc, MEWTHREE, 100
+	ld hl, .MewthreeMoves
 	call .GiveBoxedMonWithMoves
-	lb bc, DITTO, 100
-	ld hl, .DittoMoves
+	lb bc, ALAKACHAMP, 100
+	ld hl, .AlakachampBoxMoves
 	call .GiveBoxedMonWithMoves
-	lb bc, PINSIR, 100
-	ld hl, .PinsirMoves
+	lb bc, ZUBAT, 100
+	ld hl, .ZubatMoves
 	call .GiveBoxedMonWithMoves
-	lb bc, MEW, 100
-	ld hl, .MewMoves
+	lb bc, BULBASAUR, 100
+	ld hl, .BulbasaurMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, SQUIRTLE, 100
+	ld hl, .SquirtleMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, CHARMANDER, 100
+	ld hl, .CharmanderMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, PIDGEOT, 100
+	ld hl, .PidgeotMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, JYNX, 100
+	ld hl, .JynxMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, LAPRAS, 100
+	ld hl, .LaprasMoves
+	call .GiveBoxedMonWithMoves
+	lb bc, GENGAR, 100
+	ld hl, .GengarMoves
 	call .GiveBoxedMonWithMoves
 ENDC
 	ret
 
-.StarmieMoves:
-	db PSYCHIC_M, ICE_BEAM, RECOVER, AMNESIA, SURF
-.DittoMoves:
-	db THUNDERBOLT, BODY_SLAM, ROCK_SLIDE, FLY, EARTHQUAKE
-.PinsirMoves:
-	db WEB_CANNON, VICEGRIP, TWINEEDLE, SWORDS_DANCE, SEISMIC_TOSS
-.MewMoves:
-	db METRONOME2, PSYCHIC_M, FIRE_BLAST, MEGA_DRAIN, BODY_SLAM
+; MewThree: its own sprites, stats and Telekinesis have never been seen in play
+.MewthreeMoves:    db TELEKINESIS, PSYCHIC_M, RECOVER, ICE_BEAM, AMNESIA
+.AlakachampBoxMoves: db UPPERCUT, PSYCHIC_M, EARTHQUAKE, SUBMISSION, SWORDS_DANCE
+; Zubat carries both full-drain moves
+.ZubatMoves:       db LEECH_LIFE, BLOOD_SUCK, DOUBLE_TEAM, CONFUSE_RAY, WING_ATTACK
+; the three level 40 unevolved-starter moves
+.BulbasaurMoves:   db GIGA_DRAIN, RAZOR_LEAF, SLEEP_POWDER, GROWTH, LEECH_SEED
+.SquirtleMoves:    db HYDRO_JET, SURF, ICE_BEAM, WITHDRAW, SKULL_BASH
+.CharmanderMoves:  db FLAME_WHIP, FLAMETHROWER, SLASH, DIG, SWORDS_DANCE
+; Hyper Beam's power is now Attack + Speed; Pidgeot takes the NORMAL -30 branch
+.PidgeotMoves:     db HYPER_BEAM, WING_ATTACK, AGILITY, MIRROR_MOVE, FLY
+.JynxMoves:        db ICE_SCULPTURE, ICE_BEAM, PSYCHIC_M, LOVELY_KISS, BODY_SLAM
+.LaprasMoves:      db ICE_BOMB, SURF, PSYCHIC_M, BODY_SLAM, CONFUSE_RAY
+; Ghost Beam, and Ghost-beats-Psychic which is false in vanilla
+.GengarMoves:      db GHOST_BEAM, NIGHT_SHADE, CONFUSE_RAY, HYPNOSIS, PSYCHIC_M
 
 ; b = species, c = level, hl = pointer to a NUM_MOVES-byte moveset
 .GiveBoxedMonWithMoves:

@@ -11,12 +11,12 @@ LoadGBPal::
 	dec h
 .ok
 	ld a, [hli]
-	ldh [rBGP], a
+	ld b, a
 	ld a, [hli]
-	ldh [rOBP0], a
-	ld a, [hli]
-	ldh [rOBP1], a
-	ret
+	ld c, a
+	ld a, [hl]
+	ld d, a
+	jp SetGBPalShades
 
 GBFadeInFromBlack::
 	ld hl, FadePal1
@@ -28,12 +28,17 @@ GBFadeOutToWhite::
 	ld b, 3
 
 GBFadeIncCommon:
+	push bc ; step counter
 	ld a, [hli]
-	ldh [rBGP], a
+	ld b, a
 	ld a, [hli]
-	ldh [rOBP0], a
+	ld c, a
 	ld a, [hli]
-	ldh [rOBP1], a
+	ld d, a
+	push hl
+	call SetGBPalShades
+	pop hl
+	pop bc
 	ld c, 8
 	call DelayFrames
 	dec b
@@ -50,12 +55,17 @@ GBFadeInFromWhite::
 	ld b, 3
 
 GBFadeDecCommon:
+	push bc ; step counter
 	ld a, [hld]
-	ldh [rOBP1], a
+	ld d, a
 	ld a, [hld]
-	ldh [rOBP0], a
+	ld c, a
 	ld a, [hld]
-	ldh [rBGP], a
+	ld b, a
+	push hl
+	call SetGBPalShades
+	pop hl
+	pop bc
 	ld c, 8
 	call DelayFrames
 	dec b

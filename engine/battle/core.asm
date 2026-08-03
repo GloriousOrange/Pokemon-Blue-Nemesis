@@ -4248,6 +4248,12 @@ GetDamageVarsForPlayerAttack:
 	srl b
 	rr c
 ; defensive stat can actually end up as 0, leading to a division by 0 freeze during damage calculation
+; (confirmed: L100 crit vs a high-Defense/Special mon) -- floor it at 1, same as the offensive stat below.
+	ld a, b
+	or c
+	jr nz, .enemyDefenseScaledOk
+	inc c
+.enemyDefenseScaledOk
 ; hl /= 4 (scale player's offensive stat)
 	srl h
 	rr l
@@ -4363,6 +4369,12 @@ GetDamageVarsForEnemyAttack:
 	srl b
 	rr c
 ; defensive stat can actually end up as 0, leading to a division by 0 freeze during damage calculation
+; (confirmed: L100 crit vs a high-Defense/Special mon) -- floor it at 1, same as the offensive stat below.
+	ld a, b
+	or c
+	jr nz, .playerDefenseScaledOk
+	inc c
+.playerDefenseScaledOk
 ; hl /= 4 (scale enemy's offensive stat)
 	srl h
 	rr l
@@ -4604,8 +4616,6 @@ JumpToOHKOMoveEffect:
 	dec a
 	ret
 
-INCLUDE "data/battle/unused_critical_hit_moves.asm"
-
 ; determines if attack is a critical hit
 ; Azure Heights claims "the fastest pokémon (who are, not coincidentally,
 ; among the most popular) tend to CH about 20 to 25% of the time."
@@ -4638,14 +4648,19 @@ CriticalHitTest:
 	ld c, [hl]                   ; read move id
 	ld a, [de]
 	bit GETTING_PUMPED, a        ; test for focus energy
-	jr nz, .focusEnergyUsed      ; bug: using focus energy causes a shift to the right instead of left,
-	                             ; resulting in 1/4 the usual crit chance
+	jr nz, .capCritRate          ; focus energy pegs the rate, see below
 	sla b                        ; (effective (base speed/2)*2)
 	jr nc, .noFocusEnergyUsed
+; Vanilla shifted RIGHT here, so FOCUS ENERGY and DIRE HIT gave a QUARTER of the
+; normal crit rate instead of quadrupling it -- the most famous dud in Gen 1.
+;
+; The intended 4x would be three left shifts, but base Speed over ~32 overflows
+; the 255 cap anyway, so every Pokemon that matters ends up pinned there. Peg it
+; directly instead -- and since the doubling above lands on this same cap when it
+; overflows, both paths share it. The caller halves this again for a normal move,
+; landing at ~50% crit (measured: tools/crit_probe.py).
+.capCritRate
 	ld b, $ff                    ; cap at 255/256
-	jr .noFocusEnergyUsed
-.focusEnergyUsed
-	srl b
 .noFocusEnergyUsed
 	ld hl, HighCriticalMoves     ; table of high critical hit moves
 .Loop
@@ -5035,7 +5050,10 @@ AttackSubstitute:
 	ld a, [de]
 	sub [hl]
 	ld [de], a
-	ret nc
+	jr c, .substituteBroke
+; substitute survived -- a frost Substitute may still freeze the attacker
+	callfar FrostSubstituteFreezeCheck
+	ret
 .substituteBroke
 ; If the target's Substitute breaks, wDamage isn't updated with the amount of HP
 ; the Substitute had before being attacked.
@@ -5060,6 +5078,8 @@ AttackSubstitute:
 .nullifyEffect
 	xor a
 	ld [hl], a ; zero the effect of the attacker's move
+; a frost Substitute (Ice Sculpture) that just broke may still freeze the attacker
+	callfar FrostSubstituteFreezeCheck
 	jp DrawHUDsAndHPBars
 
 SubstituteTookDamageText:
@@ -5188,7 +5208,7 @@ MetronomePickMove:
 .gotTurn
 	ld a, [hl] ; the move being used (METRONOME or the METRONOME2 HM)
 	cp METRONOME2
-	jr z, .metronome2 ; METRONOME2 rolls only from a fixed 21-move list
+	jr z, .metronome2 ; METRONOME2 rolls only from a fixed 19-move list
 ; loop to pick a random number in the range of valid moves used by Metronome
 .pickMoveLoop
 	call BattleRandom
@@ -5205,7 +5225,7 @@ MetronomePickMove:
 	jr ReloadMoveData
 .metronome2
 	call BattleRandom
-	cp 21 ; number of entries in Metronome2MoveList
+	cp 19 ; number of entries in Metronome2MoveList
 	jr nc, .metronome2
 	ld c, a
 	ld b, 0
@@ -5218,9 +5238,9 @@ MetronomePickMove:
 	jr ReloadMoveData
 
 Metronome2MoveList:
-	db ICE_BEAM, HYPER_BEAM, MEGA_DRAIN, WING_ATTACK, DIG, RAZOR_LEAF, THUNDERBOLT
+	db ICE_BEAM, HYPER_BEAM, MEGA_DRAIN, WING_ATTACK, RAZOR_LEAF, THUNDERBOLT
 	db SPORE, ACID_ARMOR, MEDITATE, HYDRO_PUMP, SURF, SAND_ATTACK, FIRE_BLAST
-	db FLAMETHROWER, TRANSFORM, SLASH, SLUDGE, BODY_SLAM, PSYCHIC_M, TOXIC
+	db FLAMETHROWER, SLASH, SLUDGE, BODY_SLAM, PSYCHIC_M, TOXIC
 
 ; this function increments the current move's PP
 ; it's used to prevent moves that run another move within the same turn
@@ -6281,7 +6301,8 @@ GetCurrentMove:
 	ld [wNameListType], a
 	call GetName
 	ld de, wNameBuffer
-	jp CopyToStringBuffer
+	call CopyToStringBuffer
+	farjp ApplyHyperBeamPower ; Hyper Beam's power is computed, not read from the table
 
 LoadEnemyMonData:
 	ld a, [wLinkState]
@@ -6497,27 +6518,13 @@ LoadPlayerBackPic:
 	ld a, [wBattleType]
 	dec a ; is it the old man tutorial?
 	jr z, .oldMan
-; Hero path battles as the Scientist disguise, Loyalist path as the Rocket
-; disguise, Traitor path (overrides both) as the Nemesis back sprite --
-; matches the overworld sprite picked by LoadWalkingPlayerSpriteGraphics
-; (home/overworld.asm).
-	ld a, [wPostGameMisc]
-	bit BIT_PLAYER_TRAITOR, a
-	jr nz, .traitor
-	bit BIT_ROCKET_LOYALTY, a
-	jr nz, .rocket
-	ld de, ScientistPicBack
-	ld a, BANK(ScientistPicBack)
-	jr .next
-.rocket
-	ld de, RocketPicBack
-	ld a, BANK(RocketPicBack)
-	ASSERT BANK(ScientistPicBack) == BANK(RocketPicBack)
-	jr .next
-.traitor
-	ld de, TraitorPicBack
-	ld a, BANK(TraitorPicBack)
-	ASSERT BANK(ScientistPicBack) == BANK(TraitorPicBack)
+; The player's own trainer sprite no longer slides in for normal battles --
+; BlankPicBack is a blank pic, so the OAM/tilemap mechanics below (shared
+; with the Old Man tutorial and with SlidePlayerAndEnemySilhouettesOnScreen)
+; don't need to change at all; nothing visible just ends up drawn. Pokemon
+; back sprites are a separate, unrelated asset/code path and are unaffected.
+	ld de, BlankPicBack
+	ld a, BANK(BlankPicBack)
 	jr .next
 .oldMan
 	ld de, OldManPicBack

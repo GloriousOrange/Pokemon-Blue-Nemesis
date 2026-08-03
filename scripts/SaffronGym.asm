@@ -36,6 +36,7 @@ SaffronGym_ScriptPointers:
 	dw_const EndTrainerBattle,                      SCRIPT_SAFFRONGYM_END_BATTLE
 	dw_const SaffronGymSabrinaPostBattle,           SCRIPT_SAFFRONGYM_SABRINA_POST_BATTLE
 	dw_const SaffronGymRematchDefeated,             SCRIPT_SAFFRONGYM_REMATCH_DEFEATED
+	dw_const SaffronGymMeganTrained,                SCRIPT_SAFFRONGYM_MEGAN_TRAINED
 
 SaffronGymRematchDefeated:
 	ld a, [wIsInBattle]
@@ -84,6 +85,18 @@ SaffronGymSabrinaReceiveTM46Script:
 	; deactivate gym trainers
 	SetEventRange EVENT_BEAT_SAFFRON_GYM_TRAINER_0, EVENT_BEAT_SAFFRON_GYM_TRAINER_6
 
+	jp SaffronGymResetScripts
+
+SaffronGymMeganTrained:
+; Aftermath of Megan's optional training battle. Losing leaves the flag clear so
+; she will spar again, the same way a lost gym leader fight can be retried.
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld a, 17 ; set again rather than trusting it to survive the battle
+	ld [wMeganLocIndex], a
+	farcall MeganMarkTrained
+.reset
 	jp SaffronGymResetScripts
 
 SaffronGym_TextPointers:
@@ -242,7 +255,12 @@ SaffronGymMeganText:
 	text_asm
 	ld a, 17 ; Megan location index
 	ld [wMeganLocIndex], a
-	farcall MeganTalk
+	farcall MeganSparOffer ; offers a training battle, else heals as usual
+	jr nc, .done
+	ld a, SCRIPT_SAFFRONGYM_MEGAN_TRAINED
+	ld [wSaffronGymCurScript], a
+	ld [wCurMapScript], a
+.done
 	jp TextScriptEnd
 
 SaffronGymGymGuideText:

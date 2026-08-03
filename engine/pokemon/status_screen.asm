@@ -145,7 +145,7 @@ StatusScreen:
 	lb bc, LEADING_ZEROES | 1, 3
 	call PrintNumber ; Pokémon no.
 	hlcoord 11, 10
-	predef PrintMonType
+	predef PrintLoadedMonType
 	ld hl, NamePointers2
 	call .GetStringPointer
 	ld d, h

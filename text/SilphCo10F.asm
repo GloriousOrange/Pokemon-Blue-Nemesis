@@ -40,11 +40,10 @@ _SilphCo10FScientistBattleText::
 	done
 
 _SilphCo10FScientistHeroBattleText::
-	text "Oh -- OAK's kid."
-
-	para "Try not to touch"
-	line "anything, would"
-	cont "you?"
+	text "Nine floors of us"
+	line "and you still"
+	cont "thought we were"
+	cont "the victims."
 	done
 
 _SilphCo10FScientistEndBattleText::
@@ -74,3 +73,22 @@ _SilphCo10FFlavorScientistText::
 	para "OAK's not handing"
 	line "over the keys."
 	done
+
+; Loyalist path: SILPH staff standing where the ROCKETs stand on the hero path.
+
+_SilphCo10FDefender1BattleText::
+	text "Tenth floor. This"
+	line "is where we make"
+	cont "our stand."
+	done
+
+_SilphCo10FDefender1EndBattleText::
+	text "Such as it was."
+	prompt
+
+_SilphCo10FDefender1AfterBattleText::
+	text "The PRESIDENT is"
+	line "above us. Please"
+	cont "don't hurt him."
+	done
+

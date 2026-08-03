@@ -4,7 +4,7 @@
 	;   hp  atk  def  spd  spc
 
 	db POISON, GROUND ; type
-	db 45 ; catch rate
+	db 90 ; catch rate
 	db 194 ; base exp
 
 	INCBIN "gfx/pokemon/front/nidoqueen.pic", 0, 1 ; sprite dimensions
@@ -20,7 +20,7 @@
 	     SEISMIC_TOSS, RAGE, THUNDERBOLT, THUNDER, EARTHQUAKE,  \
 	     FISSURE, MIMIC, DOUBLE_TEAM, REFLECT, FIRE_BLAST,  \
 	     SKULL_BASH, REST, ROCK_SLIDE, SUBSTITUTE, SURF,  \
-	     STRENGTH
+	     STRENGTH, ROCK_THROW
 	; end
 
 	db 0 ; padding

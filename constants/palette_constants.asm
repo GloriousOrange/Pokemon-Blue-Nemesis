@@ -60,4 +60,10 @@ DEF SET_PAL_DEFAULT EQU $ff
 	const PAL_CAVE      ; $23
 	const PAL_GAMEFREAK ; $24
 	const PAL_ALAKACHAMP ; $25 - dedicated crimson palette so Alakachamp reads distinct from Machamp
+	const PAL_GHOSTMON   ; $26 - resurrected-starter spectral purple (see CheckIsGhostPartyMon);
+	                     ; NOT the same as PAL_PURPLEMON, which is a normal species palette
+	                     ; shared by Ekans/Gastly/Miasma/etc. and must stay uniform sepia
+	const PAL_PINSIRITE  ; $27 - "black galaxy" granite: near-black body flecked with warm gold mica
+	const PAL_NINEFROST  ; $28 - icy blue-white
+	const PAL_DIGNEMITE  ; $29 - silver/steel, not gold -- see data/sgb/sgb_palettes.asm
 DEF NUM_SGB_PALS EQU const_value

@@ -4,7 +4,7 @@
 	;   hp  atk  def  spd  spc
 
 	db DRAGON, FLYING ; type
-	db 45 ; catch rate
+	db 90 ; catch rate
 	db 218 ; base exp
 
 	INCBIN "gfx/pokemon/front/dragonite.pic", 0, 1 ; sprite dimensions
@@ -19,7 +19,7 @@
 	     HYPER_BEAM, RAGE, DRAGON_RAGE, THUNDERBOLT, THUNDER,  \
 	     MIMIC, DOUBLE_TEAM, REFLECT, FIRE_BLAST, SWIFT,  \
 	     SKULL_BASH, REST, THUNDER_WAVE, SUBSTITUTE, SURF,  \
-	     STRENGTH, FLY
+	     STRENGTH, FLY, ROCK_THROW
 	; end
 
 	db 0 ; padding

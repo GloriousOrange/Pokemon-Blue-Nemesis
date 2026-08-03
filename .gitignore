@@ -29,3 +29,7 @@
 *.sn*
 *.sa*
 *.sg1
+
+# local PyBoy screenshot harness venv (tools/screenshot.py)
+.venv-emu/
+__pycache__/

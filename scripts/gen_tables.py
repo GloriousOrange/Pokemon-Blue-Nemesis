@@ -77,6 +77,7 @@ with open(f"{BASE}/data/pokemon/base_stats.asm") as f:
 includes.append("mew")
 
 dex_to_type = {}
+dex_to_types = {}  # dex → (type1, type2); type2 == type1 for single-type mons
 TYPES = {"NORMAL","FIRE","WATER","GRASS","ELECTRIC","ICE","FIGHTING","POISON",
          "GROUND","FLYING","BIRD","PSYCHIC_TYPE","BUG","ROCK","GHOST","DRAGON"}
 
@@ -86,13 +87,16 @@ for dex_num, fname in enumerate(includes, 1):
         continue
     with open(path) as f:
         content = f.read()
-    m = re.search(r"db\s+(\w+),\s*\w+\s*;.*type", content, re.IGNORECASE)
+    m = re.search(r"db\s+(\w+),\s*(\w+)\s*;.*type", content, re.IGNORECASE)
     if m and m.group(1) in TYPES:
         dex_to_type[dex_num] = m.group(1)
+        t2 = m.group(2) if m.group(2) in TYPES else m.group(1)
+        dex_to_types[dex_num] = (m.group(1), t2)
     else:
         for word in re.findall(r'\b([A-Z_]+)\b', content):
             if word in TYPES:
                 dex_to_type[dex_num] = word
+                dex_to_types[dex_num] = (word, word)
                 break
 
 # ── 5. Base-form Pokédex numbers (79 total) ──────────────────────────────────
@@ -129,18 +133,34 @@ LEGENDARY_OVERRIDE = {}  # All Pokemon use type pool logic, no special cases
 
 # ── 7. Compute rival species for every starter (single pass) ─────────────────
 pool_counters = {t: 0 for t in POOLS}
-rivals = []  # rivals[i] = rival species const for BASE_FORMS[i]
+flying_counter = 0
+rivals = []           # rivals[i]          = actual rival species for BASE_FORMS[i]
+baseline_rivals = []  # baseline_rivals[i] = pre-Flying-override species; used ONLY
+                      # for stable team numbering so the Flying fix leaves the
+                      # downstream team tables (parties.asm, ChampionsRoom) byte-
+                      # identical (the counter species SET is unchanged).
 
 for dex in BASE_FORMS:
     if dex in LEGENDARY_OVERRIDE:
         rival = LEGENDARY_OVERRIDE[dex]
+        base  = rival
     else:
         ptype = dex_to_type.get(dex, "NORMAL")
         pool  = POOLS.get(ptype, POOLS["NORMAL"])
         idx   = pool_counters[ptype]
-        rival = pool[idx % len(pool)]
+        base  = pool[idx % len(pool)]
         pool_counters[ptype] = idx + 1
+        rival = base
+        # Flying starters: Flying is 2x weak to Electric but RESISTS Fighting,
+        # so the primary-type counter whiffs badly (e.g. a Fighting mon vs the
+        # Normal/Flying birds, or a Ground mon vs Zapdos, which Flying is immune
+        # to). Override to the Electric FLYING pool.
+        if "FLYING" in dex_to_types.get(dex, (ptype,)):
+            fpool = POOLS["FLYING"]
+            rival = fpool[flying_counter % len(fpool)]
+            flying_counter += 1
     rivals.append(rival)
+    baseline_rivals.append(base)
 
 # ── 8. Assign team numbers ────────────────────────────────────────────────────
 # Teams 1-3 already exist in Rival1Data for the original starters.
@@ -150,7 +170,9 @@ TEAM_EXISTING = {"SQUIRTLE": 1, "BULBASAUR": 2, "CHARMANDER": 3}
 custom_team_map = {}   # species → team number (10+)
 custom_species_list = []  # ordered list of new species (for trainer data output)
 
-for rival in rivals:
+# Number teams from the pre-override baseline so the Flying fix doesn't renumber
+# existing teams (the counter species set is identical either way).
+for rival in baseline_rivals:
     if rival not in TEAM_EXISTING and rival not in custom_team_map:
         team_num = 10 + len(custom_species_list)
         custom_team_map[rival] = team_num
@@ -191,6 +213,8 @@ for i, dex in enumerate(BASE_FORMS):
     ptype        = dex_to_type.get(dex, "NORMAL")
     if dex in LEGENDARY_OVERRIDE:
         note = "legendary triangle"
+    elif "FLYING" in dex_to_types.get(dex, (ptype,)):
+        note = "FLYING"
     else:
         note = ptype
     print(f"\tdb {rival:<16} ; #{dex:03d} {player_name} ({note})")

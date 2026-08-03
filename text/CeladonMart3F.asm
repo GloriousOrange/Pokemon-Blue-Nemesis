@@ -48,8 +48,8 @@ _CeladonMart3FGameBoyKid2Text::
 _CeladonMart3FGameBoyKid3Text::
 	text "Come on GRAVELER!"
 
-	para "I love GRAVELER!"
-	line "I collect them!"
+	para "I hoard GRAVELER!"
+	line "I stockpile them!"
 
 	para "Huh?"
 

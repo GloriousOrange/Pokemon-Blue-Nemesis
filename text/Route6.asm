@@ -2,8 +2,8 @@ _Route6CooltrainerM1BattleText::
 	text "Who's there?"
 	line "Quit listening in"
 	cont "on us! People are"
-	cont "always eavesdropping"
-	cont "on my greatness."
+	cont "always spying on"
+	cont "my greatness."
 	done
 
 _Route6CooltrainerM1EndBattleText::

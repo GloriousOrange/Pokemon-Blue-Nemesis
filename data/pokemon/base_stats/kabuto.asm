@@ -1,16 +1,16 @@
 	db DEX_KABUTO ; pokedex id
 
-	db  30,  80, 150,  75,  45
+	db  30,  80, 150,  90,  45
 	;   hp  atk  def  spd  spc
 
 	db ROCK, WATER ; type
-	db 45 ; catch rate
+	db 90 ; catch rate
 	db 119 ; base exp
 
 	INCBIN "gfx/pokemon/front/kabuto.pic", 0, 1 ; sprite dimensions
 	dw KabutoPicFront, KabutoPicBack
 
-	db SCRATCH, HARDEN, NO_MOVE, NO_MOVE ; level 1 learnset
+	db CLAMP, SCRATCH, HARDEN, NO_MOVE ; level 1 learnset (Clamp added for starter STAB)
 	db GROWTH_FAST ; growth rate
 
 	; tm/hm learnset

@@ -34,7 +34,7 @@ _RockTunnelB1FHiker1AfterBattleText::
 	done
 
 _RockTunnelB1FSuperNerd1BattleText::
-	text "That #DEX logs"
+	text "That CODEX logs"
 	line "everywhere you've"
 	cont "been. Who do you"
 	cont "think reads that?"

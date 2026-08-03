@@ -163,14 +163,14 @@ _OaksLabOak1ComeSeeMeSometimesText::
 	line "sometimes."
 
 	para "I want to know how"
-	line "your #DEX is"
+	line "your CODEX is"
 	cont "coming along."
 	done
 
 _OaksLabOak1HowIsYourPokedexComingText::
 	text "OAK: Good to see "
 	line "you! How is your "
-	cont "#DEX coming? "
+	cont "CODEX coming? "
 	cont "Here, let me take"
 	cont "a look!"
 	prompt
@@ -281,9 +281,8 @@ _OaksLabRivalIPickedTheWrongPokemonText::
 	prompt
 
 _OaksLabRivalAmIGreatOrWhatText::
-	text "Yours is weak."
-	line "Bury it and"
-	cont "start again."
+	text "We both knew"
+	line "I'd win."
 	prompt
 
 _OaksLabRivalSmellYouLaterText::
@@ -324,7 +323,7 @@ _OaksLabOakGotPokedexText::
 	text "OAK: Take these."
 
 	para "<PLAYER> got"
-	line "#DEX from OAK!@"
+	line "CODEX from OAK!@"
 	text_end
 
 _OaksLabOakThatWasMyDreamText::

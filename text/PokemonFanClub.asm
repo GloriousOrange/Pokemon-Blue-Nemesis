@@ -1,28 +1,28 @@
 _PokemonFanClubPikachuFanNormalText::
-	text "Won't you admire"
+	text "Care to sample"
 	line "my PIKACHU's"
-	cont "adorable tail?"
+	cont "smoked tail?"
 	done
 
 _PokemonFanClubPikachuFanBetterText::
 	text "Humph! My PIKACHU"
-	line "is twice as cute"
-	cont "as that one!"
+	line "is twice as"
+	cont "tender as that!"
 	done
 
 _PokemonFanClubSeelFanNormalText::
-	text "I just love my"
+	text "I'm curing my"
 	line "SEEL!"
 
 	para "It squeals when I"
-	line "hug it!"
+	line "salt it!"
 	done
 
 _PokemonFanClubSeelFanBetterText::
 	text "Oh dear!"
 
 	para "My SEEL is far"
-	line "more attractive!"
+	line "plumper!"
 	done
 
 _PokemonFanClubPikachuText::

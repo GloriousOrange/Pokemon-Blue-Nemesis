@@ -1,5 +1,5 @@
 _DexCompletionText::
-	text "#DEX comp-"
+	text "CODEX comp-"
 	line "letion is:"
 
 	para "@"
@@ -14,104 +14,105 @@ _DexCompletionText::
 	prompt
 
 _DexRatingText_Own0To9::
-	text "You still have"
-	line "lots to do."
-	cont "Look for #MON"
+	text "Pathetic. Your"
+	line "catalog is bare."
+	cont "Hunt #MON"
 	cont "in grassy areas!"
 	done
 
 _DexRatingText_Own10To19::
-	text "You're on the"
-	line "right track! "
+	text "A start. Keep"
+	line "cataloging."
 	cont "Get a FLASH HM"
 	cont "from my AIDE!"
 	done
 
 _DexRatingText_Own20To29::
-	text "You still need"
+	text "Not enough. I need"
 	line "more #MON!"
-	cont "Try to catch"
-	cont "other species!"
+	cont "Bring me other"
+	cont "species!"
 	done
 
 _DexRatingText_Own30To39::
-	text "Good, you're"
-	line "trying hard!"
+	text "Adequate. Press"
+	line "on, soldier."
 	cont "Get an ITEMFINDER"
 	cont "from my AIDE!"
 	done
 
 _DexRatingText_Own40To49::
-	text "Looking good!"
-	line "Go find my AIDE"
+	text "Acceptable. Report"
+	line "to my AIDE"
 	cont "when you get 50!"
 	done
 
 _DexRatingText_Own50To59::
-	text "You finally got at"
-	line "least 50 species!"
-	cont "Be sure to get"
+	text "50 species logged"
+	line "at last."
+	cont "Requisition"
 	cont "EXP.ALL from my"
 	cont "AIDE!"
 	done
 
 _DexRatingText_Own60To69::
-	text "Ho! This is geting"
-	line "even better!"
+	text "The catalog grows."
+	line "Good."
 	done
 
 _DexRatingText_Own70To79::
-	text "Very good!"
-	line "Go fish for some"
+	text "Efficient. Now"
+	line "fish up some"
 	cont "marine #MON!"
 	done
 
 _DexRatingText_Own80To89::
-	text "Wonderful!"
-	line "Do you like to"
-	cont "collect things?"
+	text "Impressive haul."
+	line "Do you savor"
+	cont "the hunt?"
 	done
 
 _DexRatingText_Own90To99::
-	text "I'm impressed!"
-	line "It must have been"
-	cont "difficult to do!"
+	text "Formidable. This"
+	line "took discipline"
+	cont "to accomplish."
 	done
 
 _DexRatingText_Own100To109::
-	text "You finally got at"
-	line "least 100 species!"
-	cont "I can't believe"
-	cont "how good you are!"
+	text "100 species. Even"
+	line "I am impressed"
+	cont "by your"
+	cont "ruthlessness."
 	done
 
 _DexRatingText_Own110To119::
 	text "You even have the"
-	line "evolved forms of"
-	cont "#MON! Super!"
+	line "evolved forms."
+	cont "Thorough."
 	done
 
 _DexRatingText_Own120To129::
-	text "Excellent! Trade"
-	line "with friends to"
-	cont "get some more!"
+	text "Excellent. Trade"
+	line "with other hunters"
+	cont "for the rest!"
 	done
 
 _DexRatingText_Own130To139::
-	text "Outstanding!"
-	line "You've become a"
-	cont "real pro at this!"
+	text "Outstanding. A"
+	line "true master of"
+	cont "the hunt!"
 	done
 
 _DexRatingText_Own140To149::
 	text "I have nothing"
-	line "left to say!"
-	cont "You're the"
-	cont "authority now!"
+	line "left to teach."
+	cont "The catalog is"
+	cont "yours to finish!"
 	done
 
 _DexRatingText_Own150To151::
-	text "Your #DEX is"
+	text "Your CODEX is"
 	line "entirely complete!"
-	cont "Congratulations!"
+	cont "Every species,"
+	cont "conquered."
 	done

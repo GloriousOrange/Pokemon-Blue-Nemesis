@@ -3,6 +3,8 @@
 	const_export SILPHCO8F_ROCKET1
 	const_export SILPHCO8F_SCIENTIST
 	const_export SILPHCO8F_ROCKET2
+	const_export SILPHCO8F_DEFENDER1
+	const_export SILPHCO8F_DEFENDER2
 	const_export SILPHCO8F_FLAVOR_ROCKET
 	const_export SILPHCO8F_FLAVOR_SCIENTIST
 
@@ -25,6 +27,10 @@ SilphCo8F_Object:
 	object_event 19,  2, SPRITE_ROCKET, STAY, LEFT, TEXT_SILPHCO8F_ROCKET1, OPP_ROCKET, 35
 	object_event 10,  2, SPRITE_SCIENTIST, STAY, DOWN, TEXT_SILPHCO8F_SCIENTIST, OPP_SCIENTIST, 9
 	object_event 12, 15, SPRITE_ROCKET, STAY, RIGHT, TEXT_SILPHCO8F_ROCKET2, OPP_ROCKET, 36
+; Loyalist path: SILPH staff holding the tile the ROCKET holds on the hero
+; path. Exactly one of each pair is shown -- see SetFactionObjectsScript.
+	object_event 19,  2, SPRITE_SCIENTIST, STAY, LEFT, TEXT_SILPHCO8F_DEFENDER1, OPP_SCIENTIST, 34
+	object_event 12, 15, SPRITE_SCIENTIST, STAY, RIGHT, TEXT_SILPHCO8F_DEFENDER2, OPP_SCIENTIST, 35
 ; Flavor pair depicting the two factions clashing with EACH OTHER, not with
 ; the player -- pure background dialogue, never a trainer battle.
 	object_event  6,  2, SPRITE_ROCKET, STAY, RIGHT, TEXT_SILPHCO8F_FLAVOR_ROCKET

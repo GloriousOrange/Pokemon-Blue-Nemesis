@@ -508,7 +508,13 @@ wLowHealthAlarmDisabled:: db
 
 wPlayerMonMinimized:: db
 
-	ds 13
+; Nemesis: nonzero if this side's active Substitute is a "frost" Substitute
+; (made by Jynx's Ice Sculpture). While up, any mon that damages it has a 50%
+; chance to be frozen. Set by IceSculptureEffect, cleared by a normal Substitute.
+wPlayerFrostSubstitute:: db
+wEnemyFrostSubstitute:: db
+
+	ds 11
 
 UNION
 ; the amount of damage accumulated by the enemy while biding
@@ -1038,7 +1044,7 @@ wScriptedNPCWalkCounter:: db
 
 	ds 1
 
-; always 0 since full CGB support was not implemented
+; nonzero when running on a Game Boy Color (set by _Start); drives the CGB palette engine
 wOnCGB:: db
 
 ; if running on SGB, it's 1, else it's 0
@@ -1550,9 +1556,10 @@ wSavedTileAnimations:: db
 
 wDamage:: dw
 
-	ds 2
+	ds 1
 
-wRepelRemainingSteps:: db
+; 16-bit so repels can exceed 255 steps (Super Repel = 1000)
+wRepelRemainingSteps:: dw
 
 ; list of moves for FormatMovesString
 wMoves:: ds NUM_MOVES
@@ -1561,6 +1568,18 @@ wMoveNum:: db
 
 ; concatenated move name list where intermediate '@' are replaced with '<NEXT>'
 wMovesString:: ds NUM_MOVES * MOVE_NAME_LENGTH
+
+; CODEX "MOVES" screen: total level-up learnset entry count for the currently
+; viewed species (from CountLearnsetEntries) and a redraw-loop row counter.
+; The learnset itself isn't buffered -- GetLearnsetEntry re-walks the ROM
+; table per row, so this doesn't cost WRAM0 space (which is extremely tight).
+; Scroll position reuses wListScrollOffset (already save/restored by
+; HandlePokedexSideMenu around this whole screen).
+wPokedexMovesCount:: db
+wPokedexMovesRowIndex:: db
+; stable copy of the species index for the row loop, since GetLearnsetEntry
+; returns its move id through the byte aliased with wPokedexNum
+wPokedexMovesSpecies:: db
 
 wUnusedCurMapTilesetCopy:: db
 
@@ -1909,7 +1928,10 @@ wCurrentBoxNum:: db
 ; number of HOF teams
 wNumHoFTeams:: db
 
-wUnusedMapVariable:: db
+; Was wUnusedMapVariable: written once by ClearVariablesOnEnterMap and never
+; read. That clear is now gone, which makes this a persistent saved byte -- it
+; holds the one OLYMPIA trainer flag that would not fit the 24 bits above.
+wOlympiaTrainerFlags2:: db
 
 wPlayerCoins:: dw ; BCD
 
@@ -2061,6 +2083,10 @@ wArenaChallengersDefeated:: ds 26 ; one byte per arena challenger (0 = unbeaten,
 wGymRematchFlags::          db   ; bitfield: gym leaders re-beaten (post-game rematch)
 wScientistsDefeated::       db   ; bitfield: burned-lab scientists defeated
 wPostGameMisc::             db   ; OAK_DEFEATED / GIOVANNI_DEFEATED / LAB_KEY / DEED bits
+; player's chosen overworld look (a SPRITE_* id), picked at the start of a new
+; game via PickPlayerSprite; see GetWalkingPlayerSpriteGraphics for how the
+; Hero/Loyalist/Traitor path affects which sprite actually shows
+wPlayerChosenSprite::       db
 wBattleIslandCurScript::    db   ; Battle Island arena map-script state
 wCurArenaChallenger::       db   ; index (0-25) of the arena challenger being fought ($ff = Giovanni)
 wMeganVisitedFlags::        ds 4 ; bit per Megan location (PokeCenters/gyms/caves/etc.) = first-visit-gift given
@@ -2070,7 +2096,46 @@ wLevelStoneTargetMon::      db   ; scratch: target party slot, re-armed each loo
 wOakRemarkStarterIndex::    db   ; scratch: StarterSpeciesTable index, saved before wPokedexNum is reused for the dex number
 wPostGameFlagsEnd::
 
-	ds 17 ; was ds 56; 39 bytes carved out above for wPostGameFlags
+; which color scheme the Game Boy Color palette engine uses
+; (COLOR_SCHEME_DIVERSE / COLOR_SCHEME_NEON, toggled on the OPTION screen).
+; Lives in Main Data so it is kept in the save file.
+wColorScheme:: db
+
+; One bit per sparring location, indexed by her MeganData party minus 2: bits 0-7
+; are the eight gyms in badge order, bit 8 the Indigo Plateau lobby, bit 9 Battle
+; Island. Set once she has been beaten there. A bitfield rather than ten event
+; flags because the event array only had four slots left, and growing it would
+; shift everything after wEventFlags and break existing saves.
+wMeganTrainedFlags:: ds 2
+
+; Map-script state for the two Megan sparring stops that had no script table of
+; their own (Indigo Plateau lobby, Battle Island house). They share one byte the
+; way the Apex Mart floors share theirs; only one can be on screen at a time.
+wMeganSparCurScript:: db
+
+; Palette RAM is only writable outside LCD mode 3, so a Game Boy Color palette
+; can only safely reach the hardware during VBlank -- where very little room is
+; left once the tilemap transfers have run. So the colors are worked out into
+; wCGBPalBuffer first (plain WRAM, safe to compute at any time) and VBlank only
+; has to copy the eight bytes across.
+;
+; wCGBPalSync is 0 when the buffer holds nothing to write, otherwise 1 + the
+; palette it holds: 1-5 are background palettes 0-4 (4 being water's own), 6 and
+; 7 the two object palettes. wCGBPalNextToPrepare is how far the rebuild has got.
+wCGBPalBuffer:: ds 8
+wCGBPalSync:: db
+wCGBPalNextToPrepare:: db
+
+; Keep this slack in step with the bytes carved out above: shrinking Main Data by
+; even one byte shifts every section after it and invalidates existing saves.
+; Beaten-flags for the S.S. OLYMPIA's second wave of trainers. Carved from the
+; reserved slack IN PLACE -- same trick as wMeganTrainedFlags above -- because
+; the event array is full (const_next $A00 is a hard cap) and growing it would
+; shift wEventFlags and invalidate every existing save. Taking exactly the 3
+; bytes the slack already held keeps Main Data the same size.
+; Bit layout is fixed by the `trainer` macro's assert (bit % 8 must equal the
+; trainer's CURRENT_TRAINER_BIT % 8); see constants/olympia_trainer_flags.asm.
+wOlympiaTrainerFlags:: ds 3
 
 wObtainedHiddenItemsFlags:: flag_array MAX_HIDDEN_ITEMS
 
@@ -2152,7 +2217,8 @@ wMovementFlags:: db
 
 wCompletedInGameTradeFlags:: dw
 
-	ds 2
+wApexMartCurScript:: db ; shared Apex Mart (Oak's Emporium) map-script state -- transient, only one floor is active at a time (carved from padding)
+	ds 1
 
 wWarpedFromWhichWarp:: db
 wWarpedFromWhichMap:: db
@@ -2258,7 +2324,42 @@ wStarterAshesLevel::   db                      ; saved starter level
 wStarterAshesOTID::    dw                      ; saved starter OT ID (2 bytes)
 wStarterAshesNick::    ds NAME_LENGTH          ; saved starter nickname (11 bytes)
 
+; party count snapshotted right before the Pokemon Tower 5F ghost-starter wild
+; encounter, so the post-battle script can tell whether a successful catch
+; landed in the party (count grew) or the box (count unchanged)
+wGhostEncounterPartyCount:: db
+
+; One bit per SPEEDTEST-only signature-move test mon (see
+; SpeedtestGiveDebugMons) -- the shared event-flag array (EVENT_* constants)
+; is a hard-capped, fixed-size resource for real game state; these are
+; debug-only conveniences and don't need to share that budget.
+wSpeedtestExtraMonsGiven::  db
+wSpeedtestExtraMonsGiven2:: db ; ran out of bits in the first byte
+
 wMainDataEnd::
+
+
+SECTION "CGB Palette State", WRAM0
+
+; --- Game Boy Color palette engine state (engine/gfx/palettes.asm) ---
+; Not saved: all of it is rebuilt by the next palette command.
+
+; the four SuperPalettes rows selected by the most recent PAL_SET packet
+wCGBPalIndices:: ds 4
+
+; Shadow copies of the DMG palette registers. On CGB those registers do nothing,
+; so every write goes through SetGBPalShades, which records the shade mapping
+; here and rebuilds the real color palettes from it. This is what makes the
+; existing rBGP-based fades still fade on a Game Boy Color.
+wCGBShadowBGP::  db
+wCGBShadowOBP0:: db
+wCGBShadowOBP1:: db
+
+; the ATTR_BLK packet whose regions are currently painted into the attribute
+; map, so repeat palette commands (e.g. HP bar recolors) skip the VRAM work
+wCGBLastBlkPacket:: dw
+
+ENDSECTION
 
 
 SECTION "Current Box Data", WRAM0

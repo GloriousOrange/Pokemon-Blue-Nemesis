@@ -1,6 +1,5 @@
 	db DEX_DITTO ; pokedex id
-
-	db 250, 150, 150, 150, 200
+	db 250,  55,  55, 150,  55
 	;   hp  atk  def  spd  spc  ; Ditto buffed: HP 250, Atk/Def/Spd 150, Spc 200
 
 	db NORMAL, NORMAL ; type
@@ -10,7 +9,8 @@
 	INCBIN "gfx/pokemon/front/ditto.pic", 0, 1 ; sprite dimensions
 	dw DittoPicFront, DittoPicBack
 
-	db TRANSFORM, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
+	db TRANSFORM, TACKLE, NO_MOVE, NO_MOVE ; level 1 learnset (Tackle so a Ditto
+	; starter can fight without Transform; its level-up learnset is empty)
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

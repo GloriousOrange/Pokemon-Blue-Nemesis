@@ -6,6 +6,16 @@ MACRO toggle_consts_for
 	DEF TOGGLEMAP{\1}_NAME EQUS "\1"
 ENDM
 
+; For toggles added to a map that already has a block above. A toggle's global
+; index is its position in this list, and that index is a bit in the SAVED
+; wToggleableObjectFlags array -- so inserting into an existing block shifts
+; every later toggle and corrupts existing saves. Declare additions at the
+; BOTTOM of this file instead, under `toggle_consts_appended_for`, which skips
+; the map-block bookkeeping. MarkTownVisitedAndLoadToggleableObjects scans the
+; whole table, so a map's entries no longer have to be contiguous.
+MACRO toggle_consts_appended_for
+ENDM
+
 ; ToggleableObjectStates indexes (see data/maps/toggleable_objects.asm)
 ; This lists the object_events that can be toggled by ShowObject/HideObject.
 ; The constants marked with an X are never used, because those object_events
@@ -137,7 +147,7 @@ ENDM
 	const TOGGLE_MR_FUJIS_HOUSE_MR_FUJI        ; 44
 
 	toggle_consts_for CELADON_MANSION_ROOF_HOUSE
-	const TOGGLE_CELADON_MANSION_EEVEE_GIFT    ; 45
+	const TOGGLE_CELADON_MANSION_PORYGON_GIFT    ; 45
 
 	toggle_consts_for GAME_CORNER
 	const TOGGLE_GAME_CORNER_ROCKET            ; 46
@@ -316,9 +326,10 @@ ENDM
 	const TOGGLE_SILPH_CO_11F_2                ; B8
 	const TOGGLE_SILPH_CO_11F_3                ; B9
 	const TOGGLE_SILPH_CO_11F_4                ; BA
-
-	toggle_consts_for BATTLE_ISLAND_GATE
-	const TOGGLE_BATTLE_ISLAND_GATE_1          ; BA unused placeholder (gate map has no real toggleable objects)
+	; BB was an unused BATTLE_ISLAND_GATE placeholder kept only to preserve the
+	; table count. Reclaimed for OAK so his slot costs no global renumbering --
+	; every index from here on is unchanged, so old saves stay valid.
+	const TOGGLE_SILPH_CO_11F_5                ; BB
 
 	toggle_consts_for POKEMON_MANSION_2F
 	const TOGGLE_POKEMON_MANSION_2F_ITEM       ; BB X
@@ -410,5 +421,54 @@ ENDM
 	toggle_consts_for SS_OLYMPIA_BOW
 	const TOGGLE_SS_OLYMPIA_BOW_BIRD
 	const TOGGLE_SS_OLYMPIA_BOW_RIVAL
+
+; PROF. OAK in the cave grotto: hidden until the roof MUTAGEN machine is used
+; (EVENT_USED_MUTAGEN_MACHINE), then shown by the map script.
+	toggle_consts_for ARCHIPELAGO_CAVE_3F
+	const TOGGLE_ARCHIPELAGO_CAVE_3F_OAK
+
+; Loyalist-path SILPH staff who share a tile with a ROCKET (exactly one of the
+; pair is shown, see each floor's SetFactionObjectsScript). Appended here rather
+; than inside each map's block above so no existing index shifts -- see the
+; note on toggle_consts_appended_for.
+
+	toggle_consts_appended_for SILPH_CO_2F
+	const TOGGLE_SILPH_CO_2F_DEFENDER1
+	const TOGGLE_SILPH_CO_2F_DEFENDER2
+
+	toggle_consts_appended_for SILPH_CO_3F
+	const TOGGLE_SILPH_CO_3F_DEFENDER1
+
+	toggle_consts_appended_for SILPH_CO_4F
+	const TOGGLE_SILPH_CO_4F_DEFENDER1
+	const TOGGLE_SILPH_CO_4F_DEFENDER2
+
+	toggle_consts_appended_for SILPH_CO_5F
+	const TOGGLE_SILPH_CO_5F_DEFENDER1
+	const TOGGLE_SILPH_CO_5F_DEFENDER2
+	const TOGGLE_SILPH_CO_5F_DEFENDER3
+
+	toggle_consts_appended_for SILPH_CO_6F
+	const TOGGLE_SILPH_CO_6F_DEFENDER1
+	const TOGGLE_SILPH_CO_6F_DEFENDER2
+
+	toggle_consts_appended_for SILPH_CO_7F
+	const TOGGLE_SILPH_CO_7F_DEFENDER1
+	const TOGGLE_SILPH_CO_7F_DEFENDER2
+	const TOGGLE_SILPH_CO_7F_DEFENDER3
+
+	toggle_consts_appended_for SILPH_CO_8F
+	const TOGGLE_SILPH_CO_8F_DEFENDER1
+	const TOGGLE_SILPH_CO_8F_DEFENDER2
+
+	toggle_consts_appended_for SILPH_CO_9F
+	const TOGGLE_SILPH_CO_9F_DEFENDER1
+	const TOGGLE_SILPH_CO_9F_DEFENDER2
+
+	toggle_consts_appended_for SILPH_CO_10F
+	const TOGGLE_SILPH_CO_10F_DEFENDER1
+
+	toggle_consts_appended_for SILPH_CO_11F
+	const TOGGLE_SILPH_CO_11F_DEFENDER1
 
 DEF NUM_TOGGLEABLE_OBJECTS EQU const_value

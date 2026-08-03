@@ -86,9 +86,9 @@ HandlePokedexSideMenu:
 	xor a
 	ld [hli], a ; current menu item ID
 	inc hl
-	ld a, 3
+	ld a, 4
 	ld [hli], a ; max menu item ID
-	;ld a, PAD_A | PAD_B
+	ld a, PAD_A | PAD_B
 	ld [hli], a ; menu watched keys (A button and B button)
 	xor a
 	ld [hli], a ; old menu item ID
@@ -105,6 +105,8 @@ HandlePokedexSideMenu:
 	jr z, .choseCry
 	dec a
 	jr z, .choseArea
+	dec a
+	jr z, .choseMoves
 ; chose Quit
 	ld b, 1
 .exitSideMenu
@@ -149,6 +151,11 @@ HandlePokedexSideMenu:
 
 .choseArea
 	predef LoadTownMap_Nest ; display pokemon areas
+	ld b, 0
+	jr .exitSideMenu
+
+.choseMoves
+	predef ShowPokedexMovesScreen ; display level-up learnset
 	ld b, 0
 	jr .exitSideMenu
 
@@ -372,6 +379,7 @@ PokedexMenuItemsText:
 	db   "DATA"
 	next "CRY"
 	next "AREA"
+	next "MOVES"
 	next "QUIT@"
 
 ; tests if a pokemon's bit is set in the seen or owned pokemon bit fields
@@ -588,6 +596,158 @@ ShowPokedexDataInternal:
 	ld a, $77 ; max volume
 	ldh [rAUDVOL], a
 	ret
+
+; Nemesis CODEX "MOVES" screen: lists the currently selected species' full
+; level-up learnset, scrollable if it doesn't fit in the 7 visible rows.
+; [wPokedexNum] must already hold the internal species index (as set up by
+; HandlePokedexSideMenu's PokedexToIndex call before dispatching here).
+ShowPokedexMovesScreen:
+	call GBPalWhiteOut
+	call ClearScreen
+	call CountLearnsetEntries
+
+	ld a, [wPokedexNum]
+	ld [wCurPartySpecies], a
+	push af
+	ld b, SET_PAL_POKEDEX
+	call RunPaletteCommand
+	pop af
+	ld [wPokedexNum], a
+
+	hlcoord 0, 0
+	ld de, 1
+	lb bc, $64, SCREEN_WIDTH
+	call DrawTileLine ; draw top border
+
+	hlcoord 0, 17
+	ld b, $6f
+	call DrawTileLine ; draw bottom border
+
+	hlcoord 0, 1
+	ld de, 20
+	lb bc, $66, $10
+	call DrawTileLine ; draw left border
+
+	hlcoord 19, 1
+	ld b, $67
+	call DrawTileLine ; draw right border
+
+	ld a, $63 ; upper left corner tile
+	ldcoord_a 0, 0
+	ld a, $65 ; upper right corner tile
+	ldcoord_a 19, 0
+	ld a, $6c ; lower left corner tile
+	ldcoord_a 0, 17
+	ld a, $6e ; lower right corner tile
+	ldcoord_a 19, 17
+
+	call GetMonName
+	hlcoord 1, 1
+	call PlaceString
+
+	hlcoord 2, 3
+	ld de, PokedexMovesHeaderText
+	call PlaceString
+
+	ld a, [wPokedexNum]
+	ld [wPokedexMovesSpecies], a ; stable copy; GetLearnsetEntry clobbers wPokedexNum
+	xor a
+	ld [wListScrollOffset], a ; reused scratch; restored by HandlePokedexSideMenu on exit
+	call Delay3
+	call GBPalNormal
+
+.redraw
+	hlcoord 1, 5
+	lb bc, 7, 18
+	call ClearScreenArea
+
+	xor a
+	ld [wPokedexMovesRowIndex], a
+.rowLoop
+	ld a, [wListScrollOffset]
+	ld hl, wPokedexMovesRowIndex
+	add [hl]
+	ld b, a ; b = entry index for this row
+	ld a, [wPokedexMovesCount]
+	cp b
+	jr z, .rowsDone
+	jr c, .rowsDone
+
+	; hl = screen row position: hlcoord(2,5) + rowIndex * SCREEN_WIDTH
+	hlcoord 2, 5
+	ld a, [wPokedexMovesRowIndex]
+	and a
+	jr z, .gotScreenPos
+	ld c, a
+.screenPosLoop
+	push bc
+	ld bc, SCREEN_WIDTH
+	add hl, bc
+	pop bc
+	dec c
+	jr nz, .screenPosLoop
+.gotScreenPos
+
+	ld a, [wPokedexMovesSpecies]
+	ld [wPokedexNum], a
+	call GetLearnsetEntry ; b = entry index; -> wLoadedMonLevel / wNamedObjectIndex
+
+	push hl
+	call PrintLevelFull
+	pop hl
+
+	ld bc, 5
+	add hl, bc ; move-name column, leaving a blank tile of padding after the level
+	call GetMoveName ; -> de = wNameBuffer
+	call PlaceString
+
+	ld hl, wPokedexMovesRowIndex
+	inc [hl]
+	ld a, [hl]
+	cp 7
+	jr nz, .rowLoop
+.rowsDone
+
+.inputLoop
+	call JoypadLowSensitivity
+	ldh a, [hJoy5]
+	ld b, a
+	and PAD_A | PAD_B
+	jr nz, .exit
+	ld a, b
+	and PAD_UP
+	jr z, .checkDown
+	ld a, [wListScrollOffset]
+	and a
+	jr z, .inputLoop
+	dec a
+	ld [wListScrollOffset], a
+	jp .redraw
+.checkDown
+	ld a, b
+	and PAD_DOWN
+	jr z, .inputLoop
+	ld a, [wPokedexMovesCount]
+	cp 8
+	jr c, .inputLoop ; whole learnset already fits on screen
+	sub 7
+	ld c, a ; c = max scroll offset
+	ld a, [wListScrollOffset]
+	cp c
+	jr nc, .inputLoop ; already scrolled as far as possible
+	inc a
+	ld [wListScrollOffset], a
+	jp .redraw
+.exit
+	call GBPalWhiteOut
+	call ClearScreen
+	call RunDefaultPaletteCommand
+	call LoadTextBoxTilePatterns
+	call GBPalNormal
+	ret
+
+PokedexMovesHeaderText:
+	db "LV   MOVE@"
 
 HeightWeightText:
 	db   "HT  ?′??″"

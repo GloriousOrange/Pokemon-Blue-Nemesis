@@ -35,6 +35,21 @@ DEF TEXT_DELAY_MASK EQU %111
 	const BIT_BATTLE_SHIFT     ; 6
 	const BIT_BATTLE_ANIMATION ; 7
 
+; wMeganLocIndex: which Megan NPC is being talked to. Indexes MeganGiftTable and
+; MeganSparPartyTable (engine/overworld/megan.asm). The eight gyms run
+; consecutively from MEGAN_LOC_FIRST_GYM in badge order.
+DEF MEGAN_LOC_FIRST_GYM     EQU 12
+DEF MEGAN_LOC_VICTORY_ROAD  EQU 25
+DEF MEGAN_LOC_BATTLE_ISLAND EQU 29
+DEF MEGAN_LOC_INDIGO_LOBBY  EQU 30
+DEF MEGAN_LOC_SS_OLYMPIA    EQU 31 ; her cabin aboard the ship
+
+; wColorScheme
+	const_def
+	const COLOR_SCHEME_DIVERSE ; 0 ; per-town/per-species palettes (default)
+	const COLOR_SCHEME_NEON    ; 1 ; uniform high-contrast neon ramp
+DEF NUM_COLOR_SCHEMES EQU const_value
+
 DEF TEXT_DELAY_FAST   EQU %001 ; 1
 DEF TEXT_DELAY_MEDIUM EQU %011 ; 3
 DEF TEXT_DELAY_SLOW   EQU %101 ; 5
@@ -164,6 +179,7 @@ DEF BIT_LEVEL_MACHINE_READY EQU 2 ; a level machine sets this; lets a LEVEL STON
 DEF BIT_POST_GAME_STARTED EQU 3 ; set when the Champion is beaten; unlocks gym-leader rematches
 DEF BIT_ROCKET_LOYALTY EQU 4 ; set when the player joins Team Rocket at Nugget Bridge (Loyalist path). Gates the Rocket overworld sprite + Loyalist-vs-Hero content. Clear = Hero.
 DEF BIT_PLAYER_TRAITOR EQU 5 ; set when the player goes rogue at the Nocturn beat (Traitor path, reachable from either Hero or Loyalist). Overrides allegiance. Trigger hooks into the Nocturn-obtain script once that content exists.
+DEF BIT_OAK_ISLAND_UNLOCKED EQU 6 ; set when all gym leaders are re-beaten; opens the Pallet ferry to Oak's island (Apex Isle)
 ; wDifficulty (ram/wram.asm) is set once at the new-game prompt (0 if declined = Normal).
 DEF DIFFICULTY_NORMAL EQU 0 ; no EXP boost; Megan's Rare Candy/vitamin gifts become a healing item instead
 DEF DIFFICULTY_EASY   EQU 1 ; 1.5x EXP from trainer battles; Megan's gifts unchanged

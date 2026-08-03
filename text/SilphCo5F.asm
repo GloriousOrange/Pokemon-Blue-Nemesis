@@ -75,3 +75,57 @@ _SilphCo5FFlavorScientistText::
 	para "OAK's. Not your"
 	line "trophy."
 	done
+
+; Loyalist path: SILPH staff standing where the ROCKETs stand on the hero path.
+
+_SilphCo5FDefender1BattleText::
+	text "The CARD KEY is"
+	line "not on this"
+	cont "floor. Now leave."
+	done
+
+_SilphCo5FDefender1EndBattleText::
+	text "It is on this"
+	line "floor, isn't it."
+	prompt
+
+_SilphCo5FDefender1AfterBattleText::
+	text "I shouldn't have"
+	line "said that."
+	done
+
+
+_SilphCo5FDefender2BattleText::
+	text "You won't reach"
+	line "the labs. Not"
+	cont "through me."
+	done
+
+_SilphCo5FDefender2EndBattleText::
+	text "Through me, then."
+	prompt
+
+_SilphCo5FDefender2AfterBattleText::
+	text "Go on. See what"
+	line "they've made us"
+	cont "build up there."
+	done
+
+
+_SilphCo5FDefender3BattleText::
+	text "I ran the numbers"
+	line "on you. I don't"
+	cont "like them."
+	done
+
+_SilphCo5FDefender3EndBattleText::
+	text "The numbers were"
+	line "right."
+	prompt
+
+_SilphCo5FDefender3AfterBattleText::
+	text "I calculate a"
+	line "4 percent chance"
+	cont "anyone stops you."
+	done
+

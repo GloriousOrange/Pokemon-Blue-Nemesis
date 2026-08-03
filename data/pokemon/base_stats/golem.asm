@@ -4,21 +4,21 @@
 	;   hp  atk  def  spd  spc
 
 	db ROCK, GROUND ; type
-	db 45 ; catch rate
+	db 90 ; catch rate
 	db 177 ; base exp
 
 	INCBIN "gfx/pokemon/front/golem.pic", 0, 1 ; sprite dimensions
 	dw GolemPicFront, GolemPicBack
 
 	db TACKLE, DEFENSE_CURL, NO_MOVE, NO_MOVE ; level 1 learnset
-	db GROWTH_MEDIUM_SLOW ; growth rate
+	db GROWTH_FAST ; growth rate (matches its pre-evolution; a slower curve here made levels drop on evolving)
 
 	; tm/hm learnset
 	tmhm MEGA_PUNCH, MEGA_KICK, TOXIC, BODY_SLAM, TAKE_DOWN,  \
 	     DOUBLE_EDGE, HYPER_BEAM, SUBMISSION, COUNTER, SEISMIC_TOSS,  \
 	     RAGE, EARTHQUAKE, FISSURE, DIG, MIMIC,  \
 	     DOUBLE_TEAM, METRONOME, SELFDESTRUCT, FIRE_BLAST, REST,  \
-	     EXPLOSION, ROCK_SLIDE, SUBSTITUTE, STRENGTH
+	     EXPLOSION, ROCK_SLIDE, SUBSTITUTE, STRENGTH, ROCK_THROW
 	; end
 
 	db 0 ; padding

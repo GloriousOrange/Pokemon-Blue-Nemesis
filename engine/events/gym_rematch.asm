@@ -24,6 +24,10 @@ PostGameCheckAllGymsRebeaten::
 	ld a, [wGymRematchFlags]
 	cp %01111111 ; all 7 standard leaders re-beaten?
 	ret nz
+; the island's arena runs at level 100, so it only opens once every leader has
+; been beaten a second time
+	ld hl, wTownVisitedFlag + 1
+	set 3, [hl] ; bit 11 = BATTLE ISLAND is now a Fly destination
 	lb bc, LAB_KEY, 1
 	call GiveItem
 	ld hl, GymRematchLabKeyText
@@ -55,7 +59,10 @@ GymRematchLabKeyText:
 	line "every leader"
 	cont "again!"
 
-	para "Take the LAB KEY."
-	line "The truth waits"
-	cont "on CINNABAR..."
+	para "I've marked OAK's"
+	line "private island on"
+	cont "your map."
+
+	para "Fly there any"
+	line "time."
 	prompt

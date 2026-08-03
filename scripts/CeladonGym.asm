@@ -36,6 +36,7 @@ CeladonGym_ScriptPointers:
 	dw_const EndTrainerBattle,                      SCRIPT_CELADONGYM_END_BATTLE
 	dw_const CeladonGymErikaPostBattleScript,       SCRIPT_CELADONGYM_ERIKA_POST_BATTLE
 	dw_const CeladonGymRematchDefeated,             SCRIPT_CELADONGYM_REMATCH_DEFEATED
+	dw_const CeladonGymMeganTrained,                SCRIPT_CELADONGYM_MEGAN_TRAINED
 
 CeladonGymRematchDefeated:
 	ld a, [wIsInBattle]
@@ -84,6 +85,18 @@ CeladonGymReceiveTM21:
 	; deactivate gym trainers
 	SetEventRange EVENT_BEAT_CELADON_GYM_TRAINER_0, EVENT_BEAT_CELADON_GYM_TRAINER_6
 
+	jp CeladonGymResetScripts
+
+CeladonGymMeganTrained:
+; Aftermath of Megan's optional training battle. Losing leaves the flag clear so
+; she will spar again, the same way a lost gym leader fight can be retried.
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld a, 15 ; set again rather than trusting it to survive the battle
+	ld [wMeganLocIndex], a
+	farcall MeganMarkTrained
+.reset
 	jp CeladonGymResetScripts
 
 CeladonGym_TextPointers:
@@ -325,5 +338,10 @@ CeladonGymMeganText:
 	text_asm
 	ld a, 15 ; Megan location index
 	ld [wMeganLocIndex], a
-	farcall MeganTalk
+	farcall MeganSparOffer ; offers a training battle, else heals as usual
+	jr nc, .done
+	ld a, SCRIPT_CELADONGYM_MEGAN_TRAINED
+	ld [wCeladonGymCurScript], a
+	ld [wCurMapScript], a
+.done
 	jp TextScriptEnd

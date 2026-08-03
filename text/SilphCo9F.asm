@@ -43,11 +43,10 @@ _SilphCo9FScientistBattleText::
 	done
 
 _SilphCo9FScientistHeroBattleText::
-	text "Careful in here."
-	line "OAK send you?"
+	text "SILPH pays me."
 
-	para "Don't touch the"
-	line "equipment."
+	para "TEAM ROCKET pays"
+	line "me rather better."
 	done
 
 _SilphCo9FScientistEndBattleText::
@@ -107,3 +106,39 @@ _SilphCo9FFlavorScientistText::
 	para "I'm not signing"
 	line "off on this."
 	done
+
+; Loyalist path: SILPH staff standing where the ROCKETs stand on the hero path.
+
+_SilphCo9FDefender1BattleText::
+	text "This is the"
+	line "infirmary floor."
+	cont "Have some shame."
+	done
+
+_SilphCo9FDefender1EndBattleText::
+	text "You have none."
+	prompt
+
+_SilphCo9FDefender1AfterBattleText::
+	text "The NURSE will"
+	line "heal your #MON."
+	cont "She heals anyone."
+	done
+
+
+_SilphCo9FDefender2BattleText::
+	text "You walked past"
+	line "the injured to"
+	cont "get here."
+	done
+
+_SilphCo9FDefender2EndBattleText::
+	text "Of course you did."
+	prompt
+
+_SilphCo9FDefender2AfterBattleText::
+	text "Two floors left."
+	line "No one up there"
+	cont "can stop you."
+	done
+

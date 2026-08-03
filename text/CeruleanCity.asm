@@ -32,7 +32,7 @@ _CeruleanCityRivalIWentToBillsText::
 	line "rarest beasts."
 
 	para "More pages for my"
-	line "#DEX."
+	line "CODEX."
 
 	para "He built the PC"
 	line "storage you lean"

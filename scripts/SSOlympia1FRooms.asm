@@ -12,6 +12,7 @@ SSOlympia1FRooms_ScriptPointers:
 	dw_const CheckFightingMapTrainers,              SCRIPT_SSOLYMPIA1FROOMS_DEFAULT
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_SSOLYMPIA1FROOMS_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_SSOLYMPIA1FROOMS_END_BATTLE
+	dw_const SSOlympia1FRoomsMeganTrained,          SCRIPT_SSOLYMPIA1FROOMS_MEGAN_TRAINED
 
 SSOlympia1FRooms_TextPointers:
 	def_text_pointers
@@ -22,18 +23,25 @@ SSOlympia1FRooms_TextPointers:
 	dw_const SSOlympia1FRoomsGirl2Text, TEXT_SSOLYMPIA1FROOMS_GIRL2
 	dw_const PickUpItemText, TEXT_SSOLYMPIA1FROOMS_TM_BODY_SLAM
 	dw_const SSOlympia1FRoomsGentleman3Text, TEXT_SSOLYMPIA1FROOMS_GENTLEMAN3
-	dw_const SSOlympia1FRoomsRocket1Text, TEXT_SSOLYMPIA1FROOMS_ROCKET1
-	dw_const SSOlympia1FRoomsRocket2Text, TEXT_SSOLYMPIA1FROOMS_ROCKET2
-	dw_const SSOlympia1FRoomsRocket3Text, TEXT_SSOLYMPIA1FROOMS_ROCKET3
+	dw_const SSOlympia1FRoomsSurgeText, TEXT_SSOLYMPIA1FROOMS_SURGE
+	dw_const SSOlympia1FRoomsErikaText, TEXT_SSOLYMPIA1FROOMS_ERIKA
+	dw_const SSOlympia1FRoomsKogaText, TEXT_SSOLYMPIA1FROOMS_KOGA
+	dw_const SSOlympia1FRoomsJrTrainerMText, TEXT_SSOLYMPIA1FROOMS_JRTRAINERM
+	dw_const SSOlympia1FRoomsJrTrainerFText, TEXT_SSOLYMPIA1FROOMS_JRTRAINERF
+	dw_const SSOlympia1FRoomsMeganText, TEXT_SSOLYMPIA1FROOMS_MEGAN
 
 SSOlympia1FRoomsTrainerHeaders:
 	def_trainers 7
 SSOlympia1FRoomsTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_1FROOMS_ROCKET_0, 3, SSOlympia1FRoomsRocket1BattleText, SSOlympia1FRoomsRocket1EndBattleText, SSOlympia1FRoomsRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_1FROOMS_TRAINER_0, 3, SSOlympia1FRoomsSurgeBattleText, SSOlympia1FRoomsSurgeEndBattleText, SSOlympia1FRoomsSurgeAfterBattleText
 SSOlympia1FRoomsTrainerHeader1:
-	trainer EVENT_BEAT_SS_OLYMPIA_1FROOMS_ROCKET_1, 3, SSOlympia1FRoomsRocket2BattleText, SSOlympia1FRoomsRocket2EndBattleText, SSOlympia1FRoomsRocket2AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_1FROOMS_TRAINER_1, 3, SSOlympia1FRoomsErikaBattleText, SSOlympia1FRoomsErikaEndBattleText, SSOlympia1FRoomsErikaAfterBattleText
 SSOlympia1FRoomsTrainerHeader2:
-	trainer EVENT_BEAT_SS_OLYMPIA_1FROOMS_ROCKET_2, 3, SSOlympia1FRoomsRocket3BattleText, SSOlympia1FRoomsRocket3EndBattleText, SSOlympia1FRoomsRocket3AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_1FROOMS_TRAINER_2, 3, SSOlympia1FRoomsKogaBattleText, SSOlympia1FRoomsKogaEndBattleText, SSOlympia1FRoomsKogaAfterBattleText
+SSOlympia1FRoomsTrainerHeader3:
+	trainer_in wOlympiaTrainerFlags, 2, 2, SSOlympia1FRoomsJrTrainerMBattleText, SSOlympia1FRoomsJrTrainerMEndBattleText, SSOlympia1FRoomsJrTrainerMAfterBattleText
+SSOlympia1FRoomsTrainerHeader4:
+	trainer_in wOlympiaTrainerFlags, 3, 2, SSOlympia1FRoomsJrTrainerFBattleText, SSOlympia1FRoomsJrTrainerFEndBattleText, SSOlympia1FRoomsJrTrainerFAfterBattleText
 	db -1 ; end
 
 SSOlympia1FRoomsGirl1Text:
@@ -62,58 +70,129 @@ SSOlympia1FRoomsGirl2Text:
 SSOlympia1FRoomsGentleman3Text:
 	text_far _SSOlympia1FRoomsGentleman3Text
 	text_end
-SSOlympia1FRoomsRocket1Text:
+SSOlympia1FRoomsSurgeText:
 	text_asm
 	ld hl, SSOlympia1FRoomsTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SSOlympia1FRoomsRocket2Text:
+SSOlympia1FRoomsErikaText:
 	text_asm
 	ld hl, SSOlympia1FRoomsTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SSOlympia1FRoomsRocket3Text:
+SSOlympia1FRoomsKogaText:
 	text_asm
 	ld hl, SSOlympia1FRoomsTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 
-SSOlympia1FRoomsRocket1BattleText:
-	text_far _SSOlympia1FRoomsRocket1BattleText
+SSOlympia1FRoomsSurgeBattleText:
+	text_far _SSOlympia1FRoomsSurgeBattleText
 	text_end
 
-SSOlympia1FRoomsRocket1EndBattleText:
-	text_far _SSOlympia1FRoomsRocket1EndBattleText
+SSOlympia1FRoomsSurgeEndBattleText:
+	text_far _SSOlympia1FRoomsSurgeEndBattleText
 	text_end
 
-SSOlympia1FRoomsRocket1AfterBattleText:
-	text_far _SSOlympia1FRoomsRocket1AfterBattleText
+SSOlympia1FRoomsSurgeAfterBattleText:
+	text_far _SSOlympia1FRoomsSurgeAfterBattleText
 	text_end
 
-SSOlympia1FRoomsRocket2BattleText:
-	text_far _SSOlympia1FRoomsRocket2BattleText
+SSOlympia1FRoomsErikaBattleText:
+	text_far _SSOlympia1FRoomsErikaBattleText
 	text_end
 
-SSOlympia1FRoomsRocket2EndBattleText:
-	text_far _SSOlympia1FRoomsRocket2EndBattleText
+SSOlympia1FRoomsErikaEndBattleText:
+	text_far _SSOlympia1FRoomsErikaEndBattleText
 	text_end
 
-SSOlympia1FRoomsRocket2AfterBattleText:
-	text_far _SSOlympia1FRoomsRocket2AfterBattleText
+SSOlympia1FRoomsErikaAfterBattleText:
+	text_far _SSOlympia1FRoomsErikaAfterBattleText
 	text_end
 
-SSOlympia1FRoomsRocket3BattleText:
-	text_far _SSOlympia1FRoomsRocket3BattleText
+SSOlympia1FRoomsKogaBattleText:
+	text_far _SSOlympia1FRoomsKogaBattleText
 	text_end
 
-SSOlympia1FRoomsRocket3EndBattleText:
-	text_far _SSOlympia1FRoomsRocket3EndBattleText
+SSOlympia1FRoomsKogaEndBattleText:
+	text_far _SSOlympia1FRoomsKogaEndBattleText
 	text_end
 
-SSOlympia1FRoomsRocket3AfterBattleText:
-	text_far _SSOlympia1FRoomsRocket3AfterBattleText
+SSOlympia1FRoomsKogaAfterBattleText:
+	text_far _SSOlympia1FRoomsKogaAfterBattleText
 	text_end
 
+SSOlympia1FRoomsJrTrainerMText:
+	text_asm
+	ld hl, SSOlympia1FRoomsTrainerHeader3
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympia1FRoomsJrTrainerMBattleText:
+	text_far _SSOlympia1FRoomsJrTrainerMBattleText
+	text_end
+
+SSOlympia1FRoomsJrTrainerMEndBattleText:
+	text_far _SSOlympia1FRoomsJrTrainerMEndBattleText
+	text_end
+
+SSOlympia1FRoomsJrTrainerMAfterBattleText:
+	text_far _SSOlympia1FRoomsJrTrainerMAfterBattleText
+	text_end
+
+SSOlympia1FRoomsJrTrainerFText:
+	text_asm
+	ld hl, SSOlympia1FRoomsTrainerHeader4
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympia1FRoomsJrTrainerFBattleText:
+	text_far _SSOlympia1FRoomsJrTrainerFBattleText
+	text_end
+
+SSOlympia1FRoomsJrTrainerFEndBattleText:
+	text_far _SSOlympia1FRoomsJrTrainerFEndBattleText
+	text_end
+
+SSOlympia1FRoomsJrTrainerFAfterBattleText:
+	text_far _SSOlympia1FRoomsJrTrainerFAfterBattleText
+	text_end
+
+; MEGAN's cabin. Same shared sparring machinery as her gym stops: MeganSparOffer
+; prints the offer, arms the battle and returns carry set, or just heals and
+; returns carry clear.
+SSOlympia1FRoomsMeganText:
+	text_asm
+; Blacking out aboard must not dump the player back at a mainland POKeMON
+; CENTER -- they wake up here. wLastBlackoutMap is written directly rather than
+; through SetLastBlackoutMap, which stores wLastMap (the deck outside) instead
+; of the cabin itself. SS_OLYMPIA_1F_ROOMS has its own FlyWarpDataPtr entry so
+; the blackout path can find landing coordinates for it.
+	ld a, SS_OLYMPIA_1F_ROOMS
+	ld [wLastBlackoutMap], a
+	ld a, MEGAN_LOC_SS_OLYMPIA
+	ld [wMeganLocIndex], a
+	farcall MeganSparOffer
+	jr nc, .done
+	ld a, SCRIPT_SSOLYMPIA1FROOMS_MEGAN_TRAINED
+	ld [wSSOlympia1FRoomsCurScript], a
+	ld [wCurMapScript], a
+.done
+	jp TextScriptEnd
+
+SSOlympia1FRoomsMeganTrained:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld a, MEGAN_LOC_SS_OLYMPIA
+	ld [wMeganLocIndex], a
+	farcall MeganMarkTrained
+.reset
+	xor a
+	ld [wJoyIgnore], a
+	ld [wSSOlympia1FRoomsCurScript], a
+	ld [wCurMapScript], a
+	ret

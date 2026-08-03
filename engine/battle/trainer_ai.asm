@@ -280,27 +280,11 @@ AIMoveChoiceModification3:
 	jr z, .nextMove
 	inc [hl] ; slightly discourage this move
 	jr .nextMove
-; strongly prefer RECOVER whenever below half HP (assigned to RIVAL2 for the
-; burned-lab Mewtwo; also fires for any other RIVAL2 mon that knows Recover)
 AIMoveChoiceModification4:
-	ld a, 2
-	call AICheckIfHPBelowFraction
-	ret nc ; not below half HP
-	ld hl, wBuffer - 1 ; temp move selection array (-1 byte offset)
-	ld de, wEnemyMonMoves
-	ld b, NUM_MOVES + 1
-.nextMove
-	dec b
-	ret z
-	inc hl
-	ld a, [de]
-	inc de
-	and a
-	ret z ; no more moves in move set
-	cp RECOVER
-	jr nz, .nextMove
-	ld [hl], 1 ; minimum preference value -- always beats the $a default
-	jr .nextMove
+; unused, does nothing. Previously forced RECOVER below half HP for the
+; burned-lab Mewtwo, but that soft-locked the fight near 1 HP, so it was
+; removed (RIVAL2 no longer references this modification).
+	ret
 
 ReadMove:
 	push hl

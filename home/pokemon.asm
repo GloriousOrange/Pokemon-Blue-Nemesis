@@ -425,6 +425,129 @@ GetMonHeader::
 	ld [rROMB], a
 	ret
 
+; Nemesis CODEX "MOVES" screen: WRAM0 is extremely tight in this ROM, so
+; rather than buffering a species' whole level-up learnset, these two
+; routines re-walk the ROM table (in EvosMovesPointerTable's bank, which is
+; different from wherever these are called from) on demand. Both manually
+; save/restore hLoadedROMBank, same convention as GetMonHeader above.
+
+; Given [wPokedexNum] = internal species index, returns hl positioned just
+; past the evolution-record block, at the first (level, move) pair, with
+; BANK(EvosMovesPointerTable) already mapped in. Caller must restore
+; hLoadedROMBank/rROMB (via the saved af on the stack) when done reading.
+SeekLearnsetStart::
+	ld a, [wPokedexNum]
+	dec a
+	ld bc, 0
+	ld hl, EvosMovesPointerTable
+	add a
+	rl b
+	ld c, a
+	add hl, bc
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+.skipEvolutionDataLoop ; skip past the evolution-record bytes before the learnset
+	ld a, [hli]
+	and a
+	jr nz, .skipEvolutionDataLoop
+	ret
+
+; Given [wPokedexNum] = internal species index, counts that species' full
+; level-up learnset entries into wPokedexMovesCount.
+CountLearnsetEntries::
+	xor a
+	ld [wPokedexMovesCount], a
+	ldh a, [hLoadedROMBank]
+	push af
+	ld a, BANK(EvosMovesPointerTable)
+	ldh [hLoadedROMBank], a
+	ld [rROMB], a
+
+	call SeekLearnsetStart
+.countLoop
+	ld a, [hli] ; level (0 = end of learnset)
+	and a
+	jr z, .done
+	inc hl ; skip the move id byte
+	ld a, [wPokedexMovesCount]
+	inc a
+	ld [wPokedexMovesCount], a
+	jr .countLoop
+.done
+	pop af
+	ldh [hLoadedROMBank], a
+	ld [rROMB], a
+	ret
+
+; Given [wPokedexNum] = internal species index and b = 0-based entry index
+; (caller must ensure b < [wPokedexMovesCount]), returns that learnset
+; entry's level in [wLoadedMonLevel] and move id in [wNamedObjectIndex].
+GetLearnsetEntry::
+	ldh a, [hLoadedROMBank]
+	push af
+	ld a, BANK(EvosMovesPointerTable)
+	ldh [hLoadedROMBank], a
+	ld [rROMB], a
+
+	push bc
+	call SeekLearnsetStart
+	pop bc
+	ld a, b
+	and a
+	jr z, .gotEntry
+.skipEntriesLoop
+	inc hl
+	inc hl
+	dec b
+	jr nz, .skipEntriesLoop
+.gotEntry
+	ld a, [hli]
+	ld [wLoadedMonLevel], a
+	ld a, [hl]
+	ld [wNamedObjectIndex], a
+
+	pop af
+	ldh [hLoadedROMBank], a
+	ld [rROMB], a
+	ret
+
+; Nemesis player-sprite picker: given a = a SPRITE_* id, returns de = graphics
+; pointer, a = bank, matching the format GetWalkingPlayerSpriteGraphics
+; (engine/events/player_path.asm) and PickPlayerSprite's live preview both
+; need. SpriteSheetPointerTable lives in a different bank ("Battle Engine 2"),
+; so this manually bank-switches to read the 4-byte overworld_sprite entry
+; (dw pointer, db tile count, db bank) -- same convention as GetMonHeader.
+GetChosenSpriteGraphics::
+	dec a
+	ld l, a
+	ld h, 0
+	add hl, hl
+	add hl, hl ; hl = index * 4
+	ld de, SpriteSheetPointerTable
+	add hl, de
+
+	ldh a, [hLoadedROMBank]
+	push af
+	ld a, BANK(SpriteSheetPointerTable)
+	ldh [hLoadedROMBank], a
+	ld [rROMB], a
+
+	ld a, [hli]
+	ld e, a
+	ld a, [hli]
+	ld d, a ; de = graphics pointer
+	inc hl ; skip the tile-count byte
+	ld a, [hl] ; a = the chosen sprite's bank
+	ld c, a ; stash in c -- survives the hLoadedROMBank restore below
+
+	pop af
+	ldh [hLoadedROMBank], a
+	ld [rROMB], a
+
+	ld a, c
+	ret
+
 ; copy party pokemon's name to wNameBuffer
 GetPartyMonName2::
 	ld a, [wWhichPokemon] ; index within party

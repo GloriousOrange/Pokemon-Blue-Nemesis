@@ -1,11 +1,21 @@
 DrainHPEffect_:
 	ld hl, wDamage
+	call .drainsEverything
+	jr c, .noHalving
 	ld a, [hl]
 	srl a ; divide damage by 2
 	ld [hli], a
 	ld a, [hl]
 	rr a
 	ld [hld], a
+	jr .checkZero
+.noHalving
+; Leech Life, Giga Drain and Blood Suck give back every point they dealt, so wDamage is left
+; alone. Both paths reach .checkZero with hl on the high byte and a on the low.
+	inc hl
+	ld a, [hl]
+	dec hl
+.checkZero
 	or [hl] ; is damage 0?
 	jr nz, .getAttackerHP
 ; if damage is 0, increase to 1 so that the attacker gains at least 1 HP
@@ -94,6 +104,31 @@ DrainHPEffect_:
 	ld hl, DreamWasEatenText
 .printText
 	jp PrintText
+
+
+.drainsEverything
+; carry set when the move in play heals for the full damage rather than half.
+; Preserves hl for the caller.
+	push hl
+	ldh a, [hWhoseTurn]
+	and a
+	ld a, [wPlayerMoveNum]
+	jr z, .gotMove
+	ld a, [wEnemyMoveNum]
+.gotMove
+	cp LEECH_LIFE
+	jr z, .fullDrain
+	cp GIGA_DRAIN
+	jr z, .fullDrain
+	cp BLOOD_SUCK
+	jr z, .fullDrain
+	pop hl
+	and a ; clear carry
+	ret
+.fullDrain
+	pop hl
+	scf
+	ret
 
 SuckedHealthText:
 	text_far _SuckedHealthText

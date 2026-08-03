@@ -21,18 +21,24 @@ SSOlympia2FRooms_TextPointers:
 	dw_const SSOlympia2FRoomsLittleBoyText, TEXT_SSOLYMPIA2FROOMS_LITTLE_BOY
 	dw_const SSOlympia2FRoomsBrunetteGirlText, TEXT_SSOLYMPIA2FROOMS_BRUNETTE_GIRL
 	dw_const SSOlympia2FRoomsBeautyText, TEXT_SSOLYMPIA2FROOMS_BEAUTY
-	dw_const SSOlympia2FRoomsRocket1Text, TEXT_SSOLYMPIA2FROOMS_ROCKET1
-	dw_const SSOlympia2FRoomsRocket2Text, TEXT_SSOLYMPIA2FROOMS_ROCKET2
-	dw_const SSOlympia2FRoomsRocket3Text, TEXT_SSOLYMPIA2FROOMS_ROCKET3
+	dw_const SSOlympia2FRoomsNormanText, TEXT_SSOLYMPIA2FROOMS_NORMAN
+	dw_const SSOlympia2FRoomsGiovanniText, TEXT_SSOLYMPIA2FROOMS_GIOVANNI
+	dw_const SSOlympia2FRoomsLoreleiText, TEXT_SSOLYMPIA2FROOMS_LORELEI
+	dw_const SSOlympia2FRoomsPokemaniacText, TEXT_SSOLYMPIA2FROOMS_POKEMANIAC
+	dw_const SSOlympia2FRoomsGamblerText, TEXT_SSOLYMPIA2FROOMS_GAMBLER
 
 SSOlympia2FRoomsTrainerHeaders:
 	def_trainers 2
 SSOlympia2FRoomsTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_2FROOMS_ROCKET_0, 3, SSOlympia2FRoomsRocket1BattleText, SSOlympia2FRoomsRocket1EndBattleText, SSOlympia2FRoomsRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_2FROOMS_TRAINER_0, 3, SSOlympia2FRoomsNormanBattleText, SSOlympia2FRoomsNormanEndBattleText, SSOlympia2FRoomsNormanAfterBattleText
 SSOlympia2FRoomsTrainerHeader1:
-	trainer EVENT_BEAT_SS_OLYMPIA_2FROOMS_ROCKET_1, 3, SSOlympia2FRoomsRocket2BattleText, SSOlympia2FRoomsRocket2EndBattleText, SSOlympia2FRoomsRocket2AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_2FROOMS_TRAINER_1, 3, SSOlympia2FRoomsGiovanniBattleText, SSOlympia2FRoomsGiovanniEndBattleText, SSOlympia2FRoomsGiovanniAfterBattleText
 SSOlympia2FRoomsTrainerHeader2:
-	trainer EVENT_BEAT_SS_OLYMPIA_2FROOMS_ROCKET_2, 3, SSOlympia2FRoomsRocket3BattleText, SSOlympia2FRoomsRocket3EndBattleText, SSOlympia2FRoomsRocket3AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_2FROOMS_TRAINER_2, 3, SSOlympia2FRoomsLoreleiBattleText, SSOlympia2FRoomsLoreleiEndBattleText, SSOlympia2FRoomsLoreleiAfterBattleText
+SSOlympia2FRoomsTrainerHeader3:
+	trainer_in wOlympiaTrainerFlags, 13, 2, SSOlympia2FRoomsPokemaniacBattleText, SSOlympia2FRoomsPokemaniacEndBattleText, SSOlympia2FRoomsPokemaniacAfterBattleText
+SSOlympia2FRoomsTrainerHeader4:
+	trainer_in wOlympiaTrainerFlags, 14, 2, SSOlympia2FRoomsGamblerBattleText, SSOlympia2FRoomsGamblerEndBattleText, SSOlympia2FRoomsGamblerAfterBattleText
 	db -1 ; end
 
 SSOlympia2FRoomsGrampsText:
@@ -50,58 +56,93 @@ SSOlympia2FRoomsBrunetteGirlText:
 SSOlympia2FRoomsBeautyText:
 	text_far _SSOlympia2FRoomsBeautyText
 	text_end
-SSOlympia2FRoomsRocket1Text:
+SSOlympia2FRoomsNormanText:
 	text_asm
 	ld hl, SSOlympia2FRoomsTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SSOlympia2FRoomsRocket2Text:
+SSOlympia2FRoomsGiovanniText:
 	text_asm
 	ld hl, SSOlympia2FRoomsTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SSOlympia2FRoomsRocket3Text:
+SSOlympia2FRoomsLoreleiText:
 	text_asm
 	ld hl, SSOlympia2FRoomsTrainerHeader2
 	call TalkToTrainer
 	jp TextScriptEnd
 
 
-SSOlympia2FRoomsRocket1BattleText:
-	text_far _SSOlympia2FRoomsRocket1BattleText
+SSOlympia2FRoomsNormanBattleText:
+	text_far _SSOlympia2FRoomsNormanBattleText
 	text_end
 
-SSOlympia2FRoomsRocket1EndBattleText:
-	text_far _SSOlympia2FRoomsRocket1EndBattleText
+SSOlympia2FRoomsNormanEndBattleText:
+	text_far _SSOlympia2FRoomsNormanEndBattleText
 	text_end
 
-SSOlympia2FRoomsRocket1AfterBattleText:
-	text_far _SSOlympia2FRoomsRocket1AfterBattleText
+SSOlympia2FRoomsNormanAfterBattleText:
+	text_far _SSOlympia2FRoomsNormanAfterBattleText
 	text_end
 
-SSOlympia2FRoomsRocket2BattleText:
-	text_far _SSOlympia2FRoomsRocket2BattleText
+SSOlympia2FRoomsGiovanniBattleText:
+	text_far _SSOlympia2FRoomsGiovanniBattleText
 	text_end
 
-SSOlympia2FRoomsRocket2EndBattleText:
-	text_far _SSOlympia2FRoomsRocket2EndBattleText
+SSOlympia2FRoomsGiovanniEndBattleText:
+	text_far _SSOlympia2FRoomsGiovanniEndBattleText
 	text_end
 
-SSOlympia2FRoomsRocket2AfterBattleText:
-	text_far _SSOlympia2FRoomsRocket2AfterBattleText
+SSOlympia2FRoomsGiovanniAfterBattleText:
+	text_far _SSOlympia2FRoomsGiovanniAfterBattleText
 	text_end
 
-SSOlympia2FRoomsRocket3BattleText:
-	text_far _SSOlympia2FRoomsRocket3BattleText
+SSOlympia2FRoomsLoreleiBattleText:
+	text_far _SSOlympia2FRoomsLoreleiBattleText
 	text_end
 
-SSOlympia2FRoomsRocket3EndBattleText:
-	text_far _SSOlympia2FRoomsRocket3EndBattleText
+SSOlympia2FRoomsLoreleiEndBattleText:
+	text_far _SSOlympia2FRoomsLoreleiEndBattleText
 	text_end
 
-SSOlympia2FRoomsRocket3AfterBattleText:
-	text_far _SSOlympia2FRoomsRocket3AfterBattleText
+SSOlympia2FRoomsLoreleiAfterBattleText:
+	text_far _SSOlympia2FRoomsLoreleiAfterBattleText
 	text_end
 
+SSOlympia2FRoomsPokemaniacText:
+	text_asm
+	ld hl, SSOlympia2FRoomsTrainerHeader3
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympia2FRoomsPokemaniacBattleText:
+	text_far _SSOlympia2FRoomsPokemaniacBattleText
+	text_end
+
+SSOlympia2FRoomsPokemaniacEndBattleText:
+	text_far _SSOlympia2FRoomsPokemaniacEndBattleText
+	text_end
+
+SSOlympia2FRoomsPokemaniacAfterBattleText:
+	text_far _SSOlympia2FRoomsPokemaniacAfterBattleText
+	text_end
+
+SSOlympia2FRoomsGamblerText:
+	text_asm
+	ld hl, SSOlympia2FRoomsTrainerHeader4
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympia2FRoomsGamblerBattleText:
+	text_far _SSOlympia2FRoomsGamblerBattleText
+	text_end
+
+SSOlympia2FRoomsGamblerEndBattleText:
+	text_far _SSOlympia2FRoomsGamblerEndBattleText
+	text_end
+
+SSOlympia2FRoomsGamblerAfterBattleText:
+	text_far _SSOlympia2FRoomsGamblerAfterBattleText
+	text_end

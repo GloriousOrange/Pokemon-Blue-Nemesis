@@ -1,6 +1,6 @@
 	db DEX_NIDORAN_M ; pokedex id
 
-	db  46,  57,  40,  50,  40
+	db  46,  57,  40, 105,  40
 	;   hp  atk  def  spd  spc
 
 	db POISON, POISON ; type
@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/nidoranm.pic", 0, 1 ; sprite dimensions
 	dw NidoranMPicFront, NidoranMPicBack
 
-	db LEER, TACKLE, NO_MOVE, NO_MOVE ; level 1 learnset
+	db VENOM_BITE, LEER, TACKLE, NO_MOVE ; level 1 learnset (Venom Bite added for starter STAB)
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

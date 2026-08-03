@@ -16,33 +16,74 @@ SSOlympia3F_ScriptPointers:
 SSOlympia3F_TextPointers:
 	def_text_pointers
 	dw_const SSOlympia3FSailorText, TEXT_SSOLYMPIA3F_SAILOR
-	dw_const SSOlympia3FRocket1Text, TEXT_SSOLYMPIA3F_ROCKET1
+	dw_const SSOlympia3FBrunoText, TEXT_SSOLYMPIA3F_BRUNO
+	dw_const SSOlympia3FBirdKeeperText, TEXT_SSOLYMPIA3F_BIRDKEEPER
+	dw_const SSOlympia3FCooltrainerFText, TEXT_SSOLYMPIA3F_COOLTRAINERF
 
 SSOlympia3FTrainerHeaders:
 	def_trainers 0
 SSOlympia3FTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_3F_ROCKET_0, 3, SSOlympia3FRocket1BattleText, SSOlympia3FRocket1EndBattleText, SSOlympia3FRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_3F_TRAINER_0, 3, SSOlympia3FBrunoBattleText, SSOlympia3FBrunoEndBattleText, SSOlympia3FBrunoAfterBattleText
+SSOlympia3FTrainerHeader1:
+	trainer_in wOlympiaTrainerFlags, 9, 2, SSOlympia3FBirdKeeperBattleText, SSOlympia3FBirdKeeperEndBattleText, SSOlympia3FBirdKeeperAfterBattleText
+SSOlympia3FTrainerHeader2:
+	trainer_in wOlympiaTrainerFlags, 10, 2, SSOlympia3FCooltrainerFBattleText, SSOlympia3FCooltrainerFEndBattleText, SSOlympia3FCooltrainerFAfterBattleText
 	db -1 ; end
 
 SSOlympia3FSailorText:
 	text_far _SSOlympia3FSailorText
 	text_end
-SSOlympia3FRocket1Text:
+SSOlympia3FBrunoText:
 	text_asm
 	ld hl, SSOlympia3FTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
 
-SSOlympia3FRocket1BattleText:
-	text_far _SSOlympia3FRocket1BattleText
+SSOlympia3FBrunoBattleText:
+	text_far _SSOlympia3FBrunoBattleText
 	text_end
 
-SSOlympia3FRocket1EndBattleText:
-	text_far _SSOlympia3FRocket1EndBattleText
+SSOlympia3FBrunoEndBattleText:
+	text_far _SSOlympia3FBrunoEndBattleText
 	text_end
 
-SSOlympia3FRocket1AfterBattleText:
-	text_far _SSOlympia3FRocket1AfterBattleText
+SSOlympia3FBrunoAfterBattleText:
+	text_far _SSOlympia3FBrunoAfterBattleText
 	text_end
 
+SSOlympia3FBirdKeeperText:
+	text_asm
+	ld hl, SSOlympia3FTrainerHeader1
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympia3FBirdKeeperBattleText:
+	text_far _SSOlympia3FBirdKeeperBattleText
+	text_end
+
+SSOlympia3FBirdKeeperEndBattleText:
+	text_far _SSOlympia3FBirdKeeperEndBattleText
+	text_end
+
+SSOlympia3FBirdKeeperAfterBattleText:
+	text_far _SSOlympia3FBirdKeeperAfterBattleText
+	text_end
+
+SSOlympia3FCooltrainerFText:
+	text_asm
+	ld hl, SSOlympia3FTrainerHeader2
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympia3FCooltrainerFBattleText:
+	text_far _SSOlympia3FCooltrainerFBattleText
+	text_end
+
+SSOlympia3FCooltrainerFEndBattleText:
+	text_far _SSOlympia3FCooltrainerFEndBattleText
+	text_end
+
+SSOlympia3FCooltrainerFAfterBattleText:
+	text_far _SSOlympia3FCooltrainerFAfterBattleText
+	text_end

@@ -38,6 +38,15 @@ MACRO toggle_object_state
 	db \2 ; OFF/ON
 ENDM
 
+; Same as `toggleable_objects_for`, but for a map that already has a block
+; above. Defines no ToggleData_ label and asserts no position, so these entries
+; can be appended at the end of the table -- which is the only way to add a
+; toggle without shifting every later index and breaking existing saves. See
+; the matching note in constants/toggle_constants.asm.
+MACRO toggleable_objects_appended_for
+	DEF toggle_map_id = \1
+ENDM
+
 ToggleableObjectStates:
 ; entries correspond to TOGGLE_* constants (see constants/toggle_constants.asm)
 	table_width 3
@@ -164,7 +173,7 @@ ToggleableObjectStates:
 	toggle_object_state MRFUJISHOUSE_MR_FUJI, OFF
 
 	toggleable_objects_for CELADON_MANSION_ROOF_HOUSE
-	toggle_object_state CELADONMANSION_ROOF_HOUSE_EEVEE_POKEBALL, ON
+	toggle_object_state CELADONMANSION_ROOF_HOUSE_PORYGON_POKEBALL, ON
 
 	toggleable_objects_for GAME_CORNER
 	toggle_object_state GAMECORNER_ROCKET, ON
@@ -197,7 +206,7 @@ ToggleableObjectStates:
 	toggle_object_state POWERPLANT_ELECTRODE2, ON
 	toggle_object_state POWERPLANT_VOLTORB6,   ON
 	toggle_object_state POWERPLANT_ZAPDOS,     ON
-	toggle_object_state POWERPLANT_CARBOS,     ON
+	toggle_object_state POWERPLANT_TM_CONFUSE_RAY,     ON
 	toggle_object_state POWERPLANT_HP_UP,      ON
 	toggle_object_state POWERPLANT_RARE_CANDY, ON
 	toggle_object_state POWERPLANT_TM_THUNDER, ON
@@ -208,7 +217,7 @@ ToggleableObjectStates:
 	toggle_object_state VICTORYROAD2F_TM_SUBMISSION, ON
 	toggle_object_state VICTORYROAD2F_FULL_HEAL,     ON
 	toggle_object_state VICTORYROAD2F_TM_MEGA_KICK,  ON
-	toggle_object_state VICTORYROAD2F_GUARD_SPEC,    ON
+	toggle_object_state VICTORYROAD2F_TM_GHOST_BEAM,    ON
 	toggle_object_state VICTORYROAD2F_BOULDER3,      ON
 
 	toggleable_objects_for BILLS_HOUSE
@@ -274,7 +283,7 @@ ToggleableObjectStates:
 	toggle_object_state ROCKETHIDEOUTB4F_HP_UP,         ON
 	toggle_object_state ROCKETHIDEOUTB4F_TM_RAZOR_WIND, ON
 	toggle_object_state ROCKETHIDEOUTB4F_IRON,          ON
-	toggle_object_state ROCKETHIDEOUTB4F_SILPH_SCOPE,   OFF
+	toggle_object_state ROCKETHIDEOUTB4F_MASTER_BALL,   OFF
 	toggle_object_state ROCKETHIDEOUTB4F_LIFT_KEY,      OFF
 
 	toggleable_objects_for SILPH_CO_2F
@@ -345,10 +354,8 @@ ToggleableObjectStates:
 	toggle_object_state SILPHCO11F_GIOVANNI,           ON
 	toggle_object_state SILPHCO11F_ROCKET1,            ON
 	toggle_object_state SILPHCO11F_ROCKET2,            ON
-	toggle_object_state SILPHCO11F_LOYALIST_SCIENTIST, OFF
-
-	toggleable_objects_for BATTLE_ISLAND_GATE
-	toggle_object_state $02, ON ; unused placeholder (preserves table counts; gate map has no real toggleable objects)
+	toggle_object_state SILPHCO11F_PUPIL,              OFF
+	toggle_object_state SILPHCO11F_OAK,                OFF ; reclaimed the old BATTLE_ISLAND_GATE placeholder slot
 
 	toggleable_objects_for POKEMON_MANSION_2F
 	toggle_object_state POKEMONMANSION2F_CALCIUM, ON
@@ -375,7 +382,7 @@ ToggleableObjectStates:
 	toggle_object_state SAFARIZONENORTH_TM_SKULL_BASH, ON
 
 	toggleable_objects_for SAFARI_ZONE_WEST
-	toggle_object_state SAFARIZONEWEST_MAX_POTION,     ON
+	toggle_object_state SAFARIZONEWEST_TM_NIGHT_SHADE,     ON
 	toggle_object_state SAFARIZONEWEST_TM_DOUBLE_TEAM, ON
 	toggle_object_state SAFARIZONEWEST_MAX_REVIVE,     ON
 	toggle_object_state SAFARIZONEWEST_GOLD_TEETH,     ON
@@ -434,9 +441,62 @@ ToggleableObjectStates:
 	toggleable_objects_for VERMILION_DOCK
 	toggle_object_state VERMILIONDOCK_OLYMPIA_GUARD, ON
 
+; The rival is the ship's locked final fight (Josh, 2026-08-02): hidden by
+; default, shown once every other trainer aboard is beaten -- see
+; SSOlympiaBowSetRivalVisibilityScript in scripts/SSOlympiaBow.asm, called
+; every tick the player is on this map. He used to fly in as a bird that
+; "transformed" into him; that's gone (Josh cut it earlier the same day), so
+; this is a plain show/hide, not a second animated reveal. The bird stays
+; parked OFF rather than being deleted: toggle indices are global and saved, so
+; removing one renumbers every later index and breaks existing saves.
 	toggleable_objects_for SS_OLYMPIA_BOW
-	toggle_object_state SSOLYMPIABOW_BIRD,  ON
+	toggle_object_state SSOLYMPIABOW_BIRD,  OFF
 	toggle_object_state SSOLYMPIABOW_RIVAL, OFF
+
+	toggleable_objects_for ARCHIPELAGO_CAVE_3F
+	toggle_object_state ARCHIPELAGOCAVE3F_OAK, OFF ; hidden until EVENT_USED_MUTAGEN_MACHINE
+
+; Loyalist-path SILPH staff, appended so no existing toggle index moves.
+; All start OFF; each floor's map script shows either these or the ROCKETs.
+
+	toggleable_objects_appended_for SILPH_CO_2F
+	toggle_object_state SILPHCO2F_DEFENDER1, OFF
+	toggle_object_state SILPHCO2F_DEFENDER2, OFF
+
+	toggleable_objects_appended_for SILPH_CO_3F
+	toggle_object_state SILPHCO3F_DEFENDER1, OFF
+
+	toggleable_objects_appended_for SILPH_CO_4F
+	toggle_object_state SILPHCO4F_DEFENDER1, OFF
+	toggle_object_state SILPHCO4F_DEFENDER2, OFF
+
+	toggleable_objects_appended_for SILPH_CO_5F
+	toggle_object_state SILPHCO5F_DEFENDER1, OFF
+	toggle_object_state SILPHCO5F_DEFENDER2, OFF
+	toggle_object_state SILPHCO5F_DEFENDER3, OFF
+
+	toggleable_objects_appended_for SILPH_CO_6F
+	toggle_object_state SILPHCO6F_DEFENDER1, OFF
+	toggle_object_state SILPHCO6F_DEFENDER2, OFF
+
+	toggleable_objects_appended_for SILPH_CO_7F
+	toggle_object_state SILPHCO7F_DEFENDER1, OFF
+	toggle_object_state SILPHCO7F_DEFENDER2, OFF
+	toggle_object_state SILPHCO7F_DEFENDER3, OFF
+
+	toggleable_objects_appended_for SILPH_CO_8F
+	toggle_object_state SILPHCO8F_DEFENDER1, OFF
+	toggle_object_state SILPHCO8F_DEFENDER2, OFF
+
+	toggleable_objects_appended_for SILPH_CO_9F
+	toggle_object_state SILPHCO9F_DEFENDER1, OFF
+	toggle_object_state SILPHCO9F_DEFENDER2, OFF
+
+	toggleable_objects_appended_for SILPH_CO_10F
+	toggle_object_state SILPHCO10F_DEFENDER1, OFF
+
+	toggleable_objects_appended_for SILPH_CO_11F
+	toggle_object_state SILPHCO11F_DEFENDER1, OFF
 
 	assert_table_length NUM_TOGGLEABLE_OBJECTS
 

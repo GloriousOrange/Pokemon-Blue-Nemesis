@@ -1,10 +1,10 @@
 	db DEX_CHARMELEON ; pokedex id
 
-	db  58,  64,  58,  80,  65
+	db  58,  64,  58, 110,  65
 	;   hp  atk  def  spd  spc
 
 	db FIRE, FIRE ; type
-	db 45 ; catch rate
+	db 90 ; catch rate
 	db 142 ; base exp
 
 	INCBIN "gfx/pokemon/front/charmeleon.pic", 0, 1 ; sprite dimensions

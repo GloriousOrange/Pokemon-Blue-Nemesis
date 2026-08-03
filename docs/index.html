@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Pokémon Nemesis — Team Builder</title>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<header class="app-header">
+  <h1>Pokémon Nemesis <span class="subtitle">Team Builder</span></h1>
+  <p class="blurb">
+    Tap a sprite to add it to your team (max 6). Tap a name to see its full
+    movepool. Tiles with a <span class="ghost-icon-inline">👻</span> badge can
+    also preview their Ghost form.
+  </p>
+</header>
+
+<section class="team-panel" id="team-panel" aria-label="Your team">
+  <div class="team-slots" id="team-slots"></div>
+  <div class="coverage" id="coverage"></div>
+</section>
+
+<section class="grid-panel">
+  <div class="grid-controls">
+    <input type="search" id="search" placeholder="Filter by name or type…" autocomplete="off">
+    <span class="grid-count" id="grid-count"></span>
+  </div>
+  <div class="sprite-grid" id="sprite-grid"></div>
+</section>
+
+<div class="detail-overlay" id="detail-overlay" hidden>
+  <div class="detail-panel" id="detail-panel"></div>
+</div>
+
+<footer class="app-footer">
+  <a href="https://github.com/GloriousOrange/Pokemon-Blue-Nemesis/blob/master/MUTAGENSTONE.md">Mutagenstone movesets</a> ·
+  <a href="https://github.com/GloriousOrange/Pokemon-Blue-Nemesis/blob/master/dist/README.md">Patch &amp; install</a> ·
+  <a href="https://github.com/GloriousOrange/Pokemon-Blue-Nemesis">Source</a>
+</footer>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

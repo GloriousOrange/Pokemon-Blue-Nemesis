@@ -1,6 +1,6 @@
 	db DEX_DROWZEE ; pokedex id
 
-	db  60,  48,  45,  42,  90
+	db  60,  48,  45,  77,  90
 	;   hp  atk  def  spd  spc
 
 	db PSYCHIC_TYPE, PSYCHIC_TYPE ; type
@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/drowzee.pic", 0, 1 ; sprite dimensions
 	dw DrowzeePicFront, DrowzeePicBack
 
-	db POUND, HYPNOSIS, NO_MOVE, NO_MOVE ; level 1 learnset
+	db PSY_CHOP, POUND, HYPNOSIS, NO_MOVE ; level 1 learnset (Psy Chop added for starter STAB)
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

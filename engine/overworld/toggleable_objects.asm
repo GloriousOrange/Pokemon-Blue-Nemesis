@@ -7,58 +7,38 @@ MarkTownVisitedAndLoadToggleableObjects::
 	ld hl, wTownVisitedFlag   ; mark town as visited (for flying)
 	predef FlagActionPredef
 .notInTown
-	ld hl, ToggleableObjectMapPointers
-	ld a, [wCurMap]
-	ld b, $0
-	ld c, a
-	add hl, bc
-	add hl, bc
-	ld a, [hli] ; load toggleable objects pointer in hl
-	ld h, [hl]
-	ld l, a
-	push hl
-	ld de, ToggleableObjectStates ; calculate difference between out pointer and the base pointer
-	ld a, l
-	sub e
-	jr nc, .noCarry
-	dec h
-.noCarry
-	ld l, a
-	ld a, h
-	sub d
-	ld h, a
-	; divide difference by 3, resulting in the global offset (number of toggleable items before ours)
-	ld a, h
-	ldh [hDividend], a
-	ld a, l
-	ldh [hDividend+1], a
-	xor a
-	ldh [hDividend+2], a
-	ldh [hDividend+3], a
-	ld a, $3
-	ldh [hDivisor], a
-	ld b, $2
-	call Divide
+; Scan the whole table rather than seeking to this map's block. A toggleable
+; object's global index -- the bit it owns in the saved wToggleableObjectFlags
+; array -- is just its position in ToggleableObjectStates, so scanning lets a
+; map's entries sit anywhere instead of having to be contiguous. That matters
+; because inserting an entry mid-table shifts the index of every entry after it
+; and silently invalidates existing saves; appending at the end shifts nothing.
+; The old code derived the index by dividing the map pointer's offset by 3,
+; which only worked while each map owned one contiguous run.
+	ld hl, ToggleableObjectStates
+	ld de, wToggleableObjectList
 	ld a, [wCurMap]
 	ld b, a
-	ldh a, [hDividend+3]
-	ld c, a                    ; store global offset in c
-	ld de, wToggleableObjectList
-	pop hl
+	ld c, 0                    ; global index of the entry under hl
 .writeToggleableObjectsListLoop
 	ld a, [hli]
 	cp -1
-	jr z, .done     ; end of list
+	jr z, .done     ; end of table
 	cp b
-	jr nz, .done    ; not for current map anymore
+	jr z, .thisMap
+	inc hl                     ; skip sprite ID
+	inc hl                     ; skip initial state
+	inc c
+	jr .writeToggleableObjectsListLoop
+.thisMap
 	ld a, [hli]
-	inc hl
 	ld [de], a                 ; write (map-local) sprite ID
 	inc de
 	ld a, c
-	inc c
 	ld [de], a                 ; write (global) toggleable object index
 	inc de
+	inc hl                     ; skip initial state
+	inc c
 	jr .writeToggleableObjectsListLoop
 .done
 	ld a, -1

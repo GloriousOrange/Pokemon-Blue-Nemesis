@@ -13,6 +13,7 @@ SilphCo6F_GateCallbackScript:
 	bit BIT_CUR_MAP_LOADED_1, [hl]
 	res BIT_CUR_MAP_LOADED_1, [hl]
 	ret z
+	call SilphCo6FSetFactionObjectsScript
 	ld hl, .GateCoordinates
 	call SilphCo4F_SetCardKeyDoorYScript
 	call SilphCo6F_UnlockedDoorEventScript
@@ -54,6 +55,8 @@ SilphCo6F_TextPointers:
 	dw_const PickUpItemText,             TEXT_SILPHCO6F_X_ACCURACY
 	dw_const SilphCo6FFlavorRocketText,  TEXT_SILPHCO6F_FLAVOR_ROCKET
 	dw_const SilphCo6FFlavorScientistText, TEXT_SILPHCO6F_FLAVOR_SCIENTIST
+	dw_const SilphCo6FDefender1Text, TEXT_SILPHCO6F_DEFENDER1
+	dw_const SilphCo6FDefender2Text, TEXT_SILPHCO6F_DEFENDER2
 
 SilphCo6TrainerHeaders:
 	def_trainers 6
@@ -63,6 +66,10 @@ SilphCo6TrainerHeader1:
 	trainer EVENT_BEAT_SILPH_CO_6F_TRAINER_1, 3, SilphCo6FScientistBattleText, SilphCo6FScientistEndBattleText, SilphCo6FScientistAfterBattleText
 SilphCo6TrainerHeader2:
 	trainer EVENT_BEAT_SILPH_CO_6F_TRAINER_2, 2, SilphCo6FRocket2BattleText, SilphCo6FRocket2EndBattleText, SilphCo6FRocket2AfterBattleText
+SilphCo6TrainerHeader3:
+	trainer EVENT_BEAT_SILPH_CO_6F_TRAINER_3, 2, SilphCo6FDefender1BattleText, SilphCo6FDefender1EndBattleText, SilphCo6FDefender1AfterBattleText
+SilphCo6TrainerHeader4:
+	trainer EVENT_BEAT_SILPH_CO_6F_TRAINER_4, 2, SilphCo6FDefender2BattleText, SilphCo6FDefender2EndBattleText, SilphCo6FDefender2AfterBattleText
 	db -1 ; end
 
 SilphCo6FBeatGiovanniPrintDEOrPrintHLScript:
@@ -248,4 +255,92 @@ SilphCo6FFlavorScientistText:
 
 .Text:
 	text_far _SilphCo6FFlavorScientistText
+	text_end
+
+; TEAM ROCKET holds this floor. On the hero path they fight you and the SILPH
+; staff stay hidden; on the loyalist path they are comrades, so the staff
+; defend the building instead. Each pair shares a tile, so exactly one of the
+; two is ever shown. Skipped once the boss has fallen -- by then
+; SilphCo11FTeamRocketLeavesScript has cleared this floor for good, and
+; re-showing anyone here on the next map load would undo that.
+SilphCo6FSetFactionObjectsScript:
+	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
+	ret nz
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	jr nz, .loyalist
+	ld hl, .Defenders
+	call SilphCo6FHideObjectList
+	ld hl, .Rockets
+	jp SilphCo6FShowObjectList
+.loyalist
+	ld hl, .Rockets
+	call SilphCo6FHideObjectList
+	ld hl, .Defenders
+	jp SilphCo6FShowObjectList
+
+.Rockets:
+	db TOGGLE_SILPH_CO_6F_1
+	db TOGGLE_SILPH_CO_6F_3
+	db -1 ; end
+
+.Defenders:
+	db TOGGLE_SILPH_CO_6F_DEFENDER1
+	db TOGGLE_SILPH_CO_6F_DEFENDER2
+	db -1 ; end
+
+SilphCo6FShowObjectList:
+	ld a, [hli]
+	cp -1
+	ret z
+	push hl
+	ld [wToggleableObjectIndex], a
+	predef ShowObject
+	pop hl
+	jr SilphCo6FShowObjectList
+
+SilphCo6FHideObjectList:
+	ld a, [hli]
+	cp -1
+	ret z
+	push hl
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	pop hl
+	jr SilphCo6FHideObjectList
+
+SilphCo6FDefender1Text:
+	text_asm
+	ld hl, SilphCo6TrainerHeader3
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SilphCo6FDefender1BattleText:
+	text_far _SilphCo6FDefender1BattleText
+	text_end
+
+SilphCo6FDefender1EndBattleText:
+	text_far _SilphCo6FDefender1EndBattleText
+	text_end
+
+SilphCo6FDefender1AfterBattleText:
+	text_far _SilphCo6FDefender1AfterBattleText
+	text_end
+
+SilphCo6FDefender2Text:
+	text_asm
+	ld hl, SilphCo6TrainerHeader4
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SilphCo6FDefender2BattleText:
+	text_far _SilphCo6FDefender2BattleText
+	text_end
+
+SilphCo6FDefender2EndBattleText:
+	text_far _SilphCo6FDefender2EndBattleText
+	text_end
+
+SilphCo6FDefender2AfterBattleText:
+	text_far _SilphCo6FDefender2AfterBattleText
 	text_end

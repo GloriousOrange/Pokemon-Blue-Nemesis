@@ -13,6 +13,7 @@ SilphCo9FGateCallbackScript:
 	bit BIT_CUR_MAP_LOADED_1, [hl]
 	res BIT_CUR_MAP_LOADED_1, [hl]
 	ret z
+	call SilphCo9FSetFactionObjectsScript
 	ld hl, .GateCoordinates
 	call SilphCo9F_SetCardKeyDoorYScript
 	call SilphCo9F_SetUnlockedSilphCoDoorsScript
@@ -132,6 +133,8 @@ SilphCo9F_TextPointers:
 	dw_const SilphCo9FRocket2Text,   TEXT_SILPHCO9F_ROCKET2
 	dw_const SilphCo9FFlavorRocketText, TEXT_SILPHCO9F_FLAVOR_ROCKET
 	dw_const SilphCo9FFlavorScientistText, TEXT_SILPHCO9F_FLAVOR_SCIENTIST
+	dw_const SilphCo9FDefender1Text, TEXT_SILPHCO9F_DEFENDER1
+	dw_const SilphCo9FDefender2Text, TEXT_SILPHCO9F_DEFENDER2
 
 SilphCo9TrainerHeaders:
 	def_trainers 2
@@ -141,6 +144,10 @@ SilphCo9TrainerHeader1:
 	trainer EVENT_BEAT_SILPH_CO_9F_TRAINER_1, 2, SilphCo9FScientistBattleText, SilphCo9FScientistEndBattleText, SilphCo9FScientistAfterBattleText
 SilphCo9TrainerHeader2:
 	trainer EVENT_BEAT_SILPH_CO_9F_TRAINER_2, 4, SilphCo9FRocket2BattleText, SilphCo9FRocket2EndBattleText, SilphCo9FRocket2AfterBattleText
+SilphCo9TrainerHeader3:
+	trainer EVENT_BEAT_SILPH_CO_9F_TRAINER_3, 4, SilphCo9FDefender1BattleText, SilphCo9FDefender1EndBattleText, SilphCo9FDefender1AfterBattleText
+SilphCo9TrainerHeader4:
+	trainer EVENT_BEAT_SILPH_CO_9F_TRAINER_4, 4, SilphCo9FDefender2BattleText, SilphCo9FDefender2EndBattleText, SilphCo9FDefender2AfterBattleText
 	db -1 ; end
 
 SilphCo9FNurseText:
@@ -287,4 +294,92 @@ SilphCo9FFlavorRocketText:
 
 SilphCo9FFlavorScientistText:
 	text_far _SilphCo9FFlavorScientistText
+	text_end
+
+; TEAM ROCKET holds this floor. On the hero path they fight you and the SILPH
+; staff stay hidden; on the loyalist path they are comrades, so the staff
+; defend the building instead. Each pair shares a tile, so exactly one of the
+; two is ever shown. Skipped once the boss has fallen -- by then
+; SilphCo11FTeamRocketLeavesScript has cleared this floor for good, and
+; re-showing anyone here on the next map load would undo that.
+SilphCo9FSetFactionObjectsScript:
+	CheckEvent EVENT_BEAT_SILPH_CO_GIOVANNI
+	ret nz
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	jr nz, .loyalist
+	ld hl, .Defenders
+	call SilphCo9FHideObjectList
+	ld hl, .Rockets
+	jp SilphCo9FShowObjectList
+.loyalist
+	ld hl, .Rockets
+	call SilphCo9FHideObjectList
+	ld hl, .Defenders
+	jp SilphCo9FShowObjectList
+
+.Rockets:
+	db TOGGLE_SILPH_CO_9F_1
+	db TOGGLE_SILPH_CO_9F_3
+	db -1 ; end
+
+.Defenders:
+	db TOGGLE_SILPH_CO_9F_DEFENDER1
+	db TOGGLE_SILPH_CO_9F_DEFENDER2
+	db -1 ; end
+
+SilphCo9FShowObjectList:
+	ld a, [hli]
+	cp -1
+	ret z
+	push hl
+	ld [wToggleableObjectIndex], a
+	predef ShowObject
+	pop hl
+	jr SilphCo9FShowObjectList
+
+SilphCo9FHideObjectList:
+	ld a, [hli]
+	cp -1
+	ret z
+	push hl
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	pop hl
+	jr SilphCo9FHideObjectList
+
+SilphCo9FDefender1Text:
+	text_asm
+	ld hl, SilphCo9TrainerHeader3
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SilphCo9FDefender1BattleText:
+	text_far _SilphCo9FDefender1BattleText
+	text_end
+
+SilphCo9FDefender1EndBattleText:
+	text_far _SilphCo9FDefender1EndBattleText
+	text_end
+
+SilphCo9FDefender1AfterBattleText:
+	text_far _SilphCo9FDefender1AfterBattleText
+	text_end
+
+SilphCo9FDefender2Text:
+	text_asm
+	ld hl, SilphCo9TrainerHeader4
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SilphCo9FDefender2BattleText:
+	text_far _SilphCo9FDefender2BattleText
+	text_end
+
+SilphCo9FDefender2EndBattleText:
+	text_far _SilphCo9FDefender2EndBattleText
+	text_end
+
+SilphCo9FDefender2AfterBattleText:
+	text_far _SilphCo9FDefender2AfterBattleText
 	text_end

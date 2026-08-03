@@ -16,54 +16,95 @@ SSOlympiaB1F_ScriptPointers:
 SSOlympiaB1F_TextPointers:
 	def_text_pointers
 	dw_const SSOlympiaB1FDetectiveText, TEXT_SSOLYMPIAB1F_DETECTIVE
-	dw_const SSOlympiaB1FRocket1Text, TEXT_SSOLYMPIAB1F_ROCKET1
-	dw_const SSOlympiaB1FRocket2Text, TEXT_SSOLYMPIAB1F_ROCKET2
+	dw_const SSOlympiaB1FAgathaText, TEXT_SSOLYMPIAB1F_AGATHA
+	dw_const SSOlympiaB1FLanceText, TEXT_SSOLYMPIAB1F_LANCE
+	dw_const SSOlympiaB1FHikerText, TEXT_SSOLYMPIAB1F_HIKER
+	dw_const SSOlympiaB1FBurglarText, TEXT_SSOLYMPIAB1F_BURGLAR
 
 SSOlympiaB1FTrainerHeaders:
 	def_trainers
 SSOlympiaB1FTrainerHeader0:
-	trainer EVENT_BEAT_SS_OLYMPIA_B1F_ROCKET_0, 3, SSOlympiaB1FRocket1BattleText, SSOlympiaB1FRocket1EndBattleText, SSOlympiaB1FRocket1AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_B1F_TRAINER_0, 3, SSOlympiaB1FAgathaBattleText, SSOlympiaB1FAgathaEndBattleText, SSOlympiaB1FAgathaAfterBattleText
 SSOlympiaB1FTrainerHeader1:
-	trainer EVENT_BEAT_SS_OLYMPIA_B1F_ROCKET_1, 3, SSOlympiaB1FRocket2BattleText, SSOlympiaB1FRocket2EndBattleText, SSOlympiaB1FRocket2AfterBattleText
+	trainer EVENT_BEAT_SS_OLYMPIA_B1F_TRAINER_1, 3, SSOlympiaB1FLanceBattleText, SSOlympiaB1FLanceEndBattleText, SSOlympiaB1FLanceAfterBattleText
+SSOlympiaB1FTrainerHeader2:
+	trainer_in wOlympiaTrainerFlags, 11, 2, SSOlympiaB1FHikerBattleText, SSOlympiaB1FHikerEndBattleText, SSOlympiaB1FHikerAfterBattleText
+SSOlympiaB1FTrainerHeader3:
+	trainer_in wOlympiaTrainerFlags, 12, 2, SSOlympiaB1FBurglarBattleText, SSOlympiaB1FBurglarEndBattleText, SSOlympiaB1FBurglarAfterBattleText
 	db -1 ; end
 
 SSOlympiaB1FDetectiveText:
 	text_far _SSOlympiaB1FDetectiveText
 	text_end
-SSOlympiaB1FRocket1Text:
+SSOlympiaB1FAgathaText:
 	text_asm
 	ld hl, SSOlympiaB1FTrainerHeader0
 	call TalkToTrainer
 	jp TextScriptEnd
 
-SSOlympiaB1FRocket2Text:
+SSOlympiaB1FLanceText:
 	text_asm
 	ld hl, SSOlympiaB1FTrainerHeader1
 	call TalkToTrainer
 	jp TextScriptEnd
 
 
-SSOlympiaB1FRocket1BattleText:
-	text_far _SSOlympiaB1FRocket1BattleText
+SSOlympiaB1FAgathaBattleText:
+	text_far _SSOlympiaB1FAgathaBattleText
 	text_end
 
-SSOlympiaB1FRocket1EndBattleText:
-	text_far _SSOlympiaB1FRocket1EndBattleText
+SSOlympiaB1FAgathaEndBattleText:
+	text_far _SSOlympiaB1FAgathaEndBattleText
 	text_end
 
-SSOlympiaB1FRocket1AfterBattleText:
-	text_far _SSOlympiaB1FRocket1AfterBattleText
+SSOlympiaB1FAgathaAfterBattleText:
+	text_far _SSOlympiaB1FAgathaAfterBattleText
 	text_end
 
-SSOlympiaB1FRocket2BattleText:
-	text_far _SSOlympiaB1FRocket2BattleText
+SSOlympiaB1FLanceBattleText:
+	text_far _SSOlympiaB1FLanceBattleText
 	text_end
 
-SSOlympiaB1FRocket2EndBattleText:
-	text_far _SSOlympiaB1FRocket2EndBattleText
+SSOlympiaB1FLanceEndBattleText:
+	text_far _SSOlympiaB1FLanceEndBattleText
 	text_end
 
-SSOlympiaB1FRocket2AfterBattleText:
-	text_far _SSOlympiaB1FRocket2AfterBattleText
+SSOlympiaB1FLanceAfterBattleText:
+	text_far _SSOlympiaB1FLanceAfterBattleText
 	text_end
 
+SSOlympiaB1FHikerText:
+	text_asm
+	ld hl, SSOlympiaB1FTrainerHeader2
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympiaB1FHikerBattleText:
+	text_far _SSOlympiaB1FHikerBattleText
+	text_end
+
+SSOlympiaB1FHikerEndBattleText:
+	text_far _SSOlympiaB1FHikerEndBattleText
+	text_end
+
+SSOlympiaB1FHikerAfterBattleText:
+	text_far _SSOlympiaB1FHikerAfterBattleText
+	text_end
+
+SSOlympiaB1FBurglarText:
+	text_asm
+	ld hl, SSOlympiaB1FTrainerHeader3
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSOlympiaB1FBurglarBattleText:
+	text_far _SSOlympiaB1FBurglarBattleText
+	text_end
+
+SSOlympiaB1FBurglarEndBattleText:
+	text_far _SSOlympiaB1FBurglarEndBattleText
+	text_end
+
+SSOlympiaB1FBurglarAfterBattleText:
+	text_far _SSOlympiaB1FBurglarAfterBattleText
+	text_end

@@ -1,49 +1,72 @@
 _RocketHideoutB4FGiovanniImpressedYouGotHereText::
-	text "I see OAK has a"
-	line "new lapdog."
+	text "You have the gall"
+	line "to storm my secret"
+	cont "base and then"
+	cont "challenge ME?"
+
+	para "You will suffer"
+	line "for your"
+	cont "arrogance."
 	done
 
 _RocketHideoutB4FGiovanniLoyalistImpressedText::
-	text "You've been"
-	line "wiping the floor"
-	cont "with my agents."
+	text "You might be my"
+	line "best minion."
 
-	para "Impressive."
+	para "Pass this final"
+	line "test and I will"
+	cont "give you the rank"
+	cont "of EXECUTIVE."
 	done
 
 _RocketHideoutB4FGiovanniWhatCannotBeText::
-	text "WHAT!"
-	line "This cannot be!"
+	text "I see OAK's little"
+	line "lab rat has"
+	cont "some skill."
+	prompt
+
+_RocketHideoutB4FGiovanniLoyalistEndBattleText::
+	text "We're going to do"
+	line "great things,"
+	cont "you and I."
 	prompt
 
 _RocketHideoutB4FGiovanniHopeWeMeetAgainText::
-	text "Do you know why"
-	line "OAK sent you to"
-	cont "take the SILPH"
-	cont "SCOPE?"
+	text "I knew your"
+	line "father, GENERAL"
+	cont "MATHUS."
+
+	para "I see him in you"
+	line "and I respect"
+	cont "your grit."
+
+	para "This belonged to"
+	line "him. It's yours"
+	cont "now."
+
+	para "Do you know why"
+	line "OAK sent you"
+	cont "here?"
 
 	para "Or are you just"
 	line "his pawn?"
-
-	para "He's after a"
-	line "secret weapon in"
-	cont "the POKéMON TOWER."
-
-	para "The SCOPE is the"
-	line "key."
 	done
 
 _RocketHideoutB4FGiovanniLoyalistRankText::
-	text "Not bad. Not bad"
-	line "at all."
+	text "Your mission is to"
+	line "obtain the secret"
+	cont "super-weapon OAK"
+	cont "is searching for."
 
-	para "I grant you the"
-	line "rank of AGENT."
+	para "This MASTER BALL"
+	line "will help -- but"
+	cont "you need the"
+	cont "SILPH SCOPE."
 
-	para "Executive comes"
-	line "later -- once"
-	cont "you've brought me"
-	cont "the SILPH SCOPE."
+	para "Top-secret tech"
+	line "from SILPH CO."
+	cont "Get it before OAK"
+	cont "does!"
 	done
 
 _RocketHideoutB4FRocket1BattleText::

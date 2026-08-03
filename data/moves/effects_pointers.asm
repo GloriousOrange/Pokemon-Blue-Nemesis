@@ -93,4 +93,12 @@ MoveEffectPointerTable:
 	dw CrystallizeEffect         ; CRYSTALLIZE_EFFECT
 	dw ChaosStingEffect          ; CHAOS_STING_EFFECT
 	dw HotOilEffect              ; HOT_OIL_EFFECT
+	dw WebCannonEffect           ; WEB_CANNON_EFFECT
+	dw StaticShockEffect         ; STATIC_SHOCK_EFFECT
+	dw VibrateEffect             ; VIBRATE_EFFECT
+	dw TangleEffect              ; TANGLE_EFFECT
+	dw IceBombEffect             ; ICE_BOMB_EFFECT
+	dw RollEffect                ; ROLL_EFFECT
+	dw IceSculptureEffect        ; ICE_SCULPTURE_EFFECT
+	dw GlitterWingEffect         ; GLITTER_WING_EFFECT
 	assert_table_length NUM_MOVE_EFFECTS

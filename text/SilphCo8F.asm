@@ -38,12 +38,12 @@ _SilphCo8FScientistBattleText::
 	done
 
 _SilphCo8FScientistHeroBattleText::
-	text "One of OAK's"
-	line "too, huh?"
+	text "The lab coat"
+	line "fooled you, did"
+	cont "it?"
 
-	para "Watch yourself,"
-	line "it's not safe up"
-	cont "here."
+	para "Good. That's what"
+	line "it's for."
 	done
 
 _SilphCo8FScientistEndBattleText::
@@ -104,3 +104,39 @@ _SilphCo8FFlavorScientistText::
 	para "everything"
 	line "I've got."
 	done
+
+; Loyalist path: SILPH staff standing where the ROCKETs stand on the hero path.
+
+_SilphCo8FDefender1BattleText::
+	text "Eighth floor is"
+	line "sealed. You'd"
+	cont "need a key."
+	done
+
+_SilphCo8FDefender1EndBattleText::
+	text "You do have a key."
+	prompt
+
+_SilphCo8FDefender1AfterBattleText::
+	text "Whoever gave you"
+	line "that works here."
+	cont "Or used to."
+	done
+
+
+_SilphCo8FDefender2BattleText::
+	text "One more floor"
+	line "and I'd have made"
+	cont "it out."
+	done
+
+_SilphCo8FDefender2EndBattleText::
+	text "One more floor."
+	prompt
+
+_SilphCo8FDefender2AfterBattleText::
+	text "The stairwell is"
+	line "clear. Not that"
+	cont "you need telling."
+	done
+

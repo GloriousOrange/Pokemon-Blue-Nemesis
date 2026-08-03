@@ -49,7 +49,7 @@ _ItemUseBallText08::
 	prompt
 
 _ItemUseBallText06::
-	text "New #DEX data"
+	text "New CODEX data"
 	line "will be added for"
 	cont "@"
 	text_ram wEnemyMonNick

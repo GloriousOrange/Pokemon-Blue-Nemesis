@@ -1,6 +1,6 @@
 	db DEX_MANKEY ; pokedex id
 
-	db  40,  80,  35,  70,  35
+	db  40,  80,  35, 105,  35
 	;   hp  atk  def  spd  spc
 
 	db FIGHTING, FIGHTING ; type
@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/mankey.pic", 0, 1 ; sprite dimensions
 	dw MankeyPicFront, MankeyPicBack
 
-	db SCRATCH, LEER, NO_MOVE, NO_MOVE ; level 1 learnset
+	db PALM_STRIKE, SCRATCH, LEER, NO_MOVE ; level 1 learnset (Palm Strike added for starter STAB)
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

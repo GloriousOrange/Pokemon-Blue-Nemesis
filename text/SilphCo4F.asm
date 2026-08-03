@@ -97,3 +97,38 @@ _SilphCo4FFlavorScientistText::
 	line "and I'm guarding"
 	cont "them."
 	done
+
+; Loyalist path: SILPH staff standing where the ROCKETs stand on the hero path.
+
+_SilphCo4FDefender1BattleText::
+	text "You don't belong"
+	line "on this floor."
+	done
+
+_SilphCo4FDefender1EndBattleText::
+	text "Neither do I,"
+	line "now."
+	prompt
+
+_SilphCo4FDefender1AfterBattleText::
+	text "They'll blame the"
+	line "staff for this."
+	cont "They always do."
+	done
+
+
+_SilphCo4FDefender2BattleText::
+	text "Badge, please."
+	line "...I thought not."
+	done
+
+_SilphCo4FDefender2EndBattleText::
+	text "Should have"
+	line "called for help."
+	prompt
+
+_SilphCo4FDefender2AfterBattleText::
+	text "There's no badge"
+	line "for what you are."
+	done
+

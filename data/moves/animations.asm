@@ -164,25 +164,56 @@ AttackAnimationPointers:
 	dw SuperFangAnim
 	dw SlashAnim
 	dw SubstituteAnim
-	dw DrillPeckAnim    ; DOUBLE_DRILL — reuse drill peck visuals
+	dw DoubleDrillAnim  ; DOUBLE_DRILL — bespoke: 2 fast crossing hits (2nd mirrored)
 	dw HyperBeamsAnim   ; HYPER_BEAMS — double-beam variant
 	dw MetronomeAnim    ; METRONOME2 — reuse metronome visuals
 	dw ToxicAnim        ; CARRION_WIND
 	dw SludgeAnim       ; BLIGHT_VOMIT
 	dw ConfuseRayAnim   ; MIND_FEVER
 	dw WingAttackAnim   ; PHANTOM_WING
-	dw StringShotAnim   ; WEB_CANNON
+	dw WebCannonAnim    ; WEB_CANNON — bespoke: web toss, hard bind, heavy impact flash
 	dw MegaPunchAnim    ; UPPERCUT
-	dw PayDayAnim       ; JACKPOT — reuse Pay Day's coin-scatter visuals
-	dw AgilityAnim      ; SUPER_INSTINCT — reuse Agility's focus-aura visuals
-	dw HardenAnim       ; CRYSTALLIZE — reuse Harden's hardening shimmer
-	dw TwineedleAnim    ; CHAOS_STING — reuse Twineedle's stinger visuals
+	dw JackpotAnim      ; JACKPOT — bespoke: Pay Day's coin bounce fires 4x
+	dw SuperInstinctAnim ; SUPER_INSTINCT — bespoke: focus spiral + reflex flash
+	dw CrystallizeAnim  ; CRYSTALLIZE — bespoke: rising crystal shards + shield flash
+	dw ChaosStingAnim   ; CHAOS_STING — bespoke: sting + flickering status icons
 	dw WrapAnim         ; CHOKEHOLD — reuse Wrap's trapping visuals
 	dw CometPunchAnim   ; ROCK_FISTS — reuse Comet Punch's multi-hit fists
-	dw FirePunchAnim    ; HOT_OIL — reuse Fire Punch's flame visuals
+	dw HotOilAnim       ; HOT_OIL — bespoke: oil toss + drip, then ignites
 	dw ConfuseRayAnim   ; BAD_TOUCH — reuse Confuse Ray's visuals
 	dw WrapAnim         ; CRUSH_COIL — reuse Wrap's trapping visuals
-	dw LeechLifeAnim    ; BLOOD_SUCK — reuse Leech Life's drain visuals
+	dw BloodSuckAnim    ; BLOOD_SUCK — bespoke: bite + poison flicker + drain
+	dw HurricaneAnim    ; HURRICANE — bespoke: fast tornado + water columns + shake
+	dw IceSpikeAnim     ; ICE_SPIKE — bespoke: single rising ice shard, no beam
+	dw ConfusionAnim    ; MIGRAIN — reuse Confusion's visuals
+	dw WingAttackAnim   ; DIVE — reuse Wing Attack's visuals
+	dw StaticShockAnim  ; STATIC_SHOCK — bespoke: spark + paralyze flicker
+	dw GravitySlamAnim  ; GRAVITY_SLAM — bespoke: rocks fall + shake + paralyze flicker
+	dw VibrateAnim      ; VIBRATE — bespoke: flash + user shakes/buzzes
+	dw StealthAnim      ; STEALTH — bespoke: Double Team-style flicker
+	dw ConstrictAnim    ; TANGLE — reuse Constrict's visuals
+	dw IceBombAnim      ; ICE_BOMB — bespoke: double ice-fall + small explosion
+	dw SubstituteAnim   ; ICE_SCULPTURE — reuse Substitute's visuals
+	dw TakeDownAnim     ; STAMPEDE — reuse Take Down's visuals
+	dw BodySlamAnim     ; ROLL — reuse Body Slam's visuals
+	dw PoisonStingAnim  ; VENOM_BITE — reuse Poison Sting's visuals
+	dw SandAttackAnim   ; MUD_SLAP — reuse Sand Attack's visuals
+	dw BiteAnim         ; MANDIBLE_BITE — reuse Bite's visuals
+	dw KarateChopAnim   ; PALM_STRIKE — reuse Karate Chop's visuals
+	dw EmberAnim        ; SCORCH — reuse Ember's visuals
+	dw ThunderShockAnim ; SPARK — reuse ThunderShock's visuals
+	dw ConfusionAnim    ; PSY_CHOP — reuse Confusion's visuals
+	dw DragonRageAnim   ; DRAGON_BREATH — reuse Dragon Rage's visuals
+	dw SleepPowderAnim  ; GLITTER_WING — reuse Sleep Powder's shimmering visuals
+	dw PsychicAnim      ; TELEKINESIS -- reuse Psychic's visuals
+	dw FlamethrowerAnim ; FLAME_WHIP -- reuse Flamethrower's visuals
+	dw HydroPumpAnim    ; HYDRO_JET -- reuse Hydro Pump's water columns
+	dw MegaDrainAnim    ; GIGA_DRAIN -- reuse Mega Drain's visuals
+	dw GhostBeamAnim    ; GHOST_BEAM
+	dw NightShadeAnim   ; SHADOW_PUNCH -- reuse Night Shade's spectral visuals
+	dw RockThrowAnim    ; GRANIT_CLAMP -- reuse Rock Throw's visuals
+	dw BiteAnim         ; CRUSH_JAW -- reuse Bite's visuals
+	dw DigAnim          ; THIRD_RAIL -- it is DIG, so reuse DIG's burrow visuals
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim
@@ -279,9 +310,28 @@ PayDayAnim:
 	battle_anim PAY_DAY, SUBANIM_0_COIN_BOUNCE, 0, 4
 	db -1 ; end
 
+; Pay Day, but the coin bounce fires 4 times instead of once (faster each time)
+; for a much bigger scatter of coins -- matches Jackpot's bigger cash payout.
+JackpotAnim:
+	battle_anim POUND, SUBANIM_0_STAR_TWICE, 0, 8
+	battle_anim PAY_DAY, SUBANIM_0_COIN_BOUNCE, 0, 3
+	battle_anim NO_MOVE, SUBANIM_0_COIN_BOUNCE, 0, 3
+	battle_anim NO_MOVE, SUBANIM_0_COIN_BOUNCE, 0, 3
+	battle_anim NO_MOVE, SUBANIM_0_COIN_BOUNCE, 0, 3
+	db -1 ; end
+
 FirePunchAnim:
 	battle_anim FIRE_PUNCH, SUBANIM_0_STAR_THRICE, 0, 6
 	battle_anim NO_MOVE, SUBANIM_1_FLAMES, 1, 6
+	db -1 ; end
+
+; Sludge's blob-toss + drip (oil splashing onto the target and coating them),
+; then it ignites -- distinct from Fire Punch's fist-impact visual, and fits
+; Hot Oil's guaranteed burn (the oil catching fire, not a punch landing).
+HotOilAnim:
+	battle_anim SLUDGE, SUBANIM_1_BLOB_TOSS, 1, 6
+	battle_anim NO_MOVE, SUBANIM_1_BLOB_DRIP_ENEMY, 1, 6
+	battle_anim FIRE_PUNCH, SUBANIM_1_FLAMES, 1, 6
 	db -1 ; end
 
 IcePunchAnim:
@@ -318,6 +368,15 @@ SwordsDanceAnim:
 	battle_anim SWORDS_DANCE, SUBANIM_1_SWORDS_CIRCLING, 1, 6
 	db -1 ; end
 
+; A boost flash, then the user visibly shakes/buzzes -- literally "vibrates"
+; -- instead of Swords Dance's circling blades, which don't fit an
+; Attack+Speed boost with no weapon involved.
+VibrateAnim:
+	battle_anim VIBRATE, SE_LIGHT_SCREEN_PALETTE
+	battle_anim NO_MOVE, SE_SHAKE_BACK_AND_FORTH
+	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
+	db -1 ; end
+
 CutAnim:
 	battle_anim CUT, SE_DARK_SCREEN_FLASH
 	battle_anim NO_MOVE, SUBANIM_0_SLICE, 0, 4
@@ -326,6 +385,15 @@ CutAnim:
 GustAnim:
 	battle_anim GUST, SUBANIM_1_TORNADO, 1, 6
 	battle_anim NO_MOVE, SUBANIM_0_STAR_THRICE, 0, 6
+	db -1 ; end
+
+; A faster tornado, then a water-column storm surge, then a heavy shake for
+; the impact -- a full storm rather than Gust's plain wind, fitting Gyarados's
+; Water/Dragon fury and Hurricane's high crit ratio.
+HurricaneAnim:
+	battle_anim GUST, SUBANIM_1_TORNADO, 1, 4
+	battle_anim NO_MOVE, SUBANIM_0_WATER_COLUMNS, 0, 6
+	battle_anim NO_MOVE, SE_SHAKE_SCREEN
 	db -1 ; end
 
 WingAttackAnim:
@@ -460,6 +528,16 @@ TwineedleAnim:
 	battle_anim TWINEEDLE, SUBANIM_0_STAR_TWICE, 0, 5
 	db -1 ; end
 
+; A single sting, then a fast flicker through poison/paralyze/confuse status
+; icons -- represents the 30% chance of any random status, distinct from
+; Twineedle's plain double-sting.
+ChaosStingAnim:
+	battle_anim TWINEEDLE, SUBANIM_0_STAR_TWICE, 0, 5
+	battle_anim NO_MOVE, SUBANIM_0_STATUS_POISONED, 0, 3
+	battle_anim NO_MOVE, SUBANIM_0_STATUS_PARALYZED, 0, 3
+	battle_anim NO_MOVE, SUBANIM_0_STATUS_CONFUSED, 0, 3
+	db -1 ; end
+
 PinMissileAnim:
 	battle_anim PIN_MISSILE, SUBANIM_0_STAR_TWICE, 0, 3
 	db -1 ; end
@@ -549,9 +627,24 @@ IceBeamAnim:
 	battle_anim NO_MOVE, SUBANIM_0_ICE_RISE, 0, 16
 	db -1 ; end
 
+; Just the rising ice spike alone, no beam or punch stars beforehand -- a
+; single quick shard, fitting Ice Spike's low power, distinct from Ice Beam
+; (beam+rise) and Ice Punch (stars+rise) which always pair it with something.
+IceSpikeAnim:
+	battle_anim ICE_BEAM, SUBANIM_0_ICE_RISE, 0, 8
+	db -1 ; end
+
 BlizzardAnim:
 	battle_anim BLIZZARD, SUBANIM_0_ICE_FALL, 0, 4
 	battle_anim HYDRO_PUMP, SUBANIM_0_ICE_FALL, 0, 4
+	db -1 ; end
+
+; Ice falls twice like Blizzard, then a small explosion on the target --
+; the "bomb" going off -- instead of Blizzard's plain double ice-fall.
+IceBombAnim:
+	battle_anim BLIZZARD, SUBANIM_0_ICE_FALL, 0, 4
+	battle_anim NO_MOVE, SUBANIM_0_ICE_FALL, 0, 4
+	battle_anim NO_MOVE, SUBANIM_1_EXPLOSION_SMALL_ENEMY, 1, 4
 	db -1 ; end
 
 PsyBeamAnim:
@@ -579,6 +672,19 @@ HyperBeamAnim:
 	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
 	db -1 ; end
 
+GhostBeamAnim:
+; Hyper Beam's beam held under the dark screen palette, finished with Night
+; Shade's wavy distortion and Confuse Ray's star toss instead of Hyper Beam's
+; bright star burst -- so it reads black/violet rather than white.
+	battle_anim LEECH_SEED, SE_DARK_SCREEN_PALETTE
+	battle_anim NO_MOVE, SE_SPIRAL_BALLS_INWARD
+	battle_anim HYPER_BEAM, SUBANIM_0_BEAM, 0, 2
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	battle_anim NO_MOVE, SE_WAVY_SCREEN
+	battle_anim NO_MOVE, SUBANIM_1_STAR_BIG_TOSS, 1, 6
+	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
+	db -1 ; end
+
 HyperBeamsAnim:
 ; like HyperBeamAnim but fires the beam twice (double blast)
 	battle_anim LEECH_SEED, SE_DARK_SCREEN_PALETTE
@@ -597,6 +703,14 @@ PeckAnim:
 
 DrillPeckAnim:
 	battle_anim DRILL_PECK, SUBANIM_1_STAR_BIG_MOVING, 1, 6
+	db -1 ; end
+
+; Double Drill's two hits, twice as fast as a single Drill Peck strike (delay
+; 3 vs Drill Peck's 6) and the 2nd hit uses the COORDFLIP mirrored variant, so
+; the pair reads as crossing strikes rather than the same hit repeating.
+DoubleDrillAnim:
+	battle_anim DRILL_PECK, SUBANIM_1_STAR_BIG_MOVING, 1, 3
+	battle_anim NO_MOVE, SUBANIM_1_STAR_BIG_MOVING_MIRRORED, 1, 3
 	db -1 ; end
 
 SubmissionAnim:
@@ -697,6 +811,14 @@ StringShotAnim:
 	battle_anim STRING_SHOT, SUBANIM_0_STRING_SHOT, 0, 8
 	db -1 ; end
 
+; a single overwhelming web blast: strands launch, then bind hard, then a heavy
+; impact flash sells the "cannon" power -- distinct from String Shot's light toss
+WebCannonAnim:
+	battle_anim STRING_SHOT, SUBANIM_0_STRING_SHOT, 0, 8
+	battle_anim WRAP, SUBANIM_0_BIND, 0, 4
+	battle_anim NO_MOVE, SUBANIM_1_STAR_BIG_MOVING, 1, 6
+	db -1 ; end
+
 DragonRageAnim:
 	battle_anim DRAGON_RAGE, SUBANIM_1_FLAME_BEAM, 1, 6
 	battle_anim NO_MOVE, SUBANIM_1_FLAME_COLUMN_1, 1, 6
@@ -712,6 +834,13 @@ FireSpinAnim:
 
 ThunderShockAnim:
 	battle_anim THUNDERSHOCK, SUBANIM_1_LIGHTNING_BALL, 1, 2
+	db -1 ; end
+
+; ThunderShock's spark, then a paralyze-status flicker -- fits Static Shock's
+; guaranteed paralysis instead of leaving it as a plain, unremarkable zap.
+StaticShockAnim:
+	battle_anim THUNDERSHOCK, SUBANIM_1_LIGHTNING_BALL, 1, 2
+	battle_anim NO_MOVE, SUBANIM_0_STATUS_PARALYZED, 0, 4
 	db -1 ; end
 
 ThunderBoltAnim:
@@ -785,6 +914,16 @@ AgilityAnim:
 	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
 	db -1 ; end
 
+; Focus Energy's inward-spiraling balls (sharpened senses) plus a sudden flash
+; (the moment reflexes kick in) -- distinct from Agility's plain flash, fits
+; accuracy+evasion better than a pure speed-boost visual.
+SuperInstinctAnim:
+	battle_anim SUPER_INSTINCT, SE_LIGHT_SCREEN_PALETTE
+	battle_anim NO_MOVE, SE_SPIRAL_BALLS_INWARD
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
+	db -1 ; end
+
 QuickAttackAnim:
 	battle_anim QUICK_ATTACK, SE_SLIDE_MON_OFF
 	battle_anim NO_MOVE, SUBANIM_1_STAR_BIG_MOVING, 1, 6
@@ -840,10 +979,31 @@ HardenAnim:
 	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
 	db -1 ; end
 
+; Ice Punch's rising crystal shards (the body crystallizing) followed by
+; Barrier's shimmering shield flash -- distinct from Harden's plain closing
+; circle, and fits boosting both Defense AND Special rather than just Defense.
+CrystallizeAnim:
+	battle_anim CRYSTALLIZE, SE_LIGHT_SCREEN_PALETTE
+	battle_anim NO_MOVE, SUBANIM_0_ICE_RISE_SELF, 0, 8
+	battle_anim NO_MOVE, SUBANIM_1_BARRIER, 1, 6
+	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
+	db -1 ; end
+
 MinimizeAnim:
 	battle_anim MINIMIZE, SE_LIGHT_SCREEN_PALETTE
 	battle_anim NO_MOVE, SE_SPIRAL_BALLS_INWARD
 	battle_anim NO_MOVE, SE_MINIMIZE_MON
+	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
+	db -1 ; end
+
+; A condensed version of Double Team's flicker (dark palette + brief delay +
+; flash) -- reads as "hard to pin down" rather than Minimize's shrinking,
+; which fits an evasion boost better since Double Team is the vanilla
+; evasion-boost move using this exact visual language.
+StealthAnim:
+	battle_anim STEALTH, SE_DARK_SCREEN_PALETTE
+	battle_anim NO_MOVE, SE_DELAY_ANIMATION_10
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
 	battle_anim NO_MOVE, SE_RESET_SCREEN_PALETTE
 	db -1 ; end
 
@@ -1053,6 +1213,17 @@ LeechLifeAnim:
 	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
 	db -1 ; end
 
+; Bite's fangs sinking in (instead of Leech Life's bug-bite stars), a quick
+; poison-tinted flicker to sell the venomous bite, then the same life-drain
+; visual as Leech Life -- distinct opening, same established drain language.
+BloodSuckAnim:
+	battle_anim BITE, SUBANIM_0_STAR_THRICE, 0, 8
+	battle_anim NO_MOVE, SUBANIM_0_STATUS_POISONED, 0, 4
+	battle_anim NO_MOVE, SUBANIM_0_CIRCLES_1_SQUARES_CENTERING_ENEMY, 0, 6
+	battle_anim NO_MOVE, SUBANIM_0_CIRCLE_1_SQUARE_TOSS_BACK, 0, 6
+	battle_anim NO_MOVE, SE_DARK_SCREEN_FLASH
+	db -1 ; end
+
 LovelyKissAnim:
 	battle_anim LOVELY_KISS, SUBANIM_0_HEART_1_MUSIC, 0, 6
 	db -1 ; end
@@ -1132,6 +1303,16 @@ RockSlideAnim:
 	battle_anim ROCK_SLIDE, SUBANIM_0_ROCKS_LIFT, 0, 4
 	battle_anim ROCK_SLIDE, SUBANIM_0_ROCKS_TOSS, 0, 3
 	battle_anim HYPER_FANG, SUBANIM_1_STAR_BIG_MOVING, 1, 6
+	db -1 ; end
+
+; Rocks lift, then crash straight down onto the target (rather than being
+; tossed), a heavy screen shake for the slam, then a paralyze flicker -- fits
+; Gravity Slam's guaranteed paralysis and its heavier, more direct impact.
+GravitySlamAnim:
+	battle_anim ROCK_SLIDE, SUBANIM_0_ROCKS_LIFT, 0, 4
+	battle_anim NO_MOVE, SUBANIM_0_ROCKS_FALL_ENEMY, 0, 4
+	battle_anim NO_MOVE, SE_SHAKE_SCREEN
+	battle_anim NO_MOVE, SUBANIM_0_STATUS_PARALYZED, 0, 4
 	db -1 ; end
 
 HyperFangAnim:

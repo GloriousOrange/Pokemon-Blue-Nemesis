@@ -15,6 +15,13 @@
 *.wav binary
 *.blk binary
 *.pic binary
+# Distribution patches: `* text eol=lf` above was rewriting CRLF byte pairs
+# inside these, so the committed patch no longer matched the real one.
+*.bps binary
+*.ips binary
+*.sav binary
+*.gbc binary
+*.gb binary
 
 # Declare files that will always have CRLF line endings on checkout.
 *.patch.template text eol=crlf linguist-language=INI

@@ -74,6 +74,8 @@ FlyWarpDataPtr:
 	fly_warp_spec INDIGO_PLATEAU,  .IndigoPlateau
 	fly_warp_spec SAFFRON_CITY,    .SaffronCity
 	fly_warp_spec BATTLE_ISLAND,   .BattleIsland
+	fly_warp_spec SS_OLYMPIA_1F_ROOMS, .SSOlympiaCabin ; blackout landing, not a Fly target
+	fly_warp_spec APEX_ISLE,       .ApexIsle
 	fly_warp_spec ROUTE_4,         .Route4
 	fly_warp_spec ROUTE_10,        .Route10
 	fly_warp_spec SEAFOAM_ISLANDS_1F, .SeafoamIslands
@@ -91,6 +93,8 @@ FlyWarpDataPtr:
 .IndigoPlateau:  fly_warp INDIGO_PLATEAU,   9,  6
 .SaffronCity:    fly_warp SAFFRON_CITY,     9, 30
 .BattleIsland:   fly_warp BATTLE_ISLAND,    8,  5
+.SSOlympiaCabin: fly_warp SS_OLYMPIA_1F_ROOMS, 11, 2 ; beside MEGAN, clear of the cabin door at (10,0)
+.ApexIsle:       fly_warp APEX_ISLE,        8,  7 ; ferry landing on the grass just south of the OAK's EMPORIUM door (8,5)
 .Route4:         fly_warp ROUTE_4,         11,  6
 .Route10:        fly_warp ROUTE_10,        11, 20
 .SeafoamIslands: fly_warp SEAFOAM_ISLANDS_1F, 5, 16 ; entrance corridor; the exit-loop bug is fixed in PrepareForSpecialWarp (engine/overworld/special_warps.asm) by forcing wLastMap to ROUTE_20 for this destination instead of here (Fly can't decouple render-map from landing-map width, so redirecting to an outdoor map here corrupts the tile read)

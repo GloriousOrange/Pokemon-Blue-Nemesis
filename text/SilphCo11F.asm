@@ -31,17 +31,12 @@ _SilphCo11FSilphPresidentMasterBallDescriptionText::
 	line "can't buy that"
 	cont "anywhere!"
 
-	para "It's our secret"
-	line "prototype MASTER"
-	cont "BALL!"
+	para "It's our SILPH"
+	line "SCOPE prototype!"
 
-	para "It will catch any"
-	line "#MON without"
-	cont "fail!"
-
-	para "You should be"
-	line "quiet about using"
-	cont "it, though."
+	para "It sees what the"
+	line "eye cannot. Take"
+	cont "it to the TOWER."
 	done
 
 _SilphCo11FSilphPresidentNoRoomText::
@@ -139,50 +134,86 @@ _SilphCo11FGiovanniYouRuinedOurPlansText::
 	line "shall return!"
 	done
 
-_SilphCo11FLoyalistScientistText::
-	text "I'm here to"
-	line "remind OAK who"
-	cont "his most"
-	cont "valuable pupil"
-	cont "is."
+_SilphCo11FPupilBattleText::
+	text "Nobody gets past"
+	line "me to PROF.OAK."
+
+	para "I'm here to"
+	line "remind him who"
+	cont "his most valuable"
+	cont "pupil is."
 
 	para "ME!"
 	done
 
-_SilphCo11FLoyalistScientistDefeatedText::
-	text "Fine,"
-	line "take it then."
-	cont "The device is"
-	cont "yours."
+_SilphCo11FPupilEndBattleText::
+	text "You're not even"
+	line "supposed to be"
+	cont "up here!"
 	prompt
 
-_SilphCo11FLoyalistScientistPostBattleText::
-	text "Fine, take it"
-	line "then. The device"
-	cont "is yours."
+_SilphCo11FPupilAfterBattleText::
+	text "Go on, then."
+	line "He's waiting."
+
+	para "He knew you'd"
+	line "come. He always"
+	cont "knows."
+	done
+
+_SilphCo11FOakChallengeText::
+	text "OAK: You little"
+	line "TRAITOR."
+
+	para "Have you no sense"
+	line "of LOYALTY?"
+	done
+
+_SilphCo11FOakDefeatedText::
+	text "I was unprepared"
+	line "for such a fight."
+
+	para "That won't happen"
+	line "next time."
+	prompt
+
+_SilphCo11FOakYieldsText::
+	text "OAK: Fine, the"
+	line "SILPH SCOPE is"
+	cont "yours."
+
+	para "Perhaps this is"
+	line "destiny."
+
+	para "Take it to the"
+	line "#MON TOWER..."
+
+	para "...and face your"
+	line "fate."
+	done
+
+_SilphCo11FOakAfterText::
+	text "OAK: The #MON"
+	line "TOWER is waiting."
+
+	para "Go and meet your"
+	line "fate."
 	done
 
 _SilphCo11FRocket1BattleText::
-	text "Stop right there!"
-	line "Don't you move!"
-	done
-
-_SilphCo11FRocket1LoyalistBattleText::
-	text "The guy up ahead"
-	line "is pretty tough."
-	cont "It's gotta be"
-	cont "you that takes"
-	cont "him on."
+	text "My promotion is"
+	line "guaranteed if I"
+	cont "beat you."
 	done
 
 _SilphCo11FRocket1EndBattleText::
-	text "Don't..."
-	line "Please!"
+	text "Awww, demoted!"
 	prompt
 
 _SilphCo11FRocket1AfterBattleText::
-	text "So, you want to"
-	line "see my BOSS?"
+	text "My career is"
+	line "ruined thanks"
+	cont "to you!"
 	done
 
 _SilphCo11FRocket2BattleText::
@@ -212,3 +243,23 @@ _SilphCo10FPorygonText::
 	text "The monitor has"
 	line "#MON on it!"
 	done
+
+; Loyalist path: SILPH staff standing where the ROCKETs stand on the hero path.
+
+_SilphCo11FDefender1BattleText::
+	text "You will not"
+	line "reach the"
+	cont "PRESIDENT."
+	done
+
+_SilphCo11FDefender1EndBattleText::
+	text "I tried. I did"
+	line "try."
+	prompt
+
+_SilphCo11FDefender1AfterBattleText::
+	text "He's just an old"
+	line "man in an office."
+	cont "Leave him be."
+	done
+

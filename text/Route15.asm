@@ -24,8 +24,8 @@ _Route15CooltrainerF1AfterBattleText::
 _Route15CooltrainerF2BattleText::
 	text "You look gentle,"
 	line "so I think I can"
-	cont "beat you! I'm"
-	cont "just built different."
+	cont "beat you! I'm just"
+	cont "built different."
 	done
 
 _Route15CooltrainerF2EndBattleText::

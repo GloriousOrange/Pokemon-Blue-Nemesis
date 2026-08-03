@@ -92,12 +92,29 @@ CeladonCityPoliwrathText:
 	call PlayCry
 	jp TextScriptEnd
 
+; This one just brags, so it reads the same to an outsider or a fellow ROCKET
+; and needs no path branch. Rocket2 below still does: its line sneers at the
+; player, which reads wrong once you're wearing the same uniform -- same
+; treatment as the Silph Co flavor Rockets.
 CeladonCityRocket1Text:
 	text_far _CeladonCityRocket1Text
 	text_end
 
 CeladonCityRocket2Text:
+	text_asm
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	ld hl, .LoyalistText
+	jr nz, .print
+	ld hl, .HostileText
+.print
+	call PrintText
+	jp TextScriptEnd
+.HostileText:
 	text_far _CeladonCityRocket2Text
+	text_end
+.LoyalistText:
+	text_far _CeladonCityRocket2LoyalistText
 	text_end
 
 CeladonCityTrainerTips1Text:

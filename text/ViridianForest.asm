@@ -26,10 +26,11 @@ _ViridianForestYoungster2AfterBattleText::
 	done
 
 _ViridianForestYoungster3BattleText::
-	text "Do you know how"
-	line "many legs a"
-	cont "#MON has? I"
-	cont "counted them all!"
+	text "My bugs don't"
+	line "sting. They chew."
+
+	para "Hold still and"
+	line "you'll see."
 	done
 
 _ViridianForestYoungster3EndBattleText::
@@ -95,7 +96,7 @@ _ViridianForestTrainerTips2Text::
 
 	para "Contact PROF.OAK"
 	line "via PC to get"
-	cont "your #DEX"
+	cont "your CODEX"
 	cont "evaluated!"
 	done
 

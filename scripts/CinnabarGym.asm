@@ -49,6 +49,7 @@ CinnabarGym_ScriptPointers:
 	dw_const CinnabarGymOpenGateScript,         SCRIPT_CINNABARGYM_OPEN_GATE
 	dw_const CinnabarGymBlainePostBattleScript, SCRIPT_CINNABARGYM_BLAINE_POST_BATTLE
 	dw_const CinnabarGymRematchDefeated,        SCRIPT_CINNABARGYM_REMATCH_DEFEATED
+	dw_const CinnabarGymMeganTrained,           SCRIPT_CINNABARGYM_MEGAN_TRAINED
 
 CinnabarGymDefaultScript:
 	ld a, [wOpponentAfterWrongAnswer]
@@ -187,6 +188,18 @@ CinnabarGymReceiveTM38:
 	ld hl, wCurrentMapScriptFlags
 	set BIT_CUR_MAP_LOADED_1, [hl]
 
+	jp CinnabarGymResetScripts
+
+CinnabarGymMeganTrained:
+; Aftermath of Megan's optional training battle. Losing leaves the flag clear so
+; she will spar again, the same way a lost gym leader fight can be retried.
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld a, 18 ; set again rather than trusting it to survive the battle
+	ld [wMeganLocIndex], a
+	farcall MeganMarkTrained
+.reset
 	jp CinnabarGymResetScripts
 
 CinnabarGym_TextPointers:
@@ -491,7 +504,12 @@ CinnabarGymMeganText:
 	text_asm
 	ld a, 18 ; Megan location index
 	ld [wMeganLocIndex], a
-	farcall MeganTalk
+	farcall MeganSparOffer ; offers a training battle, else heals as usual
+	jr nc, .done
+	ld a, SCRIPT_CINNABARGYM_MEGAN_TRAINED
+	ld [wCinnabarGymCurScript], a
+	ld [wCurMapScript], a
+.done
 	jp TextScriptEnd
 
 CinnabarGymGymGuideText:

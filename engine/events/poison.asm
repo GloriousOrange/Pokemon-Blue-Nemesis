@@ -24,6 +24,17 @@ ApplyOutOfBattlePoisonDamage:
 	ld a, [hli]
 	or b
 	jr z, .nextMon ; already fainted
+; Nemesis: poison never faints a mon in the overworld -- it stops at 1 HP.
+; Vanilla let it drop to 0 and black you out mid-route, which is brutal now that
+; Poison Sting always poisons, and fatal to a one-mon run.
+	dec hl ; hl = upper byte of HP
+	ld a, [hli]
+	and a
+	jr nz, .subtractHP ; over 255 HP left, so a single point is safe
+	ld a, [hl]
+	dec a
+	jr z, .nextMon ; already down to its last point of HP
+.subtractHP
 ; subtract 1 from HP
 	ld a, [hl]
 	dec a

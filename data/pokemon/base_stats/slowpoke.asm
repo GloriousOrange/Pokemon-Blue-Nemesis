@@ -1,6 +1,6 @@
 	db DEX_SLOWPOKE ; pokedex id
 
-	db  90,  65,  65,  15,  80
+	db  90,  65,  65,  40,  80
 	;   hp  atk  def  spd  spc
 
 	db WATER, PSYCHIC_TYPE ; type
@@ -19,7 +19,7 @@
 	     EARTHQUAKE, FISSURE, DIG, PSYCHIC_M, TELEPORT,  \
 	     MIMIC, DOUBLE_TEAM, REFLECT, FIRE_BLAST, SWIFT,  \
 	     SKULL_BASH, REST, THUNDER_WAVE, PSYWAVE, TRI_ATTACK,  \
-	     SUBSTITUTE, SURF, STRENGTH, FLASH, ROCK_THROW
+	     SUBSTITUTE, SURF, STRENGTH, FLASH
 	; end
 
 	db 0 ; padding

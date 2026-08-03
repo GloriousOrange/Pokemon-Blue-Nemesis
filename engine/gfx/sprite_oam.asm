@@ -130,7 +130,19 @@ PrepareOAMData::
 	or [hl]
 .skipPriority
 	inc hl
+	push af
+; The table keeps its own markers (end-of-data, under-grass) in the low nybble
+; of the attribute byte, which the DMG ignores. A Game Boy Color does not: bits
+; 0-2 are the object palette and bit 3 is the tile's VRAM bank, so those markers
+; used to send half of every sprite to an object palette nothing writes -- NPCs
+; came out with their heads in the right colors and their bodies blank.
+	and %11110000
+	bit 4, a ; the DMG palette bit, which a Game Boy Color ignores...
+	jr z, .gotAttributes
+	or 1 ; ...so an OBP1 sprite has to ask for object palette 1 by number
+.gotAttributes
 	ld [de], a
+	pop af
 	inc e
 	bit BIT_END_OF_OAM_DATA, a
 	jr z, .tileLoop

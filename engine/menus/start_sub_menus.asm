@@ -12,6 +12,15 @@ StartMenu_Pokedex::
 ; gated on having met Megan (BIT_GOT_GIRLFRIEND) in DrawStartMenu.
 ; (Label kept as StartMenu_Megan because home/start_menu.asm dispatches to it.)
 StartMenu_Megan::
+; Out at sea on the S.S. OLYMPIA there's no signal, so the contact list never
+; opens. This also stops the cruise's one-Pokemon rule being sidestepped by
+; calling MEGAN for a free heal or OAK for remote box access mid-voyage.
+	call IsOnSSOlympia
+	jr z, .haveSignal
+	ld hl, PhoneNoSignalText
+	call PrintText
+	jp CloseStartMenu
+.haveSignal
 ; PhoneMenu_Draw sets BIT_DOUBLE_SPACED_MENU for its own 1-row-apart contact list; save/restore
 ; hUILayoutFlags around the whole interaction so it doesn't leak into the Start Menu's own
 ; 2-row-apart cursor (that bug: the Start Menu cursor renders one row off after using PHONE).
@@ -117,7 +126,14 @@ PhoneCall_Oak:
 	bit BIT_PLAYER_TRAITOR, a
 	jr z, .greet
 	ld hl, PhoneOakTraitorText
+	jr .print
 .greet
+; Hero path, hideout still standing: this call is where OAK actually sends you
+; after GIOVANNI, so his "you stormed my base" line has something behind it.
+	CheckEvent EVENT_BEAT_ROCKET_HIDEOUT_GIOVANNI
+	jr nz, .print
+	ld hl, PhoneOakHideoutBriefingText
+.print
 	call PrintText
 	call SaveScreenTilesToBuffer2
 	ld hl, wMiscFlags
@@ -130,6 +146,22 @@ PhoneCall_Oak:
 	ld hl, PhoneOakGoodbyeText
 	call PrintText
 	jp CloseStartMenu
+
+PhoneOakHideoutBriefingText:
+	text "OAK: TEAM ROCKET"
+	line "runs the GAME"
+	cont "CORNER in CELADON."
+
+	para "Their base is"
+	line "under it, and"
+	cont "GIOVANNI is down"
+	cont "there."
+
+	para "Find him. Find"
+	line "what he's hiding"
+	cont "before he moves"
+	cont "it."
+	done
 
 ; GIOVANNI: Loyalist-only. Delivers the Pokemon Tower mission briefing after
 ; Silph Co is cleared -- on the Loyalist path Giovanni's 11F map object is
@@ -185,6 +217,33 @@ PhoneBossWaitingText:
 PhoneBossDoneText:
 	text_far _SilphCo11FGiovanniPostMiasmaText
 	text_end
+
+; NZ = the player is aboard the S.S. OLYMPIA. Her ten decks are scattered
+; through the map list rather than contiguous, so this is a table rather than a
+; range check like IsSilphCoMap.
+IsOnSSOlympia:
+	ld a, [wCurMap]
+	ld b, a
+	ld hl, .Decks
+.loop
+	ld a, [hli]
+	cp -1
+	jr z, .ashore
+	cp b
+	jr nz, .loop
+	ld a, 1
+	and a ; NZ = aboard
+	ret
+.ashore
+	xor a ; Z = ashore
+	ret
+
+.Decks:
+INCLUDE "data/maps/ss_olympia_decks.asm"
+
+PhoneNoSignalText:
+	text "No signal!"
+	prompt
 
 PhoneMeganGreetingText:
 	text "MEGAN: Hi, honey!"

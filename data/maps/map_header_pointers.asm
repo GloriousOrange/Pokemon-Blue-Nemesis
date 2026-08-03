@@ -249,4 +249,11 @@ MapHeaderPointers::
 	dw LoreleisRoom_h
 	dw BrunosRoom_h
 	dw AgathasRoom_h
+	dw ApexMart1F_h
+	dw ApexMart2F_h
+	dw ApexMart3F_h
+	dw ApexMart4F_h
+	dw ApexMart5F_h
+	dw ApexMartRoof_h
+	dw ApexMartElevator_h
 	assert_table_length NUM_MAPS

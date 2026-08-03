@@ -22,8 +22,10 @@ CheckForHiddenEventOrBookshelfOrCardKeyDoor::
 	push de
 	jp hl
 .returnAddress
-	xor a
-	jr .done
+; CheckForHiddenEvent already zeroed hItemAlreadyFound, so the A press counts as
+; handled -- unless the hidden event declined it (see HiddenObjectDeclineAPress)
+; by storing $ff back.  Don't clobber that.
+	jr .restoreBank
 .hiddenEventNotFound
 	farcall PrintBookshelfText
 	ldh a, [hInteractedWithBookshelf]
@@ -33,6 +35,7 @@ CheckForHiddenEventOrBookshelfOrCardKeyDoor::
 	ld a, $ff
 .done
 	ldh [hItemAlreadyFound], a
+.restoreBank
 	pop af
 	ld [rROMB], a
 	ldh [hLoadedROMBank], a

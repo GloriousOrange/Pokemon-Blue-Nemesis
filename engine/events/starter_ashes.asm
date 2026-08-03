@@ -1,6 +1,11 @@
 ; Starter Ashes system:
-; SaveStarterToAshes   - called after Rival2 battle if starter was KO'd
-; RestoreStarterAsGhost - called at Pokemon Tower 5F purification ritual
+; SaveStarterToAshes - called after Rival2 battle if starter was KO'd.
+; The purification itself is no longer an instant party-add (that path
+; corrupted whatever mon sat in the last party slot instead of appending --
+; see scripts/PokemonTower5F.asm's ghost-battle script for the replacement:
+; stepping into the purified zone starts an actual wild encounter for the
+; ashes' mon, and only a genuine catch (the standard, well-tested capture
+; path) consumes the urn and applies the GHOST-type patch.
 
 SaveStarterToAshes::
 ; Finds the player's starter in party, saves species/level/OTID/nick,
@@ -87,90 +92,4 @@ SaveStarterToAshes::
 	call GiveItem
 
 	SetEvent EVENT_STARTER_BECAME_ASHES
-	ret
-
-
-RestoreStarterAsGhost::
-; Adds the starter back at its original level with Ghost secondary type and
-; restores its nickname/OTID. The ghost's signature moves (Night Shade and
-; Confuse Ray) are no longer injected here; instead the player is handed the
-; TMs for those moves (the only source of them), so they choose to teach them.
-; Caller must verify party is not full before calling.
-
-	; Set up species and level for AddPartyMon
-	ld a, [wStarterAshesSpecies]
-	ld [wCurPartySpecies], a
-	ld a, [wStarterAshesLevel]
-	ld [wCurEnemyLevel], a
-	; $10 = player party data, non-zero → skip naming screen
-	ld a, $10
-	ld [wMonDataLocation], a
-	; wIsInBattle = 0 in overworld → AddPartyMon generates fresh random DVs
-	call AddPartyMon                ; adds to party, increments wPartyCount
-
-	; The new slot is at (wPartyCount - 1)
-	ld a, [wPartyCount]
-	dec a
-	ld c, a                         ; C = new slot index (0-based)
-
-	; Compute base address of the new wPartyMon[C]
-	ld hl, wPartyMons
-	ld bc, PARTYMON_STRUCT_LENGTH
-	call AddNTimes                  ; HL = wPartyMon[C] base
-	ld a, c                         ; save slot index (AddNTimes clobbers A)
-	ld d, h
-	ld e, l                         ; DE = base
-
-	; -- Patch MON_TYPE2 (+$06) = GHOST --
-	ld a, e
-	add MON_TYPE2
-	ld l, a
-	ld h, d
-	jr nc, .nc_type2
-	inc h
-.nc_type2:
-	ld [hl], GHOST
-
-	; -- Overwrite OT ID (MON_OTID = +$0C) with saved value --
-	ld a, e
-	add MON_OTID
-	ld l, a
-	ld h, d
-	jr nc, .nc_otid
-	inc h
-.nc_otid:
-	ld a, [wStarterAshesOTID]
-	ld [hli], a
-	ld a, [wStarterAshesOTID + 1]
-	ld [hl], a
-
-	; -- Overwrite nickname with saved value --
-	; C was the slot index but AddNTimes clobbered it — recalculate
-	ld a, [wPartyCount]
-	dec a
-	ld hl, wPartyMonNicks
-	ld bc, NAME_LENGTH
-	call AddNTimes                  ; HL = nick slot for new mon
-	ld de, wStarterAshesNick
-	ld b, NAME_LENGTH
-.copyNickRestore:
-	ld a, [de]
-	inc de
-	ld [hli], a
-	dec b
-	jr nz, .copyNickRestore
-
-	; -- Remove URN_OF_ASHES from bag --
-	ld a, URN_OF_ASHES
-	ldh [hItemToRemoveID], a
-	call RemoveItemByID
-
-	; -- Hand over the ghost-move TMs: the only way to teach Night Shade and
-	;    Confuse Ray. The player chooses to teach them to the revived starter. --
-	lb bc, TM_NIGHT_SHADE, 1
-	call GiveItem
-	lb bc, TM_CONFUSE_RAY, 1
-	call GiveItem
-
-	SetEvent EVENT_STARTER_RESURRECTED
 	ret

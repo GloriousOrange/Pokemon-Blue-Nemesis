@@ -81,7 +81,6 @@ MeganTalk::
 	ld hl, MeganGiftText
 	jp PrintText
 
-DEF MEGAN_LOC_VICTORY_ROAD EQU 25
 
 ; a = location index -> hl = &wMeganVisitedFlags[index / 8], a = 1 << (index % 8)
 MeganGetVisitedMask:
@@ -139,7 +138,8 @@ MeganGiftTable:
 	db 0,          0 ; 27 Diglett's Cave (TBD)
 	db POTION,     1 ; 28 Viridian Forest South Gate
 	db 0,          0 ; 29 Battle Island house (heal-only, no gift)
-	ds 4             ; 30-31: spare (2 bytes each)
+	db 0,          0 ; 30 Indigo Plateau Lobby (heal-only, no gift)
+	db 0,          0 ; 31 S.S. Olympia cabin (heal-only, no gift)
 
 MeganGreetingText:
 	text "MEGAN: Hi, honey!"
@@ -157,4 +157,135 @@ MeganHealedText:
 	text "MEGAN: All better!"
 	line "Go knock 'em dead,"
 	cont "sweetie!"
+	prompt
+
+; Offers the optional training battle at a gym. [wMeganLocIndex] must already be
+; set (farcall clobbers a, so callers set it first). Returns carry set if the
+; player accepted: the battle is armed and the caller must point its map script
+; at its own Megan-trained script. Carry clear means she just healed as usual.
+MeganSparOffer::
+	call MeganGetSparParty
+	and a
+	jr z, .declined ; she does not spar at this location
+	call MeganGetTrainedMask
+	and [hl]
+	jr nz, .declined ; already beaten her here, so just heal
+	ld a, [wMeganLocIndex]
+	ld hl, MeganTrainOfferText
+	cp MEGAN_LOC_FIRST_GYM + 8 ; a gym, or one of the two endgame stops?
+	jr c, .gotOffer
+	ld hl, MeganSparOfferText
+.gotOffer
+	call PrintText
+	call YesNoChoice
+	ld a, [wCurrentMenuItem]
+	and a
+	jr nz, .declined
+	ld a, OPP_MEGAN
+	ld [wCurOpponent], a
+	call MeganGetSparParty
+	ld [wTrainerNo], a
+	ld hl, wStatusFlags3
+	set BIT_TALKED_TO_TRAINER, [hl]
+	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+; the pointers are read back with this bank loaded, which is this one
+	ld hl, MeganTrainWinText
+	ld de, MeganTrainLoseText
+	call SaveEndBattleTextPointers
+	scf
+	ret
+.declined
+	call MeganTalk
+	and a ; clear carry: no battle
+	ret
+
+; Called from a gym's Megan-trained script once she has actually been beaten.
+MeganMarkTrained::
+	call MeganGetTrainedMask
+	or [hl]
+	ld [hl], a
+	ret
+
+; [wMeganLocIndex] -> a = her party for that location, 0 if she does not spar there
+MeganGetSparParty:
+	ld a, [wMeganLocIndex]
+	ld e, a
+	ld d, 0
+	ld hl, MeganSparPartyTable
+	add hl, de
+	ld a, [hl]
+	ret
+
+; Which MeganData party she brings at each of her locations. The two endgame
+; stops come after the gyms in party order, so the table is not a plain offset.
+MeganSparPartyTable:
+	ds 12, 0 ; 0-11 Pokecenters and reserved slots: no sparring
+	db 2 ; 12 Pewter Gym      Slowpoke L10
+	db 3 ; 13 Cerulean Gym    Slowpoke L16
+	db 4 ; 14 Vermilion Gym   Slowpoke L20
+	db 5 ; 15 Celadon Gym     Slowpoke L26
+	db 6 ; 16 Fuchsia Gym     Slowpoke L32
+	db 7 ; 17 Saffron Gym     Slowbro  L38
+	db 8 ; 18 Cinnabar Gym    Slowbro  L44
+	db 9 ; 19 Viridian Gym    Slowbro  L55
+	ds 9, 0 ; 20-28 Rocket HQ, Silph, caves, forest gate: no sparring
+	db 11 ; 29 Battle Island       Slowbro L100
+	db 10 ; 30 Indigo Plateau Lobby Slowbro L70
+	db 12 ; 31 S.S. Olympia cabin    Slowbro L100
+
+; -> hl = the flag byte for this location, a = its bit mask
+MeganGetTrainedMask:
+	call MeganGetSparParty
+	sub 2 ; parties #2-#11 map to bits 0-9
+	ld b, a
+	and %11111000
+	rrca
+	rrca
+	rrca ; byte = bit / 8
+	ld e, a
+	ld d, 0
+	ld hl, wMeganTrainedFlags
+	add hl, de
+	ld a, b
+	and %111
+	ld b, a
+	ld a, 1
+	inc b
+.shiftLoop
+	dec b
+	jr z, .gotMask
+	add a
+	jr .shiftLoop
+.gotMask
+	ret
+
+MeganTrainOfferText:
+	text "MEGAN: Want to"
+	line "train with me"
+	cont "before you"
+	cont "challenge the"
+	cont "gym leader?"
+	done
+
+MeganSparOfferText:
+	text "MEGAN: One more"
+	line "sparring match"
+	cont "before you go,"
+	cont "sweetie?"
+	done
+
+MeganTrainWinText:
+	text "MEGAN: That's my"
+	line "champ! You're"
+	cont "ready for them."
+	prompt
+
+MeganTrainLoseText:
+	text "MEGAN: Hey, better"
+	line "me than the"
+	cont "leader, right?"
+
+	para "Come back when"
+	line "you've toughened"
+	cont "up, sweetie."
 	prompt

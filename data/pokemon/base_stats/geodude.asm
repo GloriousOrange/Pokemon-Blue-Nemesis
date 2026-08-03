@@ -1,6 +1,6 @@
 	db DEX_GEODUDE ; pokedex id
 
-	db  40,  80, 100,  20,  30
+	db  40,  80, 100,  65,  30
 	;   hp  atk  def  spd  spc
 
 	db ROCK, GROUND ; type
@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/geodude.pic", 0, 1 ; sprite dimensions
 	dw GeodudePicFront, GeodudePicBack
 
-	db TACKLE, NO_MOVE, NO_MOVE, NO_MOVE ; level 1 learnset
+	db MUD_SLAP, TACKLE, NO_MOVE, NO_MOVE ; level 1 learnset (Mud Slap added for starter STAB)
 	db GROWTH_FAST ; growth rate
 
 	; tm/hm learnset
@@ -18,7 +18,7 @@
 	     SUBMISSION, COUNTER, SEISMIC_TOSS, RAGE, EARTHQUAKE,  \
 	     FISSURE, DIG, MIMIC, DOUBLE_TEAM, METRONOME,  \
 	     SELFDESTRUCT, FIRE_BLAST, REST, EXPLOSION, ROCK_SLIDE,  \
-	     SUBSTITUTE, STRENGTH
+	     SUBSTITUTE, STRENGTH, ROCK_THROW
 	; end
 
 	db 0 ; padding

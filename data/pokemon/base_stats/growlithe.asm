@@ -1,6 +1,6 @@
 	db DEX_GROWLITHE ; pokedex id
 
-	db  55,  70,  45,  60,  50
+	db  55,  70,  45, 105,  50
 	;   hp  atk  def  spd  spc
 
 	db FIRE, FIRE ; type
@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/growlithe.pic", 0, 1 ; sprite dimensions
 	dw GrowlithePicFront, GrowlithePicBack
 
-	db BITE, ROAR, NO_MOVE, NO_MOVE ; level 1 learnset
+	db SCORCH, BITE, ROAR, NO_MOVE ; level 1 learnset (Scorch added for starter STAB)
 	db GROWTH_MEDIUM_SLOW ; growth rate
 
 	; tm/hm learnset

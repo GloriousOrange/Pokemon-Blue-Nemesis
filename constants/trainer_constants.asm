@@ -63,4 +63,5 @@ ENDM
 	trainer_const AGATHA         ; $2E
 	trainer_const LANCE          ; $2F
 	trainer_const GENERALMATHUS  ; $30
+	trainer_const MEGAN          ; $31 - dedicated class so battle text says "MEGAN wants to fight!" instead of generic "LASS"
 DEF NUM_TRAINERS EQU const_value - 1

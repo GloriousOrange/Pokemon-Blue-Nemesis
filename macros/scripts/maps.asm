@@ -126,6 +126,27 @@ MACRO trainer
 	DEF CURRENT_TRAINER_BIT += 1
 ENDM
 
+; Same as `trainer`, but the beaten-flag lives in an arbitrary flag array rather
+; than wEventFlags. The engine reads the flag's address straight out of the
+; header, so any array works -- this exists because the event array is full.
+;\1 flag array label
+;\2 bit index within that array
+;\3 view range
+;\4 TextBeforeBattle
+;\5 TextEndBattle
+;\6 TextAfterBattle
+MACRO trainer_in
+	DEF _fl_bit = (\2) % 8
+	DEF _cur_bit = CURRENT_TRAINER_BIT % 8
+	ASSERT _fl_bit == _cur_bit, \
+		"Expected bit {d:_fl_bit} to be bit {d:_cur_bit}"
+	db CURRENT_TRAINER_BIT
+	db \3 << 4
+	dw \1 + ((\2) - CURRENT_TRAINER_BIT) / 8
+	dw \4, \6, \5, \5
+	DEF CURRENT_TRAINER_BIT += 1
+ENDM
+
 ;\1 x position
 ;\2 y position
 ;\3 movement data

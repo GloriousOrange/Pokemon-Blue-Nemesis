@@ -172,7 +172,7 @@
 	const SUBSTITUTE   ; a4
 	const DOUBLE_DRILL ; a5
 	const HYPER_BEAMS  ; a6
-	const METRONOME2   ; a7 - HM move: rolls a random move from a fixed 21-move list
+	const METRONOME2   ; a7 - HM move: rolls a random move from a fixed 19-move list
 	const CARRION_WIND ; a8 - Poison, badly-poison status (Miasma)
 	const BLIGHT_VOMIT ; a9 - Poison, dmg + paralyze (Miasma)
 	const MIND_FEVER   ; aa - Ghost, confuse + burn 'curse' (Nocturn)
@@ -189,7 +189,42 @@
 	const BAD_TOUCH      ; b5 - Normal, always confuses, 100 acc (Drowzee, lv42)
 	const CRUSH_COIL     ; b6 - Poison, Wrap-style trap: 30 dmg/turn (Ekans/Arbok, lv42)
 	const BLOOD_SUCK     ; b7 - Poison, 80 dmg, drains half as HP (Zubat, lv32)
-	const STRUGGLE       ; b8
+	const HURRICANE      ; b8 - Dragon, 80 dmg, high crit ratio; Gust anim (Gyarados, lv42)
+	const ICE_SPIKE      ; b9 - Ice, 25 dmg (Shellder)
+	const MIGRAIN        ; ba - Psychic, 30 dmg (Caterpie)
+	const DIVE           ; bb - Flying, 30 dmg (Zubat)
+	const STATIC_SHOCK   ; bc - Electric, 40 dmg, always paralyzes (Electabuzz niche)
+	const GRAVITY_SLAM   ; bd - Rock, 80 dmg, always paralyzes (Aerodactyl niche)
+	const VIBRATE        ; be - raise user's Attack + Speed by 2 (Pinsir niche)
+	const STEALTH        ; bf - raise user's Evasion by 2 (Scyther niche)
+	const TANGLE         ; c0 - Grass, 50 dmg + lowers target Speed by 3 (Tangela niche)
+	const ICE_BOMB       ; c1 - Ice, 100 dmg, 50% freeze, 100 acc (Lapras niche)
+	const ICE_SCULPTURE  ; c2 - makes a Substitute; damaging it may freeze (Jynx niche)
+	const STAMPEDE       ; c3 - Normal, 150 dmg, 2-turn charge like Dig (Tauros niche)
+	const ROLL           ; c4 - Normal, 120 dmg, 85 acc, no side effect (Snorlax heavy hitter; self-Defense drop removed -- froze vs transformed mons)
+; Fixed 35-power STAB fillers for starters whose level-1 moveset had no
+; same-type move at all (see scripts/gen_tables.py's StarterSpeciesTable).
+; Grass/Water/Flying already had a 35-power move (Vine Whip/Clamp/Peck) to
+; reuse; these 8 cover the remaining types that didn't.
+	const VENOM_BITE     ; c5 - Poison, 35 dmg (Ekans/Nidoran/Grimer starter STAB filler)
+	const MUD_SLAP       ; c6 - Ground, 35 dmg (Sandshrew/Diglett/Geodude/Onix/Rhyhorn starter STAB filler)
+	const MANDIBLE_BITE  ; c7 - Bug, 35 dmg (Paras/Venonat/Scyther starter STAB filler)
+	const PALM_STRIKE    ; c8 - Fighting, 35 dmg (Mankey/Hitmonchan starter STAB filler)
+	const SCORCH         ; c9 - Fire, 35 dmg (Growlithe starter STAB filler)
+	const SPARK          ; ca - Electric, 35 dmg (Magnemite/Voltorb/Electabuzz starter STAB filler)
+	const PSY_CHOP       ; cb - Psychic, 35 dmg (Drowzee/Jynx/Mew starter STAB filler)
+	const DRAGON_BREATH  ; cc - Dragon, 35 dmg (Dratini starter STAB filler)
+	const GLITTER_WING   ; cd - Bug, 35 dmg, 100 acc, ~30% sleep (Butterfree)
+	const TELEKINESIS    ; ce - Psychic, 30 dmg x2-5 hits (Armored Mewtwo, L99)
+	const FLAME_WHIP     ; cf - Fire, 100 dmg, 30% burn (unevolved Charmander, L40)
+	const HYDRO_JET      ; d0 - Water, 90 dmg, 30% flinch (unevolved Squirtle, L40)
+	const GIGA_DRAIN     ; d1 - Grass, 75 dmg, drains the full amount (unevolved Bulbasaur, L40)
+	const GHOST_BEAM     ; d2 - Ghost, 150 dmg, recharge; TM53 (ghost-starter answer to Psychics)
+	const SHADOW_PUNCH   ; d3 - Ghost, 80 dmg, 33% Spc drop (Gengar's repeatable STAB; GHOST_BEAM recharges, PHANTOM_WING stays Nocturn's)
+	const GRANIT_CLAMP   ; d4 - Rock, 90 dmg, high crit (Pinsirite's damage; misspelled to hit the 12-char name ceiling)
+	const CRUSH_JAW      ; d5 - Normal, 80 dmg, 50% flinch (Gyarados)
+	const THIRD_RAIL     ; d6 - Electric DIG: burrow a turn, erupt electrified (DIGNEMITE's STAB)
+	const STRUGGLE       ; d7
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

@@ -7,16 +7,12 @@
 	const_export POKEMONMANSIONB1F_TM_SOLARBEAM
 	const_export POKEMONMANSIONB1F_DIARY
 	const_export POKEMONMANSIONB1F_SECRET_KEY
-	const_export POKEMONMANSIONB1F_LAB_SCIENTIST_1
-	const_export POKEMONMANSIONB1F_LAB_SCIENTIST_2
-	const_export POKEMONMANSIONB1F_LEVEL_MACHINE
 
 PokemonMansionB1F_Object:
 	db $1 ; border block
 
 	def_warp_events
 	warp_event 23, 22, POKEMON_MANSION_1F, 6
-	warp_event 25, 18, BATTLE_ISLAND_GATE, 3 ; secret staircase to the Battle Island gate (beside the L100 machine at 24,18); the stairs block ($6e) is revealed here only after all 6 lab scientists are beaten
 
 	def_bg_events
 
@@ -29,8 +25,5 @@ PokemonMansionB1F_Object:
 	object_event  5,  4, SPRITE_POKE_BALL, STAY, NONE, TEXT_POKEMONMANSIONB1F_TM_SOLARBEAM, TM_SOLARBEAM
 	object_event 16, 20, SPRITE_POKEDEX, STAY, NONE, TEXT_POKEMONMANSIONB1F_DIARY
 	object_event  5, 13, SPRITE_POKE_BALL, STAY, NONE, TEXT_POKEMONMANSIONB1F_SECRET_KEY, SECRET_KEY
-	object_event  5,  6, SPRITE_SCIENTIST, STAY, DOWN, TEXT_POKEMONMANSIONB1F_LAB_SCIENTIST_1, OPP_SCIENTIST, 18
-	object_event 24,  7, SPRITE_SCIENTIST, STAY, DOWN, TEXT_POKEMONMANSIONB1F_LAB_SCIENTIST_2, OPP_SCIENTIST, 19
-	object_event 24, 18, SPRITE_SCIENTIST, STAY, DOWN, TEXT_POKEMONMANSIONB1F_LEVEL_MACHINE
 
 	def_warps_to POKEMON_MANSION_B1F

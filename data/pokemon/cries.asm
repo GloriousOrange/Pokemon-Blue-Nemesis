@@ -200,4 +200,8 @@ CryData::
 	mon_cry SFX_CRY_18, $20, $C0 ; Miasma (placeholder cry)
 	mon_cry SFX_CRY_18, $60, $80 ; Nocturn (placeholder cry)
 	mon_cry SFX_CRY_1F, $08, $C0 ; Alakachamp (reuses Machamp cry)
+	mon_cry SFX_CRY_18, $00, $80 ; MewThree (reuses Mewtwo cry)
+	mon_cry SFX_CRY_14, $00, $80 ; Pinsirite (reuses Pinsir cry)
+	mon_cry SFX_CRY_24, $88, $60 ; Ninefrost (reuses Ninetales cry)
+	mon_cry SFX_CRY_0B, $AA, $01 ; Dignemite (reuses Diglett cry)
 	assert_table_length NUM_POKEMON_INDEXES

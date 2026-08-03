@@ -162,3 +162,56 @@ _SilphFlavorScientistAfterText::
 	line "The truth is"
 	cont "already loose."
 	done
+
+; Loyalist path: SILPH staff standing where the ROCKETs stand on the hero path.
+
+_SilphCo2FDefender1BattleText::
+	text "This is a SILPH"
+	line "building. You are"
+	cont "trespassing."
+	done
+
+_SilphCo2FDefender1EndBattleText::
+	text "I only work here!"
+	prompt
+
+_SilphCo2FDefender1AfterBattleText::
+	text "Take the stairs."
+	line "Take everything."
+	cont "Just go."
+	done
+
+
+_SilphCo2FDefender2BattleText::
+	text "SECURITY! There's"
+	line "a ROCKET on the"
+	cont "second floor!"
+	done
+
+_SilphCo2FDefender2EndBattleText::
+	text "No one is coming,"
+	line "are they."
+	prompt
+
+_SilphCo2FDefender2AfterBattleText::
+	text "The phones are"
+	line "dead. You cut the"
+	cont "lines first."
+	done
+
+_SilphCo2FScientist1LoyalistBattleText::
+	text "Stay back! I'm"
+	line "not trained for"
+	cont "this!"
+	done
+
+_SilphCo2FScientist1LoyalistEndBattleText::
+	text "I'm not paid"
+	line "enough for this."
+	prompt
+
+_SilphCo2FScientist1LoyalistAfterBattleText::
+	text "I really do work"
+	line "for SILPH. Only"
+	cont "SILPH."
+	done

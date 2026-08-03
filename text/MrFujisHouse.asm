@@ -24,8 +24,8 @@ _MrFujisHouseLittleGirlThisIsMrFujisHouseText::
 
 _MrFujisHouseLittleGirlPokemonAreNiceToHugText::
 	text "It's so warm!"
-	line "#MON are so"
-	cont "nice to hug!"
+	line "MR.FUJI says it's"
+	cont "OK to love them."
 	done
 
 _MrFujisHousePsyduckText::
@@ -39,7 +39,7 @@ _MrFujisHouseNidorinoText::
 _MrFujisHouseMrFujiIThinkThisMayHelpYourQuestText::
 	text "MR.FUJI: <PLAYER>."
 
-	para "Your #DEX quest"
+	para "Your CODEX quest"
 	line "may fail without"
 	cont "love for your"
 	cont "#MON."

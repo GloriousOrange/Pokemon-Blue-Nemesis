@@ -18,16 +18,18 @@ GetName::
 	ld a, [wNameListIndex]
 	ld [wNamedObjectIndex], a
 
-	; TM names are separate from item names.
-	; BUG: This applies to all names instead of just items.
-	ASSERT NUM_POKEMON_INDEXES < HM01, \
-		"A bug in GetName will get TM/HM names for Pokémon above ${x:HM01}."
-	ASSERT NUM_ATTACKS < HM01, \
-		"A bug in GetName will get TM/HM names for moves above ${x:HM01}."
-	ASSERT NUM_TRAINERS < HM01, \
-		"A bug in GetName will get TM/HM names for trainers above ${x:HM01}."
+	; TM/HM (machine) names live in the item-name space at HM01+. Nemesis fix for
+	; the vanilla bug where GetName routed ANY name index >= HM01 to
+	; GetMachineName before checking the list type -- which broke custom moves once
+	; the move-id space reached HM01. Guard the machine-name shortcut so it only
+	; applies to item lookups; move/Pokemon/trainer ids may now exceed HM01 safely.
+	; (a still holds wNameListIndex here.)
 	cp HM01
-	jp nc, GetMachineName
+	jr c, .notMachineName ; index below the machine range -> ordinary name
+	ld a, [wNameListType]
+	cp ITEM_NAME
+	jp z, GetMachineName ; only item lookups map high indices to TM/HM names
+.notMachineName
 
 	ldh a, [hLoadedROMBank]
 	push af

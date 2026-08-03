@@ -22,7 +22,7 @@ IF DEF(_BLUE)
 	db 14, BELLSPROUT
 	db 10, ABRA
 	db  7, KAKUNA
-	db  8, WEEDLE
+	db 10, CHARMANDER
 ENDC
 	end_grass_wildmons
 

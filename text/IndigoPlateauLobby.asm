@@ -1,18 +1,3 @@
-_IndigoPlateauLobbyGymGuideText::
-	text "Yo! Champ in"
-	line "making!"
-
-	para "At #MON LEAGUE,"
-	line "you have to face"
-	cont "the ELITE FOUR in"
-	cont "succession."
-
-	para "If you lose, you"
-	line "have to start all"
-	cont "over again! This"
-	cont "is it! Go for it!"
-	done
-
 _IndigoPlateauLobbyCooltrainerFText::
 	text "From here on, you"
 	line "face the ELITE"
@@ -22,4 +7,24 @@ _IndigoPlateauLobbyCooltrainerFText::
 	line "door opens to the"
 	cont "next trainer!"
 	cont "Good luck!"
+	done
+
+_IndigoPlateauLobbyRocketMerchantOutsiderText::
+	text "Case is closed,"
+	line "champ. This stall"
+	cont "is members only."
+
+	para "Wear the R, and"
+	line "we'll talk."
+	done
+
+_IndigoPlateauLobbyRocketMerchantLoyalistText::
+	text "There's the R!"
+
+	para "The BOSS keeps a"
+	line "little something"
+	cont "back for the ones"
+	cont "who didn't run."
+
+	para "Spend well."
 	done

@@ -10,8 +10,10 @@ BattleIsland_Script:
 
 BattleIsland_ScriptPointers:
 	def_script_pointers
-	dw_const BattleIslandDefaultScript,    SCRIPT_BATTLEISLAND_DEFAULT
-	dw_const BattleIslandPostBattleScript, SCRIPT_BATTLEISLAND_POSTBATTLE
+	dw_const BattleIslandDefaultScript,        SCRIPT_BATTLEISLAND_DEFAULT
+	dw_const BattleIslandPostBattleScript,     SCRIPT_BATTLEISLAND_POSTBATTLE
+	dw_const BattleIslandScientistPostBattle,  SCRIPT_BATTLEISLAND_SCIENTIST_POSTBATTLE
+	dw_const BattleIslandOakPostBattle,        SCRIPT_BATTLEISLAND_OAK_POSTBATTLE
 
 BattleIslandDefaultScript:
 	ret ; arena battles are triggered by talking to the gatekeeper
@@ -40,12 +42,311 @@ BattleIslandPostBattleScript:
 
 BattleIsland_TextPointers:
 	def_text_pointers
-	dw_const BattleIslandGatekeeperText, TEXT_BATTLEISLAND_GATEKEEPER ; object_event (id 1)
-	dw_const BattleIslandSignText,       TEXT_BATTLEISLAND_SIGN        ; bg_event (id 2)
+	dw_const BattleIslandGatekeeperText, TEXT_BATTLEISLAND_GATEKEEPER ; object 1
+	dw_const BattleIslandScientist0Text, TEXT_BATTLEISLAND_SCIENTIST0  ; object 2
+	dw_const BattleIslandScientist1Text, TEXT_BATTLEISLAND_SCIENTIST1  ; object 3
+	dw_const BattleIslandScientist2Text, TEXT_BATTLEISLAND_SCIENTIST2  ; object 4
+	dw_const BattleIslandScientist3Text, TEXT_BATTLEISLAND_SCIENTIST3  ; object 5
+	dw_const BattleIslandScientist4Text, TEXT_BATTLEISLAND_SCIENTIST4  ; object 6
+	dw_const BattleIslandScientist5Text, TEXT_BATTLEISLAND_SCIENTIST5  ; object 7
+	dw_const BattleIslandOakText,        TEXT_BATTLEISLAND_OAK         ; object 8
+	dw_const BattleIslandSignText,       TEXT_BATTLEISLAND_SIGN        ; bg 9
+	dw_const BattleIslandScientistStonesText, TEXT_BATTLEISLAND_SCIENTIST_STONES ; internal (stone handoff)
+	dw_const BattleIslandOakRewardText, TEXT_BATTLEISLAND_OAK_REWARD ; internal (OAK's Deed + Metronome2)
 
 BattleIslandSignText:
 	text_far _BattleIslandSignText
 	text_end
+
+; --- Emporium scientists, relocated outdoors near the entrance (indoor building
+; was flaky). Same proven battle flow as the arena challengers below: inline
+; text, direct wCurOpponent, and a dedicated post-battle state. ---
+BattleIslandScientist0Text:
+	text_asm
+	ld b, 0
+	jr BattleIslandScientistTalk
+BattleIslandScientist1Text:
+	text_asm
+	ld b, 1
+	jr BattleIslandScientistTalk
+BattleIslandScientist2Text:
+	text_asm
+	ld b, 2
+	jr BattleIslandScientistTalk
+BattleIslandScientist3Text:
+	text_asm
+	ld b, 3
+	jr BattleIslandScientistTalk
+BattleIslandScientist4Text:
+	text_asm
+	ld b, 4
+	jr BattleIslandScientistTalk
+BattleIslandScientist5Text:
+	text_asm
+	ld b, 5
+BattleIslandScientistTalk:
+; b = scientist index 0-5
+	ld a, b
+	ld [wCurArenaChallenger], a ; scratch: which scientist, for the post-battle
+	ld d, 1 ; build bit mask (1 << index) in d
+	ld a, b
+	and a
+	jr z, .haveMask
+.maskLoop
+	sla d
+	dec a
+	jr nz, .maskLoop
+.haveMask
+	ld a, [wScientistsDefeated]
+	and d
+	jr nz, .beaten
+	ld a, [wCurArenaChallenger] ; unique challenge line per scientist index
+	add a
+	ld e, a
+	ld d, 0
+	ld hl, BattleIslandLabSciChallengeTexts
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a
+	call PrintText
+	ld hl, wStatusFlags3
+	set BIT_TALKED_TO_TRAINER, [hl]
+	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld hl, BattleIslandLabSciDefeatedText
+	ld de, BattleIslandScientistVictoryText
+	call SaveEndBattleTextPointers
+	ld a, OPP_SCIENTIST
+	ld [wCurOpponent], a
+	ld a, [wCurArenaChallenger]
+	add 14 ; ScientistData parties #14-19
+	ld [wTrainerNo], a
+	ld a, SCRIPT_BATTLEISLAND_SCIENTIST_POSTBATTLE
+	ld [wBattleIslandCurScript], a
+	ld [wCurMapScript], a
+	jp TextScriptEnd
+.beaten
+	ld hl, BattleIslandScientistBeatenText
+	call PrintText
+	jp TextScriptEnd
+
+; Set the beaten scientist's bit; the sixth (index 5) also hands over the six
+; MUTAGENSTONES and reveals OAK (EVENT_USED_MUTAGEN_MACHINE).
+BattleIslandScientistPostBattle:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	ld d, 1
+	ld a, [wCurArenaChallenger]
+	and a
+	jr z, .haveMask
+.maskLoop
+	sla d
+	dec a
+	jr nz, .maskLoop
+.haveMask
+	ld a, [wScientistsDefeated]
+	or d
+	ld [wScientistsDefeated], a
+	ld a, [wCurArenaChallenger]
+	cp 5
+	jr nz, .reset
+	SetEvent EVENT_USED_MUTAGEN_MACHINE
+	ld a, TEXT_BATTLEISLAND_SCIENTIST_STONES
+	ldh [hTextID], a
+	call DisplayTextID
+.reset
+	xor a
+	ld [wBattleIslandCurScript], a
+	ld [wCurMapScript], a
+	ret
+
+BattleIslandScientistStonesText:
+	text_asm
+	ld hl, .Text
+	call PrintText
+	lb bc, LEVEL_STONE, 6
+	call GiveItem
+	jp TextScriptEnd
+.Text:
+	text "Take our six"
+	line "MUTAGENSTONES."
+
+	para "Use one from your"
+	line "BAG on a #MON --"
+	cont "straight to 100."
+
+	para "PROF. OAK is at"
+	line "the island's"
+	cont "SOUTH end."
+	prompt
+
+; --- PROF. OAK, on the island's south grass (the cave was scrapped). Fightable
+; once the roof scientist is beaten (EVENT_USED_MUTAGEN_MACHINE). Arena battle
+; flow; win -> ISLAND DEED + METRONOME2 + EVENT_BEAT_OAK. ---
+BattleIslandOakText:
+	text_asm
+	CheckEvent EVENT_BEAT_OAK
+	jr nz, .beaten
+	CheckEvent EVENT_USED_MUTAGEN_MACHINE
+	jr z, .notYet
+	ld hl, .ChallengeText
+	call PrintText
+	ld hl, wStatusFlags3
+	set BIT_TALKED_TO_TRAINER, [hl]
+	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld hl, .DefeatText
+	ld de, .VictoryText
+	call SaveEndBattleTextPointers
+	ld a, OPP_PROF_OAK
+	ld [wCurOpponent], a
+	ld a, 4 ; ProfOakData party #4 (L100 superboss)
+	ld [wTrainerNo], a
+	ld a, SCRIPT_BATTLEISLAND_OAK_POSTBATTLE
+	ld [wBattleIslandCurScript], a
+	ld [wCurMapScript], a
+	jp TextScriptEnd
+.notYet
+	ld hl, .NotYetText
+	call PrintText
+	jp TextScriptEnd
+.beaten
+	ld hl, .AfterText
+	call PrintText
+	jp TextScriptEnd
+
+.ChallengeText:
+	text "OAK: So the pups"
+	line "sniffed me out."
+
+	para "Every #MON here"
+	line "is MINE. Beaten."
+	cont "Bred. Obedient."
+
+	para "Let me show you"
+	line "what power costs."
+	prompt
+.DefeatText:
+	text "Impossible..."
+	prompt
+.VictoryText:
+	text "Kneel."
+	prompt
+.NotYetText:
+	text "OAK barely looks"
+	line "up from his #MON."
+	prompt
+.AfterText:
+	text "OAK stands beaten"
+	line "on the shore."
+	prompt
+
+BattleIslandOakPostBattle:
+	ld a, [wIsInBattle]
+	cp $ff
+	jr z, .reset
+	SetEvent EVENT_BEAT_OAK
+	ld a, TEXT_BATTLEISLAND_OAK_REWARD
+	ldh [hTextID], a
+	call DisplayTextID
+.reset
+	xor a
+	ld [wBattleIslandCurScript], a
+	ld [wCurMapScript], a
+	ret
+
+BattleIslandOakRewardText:
+; The "ISLAND DEED" is verbal (EVENT_BEAT_OAK gates the arena) -- it's never
+; actually put in the bag, since a real ISLAND DEED item corrupted the bag
+; display for everything listed below it.
+	text_asm
+	ld hl, .Text
+	call PrintText
+	lb bc, METRONOME2, 1
+	call GiveItem
+	jp TextScriptEnd
+.Text:
+	text "OAK: Take the"
+	line "ISLAND DEED..."
+
+	para "...and this."
+	line "METRONOME."
+
+	para "The arena is"
+	line "yours. Finish"
+	cont "what I began."
+	prompt
+
+BattleIslandLabSciChallengeTexts:
+	dw BattleIslandLabSci0Challenge
+	dw BattleIslandLabSci1Challenge
+	dw BattleIslandLabSci2Challenge
+	dw BattleIslandLabSci3Challenge
+	dw BattleIslandLabSci4Challenge
+	dw BattleIslandLabSci5Challenge
+
+BattleIslandLabSci0Challenge:
+	text "Your #MON is"
+	line "analog. Soft."
+
+	para "Hold still while I"
+	line "overwrite it."
+	prompt
+
+BattleIslandLabSci1Challenge:
+	text "A #MON is just"
+	line "stored energy."
+
+	para "Let's see how much"
+	line "I can let out."
+	prompt
+
+BattleIslandLabSci2Challenge:
+	text "Life is only parts"
+	line "assembled by"
+	cont "accident."
+
+	para "Let me correct"
+	line "yours."
+	prompt
+
+BattleIslandLabSci3Challenge:
+	text "I've already read"
+	line "this battle to"
+	cont "its end."
+
+	para "You lose."
+	prompt
+
+BattleIslandLabSci4Challenge:
+	text "We died down here"
+	line "once, just to see"
+	cont "what lingered."
+
+	para "Come say hello."
+	prompt
+
+BattleIslandLabSci5Challenge:
+	text "MEW could become"
+	line "anything alive."
+
+	para "So can I -- given"
+	line "your #MON to copy."
+	prompt
+
+BattleIslandLabSciDefeatedText:
+	text "Unquantifiable..."
+	prompt
+
+BattleIslandScientistVictoryText:
+	text "As predicted."
+	prompt
+
+BattleIslandScientistBeatenText:
+	text "SCIENTIST: Go on."
+	line "The others are"
+	cont "waiting."
+	prompt
 
 BattleIslandTooManyMonsText:
 	text_far _BattleIslandTooManyMonsText
@@ -58,6 +359,22 @@ BattleIslandTooManyMonsText:
 ; away to the house PC (north edge of the island) to store the rest.
 BattleIslandGatekeeperText:
 	text_asm
+; Gate the arena on having beaten OAK (his "deed" is verbal, not a bag item --
+; a real ISLAND DEED item corrupted the bag display below it).
+	CheckEvent EVENT_BEAT_OAK
+	jr nz, .hasDeed
+	ld hl, .NoDeedText
+	call PrintText
+	jp TextScriptEnd
+.NoDeedText:
+	text "The ARENA is"
+	line "sealed."
+
+	para "Bring PROF. OAK's"
+	line "ISLAND DEED and"
+	cont "it's yours."
+	prompt
+.hasDeed
 	ld a, [wPartyCount]
 	cp 3 + 1
 	jr c, .partySizeOk
