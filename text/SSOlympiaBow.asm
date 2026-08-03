@@ -1,10 +1,11 @@
 _SSOlympiaBowSuperNerdText::
-	text "That trainer's"
-	line "been at the bow"
-	cont "since we sailed."
+	text "Someone's waiting"
+	line "at the bow, they"
+	cont "say. For what, I"
 
-	para "He isn't here to"
-	line "relax like us."
+	para "couldn't tell you."
+	line "Finish your rounds"
+	cont "and go look."
 	done
 
 ; UNREACHABLE: the bird object is parked OFF (the rival no longer flies in and

@@ -441,13 +441,17 @@ ToggleableObjectStates:
 	toggleable_objects_for VERMILION_DOCK
 	toggle_object_state VERMILIONDOCK_OLYMPIA_GUARD, ON
 
-; The rival now just stands on the deck from the moment you walk out (Josh,
-; 2026-08-02) -- he used to fly in as the bird and "transform". The bird stays
+; The rival is the ship's locked final fight (Josh, 2026-08-02): hidden by
+; default, shown once every other trainer aboard is beaten -- see
+; SSOlympiaBowSetRivalVisibilityScript in scripts/SSOlympiaBow.asm, called
+; every tick the player is on this map. He used to fly in as a bird that
+; "transformed" into him; that's gone (Josh cut it earlier the same day), so
+; this is a plain show/hide, not a second animated reveal. The bird stays
 ; parked OFF rather than being deleted: toggle indices are global and saved, so
 ; removing one renumbers every later index and breaks existing saves.
 	toggleable_objects_for SS_OLYMPIA_BOW
 	toggle_object_state SSOLYMPIABOW_BIRD,  OFF
-	toggle_object_state SSOLYMPIABOW_RIVAL, ON
+	toggle_object_state SSOLYMPIABOW_RIVAL, OFF
 
 	toggleable_objects_for ARCHIPELAGO_CAVE_3F
 	toggle_object_state ARCHIPELAGOCAVE3F_OAK, OFF ; hidden until EVENT_USED_MUTAGEN_MACHINE

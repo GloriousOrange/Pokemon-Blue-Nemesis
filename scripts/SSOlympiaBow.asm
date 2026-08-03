@@ -1,10 +1,104 @@
 SSOlympiaBow_Script:
 	call EnableAutoTextBoxDrawing
+	call SSOlympiaBowSetRivalVisibilityScript
 	ld hl, SSOlympiaBowTrainerHeaders
 	ld de, SSOlympiaBow_ScriptPointers
 	ld a, [wSSOlympiaBowCurScript]
 	call ExecuteCurMapScriptInTable
 	ld [wSSOlympiaBowCurScript], a
+	ret
+
+; The deck rival is the ship's locked final fight (Josh, 2026-08-02): every
+; other trainer aboard must be beaten first. Same shape as
+; SilphCo2FSetFactionObjectsScript -- evaluated every tick the player is on
+; this map, so leaving and returning always shows the right state.
+SSOlympiaBowSetRivalVisibilityScript:
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_RIVAL
+	jr nz, .show ; already beaten -- stays visible permanently regardless of the gate
+	call AllOlympiaTrainersBeaten
+	jr z, .hide
+.show
+	ld a, TOGGLE_SS_OLYMPIA_BOW_RIVAL
+	ld [wToggleableObjectIndex], a
+	predef ShowObject
+	ret
+.hide
+	ld a, TOGGLE_SS_OLYMPIA_BOW_RIVAL
+	ld [wToggleableObjectIndex], a
+	predef HideObject
+	ret
+
+; NZ if every one of the ship's 39 mandatory trainers is beaten, Z otherwise.
+; MEGAN's cabin is deliberately excluded -- her spar is optional (declining
+; just heals, no fight), so she is not a "trainer" in this gate's sense.
+;
+; wOlympiaTrainerFlags/wOlympiaTrainerFlags2 hold the 18 trainers the event
+; array had no room left for (see feedback_nemesis_event_array_full); the
+; exact bit layout is fixed by each map's trainer_in calls, so this checks the
+; three bytes directly against the pattern with only those real bits set
+; (wOlympiaTrainerFlags: bits 0,1,2,3,6,7,9,10,11,12,13,14,15,16,17,21,22 =
+; $CF,$FE,$63; wOlympiaTrainerFlags2: bit 6) rather than re-deriving it from a
+; table at runtime.
+AllOlympiaTrainersBeaten:
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_1F_TRAINER_0
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_1F_TRAINER_1
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_2F_TRAINER_0
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_2F_TRAINER_1
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_3F_TRAINER_0
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_B1F_TRAINER_0
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_B1F_TRAINER_1
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_BOW_TRAINER_0
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_BOW_TRAINER_1
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_KITCHEN_TRAINER_0
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_1FROOMS_TRAINER_0
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_1FROOMS_TRAINER_1
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_1FROOMS_TRAINER_2
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_2FROOMS_TRAINER_0
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_2FROOMS_TRAINER_1
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_2FROOMS_TRAINER_2
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_B1FROOMS_TRAINER_0
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_B1FROOMS_TRAINER_1
+	ret z
+	CheckEvent EVENT_BEAT_SS_OLYMPIA_B1FROOMS_TRAINER_2
+	ret z
+
+; `cp` sets Z on a MATCH, the opposite of CheckEvent's "Z = still locked"
+; convention the ret-z chain above relies on -- `ret nz` here would return
+; NZ (unlocked) on a byte MISMATCH, exactly backwards. Route mismatches to
+; .locked instead, which forces Z before returning. (The final `bit 6, a` is
+; NOT affected by this bug: BIT's polarity already matches -- Z when the bit
+; is clear/not-beaten -- so no fixup needed there.)
+	ld a, [wOlympiaTrainerFlags]
+	cp $CF
+	jr nz, .locked
+	ld a, [wOlympiaTrainerFlags + 1]
+	cp $FE
+	jr nz, .locked
+	ld a, [wOlympiaTrainerFlags + 2]
+	cp $63
+	jr nz, .locked
+	ld a, [wOlympiaTrainerFlags2]
+	bit 6, a
+	ret
+.locked
+	cp a ; force Z=1 regardless of what's in a
 	ret
 
 SSOlympiaBow_ScriptPointers:
@@ -33,6 +127,10 @@ SSOlympiaBow_ScriptPointers:
 SSOlympiaBowDefaultScript:
 	CheckEvent EVENT_BEAT_SS_OLYMPIA_RIVAL
 	jp nz, CheckFightingMapTrainers
+	call AllOlympiaTrainersBeaten
+	jp z, CheckFightingMapTrainers ; locked -- the object is hidden too, but this
+	; also stops the ambush zone from firing on an invisible rival if the player
+	; somehow reaches those coordinates first
 	ld hl, .AmbushCoords
 	call ArePlayerCoordsInArray
 	jp nc, CheckFightingMapTrainers
