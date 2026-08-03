@@ -205,6 +205,9 @@ EvosMovesPointerTable::
 	dw NocturnEvosMoves
 	dw AlakachampEvosMoves
 	dw MewthreeEvosMoves
+	dw PinsiriteEvosMoves
+	dw NinefrostEvosMoves
+	dw DignemiteEvosMoves
 	assert_table_length NUM_POKEMON_INDEXES
 
 RhydonEvosMoves:
@@ -2255,6 +2258,44 @@ MewthreeEvosMoves:
 	db 75, MIST
 	db 81, AMNESIA
 	db 99, TELEKINESIS ; the armored clone's signature
+	db 0
+
+; S.S. OLYMPIA clearing-prize mutants (2026-08-02). No evolutions -- these are
+; already the final/only form. Learnset spreads each species' approved
+; MutagenMovesets kit (data/pokemon/mutagen_movesets.asm) across levels 15-95,
+; so a naturally leveled copy converges on the same 5 moves the Mutagenstone
+; grants directly at L100 -- one design, not two.
+PinsiriteEvosMoves:
+	db 0
+; Learnset -- converges on the curated kit (WEB_CANNON/GUILLOTINE/VIBRATE/
+; DOUBLE_TEAM/GRANIT_CLAMP) by L95
+	db 15, VIBRATE
+	db 35, DOUBLE_TEAM
+	db 55, WEB_CANNON
+	db 75, GUILLOTINE
+	db 95, GRANIT_CLAMP
+	db 0
+
+NinefrostEvosMoves:
+	db 0
+; Learnset -- converges on the curated kit (FIRE_BLAST/BLIZZARD/SWIFT/
+; CONFUSE_RAY/RECOVER) by L95
+	db 15, CONFUSE_RAY
+	db 35, SWIFT
+	db 55, RECOVER
+	db 75, FIRE_BLAST
+	db 95, BLIZZARD
+	db 0
+
+DignemiteEvosMoves:
+	db 0
+; Learnset -- converges on the curated kit (EARTHQUAKE/THUNDERBOLT/
+; STATIC_SHOCK/SCREECH/THIRD_RAIL) by L95
+	db 15, SCREECH
+	db 35, STATIC_SHOCK
+	db 55, THIRD_RAIL
+	db 75, THUNDERBOLT
+	db 95, EARTHQUAKE
 	db 0
 
 AlakachampEvosMoves:

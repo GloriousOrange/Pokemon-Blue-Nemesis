@@ -195,6 +195,9 @@ PokedexEntryPointers:
 	dw NocturnDexEntry
 	dw AlakachampDexEntry
 	dw MewthreeDexEntry
+	dw PinsiriteDexEntry
+	dw NinefrostDexEntry
+	dw DignemiteDexEntry
 	assert_table_length NUM_POKEMON_INDEXES
 
 ; string: species name
@@ -970,6 +973,32 @@ MewthreeDexEntry:
 	db 6,9
 	dw 4120
 	text_far _MewthreeDexEntry
+	text_end
+
+; S.S. OLYMPIA clearing-prize mutants (2026-08-02). Height/weight are each
+; base species' own real figures, unmodified -- these are straight recolors,
+; not size changes, per Josh ("Recolors are fine"). DIGNEMITE is the one
+; exception: it really is bigger (its sprite grew from PNG 40x40 to 48x48,
+; "just make it's existing sprite bigger"), so its height/weight scale up too.
+PinsiriteDexEntry:
+	db "GRANITE@"
+	db 4,11
+	dw 1210
+	text_far _PinsiriteDexEntry
+	text_end
+
+NinefrostDexEntry:
+	db "FROSTFIRE@"
+	db 3,7
+	dw 440
+	text_far _NinefrostDexEntry
+	text_end
+
+DignemiteDexEntry:
+	db "ALLOY@"
+	db 1,4
+	dw 320
+	text_far _DignemiteDexEntry
 	text_end
 
 SnorlaxDexEntry:

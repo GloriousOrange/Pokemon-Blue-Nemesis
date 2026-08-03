@@ -69,4 +69,15 @@ ENDC
 ; Resurrected-starter ghost palette: spectral violet body ramp so a
 ; Ghost-typed party mon (CheckIsGhostPartyMon) reads as visually distinct.
 	RGB 31,29,31, 24,18,31, 14,08,24, 05,02,10 ; PAL_GHOSTMON
+; S.S. OLYMPIA clearing-prize mutants (2026-08-02). "Black galaxy" granite --
+; warm near-black ramp, picked over a flat neutral gray specifically because a
+; flat gray read as "no real change" from vanilla Pinsir. NOTE: the approved
+; preview also scattered gold mica flecks onto ~7% of the dark pixels, which
+; is a bitmap-level dither effect, not something a 4-color palette row can
+; reproduce -- this ramp alone is the closest a palette gets to it. True
+; flecks would mean baking a 5th distinguishable tone into the sprite bitmap
+; itself (see tools/palette_preview.py's `recolor` speckle parameter).
+	RGB 29,28,26, 14,13,12, 06,06,06, 01,01,01 ; PAL_PINSIRITE
+	RGB 31,31,31, 22,27,31, 10,18,28, 02,06,14 ; PAL_NINEFROST
+	RGB 31,31,31, 23,24,25, 13,14,15, 04,04,05 ; PAL_DIGNEMITE -- silver, not gold (Josh, 2026-08-02)
 	assert_table_length NUM_SGB_PALS

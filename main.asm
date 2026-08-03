@@ -233,11 +233,18 @@ INCLUDE "engine/slots/game_corner_slots.asm"
 SECTION "Battle Engine 7", ROMX
 
 INCLUDE "data/moves/moves.asm"
-INCLUDE "data/pokemon/base_stats.asm"
 INCLUDE "data/pokemon/cries.asm"
 INCLUDE "engine/battle/trainer_ai.asm"
 INCLUDE "engine/battle/draw_hud_pokeball_gfx.asm"
 INCLUDE "engine/pokemon/evos_moves.asm"
+
+; Floated out of Battle Engine 7 (which the S.S. Olympia's 2026-08-02 mutants
+; pushed over) rather than scrounging a few more bytes -- BaseStats grows every
+; time a new species is added, so it will just overflow again next time.
+; Reached only via `ld a, BANK(BaseStats)` (home/pokemon.asm), so any bank works.
+SECTION "Base Stats", ROMX
+
+INCLUDE "data/pokemon/base_stats.asm"
 
 
 ; Moved out of Battle Engine 7 (bank $E is full after the extra moves + the
@@ -432,8 +439,20 @@ INCLUDE "engine/battle/battle_transitions.asm"
 INCLUDE "engine/items/town_map.asm"
 INCLUDE "engine/gfx/mon_icons.asm"
 INCLUDE "engine/events/in_game_trades.asm"
-INCLUDE "engine/gfx/palettes.asm"
 INCLUDE "engine/menus/save.asm"
+
+; Floated out of "bank1C" (which the S.S. Olympia mutants' 3 new PAL_ rows in
+; data/sgb/sgb_palettes.asm pushed over) into its own section. This has to
+; move as ONE unit, not just the data table: every `ld hl/de, SuperPalettes`
+; reference lives inside this same file and is a plain `ld`, not a
+; callfar-resolved address, so the code and its data must share a bank. Every
+; EXTERNAL caller of this file's exported routines (ApplyCGBPalettes,
+; BlitQueuedCGBPalette, PrepareNextCGBPalette, MarkWaterAttributes,
+; MarkRedrawnAttributes) already uses farcall/farjp, so relocating the whole
+; file is safe.
+SECTION "GFX Palettes", ROMX
+
+INCLUDE "engine/gfx/palettes.asm"
 
 
 SECTION "Itemfinder 1", ROMX

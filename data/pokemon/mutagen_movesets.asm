@@ -69,4 +69,13 @@ MutagenMovesets::
 	mutagen_moveset MAGMAR,      FIRE_BLAST,     HOT_OIL,       HYPER_BEAM,    CONFUSE_RAY,  BODY_SLAM
 	mutagen_moveset TAUROS,      HYPER_BEAM,     STAMPEDE,      THUNDERBOLT,   BLIZZARD,     BODY_SLAM
 
+; --- the S.S. Olympia's own clearing-prize mutants ---
+; Not just for the Mutagenstone: whatever eventually delivers the ship's
+; "choice of three" prize can farcall ApplyMutagenMoveset the same way
+; ReadTrainer's Olympia hook does, rather than hardcoding these five moves a
+; second time. Also covers the ordinary case of stoning a low-level one later.
+	mutagen_moveset PINSIRITE,   WEB_CANNON,     GUILLOTINE,    VIBRATE,       DOUBLE_TEAM,  GRANIT_CLAMP
+	mutagen_moveset NINEFROST,   FIRE_BLAST,     BLIZZARD,      SWIFT,         CONFUSE_RAY,  RECOVER
+	mutagen_moveset DIGNEMITE,   EARTHQUAKE,     THUNDERBOLT,   STATIC_SHOCK,  SCREECH,      THIRD_RAIL
+
 	db 0 ; end of table -- species with no row above fall back to WriteMonMoves

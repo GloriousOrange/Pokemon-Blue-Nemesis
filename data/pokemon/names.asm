@@ -195,4 +195,7 @@ MonsterNames::
 	dname "NOCTURN"
 	dname "ALAKACHAMP"
 	dname "MEWTHREE"
+	dname "PINSIRITE"
+	dname "NINEFROST"
+	dname "DIGNEMITE"
 	assert_table_length NUM_POKEMON_INDEXES

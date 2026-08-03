@@ -156,4 +156,7 @@ MonPartyData:
 	nybble ICON_BIRD      ; Nocturn
 	nybble ICON_MON       ; Alakachamp
 	nybble ICON_MON       ; MewThree
+	nybble ICON_BUG       ; Pinsirite
+	nybble ICON_QUADRUPED ; Ninefrost
+	nybble ICON_MON       ; Dignemite
 	end_nybble_array NUM_POKEMON

@@ -338,6 +338,12 @@ AlakachampPicFront::   INCBIN "gfx/pokemon/front/machamp.pic"   ; Alakachamp reu
 AlakachampPicBack::    INCBIN "gfx/pokemon/back/machampb.pic"
 MewthreePicFront::     INCBIN "gfx/pokemon/front/mewthree.pic"
 MewthreePicBack::      INCBIN "gfx/pokemon/back/mewthreeb.pic"
+PinsiritePicFront::    INCBIN "gfx/pokemon/front/pinsirite.pic"
+PinsiritePicBack::     INCBIN "gfx/pokemon/back/pinsiriteb.pic"
+NinefrostPicFront::    INCBIN "gfx/pokemon/front/ninefrost.pic"
+NinefrostPicBack::     INCBIN "gfx/pokemon/back/ninefrostb.pic"
+DignemitePicFront::    INCBIN "gfx/pokemon/front/dignemite.pic"
+DignemitePicBack::     INCBIN "gfx/pokemon/back/dignemiteb.pic"
 
 ; Player battle back sprites for the Hero (Scientist), Loyalist (Rocket), and
 ; Traitor overworld disguises. No longer used by LoadPlayerBackPic (the
