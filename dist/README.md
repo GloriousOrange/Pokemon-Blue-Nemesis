@@ -4,6 +4,8 @@ Nemesis is a Pokémon Blue ROM hack. This folder has the **patch** you apply to
 your **own** legally-obtained Pokémon Blue cartridge dump. The patch contains
 only the hack's changes — you supply the original game.
 
+Once you're playing: **[Team Builder](https://gloriousorange.github.io/Pokemon-Blue-Nemesis/)** (plan a team of 6 with type coverage/gaps/weaknesses and full movepools) · **[Mutagenstone movesets](../MUTAGENSTONE.md)**
+
 ## What you need
 
 A **retail Pokémon Blue (USA/Europe)** ROM, exactly this dump:

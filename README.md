@@ -13,6 +13,15 @@ It builds the following ROMs:
 To set up the repository, see [**INSTALL.md**](INSTALL.md).
 
 
+## Pokémon Nemesis
+
+This fork is **Pokémon Nemesis**, a heavily modified ROM hack built on this disassembly.
+
+- **[Team Builder](https://gloriousorange.github.io/Pokemon-Blue-Nemesis/)** — pick a team of 6, see type coverage/gaps/weaknesses, browse every Pokémon's full movepool, and preview Ghost-form sprites
+- **[Patch & install instructions](dist/README.md)**
+- **[Mutagenstone movesets](MUTAGENSTONE.md)**
+
+
 ## See also
 
 - [**Wiki**][wiki] (includes [tutorials][tutorials])
