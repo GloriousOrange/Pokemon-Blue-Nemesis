@@ -8,8 +8,10 @@
 ArchipelagoCave3F_Object:
 	db $19 ; border block (cave wall/floor)
 
+; see ArchipelagoCave1F.asm's comment -- the warp cell sits one block west
+; of a $3C stairs-icon block (adjacent to, not on, the warp's floor cell).
 	def_warp_events
-	warp_event 4, 1, ARCHIPELAGO_CAVE_2F, 2 ; stairs up
+	warp_event 4, 1, ARCHIPELAGO_CAVE_2F, 2 ; stairs up; icon at block(2,0)
 
 	def_bg_events
 
