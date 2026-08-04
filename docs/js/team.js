@@ -9,7 +9,7 @@
 // with no Fire move picked contributes no Fire coverage, only its usual
 // Fire/Flying defensive weaknesses.
 export const MAX_TEAM_SIZE = 6;
-export const MAX_MOVESET_SIZE = 4;
+export const MAX_MOVESET_SIZE = 5; // Nemesis's NUM_MOVES (constants/battle_constants.asm) -- not vanilla's 4
 
 export class TeamState {
   constructor() {
@@ -57,7 +57,7 @@ export class TeamState {
     return this.getMoveset(species).includes(moveName);
   }
 
-  // Returns true if the toggle took effect (add ignored past the 4-move cap).
+  // Returns true if the toggle took effect (add ignored past the 5-move cap).
   toggleMove(species, moveName) {
     const current = this.getMoveset(species);
     if (current.includes(moveName)) {

@@ -1,5 +1,5 @@
 import { loadData } from "./data.js";
-import { TeamState, MAX_TEAM_SIZE } from "./team.js";
+import { TeamState, MAX_TEAM_SIZE, MAX_MOVESET_SIZE } from "./team.js";
 import { computeCoverage } from "./coverage.js";
 import { buildMovepool } from "./movepool.js";
 import { createTile, createTeamSlot, spriteSrc } from "./sprites.js";
@@ -173,7 +173,8 @@ function closeDetail() {
 
 // selectionCtx is null for species not on the team (plain read-only list).
 // When present ({ team, sp, onToggle }), each row gets a checkbox for
-// picking that species' actual up-to-4-move set -- what coverage.js reads.
+// picking that species' actual moveset (up to MAX_MOVESET_SIZE) -- what
+// coverage.js reads.
 function renderMoveList(entries, kind, selectionCtx) {
   const ul = document.createElement("ul");
   ul.className = "move-list";
@@ -189,13 +190,13 @@ function renderMoveList(entries, kind, selectionCtx) {
     if (selectionCtx) {
       const { team, sp, onToggle } = selectionCtx;
       const selected = team.hasMove(sp, mv.name);
-      const atCap = team.getMoveset(sp).length >= 4;
+      const atCap = team.getMoveset(sp).length >= MAX_MOVESET_SIZE;
       const cb = document.createElement("input");
       cb.type = "checkbox";
       cb.className = "move-select";
       cb.checked = selected;
       cb.disabled = !selected && atCap;
-      cb.title = selected ? "Remove from moveset" : atCap ? "Moveset full (4/4)" : "Add to moveset";
+      cb.title = selected ? "Remove from moveset" : atCap ? `Moveset full (${MAX_MOVESET_SIZE}/${MAX_MOVESET_SIZE})` : "Add to moveset";
       cb.addEventListener("change", () => onToggle(mv.name));
       li.appendChild(cb);
       if (selected) li.classList.add("move-selected");
@@ -306,12 +307,12 @@ function renderDetail() {
     const moveset = team.getMoveset(sp);
     const counter = document.createElement("p");
     counter.className = "moveset-counter";
-    counter.textContent = `Moveset: ${moveset.length}/4 selected — this is what counts toward type coverage.`;
+    counter.textContent = `Moveset: ${moveset.length}/${MAX_MOVESET_SIZE} selected — this is what counts toward type coverage.`;
     el.panel.appendChild(counter);
   } else {
     const note = document.createElement("p");
     note.className = "move-note";
-    note.textContent = "Add to team to pick its 4-move set for type coverage.";
+    note.textContent = `Add to team to pick its ${MAX_MOVESET_SIZE}-move set for type coverage.`;
     el.panel.appendChild(note);
   }
 

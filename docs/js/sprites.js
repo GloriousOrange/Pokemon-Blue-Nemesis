@@ -1,6 +1,8 @@
 // DOM builders for the sprite grid tiles and team slots. Pointer/click
 // handlers only (no hover-dependent affordances) so this stays touch-friendly.
 
+import { MAX_MOVESET_SIZE } from "./team.js";
+
 export function spriteSrc(data, speciesKey, ghost) {
   const rec = data.species[speciesKey];
   if (ghost && rec.ghost_sprite) return rec.ghost_sprite;
@@ -97,7 +99,7 @@ export function createTeamSlot(data, team, speciesKey, callbacks) {
   const moveCount = team.getMoveset(speciesKey).length;
   const moves = document.createElement("div");
   moves.className = "slot-moves" + (moveCount === 0 ? " no-moves" : "");
-  moves.textContent = `${moveCount}/4 moves`;
+  moves.textContent = `${moveCount}/${MAX_MOVESET_SIZE} moves`;
   slot.appendChild(moves);
 
   const remove = () => callbacks.onRemove(speciesKey);
