@@ -1,7 +1,10 @@
 	object_const_def
 
 ArchipelagoCave2F_Object:
-	db $19 ; border block (cave wall/floor)
+; see ArchipelagoCave1F.asm's comment -- was $19 (walkable, same as the
+; floor), letting the player walk past the map's real edge into the
+; tile-streaming padding and corrupt the screen. $3 is genuinely solid.
+	db $3 ; border block (solid rock)
 
 ; see ArchipelagoCave1F.asm's comment -- both warp cells sit one block west
 ; of a $3C stairs-icon block (adjacent to, not on, the warp's floor cell).
