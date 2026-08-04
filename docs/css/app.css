@@ -9,6 +9,14 @@
   --danger: #ff6b7b;
   --good: #63d896;
   --bad: #ff8a5b;
+  /* Team-weakness tiers, keyed by how many team members share the
+     weakness (the "x1"..."x4" count already shown in the chip) -- x5+
+     all share the red tier. */
+  --weak-1: #5b9dff;
+  --weak-2: #4ade80;
+  --weak-3: #c084fc;
+  --weak-4: #ffa83e;
+  --weak-5: #ff4d4d;
 }
 
 * { box-sizing: border-box; }
@@ -139,6 +147,11 @@ a { color: var(--accent); }
   white-space: nowrap;
 }
 .type-chip.weak { border-color: var(--bad); color: var(--bad); }
+.type-chip.weak-1 { border-color: var(--weak-1); color: var(--weak-1); }
+.type-chip.weak-2 { border-color: var(--weak-2); color: var(--weak-2); }
+.type-chip.weak-3 { border-color: var(--weak-3); color: var(--weak-3); }
+.type-chip.weak-4 { border-color: var(--weak-4); color: var(--weak-4); }
+.type-chip.weak-5 { border-color: var(--weak-5); color: var(--weak-5); }
 .type-chip .count {
   opacity: 0.7;
   margin-left: 0.25em;

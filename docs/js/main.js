@@ -147,7 +147,8 @@ function renderCoverage() {
     row.className = "type-chip-row";
     for (const w of weaknesses) {
       const chip = document.createElement("span");
-      chip.className = "type-chip weak";
+      const tier = Math.min(w.count, 5); // ×1..×4 own colors, ×5+ shares "red"
+      chip.className = `type-chip weak weak-${tier}`;
       chip.title = w.members.map((s) => data.species[s].display_name).join(", ");
       chip.innerHTML = `${w.type.replace("_TYPE", "")}<span class="count">×${w.count}</span>`;
       row.appendChild(chip);
