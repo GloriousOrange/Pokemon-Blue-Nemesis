@@ -11,10 +11,11 @@ ArchipelagoCave3F_Object:
 ; tile-streaming padding and corrupt the screen. $3 is genuinely solid.
 	db $3 ; border block (solid rock)
 
-; see ArchipelagoCave1F.asm's comment -- the warp cell sits one block west
-; of a $3C stairs-icon block (adjacent to, not on, the warp's floor cell).
+; see ArchipelagoCave1F.asm's comment -- the warp cell sits ON a $3C
+; stairs-icon's recognized/walkable lower-left tile ($18), not on the
+; plain floor cell next to it (which never reliably triggers the warp).
 	def_warp_events
-	warp_event 4, 1, ARCHIPELAGO_CAVE_2F, 2 ; stairs up; icon at block(2,0)
+	warp_event 5, 1, ARCHIPELAGO_CAVE_2F, 2 ; stairs up; ON the stairs icon, block(2,0)
 
 	def_bg_events
 
