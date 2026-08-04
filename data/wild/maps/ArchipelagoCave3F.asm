@@ -12,15 +12,19 @@ ArchipelagoCave3FWildMons:
 	db 60, MEW
 	end_grass_wildmons
 
+; The underground lake's own encounter table -- dragons, the way Josh asked
+; for it (2026-08-04). Dratini/Dragonair build the curve, Horsea/Seadra and
+; Gyarados round it out as fellow serpentine lake-monsters, Dragonite tops
+; it out as the rare catch.
 	def_water_wildmons 20 ; encounter rate
-	db 50, KABUTO
-	db 50, KABUTOPS
-	db 52, KRABBY
-	db 52, MAGIKARP
-	db 54, MOLTRES
-	db 55, OMANYTE
-	db 56, OMASTAR
-	db 57, PIDGEOT
-	db 58, PIDGEOTTO
-	db 60, PIDGEY
+	db 30, DRATINI
+	db 35, DRATINI
+	db 40, DRATINI
+	db 45, DRAGONAIR
+	db 48, DRAGONAIR
+	db 50, HORSEA
+	db 52, SEADRA
+	db 55, DRAGONAIR
+	db 58, GYARADOS
+	db 60, DRAGONITE
 	end_water_wildmons

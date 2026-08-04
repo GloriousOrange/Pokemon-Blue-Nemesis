@@ -163,6 +163,9 @@ SetPal_Overworld:
 	ld de, wPalPacket
 	ld bc, $10
 	call CopyData
+	ld a, [wCurMap]
+	cp ARCHIPELAGO_CAVE_3F ; its underground lake needs a real blue -- PAL_CAVE is
+	jr z, .archipelagoLake ; shared by every other CAVERN map and stays untouched
 	ld a, [wCurMapTileset]
 	cp CEMETERY
 	jr z, .PokemonTowerOrAgatha
@@ -201,6 +204,9 @@ SetPal_Overworld:
 	jr .town
 .Lorelei
 	xor a
+	jr .town
+.archipelagoLake
+	ld a, PAL_ARCHIPELAGO_CAVE_LAKE - 1
 	jr .town
 
 ; used when a Pokemon is the only thing on the screen

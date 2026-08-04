@@ -6,7 +6,6 @@
 	const_export BATTLEISLAND_SCIENTIST3
 	const_export BATTLEISLAND_SCIENTIST4
 	const_export BATTLEISLAND_SCIENTIST5
-	const_export BATTLEISLAND_OAK
 
 BattleIsland_Object:
 	db $43 ; border block (water)
@@ -26,6 +25,7 @@ BattleIsland_Object:
 	object_event 13,  6, SPRITE_GAMBLER, STAY, DOWN, TEXT_BATTLEISLAND_SCIENTIST3
 	object_event  4, 10, SPRITE_GAMBLER, STAY, DOWN, TEXT_BATTLEISLAND_SCIENTIST4
 	object_event 12, 10, SPRITE_GAMBLER, STAY, DOWN, TEXT_BATTLEISLAND_SCIENTIST5
-	object_event  9, 14, SPRITE_GAMBLER, STAY, UP, TEXT_BATTLEISLAND_OAK ; PROF. OAK, south end of the island (SPRITE_GAMBLER placeholder -- OAK's sprite isn't in this map's set)
+; OAK moved back to ArchipelagoCave3F (Josh, 2026-08-04) -- see that map's
+; object/script files. He used to stand here, south end of the island.
 
 	def_warps_to BATTLE_ISLAND

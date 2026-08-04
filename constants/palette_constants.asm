@@ -66,4 +66,8 @@ DEF SET_PAL_DEFAULT EQU $ff
 	const PAL_PINSIRITE  ; $27 - "black galaxy" granite: near-black body flecked with warm gold mica
 	const PAL_NINEFROST  ; $28 - icy blue-white
 	const PAL_DIGNEMITE  ; $29 - silver/steel, not gold -- see data/sgb/sgb_palettes.asm
+	const PAL_ARCHIPELAGO_CAVE_LAKE ; $2A - PAL_CAVE with a real blue in shade 2 instead of
+	                     ; muted teal-gray, for ArchipelagoCave3F's underground lake specifically
+	                     ; (PAL_CAVE itself is shared by every CAVERN-tileset map in the game and
+	                     ; deliberately left untouched -- see SetPal_Overworld's per-map special case)
 DEF NUM_SGB_PALS EQU const_value

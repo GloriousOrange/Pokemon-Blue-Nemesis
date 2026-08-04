@@ -1,9 +1,5 @@
 	object_const_def
-	const_export ARCHIPELAGOCAVE3F_OAK ; unused now (see below) -- kept only because
-	; data/maps/toggleable_objects.asm's `toggle_object_state ARCHIPELAGOCAVE3F_OAK`
-	; entry must stay (global toggle indices are saved; removing one renumbers
-	; every later index and breaks existing saves), and that macro needs this
-	; name defined even with no matching object_event.
+	const_export ARCHIPELAGOCAVE3F_OAK
 
 ArchipelagoCave3F_Object:
 ; see ArchipelagoCave1F.asm's comment -- was $19 (walkable, same as the
@@ -20,10 +16,6 @@ ArchipelagoCave3F_Object:
 	def_bg_events
 
 	def_object_events
-; OAK used to fight here (dead design, see scripts/BattleIsland.asm -- he's an
-; NPC on Battle Island's south grass now). TOGGLE_ARCHIPELAGO_CAVE_3F_OAK stays
-; defined in constants/toggle_constants.asm and parked unused rather than
-; removed: toggle indices are global and saved, so deleting one renumbers
-; every later index and breaks existing saves.
+	object_event 10, 9, SPRITE_OAK, STAY, DOWN, TEXT_ARCHIPELAGOCAVE3F_OAK, OPP_PROF_OAK, 4 ; hidden until the roof scientist is beaten (TOGGLE_ARCHIPELAGO_CAVE_3F_OAK); stands at the water's edge
 
 	def_warps_to ARCHIPELAGO_CAVE_3F
