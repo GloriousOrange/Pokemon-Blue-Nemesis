@@ -2067,8 +2067,8 @@
    ],
    "front_sprite": "sprites/front/alakazam.png",
    "back_sprite": "sprites/back/alakazam.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/alakazam.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -2159,8 +2159,8 @@
    ],
    "front_sprite": "sprites/front/arbok.png",
    "back_sprite": "sprites/back/arbok.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/arbok.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -2242,8 +2242,8 @@
    ],
    "front_sprite": "sprites/front/arcanine.png",
    "back_sprite": "sprites/back/arcanine.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/arcanine.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -2392,8 +2392,8 @@
    ],
    "front_sprite": "sprites/front/beedrill.png",
    "back_sprite": "sprites/back/beedrill.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/beedrill.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -2543,8 +2543,8 @@
    ],
    "front_sprite": "sprites/front/blastoise.png",
    "back_sprite": "sprites/back/blastoise.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/blastoise.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -2716,8 +2716,8 @@
    ],
    "front_sprite": "sprites/front/butterfree.png",
    "back_sprite": "sprites/back/butterfree.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/butterfree.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -2926,8 +2926,8 @@
    ],
    "front_sprite": "sprites/front/charizard.png",
    "back_sprite": "sprites/back/charizard.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/charizard.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -3108,8 +3108,8 @@
    ],
    "front_sprite": "sprites/front/charmeleon.png",
    "back_sprite": "sprites/back/charmeleon.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/charmeleon.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -3192,8 +3192,8 @@
    ],
    "front_sprite": "sprites/front/clefable.png",
    "back_sprite": "sprites/back/clefable.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/clefable.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -3366,8 +3366,8 @@
    ],
    "front_sprite": "sprites/front/cloyster.png",
    "back_sprite": "sprites/back/cloyster.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/cloyster.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -3517,8 +3517,8 @@
    ],
    "front_sprite": "sprites/front/dewgong.png",
    "back_sprite": "sprites/back/dewgong.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/dewgong.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -3769,8 +3769,8 @@
    ],
    "front_sprite": "sprites/front/dodrio.png",
    "back_sprite": "sprites/back/dodrio.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/dodrio.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -3919,8 +3919,8 @@
    ],
    "front_sprite": "sprites/front/dragonair.png",
    "back_sprite": "sprites/back/dragonair.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/dragonair.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -3999,8 +3999,8 @@
    ],
    "front_sprite": "sprites/front/dragonite.png",
    "back_sprite": "sprites/back/dragonite.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/dragonite.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -4259,8 +4259,8 @@
    ],
    "front_sprite": "sprites/front/dugtrio.png",
    "back_sprite": "sprites/back/dugtrio.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/dugtrio.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -4571,8 +4571,8 @@
    ],
    "front_sprite": "sprites/front/electrode.png",
    "back_sprite": "sprites/back/electrode.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/electrode.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -4734,8 +4734,8 @@
    ],
    "front_sprite": "sprites/front/exeggutor.png",
    "back_sprite": "sprites/back/exeggutor.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/exeggutor.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -4872,8 +4872,8 @@
    ],
    "front_sprite": "sprites/front/fearow.png",
    "back_sprite": "sprites/back/fearow.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/fearow.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -4948,8 +4948,8 @@
    ],
    "front_sprite": "sprites/front/flareon.png",
    "back_sprite": "sprites/back/flareon.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/flareon.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -5264,8 +5264,8 @@
    ],
    "front_sprite": "sprites/front/gloom.png",
    "back_sprite": "sprites/back/gloom.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/gloom.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -5344,8 +5344,8 @@
    ],
    "front_sprite": "sprites/front/golbat.png",
    "back_sprite": "sprites/back/golbat.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/golbat.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -5496,8 +5496,8 @@
    ],
    "front_sprite": "sprites/front/golduck.png",
    "back_sprite": "sprites/back/golduck.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/golduck.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -5586,8 +5586,8 @@
    ],
    "front_sprite": "sprites/front/golem.png",
    "back_sprite": "sprites/back/golem.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/golem.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -5674,8 +5674,8 @@
    ],
    "front_sprite": "sprites/front/graveler.png",
    "back_sprite": "sprites/back/graveler.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/graveler.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -5908,8 +5908,8 @@
    ],
    "front_sprite": "sprites/front/gyarados.png",
    "back_sprite": "sprites/back/gyarados.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/gyarados.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -6280,8 +6280,8 @@
    ],
    "front_sprite": "sprites/front/hypno.png",
    "back_sprite": "sprites/back/hypno.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/hypno.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -6376,8 +6376,8 @@
    ],
    "front_sprite": "sprites/front/ivysaur.png",
    "back_sprite": "sprites/back/ivysaur.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/ivysaur.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -6551,8 +6551,8 @@
    ],
    "front_sprite": "sprites/front/jolteon.png",
    "back_sprite": "sprites/back/jolteon.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/jolteon.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -6824,8 +6824,8 @@
    ],
    "front_sprite": "sprites/front/kabutops.png",
    "back_sprite": "sprites/back/kabutops.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/kabutops.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -6904,8 +6904,8 @@
    ],
    "front_sprite": "sprites/front/kadabra.png",
    "back_sprite": "sprites/back/kadabra.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/kadabra.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -6990,8 +6990,8 @@
    ],
    "front_sprite": "sprites/front/kakuna.png",
    "back_sprite": "sprites/back/kakuna.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/kakuna.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -7104,8 +7104,8 @@
    ],
    "front_sprite": "sprites/front/kingler.png",
    "back_sprite": "sprites/back/kingler.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/kingler.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -7491,8 +7491,8 @@
    ],
    "front_sprite": "sprites/front/machamp.png",
    "back_sprite": "sprites/back/machamp.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/machamp.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -7577,8 +7577,8 @@
    ],
    "front_sprite": "sprites/front/machoke.png",
    "back_sprite": "sprites/back/machoke.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/machoke.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -7918,8 +7918,8 @@
    ],
    "front_sprite": "sprites/front/magneton.png",
    "back_sprite": "sprites/back/magneton.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/magneton.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -8080,8 +8080,8 @@
    ],
    "front_sprite": "sprites/front/marowak.png",
    "back_sprite": "sprites/back/marowak.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/marowak.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -8240,8 +8240,8 @@
    ],
    "front_sprite": "sprites/front/metapod.png",
    "back_sprite": "sprites/back/metapod.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/metapod.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -8814,8 +8814,8 @@
    ],
    "front_sprite": "sprites/front/muk.png",
    "back_sprite": "sprites/back/muk.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/muk.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -8895,8 +8895,8 @@
    ],
    "front_sprite": "sprites/front/nidoking.png",
    "back_sprite": "sprites/back/nidoking.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/nidoking.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -8986,8 +8986,8 @@
    ],
    "front_sprite": "sprites/front/nidoqueen.png",
    "back_sprite": "sprites/back/nidoqueen.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/nidoqueen.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -9225,8 +9225,8 @@
    ],
    "front_sprite": "sprites/front/nidorina.png",
    "back_sprite": "sprites/back/nidorina.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/nidorina.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -9309,8 +9309,8 @@
    ],
    "front_sprite": "sprites/front/nidorino.png",
    "back_sprite": "sprites/back/nidorino.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/nidorino.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -9477,8 +9477,8 @@
    ],
    "front_sprite": "sprites/front/ninetales.png",
    "back_sprite": "sprites/back/ninetales.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/ninetales.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -9726,8 +9726,8 @@
    ],
    "front_sprite": "sprites/front/omastar.png",
    "back_sprite": "sprites/back/omastar.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/omastar.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -9954,8 +9954,8 @@
    ],
    "front_sprite": "sprites/front/parasect.png",
    "back_sprite": "sprites/back/parasect.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/parasect.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -10033,8 +10033,8 @@
    ],
    "front_sprite": "sprites/front/persian.png",
    "back_sprite": "sprites/back/persian.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/persian.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -10121,8 +10121,8 @@
    ],
    "front_sprite": "sprites/front/pidgeot.png",
    "back_sprite": "sprites/back/pidgeot.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/pidgeot.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -10207,8 +10207,8 @@
    ],
    "front_sprite": "sprites/front/pidgeotto.png",
    "back_sprite": "sprites/back/pidgeotto.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/pidgeotto.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -10640,8 +10640,8 @@
    ],
    "front_sprite": "sprites/front/poliwhirl.png",
    "back_sprite": "sprites/back/poliwhirl.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/poliwhirl.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -10734,8 +10734,8 @@
    ],
    "front_sprite": "sprites/front/poliwrath.png",
    "back_sprite": "sprites/back/poliwrath.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/poliwrath.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -10962,8 +10962,8 @@
    ],
    "front_sprite": "sprites/front/primeape.png",
    "back_sprite": "sprites/back/primeape.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/primeape.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -11134,8 +11134,8 @@
    ],
    "front_sprite": "sprites/front/raichu.png",
    "back_sprite": "sprites/back/raichu.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/raichu.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -11198,8 +11198,8 @@
    ],
    "front_sprite": "sprites/front/rapidash.png",
    "back_sprite": "sprites/back/rapidash.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/rapidash.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -11283,8 +11283,8 @@
    ],
    "front_sprite": "sprites/front/raticate.png",
    "back_sprite": "sprites/back/raticate.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/raticate.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -11426,8 +11426,8 @@
    ],
    "front_sprite": "sprites/front/rhydon.png",
    "back_sprite": "sprites/back/rhydon.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/rhydon.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -11680,8 +11680,8 @@
    ],
    "front_sprite": "sprites/front/sandslash.png",
    "back_sprite": "sprites/back/sandslash.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/sandslash.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -11845,8 +11845,8 @@
    ],
    "front_sprite": "sprites/front/seadra.png",
    "back_sprite": "sprites/back/seadra.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/seadra.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -11919,8 +11919,8 @@
    ],
    "front_sprite": "sprites/front/seaking.png",
    "back_sprite": "sprites/back/seaking.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/seaking.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -12155,8 +12155,8 @@
    ],
    "front_sprite": "sprites/front/slowbro.png",
    "back_sprite": "sprites/back/slowbro.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/slowbro.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -12587,8 +12587,8 @@
    ],
    "front_sprite": "sprites/front/starmie.png",
    "back_sprite": "sprites/back/starmie.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/starmie.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -12992,8 +12992,8 @@
    ],
    "front_sprite": "sprites/front/tentacruel.png",
    "back_sprite": "sprites/back/tentacruel.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/tentacruel.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -13150,8 +13150,8 @@
    ],
    "front_sprite": "sprites/front/vaporeon.png",
    "back_sprite": "sprites/back/vaporeon.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/vaporeon.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -13247,8 +13247,8 @@
    ],
    "front_sprite": "sprites/front/venomoth.png",
    "back_sprite": "sprites/back/venomoth.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/venomoth.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -13410,8 +13410,8 @@
    ],
    "front_sprite": "sprites/front/venusaur.png",
    "back_sprite": "sprites/back/venusaur.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/venusaur.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -13500,8 +13500,8 @@
    ],
    "front_sprite": "sprites/front/victreebel.png",
    "back_sprite": "sprites/back/victreebel.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/victreebel.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -13574,8 +13574,8 @@
    ],
    "front_sprite": "sprites/front/vileplume.png",
    "back_sprite": "sprites/back/vileplume.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/vileplume.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -13791,8 +13791,8 @@
    ],
    "front_sprite": "sprites/front/wartortle.png",
    "back_sprite": "sprites/back/wartortle.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/wartortle.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -13908,8 +13908,8 @@
    ],
    "front_sprite": "sprites/front/weepinbell.png",
    "back_sprite": "sprites/back/weepinbell.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/weepinbell.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -13991,8 +13991,8 @@
    ],
    "front_sprite": "sprites/front/weezing.png",
    "back_sprite": "sprites/back/weezing.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/weezing.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -14065,8 +14065,8 @@
    ],
    "front_sprite": "sprites/front/wigglytuff.png",
    "back_sprite": "sprites/back/wigglytuff.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/wigglytuff.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,

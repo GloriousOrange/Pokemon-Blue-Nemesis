@@ -291,18 +291,58 @@ def sprite_labels(text):
     return f"{m.group(1)}PicFront", f"{m.group(2)}PicBack"
 
 
-def load_ghost_eligible():
-    # The real in-game mechanic (engine/events/starter_ashes.asm +
-    # CheckIsGhostPartyMon in engine/gfx/palettes.asm) resurrects whichever
-    # species was wPlayerStarter as GHOST-type -- it's species-agnostic,
-    # checking live TYPE2 on any party mon, so eligibility is exactly the
-    # 78-species starter-picker pool in StarterSpeciesTable (scripts/
-    # OaksLab.asm). Rival3StarterTable (scripts/ChampionsRoom.asm) is an
-    # unrelated 37-species table that only picks the rival's final-battle
-    # team -- an earlier version of this script read that one by mistake.
+def load_starter_pool():
+    # The 78-species starter-picker pool (scripts/OaksLab.asm). This is the
+    # SEED set for ghost eligibility, not the full set -- see
+    # load_ghost_eligible below for why it must be expanded through
+    # evolution.
     text = (ROOT / "scripts/OaksLab.asm").read_text()
     m = re.search(r"StarterSpeciesTable:\n((?:\tdb \w+.*\n)+)", text)
     return {line.split(";")[0].replace("\tdb ", "").strip() for line in m.group(1).splitlines() if line.strip()}
+
+
+def load_all_evolution_edges(species_ids):
+    # Every evolution target per species, ANY method (level/item/trade) --
+    # unlike load_evos_moves's level_evo (single EVOLVE_LEVEL edge only,
+    # used for the level-up movepool's final-form lookup), this needs the
+    # full graph including branches (e.g. Eevee -> Vaporeon/Jolteon/Flareon)
+    # to compute ghost eligibility's evolution closure.
+    text = (ROOT / "data/pokemon/evos_moves.asm").read_text()
+    marks = list(re.finditer(r"(\w+)EvosMoves:", text))
+    edges = {}
+    for i, m in enumerate(marks):
+        end = marks[i + 1].start() if i + 1 < len(marks) else len(text)
+        label, body = m.group(1), text[m.end():end]
+        sp = resolve_evo_label(label.upper(), species_ids)
+        if sp is None:
+            continue
+        targets = [line.split(",")[-1].strip() for line in body.splitlines() if line.strip().startswith("db EVOLVE_")]
+        edges[sp] = targets
+    return edges
+
+
+def load_ghost_eligible(species_ids):
+    # The real in-game mechanic (engine/events/starter_ashes.asm +
+    # CheckIsGhostPartyMon in engine/gfx/palettes.asm) resurrects whichever
+    # species was wPlayerStarter as GHOST-type. wPlayerStarter isn't fixed at
+    # the pick -- engine/pokemon/evos_moves.asm's evolution handler
+    # explicitly advances it to the new species whenever the tracked starter
+    # evolves (its own comment: "Otherwise the starter-death/ashes mechanic
+    # ... silently fails once the starter evolves"). So a starter that died
+    # as, say, Charizard is resurrected as a Ghost Charizard, not reverted to
+    # Charmander -- eligibility is the full evolution closure of all 78
+    # starters (branches included), not just the base 78 themselves.
+    base = load_starter_pool()
+    edges = load_all_evolution_edges(species_ids)
+    eligible = set()
+    stack = list(base)
+    while stack:
+        sp = stack.pop()
+        if sp in eligible:
+            continue
+        eligible.add(sp)
+        stack.extend(edges.get(sp, []))
+    return eligible
 
 
 # ---------------------------------------------------------------------------
@@ -418,7 +458,7 @@ def main():
     level_evo, learnsets = load_evos_moves(species_ids)
     mutagen = load_mutagen_movesets()
     pics = load_pics_paths()
-    ghost_eligible = load_ghost_eligible()
+    ghost_eligible = load_ghost_eligible(species_ids)
     # This script is the sole writer of SPRITES_GHOST -- clear it first so a
     # species that drops out of ghost_eligible (e.g. an earlier bug pointed
     # this at the wrong 37-species table) doesn't leave a stale PNG behind.
