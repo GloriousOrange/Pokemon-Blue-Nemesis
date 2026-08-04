@@ -156,8 +156,11 @@ def load_moves():
 def load_types():
     consts = parse_consts("constants/type_constants.asm")
     # UNUSED_TYPES/UNUSED_TYPES_END/NUM_TYPES/PHYSICAL/SPECIAL are DEF markers,
-    # not `const` entries, so they never appear in consts -- every remaining
-    # name is a real type.
+    # not `const` entries, so they never appear in consts. BIRD ($06) *is* a
+    # real const, but it's Gen 1's well-known dead type slot -- never assigned
+    # to any move or Pokemon in vanilla or Nemesis -- so drop it explicitly;
+    # every other remaining name is a real, usable type.
+    del consts["BIRD"]
     return list(consts.keys())
 
 
