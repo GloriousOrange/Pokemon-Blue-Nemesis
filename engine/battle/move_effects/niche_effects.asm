@@ -308,3 +308,55 @@ GlitterWingEffect_:
 GlitterWingFellAsleepText:
 	text_far _FellAsleepText
 	text_end
+
+; Bug fix (reported as a Toxic crash, 2026-08-03): a mon that was badly
+; poisoned, then switched out (voluntarily or by fainting) before curing,
+; leaves BADLY_POISONED set and a nonzero wPlayer/EnemyToxicCounter behind --
+; nothing resets either when a new mon becomes active (LoadBattleMonFromParty/
+; LoadEnemyMonFromParty just copy party data, no such reset exists elsewhere).
+; The old inline HandlePoisonBurnLeechSeed_DecreaseOwnHP (Battle Core)
+; multiplied ANY of poison/burn/leech-seed damage by that counter whenever
+; BADLY_POISONED was set, regardless of the mon's actual current status (see
+; that routine's own "Leech Seed glitch" comment) -- so the next mon's burn or
+; Leech Seed tick inherited however many turns the PREVIOUS mon was badly
+; poisoned for. That multiplied damage is large enough to break the
+; HP-bar-animation code's assumptions.
+;
+; The whole side-select + BADLY_POISONED check + multiply moved here (not
+; just the new real-status check) since Battle Core has zero spare bytes for
+; even the check alone -- a single `predef` (5 bytes) replaced ~30 bytes of
+; inline logic that had no remaining use in Battle Core once floated.
+; in: bc = base status damage (max HP/16, at least 1)
+; out: bc = unchanged unless this mon is genuinely (currently, not just
+;      historically) badly poisoned, in which case it's multiplied by the
+;      (incremented) toxic counter, same as the original inline logic
+ApplyToxicMultiplier:
+	ldh a, [hWhoseTurn]
+	and a
+	ld hl, wPlayerBattleStatus3
+	ld de, wPlayerToxicCounter
+	jr z, .gotSide
+	ld hl, wEnemyBattleStatus3
+	ld de, wEnemyToxicCounter
+.gotSide
+	bit BADLY_POISONED, [hl]
+	ret z ; bc unchanged
+	ldh a, [hWhoseTurn]
+	and a
+	ld a, [wBattleMonStatus]
+	jr z, .gotStatus
+	ld a, [wEnemyMonStatus]
+.gotStatus
+	and 1 << PSN
+	ret z ; stale flag, mon isn't actually poisoned right now -- bc unchanged
+	ld a, [de]    ; increment toxic counter
+	inc a
+	ld [de], a
+	ld hl, 0
+.toxicTicksLoop
+	add hl, bc
+	dec a
+	jr nz, .toxicTicksLoop
+	ld b, h       ; bc = damage * toxic counter
+	ld c, l
+	ret

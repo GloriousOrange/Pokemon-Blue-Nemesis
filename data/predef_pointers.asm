@@ -111,3 +111,4 @@ PredefPointers::
 	add_predef DisplayElevatorFloorMenu
 	add_predef OaksAideScript
 	add_predef PrintLoadedMonType
+	add_predef ApplyToxicMultiplier

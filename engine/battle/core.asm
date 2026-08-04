@@ -641,27 +641,10 @@ HandlePoisonBurnLeechSeed_DecreaseOwnHP:
 	jr nz, .nonZeroDamage
 	inc c         ; damage is at least 1
 .nonZeroDamage
-	ld hl, wPlayerBattleStatus3
-	ld de, wPlayerToxicCounter
-	ldh a, [hWhoseTurn]
-	and a
-	jr z, .playersTurn
-	ld hl, wEnemyBattleStatus3
-	ld de, wEnemyToxicCounter
-.playersTurn
-	bit BADLY_POISONED, [hl]
-	jr z, .noToxic
-	ld a, [de]    ; increment toxic counter
-	inc a
-	ld [de], a
-	ld hl, 0
-.toxicTicksLoop
-	add hl, bc
-	dec a
-	jr nz, .toxicTicksLoop
-	ld b, h       ; bc = damage * toxic counter
-	ld c, l
-.noToxic
+; ApplyToxicMultiplier (floated out, Battle Core has zero spare bytes) does
+; the side-select + BADLY_POISONED check + toxic-counter multiply that used
+; to live inline here; bc comes back unchanged if no multiplier applies.
+	predef ApplyToxicMultiplier
 	pop hl
 	inc hl
 	ld a, [hl]    ; subtract total damage from current HP
