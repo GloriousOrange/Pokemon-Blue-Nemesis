@@ -94,6 +94,12 @@ export function createTeamSlot(data, team, speciesKey, callbacks) {
   name.textContent = rec.display_name;
   slot.appendChild(name);
 
+  const moveCount = team.getMoveset(speciesKey).length;
+  const moves = document.createElement("div");
+  moves.className = "slot-moves" + (moveCount === 0 ? " no-moves" : "");
+  moves.textContent = `${moveCount}/4 moves`;
+  slot.appendChild(moves);
+
   const remove = () => callbacks.onRemove(speciesKey);
   slot.addEventListener("click", remove);
   slot.addEventListener("keydown", (e) => {

@@ -117,11 +117,11 @@ function renderCoverage() {
     return;
   }
 
-  const { coverage, gaps, weaknesses } = computeCoverage(data, team.members);
+  const { coverage, gaps, weaknesses } = computeCoverage(data, team);
 
   const covBox = document.createElement("div");
   covBox.className = "coverage-box coverage";
-  covBox.innerHTML = "<h3>Type coverage</h3>";
+  covBox.innerHTML = "<h3>Type coverage</h3><p class=\"coverage-hint\">From each member's selected moveset, not everything it could learn.</p>";
   covBox.appendChild(
     coverage.length
       ? typeChipRow(coverage)
@@ -171,7 +171,10 @@ function closeDetail() {
   detailSpecies = null;
 }
 
-function renderMoveList(entries, kind) {
+// selectionCtx is null for species not on the team (plain read-only list).
+// When present ({ team, sp, onToggle }), each row gets a checkbox for
+// picking that species' actual up-to-4-move set -- what coverage.js reads.
+function renderMoveList(entries, kind, selectionCtx) {
   const ul = document.createElement("ul");
   ul.className = "move-list";
   if (entries.length === 0) {
@@ -182,6 +185,24 @@ function renderMoveList(entries, kind) {
   }
   for (const mv of entries) {
     const li = document.createElement("li");
+
+    if (selectionCtx) {
+      const { team, sp, onToggle } = selectionCtx;
+      const selected = team.hasMove(sp, mv.name);
+      const atCap = team.getMoveset(sp).length >= 4;
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.className = "move-select";
+      cb.checked = selected;
+      cb.disabled = !selected && atCap;
+      cb.title = selected ? "Remove from moveset" : atCap ? "Moveset full (4/4)" : "Add to moveset";
+      cb.addEventListener("change", () => onToggle(mv.name));
+      li.appendChild(cb);
+      if (selected) li.classList.add("move-selected");
+    }
+
+    const content = document.createElement("span");
+    content.className = "move-row-content";
     const left = document.createElement("span");
     let prefix = "";
     if (kind === "levelUp") prefix = `L${mv.level} · `;
@@ -190,8 +211,9 @@ function renderMoveList(entries, kind) {
     const right = document.createElement("span");
     right.className = "move-meta";
     right.textContent = `${mv.type ? mv.type.replace("_TYPE", "") : "?"} · ${mv.power ?? "—"} pow · ${mv.accuracy ?? "—"}% · ${mv.pp ?? "—"}pp`;
-    li.appendChild(left);
-    li.appendChild(right);
+    content.appendChild(left);
+    content.appendChild(right);
+    li.appendChild(content);
     ul.appendChild(li);
   }
   return ul;
@@ -280,6 +302,19 @@ function renderDetail() {
   }
   el.panel.appendChild(tabs);
 
+  if (inTeam) {
+    const moveset = team.getMoveset(sp);
+    const counter = document.createElement("p");
+    counter.className = "moveset-counter";
+    counter.textContent = `Moveset: ${moveset.length}/4 selected — this is what counts toward type coverage.`;
+    el.panel.appendChild(counter);
+  } else {
+    const note = document.createElement("p");
+    note.className = "move-note";
+    note.textContent = "Add to team to pick its 4-move set for type coverage.";
+    el.panel.appendChild(note);
+  }
+
   if (activeTab === "mutagen" && pool.mutagenNote) {
     const note = document.createElement("p");
     note.className = "move-note";
@@ -287,7 +322,19 @@ function renderDetail() {
     el.panel.appendChild(note);
   }
   const listSource = { levelUp: pool.levelUp, tmhm: pool.tmhm, mutagen: pool.mutagen }[activeTab];
-  el.panel.appendChild(renderMoveList(listSource, activeTab));
+  const selectionCtx = inTeam
+    ? {
+        team,
+        sp,
+        onToggle: (moveName) => {
+          team.toggleMove(sp, moveName);
+          renderCoverage();
+          renderTeam();
+          renderDetail();
+        },
+      }
+    : null;
+  el.panel.appendChild(renderMoveList(listSource, activeTab, selectionCtx));
 }
 
 init().catch((err) => {

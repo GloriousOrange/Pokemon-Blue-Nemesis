@@ -6,16 +6,13 @@ function defenseMultiplier(data, atkType, defTypes) {
   return data.type_chart[atkType][defTypes[0]] * data.type_chart[atkType][defTypes[1]];
 }
 
-function teamMovepoolTypes(data, team) {
+// Offensive coverage comes from each member's actually-selected moveset
+// (team.getMoveset), not everything it could theoretically learn -- a
+// Charizard nobody taught a Fire move contributes no Fire coverage.
+function teamMovesetTypes(data, team) {
   const types = new Set();
-  for (const sp of team) {
-    const rec = data.species[sp];
-    const moveNames = new Set([
-      ...rec.level_up_moves.map((m) => m.move),
-      ...rec.tm_hm_moves,
-      ...(rec.mutagen_moveset || []),
-    ]);
-    for (const mv of moveNames) {
+  for (const sp of team.members) {
+    for (const mv of team.getMoveset(sp)) {
       const info = data.moves[mv];
       if (info) types.add(info.type);
     }
@@ -23,23 +20,24 @@ function teamMovepoolTypes(data, team) {
   return types;
 }
 
-// coverage: attacking types the team's combined movepool can actually deploy.
+// coverage: attacking types the team's actual selected movesets can deploy.
 // weaknesses: attacking types where at least one team member takes >1x
-// (dual-type multiplied), most-affected first.
+// (dual-type multiplied), most-affected first -- purely defensive, driven by
+// species typing, unaffected by which moves are picked.
 // gaps: attacking types where NO team member resists/nullifies it AND the
-// team has no move type that hits it super-effectively back -- a true blind
-// spot against that matchup.
+// team has no selected move type that hits it super-effectively back -- a
+// true blind spot against that matchup.
 export function computeCoverage(data, team) {
-  if (team.length === 0) return { coverage: [], gaps: [], weaknesses: [] };
+  if (team.members.length === 0) return { coverage: [], gaps: [], weaknesses: [] };
 
-  const offensiveTypes = teamMovepoolTypes(data, team);
+  const offensiveTypes = teamMovesetTypes(data, team);
   const weaknesses = [];
   const gaps = [];
 
   for (const atk of data.types) {
     const weakMembers = [];
     let anyResists = false;
-    for (const sp of team) {
+    for (const sp of team.members) {
       const mult = defenseMultiplier(data, atk, data.species[sp].types);
       if (mult > 1) weakMembers.push(sp);
       if (mult < 1) anyResists = true;
