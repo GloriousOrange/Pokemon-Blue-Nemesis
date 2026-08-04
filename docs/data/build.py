@@ -292,9 +292,17 @@ def sprite_labels(text):
 
 
 def load_ghost_eligible():
-    text = (ROOT / "scripts/ChampionsRoom.asm").read_text()
-    m = re.search(r"Rival3StarterTable:\n((?:\tdb \w+, \d+\n)+)", text)
-    return {line.split(",")[0].replace("\tdb ", "").strip() for line in m.group(1).splitlines() if line.strip()}
+    # The real in-game mechanic (engine/events/starter_ashes.asm +
+    # CheckIsGhostPartyMon in engine/gfx/palettes.asm) resurrects whichever
+    # species was wPlayerStarter as GHOST-type -- it's species-agnostic,
+    # checking live TYPE2 on any party mon, so eligibility is exactly the
+    # 78-species starter-picker pool in StarterSpeciesTable (scripts/
+    # OaksLab.asm). Rival3StarterTable (scripts/ChampionsRoom.asm) is an
+    # unrelated 37-species table that only picks the rival's final-battle
+    # team -- an earlier version of this script read that one by mistake.
+    text = (ROOT / "scripts/OaksLab.asm").read_text()
+    m = re.search(r"StarterSpeciesTable:\n((?:\tdb \w+.*\n)+)", text)
+    return {line.split(";")[0].replace("\tdb ", "").strip() for line in m.group(1).splitlines() if line.strip()}
 
 
 # ---------------------------------------------------------------------------
@@ -411,6 +419,12 @@ def main():
     mutagen = load_mutagen_movesets()
     pics = load_pics_paths()
     ghost_eligible = load_ghost_eligible()
+    # This script is the sole writer of SPRITES_GHOST -- clear it first so a
+    # species that drops out of ghost_eligible (e.g. an earlier bug pointed
+    # this at the wrong 37-species table) doesn't leave a stale PNG behind.
+    if SPRITES_GHOST.is_dir():
+        for stale in SPRITES_GHOST.glob("*.png"):
+            stale.unlink()
     pal_assign = load_pal_assignments(dex_ids)
     sgb_ramps = load_sgb_ramps()
 
