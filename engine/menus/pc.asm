@@ -14,6 +14,9 @@ ENDC
 IF DEF(_LANDOSPEEDTEST)
 ; Landon's build: drop his 6 L10 box mons in on first PC open.
 	farcall GiveLandoBoxMons
+ELIF DEF(_SPEEDTEST)
+; Josh's own build: drop his 6 L10 box mons in on first PC open.
+	farcall GiveJoshBoxMons
 ENDC
 	call SaveScreenTilesToBuffer2
 	ld a, SFX_TURN_ON_PC

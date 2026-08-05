@@ -226,6 +226,52 @@ IF DEF(_LANDOSPEEDTEST)
 	ret
 ENDC
 
+; Josh's own speed-test kit (user request 2026-08-05): the first time any PC is
+; opened, silently deposits 6 L10 mons -- Tauros, Pinsir, Zubat, Starmie,
+; Pidgey, Pikachu -- straight into the PC box, keeping each one's natural
+; level-10 learnset (no custom moveset patch, unlike SpeedtestGiveDebugMons
+; above). Only called for a plain `make blue SPEEDTEST=1` build, never
+; LANDOSPEEDTEST -- see the ELIF in engine/menus/pc.asm's ActivatePC.
+GiveJoshBoxMons::
+IF DEF(_SPEEDTEST)
+	CheckEvent EVENT_GOT_JOSH_SPEEDTEST_MONS
+	ret nz
+	ld a, [wBoxCount]
+	cp MONS_PER_BOX - 6 ; need six free slots
+	ret nc
+	SetEvent EVENT_GOT_JOSH_SPEEDTEST_MONS
+	lb bc, TAUROS, 10
+	call .GiveNaturalBoxedMon
+	lb bc, PINSIR, 10
+	call .GiveNaturalBoxedMon
+	lb bc, ZUBAT, 10
+	call .GiveNaturalBoxedMon
+	lb bc, STARMIE, 10
+	call .GiveNaturalBoxedMon
+	lb bc, PIDGEY, 10
+	call .GiveNaturalBoxedMon
+	lb bc, PIKACHU, 10
+	call .GiveNaturalBoxedMon
+ENDC
+	ret
+
+IF DEF(_SPEEDTEST)
+; b = species, c = level -- unmodified natural learnset for that level
+.GiveNaturalBoxedMon:
+	ld a, b
+	ld [wCurPartySpecies], a
+	ld a, c
+	ld [wCurEnemyLevel], a
+	xor a
+	ld [wEnemyBattleStatus3], a
+	ld a, [wCurPartySpecies]
+	ld [wEnemyMonSpecies2], a
+	callfar LoadEnemyMonData
+	call SetPokedexOwnedFlag
+	callfar SendNewMonToBox
+	ret
+ENDC
+
 ; Test-party kit (user request 2026-07-15): the first time the bedroom PC is
 ; opened, silently drops five L100 mons -- Alakachamp, a Web Cannon Pinsir, and
 ; the three legendary birds -- straight into the PARTY with hand-picked movesets,
