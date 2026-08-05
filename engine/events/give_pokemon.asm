@@ -181,11 +181,11 @@ ENDC
 	callfar SendNewMonToBox
 	ret
 
-; Landon's custom speed-test kit (user request 2026-08-03): the first time any
-; PC is opened, silently deposits 6 L10 starters/early mons -- Bulbasaur,
-; Squirtle, Charmander, Pikachu, Pidgey, Weedle -- straight into the PC box,
-; keeping each one's natural level-10 learnset (no custom moveset patch, unlike
-; SpeedtestGiveDebugMons above). Compile with `make blue LANDOSPEEDTEST=1`.
+; Landon's custom speed-test kit (user request 2026-08-03, mons updated
+; 2026-08-05): the first time any PC is opened, silently deposits 6 L10 mons --
+; Dratini, Zapdos, Growlithe, Pinsir, Bulbasaur, Omanyte -- straight into the PC
+; box, keeping each one's natural level-10 learnset (no custom moveset patch,
+; unlike SpeedtestGiveDebugMons above). Compile with `make blue LANDOSPEEDTEST=1`.
 GiveLandoBoxMons::
 IF DEF(_LANDOSPEEDTEST)
 	CheckEvent EVENT_GOT_LANDO_SPEEDTEST_MONS
@@ -194,17 +194,17 @@ IF DEF(_LANDOSPEEDTEST)
 	cp MONS_PER_BOX - 6 ; need six free slots
 	ret nc
 	SetEvent EVENT_GOT_LANDO_SPEEDTEST_MONS
+	lb bc, DRATINI, 10
+	call .GiveNaturalBoxedMon
+	lb bc, ZAPDOS, 10
+	call .GiveNaturalBoxedMon
+	lb bc, GROWLITHE, 10
+	call .GiveNaturalBoxedMon
+	lb bc, PINSIR, 10
+	call .GiveNaturalBoxedMon
 	lb bc, BULBASAUR, 10
 	call .GiveNaturalBoxedMon
-	lb bc, SQUIRTLE, 10
-	call .GiveNaturalBoxedMon
-	lb bc, CHARMANDER, 10
-	call .GiveNaturalBoxedMon
-	lb bc, PIKACHU, 10
-	call .GiveNaturalBoxedMon
-	lb bc, PIDGEY, 10
-	call .GiveNaturalBoxedMon
-	lb bc, WEEDLE, 10
+	lb bc, OMANYTE, 10
 	call .GiveNaturalBoxedMon
 ENDC
 	ret

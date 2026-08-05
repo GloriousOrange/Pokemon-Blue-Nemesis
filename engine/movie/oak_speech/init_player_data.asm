@@ -51,19 +51,15 @@ IF DEF(_SPEEDTEST)
 	ld [hl], a
 	ld hl, wNumBagItems
 IF DEF(_LANDOSPEEDTEST)
-	ld a, 13 ; no HM_CUT/HM_SURF (Fly-only), plus 3 TMs -- 12 - 2 + 3
+	ld a, 14 ; all 3 HMs, plus 2 TMs -- 12 + 2
 ELSE
 	ld a, 12
 ENDC
 	ld [hli], a
-IF DEF(_LANDOSPEEDTEST)
-; Landon's build: Fly-only HMs -- no Cut, no Surf.
-ELSE
 	ld a, HM_CUT ; the Cascade Badge is granted below, so bushes are cuttable
 	ld [hli], a
 	ld a, 1
 	ld [hli], a
-ENDC
 	ld a, EXP_ALL ; whole party levels while testing, and it silences the
 	ld [hli], a   ; per-mon exp messages (see GainExperience)
 	ld a, 1
@@ -88,14 +84,10 @@ ENDC
 	ld [hli], a
 	ld a, 1
 	ld [hli], a
-IF DEF(_LANDOSPEEDTEST)
-; no HM_SURF -- see above
-ELSE
 	ld a, HM_SURF
 	ld [hli], a
 	ld a, 1
 	ld [hli], a
-ENDC
 	; SILPH SCOPE + MASTER BALL so testers can reach Pokemon Tower / the Mathus
 	; quest without doing the Hideout+Silph Co questline first.
 	ld a, SILPH_SCOPE
@@ -117,15 +109,11 @@ ENDC
 IF DEF(_LANDOSPEEDTEST)
 ; Landon's requested TMs, one each -- teach them to whichever of his 6 L10
 ; box mons he wants (see GiveLandoBoxMons in engine/events/give_pokemon.asm).
-	ld a, TM_BODY_SLAM
+	ld a, TM_FIRE_BLAST
 	ld [hli], a
 	ld a, 1
 	ld [hli], a
-	ld a, TM_THUNDERBOLT
-	ld [hli], a
-	ld a, 1
-	ld [hli], a
-	ld a, TM_ICE_BEAM
+	ld a, TM_BLIZZARD
 	ld [hli], a
 	ld a, 1
 	ld [hli], a
