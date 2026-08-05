@@ -1369,9 +1369,13 @@ ItemUseMedicine:
 	ld bc, MON_LEVEL
 	add hl, bc ; hl -> level
 	ld a, [hl]
-	pop hl
 	cp MAX_LEVEL
+; .vitaminNoEffect expects one pushed hl on the stack to pop (its value gets
+; discarded/overwritten there); .useVitamin's entry provides that push for its
+; own callers, but .useLevelStone is jumped to directly, so this push must
+; survive onto that branch or .vitaminNoEffect's pop desyncs the stack.
 	jp z, .vitaminNoEffect ; already level 100
+	pop hl
 
 	push hl
 	ld bc, MON_LEVEL
