@@ -3076,19 +3076,29 @@ SelectEnemyMove:
 .chooseRandomMove
 	push hl
 	call BattleRandom
-	ld b, 1 ; 25% chance to select move 1
-	cp 25 percent
+; NUM_MOVES is 5 in this mod, so the roll is split five ways, not vanilla's
+; four. With only four branches the 5th slot could never be picked -- every
+; signature move parked there (Alakachamp's Uppercut, the ghost rival's Night
+; Shade) was dead weight -- and if the trainer AI's filter left slot 5 as the
+; only enabled move, the "move non-existent, try again" retry below spun
+; forever instead of choosing it.
+	ld b, 1 ; 20% chance to select move 1
+	cp 20 percent
 	jr c, .moveChosen
 	inc hl
-	inc b ; 25% chance to select move 2
-	cp 50 percent
+	inc b ; 20% chance to select move 2
+	cp 40 percent
 	jr c, .moveChosen
 	inc hl
-	inc b ; 25% chance to select move 3
-	cp 75 percent - 1
+	inc b ; 20% chance to select move 3
+	cp 60 percent
 	jr c, .moveChosen
 	inc hl
-	inc b ; 25% chance to select move 4
+	inc b ; 20% chance to select move 4
+	cp 80 percent - 1
+	jr c, .moveChosen
+	inc hl
+	inc b ; 20% chance to select move 5
 .moveChosen
 	ld a, b
 	dec a
@@ -6392,9 +6402,23 @@ LoadEnemyMonData:
 	inc de
 	ld a, [hl]
 	ld [de], a
+	; clear the extra held-move slot(s) beyond the NUM_BASE_MOVES copied from
+	; base stats. Without this they keep whatever the *previous* enemy mon left
+	; in wEnemyMonMoves: WriteMonMoves then finds the NO_MOVE padding slots
+	; first and never shifts, so the stale move survives -- and SendNewMonToBox
+	; copies all NUM_MOVES slots wholesale, stamping a phantom move onto every
+	; mon caught or gifted into the box. Mirrors AddPartyMon's
+	; .clearExtraMoveSlots (engine/pokemon/add_mon.asm).
+	ld c, NUM_MOVES - NUM_BASE_MOVES
+	xor a
+.clearExtraMoveSlots
+	inc de
+	ld [de], a
+	dec c
+	jr nz, .clearExtraMoveSlots
+	REPT NUM_MOVES - 1
 	dec de
-	dec de
-	dec de
+	ENDR
 	xor a
 	ld [wLearningMovesFromDayCare], a
 	predef WriteMonMoves ; get moves based on current level
