@@ -35,4 +35,9 @@
 __pycache__/
 *.ss[0-9]
 *.cheats
+
+# Untracked build/dev leftovers at the repo root. Root-anchored on purpose:
+# dist/ ships real .bps and .ips patches and must stay tracked.
 PKMN-NEMESIS V0.8
+/PKMN_Nemesis.bps
+/PKMN_Nemesis.ips
