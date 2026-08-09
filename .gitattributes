@@ -22,6 +22,9 @@
 *.sav binary
 *.gbc binary
 *.gb binary
+# Archived release ROM with no file extension, so `*.gbc binary` above misses
+# it and `* text eol=lf` strips CR bytes out of the middle of the ROM.
+PKMN-NEMESIS?V0.8 binary
 
 # Declare files that will always have CRLF line endings on checkout.
 *.patch.template text eol=crlf linguist-language=INI
