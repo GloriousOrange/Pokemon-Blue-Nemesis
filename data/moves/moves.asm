@@ -195,7 +195,7 @@ Moves:
 	move CRUSH_COIL,   TRAPPING_EFFECT,             30, POISON,        85, 15
 	move BLOOD_SUCK,   DRAIN_HP_EFFECT,             70, POISON,       100, 10
 	move HURRICANE,    NO_ADDITIONAL_EFFECT,        80, DRAGON,       100, 10
-	move ICE_SPIKE,    NO_ADDITIONAL_EFFECT,        25, ICE,          100, 20
+	move ICE_SPIKE,    NO_ADDITIONAL_EFFECT,        35, ICE,          100, 20 ; 25 -> 35: it is the ICE member of the 35-power starter-STAB family (VENOM_BITE, MUD_SLAP, PALM_STRIKE, SPARK, PSY_CHOP, DRAGON_BREATH) and was the only one under it
 	move MIGRAIN,      NO_ADDITIONAL_EFFECT,        30, PSYCHIC_TYPE, 100, 20
 	move DIVE,         NO_ADDITIONAL_EFFECT,        30, FLYING,       100, 20
 	move STATIC_SHOCK, STATIC_SHOCK_EFFECT,         40, ELECTRIC,     100, 15
