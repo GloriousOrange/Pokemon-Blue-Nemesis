@@ -1,17 +1,41 @@
 # Pokemon Nemesis — Beta Notes
 
 Thanks for testing! This is a Pokemon Blue ROM hack. Below is everything
-that's changed from the vanilla game, mechanically — no story spoilers beyond
-what you'd naturally discover in the first hour or two, just patch notes. If
+that's changed from the vanilla game, mechanically — just patch notes. If
 something looks broken, weird, or unfinished, that's exactly what this beta
 is for; please report it.
 
+These notes are deliberately **mechanically complete**, which means they name
+a few endgame items and areas you'd otherwise find yourself. They don't spoil
+the story. If you want to go in completely cold, read the
+[README](README.md) instead — it keeps all story material behind a collapsed
+spoiler section.
+
 Runs on Game Boy Color emulators — Pizza Boy GBC, Nostalgia, mGBA and friends
-all show the same colors now, because Nemesis is a real GBC game rather than a
-black-and-white game the emulator has to colorize by guessing. Saves work like a
-real cartridge. Two color schemes ship with it: press **SELECT** on the OPTION
-screen to switch `COLOR` between **DIVERSE** (per-town palettes, deep blue
-water) and **NEON** (one high-contrast red/green/blue ramp for everything).
+all show the same colors, because Nemesis is a real GBC game rather than a
+black-and-white game the emulator has to colorize by guessing. Saves work like
+a real cartridge. Two color schemes ship with it: press **SELECT** on the
+OPTION screen to switch `COLOR` between **DIVERSE** (per-town palettes, deep
+blue water) and **NEON** (one high-contrast red/green/blue ramp for
+everything).
+
+## Starting Out
+
+- **78 starters.** Oak's lab lets you pick almost anything — Magikarp, Ditto,
+  Mewtwo, any of 78 species — and he has a unique written remark for every
+  one of them. Every starter that didn't already have one was given a
+  35-power same-type attack at level 1 so nothing is unplayable early.
+- **Pick your own overworld sprite** before naming your character: 34 looks
+  to choose from.
+- **Difficulty select** at the start of a new game:
+  - **Easy** — 1.5x EXP from trainer battles; Megan's gifts unchanged
+  - **Normal** — no EXP boost; Megan's Rare Candy/vitamin gifts become a
+    healing item instead
+  - **Hard** — no items usable in battle at all; Megan gives you nothing
+    until Victory Road
+- The **CODEX** (this game's Pokedex) is available from the start — no
+  fetch-quest. It has a dedicated **MOVES** screen with full move data, and
+  Seen entries are pre-seeded.
 
 ## New Areas
 
@@ -21,209 +45,221 @@ water) and **NEON** (one high-contrast red/green/blue ramp for everything).
   It's an open-air post-game hub with:
   - **6 scientists** standing out in the open, each a one-Pokemon Level 100
     battle with their own dialogue. Beat all 6 and the last one hands you
-    6 **Mutagenstones** and points you toward Professor Oak, who's made his
-    way to the island's south shore.
-  - **Professor Oak**, a Level 100 superboss with a signature 6-Pokemon team.
-    Beating him unlocks the island's arena and hands over an HM,
-    **Metronome2**.
+    6 **Mutagenstones** and tells you where to find Professor Oak.
   - **The Arena**: a 26-trainer battle gauntlet (party capped at 3 Pokemon
     per fight — you'll be sent to store extras at the island's PC first).
     Clear all 26 and Giovanni himself steps up for a final fight; after that,
-    the gauntlet just keeps running endless rematches.
+    the gauntlet just keeps running endless rematches. **The arena stays
+    locked until you've beaten Oak.**
   - Its own wild-encounter zone, and a healer/PC building at the island's
-    north edge.
+    north edge. Healing at Megan there also sets it as your blackout
+    respawn point.
 - **The Living-Dex Archipelago** — a chain of 8 seamlessly connected islands
-  (plus a 3-floor cave with a hidden "grotto" pool) branching off Battle
-  Island. Together they host all 151 catchable Pokemon at Lv. 50-60, with
-  the 6 legendary birds (the three vanilla birds plus Tyranis, Miasma, and
-  Nocturn), Mewtwo, and Mew each placed at a rare (~1%) encounter slot on
-  their island.
-- **S.S. Olympia** — an endgame ship, reachable from Vermilion Dock once
-  you've beaten the Champion and hold a Master Ball. Rocket-crewed, with 20
-  Level 100 trainers spread across its decks and a Rival superboss fight on
-  the open deck with its own Level 100 team, followed by a rare in-game
-  trade.
+  branching off Battle Island. Together they host all 151 catchable Pokemon
+  at Lv. 50-60, with the 6 legendary birds (the three vanilla birds plus
+  Tyranis, Miasma, and Nocturn), Mewtwo, and Mew each placed at a rare (~1%)
+  encounter slot on their island.
+- **The Archipelago Cave** — four floors, off Miasma Isle. The bottom floor
+  holds **Professor Oak**, a Level 100 superboss with a signature 6-Pokemon
+  team; beating him unlocks the Battle Island arena and hands over an HM,
+  **Metronome2**. That floor also has a real underground lake:
+  - **Surfable** from the stone quay along its north edge, with its own
+    dragon-heavy encounter table
+  - **Fishable** with the Super Rod
+  - A gravel islet out in the water, reachable only by surfing, with an item
+    on it
+  - A **pit in the rock** on the west side drops you to a flooded grotto
+    below, with a hidden trainer and an item. Bring an escape route.
+- **S.S. Olympia** — a ten-map luxury cruise liner, reachable from Vermilion
+  Dock once you've beaten the Champion and hold a Master Ball. **40 Level 100
+  trainers** spread across its decks, each with a hand-curated moveset, and a
+  Rival superboss on the open deck — locked until you've beaten the other 39.
+  Megan has a cabin aboard. There's no phone signal on the ship.
 
 The Pokemon Mansion on Cinnabar Island is a normal wild-encounter dungeon
-(with some higher-level, evolved wilds compared to vanilla) — nothing about
-reaching Battle Island runs through it.
+(with higher-level, evolved wilds and a rare Charizard post-game) — nothing
+about reaching Battle Island runs through it.
 
 ## New Pokemon, Moves & Species Changes
 
-- **New species**: Tyranis, Miasma, and Nocturn (three new legendary-tier
-  birds), plus Alakachamp (a Fighting/Psychic Machamp variant, Pokedex #155).
-- **New moves**:
-  - **Web Cannon** (Bug) — no damage; drops the target's Speed to the minimum
-    in a single hit.
-  - **Uppercut** (Fighting) — guaranteed critical hit if you outspeed the
-    target.
-  - **Carrion Wind** (Poison, Miasma) — always strikes first and flinches on
-    any hit that connects, then badly-poisons. Only 1 PP.
-  - **Mind Fever** (Ghost, Nocturn) — confuses *and* burns the target. Only
-    1 PP.
-  - **Blight Vomit** (Poison, Miasma) — 80-power hit with a chance to paralyze.
-  - **Phantom Wing** (Ghost, Nocturn) — 80-power hit that lowers the target's
-    Special.
-  - **Double Drill** (Flying) — 80-power hit that lowers the target's Defense.
-  - **Hyper Beams** (Normal) — a double-hit Hyper Beam variant.
-  - **Jackpot** (Normal, Persian Lv. 98) — deals damage and, like Pay Day,
-    scatters $300–$1000 you collect after the battle.
-  - **Instinct** (Normal, Hitmonlee Lv. 22) — self-buff that raises the user's
-    own accuracy *and* evasion by one stage each.
-  - **Crystallize** (Normal, Beedrill Lv. 22) — Harden-style self-buff: +2
-    Defense and +1 Special.
-  - **Chaos Sting** (Bug, Beedrill Lv. 38) — 70-power hit with a 30% chance to
-    inflict a random status (poison, burn, freeze, or paralysis — never sleep).
-  - **Rock Fists** (Rock, Geodude Lv. 28) — hits 2–5 times for 30 each.
-  - **Chokehold** (Fighting, Primeape Lv. 33) — a Wrap-style trap, 20/turn for
-    2–5 turns.
-  - **Hot Oil** (Fire, Magmar Lv. 36) — 40-power hit that *always* burns.
-  - **Bad Touch** (Drowzee Lv. 42) — always confuses; 100% accuracy.
-  - **Crush Coil** (Poison, Ekans & Arbok Lv. 42) — a Wrap-style trap dealing
-    30/turn.
-  - **Blood Suck** (Poison, Zubat Lv. 32) — 80-power hit that heals the user
-    for half the damage dealt.
-- **Reworked moves**: Whirlwind is now a 20-power Flying attack that lowers
-  the target's accuracy by one stage (it no longer ends/flees the battle);
-  Razor Wind hits much harder (base power raised to 140).
-- **Move type reassignments**: a handful of moves changed elemental type for
-  balance/flavor reasons — most notably Guillotine and Vice Grip are now
-  Bug-type instead of Normal.
-- **Golduck is Water/Psychic**, the type it always looked like it should be.
-  It can now learn TM29 Psychic to go with it (Psyduck stays pure Water — the
-  psychic half arrives on evolution).
-- **New/earlier level-up moves** on several Pokemon, including: Charmander
-  learns Fire Punch (Lv. 10); Pikachu learns Flash (Lv. 7); Grimer learns Acid
-  (Lv. 7); Shellder learns Crystallize (Lv. 25). A few are deliberately placed
-  *above* the mon's evolution level to reward keeping it unevolved (see below):
-  Kabuto gets Cut (7), Crystallize (22) and Guillotine (42); Rhyhorn gets
-  Agility (44); Slowpoke gets Thunder (50).
+- **8 new species**, all with their own sprites and CODEX entries:
+  - **Tyranis**, **Miasma**, **Nocturn** — three new legendary-tier birds
+  - **Alakachamp** — Fighting/Psychic Machamp variant with its own crimson
+    palette
+  - **MewThree** — an armoured Mewtwo clone waiting in Cerulean Cave
+  - **Pinsirite**, **Ninefrost**, **Dignemite** — awarded for clearing the
+    S.S. Olympia
 - **5 moves per Pokemon**, not the vanilla 4 — battle menus, the Summary
   screen, and Move Relearner/Mimic are all sized for this.
+- **50 new moves** on top of vanilla's 165, nearly all with their own custom
+  battle animations. A sample:
+  - **Web Cannon** (Bug) — damaging, drops the target's Speed to the floor in
+    one hit, with a flinch chance
+  - **Uppercut** (Fighting) — guaranteed critical hit if you outspeed the
+    target
+  - **Jackpot** (Normal, Persian Lv. 98) — damage *and* scatters $300–$1000
+  - **Super Instinct** (Hitmonlee Lv. 22) — raises the user's accuracy *and*
+    evasion
+  - **Crystallize** (Beedrill Lv. 22) — +2 Defense and +1 Special
+  - **Chaos Sting** (Bug, Beedrill Lv. 38) — 70 power, 30% chance of a random
+    status (never sleep)
+  - **Rock Fists** (Rock, Geodude Lv. 28) — hits 2–5 times for 30 each
+  - **Chokehold** (Fighting, Primeape Lv. 33) — Wrap-style trap, 20/turn
+  - **Crush Coil** (Poison, Ekans/Arbok Lv. 42) — Wrap-style trap, 30/turn
+  - **Hot Oil** (Fire, Magmar Lv. 30) — 40 power, *always* burns
+  - **Bad Touch** (Drowzee Lv. 42) — always confuses, 100% accuracy
+  - **Blood Suck** (Poison, Zubat Lv. 32) — drains the damage dealt
+  - **Telekinesis** (Psychic) — a 2–5 hit psychic move
+  - **Third Rail** (Electric) — an electric Dig
+  - **Hydro Jet** (Water, unevolved Squirtle Lv. 40), **Flame Whip** (Fire),
+    **Hurricane** (Gyarados), **Static Shock** (Electabuzz), **Ice Bomb**,
+    **Ice Sculpture**, **Ice Spike**, **Gravity Slam**, **Vibrate**,
+    **Stealth**, **Tangle**, **Stampede**, **Shadow Punch**, **Crush Jaw**,
+    **Granit Clamp**, **Double Drill**, **Hyper Beams**
+  - Miasma and Nocturn have signature moves: **Carrion Wind**, **Blight
+    Vomit**, **Mind Fever**, **Phantom Wing**. Carrion Wind and Mind Fever
+    have **1 PP on purpose** — that's not a bug.
+  - Every starter without a same-type attack got a fixed **35-power STAB
+    move**: Venom Bite, Mud Slap, Palm Strike, Spark, Psy Chop, Dragon
+    Breath, Vine Whip, Ice Spike, Clamp.
+- **Buffed drains**: Leech Life and the new Giga Drain both recover the full
+  damage dealt.
+- **Reworked moves**: Whirlwind is now a 20-power Flying attack that lowers
+  accuracy (it no longer ends the battle); Razor Wind hits much harder;
+  Mimic's PP was raised to 35; Twineedle hits twice (it hit 33 times in
+  vanilla).
+- **Move type reassignments**: most notably Guillotine and Vice Grip are now
+  Bug-type.
+- **Typing changes**: **Golduck is Water/Psychic**, **Gyarados is
+  Water/Dragon**, **Butterfree is Bug/Psychic**.
+- **New/earlier level-up moves** on many Pokemon: Charmander learns Fire
+  Punch (Lv. 10), Pikachu learns Flash (Lv. 7), Abra gets Confusion at level
+  1, Jigglypuff gets Pound, Dratini learns Slam at 10, Pidgeot learns Hyper
+  Beam at 48. A few sit deliberately *above* the evolution level to reward
+  staying unevolved: Kabuto gets Cut (7), Crystallize (22) and Guillotine
+  (42); Rhyhorn gets Agility (44); Slowpoke gets Thunder (50).
+- **Charizard, Gyarados, Scyther and Dragonite can learn Fly.**
 - Some items display under new flavor names but work identically to their
   vanilla counterpart — check the in-game description if a name looks
   unfamiliar.
 
 ## Gym Leaders & Trainer Roster Changes
 
-- Viridian Gym is now led by a Normal-type specialist (Tauros, Snorlax,
-  Chansey, Kangaskhan, Eevee, Persian), awarding a Normal-type badge and TM
-  Hyper Beam.
-- Bruno now runs a Fighting Dojo instead of holding an Elite Four seat; his
-  old Elite Four slot is filled by a new Bug-type specialist with a custom
+- Viridian Gym is now led by **Norman**, a Normal-type specialist (Tauros,
+  Snorlax, Chansey, Kangaskhan, Eevee, Persian), awarding the **Harmony
+  Badge** and TM Hyper Beam.
+- **Bruno** now runs the Fighting Dojo instead of holding an Elite Four seat;
+  his old slot is filled by **Toby**, a new Bug-type specialist with a custom
   team and unique movesets.
+- **Blaine's quiz was replaced with riddles** about Nemesis's own mechanics.
+- **Rock Throw is now TM34**, handed out by Brock, with 31 more species able
+  to learn it.
+- Lt. Surge's trash-can puzzle was simplified.
 - Every Gym Leader has a full rematch team available post-game, once you've
-  cleared the League — these feed into unlocking Battle Island (see above).
-- There's a branching allegiance system around Team Rocket vs. Oak's
-  establishment: at a key point you can side with Team Rocket or refuse.
-  Your choice changes your overworld sprite, which NPCs treat as friend or
-  foe in certain questlines (Silph Co.'s floors play out differently
-  depending on your allegiance), unlocks path-specific shops/prizes at the
-  Game Corner, and affects which endgame content and legendary birds you
-  encounter. A further "go rogue" branch exists later in the story, tied to
-  a certain encounter at the top of Pokemon Tower.
-- Team Rocket grunts in their hideout give Game Corner coins instead of
-  cash on defeat, and the Rocket-loyal path unlocks an exclusive coin-shop
-  prize list.
-- On the Loyalist path, Silph Co.'s top floor swaps the usual Giovanni fight
-  for a different boss encounter.
+  cleared the League — these feed into unlocking Battle Island.
+- There's a **branching allegiance system**: at Nugget Bridge you can side
+  with Team Rocket or refuse. Your choice changes your overworld sprite and
+  battle back-sprite, which NPCs treat you as friend or foe, unlocks
+  path-specific shops/prizes at the Game Corner, and changes who you fight.
+  Silph Co. is the clearest case — every Rocket in the building has a Silph
+  staff counterpart, so both paths fight the same number of battles against
+  different people, and the top floor swaps its boss. A further "go rogue"
+  branch exists later, tied to an encounter at the top of Pokemon Tower.
+- Team Rocket grunts in their hideout give Game Corner coins instead of cash.
 
 ## Battle & Difficulty
 
-- **Difficulty select** at the start of a new game: Easy (bonus trainer EXP,
-  better default gifts from Megan), Normal, or Hard (no items usable in
-  trainer battles, sparser gifts, one big reward cache later on).
 - Enemy trainers never use items or switch Pokemon mid-battle, on any
-  difficulty — they always just attack.
-- The classic Gen 1 "badge boost" bug is fixed: repeatedly raising or lowering
-  a stat no longer causes a Pokemon's *other* stats to slowly drift up or down.
-  Stats are now recomputed cleanly after every stat-changing move.
-- A separate, obscure Gen 1 engine bug is also fixed: a critical hit against
-  a Pokemon with a very high Defense or Special stat (only really possible at
-  Level 100) could previously cause the game to freeze outright. This only
-  ever surfaced against the game's toughest post-game superbosses.
-- **Focus Energy and Dire Hit finally work.** In vanilla Gen 1 they *quartered*
-  your critical-hit rate instead of quadrupling it — using them made you
-  strictly worse off. Now a Focus Energy'd Pokemon crits roughly half the time
-  with an ordinary attack, so spending the turn is genuinely worth it. Note
-  that enemy trainers get the same benefit, and that moves which already have a
-  high crit rate (Slash, Crabhammer, Razor Leaf) were near-guaranteed crits
-  anyway, so Focus Energy adds nothing on top of those.
-- **Cancelling an evolution now sticks.** If you press B to stop a Pokemon
-  evolving, it won't ask again until the Pokemon has gained 30 more levels
-  (vanilla nagged you every single level-up). This makes it practical to keep a
-  Pokemon in its earlier form to reach its unevolved-only moves. (Known beta
-  limitation: if you reorder your party or box/withdraw the Pokemon during that
-  30-level window, the "don't ask" timer can get misapplied — see Caveats.)
-- **Stat & growth-rate changes.** Several Pokemon got base-stat bumps —
-  e.g. Onix (HP), Muk (Def), Slowpoke (Special), Ekans/Zubat (Speed, Zubat is
-  now blisteringly fast), Shellder (Special & Speed), Kabuto (Def & Speed), and
-  Pikachu (very high Speed). Many species also level up faster: Pikachu,
-  Sandshrew, Beedrill, Geodude and Kabuto are now Fast-growth, and every
-  ordinary Slow-growth species was bumped to Medium-Slow (legendaries and
-  pseudo-legendaries were left as-is).
-- Wild encounter rates are reduced across routes, caves, and water tiles
-  (Safari Zone is unchanged).
-- Vitamin (HP Up/Protein/Iron/Calcium/Carbos) and PP Up pricing/behavior may
-  differ from vanilla in places — check the in-game description if unsure.
-- **Mutagenstones** can level a Pokemon straight to 100 right from your bag
-  (outside of battle — it can't be used mid-fight), correctly replaying every
-  evolution and move it would have learned naturally along the way instead of
-  just jumping to 100 with its original moveset. They're earned from Battle
-  Island's scientists (see New Areas above), not handed out for free.
+  difficulty — they always just attack. Their AI does stop using a move after
+  it misses twice in a row.
+- The classic Gen 1 **"badge boost" bug is fixed**: repeatedly raising or
+  lowering a stat no longer causes a Pokemon's *other* stats to drift.
+- **Focus Energy and Dire Hit finally work.** In vanilla they *quartered*
+  your critical-hit rate instead of quadrupling it. Enemy trainers get the
+  same benefit, and moves that already crit often (Slash, Crabhammer, Razor
+  Leaf) gain nothing on top.
+- A crash on **critical hits against very high Defense/Special** at Level 100
+  is fixed, as is a **Toxic bug** where its damage multiplier survived a
+  switch and inflated a later Pokemon's burn or Leech Seed damage.
+- Moves that deal no damage now say **"It had no effect!"** instead of
+  silently doing nothing.
+- **Type chart changes**: Psychic is now weak to Ghost; Flying attacks can
+  hit pure Ghost types; the Gastly line keeps only its Normal/Fighting
+  immunity; **Dragons have exactly one weakness, Bug**; floating Pokemon get
+  a Levitate-style Ground immunity.
+- **Cancelling an evolution now sticks** for 30 levels rather than asking
+  every level-up. (Known beta limitation — see Caveats.)
+- **Stat & growth-rate changes.** Onix (HP), Muk (Def), Slowpoke (Special),
+  Ekans/Zubat (Speed), Shellder, Kabuto, Jynx and others got base-stat
+  changes; unevolved forms are now generally **faster** than their
+  evolutions. Pikachu, Sandshrew, Beedrill, Geodude and Kabuto are Fast
+  growth, and every ordinary Slow-growth species moved to Medium-Slow.
+- Wild encounter rates are reduced across routes, caves and water; early
+  route tables were widened.
+- Overworld poison can no longer faint a Pokemon.
+- **Mutagenstones** level a Pokemon straight to 100 from your bag (not in
+  battle), correctly replaying every evolution and move along the way. 102
+  final-evolution species have hand-curated Level 100 movesets for this.
+- **Mutagen Vials** are a separate mid-game item that forces a base species
+  into its mutant form at its current level.
 
 ## Megan & the Phone System
 
-- **Megan** is a recurring NPC (not a following sprite) found in every
-  Pokemon Center, every gym, Silph Co., Rocket HQ, and partway through most
-  caves. Talking to her heals your party, and gives a one-time gift the
-  first time you visit each location.
-- The **Start Menu** has a PHONE option: call Megan for item storage, Oak
-  for your Pokemon Box storage, and — once unlocked — a third contact tied
-  to your story path.
-- The **Pokedex is available from the start** of the game — no separate
-  fetch-quest required.
-- Both an **Item Info** and a **Move Info** viewer are accessible in-menu
-  (bag and Pokemon summary screen respectively), showing full
-  stats/descriptions.
+- **Megan** is a recurring character you meet on **Route 1**. She is not a
+  following sprite — she turns up at fixed places.
+- She'll **spar with you before every Gym**, again in the Indigo Plateau
+  lobby (Lv. 70), and once more on Battle Island (Lv. 100). These are
+  optional training battles pitched just under each leader's team.
+- She heals your party where she appears — including the Viridian Forest
+  gate, the Battle Island house, and her cabin on the S.S. Olympia — and
+  gives a one-time gift the first time you reach each location. What she
+  gives depends on your difficulty.
+- The **Start Menu** has a **PHONE** option: call Megan for item storage, Oak
+  for your Pokemon Box storage, and — once unlocked — a third contact tied to
+  your story path. Some contacts cut you off depending on the path you took.
+
+## Quality of Life
+
+- **Auto-Flash**: carry HM Flash with the Boulder Badge and caves stay lit —
+  you never have to use the move.
+- **Item Info** in the bag and **Move Info** on the summary screen, both with
+  full descriptions, including real text for every TM and HM.
+- **Instant Pokemon Center healing** — no dialogue.
+- **Super Repel lasts 1000 steps**, and Repels cost $10.
+- **Bag capacity raised to 26 slots.**
+- **HM moves can be overwritten** like any other move.
+- The bicycle can be **sold back for $5000**.
+- **Town Map** navigates directionally with the d-pad instead of by list.
 
 ## Tone & Flavor
 
-NPC dialogue throughout leans into a darker comedic tone — Pokemon are
-casually referenced as food/livestock in this world's flavor text (diners,
-mart chatter, etc.), and there's an ongoing "whose side are you on"
-propaganda thread between the Gyms and the Elite Four that colors a lot of
-incidental dialogue. The Rival is played straight and serious throughout,
-including a darker opening and a final confrontation on the S.S. Olympia's
-deck (see New Areas). This is atmospheric flavor and doesn't block or change
-core gameplay.
+Nearly every NPC in the game has been rewritten. Each trainer class has its
+own voice — the Bikers, Beauties, Fishers, Super Nerds, Channelers, Gamblers
+and Black Belts all got full passes. The tone is darker and comedic: Pokemon
+are casually referenced as food and livestock, and there's an ongoing
+propaganda thread between the Gyms and the Elite Four running through
+incidental dialogue. The Rival is played straight and serious throughout.
+This is atmospheric flavor and doesn't block or change core gameplay.
 
 ## Known Beta Caveats
 
-- The S.S. Olympia rival superboss fight's "fallen partner" callback
-  Pokemon is currently a placeholder Gengar rather than a dynamic reflection
-  of your own starter — a known simplification, not a bug.
 - The "cancel evolution suppresses it for 30 levels" feature tracks the timer
-  by party slot, not by the individual Pokemon. If you shuffle your party order
-  or deposit/withdraw the Pokemon during those 30 levels, the timer can attach
-  to the wrong slot — a Pokemon might get asked to evolve again early, or a
-  different one might briefly refuse to evolve. Cancel again (or just keep
-  playing) and it sorts itself out.
-- Several custom Pokemon (Tyranis, Miasma, Nocturn) and Alakachamp currently
-  use placeholder or reused sprites/cries rather than fully original art.
-  (Alakachamp does now use its own crimson palette so it's easy to tell apart
-  from Machamp.)
-- Screen-flash effects that work by flickering the Game Boy's own palette
-  registers (some battle-move flashes, and palette effects in the credits, slots
-  and intro) don't flash in Game Boy Color mode yet — they hold the current
-  colors instead. The moves, animations and screens themselves work normally.
-- After beating Professor Oak on Battle Island, you may find yourself unable
-  to walk (though you can still talk to him). Flying to another town and
-  back clears it. We haven't nailed down the root cause yet.
+  by **party slot**, not by the individual Pokemon. If you reorder your party
+  or deposit/withdraw the Pokemon during those 30 levels, the timer can
+  attach to the wrong slot — one Pokemon might get asked again early, or
+  another might briefly refuse. Cancel again and it sorts itself out.
 - This is an active beta. If you hit a freeze, crash, or obviously broken
   interaction, that's exactly the kind of thing to report — several major
-  freeze bugs were found and fixed in the lead-up to this build, but more
-  may surface, especially around the new Level 100 post-game content.
+  freeze bugs were found and fixed in the lead-up to this build, but more may
+  surface, especially around the new Level 100 post-game content.
+
+### Fixed since the previous beta notes
+
+These were listed as caveats before and are now resolved: the S.S. Olympia
+rival's fallen partner is the real starter rather than a placeholder Gengar;
+Tyranis, Miasma and Nocturn have original art instead of recolors; the
+palette-flash effects that stayed static in Game Boy Color mode now fade
+properly; and the post-Oak "can't walk" bug is gone.
 
 ## Reporting Issues
 
