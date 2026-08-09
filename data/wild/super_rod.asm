@@ -34,6 +34,7 @@ SuperRodData:
 	dbw CERULEAN_CAVE_2F,    .Group9
 	dbw CERULEAN_CAVE_B1F,   .Group9
 	dbw CERULEAN_CAVE_1F,    .Group9
+	dbw ARCHIPELAGO_CAVE_3F, .Group11
 	db -1 ; end
 
 ; fishing groups
@@ -99,3 +100,16 @@ SuperRodData:
 	db 15, KRABBY
 	db 15, GOLDEEN
 	db 15, MAGIKARP
+
+; The Archipelago Cave's underground lake. Drawn from the lake's own surfing
+; table in data/wild/maps/ArchipelagoCave3F.asm, which Josh curated -- but
+; ReadSuperRodData picks with a 2-bit random number, so a fishing group can
+; only ever hold FOUR reachable entries. These are the four below the
+; capstone: GYARADOS and DRAGONITE are left out rather than given a flat 25%
+; each, since the lake table calls DRAGONITE "the rare catch".
+.Group11:
+	db 4
+	db 30, DRATINI
+	db 45, DRAGONAIR
+	db 50, HORSEA
+	db 52, SEADRA

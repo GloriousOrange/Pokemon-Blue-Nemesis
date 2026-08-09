@@ -226,6 +226,12 @@ _NoSurfingHereText::
 	text " here!"
 	prompt
 
+_LakeCurrentTooFastText::
+	text "The current here"
+	line "runs far too fast"
+	cont "to swim against!"
+	prompt
+
 _BoxFullCannotThrowBallText::
 	text "The #MON BOX"
 	line "is full! Can't"

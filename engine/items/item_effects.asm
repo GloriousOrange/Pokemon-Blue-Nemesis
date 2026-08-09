@@ -696,7 +696,7 @@ ItemUseSurfboard:
 	jp c, SurfingAttemptFailed
 	ld hl, TilePairCollisionsWater
 	call CheckForTilePairCollisions
-	jp c, SurfingAttemptFailed
+	jp c, SurfRefusedAtWatersEdge
 ; surfing
 	call .makePlayerMoveForward
 	ld hl, wStatusFlags5
@@ -2459,6 +2459,20 @@ BoxFullCannotThrowBall:
 	ld hl, BoxFullCannotThrowBallText
 	jr ItemUseFailed
 
+SurfRefusedAtWatersEdge:
+; Reached only when the tile ahead really IS water and the tile-pair rule is
+; what refuses the crossing -- unlike SurfingAttemptFailed below, which also
+; covers "there is no water here at all". The Archipelago Cave lake is
+; deliberately unswimmable (it is ringed by plain cave floor, and CAVERN
+; $14/$05 is a TilePairCollisionsWater entry), so give the player a reason
+; rather than the generic line. Fishing is unaffected: FishingInit checks
+; IsNextTileShoreOrWater and never consults the tile-pair table.
+	ld a, [wCurMap]
+	cp ARCHIPELAGO_CAVE_3F
+	jr nz, SurfingAttemptFailed
+	ld hl, LakeCurrentTooFastText
+	jr ItemUseFailed
+
 SurfingAttemptFailed:
 	ld hl, NoSurfingHereText
 
@@ -2493,6 +2507,10 @@ NoCyclingAllowedHereText:
 
 NoSurfingHereText:
 	text_far _NoSurfingHereText
+	text_end
+
+LakeCurrentTooFastText:
+	text_far _LakeCurrentTooFastText
 	text_end
 
 BoxFullCannotThrowBallText:
