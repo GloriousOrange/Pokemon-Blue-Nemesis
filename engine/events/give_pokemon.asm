@@ -94,66 +94,28 @@ BoxIsFullText:
 ; gift) -- LoadMovePPs then derives correct PP from the patched move IDs.
 SpeedtestGiveDebugMons::
 IF DEF(_SPEEDTEST)
-; Ten level 100 mons straight into the PC box on the next "Continue", carrying
-; the moves that still need eyes on them. Web Cannon, Hot Oil and Crystallize
-; are deliberately absent -- those are confirmed working.
+; Silph Co repro build (user request 2026-08-09): exactly ONE mon in storage --
+; a level 100 Pidgeot -- so nothing else in the box can influence the glitch
+; being chased. The nine other debug mons that used to live here were dropped
+; deliberately; restore them from git history if a future build wants them.
 ;
 ; SendNewMonToBox has no overflow guard, so bail without setting the flag if
 ; the box lacks room; it retries on a later Continue.
 	CheckEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
 	ret nz
 	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 10 ; need ten free slots
+	cp MONS_PER_BOX - 1 ; need one free slot
 	ret nc
 	SetEvent EVENT_GOT_SPEEDTEST_DEBUG_MONS
-	lb bc, MEWTHREE, 100
-	ld hl, .MewthreeMoves
-	call .GiveBoxedMonWithMoves
-	lb bc, ALAKACHAMP, 100
-	ld hl, .AlakachampBoxMoves
-	call .GiveBoxedMonWithMoves
-	lb bc, ZUBAT, 100
-	ld hl, .ZubatMoves
-	call .GiveBoxedMonWithMoves
-	lb bc, BULBASAUR, 100
-	ld hl, .BulbasaurMoves
-	call .GiveBoxedMonWithMoves
-	lb bc, SQUIRTLE, 100
-	ld hl, .SquirtleMoves
-	call .GiveBoxedMonWithMoves
-	lb bc, CHARMANDER, 100
-	ld hl, .CharmanderMoves
-	call .GiveBoxedMonWithMoves
 	lb bc, PIDGEOT, 100
 	ld hl, .PidgeotMoves
-	call .GiveBoxedMonWithMoves
-	lb bc, JYNX, 100
-	ld hl, .JynxMoves
-	call .GiveBoxedMonWithMoves
-	lb bc, LAPRAS, 100
-	ld hl, .LaprasMoves
-	call .GiveBoxedMonWithMoves
-	lb bc, GENGAR, 100
-	ld hl, .GengarMoves
 	call .GiveBoxedMonWithMoves
 ENDC
 	ret
 
-; MewThree: its own sprites, stats and Telekinesis have never been seen in play
-.MewthreeMoves:    db TELEKINESIS, PSYCHIC_M, RECOVER, ICE_BEAM, AMNESIA
-.AlakachampBoxMoves: db UPPERCUT, PSYCHIC_M, EARTHQUAKE, SUBMISSION, SWORDS_DANCE
-; Zubat carries both full-drain moves
-.ZubatMoves:       db LEECH_LIFE, BLOOD_SUCK, DOUBLE_TEAM, CONFUSE_RAY, WING_ATTACK
-; the three level 40 unevolved-starter moves
-.BulbasaurMoves:   db GIGA_DRAIN, RAZOR_LEAF, SLEEP_POWDER, GROWTH, LEECH_SEED
-.SquirtleMoves:    db HYDRO_JET, SURF, ICE_BEAM, WITHDRAW, SKULL_BASH
-.CharmanderMoves:  db FLAME_WHIP, FLAMETHROWER, SLASH, DIG, SWORDS_DANCE
+; FLY is on the moveset so HM02 in the bag is a spare, not a prerequisite.
 ; Hyper Beam's power is now Attack + Speed; Pidgeot takes the NORMAL -30 branch
 .PidgeotMoves:     db HYPER_BEAM, WING_ATTACK, AGILITY, MIRROR_MOVE, FLY
-.JynxMoves:        db ICE_SCULPTURE, ICE_BEAM, PSYCHIC_M, LOVELY_KISS, BODY_SLAM
-.LaprasMoves:      db ICE_BOMB, SURF, PSYCHIC_M, BODY_SLAM, CONFUSE_RAY
-; Ghost Beam, and Ghost-beats-Psychic which is false in vanilla
-.GengarMoves:      db GHOST_BEAM, NIGHT_SHADE, CONFUSE_RAY, HYPNOSIS, PSYCHIC_M
 
 ; b = species, c = level, hl = pointer to a NUM_MOVES-byte moveset
 .GiveBoxedMonWithMoves:
@@ -226,51 +188,11 @@ IF DEF(_LANDOSPEEDTEST)
 	ret
 ENDC
 
-; Josh's own speed-test kit (user request 2026-08-05): the first time any PC is
-; opened, silently deposits 6 L10 mons -- Tauros, Pinsir, Zubat, Starmie,
-; Pidgey, Pikachu -- straight into the PC box, keeping each one's natural
-; level-10 learnset (no custom moveset patch, unlike SpeedtestGiveDebugMons
-; above). Only called for a plain `make blue SPEEDTEST=1` build, never
-; LANDOSPEEDTEST -- see the ELIF in engine/menus/pc.asm's ActivatePC.
-GiveJoshBoxMons::
-IF DEF(_SPEEDTEST)
-	CheckEvent EVENT_GOT_JOSH_SPEEDTEST_MONS
-	ret nz
-	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 6 ; need six free slots
-	ret nc
-	SetEvent EVENT_GOT_JOSH_SPEEDTEST_MONS
-	lb bc, TAUROS, 10
-	call .GiveNaturalBoxedMon
-	lb bc, PINSIR, 10
-	call .GiveNaturalBoxedMon
-	lb bc, ZUBAT, 10
-	call .GiveNaturalBoxedMon
-	lb bc, STARMIE, 10
-	call .GiveNaturalBoxedMon
-	lb bc, PIDGEY, 10
-	call .GiveNaturalBoxedMon
-	lb bc, PIKACHU, 10
-	call .GiveNaturalBoxedMon
-ENDC
-	ret
-
-IF DEF(_SPEEDTEST)
-; b = species, c = level -- unmodified natural learnset for that level
-.GiveNaturalBoxedMon:
-	ld a, b
-	ld [wCurPartySpecies], a
-	ld a, c
-	ld [wCurEnemyLevel], a
-	xor a
-	ld [wEnemyBattleStatus3], a
-	ld a, [wCurPartySpecies]
-	ld [wEnemyMonSpecies2], a
-	callfar LoadEnemyMonData
-	call SetPokedexOwnedFlag
-	callfar SendNewMonToBox
-	ret
-ENDC
+; Josh's 6 L10 box mons (Tauros/Pinsir/Zubat/Starmie/Pidgey/Pikachu, added
+; 2026-08-05) were removed on 2026-08-09: the Silph Co repro build wants a
+; single L100 Pidgeot in storage and nothing else. SpeedtestGiveDebugMons
+; above is now the only thing that stocks the box. Restore from git history
+; if a later speed-test build wants a starting team again.
 
 ; Test-party kit (user request 2026-07-15): the first time the bedroom PC is
 ; opened, silently drops five L100 mons -- Alakachamp, a Web Cannon Pinsir, and

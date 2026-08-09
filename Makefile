@@ -56,6 +56,7 @@ RGBGFXFLAGS  ?= -Weverything
 	blue \
 	blue_debug \
 	nemesis \
+	nemesis_speedtest \
 	red_vc \
 	blue_vc \
 	clean \
@@ -78,6 +79,14 @@ blue_vc:    pokeblue.patch
 nemesis: pokeblue.gbc
 	cp pokeblue.gbc "PKMN Nemesis.gbc"
 	$(RGBFIX) -jsv -n 0 -k 01 -l 0x33 -m MBC3+RAM+BATTERY -r 03 -p 0x00 -c -t "PKMN NEMESIS" "PKMN Nemesis.gbc"
+
+# The speed-test build, restamped so it can never be mistaken for the real one:
+# its own filename AND its own cartridge title, which is what emulators key the
+# .sav file off -- so a speed-test run can't overwrite the main Nemesis save.
+# Build it with: make clean && make blue SPEEDTEST=1 && make nemesis_speedtest
+nemesis_speedtest: pokeblue.gbc
+	cp pokeblue.gbc "PKMN Nemesis SPEEDTEST.gbc"
+	$(RGBFIX) -jsv -n 0 -k 01 -l 0x33 -m MBC3+RAM+BATTERY -r 03 -p 0x00 -c -t "NEMESIS SPDTEST" "PKMN Nemesis SPEEDTEST.gbc"
 
 clean: tidy
 	find gfx \

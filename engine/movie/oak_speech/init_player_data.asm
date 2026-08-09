@@ -50,11 +50,24 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld [hl], a
 	ld hl, wNumBagItems
-IF DEF(_LANDOSPEEDTEST)
-	ld a, 14 ; all 3 HMs, plus 2 TMs -- 12 + 2
+IF !DEF(_LANDOSPEEDTEST)
+; Josh's Silph Co repro build (user request 2026-08-09): a deliberately bare
+; bag -- HM02 (Fly) to get across the map, and 90 Master Balls. Nothing else,
+; so nothing in the bag can muddy the glitch repro.
+	ld a, 2
+	ld [hli], a
+	ld a, HM_FLY
+	ld [hli], a
+	ld a, 1
+	ld [hli], a
+	ld a, MASTER_BALL
+	ld [hli], a
+	ld a, 90
+	ld [hli], a
+	ld a, $ff ; terminator
+	ld [hl], a
 ELSE
-	ld a, 12
-ENDC
+	ld a, 14 ; all 3 HMs, plus 2 TMs -- 12 + 2
 	ld [hli], a
 	ld a, HM_CUT ; the Cascade Badge is granted below, so bushes are cuttable
 	ld [hli], a
@@ -106,7 +119,6 @@ ENDC
 	ld [hli], a
 	ld a, 6
 	ld [hli], a
-IF DEF(_LANDOSPEEDTEST)
 ; Landon's requested TMs, one each -- teach them to whichever of his 6 L10
 ; box mons he wants (see GiveLandoBoxMons in engine/events/give_pokemon.asm).
 	ld a, TM_FIRE_BLAST
@@ -117,9 +129,9 @@ IF DEF(_LANDOSPEEDTEST)
 	ld [hli], a
 	ld a, 1
 	ld [hli], a
-ENDC
 	ld a, $ff ; terminator
 	ld [hl], a
+ENDC
 ENDC
 
 	xor a
