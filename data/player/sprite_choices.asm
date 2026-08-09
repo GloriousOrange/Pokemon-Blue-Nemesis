@@ -6,9 +6,11 @@
 ; excluded. Also excluded: SPRITE_ROCKET (you only get that by joining Team
 ; Rocket), the non-humanoid placeholder sprites (Monster/Bird/Fairy/Seel,
 ; reused overworld slots for wild-Pokemon/cutscene graphics, not people), the
-; unused duplicate aliases (UNUSED_SCIENTIST etc.), and SPRITE_MATHUS (still
-; a work in progress, not ready to be a player skin yet).
-DEF NUM_PLAYER_SPRITE_CHOICES EQU 35
+; unused duplicate aliases (UNUSED_SCIENTIST etc.), SPRITE_MATHUS (still
+; a work in progress, not ready to be a player skin yet), and SPRITE_SWIMMER,
+; whose walk cycle is a swimming stroke -- fine in water, absurd everywhere
+; else, since the player spends nearly all their time on solid ground.
+DEF NUM_PLAYER_SPRITE_CHOICES EQU 34
 
 PlayerSpriteChoices::
 	table_width 1
@@ -40,7 +42,6 @@ PlayerSpriteChoices::
 	db SPRITE_LANCE
 	db SPRITE_SCIENTIST
 	db SPRITE_ROCKER
-	db SPRITE_SWIMMER
 	db SPRITE_FISHER
 	db SPRITE_KOGA
 	db SPRITE_AGATHA
@@ -80,7 +81,6 @@ PlayerSpriteChoiceNames::
 	li "LANCE"
 	li "SCIENTIST"
 	li "ROCKER"
-	li "SWIMMER"
 	li "FISHERMAN"
 	li "KOGA"
 	li "AGATHA"
