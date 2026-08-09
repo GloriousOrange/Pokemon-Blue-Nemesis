@@ -1,6 +1,8 @@
 	object_const_def
 	const_export ARCHIPELAGOCAVE3F_OAK
 	const_export ARCHIPELAGOCAVE3F_MUTAGEN_VIAL
+	const_export ARCHIPELAGOCAVE3F_BOULDER1
+	const_export ARCHIPELAGOCAVE3F_BOULDER2
 
 ArchipelagoCave3F_Object:
 ; see ArchipelagoCave1F.asm's comment -- was $19 (walkable, same as the
@@ -26,10 +28,7 @@ ArchipelagoCave3F_Object:
 ; the water but sealed off from the $05 floor by the CAVERN $20/$05 pair
 ; collision, so this can only be reached by SURFing out to it.
 	object_event 10, 12, SPRITE_POKE_BALL, STAY, NONE, TEXT_ARCHIPELAGOCAVE3F_MUTAGEN_VIAL, MUTAGEN_VIAL
-; BOULDER GATE PULLED 2026-08-09: pushing one of these south gray-screened the
-; game on Josh's run. Object data was well formed (byte2 $10, STAY, floor on
-; every destination cell) and other boulders in the game push fine, so the
-; cause is still unknown and this is parked rather than guessed at. The pit is
-; reachable without it; restore from git history once the crash is diagnosed.
+	object_event 4, 12, SPRITE_BOULDER, STAY, BOULDER_MOVEMENT_BYTE_2, TEXT_ARCHIPELAGOCAVE3F_BOULDER1
+	object_event 5, 12, SPRITE_BOULDER, STAY, BOULDER_MOVEMENT_BYTE_2, TEXT_ARCHIPELAGOCAVE3F_BOULDER2
 
 	def_warps_to ARCHIPELAGO_CAVE_3F
