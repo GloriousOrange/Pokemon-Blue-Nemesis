@@ -1936,7 +1936,10 @@ wOlympiaTrainerFlags2:: db
 wPlayerCoins:: dw ; BCD
 
 ; bit array of toggleable objects; bit set = toggled off
-wToggleableObjectFlags:: flag_array $100
+; Grown from $100 to $108 on 2026-08-09 by taking one byte from the `ds`
+; padding below, NOT by expanding the saved block -- the total size has to
+; stay identical or every field after it shifts and existing saves break.
+wToggleableObjectFlags:: flag_array $108
 wToggleableObjectFlagsEnd::
 ; One bit per entry in ToggleableObjectStates. As of the Archipelago Cave
 ; MUTAGEN VIAL this array is exactly FULL (256/256), and nothing else would
@@ -1947,7 +1950,7 @@ wToggleableObjectFlagsEnd::
 ASSERT NUM_TOGGLEABLE_OBJECTS <= (wToggleableObjectFlagsEnd - wToggleableObjectFlags) * 8, \
 	"wToggleableObjectFlags is full -- see the note above before adding a toggle"
 
-	ds 7
+	ds 6
 
 ; saved copy of SPRITESTATEDATA1_IMAGEINDEX (used for sprite facing/anim)
 wSavedSpriteImageIndex:: db

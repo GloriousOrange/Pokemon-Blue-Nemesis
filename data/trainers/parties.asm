@@ -49,6 +49,7 @@ TrainerDataPointers:
 	dw LanceData
 	dw GeneralMathusData
 	dw MeganData
+	dw GhostRocketData
 	assert_table_length NUM_TRAINERS
 
 ; if first byte != $FF, then
@@ -1076,3 +1077,10 @@ MeganData:
 	db 70, SLOWBRO, 0  ; #10 Indigo Plateau lobby, before the Elite Four
 	db 100, SLOWBRO, 0 ; #11 Battle Island
 	db 100, SLOWBRO, 0 ; 12 -- S.S. Olympia (MEGAN)
+
+GhostRocketData:
+; The Archipelago Cave grotto. Six level 100 "resurrected" MON, all of them
+; the mod's poison/rot line-up so the team reads as one dead crew rather than
+; a grab bag. GENGAR is already GHOST in vanilla; the other five are made
+; part-GHOST at send-out (see the GHOST_ROCKET hook in ReadTrainer).
+	db 100, RATICATE, ARBOK, MUK, WEEZING, VICTREEBEL, GENGAR, 0

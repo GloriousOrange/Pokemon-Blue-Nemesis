@@ -13,6 +13,10 @@ ArchipelagoCave3F_Object:
 ; plain floor cell next to it (which never reliably triggers the warp).
 	def_warp_events
 	warp_event 5, 1, ARCHIPELAGO_CAVE_2F, 2 ; stairs up; ON the stairs icon, block(2,0)
+; The pit. Sits on block 68's $22 hole tiles, which the CAVERN row of
+; WarpPadAndHoleData marks as a hole -- that only swaps the warp animation
+; for the spin-and-fall one, the destination is this ordinary warp.
+	warp_event 2, 15, ARCHIPELAGO_CAVE_4F, 1 ; falls to the grotto
 
 	def_bg_events
 

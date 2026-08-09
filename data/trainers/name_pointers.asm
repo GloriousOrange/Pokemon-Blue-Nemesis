@@ -52,6 +52,7 @@ TrainerNamePointers:
 	dw wTrainerName
 	dw wTrainerName ; GENERALMATHUS
 	dw wTrainerName ; MEGAN
+	dw wTrainerName ; GHOST_ROCKET
 	assert_table_length NUM_TRAINERS
 
 .YoungsterName:     db "YOUNGSTER@"

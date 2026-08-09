@@ -115,7 +115,13 @@ DEF FIRST_INDOOR_MAP EQU const_value
 	map_const MT_MOON_POKECENTER,             7,  4 ; $44
 	end_indoor_group ROUTE_4
 
-	map_const CERULEAN_TRASHED_HOUSE_COPY,    4,  4 ; $45
+; $45 was CERULEAN_TRASHED_HOUSE_COPY, a vanilla duplicate with no header of
+; its own (its pointer aliased CeruleanTrashedHouse_h) and no warp anywhere in
+; the game. Repurposed IN PLACE 2026-08-09: every map ID is allocated
+; (NUM_MAPS 255, LAST_MAP $ff), so a new floor had to reuse a dead one, and
+; reusing it in place is what keeps every other map ID -- and so every save --
+; unchanged. Two dead IDs remain: $4B and $4E.
+	map_const ARCHIPELAGO_CAVE_4F,            6,  6 ; $45
 	end_indoor_group CERULEAN_CITY_2
 
 	map_const ROUTE_5_GATE,                   4,  3 ; $46

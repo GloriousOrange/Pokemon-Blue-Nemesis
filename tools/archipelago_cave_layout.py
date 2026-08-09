@@ -11,7 +11,10 @@ uses together (verified by rendering them, see formations.png).
   s q w i K        = stairs icon / stone quay / water / islet / rock in water
 """
 LIT = {'A':0x14,'B':0x16,'C':0x18,'D':0x1A,'E':0x1C,'F':0x1E,
-       'R':0x1D,'P':0x2E,'s':0x3C,'q':0x29,'w':0x76,'i':0x01,'K':0x4D,'.':0x19}
+       'R':0x1D,'P':0x2E,'s':0x3C,'q':0x29,'w':0x76,'i':0x01,'K':0x4D,'.':0x19,
+       'X':0x4D,   # solid rock mass
+       'H':0x68}   # the pit: $22 hole tiles along its bottom-left, walled
+                   # above by $2F, so it can only be entered from the south
 FLOORS = {
  'ArchipelagoCave1F': [
     "..s...AB.",
@@ -42,9 +45,9 @@ FLOORS = {
     ".........",
     "...qqqqq.",
     "...wwwwww",
-    "AB.wwiwww",
-    "CD.wwwwKw",
-    "EF.wwwwww",
+    "XX.wwiwww",
+    "XH.wwwwKw",
+    "...wwwwww",
  ],
 }
 for name, rows in FLOORS.items():

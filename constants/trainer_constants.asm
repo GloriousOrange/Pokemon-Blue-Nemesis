@@ -64,4 +64,7 @@ ENDM
 	trainer_const LANCE          ; $2F
 	trainer_const GENERALMATHUS  ; $30
 	trainer_const MEGAN          ; $31 - dedicated class so battle text says "MEGAN wants to fight!" instead of generic "LASS"
+	trainer_const GHOST_ROCKET   ; $32 - the Archipelago Cave grotto encounter; its own class so the
+	                             ;       intro reads "GHOST ROCKET wants to fight!" and so the battle
+	                             ;       palette can be keyed on the class (see DeterminePaletteID)
 DEF NUM_TRAINERS EQU const_value - 1

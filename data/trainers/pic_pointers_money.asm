@@ -56,4 +56,5 @@ TrainerPicAndMoneyPointers::
 	pic_money LancePic,        9900
 	pic_money MathusPic,       3000
 	pic_money MeganPic,        500
+	pic_money RocketPic,      9900 ; reuses the ROCKET pic; the grotto palette is what makes him spectral
 	assert_table_length NUM_TRAINERS

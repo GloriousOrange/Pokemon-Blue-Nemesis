@@ -49,4 +49,5 @@ TrainerNames::
 	li "LANCE"
 	li "MATHUS"
 	li "MEGAN"
+	li "GHOST ROCKET"
 	assert_list_length NUM_TRAINERS

@@ -80,6 +80,10 @@ ENDC
 	RGB 29,28,26, 14,13,12, 06,06,06, 01,01,01 ; PAL_PINSIRITE
 	RGB 31,31,31, 22,27,31, 10,18,28, 02,06,14 ; PAL_NINEFROST
 	RGB 31,31,31, 23,24,25, 13,14,15, 04,04,05 ; PAL_DIGNEMITE -- silver, not gold (Josh, 2026-08-02)
+	RGB 27,25,29, 14,10,20, 09,05,18, 02,01,04 ; PAL_ARCHIPELAGO_GROTTO -- everything drained
+	                                            ; toward violet: pale bone rock, deep indigo water,
+	                                            ; near-black shadow. Deliberately low-contrast and
+	                                            ; cold, unlike the lake's bright blue one floor up
 	RGB 31,29,31, 21,14,09, 04,13,27, 03,02,02 ; PAL_ARCHIPELAGO_CAVE_LAKE -- PAL_CAVE with shade 2
 	                                            ; swapped from muted teal-gray to a real blue (close
 	                                            ; to DEEP_WATER's tone); shades 0/1/3 unchanged so the

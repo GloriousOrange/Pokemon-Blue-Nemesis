@@ -303,6 +303,11 @@ INCLUDE "scripts/ArchipelagoCave3F.asm"
 INCLUDE "data/maps/objects/ArchipelagoCave3F.asm"
 ArchipelagoCave3F_Blocks: INCBIN "maps/ArchipelagoCave3F.blk"
 
+INCLUDE "data/maps/headers/ArchipelagoCave4F.asm"
+INCLUDE "scripts/ArchipelagoCave4F.asm"
+INCLUDE "data/maps/objects/ArchipelagoCave4F.asm"
+ArchipelagoCave4F_Blocks: INCBIN "maps/ArchipelagoCave4F.blk"
+
 
 SECTION "Maps SSOlympia", ROMX ; S.S. Olympia (endgame Rocket-crewed ship, reuses S.S. Anne's proven geometry), self-contained like "Maps Archipelago" above
 
