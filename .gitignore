@@ -33,3 +33,4 @@
 # local PyBoy screenshot harness venv (tools/screenshot.py)
 .venv-emu/
 __pycache__/
+*.ss[0-9]
