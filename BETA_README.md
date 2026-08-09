@@ -93,8 +93,8 @@ about reaching Battle Island runs through it.
   screen, and Move Relearner/Mimic are all sized for this.
 - **50 new moves** on top of vanilla's 165, nearly all with their own custom
   battle animations. A sample:
-  - **Web Cannon** (Bug) — damaging, drops the target's Speed to the floor in
-    one hit, with a flinch chance
+  - **Web Cannon** (Bug) — chip damage only, but drops the target's Speed to
+    the floor in a single hit, with a flinch chance
   - **Uppercut** (Fighting) — guaranteed critical hit if you outspeed the
     target
   - **Jackpot** (Normal, Persian Lv. 98) — damage *and* scatters $300–$1000
