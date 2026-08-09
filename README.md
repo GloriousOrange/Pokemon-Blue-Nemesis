@@ -10,8 +10,26 @@ endgame roughly the size of the original game's second half.
 It is a real Game Boy Color title — genuine hardware palettes, not an
 emulator's guess at colour.
 
-- **[Patch & install instructions](dist/README.md)** — patch it onto your own
-  Blue ROM
+<div align="center">
+
+## ⬇️ &nbsp;[Download the latest release](https://github.com/GloriousOrange/Pokemon-Blue-Nemesis/releases/latest)
+
+**You supply your own Pokémon Blue ROM.** The download is a *patch*, not a game.
+
+</div>
+
+1. Get a retail **Pokémon Blue (USA/Europe)** dump —
+   SHA1 `d7037c83e1ae5b39bde3c30787637ba1d4c48ce2`
+2. Apply **`PKMN Nemesis.bps`** with any BPS patcher
+   ([Rom Patcher JS](https://www.marcrobledo.com/RomPatcher.js/) runs in your
+   browser, nothing is uploaded)
+3. Open the result in any Game Boy Color emulator — Pizza Boy GBC, Nostalgia,
+   mGBA. The cartridge title reads **PKMN NEMESIS**.
+
+**[Full install guide, troubleshooting and colour schemes →](dist/README.md)**
+
+---
+
 - **[Team Builder](https://gloriousorange.github.io/Pokemon-Blue-Nemesis/)** —
   build a party of six, check type coverage and weaknesses, browse every
   Pokémon's full movepool
