@@ -138,7 +138,7 @@
    "ELECTRIC": 1.0,
    "PSYCHIC_TYPE": 2.0,
    "ICE": 1.0,
-   "DRAGON": 1.0
+   "DRAGON": 2.0
   },
   "GHOST": {
    "NORMAL": 0.0,
@@ -257,7 +257,7 @@
    "ELECTRIC": 1.0,
    "PSYCHIC_TYPE": 1.0,
    "ICE": 0.5,
-   "DRAGON": 2.0
+   "DRAGON": 0.5
   },
   "DRAGON": {
    "NORMAL": 1.0,
@@ -274,7 +274,7 @@
    "ELECTRIC": 1.0,
    "PSYCHIC_TYPE": 1.0,
    "ICE": 1.0,
-   "DRAGON": 2.0
+   "DRAGON": 1.0
   }
  },
  "moves": {
@@ -3994,8 +3994,7 @@
     "spc": 100
    },
    "types": [
-    "DRAGON",
-    "FLYING"
+    "DRAGON"
    ],
    "front_sprite": "sprites/front/dragonite.png",
    "back_sprite": "sprites/back/dragonite.png",

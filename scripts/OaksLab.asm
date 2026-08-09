@@ -2093,7 +2093,7 @@ RivalCounterTable:
 	db MAGNEMITE        ; #144 ARTICUNO (FLYING)
 	db PIKACHU          ; #145 ZAPDOS (FLYING)
 	db VOLTORB          ; #146 MOLTRES (FLYING)
-	db DRATINI          ; #147 DRATINI (DRAGON)
+	db PINSIR           ; #147 DRATINI (DRAGON)
 	db SCYTHER          ; #150 MEWTWO (PSYCHIC_TYPE)
 	db PINSIR           ; #151 MEW (PSYCHIC_TYPE)
 

@@ -126,14 +126,23 @@ POOLS = {
     "BUG":          ["GROWLITHE", "CHARMANDER","PONYTA"],
     "ROCK":         ["SQUIRTLE",  "POLIWAG",   "HORSEA",     "MACHOP"],
     "GHOST":        ["GASTLY"],
+    # Baseline only — the real Dragon counter is applied as a post-hoc override
+    # below (see DRAGON_BUG_POOL). Keeping DRATINI here preserves the team
+    # numbering that parties.asm / ChampionsRoom.asm already encode.
     "DRAGON":       ["DRATINI",   "LAPRAS",    "JYNX"],
 }
 
 LEGENDARY_OVERRIDE = {}  # All Pokemon use type pool logic, no special cases
 
+# Dragon's ONE weakness is BUG (Ice resists it now and Dragon-vs-Dragon is gone),
+# so the old Ice/mirror counters whiffed completely. All-Bug pool; PINSIR and
+# SCYTHER lead because they are the only Bugs with real attacking stats.
+DRAGON_BUG_POOL = ["PINSIR", "SCYTHER", "VENONAT"]
+
 # ── 7. Compute rival species for every starter (single pass) ─────────────────
 pool_counters = {t: 0 for t in POOLS}
 flying_counter = 0
+dragon_counter = 0
 rivals = []           # rivals[i]          = actual rival species for BASE_FORMS[i]
 baseline_rivals = []  # baseline_rivals[i] = pre-Flying-override species; used ONLY
                       # for stable team numbering so the Flying fix leaves the
@@ -155,7 +164,13 @@ for dex in BASE_FORMS:
         # so the primary-type counter whiffs badly (e.g. a Fighting mon vs the
         # Normal/Flying birds, or a Ground mon vs Zapdos, which Flying is immune
         # to). Override to the Electric FLYING pool.
-        if "FLYING" in dex_to_types.get(dex, (ptype,)):
+        # Dragon starters: counter with a Bug, Dragon's only remaining weakness.
+        # Overridden here rather than in POOLS so the baseline (and therefore
+        # every downstream team number) stays byte-identical.
+        if "DRAGON" in dex_to_types.get(dex, (ptype,)):
+            rival = DRAGON_BUG_POOL[dragon_counter % len(DRAGON_BUG_POOL)]
+            dragon_counter += 1
+        elif "FLYING" in dex_to_types.get(dex, (ptype,)):
             fpool = POOLS["FLYING"]
             rival = fpool[flying_counter % len(fpool)]
             flying_counter += 1

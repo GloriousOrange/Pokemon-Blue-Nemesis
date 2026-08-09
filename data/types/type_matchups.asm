@@ -77,10 +77,15 @@ TypeEffects:
 	db ROCK,         ICE,          SUPER_EFFECTIVE
 	db GHOST,        NORMAL,       NO_EFFECT
 	db GHOST,        PSYCHIC_TYPE, SUPER_EFFECTIVE
+; Nemesis: dragons have exactly ONE weakness, and it is BUG. Ice no longer
+; hits them super effectively (it resists instead) and Dragon-vs-Dragon is
+; gone, so Hurricane/Dragon Breath are neutral coverage rather than mirror
+; nukes. DRAGONITE was retyped DRAGON/DRAGON (see its base stats) so Flying
+; does not cancel Bug's 2x down to neutral.
 	db FIRE,         DRAGON,       NOT_VERY_EFFECTIVE
 	db WATER,        DRAGON,       NOT_VERY_EFFECTIVE
 	db ELECTRIC,     DRAGON,       NOT_VERY_EFFECTIVE
 	db GRASS,        DRAGON,       NOT_VERY_EFFECTIVE
-	db ICE,          DRAGON,       SUPER_EFFECTIVE
-	db DRAGON,       DRAGON,       SUPER_EFFECTIVE
+	db ICE,          DRAGON,       NOT_VERY_EFFECTIVE
+	db BUG,          DRAGON,       SUPER_EFFECTIVE
 	db -1 ; end
