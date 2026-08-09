@@ -42,6 +42,18 @@ GetWalkingPlayerSpriteGraphics::
 	ld a, [wPlayerChosenSprite]
 	and a
 	jr z, .heroFallback ; no selection made (e.g. a save predating this feature)
+; Reject anything that is not an animated 24-tile sprite before handing it to
+; GetChosenSpriteGraphics, which does NOT bounds-check: it indexes
+; SpriteSheetPointerTable by this id and reads BOTH a pointer and a ROM bank
+; out of the entry, then DMAs 24 tiles from them. A junk id therefore walks off
+; the table and copies from an arbitrary bank at an arbitrary address, which
+; hangs the game rather than just drawing the wrong person. Every entry in
+; PlayerSpriteChoices is below FIRST_STILL_SPRITE (the highest, MEGAN, is $3D),
+; so this rejects both out-of-range ids and the 4-tile still sprites, whose
+; sheets are too short to satisfy the 24-tile copy and would over-read into
+; whatever sprite happens to sit after them in ROM.
+	cp FIRST_STILL_SPRITE
+	jr nc, .heroFallback
 	call GetChosenSpriteGraphics ; home-bank; in: a=SPRITE_* id; out: de=ptr, a=bank
 	jr .done
 .heroFallback
