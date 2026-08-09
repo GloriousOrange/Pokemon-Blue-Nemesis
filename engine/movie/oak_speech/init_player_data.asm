@@ -33,13 +33,27 @@ InitPlayerData2:
 	ld a, -1
 	ld [hl], a ; end of list
 
-DEF START_MONEY EQU $3000
-	ld hl, wPlayerMoney + 1
-	ld a, HIGH(START_MONEY)
-	ld [hld], a
-	xor a ; LOW(START_MONEY)
+; Money is three bytes of packed BCD, most significant first -- so these are
+; written as hex literals on purpose. `ld a, 50` would silently mean 32.
+IF DEF(_LANDOSPEEDTEST)
+; Landon's test build (2026-08-09): an otherwise completely stock game -- no
+; box mons, no kit, no badges, no unlocks, normal text speed -- with exactly
+; one change, a bigger starting wallet. He asked to test everything else the
+; way a player would meet it, so this build does NOT define _SPEEDTEST.
+DEF START_MONEY_HI  EQU $05 ; $05 $00 $00 = 50000
+DEF START_MONEY_MID EQU $00
+DEF START_MONEY_LO  EQU $00
+ELSE
+DEF START_MONEY_HI  EQU $00 ; $00 $30 $00 = 3000
+DEF START_MONEY_MID EQU $30
+DEF START_MONEY_LO  EQU $00
+ENDC
+	ld hl, wPlayerMoney
+	ld a, START_MONEY_HI
 	ld [hli], a
-	inc hl
+	ld a, START_MONEY_MID
+	ld [hli], a
+	ld a, START_MONEY_LO
 	ld [hl], a
 
 IF DEF(_SPEEDTEST)
@@ -50,7 +64,6 @@ IF DEF(_SPEEDTEST)
 	ld [hli], a
 	ld [hl], a
 	ld hl, wNumBagItems
-IF !DEF(_LANDOSPEEDTEST)
 ; Josh's Silph Co repro build (user request 2026-08-09): a deliberately bare
 ; bag -- HM02 (Fly) to get across the map, and 90 Master Balls. Nothing else,
 ; so nothing in the bag can muddy the glitch repro.
@@ -74,72 +87,6 @@ IF !DEF(_LANDOSPEEDTEST)
 	ld [hli], a
 	ld a, $ff ; terminator
 	ld [hl], a
-ELSE
-	ld a, 14 ; all 3 HMs, plus 2 TMs -- 12 + 2
-	ld [hli], a
-	ld a, HM_CUT ; the Cascade Badge is granted below, so bushes are cuttable
-	ld [hli], a
-	ld a, 1
-	ld [hli], a
-	ld a, EXP_ALL ; whole party levels while testing, and it silences the
-	ld [hli], a   ; per-mon exp messages (see GainExperience)
-	ld a, 1
-	ld [hli], a
-	ld a, RARE_CANDY
-	ld [hli], a
-	ld a, 99
-	ld [hli], a
-	ld a, SUPER_REPEL
-	ld [hli], a
-	ld a, 99
-	ld [hli], a
-	ld a, POKE_BALL
-	ld [hli], a
-	ld a, 99
-	ld [hli], a
-	ld a, FULL_RESTORE
-	ld [hli], a
-	ld a, 99
-	ld [hli], a
-	ld a, HM_FLY
-	ld [hli], a
-	ld a, 1
-	ld [hli], a
-	ld a, HM_SURF
-	ld [hli], a
-	ld a, 1
-	ld [hli], a
-	; SILPH SCOPE + MASTER BALL so testers can reach Pokemon Tower / the Mathus
-	; quest without doing the Hideout+Silph Co questline first.
-	ld a, SILPH_SCOPE
-	ld [hli], a
-	ld a, 1
-	ld [hli], a
-	ld a, MASTER_BALL
-	ld [hli], a
-	ld a, 90
-	ld [hli], a
-	ld a, LAB_KEY ; enter the post-game re-locked burned Cinnabar lab
-	ld [hli], a
-	ld a, 1
-	ld [hli], a
-	ld a, LEVEL_STONE ; "MUTAGENSTONE" x6 to test the lab machine's L100 upgrade
-	ld [hli], a
-	ld a, 6
-	ld [hli], a
-; Landon's requested TMs, one each -- teach them to whichever of his 6 L10
-; box mons he wants (see GiveLandoBoxMons in engine/events/give_pokemon.asm).
-	ld a, TM_FIRE_BLAST
-	ld [hli], a
-	ld a, 1
-	ld [hli], a
-	ld a, TM_BLIZZARD
-	ld [hli], a
-	ld a, 1
-	ld [hli], a
-	ld a, $ff ; terminator
-	ld [hl], a
-ENDC
 ENDC
 
 	xor a

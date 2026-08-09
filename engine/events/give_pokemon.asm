@@ -143,50 +143,10 @@ ENDC
 	callfar SendNewMonToBox
 	ret
 
-; Landon's custom speed-test kit (user request 2026-08-03, mons updated
-; 2026-08-05): the first time any PC is opened, silently deposits 6 L10 mons --
-; Dratini, Zapdos, Growlithe, Pinsir, Bulbasaur, Omanyte -- straight into the PC
-; box, keeping each one's natural level-10 learnset (no custom moveset patch,
-; unlike SpeedtestGiveDebugMons above). Compile with `make blue LANDOSPEEDTEST=1`.
-GiveLandoBoxMons::
-IF DEF(_LANDOSPEEDTEST)
-	CheckEvent EVENT_GOT_LANDO_SPEEDTEST_MONS
-	ret nz
-	ld a, [wBoxCount]
-	cp MONS_PER_BOX - 6 ; need six free slots
-	ret nc
-	SetEvent EVENT_GOT_LANDO_SPEEDTEST_MONS
-	lb bc, DRATINI, 10
-	call .GiveNaturalBoxedMon
-	lb bc, ZAPDOS, 10
-	call .GiveNaturalBoxedMon
-	lb bc, GROWLITHE, 10
-	call .GiveNaturalBoxedMon
-	lb bc, PINSIR, 10
-	call .GiveNaturalBoxedMon
-	lb bc, BULBASAUR, 10
-	call .GiveNaturalBoxedMon
-	lb bc, OMANYTE, 10
-	call .GiveNaturalBoxedMon
-ENDC
-	ret
-
-IF DEF(_LANDOSPEEDTEST)
-; b = species, c = level -- unmodified natural learnset for that level
-.GiveNaturalBoxedMon:
-	ld a, b
-	ld [wCurPartySpecies], a
-	ld a, c
-	ld [wCurEnemyLevel], a
-	xor a
-	ld [wEnemyBattleStatus3], a
-	ld a, [wCurPartySpecies]
-	ld [wEnemyMonSpecies2], a
-	callfar LoadEnemyMonData
-	call SetPokedexOwnedFlag
-	callfar SendNewMonToBox
-	ret
-ENDC
+; Landon's 6 L10 box mons (GiveLandoBoxMons) were removed on 2026-08-09: his
+; test build now starts with nothing in storage at all, by his own request --
+; only the starting wallet differs from a stock game. Restore from git history
+; if a later build wants them.
 
 ; Josh's 6 L10 box mons (Tauros/Pinsir/Zubat/Starmie/Pidgey/Pikachu, added
 ; 2026-08-05) were removed on 2026-08-09: the Silph Co repro build wants a

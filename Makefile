@@ -57,6 +57,7 @@ RGBGFXFLAGS  ?= -Weverything
 	blue_debug \
 	nemesis \
 	nemesis_speedtest \
+	nemesis_landon \
 	red_vc \
 	blue_vc \
 	clean \
@@ -87,6 +88,13 @@ nemesis: pokeblue.gbc
 nemesis_speedtest: pokeblue.gbc
 	cp pokeblue.gbc "PKMN Nemesis SPEEDTEST.gbc"
 	$(RGBFIX) -jsv -n 0 -k 01 -l 0x33 -m MBC3+RAM+BATTERY -r 03 -p 0x00 -c -t "NEMESIS SPDTEST" "PKMN Nemesis SPEEDTEST.gbc"
+
+# Landon's test build. Its own filename and cartridge title so it cannot be
+# confused with the real ROM and cannot share its save file.
+# Build it with: make clean && make blue LANDOSPEEDTEST=1 && make nemesis_landon
+nemesis_landon: pokeblue.gbc
+	cp pokeblue.gbc "PKMN Nemesis LANDON.gbc"
+	$(RGBFIX) -jsv -n 0 -k 01 -l 0x33 -m MBC3+RAM+BATTERY -r 03 -p 0x00 -c -t "NEMESIS LANDON" "PKMN Nemesis LANDON.gbc"
 
 clean: tidy
 	find gfx \
@@ -144,14 +152,14 @@ ifdef SPEEDTEST
 $(pokeblue_obj):       RGBASMFLAGS += -D _SPEEDTEST
 endif
 
-# Landon's own speed-test build: `make blue LANDOSPEEDTEST=1`. Builds on top of
-# SPEEDTEST (same max cash / badges / flyable towns / post-game unlock) but
-# swaps in his specific kit -- 6 L10 mons in the PC box, Fly-only HMs, and a
-# few TMs -- see the _LANDOSPEEDTEST branches in init_player_data.asm and
-# give_pokemon.asm. Restamp the output as usual (rgbfix + rename) before
-# handing him the ROM.
+# Landon's test build: `make blue LANDOSPEEDTEST=1`. Deliberately NOT built on
+# top of SPEEDTEST -- he asked (2026-08-09) to test the game exactly as a player
+# would, with one exception: he starts with $50,000 instead of $3,000. No box
+# mons, no bag kit, no badges, no pre-flyable towns, no post-game unlock, and
+# normal text speed. The only guarded code left is the wallet in
+# init_player_data.asm.
 ifdef LANDOSPEEDTEST
-$(pokeblue_obj):       RGBASMFLAGS += -D _SPEEDTEST -D _LANDOSPEEDTEST
+$(pokeblue_obj):       RGBASMFLAGS += -D _LANDOSPEEDTEST
 endif
 $(pokered_vc_obj):     RGBASMFLAGS += -D _RED -D _RED_VC
 $(pokeblue_vc_obj):    RGBASMFLAGS += -D _BLUE -D _BLUE_VC
