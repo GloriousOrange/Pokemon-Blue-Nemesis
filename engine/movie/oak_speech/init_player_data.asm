@@ -54,7 +54,11 @@ IF !DEF(_LANDOSPEEDTEST)
 ; Josh's Silph Co repro build (user request 2026-08-09): a deliberately bare
 ; bag -- HM02 (Fly) to get across the map, and 90 Master Balls. Nothing else,
 ; so nothing in the bag can muddy the glitch repro.
-	ld a, 2
+	ld a, 3
+	ld [hli], a
+	ld a, HM_STRENGTH ; the Archipelago Cave pit is behind a boulder
+	ld [hli], a
+	ld a, 1
 	ld [hli], a
 	ld a, HM_FLY
 	ld [hli], a

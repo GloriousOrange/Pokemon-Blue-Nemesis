@@ -1,6 +1,8 @@
 	object_const_def
 	const_export ARCHIPELAGOCAVE3F_OAK
 	const_export ARCHIPELAGOCAVE3F_MUTAGEN_VIAL
+	const_export ARCHIPELAGOCAVE3F_BOULDER1
+	const_export ARCHIPELAGOCAVE3F_BOULDER2
 
 ArchipelagoCave3F_Object:
 ; see ArchipelagoCave1F.asm's comment -- was $19 (walkable, same as the
@@ -26,5 +28,11 @@ ArchipelagoCave3F_Object:
 ; the water but sealed off from the $05 floor by the CAVERN $20/$05 pair
 ; collision, so this can only be reached by SURFing out to it.
 	object_event 10, 12, SPRITE_POKE_BALL, STAY, NONE, TEXT_ARCHIPELAGOCAVE3F_MUTAGEN_VIAL, MUTAGEN_VIAL
+; Two boulders side by side, plugging the whole two-cell corridor that runs
+; down between the pit (block col 1) and the lake (block col 3). Nothing gets
+; past until STRENGTH shoves one of them south -- there are four clear cells
+; below them, so one push opens a lane and the other boulder is squeezed past.
+	object_event 4, 12, SPRITE_BOULDER, STAY, BOULDER_MOVEMENT_BYTE_2, TEXT_ARCHIPELAGOCAVE3F_BOULDER1
+	object_event 5, 12, SPRITE_BOULDER, STAY, BOULDER_MOVEMENT_BYTE_2, TEXT_ARCHIPELAGOCAVE3F_BOULDER2
 
 	def_warps_to ARCHIPELAGO_CAVE_3F
