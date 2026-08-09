@@ -99,14 +99,19 @@ RocketPrizeMenuMon2Cost:
 	bcd2 500
 	db "@"
 
+; The prize menu is hardwired to exactly three entries (wPrize1-3 in
+; engine/events/prize_menu.asm), so the MUTAGEN VIAL replaces TM_DOUBLE_TEAM
+; rather than adding a fourth line. Double Team is still findable in Safari
+; Zone West. Priced well above the Hideout's 275-coin clear so the Loyalist
+; path's mutant costs real slots time.
 RocketPrizeMenuTMsEntries:
 	db TM_TOXIC
 	db TM_SWORDS_DANCE
-	db TM_DOUBLE_TEAM
+	db MUTAGEN_VIAL
 	db "@"
 
 RocketPrizeMenuTMsCost:
 	bcd2 180
 	bcd2 350
-	bcd2 550
+	bcd2 800
 	db "@"

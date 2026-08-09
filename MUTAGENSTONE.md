@@ -13,7 +13,38 @@ once, here).
 
 Only a species' **final evolution** gets its own row -- a pre-evolution stoned
 today falls back to the generic behavior above, since Mutagenstone levels a mon
-up but doesn't evolve it (yet). Species that can never evolve past themselves,
+up but doesn't evolve it (yet).
+
+## MUTAGENSTONE vs MUTAGEN VIAL
+
+Two different items, easy to confuse:
+
+| | MUTAGENSTONE | MUTAGEN VIAL |
+|---|---|---|
+| Effect | Jumps a mon to **level 100** | **Mutates** a mon, keeping its level |
+| Where | Six burned-lab scientists (post-game) | Four mid-game sources, see below |
+| Needs | The lab machine primed first | Nothing -- use it from the bag |
+
+The vial is a plain evolution stone (`ItemUseEvoStone`), so the mutations live
+in `data/pokemon/evos_moves.asm` alongside every other stone evolution:
+
+| Feed a... | ...and get | Base species found in |
+|---|---|---|
+| DIGLETT | DIGNEMITE | Diglett's Cave (pre-Gym 3) |
+| NINETALES | NINEFROST | Vulpix on Routes 7/8, + Fire Stone |
+| PINSIR | PINSIRITE | Safari Zone |
+| MACHAMP | ALAKACHAMP | Machop line, trade/L42 |
+
+Any vial works on any of the four -- they are interchangeable, so which
+mutants a run ends up with is the player's choice.
+
+**Vial sources (3 per playthrough):** Silph Co. 2F worker and Safari Zone East
+are open to everyone; the third is path-exclusive -- the Pokemon Fan Club
+chairman on the Hero path, or the Game Corner prize counter (800 coins) on the
+Loyalist path.
+
+MEWTHREE is deliberately *not* a vial target; it stays the Cerulean Cave
+encounter. Species that can never evolve past themselves,
 or that evolve only by trade/stone rather than level, count as their own "final"
 form for this purpose (e.g. Gloom has its own row, distinct from Vileplume's).
 

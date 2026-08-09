@@ -87,6 +87,7 @@ ItemNames::
 	li "LAB KEY"
 	li "ISLAND DEED"
 	li "CALL MEGAN"
+	li "MUTAGEN VIAL"
 	assert_list_length NUM_ITEMS
 	li "B2F"
 	li "B1F"

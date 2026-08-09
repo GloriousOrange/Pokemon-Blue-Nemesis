@@ -87,6 +87,7 @@ ItemPrices::
 	bcd3 0     ; LAB_KEY
 	bcd3 0     ; BATTLE_ISLAND_DEED
 	bcd3 0     ; GF_KEEPSAKE
+	bcd3 0     ; MUTAGEN_VIAL -- never sold in a mart; found, gifted, or won with coins
 	assert_table_length NUM_ITEMS
 	bcd3 0     ; FLOOR_B2F
 	bcd3 0     ; FLOOR_B1F

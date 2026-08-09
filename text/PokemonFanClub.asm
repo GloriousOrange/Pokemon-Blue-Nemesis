@@ -92,19 +92,28 @@ _PokemonFanClubReceivedBikeVoucherText::
 _PokemonFanClubExplainBikeVoucherText::
 	text_start
 
-	para "Exchange that for"
-	line "a BICYCLE!"
+	para "That's MUTAGEN. A"
+	line "SILPH man traded"
+	cont "it for a meal."
 
-	para "Don't worry, my"
-	line "FEAROW will FLY"
-	cont "me anywhere!"
+	para "Pour it on a #MON"
+	line "and it grows into"
+	cont "something new."
 
-	para "Besides, after a"
-	line "big bowl of"
-	cont "DITTO JELLO..."
+	para "Bigger cuts, too."
+	line "Don't tell them I"
+	cont "said that."
+	done
 
-	para "...I couldn't"
-	line "pedal if I tried!"
+; Loyalist path: the chairman keeps his vial. See scripts/PokemonFanClub.asm.
+_PokemonFanClubChairmanLoyalistText::
+	text "...That's a ROCKET"
+	line "pin on your coat."
+
+	para "I've nothing for"
+	line "your sort. Go buy"
+	cont "it off your own"
+	cont "people."
 	done
 
 _PokemonFanClubNoStoryText::

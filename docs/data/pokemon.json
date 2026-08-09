@@ -1992,8 +1992,8 @@
    ],
    "front_sprite": "sprites/front/alakachamp.png",
    "back_sprite": "sprites/back/alakachamp.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/alakachamp.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -3664,8 +3664,8 @@
    ],
    "front_sprite": "sprites/front/dignemite.png",
    "back_sprite": "sprites/back/dignemite.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/dignemite.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -9393,8 +9393,8 @@
    ],
    "front_sprite": "sprites/front/ninefrost.png",
    "back_sprite": "sprites/back/ninefrost.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/ninefrost.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,
@@ -10504,8 +10504,8 @@
    ],
    "front_sprite": "sprites/front/pinsirite.png",
    "back_sprite": "sprites/back/pinsirite.png",
-   "ghost_sprite": null,
-   "ghost_eligible": false,
+   "ghost_sprite": "sprites/front_ghost/pinsirite.png",
+   "ghost_eligible": true,
    "level_up_moves": [
     {
      "level": 1,

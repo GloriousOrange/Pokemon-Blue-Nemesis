@@ -104,6 +104,7 @@ ItemUsePtrTable:
 	dw ItemUseNotTime    ; LAB_KEY (used on the lab door)
 	dw ItemUseNotTime    ; BATTLE_ISLAND_DEED
 	dw ItemUseNotTime    ; GF_KEEPSAKE (reserved; CALL MEGAN now lives in the Start menu)
+	dw ItemUseEvoStone   ; MUTAGEN_VIAL -- plain evo stone; the mutant targets live in evos_moves.asm
 
 ItemUseBall:
 

@@ -87,4 +87,5 @@ KeyItemFlags:
 	dbit TRUE  ; LAB_KEY
 	dbit TRUE  ; BATTLE_ISLAND_DEED
 	dbit TRUE  ; GF_KEEPSAKE
+	dbit FALSE ; MUTAGEN_VIAL -- stackable and tossable, same as the other evo stones
 	end_bit_array NUM_ITEMS

@@ -1,15 +1,15 @@
 PokemonFanClub_Script:
 	jp EnableAutoTextBoxDrawing
 
-PokemonFanClub_CheckBikeInBag:
-; check if any bike paraphernalia in bag
-	CheckEvent EVENT_GOT_BIKE_VOUCHER
-	ret nz
-	ld b, BICYCLE
-	call IsItemInBag
-	ret nz
-	ld b, BIKE_VOUCHER
-	jp IsItemInBag
+PokemonFanClub_CheckChairmanGiftTaken:
+; The chairman now hands over a MUTAGEN VIAL instead of the BIKE VOUCHER (the
+; bike is bought outright near Cycling Road). EVENT_GOT_BIKE_VOUCHER is reused
+; as the once-only flag -- renaming it would mean touching the event array,
+; which is at its hard cap. The old BICYCLE / BIKE_VOUCHER in-bag checks are
+; deliberately gone: a player who had already bought a bike would have been
+; locked out of the vial by them.
+	CheckEvent EVENT_GOT_BIKE_VOUCHER ; nz = already taken
+	ret
 
 PokemonFanClub_TextPointers:
 	def_text_pointers
@@ -96,8 +96,15 @@ PokemonFanClubSeelText:
 
 PokemonFanClubChairmanText:
 	text_asm
-	call PokemonFanClub_CheckBikeInBag
+	call PokemonFanClub_CheckChairmanGiftTaken
 	jr nz, .nothingleft
+
+; Hero path only. A Loyalist wears the Rocket colors, and the chairman will not
+; hand his life's work to one -- that path buys its vial at the Game Corner
+; prize counter instead (data/events/prizes.asm).
+	ld a, [wPostGameMisc]
+	bit BIT_ROCKET_LOYALTY, a
+	jr nz, .loyalist
 
 	ld hl, .IntroText
 	call PrintText
@@ -109,12 +116,16 @@ PokemonFanClubChairmanText:
 	; tell the story
 	ld hl, .StoryText
 	call PrintText
-	lb bc, BIKE_VOUCHER, 1
+	lb bc, MUTAGEN_VIAL, 1
 	call GiveItem
 	jr nc, .bag_full
 	ld hl, .BikeVoucherText
 	call PrintText
 	SetEvent EVENT_GOT_BIKE_VOUCHER
+	jr .done
+.loyalist
+	ld hl, .LoyalistText
+	call PrintText
 	jr .done
 .bag_full
 	ld hl, .BagFullText
@@ -154,6 +165,10 @@ PokemonFanClubChairmanText:
 
 .BagFullText:
 	text_far _PokemonFanClubBagFullText
+	text_end
+
+.LoyalistText:
+	text_far _PokemonFanClubChairmanLoyalistText
 	text_end
 
 PokemonFanClubReceptionistText:

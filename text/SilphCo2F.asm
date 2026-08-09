@@ -17,13 +17,17 @@ _SilphCo2FSilphWorkerFReceivedTM36Text::
 	text_end
 
 _SilphCo2FSilphWorkerFTM36ExplanationText::
-	text "TM36 is"
-	line "SELFDESTRUCT!"
+	text "That vial is raw"
+	line "MUTAGEN, from our"
+	cont "labs downstairs."
 
-	para "It's powerful, but"
-	line "the #MON that"
-	cont "uses it faints!"
-	cont "Be careful."
+	para "Pour it on a #MON"
+	line "and it becomes"
+	cont "something else."
+
+	para "Stronger. Wrong."
+	line "We never did learn"
+	cont "how to stop it."
 	done
 
 _SilphCo2FSilphWorkerFTM36NoRoomText::

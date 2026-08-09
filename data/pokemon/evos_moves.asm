@@ -543,6 +543,7 @@ BlastoiseEvosMoves:
 
 PinsirEvosMoves:
 ; Evolutions
+	db EVOLVE_ITEM, MUTAGEN_VIAL, 1, PINSIRITE
 	db 0
 ; Learnset
 	db 20, TWINEEDLE
@@ -883,6 +884,9 @@ SeelEvosMoves:
 
 DiglettEvosMoves:
 ; Evolutions
+; DIGLETT, not DUGTRIO, per Josh -- a wild DUGTRIO is already catchable in
+; Diglett's Cave in vanilla, so a Dugtrio-statted mon that early is nothing new.
+	db EVOLVE_ITEM, MUTAGEN_VIAL, 1, DIGNEMITE
 	db EVOLVE_LEVEL, 26, DUGTRIO
 	db 0
 ; Learnset
@@ -1121,6 +1125,7 @@ VulpixEvosMoves:
 
 NinetalesEvosMoves:
 ; Evolutions
+	db EVOLVE_ITEM, MUTAGEN_VIAL, 1, NINEFROST
 	db 0
 ; Learnset
 	db 0
@@ -1566,6 +1571,7 @@ ButterfreeEvosMoves:
 
 MachampEvosMoves:
 ; Evolutions
+	db EVOLVE_ITEM, MUTAGEN_VIAL, 1, ALAKACHAMP
 	db 0
 ; Learnset
 	db 20, LOW_KICK
