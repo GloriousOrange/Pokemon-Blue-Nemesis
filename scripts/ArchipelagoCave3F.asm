@@ -44,8 +44,6 @@ ArchipelagoCave3F_TextPointers:
 	dw_const ArchipelagoCave3FOakText,       TEXT_ARCHIPELAGOCAVE3F_OAK
 	; must stay in object order -- an object's text ID is its object index
 	dw_const PickUpItemText,                 TEXT_ARCHIPELAGOCAVE3F_MUTAGEN_VIAL
-	dw_const BoulderText,                    TEXT_ARCHIPELAGOCAVE3F_BOULDER1
-	dw_const BoulderText,                    TEXT_ARCHIPELAGOCAVE3F_BOULDER2
 	dw_const ArchipelagoCave3FOakRewardText, TEXT_ARCHIPELAGOCAVE3F_OAK_REWARD
 
 ArchipelagoCave3FOakText:
