@@ -238,6 +238,10 @@ PokemaniacData:
 	db 23, CUBONE, SLOWPOKE, 0
 ; Victory Road 2F
 	db $ff, 50, MOLTRES, 42, MAGMAR, 44, ARCANINE, 38, FLAREON, 0
+; Mt Moon 1F -- the mutant rumour. A lone DITTO on purpose: it transforms into
+; whatever you lead with, which is the joke, and it keeps an early fight from
+; being a wall for any of the 78 starters.
+	db 12, DITTO, 0
 
 	db 100, VICTREEBEL, PERSIAN, SLOWBRO, 0 ; ARENA #6 (pokemaniac)
 	db 100, RHYDON, 0 ; 10 -- S.S. Olympia (Pokemaniac)

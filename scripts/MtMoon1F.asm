@@ -30,6 +30,7 @@ MtMoon1F_TextPointers:
 	dw_const PickUpItemText,            TEXT_MTMOON1F_ESCAPE_ROPE
 	dw_const PickUpItemText,            TEXT_MTMOON1F_POTION2
 	dw_const PickUpItemText,            TEXT_MTMOON1F_TM_WATER_GUN
+	dw_const MtMoon1FPokemaniacText,    TEXT_MTMOON1F_POKEMANIAC
 	dw_const MtMoon1FBewareZubatSign,   TEXT_MTMOON1F_BEWARE_ZUBAT_SIGN
 
 MtMoon1TrainerHeaders:
@@ -48,7 +49,47 @@ MtMoon1TrainerHeader5:
 	trainer EVENT_BEAT_MT_MOON_1_TRAINER_5, 3, MtMoon1FYoungster2BattleText, MtMoon1FYoungster2EndBattleText, MtMoon1FYoungster2AfterBattleText
 MtMoon1TrainerHeader6:
 	trainer EVENT_BEAT_MT_MOON_1_TRAINER_6, 3, MtMoon1FYoungster3BattleText, MtMoon1FYoungster3EndBattleText, MtMoon1FYoungster3AfterBattleText
+MtMoon1TrainerHeader7:
+	trainer EVENT_BEAT_MT_MOON_1_TRAINER_7, 3, MtMoon1FPokemaniacBattleText, MtMoon1FPokemaniacEndBattleText, MtMoon1FPokemaniacAfterBattleText
 	db -1 ; end
+
+MtMoon1FPokemaniacText:
+	text_asm
+	ld hl, MtMoon1TrainerHeader7
+	call TalkToTrainer
+	jp TextScriptEnd
+
+MtMoon1FPokemaniacBattleText:
+	text "You smell that?"
+	line "Copper. Two days"
+	cont "old."
+
+	para "A MUTANT came"
+	line "through here."
+
+	para "Everything that"
+	line "got near it died"
+	cont "standing up."
+
+	para "My DITTO can be"
+	line "anything. Let's"
+	cont "see if that's"
+	cont "enough."
+	prompt
+
+MtMoon1FPokemaniacEndBattleText:
+	text "It copied you."
+	line "It always copies"
+	cont "the wrong thing."
+	prompt
+
+MtMoon1FPokemaniacAfterBattleText:
+	text "Go up if you want"
+	line "to see it."
+
+	para "I'm going back"
+	line "the way I came."
+	prompt
 
 MtMoon1FHikerText:
 	text_asm

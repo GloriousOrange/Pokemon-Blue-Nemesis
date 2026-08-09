@@ -12,6 +12,7 @@
 	const_export MTMOON1F_ESCAPE_ROPE
 	const_export MTMOON1F_POTION2
 	const_export MTMOON1F_TM_WATER_GUN
+	const_export MTMOON1F_POKEMANIAC
 
 MtMoon1F_Object:
 	db $3 ; border block
@@ -40,5 +41,9 @@ MtMoon1F_Object:
 	object_event 36, 23, SPRITE_POKE_BALL, STAY, NONE, TEXT_MTMOON1F_ESCAPE_ROPE, ESCAPE_ROPE
 	object_event 20, 33, SPRITE_POKE_BALL, STAY, NONE, TEXT_MTMOON1F_POTION2, POTION
 	object_event  5, 32, SPRITE_POKE_BALL, STAY, NONE, TEXT_MTMOON1F_TM_WATER_GUN, TM_WATER_GUN
+; Four cells inside the entrance, facing it, so the player meets him on the way
+; in -- this is the game's first word about the MUTANTS. Cell verified open on
+; all four sides and reachable from the entrance warp, so he plugs no corridor.
+	object_event 14, 31, SPRITE_SUPER_NERD, STAY, DOWN, TEXT_MTMOON1F_POKEMANIAC, OPP_POKEMANIAC, 9
 
 	def_warps_to MT_MOON_1F
