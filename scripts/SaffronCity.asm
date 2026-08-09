@@ -6,8 +6,17 @@
 ; mod's Pokemon Tower is separately gated by its own opposing-faction guard
 ; (scripts/PokemonTower1F.asm) unlocked much later in the Nocturn quest, so
 ; waiting on the vanilla trigger alone would deadlock Silph Co access.
+; A _SPEEDTEST build skips the Scope check entirely and removes him up front.
 SaffronCity_Script:
 	call EnableAutoTextBoxDrawing
+IF DEF(_SPEEDTEST)
+; Speed-test build: the guard is gone from the moment the map loads. The
+; speed-test kit no longer carries a SILPH SCOPE (see init_player_data.asm),
+; so the check below would never pass and Silph Co would be sealed shut.
+	ld a, TOGGLE_SAFFRON_CITY_E
+	ld [wToggleableObjectIndex], a
+	predef_jump HideObject
+ELSE
 	ld b, SILPH_SCOPE
 	call IsItemInBag
 	jr z, .noScope
@@ -16,6 +25,7 @@ SaffronCity_Script:
 	predef HideObject
 .noScope
 	ret
+ENDC
 
 SaffronCity_TextPointers:
 	def_text_pointers
