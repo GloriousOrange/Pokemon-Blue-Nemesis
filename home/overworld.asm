@@ -2178,6 +2178,20 @@ LoadMapHeader::
 	bit BIT_BATTLE_OVER_OR_BLACKOUT, a
 	jp nz, .finishUp ; if so, skip this because battles don't destroy this data
 	ld a, [hli]
+; A map may only have NUM_SPRITESTATEDATA_STRUCTS - 1 objects: slot 0 of
+; wSpriteStateData1/2 belongs to the PLAYER, so map objects get slots 1-15.
+; .loadSpriteLoop below walks de forward $10 per object with 8-bit maths on e
+; alone, so a 16th object wraps e back to $00 and writes its picture ID,
+; coordinates and movement byte straight over the player's own sprite slot --
+; the player then renders as that object's sprite and stops animating while
+; the map keeps scrolling. Clamp here rather than in the loop so every other
+; consumer of wNumSprites (UpdateSprites, EngageMapTrainer, ...) agrees on the
+; count. def_warps_to asserts the same bound at build time; this is the
+; belt-and-braces for a map that somehow slips through.
+	cp NUM_SPRITESTATEDATA_STRUCTS
+	jr c, .spriteCountFits
+	ld a, NUM_SPRITESTATEDATA_STRUCTS - 1
+.spriteCountFits
 	ld [wNumSprites], a ; save the number of sprites
 	push hl
 ; zero out sprite state data for sprites 01-15

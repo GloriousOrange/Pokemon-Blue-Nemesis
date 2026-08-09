@@ -76,8 +76,12 @@ MACRO def_warps_to
 		"Too many warp_events (above {d:MAX_WARP_EVENTS})!"
 	ASSERT {_NUM_BG_EVENTS} <= MAX_BG_EVENTS, \
 		"Too many bg_events (above {d:MAX_BG_EVENTS})!"
-	ASSERT {_NUM_OBJECT_EVENTS} <= MAX_OBJECT_EVENTS, \
-		"Too many object_events (above {d:MAX_OBJECT_EVENTS})!"
+	; NOT MAX_OBJECT_EVENTS: that is the size of the wMapSpriteData array, but
+	; sprite slot 0 belongs to the player, so a map only has room for one
+	; fewer. Asserting the array size instead let two Silph Co floors reach 16
+	; objects, whose 16th wrapped onto the player's sprite slot.
+	ASSERT {_NUM_OBJECT_EVENTS} <= MAX_MAP_OBJECT_EVENTS, \
+		"Too many object_events (above {d:MAX_MAP_OBJECT_EVENTS})!"
 	; text ID values are significant (see DisplayTextID in home/text_scripts.asm)
 	FOR n, {_NUM_BG_EVENTS}
 		ASSERT {_BG_EVENT_{d:n}_TEXT_ID} > {_NUM_OBJECT_EVENTS}, \

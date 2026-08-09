@@ -86,7 +86,6 @@ SilphCo5F_TextPointers:
 	dw_const SilphCo5FPokemonReport2Text, TEXT_SILPHCO5F_POKEMON_REPORT2
 	dw_const SilphCo5FPokemonReport3Text, TEXT_SILPHCO5F_POKEMON_REPORT3
 	dw_const SilphCo5FFlavorRocketText,   TEXT_SILPHCO5F_FLAVOR_ROCKET
-	dw_const SilphCo5FFlavorScientistText, TEXT_SILPHCO5F_FLAVOR_SCIENTIST
 	dw_const SilphCo5FDefender1Text, TEXT_SILPHCO5F_DEFENDER1
 	dw_const SilphCo5FDefender2Text, TEXT_SILPHCO5F_DEFENDER2
 	dw_const SilphCo5FDefender3Text, TEXT_SILPHCO5F_DEFENDER3

@@ -15,7 +15,6 @@
 	const_export SILPHCO7F_TM_SWORDS_DANCE
 	const_export SILPHCO7F_UNUSED ; referenced in data/maps/toggleable_objects.asm, no corresponding object_event
 	const_export SILPHCO7F_FLAVOR_ROCKET
-	const_export SILPHCO7F_FLAVOR_SCIENTIST
 
 SilphCo7F_Object:
 	db $2e ; border block
@@ -48,6 +47,5 @@ SilphCo7F_Object:
 	object_event  1,  9, SPRITE_POKE_BALL, STAY, NONE, TEXT_SILPHCO7F_CALCIUM, CALCIUM
 	object_event 24, 11, SPRITE_POKE_BALL, STAY, NONE, TEXT_SILPHCO7F_TM_SWORDS_DANCE, TM_SWORDS_DANCE
 	object_event  5, 10, SPRITE_ROCKET, STAY, RIGHT, TEXT_SILPHCO7F_FLAVOR_ROCKET
-	object_event  6, 10, SPRITE_SCIENTIST, STAY, LEFT, TEXT_SILPHCO7F_FLAVOR_SCIENTIST
 
 	def_warps_to SILPH_CO_7F

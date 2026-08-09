@@ -40,6 +40,11 @@ DEF SPRITESTATEDATA2_LENGTH EQU const_value
 
 DEF NUM_SPRITESTATEDATA_STRUCTS EQU 16
 
+; Slot 0 is the player, so map objects get the remaining slots. Defined a file
+; earlier as a literal, since that include runs before this one.
+ASSERT MAX_MAP_OBJECT_EVENTS == NUM_SPRITESTATEDATA_STRUCTS - 1, \
+	"MAX_MAP_OBJECT_EVENTS must be one less than NUM_SPRITESTATEDATA_STRUCTS"
+
 	const_def 6
 	const BIT_TRAINER ; 6
 	const BIT_ITEM    ; 7
