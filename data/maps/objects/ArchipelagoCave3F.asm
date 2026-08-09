@@ -1,5 +1,6 @@
 	object_const_def
 	const_export ARCHIPELAGOCAVE3F_OAK
+	const_export ARCHIPELAGOCAVE3F_MUTAGEN_VIAL
 
 ArchipelagoCave3F_Object:
 ; see ArchipelagoCave1F.asm's comment -- was $19 (walkable, same as the
@@ -17,5 +18,9 @@ ArchipelagoCave3F_Object:
 
 	def_object_events
 	object_event 10, 9, SPRITE_OAK, STAY, DOWN, TEXT_ARCHIPELAGOCAVE3F_OAK, OPP_PROF_OAK, 4 ; hidden until the roof scientist is beaten (TOGGLE_ARCHIPELAGO_CAVE_3F_OAK); stands at the water's edge
+; On the lake islet (block col 5, row 6), which is tile $20 -- landable from
+; the water but sealed off from the $05 floor by the CAVERN $20/$05 pair
+; collision, so this can only be reached by SURFing out to it.
+	object_event 10, 12, SPRITE_POKE_BALL, STAY, NONE, TEXT_ARCHIPELAGOCAVE3F_MUTAGEN_VIAL, MUTAGEN_VIAL
 
 	def_warps_to ARCHIPELAGO_CAVE_3F

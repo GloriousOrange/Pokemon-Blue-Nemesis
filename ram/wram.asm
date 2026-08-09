@@ -1938,6 +1938,14 @@ wPlayerCoins:: dw ; BCD
 ; bit array of toggleable objects; bit set = toggled off
 wToggleableObjectFlags:: flag_array $100
 wToggleableObjectFlagsEnd::
+; One bit per entry in ToggleableObjectStates. As of the Archipelago Cave
+; MUTAGEN VIAL this array is exactly FULL (256/256), and nothing else would
+; catch an overflow: the bits past the end land in the `ds 7` padding below,
+; so a 257th toggle would corrupt a neighbouring saved field instead of
+; failing. Growing the array is save-breaking (it shifts everything after it
+; in the saved block), so the next toggle needs a different home.
+ASSERT NUM_TOGGLEABLE_OBJECTS <= (wToggleableObjectFlagsEnd - wToggleableObjectFlags) * 8, \
+	"wToggleableObjectFlags is full -- see the note above before adding a toggle"
 
 	ds 7
 

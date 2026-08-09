@@ -498,6 +498,10 @@ ToggleableObjectStates:
 	toggleable_objects_appended_for SILPH_CO_11F
 	toggle_object_state SILPHCO11F_DEFENDER1, OFF
 
+; ON = present. Item balls need an entry so the pickup can remove the ball.
+	toggleable_objects_appended_for ARCHIPELAGO_CAVE_3F
+	toggle_object_state ARCHIPELAGOCAVE3F_MUTAGEN_VIAL, ON
+
 	assert_table_length NUM_TOGGLEABLE_OBJECTS
 
 	db -1, 1, ON ; end

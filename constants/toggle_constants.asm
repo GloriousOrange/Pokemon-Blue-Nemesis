@@ -471,4 +471,10 @@ ENDM
 	toggle_consts_appended_for SILPH_CO_11F
 	const TOGGLE_SILPH_CO_11F_DEFENDER1
 
+; Appended rather than filed next to TOGGLE_ARCHIPELAGO_CAVE_3F_OAK above:
+; toggle indices are global and saved, so inserting mid-list renumbers every
+; later index and breaks existing saves.
+	toggle_consts_appended_for ARCHIPELAGO_CAVE_3F
+	const TOGGLE_ARCHIPELAGO_CAVE_3F_MUTAGEN_VIAL
+
 DEF NUM_TOGGLEABLE_OBJECTS EQU const_value
