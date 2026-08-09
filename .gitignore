@@ -34,3 +34,5 @@
 .venv-emu/
 __pycache__/
 *.ss[0-9]
+*.cheats
+PKMN-NEMESIS V0.8
