@@ -958,11 +958,11 @@ Rival3Data:
 	; trainer 37 — rival starter: PINSIR
 	db $FF, 61, PIDGEOT, 59, ALAKAZAM, 61, RHYDON, 63, ARCANINE, 63, EXEGGUTOR, 65, PINSIR, 0
 
-; The six-mon rival superboss. All L100: Zapdos, Articuno, Moltres, a vengeful
-; Gengar (his dead starter's ghost -- already natively GHOST/POISON, no type
-; patch needed), his path-tier bird (Tyranis/Miasma/Nocturn), and Alakachamp
+; The six-mon rival superboss. All L100: his dead starter's ghost, his
+; path-tier bird (Tyranis/Miasma/Nocturn), and the four mutants -- Alakachamp
 ; (comes with Double Team/Counter/Psychic/Mind Fever from its own base-stats
-; learnset; Uppercut is patched into the 5th slot in ReadTrainer).
+; learnset; Uppercut is patched into the 5th slot in ReadTrainer), then
+; Pinsirite, Ninefrost and Dignemite.
 ; Selected by GetPlayerPath (0/1/2 -> trainer 38/39/40).
 ;
 ; UNREFERENCED as of the Olympia vacation re-theme (2026-08-02): the deck fight
@@ -976,15 +976,16 @@ Rival3Data:
 ; started with any of the 37 species in Rival3StarterTable, and patching at
 ; battle-load time is what keeps this at three rosters instead of 37 per path.
 ;
-; mons 4-6 are PLACEHOLDERS. They are meant to be the three new mutant species
-; (PINSIRITE plus two still undesigned); the legendary birds are standing in so
-; the fight stays playable until those exist. Replace them, don't ship them.
+; mons 4-6 are the three mutants, swapped in 2026-08-08 over the legendary
+; birds that were standing in for them. They need no move patching: each has a
+; level-up learnset that converges on its curated Mutagenstone kit by L95, so
+; AddPartyMon's normal fill already hands them the intended five moves at L100.
 	; trainer 38 — Hero path (Tyranis)
-	db $FF, 100, GENGAR, 100, TYRANIS, 100, ALAKACHAMP, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 0
+	db $FF, 100, GENGAR, 100, TYRANIS, 100, ALAKACHAMP, 100, PINSIRITE, 100, NINEFROST, 100, DIGNEMITE, 0
 	; trainer 39 — Loyalist path (Miasma)
-	db $FF, 100, GENGAR, 100, MIASMA, 100, ALAKACHAMP, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 0
+	db $FF, 100, GENGAR, 100, MIASMA, 100, ALAKACHAMP, 100, PINSIRITE, 100, NINEFROST, 100, DIGNEMITE, 0
 	; trainer 40 — Traitor path (Nocturn)
-	db $FF, 100, GENGAR, 100, NOCTURN, 100, ALAKACHAMP, 100, ZAPDOS, 100, ARTICUNO, 100, MOLTRES, 0
+	db $FF, 100, GENGAR, 100, NOCTURN, 100, ALAKACHAMP, 100, PINSIRITE, 100, NINEFROST, 100, DIGNEMITE, 0
 
 ; S.S. Olympia deck rival (endgame). One L100 Alakachamp, per the ship's
 ; one-Pokemon rule -- the same rule the player is held to aboard. Path-agnostic:
