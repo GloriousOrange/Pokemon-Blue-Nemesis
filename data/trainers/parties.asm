@@ -1083,4 +1083,9 @@ GhostRocketData:
 ; the mod's poison/rot line-up so the team reads as one dead crew rather than
 ; a grab bag. GENGAR is already GHOST in vanilla; the other five are made
 ; part-GHOST at send-out (see the GHOST_ROCKET hook in ReadTrainer).
-	db 100, RATICATE, ARBOK, MUK, WEEZING, VICTREEBEL, GENGAR, 0
+; Written in the $ff per-mon-level format even though every mon is L100.
+; The uniform-level format runs .LoopTrainerData, which jumps straight to
+; .FinishUp and never reaches the trainer-class dispatch -- so the
+; .GhostRocketCrew patch would silently never apply. Confirmed with
+; tools/trainer_probe.py, which showed the crew loading un-ghosted.
+	db $ff, 100, RATICATE, 100, ARBOK, 100, MUK, 100, WEEZING, 100, VICTREEBEL, 100, GENGAR, 0

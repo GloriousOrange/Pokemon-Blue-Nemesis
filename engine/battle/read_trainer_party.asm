@@ -124,6 +124,8 @@ ReadTrainer:
 	jr z, .MaybeRival2Special
 	cp BUG_CATCHER
 	jp z, .MaybeToby
+	cp GHOST_ROCKET
+	jp z, .GhostRocketCrew
 	jp .FinishUp ; nope
 .GiveTeamMoves
 	ld a, [hl]
@@ -287,6 +289,42 @@ ReadTrainer:
 	ld [hli], a
 	ld a, SWORDS_DANCE
 	ld [hl], a
+.GhostRocketCrew
+; The grotto crew below the Archipelago Cave are all resurrections, so force
+; TYPE2 to GHOST on every one of the six -- the same patch .ChampionRival
+; makes to the rival's dead starter, and it grants the Gen 1 Ghost immunities
+; the fight is built around.
+;
+; That one write is also what makes them look dead: SetPal_Battle already
+; recolours any enemy whose TYPE2 is GHOST to PAL_GHOSTMON, so the spectral
+; sprite needs no palette hook of its own. GENGAR is included deliberately --
+; its vanilla TYPE2 is POISON, so skipping it would leave the one member of
+; the crew that still rendered alive.
+;
+; Placed down here next to .FinishUp rather than inline in the class-dispatch
+; chain above: inserting 40-odd bytes mid-chain pushed that chain's `jr`s past
+; their 128-byte reach.
+	ld hl, wEnemyMon1Type2
+	ld de, PARTYMON_STRUCT_LENGTH
+	ld c, PARTY_LENGTH
+.ghostTypeLoop
+	ld [hl], GHOST
+	add hl, de
+	dec c
+	jr nz, .ghostTypeLoop
+; GHOST BEAM goes to ARBOK (mon2) and GENGAR (mon6) only, so the team doesn't
+; open with the same move six times. It goes in the 5th move slot, which
+; AddPartyMon leaves empty because base stats only carry four moves, so no
+; natural move is lost. PP has to be written by hand for that same reason:
+; the slot was still empty when AddPartyMon filled the PP block, so it is 0.
+	ld a, GHOST_BEAM
+	ld [wEnemyMon2Moves + 4], a
+	ld [wEnemyMon6Moves + 4], a
+	ld a, 5 ; GHOST BEAM's PP -- see data/moves/moves.asm
+	ld [wEnemyMon2PP + 4], a
+	ld [wEnemyMon6PP + 4], a
+	jp .FinishUp
+
 .FinishUp
 ; Aboard the S.S. OLYMPIA, re-arm the trainer's lone mon from the curated
 ; MutagenMovesets table. No-op everywhere else, so this sits on the shared
