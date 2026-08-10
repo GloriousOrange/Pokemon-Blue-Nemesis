@@ -115,7 +115,7 @@ MutagenMovesets::
 	mutagen_moveset FEAROW,      DRILL_PECK,     AGILITY,       DOUBLE_EDGE,   SWIFT,        SUBSTITUTE
 	mutagen_moveset FLAREON,     FIRE_BLAST,     BODY_SLAM,     HYPER_BEAM,    SWIFT,        SUBSTITUTE
 	mutagen_moveset GLOOM,       SLEEP_POWDER,   STUN_SPORE,    MEGA_DRAIN,    REFLECT,      REST
-	mutagen_moveset GOLBAT,      WING_ATTACK,    MEGA_DRAIN,    CONFUSE_RAY,   TOXIC,        SUBSTITUTE
+	mutagen_moveset GOLBAT,      BLOOD_SUCK,     DOUBLE_TEAM,   WING_ATTACK,   SCREECH,      DOUBLE_EDGE
 
 ; --- reduced list, fifth batch of 5 (2026-08-03) ---
 	mutagen_moveset GROWLITHE,   FLAMETHROWER,   AGILITY,       REFLECT,       TOXIC,        SUBSTITUTE
