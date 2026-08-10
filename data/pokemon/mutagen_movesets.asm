@@ -49,7 +49,7 @@ MutagenMovesets::
 	mutagen_moveset POLIWRATH,   SURF,           SUBMISSION,    AMNESIA,       HYPNOSIS,     ICE_BEAM
 	mutagen_moveset NIDOKING,    EARTHQUAKE,     THUNDERBOLT,   ICE_BEAM,      ROCK_SLIDE,   BODY_SLAM
 	mutagen_moveset WIGGLYTUFF,  BODY_SLAM,      THUNDERBOLT,   SING,          REST,         TOXIC
-	mutagen_moveset RHYDON,      EARTHQUAKE,     GRAVITY_SLAM,  ROCK_SLIDE,    SWORDS_DANCE, BODY_SLAM
+	mutagen_moveset RHYDON,      EARTHQUAKE,     GRAVITY_SLAM,  HORN_DRILL,    AGILITY,      BODY_SLAM
 	mutagen_moveset MAGNETON,    THUNDERBOLT,    STATIC_SHOCK,  REFLECT,       SWIFT,        TOXIC
 	mutagen_moveset ONIX,        EARTHQUAKE,     ROCK_SLIDE,    TOXIC,         SUBSTITUTE,   BODY_SLAM
 	mutagen_moveset MUK,         SLUDGE,         CRUSH_COIL,    FIRE_BLAST,    BODY_SLAM,    THUNDERBOLT
