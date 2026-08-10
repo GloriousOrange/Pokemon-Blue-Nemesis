@@ -88,7 +88,7 @@ MutagenMovesets::
 ; to WriteMonMoves like any other uncurated species; see the "Evolution on
 ; use" section of the plan for why that's deliberate, not a gap.
 	mutagen_moveset AERODACTYL,  SKY_ATTACK,     GRAVITY_SLAM,  EARTHQUAKE,    HYPER_BEAM,   AGILITY
-	mutagen_moveset ARTICUNO,    BLIZZARD,       SKY_ATTACK,    HYPER_BEAM,    REFLECT,      SWIFT
+	mutagen_moveset ARTICUNO,    BLIZZARD,       SKY_ATTACK,    ICE_BEAM,      REFLECT,      SWIFT
 	mutagen_moveset BLASTOISE,   SURF,           ICE_BEAM,      EARTHQUAKE,    BODY_SLAM,    TOXIC
 	mutagen_moveset BUTTERFREE,  PSYCHIC_M,      MEGA_DRAIN,    SOLARBEAM,     REFLECT,      SWIFT
 	mutagen_moveset CHANSEY,     METRONOME2,     TOXIC,         THUNDER_WAVE,  SOFTBOILED,   THUNDERBOLT
