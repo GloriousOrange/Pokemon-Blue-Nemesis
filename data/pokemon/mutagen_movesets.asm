@@ -44,7 +44,7 @@ MutagenMovesets::
 
 ; --- S.S. Olympia, the 24 NPC classes ---
 	mutagen_moveset RATICATE,    HYPER_BEAM,     SUPER_FANG,    BODY_SLAM,     BLOOD_SUCK,   QUICK_ATTACK
-	mutagen_moveset BEEDRILL,    CHAOS_STING,    TWINEEDLE,     SWORDS_DANCE,  CRYSTALLIZE,  TOXIC
+	mutagen_moveset BEEDRILL,    CHAOS_STING,    TWINEEDLE,     SWORDS_DANCE,  CRYSTALLIZE,  SLUDGE
 	mutagen_moveset CLEFABLE,    BODY_SLAM,      THUNDERBOLT,   ICE_BEAM,      MINIMIZE,     TOXIC
 	mutagen_moveset POLIWRATH,   SURF,           SUBMISSION,    AMNESIA,       HYPNOSIS,     ICE_BEAM
 	mutagen_moveset NIDOKING,    EARTHQUAKE,     THUNDERBOLT,   ICE_BEAM,      ROCK_SLIDE,   BODY_SLAM
