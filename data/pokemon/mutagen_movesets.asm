@@ -150,7 +150,7 @@ MutagenMovesets::
 	mutagen_moveset PORYGON,     SPORE,          DREAM_EATER,   RECOVER,       PSYCHIC_M,    THUNDERBOLT
 	mutagen_moveset RAPIDASH,    FIRE_BLAST,     BODY_SLAM,     DOUBLE_EDGE,   AGILITY,      SUBSTITUTE
 	mutagen_moveset SANDSLASH,   EARTHQUAKE,     SLASH,         SWORDS_DANCE,  ROCK_SLIDE,   REST
-	mutagen_moveset SCYTHER,     SWORDS_DANCE,   FOCUS_ENERGY,  SLASH,         TWINEEDLE,    AGILITY
+	mutagen_moveset SCYTHER,     SWORDS_DANCE,   FOCUS_ENERGY,  SLASH,         TWINEEDLE,    STEALTH
 
 ; --- reduced list, tenth batch of 5 (2026-08-03) ---
 	mutagen_moveset SEADRA,      SURF,           ICE_BEAM,      MIMIC,         RECOVER,      SUBSTITUTE
