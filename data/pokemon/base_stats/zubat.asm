@@ -1,6 +1,6 @@
 	db DEX_ZUBAT ; pokedex id
 
-	db  40,  45,  35, 200,  40
+	db  40,  45,  35, 140,  40
 	;   hp  atk  def  spd  spc
 
 	db POISON, FLYING ; type
