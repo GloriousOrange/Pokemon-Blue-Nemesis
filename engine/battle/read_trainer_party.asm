@@ -127,13 +127,15 @@ ReadTrainer:
 	cp SCIENTIST
 	jr z, .MaybeLoyalistScientist
 	cp RIVAL2
-	jr z, .MaybeRival2Special
+	jp z, .MaybeRival2Special ; `jp`, not `jr` -- .NormanTeam pushed it out of reach
 	cp BUG_CATCHER
 	jp z, .MaybeToby
 	cp GHOST_ROCKET
 	jp z, .GhostRocketCrew
 	cp ASH
 	jp z, .AshTeam
+	cp TAMER
+	jp z, .NormanTeam
 	jp .FinishUp ; nope
 .GiveTeamMoves
 	ld a, [hl]
@@ -354,6 +356,21 @@ ReadTrainer:
 	ld a, 5 ; GHOST BEAM's PP -- see data/moves/moves.asm
 	ld [wEnemyMon2PP + 4], a
 	ld [wEnemyMon6PP + 4], a
+	jp .FinishUp
+
+.NormanTeam
+; TAMER covers three trainers: Norman himself (#1), the ARENA team (#2) and his
+; lone TAUROS aboard the S.S. OLYMPIA (#3, armed by the Olympia hook in
+; .FinishUp from the MutagenMovesets table). Only the gym fight has a curated
+; roster, so branch on wTrainerNo before patching anything.
+;
+; Placed down here beside .GhostRocketCrew rather than inline in the
+; class-dispatch chain above, for the same reason: the chain's `jr`s have no
+; room to spare.
+	ld a, [wTrainerNo]
+	cp 1
+	jp nz, .FinishUp
+	callfar ApplyNormanMoveset
 	jp .FinishUp
 
 .FinishUp

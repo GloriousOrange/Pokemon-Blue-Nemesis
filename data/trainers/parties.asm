@@ -519,7 +519,10 @@ JugglerData:
 
 TamerData:
 ; Norman -- Viridian Gym leader (the game's only remaining Tamer).
-; Movesets deferred (per-mon levels via $FF format, auto level-up moves).
+; Per-mon levels via the $FF format. Five of the six carry curated movesets,
+; applied after AddPartyMon by ApplyNormanMoveset (engine/pokemon/mutagen_movesets.asm);
+; SNORLAX is the exception and keeps its learnset moves. Keep this slot order --
+; that routine's table addresses the party by slot number.
 	db $FF, 46, TAUROS, 53, SNORLAX, 47, CHANSEY, 50, KANGASKHAN, 48, EEVEE, 51, PERSIAN, 0 ; #1 NORMAN
 
 	db 100, TAUROS, GYARADOS, CHARIZARD, 0 ; ARENA #2 (tamer, was #25 ref)

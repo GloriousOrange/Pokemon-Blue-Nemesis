@@ -83,3 +83,65 @@ ApplyMutagenMoveset::
 
 	ld hl, 1
 	ret
+
+ApplyNormanMoveset::
+; Norman's Viridian Gym team -- the one roster in the game whose moves are all
+; hand-picked rather than whatever its members' learnsets happen to end on.
+; Called from ReadTrainer's class dispatch, for TamerData #1 only.
+;
+; His party uses the $FF per-mon-level format, so each mon arrives through
+; AddPartyMon with learnset moves already written; this walks the slots named in
+; .Team afterwards and overwrites them. SNORLAX has no row and keeps its
+; learnset -- Josh's call, not an omission.
+;
+; Every row is a full NUM_MOVES set, so the PP block is rewritten to match:
+; base stats only carry four moves, which leaves the 5th slot and its PP empty
+; when AddPartyMon runs, and a move sitting on 0 PP cannot be used at all.
+	ld hl, .Team
+.nextMon
+	ld a, [hli]
+	and a
+	ret z ; a 0 slot byte terminates the table
+
+	dec a ; slot number -> party index
+	push hl
+	ld hl, wEnemyMon1Moves
+	ld bc, PARTYMON_STRUCT_LENGTH
+	call AddNTimes ; hl -> this mon's MON_MOVES
+	ld d, h
+	ld e, l
+	pop hl ; hl -> this row's moves
+
+	push de ; remember where MON_MOVES starts
+	REPT NUM_MOVES
+	ld a, [hli]
+	ld [de], a
+	inc de
+	ENDR
+	ld b, h
+	ld c, l ; bc = our place in the table, past this row
+	pop hl ; hl -> MON_MOVES, the moves just written
+	push bc ; the table position has to outlive the PP write
+
+; LoadMovePPs wants hl -> the moves and de -> one byte below the PP slots.
+	push hl
+	ld bc, MON_PP - MON_MOVES - 1
+	add hl, bc
+	ld d, h
+	ld e, l
+	pop hl
+	predef LoadMovePPs ; Predef saves and restores our bank, so this is safe here
+
+	pop hl ; hl -> the next row
+	jr .nextMon
+
+.Team:
+; Party slot, then that mon's five moves. Slot 2 is SNORLAX and is deliberately
+; absent. Slot order follows TamerData #1 in data/trainers/parties.asm -- reorder
+; that roster and these slot numbers have to move with it.
+	db 1, STOMP,       HYPER_BEAM,  STAMPEDE, THUNDERBOLT, DOUBLE_EDGE ; TAUROS
+	db 3, SING,        MINIMIZE,    FLASH,    BODY_SLAM,   SUBSTITUTE  ; CHANSEY
+	db 4, MEGA_PUNCH,  DIZZY_PUNCH, BODY_SLAM, LEER,       BITE        ; KANGASKHAN
+	db 5, SAND_ATTACK, SWIFT,       RECOVER,  DOUBLE_EDGE, DOUBLE_TEAM ; EEVEE
+	db 6, JACKPOT,     SCREECH,     SLASH,    HYPER_BEAM,  DOUBLE_TEAM ; PERSIAN
+	db 0 ; end of table
