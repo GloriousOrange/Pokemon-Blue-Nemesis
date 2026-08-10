@@ -229,8 +229,8 @@ Moves:
 ; and TELEKINESIS are 30), so it takes that family's 85 accuracy rather than
 ; SPIKE_CANNON's 100.
 	move NOVA_BLITZ,   TWO_TO_FIVE_ATTACKS_EFFECT,  35, ELECTRIC,      85, 20
-; CLAMP at 35 power with a bigger price: 5 PP and 70 accuracy against
-; CLAMP's 10 and 75. Trapping rolls 2-5 turns, so this averages 150.
-	move POWER_CLAMP,  TRAPPING_EFFECT,             50, WATER,         70,  5
+; A straight upgrade on CLAMP -- same 10 PP, better power and accuracy.
+; Trapping rolls 2-5 turns, so this averages 150 damage per lock-in.
+	move POWER_CLAMP,  TRAPPING_EFFECT,             50, WATER,         85, 10
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
 	assert_table_length NUM_ATTACKS

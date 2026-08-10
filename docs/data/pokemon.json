@@ -1845,8 +1845,8 @@
   "POWER_CLAMP": {
    "power": 50,
    "type": "WATER",
-   "accuracy": 70,
-   "pp": 5,
+   "accuracy": 85,
+   "pp": 10,
    "display_name": "Power Clamp"
   },
   "STRUGGLE": {
