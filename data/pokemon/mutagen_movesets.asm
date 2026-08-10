@@ -101,7 +101,7 @@ MutagenMovesets::
 	mutagen_moveset CLEFAIRY,    SEISMIC_TOSS,   THUNDER_WAVE,  REFLECT,       METRONOME,    TOXIC
 	mutagen_moveset CLOYSTER,    POWER_CLAMP,    BLIZZARD,      EXPLOSION,     TOXIC,        REST
 	mutagen_moveset DEWGONG,     SURF,           ICE_BEAM,      REST,          SUBSTITUTE,   BODY_SLAM
-	mutagen_moveset DODRIO,      DRILL_PECK,     TRI_ATTACK,    AGILITY,       BODY_SLAM,    DOUBLE_EDGE
+	mutagen_moveset DODRIO,      DRILL_PECK,     TRI_ATTACK,    AGILITY,       BODY_SLAM,    HYPER_BEAM
 
 ; --- reduced list, third batch of 5 (2026-08-03) ---
 	mutagen_moveset DUGTRIO,     EARTHQUAKE,     ROCK_SLIDE,    FISSURE,       SLASH,        SUBSTITUTE
