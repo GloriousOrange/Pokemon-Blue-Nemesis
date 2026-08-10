@@ -1819,3 +1819,11 @@ _TextIDErrorText::
 _ContCharText::
 	text "<_CONT>@"
 	text_end
+
+_GameCornerAshText::
+	text "Oh, hi <PLAYER>!"
+	line "Did you know"
+	cont "beating ROCKETs"
+	cont "is a great way to"
+	cont "get game coins?"
+	prompt

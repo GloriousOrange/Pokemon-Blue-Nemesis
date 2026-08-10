@@ -10,6 +10,7 @@
 	const_export GAMECORNER_CLERK2
 	const_export GAMECORNER_GENTLEMAN
 	const_export GAMECORNER_ROCKET
+	const_export GAMECORNER_ASH
 
 GameCorner_Object:
 	db $f ; border block
@@ -34,5 +35,8 @@ GameCorner_Object:
 	object_event 14, 11, SPRITE_CLERK, STAY, LEFT, TEXT_GAMECORNER_CLERK2
 	object_event 17, 13, SPRITE_GENTLEMAN, STAY, RIGHT, TEXT_GAMECORNER_GENTLEMAN
 	object_event  9,  5, SPRITE_ROCKET, STAY, UP, TEXT_GAMECORNER_ROCKET, OPP_ROCKET, 7
+; Not a trainer -- no OPP_ class, so he is talk-only. Standing in the middle
+; bank facing RIGHT into a machine nobody else is using.
+	object_event 11, 12, SPRITE_RED, STAY, RIGHT, TEXT_GAMECORNER_ASH
 
 	def_warps_to GAME_CORNER

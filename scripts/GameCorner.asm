@@ -173,9 +173,16 @@ GameCorner_TextPointers:
 	dw_const GameCornerClerk2Text,            TEXT_GAMECORNER_CLERK2
 	dw_const GameCornerGentlemanText,         TEXT_GAMECORNER_GENTLEMAN
 	dw_const GameCornerRocketText,            TEXT_GAMECORNER_ROCKET
+	dw_const GameCornerAshText,               TEXT_GAMECORNER_ASH
 	dw_const GameCornerPosterText,            TEXT_GAMECORNER_POSTER
 	dw_const GameCornerRocketAfterBattleText, TEXT_GAMECORNER_ROCKET_AFTER_BATTLE
 	dw_const GameCornerRocketLetInText,       TEXT_GAMECORNER_ROCKET_LET_IN
+
+GameCornerAshText:
+; <PLAYER> expands at runtime to up to 7 characters, so the first line is
+; budgeted for the longest name: "Oh, hi " + 7 + "!" = 15 of the 18 available.
+	text_far _GameCornerAshText
+	text_end
 
 GameCornerBeauty1Text:
 	text_far _GameCornerBeauty1Text
