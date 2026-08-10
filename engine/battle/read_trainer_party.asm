@@ -54,6 +54,9 @@ ReadTrainer:
 	ld a, [hli]
 	and a ; have we reached the end of the trainer data?
 	jp z, .FinishUp
+	push hl
+	call SubstituteRivalStarter
+	pop hl
 	ld [wCurPartySpecies], a
 	ld a, ENEMY_PARTY_DATA
 	ld [wMonDataLocation], a
@@ -71,6 +74,9 @@ ReadTrainer:
 	jr z, .AddLoneMove
 	ld [wCurEnemyLevel], a
 	ld a, [hli]
+	push hl
+	call SubstituteRivalStarter
+	pop hl
 	ld [wCurPartySpecies], a
 	ld a, ENEMY_PARTY_DATA
 	ld [wMonDataLocation], a
@@ -351,4 +357,123 @@ ReadTrainer:
 	inc de
 	dec b
 	jr nz, .LastLoop ; repeat wCurEnemyLevel times
+	ret
+
+; ============================================================================
+; The rival's starter, in every fight after Oak's Lab.
+;
+; gen_tables.py generates one Oak's Lab roster per counter species (Rival1Data
+; teams 10-43), but the later rosters were never generated -- and the scripts
+; that choose them still use vanilla's three-way test:
+;
+;     cp STARTER2 / cp STARTER3 / else -> the CHARMANDER team
+;
+; STARTER2 is SQUIRTLE and STARTER3 is BULBASAUR, so a rival holding any of the
+; other 34 counter species fell straight through to the CHARMANDER roster.
+; Landon's rival picked PONYTA at the lab and turned up at Cerulean with a
+; CHARMANDER, then a CHARMELEON, then a CHARIZARD.
+;
+; Rather than write 102 new rosters, the species is swapped as each mon is
+; added: if a roster names a member of a vanilla starter line, that IS the
+; starter slot, so substitute what the rival actually carries. Doing it here,
+; BEFORE AddPartyMon, means stats and the level-up moveset are both derived
+; from the real species -- patching afterwards (what .OlympiaRival has to do)
+; leaves the previous species' moves behind.
+;
+; The Pokemon Tower rosters name no starter at all -- his died at Silph -- so
+; they are skipped for free. RIVAL3 already has proper per-species rosters.
+;
+; In: a = species the roster asked for. Out: a = species to actually add.
+SubstituteRivalStarter:
+	ld b, a                     ; b = the roster's species
+	ld a, [wCurOpponent]
+	sub OPP_ID_OFFSET
+	cp RIVAL1
+	jr z, .isRival
+	cp RIVAL2
+	jr z, .isRival
+	ld a, b
+	ret
+.isRival
+	ld a, [wRivalStarter]
+	and a
+	jr z, .keep                 ; a save from before the picker existed
+	ld c, a                     ; c = the rival's real starter
+	ld hl, .VanillaStarterLines
+.scan
+	ld a, [hli]
+	cp -1
+	jr z, .keep                 ; not the starter slot; leave this mon alone
+	cp b
+	jr nz, .scan
+	ld a, [wCurEnemyLevel]
+	ld b, a
+	ld a, c
+	jr GetSpeciesEvolvedToLevel ; tail call -- returns the species in a
+.keep
+	ld a, b
+	ret
+
+.VanillaStarterLines:
+	db BULBASAUR, IVYSAUR, VENUSAUR
+	db CHARMANDER, CHARMELEON, CHARIZARD
+	db SQUIRTLE, WARTORTLE, BLASTOISE
+	db -1
+
+; Grows a species along its level-up evolutions until it outgrows the level it
+; is being added at, so the PONYTA a roster wants at level 40 arrives as a
+; RAPIDASH. Only EVOLVE_LEVEL steps are followed: the rival levels his team, he
+; does not trade or use stones. EvosMovesPointerTable is in this same bank, so
+; no bankswitch is needed.
+; In: a = species, b = level. Out: a = species. Clobbers bc, de, hl.
+GetSpeciesEvolvedToLevel:
+	ld c, a                     ; c = current species; b stays the level
+	ld d, 3                     ; guard: no Gen 1 line is longer than this
+.restart
+	dec d
+	jr z, .done
+	ld a, c
+	dec a
+	ld l, a
+	ld h, 0
+	add hl, hl                  ; (species - 1) * 2
+	ld de, EvosMovesPointerTable
+	add hl, de
+	ld a, [hli]
+	ld h, [hl]
+	ld l, a                     ; hl -> this species' evolution data
+.entry
+	ld a, [hli]
+	and a
+	jr z, .done                 ; end of the evolution list
+	cp EVOLVE_LEVEL
+	jr z, .levelEvo
+	cp EVOLVE_ITEM
+	jr z, .itemEvo
+	inc hl                      ; EVOLVE_TRADE: level, species
+	inc hl
+	jr .entry
+.itemEvo
+	inc hl                      ; item, level, species
+	inc hl
+	inc hl
+	jr .entry
+.levelEvo
+	ld a, [hli]                 ; the level it evolves at
+	ld e, a
+	ld a, b                     ; the level this mon is being added at
+	cp e
+	jr c, .notYet               ; mon's level < evolution level
+; Read the target species WITHOUT advancing, so the not-yet path can skip it.
+; Do not be tempted to `push af` the species across the compare: `pop af`
+; restores the flags too and throws the comparison away, which had every
+; starter evolving at level 1.
+	ld a, [hl]
+	ld c, a
+	jr .restart                 ; evolved; rescan in case it evolves again
+.notYet
+	inc hl                      ; step over the species byte
+	jr .entry
+.done
+	ld a, c
 	ret

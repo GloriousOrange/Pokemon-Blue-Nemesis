@@ -292,8 +292,14 @@ ChampionsRoomOakComeWithMeText:
 ChampionsRoomGetRivalTrainerNo:
 	ld a, [wRivalStarter]
 	ld b, a
+; Terminated, unlike the version this was copied from. Rival3StarterTable
+; covers all 37 counters today, so the default is unreachable -- but an
+; unbounded scan reads arbitrary ROM the moment that stops being true, which is
+; exactly what went wrong on Route 22.
 .scan:
 	ld a, [hli]
+	cp -1
+	jr z, .found
 	cp b
 	jr z, .found
 	inc hl
@@ -341,3 +347,6 @@ Rival3StarterTable:
 	db DRATINI, 35
 	db SCYTHER, 36
 	db PINSIR, 37
+	db -1, 3 ; default: the CHARMANDER roster. Unreachable while the table
+	         ; covers every counter, but the scan above needs a terminator
+	         ; or it reads past the end (see Route22).

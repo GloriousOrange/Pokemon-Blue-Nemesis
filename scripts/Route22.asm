@@ -23,10 +23,20 @@ Route22NoopScript:
 	ret
 
 Route22GetRivalTrainerNoByStarterScript:
+; The scan used to have no terminator. Any rival starter outside the three
+; vanilla ones -- 34 of the 37 possible counters -- ran straight off the end of
+; the table and kept reading ROM until some byte happened to match, then took
+; the byte after it as a trainer number. For PONYTA that was 1818 bytes past
+; the table and gave trainer 87, against a Rival1Data holding 43. ReadTrainer
+; then walked off the end of the roster parsing whatever followed as a party.
+; The tables now end in `db -1, <default>`: hitting the terminator falls
+; through to .got_trainer_no, which reads the byte after it as the default.
 	ld a, [wRivalStarter]
 	ld b, a
 .next_trainer_no
 	ld a, [hli]
+	cp -1
+	jr z, .got_trainer_no
 	cp b
 	jr z, .got_trainer_no
 	inc hl
@@ -145,6 +155,8 @@ Route22Rival1StartBattleScript:
 	db STARTER2, 4
 	db STARTER3, 5
 	db STARTER1, 6
+	db -1, 6 ; any other counter: the STARTER1 roster, with the species
+	         ; substituted in by SubstituteRivalStarter
 
 Route22Rival1AfterBattleScript:
 	ld a, [wIsInBattle]
@@ -303,6 +315,7 @@ Route22Rival2StartBattleScript:
 	db STARTER2, 10
 	db STARTER3, 11
 	db STARTER1, 12
+	db -1, 12 ; as above
 
 Route22Rival2AfterBattleScript:
 	ld a, [wIsInBattle]
