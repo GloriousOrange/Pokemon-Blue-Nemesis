@@ -1105,3 +1105,6 @@ AshData:
 ; skips the trainer-class dispatch, and that dispatch is what hands his RAICHU
 ; the curated Mutagenstone moveset.
 	db $ff, 100, RAICHU, 100, VENUSAUR, 100, BLASTOISE, 100, CHARIZARD, 100, PIDGEOT, 100, TAUROS, 0
+; #3 -- Viridian Forest, the first meeting. The forest's BUG CATCHERs run 6-10,
+; so a lone level 12 PIKACHU is a step ahead without being a wall.
+	db 12, PIKACHU, 0

@@ -7,6 +7,7 @@
 	const_export VIRIDIANFOREST_POTION
 	const_export VIRIDIANFOREST_POKE_BALL
 	const_export VIRIDIANFOREST_YOUNGSTER5
+	const_export VIRIDIANFOREST_ASH
 
 ViridianForest_Object:
 	db $3 ; border block
@@ -36,5 +37,9 @@ ViridianForest_Object:
 	object_event 12, 29, SPRITE_POKE_BALL, STAY, NONE, TEXT_VIRIDIANFOREST_POTION, POTION
 	object_event  1, 31, SPRITE_POKE_BALL, STAY, NONE, TEXT_VIRIDIANFOREST_POKE_BALL, POKE_BALL
 	object_event 27, 40, SPRITE_YOUNGSTER, STAY, NONE, TEXT_VIRIDIANFOREST_YOUNGSTER5
+; Mid-forest on the way north, verified reachable from the south gate and open
+; on all four sides. Appended last so the item balls keep their object ids and
+; their rows in the toggle table stay pointing at the right things.
+	object_event 12, 25, SPRITE_RED, STAY, DOWN, TEXT_VIRIDIANFOREST_ASH, OPP_ASH, 3
 
 	def_warps_to VIRIDIAN_FOREST

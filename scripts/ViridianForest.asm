@@ -13,6 +13,32 @@ ViridianForest_ScriptPointers:
 	dw_const DisplayEnemyTrainerTextAndStartBattle, SCRIPT_VIRIDIANFOREST_START_BATTLE
 	dw_const EndTrainerBattle,                      SCRIPT_VIRIDIANFOREST_END_BATTLE
 
+ViridianForestAshText:
+	text_asm
+	ld hl, ViridianForestTrainerHeader3
+	call TalkToTrainer
+	jp TextScriptEnd
+
+ViridianForestAshBattleText:
+; He leads with PIKACHU because it is the only mon in AshData #3.
+	text "PIKACHU, I choose"
+	line "you!"
+	prompt
+
+ViridianForestAshEndBattleText:
+	text "We're not ready"
+	line "yet. Fine."
+	prompt
+
+ViridianForestAshAfterBattleText:
+	text "I'm going to keep"
+	line "going until no"
+	cont "one can do that."
+
+	para "I'll see you"
+	line "again."
+	prompt
+
 ViridianForest_TextPointers:
 	def_text_pointers
 	dw_const ViridianForestYoungster1Text,      TEXT_VIRIDIANFOREST_YOUNGSTER1
@@ -23,6 +49,7 @@ ViridianForest_TextPointers:
 	dw_const PickUpItemText,                    TEXT_VIRIDIANFOREST_POTION
 	dw_const PickUpItemText,                    TEXT_VIRIDIANFOREST_POKE_BALL
 	dw_const ViridianForestYoungster5Text,      TEXT_VIRIDIANFOREST_YOUNGSTER5
+	dw_const ViridianForestAshText,             TEXT_VIRIDIANFOREST_ASH
 	dw_const ViridianForestTrainerTips1Text,    TEXT_VIRIDIANFOREST_TRAINER_TIPS1
 	dw_const ViridianForestUseAntidoteSignText, TEXT_VIRIDIANFOREST_USE_ANTIDOTE_SIGN
 	dw_const ViridianForestTrainerTips2Text,    TEXT_VIRIDIANFOREST_TRAINER_TIPS2
@@ -38,6 +65,12 @@ ViridianForestTrainerHeader1:
 	trainer EVENT_BEAT_VIRIDIAN_FOREST_TRAINER_1, 4, ViridianForestYoungster3BattleText, ViridianForestYoungster3EndBattleText, ViridianForestYoungster3AfterBattleText
 ViridianForestTrainerHeader2:
 	trainer EVENT_BEAT_VIRIDIAN_FOREST_TRAINER_2, 1, ViridianForestYoungster4BattleText, ViridianForestYoungster4EndBattleText, ViridianForestYoungster4AfterBattleText
+; ASH is object 9, not 5, because he was appended rather than inserted -- so the
+; counter is moved to match him. The `trainer` macro emits this number as the
+; object id and asserts the event flag sits on the same bit.
+	def_trainers 9
+ViridianForestTrainerHeader3:
+	trainer EVENT_BEAT_VIRIDIAN_FOREST_ASH, 3, ViridianForestAshBattleText, ViridianForestAshEndBattleText, ViridianForestAshAfterBattleText
 	db -1 ; end
 
 ViridianForestYoungster1Text:

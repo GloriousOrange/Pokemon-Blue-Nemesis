@@ -537,6 +537,8 @@
 	const EVENT_BEAT_VIRIDIAN_FOREST_TRAINER_0
 	const EVENT_BEAT_VIRIDIAN_FOREST_TRAINER_1
 	const EVENT_BEAT_VIRIDIAN_FOREST_TRAINER_2
+	const_skip 4 ; align the next flag to bit 1, to match ASH's object id of 9
+	const EVENT_BEAT_VIRIDIAN_FOREST_ASH ; from this block's padding, no enum shift
 
 ; Mt. Moon events
 	const_next $570
