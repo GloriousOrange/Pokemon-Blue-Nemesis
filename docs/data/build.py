@@ -497,7 +497,12 @@ def main():
         front_src = pics.get(front_label)
         back_src = pics.get(back_label)
 
-        lvl_moves = [{"level": 1, "move": mv} for mv in base]
+        # Flagged, because these are NOT learned on evolution. AddPartyMon
+        # copies the base_stats set only when a mon is obtained *as* this
+        # species; evolving calls LearnMoveFromLevelUp, which matches the
+        # learnset against the current level and nothing else. A Gyarados
+        # evolved from Magikarp keeps Splash and Tackle.
+        lvl_moves = [{"level": 1, "move": mv, "base": True} for mv in base]
         lvl_moves += [{"level": lvl, "move": mv} for lvl, mv in learnsets.get(sp, [])]
 
         pal_name = pal_assign.get(sp)

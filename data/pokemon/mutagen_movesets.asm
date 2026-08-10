@@ -105,7 +105,7 @@ MutagenMovesets::
 
 ; --- reduced list, third batch of 5 (2026-08-03) ---
 	mutagen_moveset DUGTRIO,     EARTHQUAKE,     ROCK_SLIDE,    FISSURE,       SLASH,        SUBSTITUTE
-	mutagen_moveset EEVEE,       BODY_SLAM,      SWIFT,         SUBSTITUTE,    REFLECT,      REST
+	mutagen_moveset EEVEE,       BODY_SLAM,      SWIFT,         SUBSTITUTE,    REFLECT,      RECOVER
 	mutagen_moveset ELECTABUZZ,  THUNDERPUNCH,   STATIC_SHOCK,  THUNDER,       PSYCHIC_M,    COUNTER
 	mutagen_moveset EXEGGCUTE,   SLEEP_POWDER,   REFLECT,       PSYCHIC_M,     SUBSTITUTE,   EXPLOSION
 	mutagen_moveset EXEGGUTOR,   PSYCHIC_M,      SOLARBEAM,     HYPNOSIS,      EXPLOSION,    REST

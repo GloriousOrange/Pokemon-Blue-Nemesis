@@ -203,35 +203,36 @@ function renderMoveList(entries, kind, selectionCtx) {
       if (selected) li.classList.add("move-selected");
     }
 
-    // The row itself is a button: tapping it expands what the move actually
-    // does. The checkbox beside it stays a separate hit target so picking a
-    // moveset and reading about a move never fight each other.
-    const content = document.createElement("button");
-    content.type = "button";
+    const content = document.createElement("span");
     content.className = "move-row-content";
-    content.setAttribute("aria-expanded", "false");
     const left = document.createElement("span");
     let prefix = "";
-    if (kind === "levelUp") prefix = `L${mv.level} · `;
+    if (kind === "levelUp") prefix = mv.base ? "Start · " : `L${mv.level} · `;
     if (kind === "tmhm") prefix = `${mv.tm_number || "?"} · `;
     left.textContent = `${prefix}${mv.display_name}`;
     const right = document.createElement("span");
     right.className = "move-meta";
-    right.textContent = `${mv.type ? mv.type.replace("_TYPE", "") : "?"} · ${mv.power ?? "—"} pow · ${mv.accuracy ?? "—"}% · ${mv.pp ?? "—"}pp`;
+    // HYPER BEAM's table power is a lie -- movepool.js substitutes the real
+    // figure on the Mutagenstone tab, where the level is known to be 100.
+    const power = mv.computed_power
+      ? `${mv.power}${mv.power_note === "capped" ? "*" : ""} pow`
+      : `${mv.power ?? "—"} pow`;
+    right.textContent = `${mv.type ? mv.type.replace("_TYPE", "") : "?"} · ${power} · ${mv.accuracy ?? "—"}% · ${mv.pp ?? "—"}pp`;
     content.appendChild(left);
     content.appendChild(right);
     li.appendChild(content);
 
+    // Always visible rather than click-to-expand: what a move actually does is
+    // the point of the list, not a detail to go hunting for.
     const desc = document.createElement("p");
     desc.className = "move-desc";
-    desc.textContent = mv.description || "No description recorded for this move.";
-    desc.hidden = true;
-    content.addEventListener("click", () => {
-      const opening = desc.hidden;
-      desc.hidden = !opening;
-      content.setAttribute("aria-expanded", String(opening));
-      li.classList.toggle("move-open", opening);
-    });
+    let text = mv.description || "No description recorded for this move.";
+    if (mv.computed_power) {
+      text += mv.power_note === "capped"
+        ? ` *Its power is the user's Attack + Speed, which for this species overflows the 255 ceiling at level 100 -- so it hits at the maximum 255 even before any boosts.`
+        : ` At level 100 with perfect DVs that works out to ${mv.power}, and it climbs further with Attack or Speed boosts.`;
+    }
+    desc.textContent = text;
     li.appendChild(desc);
 
     ul.appendChild(li);
@@ -332,6 +333,17 @@ function renderDetail() {
     const note = document.createElement("p");
     note.className = "move-note";
     note.textContent = `Add to team to pick its ${MAX_MOVESET_SIZE}-move set for type coverage.`;
+    el.panel.appendChild(note);
+  }
+
+  if (activeTab === "levelUp" && pool.levelUp.some((m) => m.base)) {
+    const note = document.createElement("p");
+    note.className = "move-note";
+    note.textContent =
+      "\u201cStart\u201d moves are what this Pok\u00e9mon knows when you " +
+      "obtain it as this species \u2014 caught, traded, or given. They are " +
+      "NOT granted by evolving into it: an evolved Pok\u00e9mon keeps the " +
+      "moves it already had and picks these up at the levels listed below.";
     el.panel.appendChild(note);
   }
 

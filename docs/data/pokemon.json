@@ -2312,11 +2312,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TELEPORT"
+     "move": "TELEPORT",
+     "base": true
     },
     {
      "level": 1,
-     "move": "CONFUSION"
+     "move": "CONFUSION",
+     "base": true
     }
    ],
    "tm_hm_moves": [
@@ -2369,11 +2371,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "WING_ATTACK"
+     "move": "WING_ATTACK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "AGILITY"
+     "move": "AGILITY",
+     "base": true
     },
     {
      "level": 33,
@@ -2445,19 +2449,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "COUNTER"
+     "move": "COUNTER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "PSYCHIC_M"
+     "move": "PSYCHIC_M",
+     "base": true
     },
     {
      "level": 1,
-     "move": "MIND_FEVER"
+     "move": "MIND_FEVER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DOUBLE_TEAM"
+     "move": "DOUBLE_TEAM",
+     "base": true
     },
     {
      "level": 1,
@@ -2520,15 +2528,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TELEPORT"
+     "move": "TELEPORT",
+     "base": true
     },
     {
      "level": 1,
-     "move": "CONFUSION"
+     "move": "CONFUSION",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DISABLE"
+     "move": "DISABLE",
+     "base": true
     },
     {
      "level": 16,
@@ -2612,15 +2623,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "WRAP"
+     "move": "WRAP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "POISON_STING"
+     "move": "POISON_STING",
+     "base": true
     },
     {
      "level": 10,
@@ -2695,19 +2709,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "ROAR"
+     "move": "ROAR",
+     "base": true
     },
     {
      "level": 1,
-     "move": "EMBER"
+     "move": "EMBER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TAKE_DOWN"
+     "move": "TAKE_DOWN",
+     "base": true
     }
    ],
    "tm_hm_moves": [
@@ -2759,7 +2777,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "PECK"
+     "move": "PECK",
+     "base": true
     },
     {
      "level": 6,
@@ -2845,7 +2864,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "FURY_ATTACK"
+     "move": "FURY_ATTACK",
+     "base": true
     },
     {
      "level": 16,
@@ -2923,11 +2943,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "VINE_WHIP"
+     "move": "VINE_WHIP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWTH"
+     "move": "GROWTH",
+     "base": true
     },
     {
      "level": 13,
@@ -2996,19 +3018,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TAIL_WHIP"
+     "move": "TAIL_WHIP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "BUBBLE"
+     "move": "BUBBLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "WATER_GUN"
+     "move": "WATER_GUN",
+     "base": true
     },
     {
      "level": 8,
@@ -3094,11 +3120,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "ABSORB"
+     "move": "ABSORB",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 7,
@@ -3169,7 +3197,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "CONFUSION"
+     "move": "CONFUSION",
+     "base": true
     },
     {
      "level": 12,
@@ -3250,11 +3279,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "MIGRAIN"
+     "move": "MIGRAIN",
+     "base": true
     },
     {
      "level": 1,
-     "move": "STRING_SHOT"
+     "move": "STRING_SHOT",
+     "base": true
     }
    ],
    "tm_hm_moves": [],
@@ -3281,11 +3312,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "POUND"
+     "move": "POUND",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DOUBLESLAP"
+     "move": "DOUBLESLAP",
+     "base": true
     },
     {
      "level": 24,
@@ -3379,19 +3412,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 1,
-     "move": "EMBER"
+     "move": "EMBER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 9,
@@ -3477,11 +3514,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "EMBER"
+     "move": "EMBER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 9,
@@ -3561,15 +3600,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 1,
-     "move": "EMBER"
+     "move": "EMBER",
+     "base": true
     },
     {
      "level": 9,
@@ -3645,19 +3687,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SING"
+     "move": "SING",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DOUBLESLAP"
+     "move": "DOUBLESLAP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "MINIMIZE"
+     "move": "MINIMIZE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "METRONOME"
+     "move": "METRONOME",
+     "base": true
     }
    ],
    "tm_hm_moves": [
@@ -3724,11 +3770,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "POUND"
+     "move": "POUND",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 13,
@@ -3819,19 +3867,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "WITHDRAW"
+     "move": "WITHDRAW",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SUPERSONIC"
+     "move": "SUPERSONIC",
+     "base": true
     },
     {
      "level": 1,
-     "move": "CLAMP"
+     "move": "CLAMP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "AURORA_BEAM"
+     "move": "AURORA_BEAM",
+     "base": true
     },
     {
      "level": 31,
@@ -3897,11 +3949,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "BONE_CLUB"
+     "move": "BONE_CLUB",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 25,
@@ -3974,15 +4028,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "HEADBUTT"
+     "move": "HEADBUTT",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 1,
-     "move": "AURORA_BEAM"
+     "move": "AURORA_BEAM",
+     "base": true
     },
     {
      "level": 30,
@@ -4055,11 +4112,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "MUD_SLAP"
+     "move": "MUD_SLAP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 15,
@@ -4121,11 +4180,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "MUD_SLAP"
+     "move": "MUD_SLAP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 15,
@@ -4226,15 +4287,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "PECK"
+     "move": "PECK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 1,
-     "move": "FURY_ATTACK"
+     "move": "FURY_ATTACK",
+     "base": true
     },
     {
      "level": 20,
@@ -4309,7 +4373,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "PECK"
+     "move": "PECK",
+     "base": true
     },
     {
      "level": 20,
@@ -4376,15 +4441,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "WRAP"
+     "move": "WRAP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "THUNDER_WAVE"
+     "move": "THUNDER_WAVE",
+     "base": true
     },
     {
      "level": 10,
@@ -4455,19 +4523,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "WRAP"
+     "move": "WRAP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "THUNDER_WAVE"
+     "move": "THUNDER_WAVE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "AGILITY"
+     "move": "AGILITY",
+     "base": true
     },
     {
      "level": 10,
@@ -4549,15 +4621,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "DRAGON_BREATH"
+     "move": "DRAGON_BREATH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "WRAP"
+     "move": "WRAP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 10,
@@ -4627,15 +4702,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "PSY_CHOP"
+     "move": "PSY_CHOP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "POUND"
+     "move": "POUND",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HYPNOSIS"
+     "move": "HYPNOSIS",
+     "base": true
     },
     {
      "level": 12,
@@ -4715,15 +4793,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DIG"
+     "move": "DIG",
+     "base": true
     },
     {
      "level": 15,
@@ -4791,11 +4872,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SAND_ATTACK"
+     "move": "SAND_ATTACK",
+     "base": true
     },
     {
      "level": 27,
@@ -4833,7 +4916,7 @@
     "SWIFT",
     "SUBSTITUTE",
     "REFLECT",
-    "REST"
+    "RECOVER"
    ],
    "final_evolution_of_self": true
   },
@@ -4857,15 +4940,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "POISON_STING"
+     "move": "POISON_STING",
+     "base": true
     },
     {
      "level": 1,
-     "move": "WRAP"
+     "move": "WRAP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 17,
@@ -4929,15 +5015,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SPARK"
+     "move": "SPARK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "QUICK_ATTACK"
+     "move": "QUICK_ATTACK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 34,
@@ -5023,15 +5112,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SCREECH"
+     "move": "SCREECH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SONICBOOM"
+     "move": "SONICBOOM",
+     "base": true
     },
     {
      "level": 17,
@@ -5104,15 +5196,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "VINE_WHIP"
+     "move": "VINE_WHIP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "BARRAGE"
+     "move": "BARRAGE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HYPNOSIS"
+     "move": "HYPNOSIS",
+     "base": true
     },
     {
      "level": 25,
@@ -5186,11 +5281,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "BARRAGE"
+     "move": "BARRAGE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HYPNOSIS"
+     "move": "HYPNOSIS",
+     "base": true
     },
     {
      "level": 28,
@@ -5248,11 +5345,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "PECK"
+     "move": "PECK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SAND_ATTACK"
+     "move": "SAND_ATTACK",
+     "base": true
     },
     {
      "level": 7,
@@ -5324,15 +5423,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "PECK"
+     "move": "PECK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 9,
@@ -5400,19 +5502,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SAND_ATTACK"
+     "move": "SAND_ATTACK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "QUICK_ATTACK"
+     "move": "QUICK_ATTACK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "EMBER"
+     "move": "EMBER",
+     "base": true
     },
     {
      "level": 27,
@@ -5492,15 +5598,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "LICK"
+     "move": "LICK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "CONFUSE_RAY"
+     "move": "CONFUSE_RAY",
+     "base": true
     },
     {
      "level": 1,
-     "move": "NIGHT_SHADE"
+     "move": "NIGHT_SHADE",
+     "base": true
     },
     {
      "level": 27,
@@ -5550,15 +5659,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "LICK"
+     "move": "LICK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "CONFUSE_RAY"
+     "move": "CONFUSE_RAY",
+     "base": true
     },
     {
      "level": 1,
-     "move": "NIGHT_SHADE"
+     "move": "NIGHT_SHADE",
+     "base": true
     },
     {
      "level": 29,
@@ -5628,11 +5740,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "MUD_SLAP"
+     "move": "MUD_SLAP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 11,
@@ -5716,15 +5830,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "ABSORB"
+     "move": "ABSORB",
+     "base": true
     },
     {
      "level": 1,
-     "move": "POISONPOWDER"
+     "move": "POISONPOWDER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "STUN_SPORE"
+     "move": "STUN_SPORE",
+     "base": true
     },
     {
      "level": 15,
@@ -5796,15 +5913,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "LEECH_LIFE"
+     "move": "LEECH_LIFE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SCREECH"
+     "move": "SCREECH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "BITE"
+     "move": "BITE",
+     "base": true
     },
     {
      "level": 10,
@@ -5871,15 +5991,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "BUBBLE"
+     "move": "BUBBLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "PECK"
+     "move": "PECK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TAIL_WHIP"
+     "move": "TAIL_WHIP",
+     "base": true
     },
     {
      "level": 19,
@@ -5948,15 +6071,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TAIL_WHIP"
+     "move": "TAIL_WHIP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DISABLE"
+     "move": "DISABLE",
+     "base": true
     },
     {
      "level": 28,
@@ -6038,11 +6164,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DEFENSE_CURL"
+     "move": "DEFENSE_CURL",
+     "base": true
     },
     {
      "level": 11,
@@ -6126,11 +6254,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DEFENSE_CURL"
+     "move": "DEFENSE_CURL",
+     "base": true
     },
     {
      "level": 11,
@@ -6205,15 +6335,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "ACID"
+     "move": "ACID",
+     "base": true
     },
     {
      "level": 1,
-     "move": "POUND"
+     "move": "POUND",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DISABLE"
+     "move": "DISABLE",
+     "base": true
     },
     {
      "level": 30,
@@ -6278,15 +6411,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SCORCH"
+     "move": "SCORCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "BITE"
+     "move": "BITE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "ROAR"
+     "move": "ROAR",
+     "base": true
     },
     {
      "level": 18,
@@ -6356,19 +6492,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "BITE"
+     "move": "BITE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DRAGON_RAGE"
+     "move": "DRAGON_RAGE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HYDRO_PUMP"
+     "move": "HYDRO_PUMP",
+     "base": true
     },
     {
      "level": 20,
@@ -6449,15 +6589,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "LICK"
+     "move": "LICK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "CONFUSE_RAY"
+     "move": "CONFUSE_RAY",
+     "base": true
     },
     {
      "level": 1,
-     "move": "NIGHT_SHADE"
+     "move": "NIGHT_SHADE",
+     "base": true
     },
     {
      "level": 29,
@@ -6507,15 +6650,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "PALM_STRIKE"
+     "move": "PALM_STRIKE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "COMET_PUNCH"
+     "move": "COMET_PUNCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "AGILITY"
+     "move": "AGILITY",
+     "base": true
     },
     {
      "level": 33,
@@ -6588,11 +6734,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "DOUBLE_KICK"
+     "move": "DOUBLE_KICK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "MEDITATE"
+     "move": "MEDITATE",
+     "base": true
     },
     {
      "level": 22,
@@ -6669,7 +6817,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "BUBBLE"
+     "move": "BUBBLE",
+     "base": true
     },
     {
      "level": 19,
@@ -6728,19 +6877,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "POUND"
+     "move": "POUND",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HYPNOSIS"
+     "move": "HYPNOSIS",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DISABLE"
+     "move": "DISABLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "CONFUSION"
+     "move": "CONFUSION",
+     "base": true
     },
     {
      "level": 12,
@@ -6824,15 +6977,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEECH_SEED"
+     "move": "LEECH_SEED",
+     "base": true
     },
     {
      "level": 7,
@@ -6902,11 +7058,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SING"
+     "move": "SING",
+     "base": true
     },
     {
      "level": 1,
-     "move": "POUND"
+     "move": "POUND",
+     "base": true
     },
     {
      "level": 9,
@@ -6999,19 +7157,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SAND_ATTACK"
+     "move": "SAND_ATTACK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "QUICK_ATTACK"
+     "move": "QUICK_ATTACK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "THUNDERSHOCK"
+     "move": "THUNDERSHOCK",
+     "base": true
     },
     {
      "level": 27,
@@ -7095,15 +7257,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "PSY_CHOP"
+     "move": "PSY_CHOP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "POUND"
+     "move": "POUND",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LOVELY_KISS"
+     "move": "LOVELY_KISS",
+     "base": true
     },
     {
      "level": 18,
@@ -7192,15 +7357,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "CLAMP"
+     "move": "CLAMP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HARDEN"
+     "move": "HARDEN",
+     "base": true
     },
     {
      "level": 7,
@@ -7272,15 +7440,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HARDEN"
+     "move": "HARDEN",
+     "base": true
     },
     {
      "level": 1,
-     "move": "ABSORB"
+     "move": "ABSORB",
+     "base": true
     },
     {
      "level": 34,
@@ -7352,15 +7523,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TELEPORT"
+     "move": "TELEPORT",
+     "base": true
     },
     {
      "level": 1,
-     "move": "CONFUSION"
+     "move": "CONFUSION",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DISABLE"
+     "move": "DISABLE",
+     "base": true
     },
     {
      "level": 16,
@@ -7438,7 +7612,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "HARDEN"
+     "move": "HARDEN",
+     "base": true
     }
    ],
    "tm_hm_moves": [],
@@ -7465,11 +7640,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "COMET_PUNCH"
+     "move": "COMET_PUNCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "RAGE"
+     "move": "RAGE",
+     "base": true
     },
     {
      "level": 26,
@@ -7552,15 +7729,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "BUBBLE"
+     "move": "BUBBLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "VICEGRIP"
+     "move": "VICEGRIP",
+     "base": true
     },
     {
      "level": 20,
@@ -7632,11 +7812,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SMOG"
+     "move": "SMOG",
+     "base": true
     },
     {
      "level": 32,
@@ -7695,11 +7877,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "BUBBLE"
+     "move": "BUBBLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 25,
@@ -7761,11 +7945,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "WATER_GUN"
+     "move": "WATER_GUN",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 16,
@@ -7852,11 +8038,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "WRAP"
+     "move": "WRAP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SUPERSONIC"
+     "move": "SUPERSONIC",
+     "base": true
     },
     {
      "level": 7,
@@ -7939,15 +8127,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "KARATE_CHOP"
+     "move": "KARATE_CHOP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LOW_KICK"
+     "move": "LOW_KICK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 20,
@@ -8025,15 +8216,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "KARATE_CHOP"
+     "move": "KARATE_CHOP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LOW_KICK"
+     "move": "LOW_KICK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 20,
@@ -8104,7 +8298,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "KARATE_CHOP"
+     "move": "KARATE_CHOP",
+     "base": true
     },
     {
      "level": 20,
@@ -8175,7 +8370,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "BUBBLE"
+     "move": "BUBBLE",
+     "base": true
     },
     {
      "level": 10,
@@ -8210,7 +8406,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "EMBER"
+     "move": "EMBER",
+     "base": true
     },
     {
      "level": 30,
@@ -8295,11 +8492,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SPARK"
+     "move": "SPARK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 21,
@@ -8366,15 +8565,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SONICBOOM"
+     "move": "SONICBOOM",
+     "base": true
     },
     {
      "level": 1,
-     "move": "THUNDERSHOCK"
+     "move": "THUNDERSHOCK",
+     "base": true
     },
     {
      "level": 21,
@@ -8448,15 +8650,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "PALM_STRIKE"
+     "move": "PALM_STRIKE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 15,
@@ -8528,19 +8733,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "BONE_CLUB"
+     "move": "BONE_CLUB",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "FOCUS_ENERGY"
+     "move": "FOCUS_ENERGY",
+     "base": true
     },
     {
      "level": 25,
@@ -8619,11 +8828,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 12,
@@ -8688,7 +8899,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "HARDEN"
+     "move": "HARDEN",
+     "base": true
     }
    ],
    "tm_hm_moves": [],
@@ -8715,11 +8927,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "PSY_CHOP"
+     "move": "PSY_CHOP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "POUND"
+     "move": "POUND",
+     "base": true
     },
     {
      "level": 10,
@@ -8829,11 +9043,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "CONFUSION"
+     "move": "CONFUSION",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DISABLE"
+     "move": "DISABLE",
+     "base": true
     },
     {
      "level": 63,
@@ -8923,11 +9139,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "CONFUSION"
+     "move": "CONFUSION",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DISABLE"
+     "move": "DISABLE",
+     "base": true
     },
     {
      "level": 9,
@@ -9034,11 +9252,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SMOKESCREEN"
+     "move": "SMOKESCREEN",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DRILL_PECK"
+     "move": "DRILL_PECK",
+     "base": true
     },
     {
      "level": 40,
@@ -9095,11 +9315,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "PECK"
+     "move": "PECK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "FIRE_SPIN"
+     "move": "FIRE_SPIN",
+     "base": true
     },
     {
      "level": 12,
@@ -9177,11 +9399,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "CONFUSION"
+     "move": "CONFUSION",
+     "base": true
     },
     {
      "level": 1,
-     "move": "BARRIER"
+     "move": "BARRIER",
+     "base": true
     },
     {
      "level": 15,
@@ -9262,15 +9486,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "POUND"
+     "move": "POUND",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DISABLE"
+     "move": "DISABLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "POISON_GAS"
+     "move": "POISON_GAS",
+     "base": true
     },
     {
      "level": 30,
@@ -9343,19 +9570,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HORN_ATTACK"
+     "move": "HORN_ATTACK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "POISON_STING"
+     "move": "POISON_STING",
+     "base": true
     },
     {
      "level": 1,
-     "move": "THRASH"
+     "move": "THRASH",
+     "base": true
     },
     {
      "level": 8,
@@ -9434,19 +9665,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TAIL_WHIP"
+     "move": "TAIL_WHIP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "BODY_SLAM"
+     "move": "BODY_SLAM",
+     "base": true
     },
     {
      "level": 8,
@@ -9524,15 +9759,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "POISON_STING"
+     "move": "POISON_STING",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 8,
@@ -9594,15 +9832,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "POISON_STING"
+     "move": "POISON_STING",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 8,
@@ -9665,15 +9906,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 8,
@@ -9749,15 +9993,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HORN_ATTACK"
+     "move": "HORN_ATTACK",
+     "base": true
     },
     {
      "level": 8,
@@ -9834,19 +10081,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "EMBER"
+     "move": "EMBER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TAIL_WHIP"
+     "move": "TAIL_WHIP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "QUICK_ATTACK"
+     "move": "QUICK_ATTACK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "ROAR"
+     "move": "ROAR",
+     "base": true
     },
     {
      "level": 15,
@@ -9917,19 +10168,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "EMBER"
+     "move": "EMBER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TAIL_WHIP"
+     "move": "TAIL_WHIP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "QUICK_ATTACK"
+     "move": "QUICK_ATTACK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "ROAR"
+     "move": "ROAR",
+     "base": true
     }
    ],
    "tm_hm_moves": [
@@ -9979,11 +10234,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "GUST"
+     "move": "GUST",
+     "base": true
     },
     {
      "level": 1,
-     "move": "NIGHT_SHADE"
+     "move": "NIGHT_SHADE",
+     "base": true
     },
     {
      "level": 40,
@@ -10040,7 +10297,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "ABSORB"
+     "move": "ABSORB",
+     "base": true
     },
     {
      "level": 15,
@@ -10102,11 +10360,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "WATER_GUN"
+     "move": "WATER_GUN",
+     "base": true
     },
     {
      "level": 1,
-     "move": "WITHDRAW"
+     "move": "WITHDRAW",
+     "base": true
     },
     {
      "level": 34,
@@ -10166,15 +10426,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "WATER_GUN"
+     "move": "WATER_GUN",
+     "base": true
     },
     {
      "level": 1,
-     "move": "WITHDRAW"
+     "move": "WITHDRAW",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HORN_ATTACK"
+     "move": "HORN_ATTACK",
+     "base": true
     },
     {
      "level": 34,
@@ -10245,15 +10508,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "MUD_SLAP"
+     "move": "MUD_SLAP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SCREECH"
+     "move": "SCREECH",
+     "base": true
     },
     {
      "level": 15,
@@ -10325,11 +10591,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "MANDIBLE_BITE"
+     "move": "MANDIBLE_BITE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 13,
@@ -10394,15 +10662,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "STUN_SPORE"
+     "move": "STUN_SPORE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEECH_LIFE"
+     "move": "LEECH_LIFE",
+     "base": true
     },
     {
      "level": 13,
@@ -10473,19 +10744,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 1,
-     "move": "BITE"
+     "move": "BITE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SCREECH"
+     "move": "SCREECH",
+     "base": true
     },
     {
      "level": 12,
@@ -10561,15 +10836,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "GUST"
+     "move": "GUST",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SAND_ATTACK"
+     "move": "SAND_ATTACK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "QUICK_ATTACK"
+     "move": "QUICK_ATTACK",
+     "base": true
     },
     {
      "level": 5,
@@ -10647,11 +10925,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "GUST"
+     "move": "GUST",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SAND_ATTACK"
+     "move": "SAND_ATTACK",
+     "base": true
     },
     {
      "level": 5,
@@ -10718,7 +10998,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "GUST"
+     "move": "GUST",
+     "base": true
     },
     {
      "level": 5,
@@ -10784,11 +11065,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "THUNDERSHOCK"
+     "move": "THUNDERSHOCK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 7,
@@ -10867,7 +11150,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "VICEGRIP"
+     "move": "VICEGRIP",
+     "base": true
     },
     {
      "level": 20,
@@ -10945,7 +11229,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "VICEGRIP"
+     "move": "VICEGRIP",
+     "base": true
     },
     {
      "level": 15,
@@ -11015,7 +11300,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "BUBBLE"
+     "move": "BUBBLE",
+     "base": true
     },
     {
      "level": 16,
@@ -11080,15 +11366,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "BUBBLE"
+     "move": "BUBBLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HYPNOSIS"
+     "move": "HYPNOSIS",
+     "base": true
     },
     {
      "level": 1,
-     "move": "WATER_GUN"
+     "move": "WATER_GUN",
+     "base": true
     },
     {
      "level": 16,
@@ -11174,19 +11463,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "HYPNOSIS"
+     "move": "HYPNOSIS",
+     "base": true
     },
     {
      "level": 1,
-     "move": "WATER_GUN"
+     "move": "WATER_GUN",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DOUBLESLAP"
+     "move": "DOUBLESLAP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "BODY_SLAM"
+     "move": "BODY_SLAM",
+     "base": true
     },
     {
      "level": 16,
@@ -11256,7 +11549,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "EMBER"
+     "move": "EMBER",
+     "base": true
     },
     {
      "level": 30,
@@ -11402,19 +11696,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEER"
+     "move": "LEER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "KARATE_CHOP"
+     "move": "KARATE_CHOP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "FURY_SWIPES"
+     "move": "FURY_SWIPES",
+     "base": true
     },
     {
      "level": 15,
@@ -11498,11 +11796,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "MIGRAIN"
+     "move": "MIGRAIN",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 28,
@@ -11575,15 +11875,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "THUNDERSHOCK"
+     "move": "THUNDERSHOCK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 1,
-     "move": "THUNDER_WAVE"
+     "move": "THUNDER_WAVE",
+     "base": true
     }
    ],
    "tm_hm_moves": [
@@ -11639,19 +11942,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "EMBER"
+     "move": "EMBER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TAIL_WHIP"
+     "move": "TAIL_WHIP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "STOMP"
+     "move": "STOMP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 30,
@@ -11724,15 +12031,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TAIL_WHIP"
+     "move": "TAIL_WHIP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "QUICK_ATTACK"
+     "move": "QUICK_ATTACK",
+     "base": true
     },
     {
      "level": 7,
@@ -11801,11 +12111,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TAIL_WHIP"
+     "move": "TAIL_WHIP",
+     "base": true
     },
     {
      "level": 7,
@@ -11867,19 +12179,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "HORN_ATTACK"
+     "move": "HORN_ATTACK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "STOMP"
+     "move": "STOMP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TAIL_WHIP"
+     "move": "TAIL_WHIP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "FURY_ATTACK"
+     "move": "FURY_ATTACK",
+     "base": true
     },
     {
      "level": 30,
@@ -11970,11 +12286,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "MUD_SLAP"
+     "move": "MUD_SLAP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HORN_ATTACK"
+     "move": "HORN_ATTACK",
+     "base": true
     },
     {
      "level": 30,
@@ -12049,11 +12367,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "MUD_SLAP"
+     "move": "MUD_SLAP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 10,
@@ -12121,11 +12441,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SCRATCH"
+     "move": "SCRATCH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SAND_ATTACK"
+     "move": "SAND_ATTACK",
+     "base": true
     },
     {
      "level": 10,
@@ -12202,11 +12524,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "MANDIBLE_BITE"
+     "move": "MANDIBLE_BITE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "QUICK_ATTACK"
+     "move": "QUICK_ATTACK",
+     "base": true
     },
     {
      "level": 15,
@@ -12286,11 +12610,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "BUBBLE"
+     "move": "BUBBLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SMOKESCREEN"
+     "move": "SMOKESCREEN",
+     "base": true
     },
     {
      "level": 19,
@@ -12360,15 +12686,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "PECK"
+     "move": "PECK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TAIL_WHIP"
+     "move": "TAIL_WHIP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SUPERSONIC"
+     "move": "SUPERSONIC",
+     "base": true
     },
     {
      "level": 19,
@@ -12443,11 +12772,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "ICE_SPIKE"
+     "move": "ICE_SPIKE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HEADBUTT"
+     "move": "HEADBUTT",
+     "base": true
     },
     {
      "level": 30,
@@ -12514,11 +12845,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "ICE_SPIKE"
+     "move": "ICE_SPIKE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "WITHDRAW"
+     "move": "WITHDRAW",
+     "base": true
     },
     {
      "level": 18,
@@ -12592,15 +12925,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "CONFUSION"
+     "move": "CONFUSION",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DISABLE"
+     "move": "DISABLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HEADBUTT"
+     "move": "HEADBUTT",
+     "base": true
     },
     {
      "level": 18,
@@ -12698,7 +13034,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "CONFUSION"
+     "move": "CONFUSION",
+     "base": true
     },
     {
      "level": 18,
@@ -12783,15 +13120,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "HEADBUTT"
+     "move": "HEADBUTT",
+     "base": true
     },
     {
      "level": 1,
-     "move": "AMNESIA"
+     "move": "AMNESIA",
+     "base": true
     },
     {
      "level": 1,
-     "move": "REST"
+     "move": "REST",
+     "base": true
     },
     {
      "level": 35,
@@ -12882,11 +13222,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "PECK"
+     "move": "PECK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 9,
@@ -12947,11 +13289,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "BUBBLE"
+     "move": "BUBBLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TAIL_WHIP"
+     "move": "TAIL_WHIP",
+     "base": true
     },
     {
      "level": 22,
@@ -13020,15 +13364,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "WATER_GUN"
+     "move": "WATER_GUN",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HARDEN"
+     "move": "HARDEN",
+     "base": true
     }
    ],
    "tm_hm_moves": [
@@ -13088,7 +13435,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "BUBBLE"
+     "move": "BUBBLE",
+     "base": true
     },
     {
      "level": 10,
@@ -13182,15 +13530,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "VINE_WHIP"
+     "move": "VINE_WHIP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "CONSTRICT"
+     "move": "CONSTRICT",
+     "base": true
     },
     {
      "level": 1,
-     "move": "BIND"
+     "move": "BIND",
+     "base": true
     },
     {
      "level": 29,
@@ -13267,7 +13618,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "STOMP"
+     "move": "STOMP",
+     "base": true
     },
     {
      "level": 21,
@@ -13342,7 +13694,8 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "ACID"
+     "move": "ACID",
+     "base": true
     },
     {
      "level": 7,
@@ -13421,15 +13774,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "ACID"
+     "move": "ACID",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SUPERSONIC"
+     "move": "SUPERSONIC",
+     "base": true
     },
     {
      "level": 1,
-     "move": "WRAP"
+     "move": "WRAP",
+     "base": true
     },
     {
      "level": 7,
@@ -13515,19 +13871,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "DOUBLE_DRILL"
+     "move": "DOUBLE_DRILL",
+     "base": true
     },
     {
      "level": 1,
-     "move": "HYPER_BEAMS"
+     "move": "HYPER_BEAMS",
+     "base": true
     },
     {
      "level": 1,
-     "move": "BODY_SLAM"
+     "move": "BODY_SLAM",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SAND_ATTACK"
+     "move": "SAND_ATTACK",
+     "base": true
     },
     {
      "level": 5,
@@ -13579,19 +13939,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SAND_ATTACK"
+     "move": "SAND_ATTACK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "QUICK_ATTACK"
+     "move": "QUICK_ATTACK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "WATER_GUN"
+     "move": "WATER_GUN",
+     "base": true
     },
     {
      "level": 27,
@@ -13676,19 +14040,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DISABLE"
+     "move": "DISABLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "POISONPOWDER"
+     "move": "POISONPOWDER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEECH_LIFE"
+     "move": "LEECH_LIFE",
+     "base": true
     },
     {
      "level": 24,
@@ -13765,15 +14133,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "MANDIBLE_BITE"
+     "move": "MANDIBLE_BITE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DISABLE"
+     "move": "DISABLE",
+     "base": true
     },
     {
      "level": 24,
@@ -13839,19 +14210,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWL"
+     "move": "GROWL",
+     "base": true
     },
     {
      "level": 1,
-     "move": "LEECH_SEED"
+     "move": "LEECH_SEED",
+     "base": true
     },
     {
      "level": 1,
-     "move": "VINE_WHIP"
+     "move": "VINE_WHIP",
+     "base": true
     },
     {
      "level": 7,
@@ -13929,19 +14304,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SLEEP_POWDER"
+     "move": "SLEEP_POWDER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "STUN_SPORE"
+     "move": "STUN_SPORE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "ACID"
+     "move": "ACID",
+     "base": true
     },
     {
      "level": 1,
-     "move": "RAZOR_LEAF"
+     "move": "RAZOR_LEAF",
+     "base": true
     },
     {
      "level": 13,
@@ -14003,19 +14382,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "STUN_SPORE"
+     "move": "STUN_SPORE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SLEEP_POWDER"
+     "move": "SLEEP_POWDER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "ACID"
+     "move": "ACID",
+     "base": true
     },
     {
      "level": 1,
-     "move": "PETAL_DANCE"
+     "move": "PETAL_DANCE",
+     "base": true
     },
     {
      "level": 15,
@@ -14076,15 +14459,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SPARK"
+     "move": "SPARK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SCREECH"
+     "move": "SCREECH",
+     "base": true
     },
     {
      "level": 17,
@@ -14148,11 +14534,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "EMBER"
+     "move": "EMBER",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TAIL_WHIP"
+     "move": "TAIL_WHIP",
+     "base": true
     },
     {
      "level": 16,
@@ -14220,15 +14608,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "TAIL_WHIP"
+     "move": "TAIL_WHIP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "BUBBLE"
+     "move": "BUBBLE",
+     "base": true
     },
     {
      "level": 8,
@@ -14305,11 +14696,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "POISON_STING"
+     "move": "POISON_STING",
+     "base": true
     },
     {
      "level": 1,
-     "move": "STRING_SHOT"
+     "move": "STRING_SHOT",
+     "base": true
     }
    ],
    "tm_hm_moves": [],
@@ -14337,15 +14730,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "VINE_WHIP"
+     "move": "VINE_WHIP",
+     "base": true
     },
     {
      "level": 1,
-     "move": "GROWTH"
+     "move": "GROWTH",
+     "base": true
     },
     {
      "level": 1,
-     "move": "WRAP"
+     "move": "WRAP",
+     "base": true
     },
     {
      "level": 13,
@@ -14420,15 +14816,18 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "TACKLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SMOG"
+     "move": "SMOG",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SLUDGE"
+     "move": "SLUDGE",
+     "base": true
     },
     {
      "level": 32,
@@ -14494,19 +14893,23 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "SING"
+     "move": "SING",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DISABLE"
+     "move": "DISABLE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DEFENSE_CURL"
+     "move": "DEFENSE_CURL",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DOUBLESLAP"
+     "move": "DOUBLESLAP",
+     "base": true
     }
    ],
    "tm_hm_moves": [
@@ -14573,11 +14976,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "THUNDERSHOCK"
+     "move": "THUNDERSHOCK",
+     "base": true
     },
     {
      "level": 1,
-     "move": "SWIFT"
+     "move": "SWIFT",
+     "base": true
     },
     {
      "level": 12,
@@ -14659,11 +15064,13 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "LEECH_LIFE"
+     "move": "LEECH_LIFE",
+     "base": true
     },
     {
      "level": 1,
-     "move": "DIVE"
+     "move": "DIVE",
+     "base": true
     },
     {
      "level": 9,
