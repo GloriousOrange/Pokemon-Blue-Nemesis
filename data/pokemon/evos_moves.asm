@@ -467,8 +467,8 @@ ShellderEvosMoves:
 	db EVOLVE_ITEM, WATER_STONE, 1, CLOYSTER
 	db 0
 ; Learnset
+	db 11, CLAMP ; was L23; the list has to stay sorted, so it moves up here too
 	db 18, SUPERSONIC
-	db 23, CLAMP
 	db 25, CRYSTALLIZE
 	db 30, AURORA_BEAM
 	db 39, LEER
