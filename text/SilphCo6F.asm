@@ -147,7 +147,8 @@ _SilphCo6FDefender1BattleText::
 	done
 
 _SilphCo6FDefender1EndBattleText::
-	text "Especially to him."
+	text ""
+	line "Especially to him."
 	prompt
 
 _SilphCo6FDefender1AfterBattleText::
@@ -163,8 +164,9 @@ _SilphCo6FDefender2BattleText::
 	done
 
 _SilphCo6FDefender2EndBattleText::
-	text "It's all backed"
-	line "up anyway."
+	text ""
+	line "It's all backed"
+	cont "up anyway."
 	prompt
 
 _SilphCo6FDefender2AfterBattleText::

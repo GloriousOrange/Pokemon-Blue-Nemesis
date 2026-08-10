@@ -4412,7 +4412,7 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "VENOM_BITE"
+     "move": "POISON_STING"
     },
     {
      "level": 1,
@@ -4421,10 +4421,6 @@
     {
      "level": 1,
      "move": "LEER"
-    },
-    {
-     "level": 10,
-     "move": "POISON_STING"
     },
     {
      "level": 17,
@@ -9087,7 +9083,7 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "VENOM_BITE"
+     "move": "POISON_STING"
     },
     {
      "level": 1,
@@ -9100,10 +9096,6 @@
     {
      "level": 8,
      "move": "SCRATCH"
-    },
-    {
-     "level": 14,
-     "move": "POISON_STING"
     },
     {
      "level": 21,
@@ -9161,7 +9153,7 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "VENOM_BITE"
+     "move": "POISON_STING"
     },
     {
      "level": 1,
@@ -9174,10 +9166,6 @@
     {
      "level": 8,
      "move": "HORN_ATTACK"
-    },
-    {
-     "level": 14,
-     "move": "POISON_STING"
     },
     {
      "level": 21,
@@ -11182,7 +11170,7 @@
    ],
    "mutagen_moveset": [
     "NOVA_BLITZ",
-    "STATIC_SHOCK",
+    "THUNDER",
     "BODY_SLAM",
     "AGILITY",
     "HYPER_BEAM"

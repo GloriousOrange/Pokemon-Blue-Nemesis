@@ -53,8 +53,9 @@ _Route1MeganChallengeText::
 	done
 
 _Route1MeganLoveText::
-	text "I'll be your"
-	line "girlfriend!"
+	text ""
+	line "I'll be your"
+	cont "girlfriend!"
 
 	para "Here's my number."
 	line "Call any time!"

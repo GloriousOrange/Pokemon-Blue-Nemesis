@@ -24,15 +24,16 @@ _Route22RivalAfterBattleText1::
 	done
 
 _Route22Rival1DefeatedText::
-	text "Luck. Nothing"
-	line "more."
+	text ""
+	line "Luck. Nothing"
+	cont "more."
 
 	para "It will not save"
 	line "you twice."
 	prompt
 
 _Route22Rival1VictoryText::
-	text "<RIVAL>: Weak."
+	text "Weak."
 
 	para "Come back when"
 	line "your beasts can"
@@ -79,8 +80,9 @@ _Route22Rival2DefeatedText::
 	prompt
 
 _Route22Rival2VictoryText::
-	text "Ha! Not even"
-	line "close, <PLAYER>."
+	text ""
+	line "Ha! Not even"
+	cont "close, <PLAYER>."
 
 	para "See you at the"
 	line "top. If you"

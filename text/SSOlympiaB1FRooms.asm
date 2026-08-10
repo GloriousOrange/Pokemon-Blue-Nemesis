@@ -15,7 +15,8 @@ _SSOlympiaB1FRoomsTobyBattleText::
 	done
 
 _SSOlympiaB1FRoomsTobyEndBattleText::
-	text "Wow! So strong!"
+	text ""
+	line "Wow! So strong!"
 	prompt
 
 _SSOlympiaB1FRoomsTobyAfterBattleText::

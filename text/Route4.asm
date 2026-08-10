@@ -12,8 +12,9 @@ _Route4CooltrainerF2BattleText::
 	done
 
 _Route4CooltrainerF2EndBattleText::
-	text "Oh! My mushroom"
-	line "harvest!"
+	text ""
+	line "Oh! My mushroom"
+	cont "harvest!"
 	prompt
 
 _Route4CooltrainerF2AfterBattleText::

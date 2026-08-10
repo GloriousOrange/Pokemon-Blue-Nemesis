@@ -17,8 +17,9 @@ _BrunoBeforeBattleText::
 	done
 
 _BrunoEndBattleText::
-	text "Impossible!"
-	line "My swarm..."
+	text ""
+	line "Impossible!"
+	cont "My swarm..."
 	prompt
 
 _BrunoAfterBattleText::

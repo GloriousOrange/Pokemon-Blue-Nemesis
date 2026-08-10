@@ -69,12 +69,14 @@ ArchipelagoCave4FGhostRocketText:
 	prompt
 
 .DefeatText:
-	text "...still cold."
+	text ""
+	line "...still cold."
 	prompt
 
 .VictoryText:
-	text "Stay. It's quiet"
-	line "here."
+	text ""
+	line "Stay. It's quiet"
+	cont "here."
 	prompt
 
 .AfterText:

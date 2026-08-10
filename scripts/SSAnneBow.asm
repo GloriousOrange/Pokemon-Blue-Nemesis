@@ -52,8 +52,9 @@ SSAnneBowAshBattleText:
 	prompt
 
 SSAnneBowAshEndBattleText:
-	text "Closer that time."
-	line "Wasn't it?"
+	text ""
+	line "Closer that time."
+	cont "Wasn't it?"
 	prompt
 
 SSAnneBowAshAfterBattleText:

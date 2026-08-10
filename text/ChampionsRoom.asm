@@ -15,8 +15,9 @@ _ChampionsRoomRivalIntroText::
 	done
 
 _RivalDefeatedText::
-	text "I can't deny it."
-	line "You're the world's"
+	text ""
+	line "I can't deny it."
+	cont "You're the world's"
 	cont "greatest trainer."
 
 	para "You should be the"
@@ -31,7 +32,7 @@ _RivalDefeatedText::
 	prompt
 
 _RivalVictoryText::
-	text "<RIVAL>: I win."
+	text "I win."
 
 	para "I was always going"
 	line "to win, <PLAYER>."

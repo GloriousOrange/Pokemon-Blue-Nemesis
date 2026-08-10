@@ -85,8 +85,9 @@ _SilphCo5FDefender1BattleText::
 	done
 
 _SilphCo5FDefender1EndBattleText::
-	text "It is on this"
-	line "floor, isn't it."
+	text ""
+	line "It is on this"
+	cont "floor, isn't it."
 	prompt
 
 _SilphCo5FDefender1AfterBattleText::
@@ -102,7 +103,8 @@ _SilphCo5FDefender2BattleText::
 	done
 
 _SilphCo5FDefender2EndBattleText::
-	text "Through me, then."
+	text ""
+	line "Through me, then."
 	prompt
 
 _SilphCo5FDefender2AfterBattleText::
@@ -119,8 +121,9 @@ _SilphCo5FDefender3BattleText::
 	done
 
 _SilphCo5FDefender3EndBattleText::
-	text "The numbers were"
-	line "right."
+	text ""
+	line "The numbers were"
+	cont "right."
 	prompt
 
 _SilphCo5FDefender3AfterBattleText::

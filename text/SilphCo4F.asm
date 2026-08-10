@@ -106,8 +106,9 @@ _SilphCo4FDefender1BattleText::
 	done
 
 _SilphCo4FDefender1EndBattleText::
-	text "Neither do I,"
-	line "now."
+	text ""
+	line "Neither do I,"
+	cont "now."
 	prompt
 
 _SilphCo4FDefender1AfterBattleText::
@@ -123,8 +124,9 @@ _SilphCo4FDefender2BattleText::
 	done
 
 _SilphCo4FDefender2EndBattleText::
-	text "Should have"
-	line "called for help."
+	text ""
+	line "Should have"
+	cont "called for help."
 	prompt
 
 _SilphCo4FDefender2AfterBattleText::

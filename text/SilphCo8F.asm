@@ -114,7 +114,8 @@ _SilphCo8FDefender1BattleText::
 	done
 
 _SilphCo8FDefender1EndBattleText::
-	text "You do have a key."
+	text ""
+	line "You do have a key."
 	prompt
 
 _SilphCo8FDefender1AfterBattleText::
@@ -131,7 +132,8 @@ _SilphCo8FDefender2BattleText::
 	done
 
 _SilphCo8FDefender2EndBattleText::
-	text "One more floor."
+	text ""
+	line "One more floor."
 	prompt
 
 _SilphCo8FDefender2AfterBattleText::

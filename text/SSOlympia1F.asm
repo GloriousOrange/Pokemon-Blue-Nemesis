@@ -17,7 +17,8 @@ _SSOlympia1FBrockBattleText::
 	done
 
 _SSOlympia1FBrockEndBattleText::
-	text "Ha! Worth it."
+	text ""
+	line "Ha! Worth it."
 	prompt
 
 _SSOlympia1FBrockAfterBattleText::
@@ -33,7 +34,8 @@ _SSOlympia1FMistyBattleText::
 	done
 
 _SSOlympia1FMistyEndBattleText::
-	text "You swim well!"
+	text ""
+	line "You swim well!"
 	prompt
 
 _SSOlympia1FMistyAfterBattleText::

@@ -105,7 +105,8 @@ _FightingDojoBlackbelt4BattleText::
 	done
 
 _FightingDojoBlackbelt4EndBattleText::
-	text "Reported!"
+	text ""
+	line "Reported!"
 	prompt
 
 _FightingDojoBlackbelt4AfterBattleText::

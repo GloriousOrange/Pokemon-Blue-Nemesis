@@ -75,7 +75,8 @@ _SilphCo3FDefender1BattleText::
 	done
 
 _SilphCo3FDefender1EndBattleText::
-	text "Eleven years..."
+	text ""
+	line "Eleven years..."
 	prompt
 
 _SilphCo3FDefender1AfterBattleText::

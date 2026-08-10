@@ -83,7 +83,8 @@ _SilphCo10FDefender1BattleText::
 	done
 
 _SilphCo10FDefender1EndBattleText::
-	text "Such as it was."
+	text ""
+	line "Such as it was."
 	prompt
 
 _SilphCo10FDefender1AfterBattleText::

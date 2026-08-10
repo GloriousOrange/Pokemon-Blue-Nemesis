@@ -26,7 +26,8 @@ _SSOlympiaB1FLanceBattleText::
 	done
 
 _SSOlympiaB1FLanceEndBattleText::
-	text "Splendid form!"
+	text ""
+	line "Splendid form!"
 	prompt
 
 _SSOlympiaB1FLanceAfterBattleText::

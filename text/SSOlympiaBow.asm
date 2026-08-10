@@ -29,16 +29,18 @@ _SSOlympiaBowRivalAmbushText::
 ; SaveEndBattleTextPointers auto-prefixes "<RIVAL>: " (~8 chars) to line 1,
 ; so line 1's own content stays short -- see the Mathus end-battle-text gotcha.
 _SSOlympiaBowRivalDefeatedText::
-	text "...Futile."
-	line "I should have"
+	text ""
+	line "...Futile."
+	cont "I should have"
 	cont "known. You really"
 	cont "are the world's"
 	cont "greatest trainer."
 	done
 
 _SSOlympiaBowRivalVictoryText::
-	text "Ha! Not even"
-	line "close."
+	text ""
+	line "Ha! Not even"
+	cont "close."
 	done
 
 _SSOlympiaBowSailorBattleText::
@@ -46,7 +48,8 @@ _SSOlympiaBowSailorBattleText::
 	done
 
 _SSOlympiaBowSailorEndBattleText::
-	text "You got me!"
+	text ""
+	line "You got me!"
 	prompt
 
 _SSOlympiaBowSailorAfterBattleText::
@@ -59,7 +62,8 @@ _SSOlympiaBowSwimmerBattleText::
 	done
 
 _SSOlympiaBowSwimmerEndBattleText::
-	text "Out of my depth!"
+	text ""
+	line "Out of my depth!"
 	prompt
 
 _SSOlympiaBowSwimmerAfterBattleText::
@@ -72,7 +76,8 @@ _SSOlympiaBowRockerBattleText::
 	done
 
 _SSOlympiaBowRockerEndBattleText::
-	text "You got me!"
+	text ""
+	line "You got me!"
 	prompt
 
 _SSOlympiaBowRockerAfterBattleText::

@@ -200,7 +200,7 @@ _SilphCo7FRivalDefeatedText::
 	prompt
 
 _SilphCo7FRivalVictoryText::
-	text "<RIVAL>: You came"
+	text "You came"
 	line "all this way to"
 	cont "lose?"
 
@@ -287,8 +287,9 @@ _SilphCo7FDefender1BattleText::
 	done
 
 _SilphCo7FDefender1EndBattleText::
-	text "We should have"
-	line "locked it."
+	text ""
+	line "We should have"
+	cont "locked it."
 	prompt
 
 _SilphCo7FDefender1AfterBattleText::
@@ -305,7 +306,8 @@ _SilphCo7FDefender2BattleText::
 	done
 
 _SilphCo7FDefender2EndBattleText::
-	text "Please..."
+	text ""
+	line "Please..."
 	prompt
 
 _SilphCo7FDefender2AfterBattleText::
@@ -322,7 +324,8 @@ _SilphCo7FDefender3BattleText::
 	done
 
 _SilphCo7FDefender3EndBattleText::
-	text "And now to me."
+	text ""
+	line "And now to me."
 	prompt
 
 _SilphCo7FDefender3AfterBattleText::

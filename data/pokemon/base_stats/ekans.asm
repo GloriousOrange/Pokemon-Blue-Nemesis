@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/ekans.pic", 0, 1 ; sprite dimensions
 	dw EkansPicFront, EkansPicBack
 
-	db VENOM_BITE, WRAP, LEER, NO_MOVE ; level 1 learnset (Venom Bite added for starter STAB)
+	db POISON_STING, WRAP, LEER, NO_MOVE ; level 1 learnset
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset

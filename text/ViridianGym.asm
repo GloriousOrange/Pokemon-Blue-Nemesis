@@ -119,8 +119,9 @@ _ViridianGymRocker1BattleText::
 	done
 
 _ViridianGymRocker1EndBattleText::
-	text "You are in"
-	line "perfect harmony!"
+	text ""
+	line "You are in"
+	cont "perfect harmony!"
 	prompt
 
 _ViridianGymRocker1AfterBattleText::

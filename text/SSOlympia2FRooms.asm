@@ -28,7 +28,8 @@ _SSOlympia2FRoomsNormanBattleText::
 	done
 
 _SSOlympia2FRoomsNormanEndBattleText::
-	text "Fine herding!"
+	text ""
+	line "Fine herding!"
 	prompt
 
 _SSOlympia2FRoomsNormanAfterBattleText::
@@ -60,7 +61,8 @@ _SSOlympia2FRoomsLoreleiBattleText::
 	done
 
 _SSOlympia2FRoomsLoreleiEndBattleText::
-	text "Chilling work."
+	text ""
+	line "Chilling work."
 	prompt
 
 _SSOlympia2FRoomsLoreleiAfterBattleText::
@@ -74,7 +76,8 @@ _SSOlympia2FRoomsPokemaniacBattleText::
 	done
 
 _SSOlympia2FRoomsPokemaniacEndBattleText::
-	text "You got me!"
+	text ""
+	line "You got me!"
 	prompt
 
 _SSOlympia2FRoomsPokemaniacAfterBattleText::

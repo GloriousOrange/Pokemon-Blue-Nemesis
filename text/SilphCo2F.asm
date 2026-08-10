@@ -176,7 +176,8 @@ _SilphCo2FDefender1BattleText::
 	done
 
 _SilphCo2FDefender1EndBattleText::
-	text "I only work here!"
+	text ""
+	line "I only work here!"
 	prompt
 
 _SilphCo2FDefender1AfterBattleText::
@@ -193,8 +194,9 @@ _SilphCo2FDefender2BattleText::
 	done
 
 _SilphCo2FDefender2EndBattleText::
-	text "No one is coming,"
-	line "are they."
+	text ""
+	line "No one is coming,"
+	cont "are they."
 	prompt
 
 _SilphCo2FDefender2AfterBattleText::
@@ -210,8 +212,9 @@ _SilphCo2FScientist1LoyalistBattleText::
 	done
 
 _SilphCo2FScientist1LoyalistEndBattleText::
-	text "I'm not paid"
-	line "enough for this."
+	text ""
+	line "I'm not paid"
+	cont "enough for this."
 	prompt
 
 _SilphCo2FScientist1LoyalistAfterBattleText::

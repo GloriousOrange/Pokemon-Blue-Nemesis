@@ -239,7 +239,7 @@ NidoranMEvosMoves:
 	db 0
 ; Learnset
 	db 8, HORN_ATTACK
-	db 14, POISON_STING
+	db 14, VENOM_BITE ; swapped with POISON_STING, which is now the L1 move
 	db 21, FOCUS_ENERGY
 	db 29, FURY_ATTACK
 	db 36, HORN_DRILL
@@ -378,7 +378,7 @@ NidoranFEvosMoves:
 	db 0
 ; Learnset
 	db 8, SCRATCH
-	db 14, POISON_STING
+	db 14, VENOM_BITE ; swapped with POISON_STING, which is now the L1 move
 	db 21, TAIL_WHIP
 	db 29, BITE
 	db 36, FURY_SWIPES
@@ -1394,7 +1394,7 @@ EkansEvosMoves:
 	db EVOLVE_LEVEL, 22, ARBOK
 	db 0
 ; Learnset
-	db 10, POISON_STING
+	db 10, VENOM_BITE ; swapped with POISON_STING, which is now the L1 move
 	db 17, BITE
 	db 24, GLARE
 	db 31, SCREECH

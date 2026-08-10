@@ -116,7 +116,8 @@ _SilphCo9FDefender1BattleText::
 	done
 
 _SilphCo9FDefender1EndBattleText::
-	text "You have none."
+	text ""
+	line "You have none."
 	prompt
 
 _SilphCo9FDefender1AfterBattleText::
@@ -133,7 +134,8 @@ _SilphCo9FDefender2BattleText::
 	done
 
 _SilphCo9FDefender2EndBattleText::
-	text "Of course you did."
+	text ""
+	line "Of course you did."
 	prompt
 
 _SilphCo9FDefender2AfterBattleText::

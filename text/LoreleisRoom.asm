@@ -12,8 +12,9 @@ _LoreleisRoomLoreleiBeforeBattleText::
 	done
 
 _LoreleisRoomLoreleiEndBattleText::
-	text "You won. Now"
-	line "hear me out."
+	text ""
+	line "You won. Now"
+	cont "hear me out."
 	prompt
 
 _LoreleisRoomLoreleiAfterBattleText::

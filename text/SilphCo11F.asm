@@ -147,8 +147,9 @@ _SilphCo11FPupilBattleText::
 	done
 
 _SilphCo11FPupilEndBattleText::
-	text "You're not even"
-	line "supposed to be"
+	text ""
+	line "You're not even"
+	cont "supposed to be"
 	cont "up here!"
 	prompt
 
@@ -207,7 +208,8 @@ _SilphCo11FRocket1BattleText::
 	done
 
 _SilphCo11FRocket1EndBattleText::
-	text "Awww, demoted!"
+	text ""
+	line "Awww, demoted!"
 	prompt
 
 _SilphCo11FRocket1AfterBattleText::
@@ -253,8 +255,9 @@ _SilphCo11FDefender1BattleText::
 	done
 
 _SilphCo11FDefender1EndBattleText::
-	text "I tried. I did"
-	line "try."
+	text ""
+	line "I tried. I did"
+	cont "try."
 	prompt
 
 _SilphCo11FDefender1AfterBattleText::

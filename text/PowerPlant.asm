@@ -8,7 +8,8 @@ _PowerPlantJugglerPreBattleText::
 	done
 
 _PowerPlantJugglerEndBattleText::
-	text "My slaves are"
-	line "grounded for"
+	text ""
+	line "My slaves are"
+	cont "grounded for"
 	cont "a week!"
 	prompt

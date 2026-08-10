@@ -240,11 +240,13 @@ BattleIslandLabSci5Challenge:
 	prompt
 
 BattleIslandLabSciDefeatedText:
-	text "Unquantifiable..."
+	text ""
+	line "Unquantifiable..."
 	prompt
 
 BattleIslandScientistVictoryText:
-	text "As predicted."
+	text ""
+	line "As predicted."
 	prompt
 
 BattleIslandScientistBeatenText:

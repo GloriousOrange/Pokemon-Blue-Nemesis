@@ -11,15 +11,16 @@ _PokemonTower2FRivalWhatBringsYouHereText::
 	done
 
 _PokemonTower2FRivalDefeatedText::
-	text "Hmph. I was not"
-	line "trying."
+	text ""
+	line "Hmph. I was not"
+	cont "trying."
 
 	para "Do not mistake"
 	line "this for mercy."
 	prompt
 
 _PokemonTower2FRivalVictoryText::
-	text "<RIVAL>: Weak"
+	text "Weak"
 	line "beasts. Weak"
 	cont "master."
 

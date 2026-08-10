@@ -275,13 +275,13 @@ MeganSparOfferText:
 	done
 
 MeganTrainWinText:
-	text "MEGAN: That's my"
+	text "That's my"
 	line "champ! You're"
 	cont "ready for them."
 	prompt
 
 MeganTrainLoseText:
-	text "MEGAN: Hey, better"
+	text "Hey, better"
 	line "me than the"
 	cont "leader, right?"
 

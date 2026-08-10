@@ -8,7 +8,8 @@ _VictoryRoad2FPokemaniacPreBattleText::
 	done
 
 _VictoryRoad2FPokemaniacEndBattleText::
-	text "That got heated!"
+	text ""
+	line "That got heated!"
 	prompt
 
 _VictoryRoad2FHikerBattleText::

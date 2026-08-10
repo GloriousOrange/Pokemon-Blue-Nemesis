@@ -281,8 +281,9 @@ _OaksLabRivalIPickedTheWrongPokemonText::
 	prompt
 
 _OaksLabRivalAmIGreatOrWhatText::
-	text "We both knew"
-	line "I'd win."
+	text ""
+	line "We both knew"
+	cont "I'd win."
 	prompt
 
 _OaksLabRivalSmellYouLaterText::

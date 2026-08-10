@@ -63,8 +63,9 @@ Route10AshBattleText:
 	prompt
 
 Route10AshEndBattleText:
-	text "Every time. Every"
-	line "single time."
+	text ""
+	line "Every time. Every"
+	cont "single time."
 	prompt
 
 Route10AshAfterBattleText:

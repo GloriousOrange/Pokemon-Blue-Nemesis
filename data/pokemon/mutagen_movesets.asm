@@ -27,7 +27,7 @@ MutagenMovesets::
 ; NOVA_BLITZ replaces THUNDERBOLT rather than joining it: the row was already
 ; full at 5, and NOVA_BLITZ is the bigger Electric STAB (35 x 2-5 against 95).
 ; STATIC_SHOCK stays for the guaranteed paralysis. -- Josh's call to change.
-	mutagen_moveset RAICHU,      NOVA_BLITZ,     STATIC_SHOCK,  BODY_SLAM,     AGILITY,      HYPER_BEAM
+	mutagen_moveset RAICHU,      NOVA_BLITZ,     THUNDER,       BODY_SLAM,     AGILITY,      HYPER_BEAM
 	mutagen_moveset VENUSAUR,    GIGA_DRAIN,     RAZOR_LEAF,    SLEEP_POWDER,  TOXIC,        BODY_SLAM
 	mutagen_moveset WEEZING,     SLUDGE,         BLIGHT_VOMIT,  THUNDERBOLT,   FIRE_BLAST,   TOXIC
 	mutagen_moveset ALAKAZAM,    PSYCHIC_M,      RECOVER,       THUNDER_WAVE,  REFLECT,      TOXIC

@@ -93,15 +93,21 @@ ArchipelagoCave3FAshText:
 	prompt
 
 .DefeatText:
-	text "Ha! Still you."
-	line "It's always still"
+	text ""
+	line "Ha! Still you."
+	cont "It's always still"
 	cont "you."
 	prompt
 
+	prompt
+
 .VictoryText:
-	text "Finally! And no"
-	line "one here to see"
+	text ""
+	line "Finally! And no"
+	cont "one here to see"
 	cont "it but us."
+	prompt
+
 	prompt
 
 .AfterText:

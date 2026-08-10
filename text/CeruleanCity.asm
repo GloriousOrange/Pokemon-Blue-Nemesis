@@ -14,12 +14,14 @@ _CeruleanCityRivalPreBattleText::
 	done
 
 _CeruleanCityRivalDefeatedText::
-	text "Enough. You have"
-	line "won. This time."
+	text ""
+	line "Enough. You have"
+	cont "won. This time."
 	prompt
 
 _CeruleanCityRivalVictoryText::
-	text "You are not ready."
+	text ""
+	line "You are not ready."
 
 	para "You may never be."
 	prompt
