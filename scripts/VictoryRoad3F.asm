@@ -82,8 +82,7 @@ VictoryRoad3FAshText:
 	jp TextScriptEnd
 
 VictoryRoad3FAshBattleText:
-; He leads with PIKACHU because it is mon 1 of AshData, not because of
-; anything here -- keep it first in the roster if this line stays.
+; He leads with PIKACHU because it is mon 1 of AshData #1.
 	text "PIKACHU, I choose"
 	line "you!"
 	prompt

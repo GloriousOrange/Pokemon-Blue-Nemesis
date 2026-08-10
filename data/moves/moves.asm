@@ -225,5 +225,9 @@ Moves:
 	move GRANIT_CLAMP, NO_ADDITIONAL_EFFECT,        90, ROCK,         100, 10
 	move CRUSH_JAW,    FLINCH_SIDE_EFFECT2,         80, NORMAL,       100, 15
 	move THIRD_RAIL,   CHARGE_EFFECT,              100, ELECTRIC,     100, 10
+; 35 x 2-5 hits is the hardest hitting move in the multi-hit family (ROCK_FISTS
+; and TELEKINESIS are 30), so it takes that family's 85 accuracy rather than
+; SPIKE_CANNON's 100.
+	move NOVA_BLITZ,   TWO_TO_FIVE_ATTACKS_EFFECT,  35, ELECTRIC,      85, 20
 	move STRUGGLE,     RECOIL_EFFECT,               50, NORMAL,       100, 10
 	assert_table_length NUM_ATTACKS

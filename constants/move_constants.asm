@@ -224,7 +224,8 @@
 	const GRANIT_CLAMP   ; d4 - Rock, 90 dmg, high crit (Pinsirite's damage; misspelled to hit the 12-char name ceiling)
 	const CRUSH_JAW      ; d5 - Normal, 80 dmg, 50% flinch (Gyarados)
 	const THIRD_RAIL     ; d6 - Electric DIG: burrow a turn, erupt electrified (DIGNEMITE's STAB)
-	const STRUGGLE       ; d7
+	const NOVA_BLITZ     ; d7 - Electric, 2-5 hits of 35 (RAICHU's mutant move)
+	const STRUGGLE       ; d8
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

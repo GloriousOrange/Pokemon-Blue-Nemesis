@@ -1096,7 +1096,12 @@ GhostRocketData:
 	db $ff, 100, RATICATE, 100, ARBOK, 100, MUK, 100, WEEZING, 100, VICTREEBEL, 100, GENGAR, 0
 
 AshData:
-; Victory Road 3F. The team Josh specified, at levels that make him the wall
-; before the League: the floor's own trainers top out around 48 and the Elite
-; Four open around 54, so he sits just above Victory Road and just under Lorelei.
+; #1 -- Victory Road 3F. Levels sit just above that floor's own trainers (~48)
+; and just under the Elite Four (~54).
 	db $ff, 52, PIKACHU, 53, VENUSAUR, 53, BLASTOISE, 53, CHARIZARD, 52, PIDGEOT, 54, TAUROS, 0
+; #2 -- the Archipelago Cave islet, reachable only by SURFing to it. The same
+; trainer, met again at level 100, with the PIKACHU mutagenated into a RAICHU.
+; $ff format on purpose even though the levels are uniform: the uniform format
+; skips the trainer-class dispatch, and that dispatch is what hands his RAICHU
+; the curated Mutagenstone moveset.
+	db $ff, 100, RAICHU, 100, VENUSAUR, 100, BLASTOISE, 100, CHARIZARD, 100, PIDGEOT, 100, TAUROS, 0

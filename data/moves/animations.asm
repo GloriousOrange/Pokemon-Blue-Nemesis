@@ -214,6 +214,7 @@ AttackAnimationPointers:
 	dw RockThrowAnim    ; GRANIT_CLAMP -- reuse Rock Throw's visuals
 	dw BiteAnim         ; CRUSH_JAW -- reuse Bite's visuals
 	dw DigAnim          ; THIRD_RAIL -- it is DIG, so reuse DIG's burrow visuals
+	dw ThunderBoltAnim  ; NOVA_BLITZ -- reuse Thunderbolt's visuals
 	dw StruggleAnim
 	assert_table_length NUM_ATTACKS
 	dw ShowPicAnim

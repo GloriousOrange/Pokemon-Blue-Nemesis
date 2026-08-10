@@ -21,6 +21,7 @@ ArchipelagoCave3F_ScriptPointers:
 	def_script_pointers
 	dw_const ArchipelagoCave3FDefaultScript, SCRIPT_ARCHIPELAGOCAVE3F_DEFAULT
 	dw_const ArchipelagoCave3FOakPostBattle, SCRIPT_ARCHIPELAGOCAVE3F_POSTBATTLE
+	dw_const ArchipelagoCave3FAshPostBattle, SCRIPT_ARCHIPELAGOCAVE3F_ASH_POSTBATTLE
 
 ArchipelagoCave3FDefaultScript:
 	ret
@@ -33,11 +34,74 @@ ArchipelagoCave3FOakPostBattle:
 	ld a, TEXT_ARCHIPELAGOCAVE3F_OAK_REWARD
 	ldh [hTextID], a
 	call DisplayTextID
+ArchipelagoCave3FAshPostBattle:
+	ld a, [wIsInBattle]
+	cp $ff
+	jp z, ArchipelagoCave3FResetScripts
+	SetEvent EVENT_BEAT_ASH
 ArchipelagoCave3FResetScripts:
 	xor a
 	ld [wApexMartCurScript], a
 	ld [wCurMapScript], a
 	ret
+
+ArchipelagoCave3FAshText:
+; Direct-battle pattern, the same one OAK on this floor uses. This map keeps no
+; TrainerHeaders list, and the `trainer` macro asserts the event flag's bit
+; position against its index in that list -- a standalone header fails it.
+	text_asm
+	CheckEvent EVENT_BEAT_ASH
+	jr nz, .beaten
+	ld hl, .ChallengeText
+	call PrintText
+	ld hl, wStatusFlags3
+	set BIT_TALKED_TO_TRAINER, [hl]
+	set BIT_PRINT_END_BATTLE_TEXT, [hl]
+	ld hl, .DefeatText
+	ld de, .VictoryText
+	call SaveEndBattleTextPointers
+	ld a, OPP_ASH
+	ld [wCurOpponent], a
+	ld a, 2 ; AshData #2 -- the level 100 roster
+	ld [wTrainerNo], a
+	ld a, SCRIPT_ARCHIPELAGOCAVE3F_ASH_POSTBATTLE
+	ld [wApexMartCurScript], a
+	ld [wCurMapScript], a
+	jr .done
+.beaten
+	ld hl, .AfterText
+	call PrintText
+.done
+	jp TextScriptEnd
+
+; He leads with RAICHU because it is mon 1 of AshData #2.
+.ChallengeText:
+	text "RAICHU, I choose"
+	line "you!"
+	prompt
+
+.DefeatText:
+	text "I thought I was"
+	line "the prodigy."
+	prompt
+
+.VictoryText:
+	text "Still the"
+	line "prodigy, then."
+	prompt
+
+.AfterText:
+	text "I still need to"
+	line "train before I"
+	cont "can challenge the"
+	cont "ELITE FOUR."
+
+	para "But you - you're"
+	line "ready."
+
+	para "Let's rematch"
+	line "sometime."
+	prompt
 
 ArchipelagoCave3F_TextPointers:
 	def_text_pointers
@@ -46,6 +110,7 @@ ArchipelagoCave3F_TextPointers:
 	dw_const PickUpItemText,                 TEXT_ARCHIPELAGOCAVE3F_MUTAGEN_VIAL
 	dw_const BoulderText,                    TEXT_ARCHIPELAGOCAVE3F_BOULDER1
 	dw_const BoulderText,                    TEXT_ARCHIPELAGOCAVE3F_BOULDER2
+	dw_const ArchipelagoCave3FAshText,       TEXT_ARCHIPELAGOCAVE3F_ASH
 	dw_const ArchipelagoCave3FOakRewardText, TEXT_ARCHIPELAGOCAVE3F_OAK_REWARD
 
 ArchipelagoCave3FOakText:

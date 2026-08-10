@@ -24,7 +24,10 @@ MutagenMovesets::
 ; --- S.S. Olympia, the 16 named trainers ---
 	mutagen_moveset GOLEM,       ROCK_FISTS,     EXPLOSION,     CRYSTALLIZE,   EARTHQUAKE,   SAND_ATTACK
 	mutagen_moveset STARMIE,     PSYCHIC_M,      SURF,          THUNDERBOLT,   RECOVER,      ICE_BEAM
-	mutagen_moveset RAICHU,      THUNDERBOLT,    STATIC_SHOCK,  BODY_SLAM,     AGILITY,      HYPER_BEAM
+; NOVA_BLITZ replaces THUNDERBOLT rather than joining it: the row was already
+; full at 5, and NOVA_BLITZ is the bigger Electric STAB (35 x 2-5 against 95).
+; STATIC_SHOCK stays for the guaranteed paralysis. -- Josh's call to change.
+	mutagen_moveset RAICHU,      NOVA_BLITZ,     STATIC_SHOCK,  BODY_SLAM,     AGILITY,      HYPER_BEAM
 	mutagen_moveset VENUSAUR,    GIGA_DRAIN,     RAZOR_LEAF,    SLEEP_POWDER,  TOXIC,        BODY_SLAM
 	mutagen_moveset WEEZING,     SLUDGE,         BLIGHT_VOMIT,  THUNDERBOLT,   FIRE_BLAST,   TOXIC
 	mutagen_moveset ALAKAZAM,    PSYCHIC_M,      RECOVER,       THUNDER_WAVE,  REFLECT,      TOXIC

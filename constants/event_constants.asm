@@ -170,7 +170,8 @@
 	const EVENT_USED_MUTAGEN_MACHINE ; beat the roof (6th) Emporium scientist; reveals OAK + spawns him in the cave (from padding, no enum shift)
 	const EVENT_BEAT_OAK ; defeated PROF. OAK in the Archipelago Cave grotto (from padding, no enum shift)
 	const EVENT_BEAT_GHOST_ROCKET ; the grotto encounter below the cave (from padding, no enum shift)
-	const_skip 12
+	const EVENT_BEAT_ASH ; the cave islet (from padding, no enum shift)
+	const_skip 11
 	const EVENT_BEAT_MANSION_1_TRAINER_0
 	const_skip 14
 	const EVENT_GOT_TM38

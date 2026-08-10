@@ -3,6 +3,7 @@
 	const_export ARCHIPELAGOCAVE3F_MUTAGEN_VIAL
 	const_export ARCHIPELAGOCAVE3F_BOULDER1
 	const_export ARCHIPELAGOCAVE3F_BOULDER2
+	const_export ARCHIPELAGOCAVE3F_ASH
 
 ArchipelagoCave3F_Object:
 ; see ArchipelagoCave1F.asm's comment -- was $19 (walkable, same as the
@@ -30,5 +31,9 @@ ArchipelagoCave3F_Object:
 	object_event 10, 12, SPRITE_POKE_BALL, STAY, NONE, TEXT_ARCHIPELAGOCAVE3F_MUTAGEN_VIAL, MUTAGEN_VIAL
 	object_event 4, 12, SPRITE_BOULDER, STAY, BOULDER_MOVEMENT_BYTE_2, TEXT_ARCHIPELAGOCAVE3F_BOULDER1
 	object_event 5, 12, SPRITE_BOULDER, STAY, BOULDER_MOVEMENT_BYTE_2, TEXT_ARCHIPELAGOCAVE3F_BOULDER2
+; On the lake islet beside the MUTAGEN VIAL, so the only way to him is to SURF
+; out there. The islet is 2x2 cells: the vial holds (10,12) and he holds
+; (11,12), leaving the two southern cells to land on and fight from.
+	object_event 11, 12, SPRITE_RED, STAY, DOWN, TEXT_ARCHIPELAGOCAVE3F_ASH, OPP_ASH, 2 ; #2 = the level 100 roster; must match the wTrainerNo the script sets, or a sight-engage would load the Victory Road team
 
 	def_warps_to ARCHIPELAGO_CAVE_3F

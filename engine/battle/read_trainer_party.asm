@@ -132,6 +132,8 @@ ReadTrainer:
 	jp z, .MaybeToby
 	cp GHOST_ROCKET
 	jp z, .GhostRocketCrew
+	cp ASH
+	jp z, .AshTeam
 	jp .FinishUp ; nope
 .GiveTeamMoves
 	ld a, [hl]
@@ -295,6 +297,29 @@ ReadTrainer:
 	ld [hli], a
 	ld a, SWORDS_DANCE
 	ld [hl], a
+.AshTeam
+; Only the islet fight (#2) -- the Victory Road ASH (#1) leads with an ordinary
+; PIKACHU and takes his moves from its learnset like any other trainer.
+	ld a, [wTrainerNo]
+	cp 2
+	jp nz, .FinishUp
+; NOVA_BLITZ into RAICHU's 5th move slot, which AddPartyMon leaves empty because
+; base stats only carry four moves -- so nothing natural is lost. PP is written
+; by hand for the same reason: the slot was still empty when the PP block was
+; filled. RAICHU is mon 1; keep it first in AshData or his opening line stops
+; matching what he sends out.
+; RAICHU's natural learnset is nearly bare -- it evolves by stone, so a level
+; 100 one turns up with THUNDERSHOCK and GROWL. Hand it the curated Mutagenstone
+; row instead, which is Josh's own data and already reads
+; NOVA_BLITZ / STATIC_SHOCK / BODY_SLAM / AGILITY / HYPER_BEAM. That is also
+; what "a mutagenated RAICHU" should look like in a fight.
+; Delete these four lines to fall back to the natural learnset.
+	ld a, RAICHU
+	ld [wCurPartySpecies], a
+	ld de, wEnemyMon1Moves
+	callfar ApplyMutagenMoveset
+	jp .FinishUp
+
 .GhostRocketCrew
 ; The grotto crew below the Archipelago Cave are all resurrections, so force
 ; TYPE2 to GHOST on every one of the six -- the same patch .ChampionRival
