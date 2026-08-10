@@ -82,29 +82,28 @@ VictoryRoad3FAshText:
 	jp TextScriptEnd
 
 VictoryRoad3FAshBattleText:
-	text "ASH: You're the"
-	line "one they keep"
-	cont "talking about."
-
-	para "I came up here to"
-	line "see for myself."
-
-	para "Six of mine. All"
-	line "of yours. Now."
+; He leads with PIKACHU because it is mon 1 of AshData, not because of
+; anything here -- keep it first in the roster if this line stays.
+	text "PIKACHU, I choose"
+	line "you!"
 	prompt
 
 VictoryRoad3FAshEndBattleText:
-	text "...so that's what"
-	line "it looks like."
+	text "I thought I was"
+	line "the prodigy."
 	prompt
 
 VictoryRoad3FAshAfterBattleText:
-	text "The LEAGUE is"
-	line "through there."
+	text "I still need to"
+	line "train before I"
+	cont "can challenge the"
+	cont "ELITE FOUR."
 
-	para "Don't lose to"
-	line "them. I'd rather"
-	cont "it was me."
+	para "But you - you're"
+	line "ready."
+
+	para "Let's rematch"
+	line "sometime."
 	prompt
 
 VictoryRoad3F_TextPointers:
