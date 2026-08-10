@@ -58,6 +58,7 @@ RGBGFXFLAGS  ?= -Weverything
 	nemesis \
 	nemesis_speedtest \
 	nemesis_landon \
+	nemesis_testing \
 	red_vc \
 	blue_vc \
 	clean \
@@ -95,6 +96,17 @@ nemesis_speedtest: pokeblue.gbc
 nemesis_landon: pokeblue.gbc
 	cp pokeblue.gbc "PKMN Nemesis LANDON.gbc"
 	$(RGBFIX) -jsv -n 0 -k 01 -l 0x33 -m MBC3+RAM+BATTERY -r 03 -p 0x00 -c -t "NEMESIS LANDON" "PKMN Nemesis LANDON.gbc"
+
+# Josh's own playtest build (2026-08-09): a stock game with the $50,000 wallet
+# and nothing else, for testing the slow, solid way -- every gate, item and
+# level met the way a player meets it. Shares the LANDOSPEEDTEST flag, since
+# "stock plus money" is exactly what that flag already means, but takes its own
+# filename and cartridge title so its save stays separate from both the real
+# ROM's and Landon's.
+# Build it with: make clean && make blue LANDOSPEEDTEST=1 && make nemesis_testing
+nemesis_testing: pokeblue.gbc
+	cp pokeblue.gbc "PKMN Nemesis TESTING.gbc"
+	$(RGBFIX) -jsv -n 0 -k 01 -l 0x33 -m MBC3+RAM+BATTERY -r 03 -p 0x00 -c -t "NEMESIS TESTING" "PKMN Nemesis TESTING.gbc"
 
 clean: tidy
 	find gfx \
