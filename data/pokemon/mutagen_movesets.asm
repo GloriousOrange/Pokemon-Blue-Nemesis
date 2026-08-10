@@ -141,7 +141,7 @@ MutagenMovesets::
 ; --- reduced list, eighth batch of 5 (2026-08-03) ---
 	mutagen_moveset NINETALES,   FIRE_BLAST,     REFLECT,       DIG,           SUBSTITUTE,   REST
 	mutagen_moveset NOCTURN,     GUST,           NIGHT_SHADE,   PHANTOM_WING,  MIND_FEVER,   SWIFT
-	mutagen_moveset OMASTAR,     SURF,           ICE_BEAM,      REFLECT,       REST,         TOXIC
+	mutagen_moveset OMASTAR,     SURF,           ICE_BEAM,      REFLECT,       CRYSTALLIZE,  ROCK_SLIDE
 	mutagen_moveset PARASECT,    SPORE,          SLASH,         SWORDS_DANCE,  MEGA_DRAIN,   SUBSTITUTE
 	mutagen_moveset PIKACHU,     THUNDERBOLT,    SEISMIC_TOSS,  THUNDER_WAVE,  REFLECT,      SUBSTITUTE
 

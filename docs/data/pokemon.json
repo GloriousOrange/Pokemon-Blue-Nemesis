@@ -10492,8 +10492,8 @@
     "SURF",
     "ICE_BEAM",
     "REFLECT",
-    "REST",
-    "TOXIC"
+    "CRYSTALLIZE",
+    "ROCK_SLIDE"
    ],
    "final_evolution_of_self": true
   },
