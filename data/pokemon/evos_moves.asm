@@ -355,7 +355,7 @@ GrimerEvosMoves:
 	db EVOLVE_LEVEL, 38, MUK
 	db 0
 ; Learnset
-	db 7, ACID
+; No L7 ACID -- it is already in the level 1 learnset in base_stats.
 	db 30, POISON_GAS
 	db 33, MINIMIZE
 	db 37, SLUDGE

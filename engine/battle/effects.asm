@@ -142,7 +142,12 @@ PoisonEffect:
 	ld de, wEnemyToxicCounter
 .ok
 	cp TOXIC
-	jr nz, .normalPoison ; done if move is not Toxic
+	jr z, .badlyPoison
+; Nemesis: SLUDGE badly-poisons as well. Its 40% proc rate is unchanged -- the
+; move is no more likely to poison, it just poisons far worse when it lands.
+	cp SLUDGE
+	jr nz, .normalPoison ; done if the move is neither Toxic nor Sludge
+.badlyPoison
 	set BADLY_POISONED, [hl] ; else set Toxic battstatus
 	xor a
 	ld [de], a

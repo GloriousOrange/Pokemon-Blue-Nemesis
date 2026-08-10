@@ -5760,7 +5760,7 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "VENOM_BITE"
+     "move": "ACID"
     },
     {
      "level": 1,
@@ -5769,10 +5769,6 @@
     {
      "level": 1,
      "move": "DISABLE"
-    },
-    {
-     "level": 7,
-     "move": "ACID"
     },
     {
      "level": 30,
