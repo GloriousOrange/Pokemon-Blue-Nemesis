@@ -1108,3 +1108,8 @@ AshData:
 ; #3 -- Viridian Forest, the first meeting. The forest's BUG CATCHERs run 6-10,
 ; so a lone level 12 PIKACHU is a step ahead without being a wall.
 	db 12, PIKACHU, 0
+; #4 -- the S.S. Anne bow deck. The ship's SAILORs run 17-18 and its other
+; trainers reach 21, so 23-24 keeps him a step ahead. The same six as always,
+; caught mid-evolution -- IVYSAUR/WARTORTLE/CHARMELEON all evolve at 16.
+; Composition is mine, not Josh's: say the word and it changes.
+	db $ff, 24, PIKACHU, 23, IVYSAUR, 23, WARTORTLE, 23, CHARMELEON, 0

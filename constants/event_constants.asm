@@ -564,7 +564,8 @@
 	const_skip 4
 	const EVENT_BEAT_SS_ANNE_5_TRAINER_0
 	const EVENT_BEAT_SS_ANNE_5_TRAINER_1
-	const_skip 26
+	const EVENT_BEAT_SS_ANNE_5_ASH ; from this block's padding, no enum shift
+	const_skip 25
 	const EVENT_GOT_HM01
 	const EVENT_RUBBED_CAPTAINS_BACK
 	const EVENT_SS_ANNE_LEFT

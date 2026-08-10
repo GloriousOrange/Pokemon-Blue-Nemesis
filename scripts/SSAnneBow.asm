@@ -20,6 +20,7 @@ SSAnneBow_TextPointers:
 	dw_const SSAnneBowCooltrainerMText, TEXT_SSANNEBOW_COOLTRAINER_M
 	dw_const SSAnneBowSailor2Text,      TEXT_SSANNEBOW_SAILOR2
 	dw_const SSAnneBowSailor3Text,      TEXT_SSANNEBOW_SAILOR3
+	dw_const SSAnneBowAshText,          TEXT_SSANNEBOW_ASH
 
 SSAnne5TrainerHeaders:
 	def_trainers 4
@@ -27,7 +28,34 @@ SSAnne5TrainerHeader0:
 	trainer EVENT_BEAT_SS_ANNE_5_TRAINER_0, 3, SSAnneBowSailor2BattleText, SSAnneBowSailor2EndBattleText, SSAnneBowSailor2AfterBattleText
 SSAnne5TrainerHeader1:
 	trainer EVENT_BEAT_SS_ANNE_5_TRAINER_1, 3, SSAnneBowSailor3BattleText, SSAnneBowSailor3EndBattleText, SSAnneBowSailor3AfterBattleText
+SSAnne5TrainerHeader2:
+	trainer EVENT_BEAT_SS_ANNE_5_ASH, 3, SSAnneBowAshBattleText, SSAnneBowAshEndBattleText, SSAnneBowAshAfterBattleText
 	db -1 ; end
+
+SSAnneBowAshText:
+	text_asm
+	ld hl, SSAnne5TrainerHeader2
+	call TalkToTrainer
+	jp TextScriptEnd
+
+SSAnneBowAshBattleText:
+; He leads with PIKACHU because it is mon 1 of AshData #4.
+	text "PIKACHU, I choose"
+	line "you!"
+	prompt
+
+SSAnneBowAshEndBattleText:
+	text "Closer that time."
+	prompt
+
+SSAnneBowAshAfterBattleText:
+	text "They've all grown"
+	line "since the forest."
+
+	para "So have you."
+	line "That's the part"
+	cont "that bothers me."
+	prompt
 
 SSAnneBowSuperNerdText:
 	text_far _SSAnneBowSuperNerdText
