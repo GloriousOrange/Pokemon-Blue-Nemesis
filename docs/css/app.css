@@ -436,6 +436,78 @@ a { color: var(--accent); }
   padding: 0.3rem 0.2rem 0.1rem;
 }
 
+/* --- move browser + HYPER BEAM ranking (below the sprite grid) --- */
+
+.panel-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.moves-panel { margin-top: 1.5rem; }
+.moves-panel .coverage-hint { margin: -0.3rem 0 0.5rem; }
+
+.browse-list {
+  background: var(--panel);
+  border-radius: 10px;
+  padding: 0.2rem 0.7rem;
+  max-height: 34rem;
+  overflow-y: auto;
+}
+.browse-list li:last-child { border-bottom: 0; }
+.browse-name { font-weight: 600; }
+.browse-tm {
+  margin-left: 0.45rem;
+  padding: 0.05rem 0.35rem;
+  border-radius: 4px;
+  background: var(--panel-2);
+  color: var(--dim);
+  font-size: 0.66rem;
+  font-weight: 400;
+  vertical-align: 1px;
+}
+
+#hb-details {
+  background: var(--panel);
+  border-radius: 10px;
+  padding: 0.7rem 1rem;
+}
+#hb-details > summary {
+  cursor: pointer;
+  list-style-position: inside;
+}
+#hb-details[open] > summary { margin-bottom: 0.5rem; }
+#hb-details .coverage-hint { margin: 0 0 0.7rem; }
+
+/* Wide content scrolls inside its own box; the page never scrolls sideways. */
+.hb-scroll { overflow-x: auto; }
+.hb-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 26rem;
+  font-size: 0.78rem;
+}
+.hb-table th,
+.hb-table td {
+  padding: 0.3rem 0.55rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  white-space: nowrap;
+}
+.hb-table th {
+  color: var(--dim);
+  font-weight: 600;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.hb-table .num { text-align: right; }
+.hb-table .dim { color: var(--dim); }
+.hb-table .strong { font-weight: 700; }
+/* 150 was vanilla's flat power -- these are the users it is an upgrade for. */
+.hb-table tr.hb-strong .strong { color: var(--accent); }
+.hb-table tbody tr:last-child td { border-bottom: 0; }
+
 .app-footer {
   text-align: center;
   color: var(--dim);

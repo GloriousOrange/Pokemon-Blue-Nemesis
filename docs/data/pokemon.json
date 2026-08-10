@@ -2868,6 +2868,10 @@
      "base": true
     },
     {
+     "level": 10,
+     "move": "FURY_ATTACK"
+    },
+    {
      "level": 16,
      "move": "FOCUS_ENERGY"
     },
@@ -3149,6 +3153,10 @@
      "move": "GROWTH"
     },
     {
+     "level": 40,
+     "move": "GIGA_DRAIN"
+    },
+    {
      "level": 41,
      "move": "SLEEP_POWDER"
     },
@@ -3223,6 +3231,10 @@
     {
      "level": 26,
      "move": "WHIRLWIND"
+    },
+    {
+     "level": 28,
+     "move": "GLITTER_WING"
     },
     {
      "level": 32,
@@ -3545,6 +3557,10 @@
     {
      "level": 38,
      "move": "FLAMETHROWER"
+    },
+    {
+     "level": 40,
+     "move": "FLAME_WHIP"
     },
     {
      "level": 46,
@@ -4962,6 +4978,10 @@
      "level": 1,
      "move": "LEER",
      "base": true
+    },
+    {
+     "level": 10,
+     "move": "VENOM_BITE"
     },
     {
      "level": 17,
@@ -6831,6 +6851,10 @@
      "base": true
     },
     {
+     "level": 10,
+     "move": "WATER_GUN"
+    },
+    {
      "level": 19,
      "move": "SMOKESCREEN"
     },
@@ -7624,6 +7648,10 @@
      "level": 1,
      "move": "HARDEN",
      "base": true
+    },
+    {
+     "level": 9,
+     "move": "WEB_CANNON"
     }
    ],
    "tm_hm_moves": [],
@@ -7894,6 +7922,10 @@
      "level": 1,
      "move": "LEER",
      "base": true
+    },
+    {
+     "level": 12,
+     "move": "VICEGRIP"
     },
     {
      "level": 25,
@@ -9080,6 +9112,10 @@
     {
      "level": 81,
      "move": "AMNESIA"
+    },
+    {
+     "level": 99,
+     "move": "TELEKINESIS"
     }
    ],
    "tm_hm_moves": [
@@ -9787,6 +9823,10 @@
      "move": "SCRATCH"
     },
     {
+     "level": 14,
+     "move": "VENOM_BITE"
+    },
+    {
      "level": 21,
      "move": "TAIL_WHIP"
     },
@@ -9858,6 +9898,10 @@
     {
      "level": 8,
      "move": "HORN_ATTACK"
+    },
+    {
+     "level": 14,
+     "move": "VENOM_BITE"
     },
     {
      "level": 21,
@@ -10309,6 +10353,10 @@
      "level": 1,
      "move": "ABSORB",
      "base": true
+    },
+    {
+     "level": 12,
+     "move": "ACID"
     },
     {
      "level": 15,
@@ -11168,6 +11216,10 @@
      "move": "TWINEEDLE"
     },
     {
+     "level": 23,
+     "move": "WEB_CANNON"
+    },
+    {
      "level": 25,
      "move": "SEISMIC_TOSS"
     },
@@ -11190,6 +11242,10 @@
     {
      "level": 55,
      "move": "VIBRATE"
+    },
+    {
+     "level": 98,
+     "move": "SWORDS_DANCE"
     }
    ],
    "tm_hm_moves": [
@@ -11312,6 +11368,10 @@
      "level": 1,
      "move": "BUBBLE",
      "base": true
+    },
+    {
+     "level": 11,
+     "move": "WATER_GUN"
     },
     {
      "level": 16,
@@ -12884,6 +12944,10 @@
      "base": true
     },
     {
+     "level": 11,
+     "move": "CLAMP"
+    },
+    {
      "level": 18,
      "move": "SUPERSONIC"
     },
@@ -13328,6 +13392,10 @@
      "base": true
     },
     {
+     "level": 12,
+     "move": "WATER_GUN"
+    },
+    {
      "level": 22,
      "move": "BITE"
     },
@@ -13338,6 +13406,10 @@
     {
      "level": 35,
      "move": "SKULL_BASH"
+    },
+    {
+     "level": 40,
+     "move": "HYDRO_JET"
     },
     {
      "level": 42,
@@ -13406,6 +13478,10 @@
      "level": 1,
      "move": "HARDEN",
      "base": true
+    },
+    {
+     "level": 98,
+     "move": "AMNESIA"
     }
    ],
    "tm_hm_moves": [

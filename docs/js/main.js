@@ -3,6 +3,7 @@ import { TeamState, MAX_TEAM_SIZE, MAX_MOVESET_SIZE } from "./team.js";
 import { computeCoverage } from "./coverage.js";
 import { buildMovepool } from "./movepool.js";
 import { createTile, createTeamSlot, spriteSrc } from "./sprites.js";
+import { buildLearnerIndex, renderMoveBrowser, renderHyperBeamRanking } from "./moves.js";
 
 const team = new TeamState();
 let data = null;
@@ -10,6 +11,7 @@ let speciesOrder = [];
 let filterText = "";
 let detailSpecies = null;
 let activeTab = "levelUp";
+let learners = {};
 
 const el = {
   grid: document.getElementById("sprite-grid"),
@@ -19,6 +21,9 @@ const el = {
   search: document.getElementById("search"),
   overlay: document.getElementById("detail-overlay"),
   panel: document.getElementById("detail-panel"),
+  moveBrowser: document.getElementById("move-browser"),
+  moveCount: document.getElementById("move-count"),
+  hbRanking: document.getElementById("hb-ranking"),
 };
 
 async function init() {
@@ -27,9 +32,12 @@ async function init() {
     (a, b) => data.species[a].dex_number - data.species[b].dex_number
   );
 
+  learners = buildLearnerIndex(data);
+
   el.search.addEventListener("input", (e) => {
     filterText = e.target.value.trim().toLowerCase();
     renderGrid();
+    renderMoves();
   });
 
   el.overlay.addEventListener("click", (e) => {
@@ -37,8 +45,14 @@ async function init() {
   });
 
   renderGrid();
+  renderMoves();
+  renderHyperBeamRanking(data, learners, el.hbRanking);
   renderTeam();
   renderCoverage();
+}
+
+function renderMoves() {
+  renderMoveBrowser(data, learners, filterText, el.moveBrowser, el.moveCount);
 }
 
 function matchesFilter(speciesKey) {

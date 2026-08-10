@@ -11,9 +11,9 @@
   <h1>Pokémon Nemesis <span class="subtitle">Team Builder</span></h1>
   <p class="blurb">
     Tap a sprite to add it to your team (max 6). Tap a name to see its full
-    movepool, then tap any move to read what it actually does. Tiles with a
-    <span class="ghost-icon-inline">👻</span> badge can also preview their
-    Ghost form.
+    movepool. Tiles with a <span class="ghost-icon-inline">👻</span> badge can
+    also preview their Ghost form. Every move in the game is listed below the
+    grid, filtered by the same search box.
   </p>
 </header>
 
@@ -28,6 +28,22 @@
     <span class="grid-count" id="grid-count"></span>
   </div>
   <div class="sprite-grid" id="sprite-grid"></div>
+</section>
+
+<section class="grid-panel moves-panel">
+  <div class="grid-controls">
+    <h2 class="panel-title">Moves</h2>
+    <span class="grid-count" id="move-count"></span>
+  </div>
+  <p class="coverage-hint">Filtered by the same box above &mdash; by move name or type.</p>
+  <div id="move-browser"></div>
+</section>
+
+<section class="grid-panel">
+  <details id="hb-details">
+    <summary class="panel-title">HYPER BEAM power ranking</summary>
+    <div id="hb-ranking"></div>
+  </details>
 </section>
 
 <div class="detail-overlay" id="detail-overlay" hidden>

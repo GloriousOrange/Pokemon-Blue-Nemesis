@@ -216,7 +216,10 @@ def load_evos_moves(species_ids):
         eq = re.search(r"db EVOLVE_LEVEL, \d+, (\w+)", body)
         if eq:
             level_evo[sp] = eq.group(1)
-        moves = re.findall(r"db (\d+), (\w+)\n", body)
+        # `[^\S\n]*(?:;.*)?$` rather than a bare \n: several entries carry a
+        # trailing comment (EKANS' VENOM_BITE, SHELLDER's CLAMP), and anchoring
+        # on the newline silently dropped every one of them from the site.
+        moves = re.findall(r"^\s*db (\d+), (\w+)[^\S\n]*(?:;.*)?$", body, re.M)
         learnsets[sp] = [(int(lvl), mv) for lvl, mv in moves]
     return level_evo, learnsets
 
