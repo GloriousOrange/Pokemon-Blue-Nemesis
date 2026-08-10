@@ -1835,7 +1835,7 @@
    "accuracy": 100,
    "pp": 10,
    "effect": "METRONOME_EFFECT",
-   "description": "Fires off a completely random move.",
+   "description": "Uses a random powerful move.",
    "display_name": "Metronome2",
    "tm_number": "HM06"
   },

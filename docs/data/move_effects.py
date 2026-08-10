@@ -231,6 +231,9 @@ MOVE_DESCRIPTIONS = {
                     "and badly poisons it. Its single PP is deliberate.",
     "STRUGGLE": "The last resort when every move is out of PP. The user takes "
                 "half the damage it deals.",
+    # Shares METRONOME_EFFECT, but core.asm rolls it from Metronome2MoveList --
+    # 19 hand-picked moves rather than the whole movepool.
+    "METRONOME2": "Uses a random powerful move.",
 }
 
 
