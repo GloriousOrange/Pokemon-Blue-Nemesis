@@ -1,7 +1,7 @@
 {
  "meta": {
   "num_pokemon": 159,
-  "num_moves": 215
+  "num_moves": 216
  },
  "types": [
   "NORMAL",
@@ -1625,7 +1625,7 @@
    "display_name": "Hurricane"
   },
   "ICE_SPIKE": {
-   "power": 25,
+   "power": 35,
    "type": "ICE",
    "accuracy": 100,
    "pp": 20,
@@ -1834,6 +1834,13 @@
    "accuracy": 100,
    "pp": 10,
    "display_name": "Third Rail"
+  },
+  "NOVA_BLITZ": {
+   "power": 35,
+   "type": "ELECTRIC",
+   "accuracy": 85,
+   "pp": 20,
+   "display_name": "Nova Blitz"
   },
   "STRUGGLE": {
    "power": 50,
@@ -11174,7 +11181,7 @@
     "FLASH"
    ],
    "mutagen_moveset": [
-    "THUNDERBOLT",
+    "NOVA_BLITZ",
     "STATIC_SHOCK",
     "BODY_SLAM",
     "AGILITY",
@@ -12006,7 +12013,7 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "CLAMP"
+     "move": "ICE_SPIKE"
     },
     {
      "level": 1,
@@ -12519,10 +12526,6 @@
     {
      "level": 1,
      "move": "TAIL_WHIP"
-    },
-    {
-     "level": 8,
-     "move": "BUBBLE"
     },
     {
      "level": 22,

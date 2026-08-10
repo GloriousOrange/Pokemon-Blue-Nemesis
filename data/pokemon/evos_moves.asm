@@ -2089,7 +2089,7 @@ SquirtleEvosMoves:
 	db EVOLVE_LEVEL, 16, WARTORTLE
 	db 0
 ; Learnset
-	db 8, BUBBLE
+; No L8 BUBBLE -- it is already in the level 1 learnset in base_stats.
 	db 12, WATER_GUN ; was L15, to match the other Bubble starters
 	db 22, BITE
 	db 28, WITHDRAW
