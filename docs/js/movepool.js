@@ -1,6 +1,6 @@
 // Builds the three movepool tabs (Level-up / TM+HM / Mutagenated) for a
 // species, ready to render -- each entry already carries its move's display
-// name, type, power, accuracy and pp.
+// name, type, power, accuracy, pp and effect description.
 
 function moveEntry(data, moveName, extra) {
   const info = data.moves[moveName] || {};
@@ -12,6 +12,7 @@ function moveEntry(data, moveName, extra) {
     accuracy: info.accuracy,
     pp: info.pp,
     tm_number: info.tm_number,
+    description: info.description,
     ...extra,
   };
 }

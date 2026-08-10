@@ -203,8 +203,13 @@ function renderMoveList(entries, kind, selectionCtx) {
       if (selected) li.classList.add("move-selected");
     }
 
-    const content = document.createElement("span");
+    // The row itself is a button: tapping it expands what the move actually
+    // does. The checkbox beside it stays a separate hit target so picking a
+    // moveset and reading about a move never fight each other.
+    const content = document.createElement("button");
+    content.type = "button";
     content.className = "move-row-content";
+    content.setAttribute("aria-expanded", "false");
     const left = document.createElement("span");
     let prefix = "";
     if (kind === "levelUp") prefix = `L${mv.level} · `;
@@ -216,6 +221,19 @@ function renderMoveList(entries, kind, selectionCtx) {
     content.appendChild(left);
     content.appendChild(right);
     li.appendChild(content);
+
+    const desc = document.createElement("p");
+    desc.className = "move-desc";
+    desc.textContent = mv.description || "No description recorded for this move.";
+    desc.hidden = true;
+    content.addEventListener("click", () => {
+      const opening = desc.hidden;
+      desc.hidden = !opening;
+      content.setAttribute("aria-expanded", String(opening));
+      li.classList.toggle("move-open", opening);
+    });
+    li.appendChild(desc);
+
     ul.appendChild(li);
   }
   return ul;

@@ -56,7 +56,7 @@ MutagenMovesets::
 	mutagen_moveset ARCANINE,    FIRE_BLAST,     SWIFT,         HYPER_BEAM,    BODY_SLAM,    AGILITY
 	mutagen_moveset ELECTRODE,   THUNDERBOLT,    EXPLOSION,     THUNDER_WAVE,  SCREECH,      AGILITY
 	mutagen_moveset GYARADOS,    SURF,           HURRICANE,     HYPER_BEAM,    BLIZZARD,     CRUSH_JAW
-	mutagen_moveset TENTACRUEL,  SURF,           ICE_BEAM,      CRUSH_COIL,    TOXIC,        BARRIER
+	mutagen_moveset TENTACRUEL,  POWER_CLAMP,    ICE_BEAM,      CRUSH_COIL,    SLUDGE,       BARRIER
 	mutagen_moveset PRIMEAPE,    CHOKEHOLD,      FOCUS_ENERGY,  HYPER_BEAM,    BODY_SLAM,    ROCK_SLIDE
 	mutagen_moveset GOLDUCK,     SURF,           PSYCHIC_M,     ICE_BEAM,      AMNESIA,      BODY_SLAM
 	mutagen_moveset VILEPLUME,   PETAL_DANCE,    TANGLE,        SLEEP_POWDER,  SLUDGE,       TOXIC
@@ -164,7 +164,7 @@ MutagenMovesets::
 	mutagen_moveset TYRANIS,     DOUBLE_DRILL,   HYPER_BEAMS,   BODY_SLAM,     SAND_ATTACK,  SWIFT
 	mutagen_moveset VAPOREON,    SURF,           ICE_BEAM,      ACID_ARMOR,    REST,         SUBSTITUTE
 	mutagen_moveset VENOMOTH,    SLEEP_POWDER,   PSYCHIC_M,     MEGA_DRAIN,    STUN_SPORE,   SUBSTITUTE
-	mutagen_moveset VICTREEBEL,  SWORDS_DANCE,   RAZOR_LEAF,    ACID,          STUN_SPORE,   SUBSTITUTE
+	mutagen_moveset VICTREEBEL,  SWORDS_DANCE,   GIGA_DRAIN,    SLUDGE,        STUN_SPORE,   SUBSTITUTE
 	mutagen_moveset VULPIX,      FLAMETHROWER,   CONFUSE_RAY,   SWIFT,         TOXIC,        SUBSTITUTE
 	mutagen_moveset WEEPINBELL,  MEGA_DRAIN,     SOLARBEAM,     STUN_SPORE,    POISONPOWDER, REFLECT
 	mutagen_moveset ZAPDOS,      THUNDERBOLT,    DRILL_PECK,    THUNDER_WAVE,  LIGHT_SCREEN, AGILITY

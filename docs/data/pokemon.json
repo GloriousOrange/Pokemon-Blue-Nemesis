@@ -283,6 +283,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 35,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Pound"
   },
   "KARATE_CHOP": {
@@ -290,6 +292,8 @@
    "type": "FIGHTING",
    "accuracy": 100,
    "pp": 25,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Karate Chop"
   },
   "DOUBLESLAP": {
@@ -297,6 +301,8 @@
    "type": "NORMAL",
    "accuracy": 85,
    "pp": 10,
+   "effect": "TWO_TO_FIVE_ATTACKS_EFFECT",
+   "description": "Hits 2-5 times in one turn: 3/8 odds each of 2 and 3 hits, 1/8 each of 4 and 5. Averages 3.",
    "display_name": "Doubleslap"
   },
   "COMET_PUNCH": {
@@ -304,6 +310,8 @@
    "type": "NORMAL",
    "accuracy": 85,
    "pp": 15,
+   "effect": "TWO_TO_FIVE_ATTACKS_EFFECT",
+   "description": "Hits 2-5 times in one turn: 3/8 odds each of 2 and 3 hits, 1/8 each of 4 and 5. Averages 3.",
    "display_name": "Comet Punch"
   },
   "MEGA_PUNCH": {
@@ -311,6 +319,8 @@
    "type": "NORMAL",
    "accuracy": 85,
    "pp": 20,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Mega Punch",
    "tm_number": "TM01"
   },
@@ -319,6 +329,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 20,
+   "effect": "PAY_DAY_EFFECT",
+   "description": "Scatters coins, collected as prize money after the battle.",
    "display_name": "Pay Day",
    "tm_number": "TM16"
   },
@@ -327,6 +339,8 @@
    "type": "FIRE",
    "accuracy": 100,
    "pp": 15,
+   "effect": "BURN_SIDE_EFFECT1",
+   "description": "Has a 10% chance to burn the target, halving its Attack and costing it HP each turn.",
    "display_name": "Fire Punch"
   },
   "ICE_PUNCH": {
@@ -334,6 +348,8 @@
    "type": "ICE",
    "accuracy": 100,
    "pp": 15,
+   "effect": "FREEZE_SIDE_EFFECT1",
+   "description": "Has a 10% chance to freeze the target solid. In Gen 1 a frozen Pokemon never thaws on its own.",
    "display_name": "Ice Punch"
   },
   "THUNDERPUNCH": {
@@ -341,6 +357,8 @@
    "type": "ELECTRIC",
    "accuracy": 100,
    "pp": 15,
+   "effect": "PARALYZE_SIDE_EFFECT1",
+   "description": "Has a 10% chance to paralyze the target.",
    "display_name": "Thunderpunch"
   },
   "SCRATCH": {
@@ -348,6 +366,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 35,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Scratch"
   },
   "VICEGRIP": {
@@ -355,6 +375,8 @@
    "type": "BUG",
    "accuracy": 100,
    "pp": 30,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Vicegrip"
   },
   "GUILLOTINE": {
@@ -362,6 +384,8 @@
    "type": "BUG",
    "accuracy": 50,
    "pp": 5,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Guillotine"
   },
   "RAZOR_WIND": {
@@ -369,6 +393,8 @@
    "type": "NORMAL",
    "accuracy": 75,
    "pp": 10,
+   "effect": "CHARGE_EFFECT",
+   "description": "Spends the first turn charging and strikes on the second.",
    "display_name": "Razor Wind",
    "tm_number": "TM02"
   },
@@ -377,6 +403,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 30,
+   "effect": "ATTACK_UP2_EFFECT",
+   "description": "Raises the user's Attack by 2 stages.",
    "display_name": "Swords Dance",
    "tm_number": "TM03"
   },
@@ -385,6 +413,8 @@
    "type": "BUG",
    "accuracy": 95,
    "pp": 30,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Cut",
    "tm_number": "HM01"
   },
@@ -393,6 +423,8 @@
    "type": "FLYING",
    "accuracy": 100,
    "pp": 35,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Gust"
   },
   "WING_ATTACK": {
@@ -400,6 +432,8 @@
    "type": "FLYING",
    "accuracy": 100,
    "pp": 35,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Wing Attack"
   },
   "WHIRLWIND": {
@@ -407,6 +441,8 @@
    "type": "FLYING",
    "accuracy": 85,
    "pp": 20,
+   "effect": "ACCURACY_DOWN1_EFFECT",
+   "description": "Lowers the target's accuracy by 1 stage.",
    "display_name": "Whirlwind",
    "tm_number": "TM04"
   },
@@ -415,6 +451,8 @@
    "type": "FLYING",
    "accuracy": 95,
    "pp": 15,
+   "effect": "FLY_EFFECT",
+   "description": "The user vanishes for a turn, dodging almost everything, then strikes on the second.",
    "display_name": "Fly",
    "tm_number": "HM02"
   },
@@ -423,6 +461,8 @@
    "type": "NORMAL",
    "accuracy": 75,
    "pp": 20,
+   "effect": "TRAPPING_EFFECT",
+   "description": "Locks the target in place for 2-5 turns, damaging it each turn. It cannot move at all while trapped -- but neither can the user.",
    "display_name": "Bind"
   },
   "SLAM": {
@@ -430,6 +470,8 @@
    "type": "NORMAL",
    "accuracy": 75,
    "pp": 20,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Slam"
   },
   "VINE_WHIP": {
@@ -437,6 +479,8 @@
    "type": "GRASS",
    "accuracy": 100,
    "pp": 10,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Vine Whip"
   },
   "STOMP": {
@@ -444,6 +488,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 20,
+   "effect": "FLINCH_SIDE_EFFECT2",
+   "description": "Has a 30% chance to make the target flinch, losing its turn -- but only if the user moves first.",
    "display_name": "Stomp"
   },
   "DOUBLE_KICK": {
@@ -451,6 +497,8 @@
    "type": "FIGHTING",
    "accuracy": 100,
    "pp": 30,
+   "effect": "ATTACK_TWICE_EFFECT",
+   "description": "Strikes twice in a single turn.",
    "display_name": "Double Kick"
   },
   "MEGA_KICK": {
@@ -458,6 +506,8 @@
    "type": "NORMAL",
    "accuracy": 75,
    "pp": 5,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Mega Kick",
    "tm_number": "TM05"
   },
@@ -466,6 +516,8 @@
    "type": "FIGHTING",
    "accuracy": 95,
    "pp": 25,
+   "effect": "JUMP_KICK_EFFECT",
+   "description": "If it misses, the user crashes and takes 1 HP of damage.",
    "display_name": "Jump Kick"
   },
   "ROLLING_KICK": {
@@ -473,6 +525,8 @@
    "type": "FIGHTING",
    "accuracy": 85,
    "pp": 15,
+   "effect": "FLINCH_SIDE_EFFECT2",
+   "description": "Has a 30% chance to make the target flinch, losing its turn -- but only if the user moves first.",
    "display_name": "Rolling Kick"
   },
   "SAND_ATTACK": {
@@ -480,6 +534,8 @@
    "type": "GROUND",
    "accuracy": 100,
    "pp": 15,
+   "effect": "ACCURACY_DOWN1_EFFECT",
+   "description": "Lowers the target's accuracy by 1 stage.",
    "display_name": "Sand-attack"
   },
   "HEADBUTT": {
@@ -487,6 +543,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 15,
+   "effect": "FLINCH_SIDE_EFFECT2",
+   "description": "Has a 30% chance to make the target flinch, losing its turn -- but only if the user moves first.",
    "display_name": "Headbutt"
   },
   "HORN_ATTACK": {
@@ -494,6 +552,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 25,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Horn Attack"
   },
   "FURY_ATTACK": {
@@ -501,6 +561,8 @@
    "type": "NORMAL",
    "accuracy": 85,
    "pp": 20,
+   "effect": "TWO_TO_FIVE_ATTACKS_EFFECT",
+   "description": "Hits 2-5 times in one turn: 3/8 odds each of 2 and 3 hits, 1/8 each of 4 and 5. Averages 3.",
    "display_name": "Fury Attack"
   },
   "HORN_DRILL": {
@@ -508,6 +570,8 @@
    "type": "NORMAL",
    "accuracy": 30,
    "pp": 5,
+   "effect": "OHKO_EFFECT",
+   "description": "Knocks the target out in one hit if it connects, but fails outright against anything faster than the user.",
    "display_name": "Horn Drill",
    "tm_number": "TM07"
   },
@@ -516,6 +580,8 @@
    "type": "NORMAL",
    "accuracy": 95,
    "pp": 35,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Tackle"
   },
   "BODY_SLAM": {
@@ -523,6 +589,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 15,
+   "effect": "PARALYZE_SIDE_EFFECT2",
+   "description": "Has a 30% chance to paralyze the target.",
    "display_name": "Body Slam",
    "tm_number": "TM08"
   },
@@ -531,6 +599,8 @@
    "type": "NORMAL",
    "accuracy": 85,
    "pp": 20,
+   "effect": "TRAPPING_EFFECT",
+   "description": "Locks the target in place for 2-5 turns, damaging it each turn. It cannot move at all while trapped -- but neither can the user.",
    "display_name": "Wrap"
   },
   "TAKE_DOWN": {
@@ -538,6 +608,8 @@
    "type": "NORMAL",
    "accuracy": 85,
    "pp": 20,
+   "effect": "RECOIL_EFFECT",
+   "description": "The user takes a quarter of the damage it deals as recoil.",
    "display_name": "Take Down",
    "tm_number": "TM09"
   },
@@ -546,6 +618,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 20,
+   "effect": "THRASH_PETAL_DANCE_EFFECT",
+   "description": "Attacks for 3-4 turns without stopping, then leaves the user confused.",
    "display_name": "Thrash"
   },
   "DOUBLE_EDGE": {
@@ -553,6 +627,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 15,
+   "effect": "RECOIL_EFFECT",
+   "description": "The user takes a quarter of the damage it deals as recoil.",
    "display_name": "Double-edge",
    "tm_number": "TM10"
   },
@@ -561,6 +637,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 30,
+   "effect": "DEFENSE_DOWN1_EFFECT",
+   "description": "Lowers the target's Defense by 1 stage.",
    "display_name": "Tail Whip"
   },
   "POISON_STING": {
@@ -568,6 +646,8 @@
    "type": "POISON",
    "accuracy": 100,
    "pp": 35,
+   "effect": "POISON_SIDE_EFFECT1",
+   "description": "Always poisons the target -- Nemesis removed the chance roll from this one.",
    "display_name": "Poison Sting"
   },
   "TWINEEDLE": {
@@ -575,6 +655,8 @@
    "type": "BUG",
    "accuracy": 100,
    "pp": 20,
+   "effect": "TWINEEDLE_EFFECT",
+   "description": "Strikes twice in one turn, and the second hit has a 50% chance to poison.",
    "display_name": "Twineedle"
   },
   "PIN_MISSILE": {
@@ -582,6 +664,8 @@
    "type": "BUG",
    "accuracy": 85,
    "pp": 20,
+   "effect": "TWO_TO_FIVE_ATTACKS_EFFECT",
+   "description": "Hits 2-5 times in one turn: 3/8 odds each of 2 and 3 hits, 1/8 each of 4 and 5. Averages 3.",
    "display_name": "Pin Missile"
   },
   "LEER": {
@@ -589,6 +673,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 30,
+   "effect": "DEFENSE_DOWN1_EFFECT",
+   "description": "Lowers the target's Defense by 1 stage.",
    "display_name": "Leer"
   },
   "BITE": {
@@ -596,6 +682,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 25,
+   "effect": "FLINCH_SIDE_EFFECT1",
+   "description": "Has a 10% chance to make the target flinch, losing its turn -- but only if the user moves first.",
    "display_name": "Bite"
   },
   "GROWL": {
@@ -603,6 +691,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 40,
+   "effect": "ATTACK_DOWN1_EFFECT",
+   "description": "Lowers the target's Attack by 1 stage.",
    "display_name": "Growl"
   },
   "ROAR": {
@@ -610,6 +700,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 20,
+   "effect": "SWITCH_AND_TELEPORT_EFFECT",
+   "description": "Ends a wild battle outright. Against a trainer it does nothing.",
    "display_name": "Roar"
   },
   "SING": {
@@ -617,6 +709,8 @@
    "type": "NORMAL",
    "accuracy": 55,
    "pp": 15,
+   "effect": "SLEEP_EFFECT",
+   "description": "Puts the target to sleep for 1-7 turns. It cannot act until it wakes.",
    "display_name": "Sing"
   },
   "SUPERSONIC": {
@@ -624,6 +718,8 @@
    "type": "NORMAL",
    "accuracy": 55,
    "pp": 20,
+   "effect": "CONFUSION_EFFECT",
+   "description": "Confuses the target. For 2-5 turns it has a 50% chance each turn to hit itself instead.",
    "display_name": "Supersonic"
   },
   "SONICBOOM": {
@@ -631,6 +727,8 @@
    "type": "NORMAL",
    "accuracy": 90,
    "pp": 20,
+   "effect": "SPECIAL_DAMAGE_EFFECT",
+   "description": "Deals a fixed amount of damage that ignores both Pokemon's stats and type matchups.",
    "display_name": "Sonicboom"
   },
   "DISABLE": {
@@ -638,6 +736,8 @@
    "type": "NORMAL",
    "accuracy": 55,
    "pp": 20,
+   "effect": "DISABLE_EFFECT",
+   "description": "Blocks one of the target's moves at random for several turns.",
    "display_name": "Disable"
   },
   "ACID": {
@@ -645,6 +745,8 @@
    "type": "POISON",
    "accuracy": 100,
    "pp": 30,
+   "effect": "DEFENSE_DOWN_SIDE_EFFECT",
+   "description": "Has a 33% chance to lower the target's Defense by 1 stage.",
    "display_name": "Acid"
   },
   "EMBER": {
@@ -652,6 +754,8 @@
    "type": "FIRE",
    "accuracy": 100,
    "pp": 25,
+   "effect": "BURN_SIDE_EFFECT1",
+   "description": "Has a 10% chance to burn the target, halving its Attack and costing it HP each turn.",
    "display_name": "Ember"
   },
   "FLAMETHROWER": {
@@ -659,6 +763,8 @@
    "type": "FIRE",
    "accuracy": 100,
    "pp": 15,
+   "effect": "BURN_SIDE_EFFECT1",
+   "description": "Has a 10% chance to burn the target, halving its Attack and costing it HP each turn.",
    "display_name": "Flamethrower"
   },
   "MIST": {
@@ -666,6 +772,8 @@
    "type": "ICE",
    "accuracy": 100,
    "pp": 30,
+   "effect": "MIST_EFFECT",
+   "description": "Blocks stat-lowering moves for the rest of the battle.",
    "display_name": "Mist"
   },
   "WATER_GUN": {
@@ -673,6 +781,8 @@
    "type": "WATER",
    "accuracy": 100,
    "pp": 25,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Water Gun",
    "tm_number": "TM12"
   },
@@ -681,6 +791,8 @@
    "type": "WATER",
    "accuracy": 80,
    "pp": 5,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Hydro Pump"
   },
   "SURF": {
@@ -688,6 +800,8 @@
    "type": "WATER",
    "accuracy": 100,
    "pp": 15,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Surf",
    "tm_number": "HM03"
   },
@@ -696,6 +810,8 @@
    "type": "ICE",
    "accuracy": 100,
    "pp": 10,
+   "effect": "FREEZE_SIDE_EFFECT1",
+   "description": "Has a 10% chance to freeze the target solid. In Gen 1 a frozen Pokemon never thaws on its own.",
    "display_name": "Ice Beam",
    "tm_number": "TM13"
   },
@@ -704,6 +820,8 @@
    "type": "ICE",
    "accuracy": 90,
    "pp": 5,
+   "effect": "FREEZE_SIDE_EFFECT1",
+   "description": "Has a 10% chance to freeze the target solid. In Gen 1 a frozen Pokemon never thaws on its own.",
    "display_name": "Blizzard",
    "tm_number": "TM14"
   },
@@ -712,6 +830,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 100,
    "pp": 20,
+   "effect": "CONFUSION_SIDE_EFFECT",
+   "description": "Has a 10% chance to confuse the target.",
    "display_name": "Psybeam"
   },
   "BUBBLEBEAM": {
@@ -719,6 +839,8 @@
    "type": "WATER",
    "accuracy": 100,
    "pp": 20,
+   "effect": "SPEED_DOWN_SIDE_EFFECT",
+   "description": "Has a 33% chance to lower the target's Speed by 1 stage.",
    "display_name": "Bubblebeam",
    "tm_number": "TM11"
   },
@@ -727,6 +849,8 @@
    "type": "ICE",
    "accuracy": 100,
    "pp": 20,
+   "effect": "ATTACK_DOWN_SIDE_EFFECT",
+   "description": "Has a 33% chance to lower the target's Attack by 1 stage.",
    "display_name": "Aurora Beam"
   },
   "HYPER_BEAM": {
@@ -734,6 +858,8 @@
    "type": "NORMAL",
    "accuracy": 90,
    "pp": 5,
+   "effect": "HYPER_BEAM_EFFECT",
+   "description": "Devastating, but the user must spend the next turn recharging and cannot act.",
    "display_name": "Hyper Beam",
    "tm_number": "TM15"
   },
@@ -742,6 +868,8 @@
    "type": "FLYING",
    "accuracy": 100,
    "pp": 35,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Peck"
   },
   "DRILL_PECK": {
@@ -749,6 +877,8 @@
    "type": "FLYING",
    "accuracy": 100,
    "pp": 20,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Drill Peck"
   },
   "SUBMISSION": {
@@ -756,6 +886,8 @@
    "type": "FIGHTING",
    "accuracy": 80,
    "pp": 25,
+   "effect": "RECOIL_EFFECT",
+   "description": "The user takes a quarter of the damage it deals as recoil.",
    "display_name": "Submission",
    "tm_number": "TM17"
   },
@@ -764,6 +896,8 @@
    "type": "FIGHTING",
    "accuracy": 90,
    "pp": 20,
+   "effect": "FLINCH_SIDE_EFFECT2",
+   "description": "Has a 30% chance to make the target flinch, losing its turn -- but only if the user moves first.",
    "display_name": "Low Kick"
   },
   "COUNTER": {
@@ -771,6 +905,8 @@
    "type": "FIGHTING",
    "accuracy": 100,
    "pp": 20,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Counter",
    "tm_number": "TM18"
   },
@@ -779,6 +915,8 @@
    "type": "FIGHTING",
    "accuracy": 100,
    "pp": 20,
+   "effect": "SPECIAL_DAMAGE_EFFECT",
+   "description": "Deals a fixed amount of damage that ignores both Pokemon's stats and type matchups.",
    "display_name": "Seismic Toss",
    "tm_number": "TM19"
   },
@@ -787,6 +925,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 15,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Strength",
    "tm_number": "HM04"
   },
@@ -795,6 +935,8 @@
    "type": "GRASS",
    "accuracy": 100,
    "pp": 20,
+   "effect": "DRAIN_HP_EFFECT",
+   "description": "Heals the user for half the damage dealt.",
    "display_name": "Absorb"
   },
   "MEGA_DRAIN": {
@@ -802,6 +944,8 @@
    "type": "GRASS",
    "accuracy": 100,
    "pp": 10,
+   "effect": "DRAIN_HP_EFFECT",
+   "description": "Heals the user for half the damage dealt.",
    "display_name": "Mega Drain",
    "tm_number": "TM21"
   },
@@ -810,6 +954,8 @@
    "type": "GRASS",
    "accuracy": 90,
    "pp": 10,
+   "effect": "LEECH_SEED_EFFECT",
+   "description": "Drains 1/16 of the target's max HP to the user every turn until it switches out.",
    "display_name": "Leech Seed"
   },
   "GROWTH": {
@@ -817,6 +963,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 40,
+   "effect": "SPECIAL_UP1_EFFECT",
+   "description": "Raises the user's Special by 1 stage.",
    "display_name": "Growth"
   },
   "RAZOR_LEAF": {
@@ -824,6 +972,8 @@
    "type": "GRASS",
    "accuracy": 95,
    "pp": 25,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Razor Leaf"
   },
   "SOLARBEAM": {
@@ -831,6 +981,8 @@
    "type": "GRASS",
    "accuracy": 100,
    "pp": 10,
+   "effect": "CHARGE_EFFECT",
+   "description": "Spends the first turn charging and strikes on the second.",
    "display_name": "Solarbeam",
    "tm_number": "TM22"
   },
@@ -839,6 +991,8 @@
    "type": "POISON",
    "accuracy": 75,
    "pp": 35,
+   "effect": "POISON_EFFECT",
+   "description": "Poisons the target, costing it 1/16 of its max HP each turn. Toxic instead doubles the damage every turn.",
    "display_name": "Poisonpowder"
   },
   "STUN_SPORE": {
@@ -846,6 +1000,8 @@
    "type": "GRASS",
    "accuracy": 75,
    "pp": 30,
+   "effect": "PARALYZE_EFFECT",
+   "description": "Paralyzes the target: its Speed is quartered and it loses a quarter of its turns outright.",
    "display_name": "Stun Spore"
   },
   "SLEEP_POWDER": {
@@ -853,6 +1009,8 @@
    "type": "GRASS",
    "accuracy": 75,
    "pp": 15,
+   "effect": "SLEEP_EFFECT",
+   "description": "Puts the target to sleep for 1-7 turns. It cannot act until it wakes.",
    "display_name": "Sleep Powder"
   },
   "PETAL_DANCE": {
@@ -860,6 +1018,8 @@
    "type": "GRASS",
    "accuracy": 100,
    "pp": 20,
+   "effect": "THRASH_PETAL_DANCE_EFFECT",
+   "description": "Attacks for 3-4 turns without stopping, then leaves the user confused.",
    "display_name": "Petal Dance"
   },
   "STRING_SHOT": {
@@ -867,6 +1027,8 @@
    "type": "BUG",
    "accuracy": 95,
    "pp": 40,
+   "effect": "SPEED_DOWN1_EFFECT",
+   "description": "Lowers the target's Speed by 1 stage.",
    "display_name": "String Shot"
   },
   "DRAGON_RAGE": {
@@ -874,6 +1036,8 @@
    "type": "DRAGON",
    "accuracy": 100,
    "pp": 10,
+   "effect": "SPECIAL_DAMAGE_EFFECT",
+   "description": "Deals a fixed amount of damage that ignores both Pokemon's stats and type matchups.",
    "display_name": "Dragon Rage",
    "tm_number": "TM23"
   },
@@ -882,6 +1046,8 @@
    "type": "FIRE",
    "accuracy": 70,
    "pp": 15,
+   "effect": "TRAPPING_EFFECT",
+   "description": "Locks the target in place for 2-5 turns, damaging it each turn. It cannot move at all while trapped -- but neither can the user.",
    "display_name": "Fire Spin"
   },
   "THUNDERSHOCK": {
@@ -889,6 +1055,8 @@
    "type": "ELECTRIC",
    "accuracy": 100,
    "pp": 30,
+   "effect": "PARALYZE_SIDE_EFFECT1",
+   "description": "Has a 10% chance to paralyze the target.",
    "display_name": "Thundershock"
   },
   "THUNDERBOLT": {
@@ -896,6 +1064,8 @@
    "type": "ELECTRIC",
    "accuracy": 100,
    "pp": 15,
+   "effect": "PARALYZE_SIDE_EFFECT1",
+   "description": "Has a 10% chance to paralyze the target.",
    "display_name": "Thunderbolt",
    "tm_number": "TM24"
   },
@@ -904,6 +1074,8 @@
    "type": "ELECTRIC",
    "accuracy": 100,
    "pp": 20,
+   "effect": "PARALYZE_EFFECT",
+   "description": "Paralyzes the target: its Speed is quartered and it loses a quarter of its turns outright.",
    "display_name": "Thunder Wave",
    "tm_number": "TM45"
   },
@@ -912,6 +1084,8 @@
    "type": "ELECTRIC",
    "accuracy": 70,
    "pp": 10,
+   "effect": "PARALYZE_SIDE_EFFECT1",
+   "description": "Has a 10% chance to paralyze the target.",
    "display_name": "Thunder",
    "tm_number": "TM25"
   },
@@ -920,6 +1094,8 @@
    "type": "ROCK",
    "accuracy": 100,
    "pp": 15,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Rock Throw",
    "tm_number": "TM34"
   },
@@ -928,6 +1104,8 @@
    "type": "GROUND",
    "accuracy": 100,
    "pp": 10,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Earthquake",
    "tm_number": "TM26"
   },
@@ -936,6 +1114,8 @@
    "type": "GROUND",
    "accuracy": 30,
    "pp": 5,
+   "effect": "OHKO_EFFECT",
+   "description": "Knocks the target out in one hit if it connects, but fails outright against anything faster than the user.",
    "display_name": "Fissure",
    "tm_number": "TM27"
   },
@@ -944,6 +1124,8 @@
    "type": "GROUND",
    "accuracy": 100,
    "pp": 10,
+   "effect": "CHARGE_EFFECT",
+   "description": "Spends the first turn charging and strikes on the second.",
    "display_name": "Dig",
    "tm_number": "TM28"
   },
@@ -952,6 +1134,8 @@
    "type": "POISON",
    "accuracy": 85,
    "pp": 10,
+   "effect": "POISON_EFFECT",
+   "description": "Badly poisons the target: the damage starts small and doubles every single turn it stays in.",
    "display_name": "Toxic",
    "tm_number": "TM06"
   },
@@ -960,6 +1144,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 100,
    "pp": 25,
+   "effect": "CONFUSION_SIDE_EFFECT",
+   "description": "Has a 10% chance to confuse the target.",
    "display_name": "Confusion"
   },
   "PSYCHIC_M": {
@@ -967,6 +1153,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 100,
    "pp": 10,
+   "effect": "SPECIAL_DOWN_SIDE_EFFECT",
+   "description": "Has a 33% chance to lower the target's Special by 1 stage.",
    "display_name": "Psychic",
    "tm_number": "TM29"
   },
@@ -975,6 +1163,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 60,
    "pp": 20,
+   "effect": "SLEEP_EFFECT",
+   "description": "Puts the target to sleep for 1-7 turns. It cannot act until it wakes.",
    "display_name": "Hypnosis"
   },
   "MEDITATE": {
@@ -982,6 +1172,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 100,
    "pp": 40,
+   "effect": "ATTACK_UP1_EFFECT",
+   "description": "Raises the user's Attack by 1 stage.",
    "display_name": "Meditate"
   },
   "AGILITY": {
@@ -989,6 +1181,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 100,
    "pp": 30,
+   "effect": "SPEED_UP2_EFFECT",
+   "description": "Raises the user's Speed by 2 stages.",
    "display_name": "Agility"
   },
   "QUICK_ATTACK": {
@@ -996,6 +1190,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 30,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Quick Attack"
   },
   "RAGE": {
@@ -1003,6 +1199,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 20,
+   "effect": "RAGE_EFFECT",
+   "description": "The user locks into this move, and its Attack rises every time it is hit.",
    "display_name": "Rage",
    "tm_number": "TM20"
   },
@@ -1011,6 +1209,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 100,
    "pp": 20,
+   "effect": "SWITCH_AND_TELEPORT_EFFECT",
+   "description": "Ends a wild battle outright. Against a trainer it does nothing.",
    "display_name": "Teleport",
    "tm_number": "TM30"
   },
@@ -1019,6 +1219,8 @@
    "type": "GHOST",
    "accuracy": 100,
    "pp": 15,
+   "effect": "SPECIAL_DAMAGE_EFFECT",
+   "description": "Deals a fixed amount of damage that ignores both Pokemon's stats and type matchups.",
    "display_name": "Night Shade",
    "tm_number": "TM51"
   },
@@ -1027,6 +1229,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 35,
+   "effect": "MIMIC_EFFECT",
+   "description": "Copies one of the target's moves for the rest of the battle.",
    "display_name": "Mimic",
    "tm_number": "TM31"
   },
@@ -1035,6 +1239,8 @@
    "type": "NORMAL",
    "accuracy": 85,
    "pp": 40,
+   "effect": "DEFENSE_DOWN2_EFFECT",
+   "description": "Lowers the target's Defense by 2 stages.",
    "display_name": "Screech"
   },
   "DOUBLE_TEAM": {
@@ -1042,6 +1248,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 15,
+   "effect": "EVASION_UP1_EFFECT",
+   "description": "Raises the user's evasion by 1 stage.",
    "display_name": "Double Team",
    "tm_number": "TM32"
   },
@@ -1050,6 +1258,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 20,
+   "effect": "HEAL_EFFECT",
+   "description": "Restores half the user's max HP. Rest instead heals fully and puts the user to sleep for two turns.",
    "display_name": "Recover"
   },
   "HARDEN": {
@@ -1057,6 +1267,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 30,
+   "effect": "DEFENSE_UP1_EFFECT",
+   "description": "Raises the user's Defense by 1 stage.",
    "display_name": "Harden"
   },
   "MINIMIZE": {
@@ -1064,6 +1276,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 20,
+   "effect": "EVASION_UP1_EFFECT",
+   "description": "Raises the user's evasion by 1 stage.",
    "display_name": "Minimize"
   },
   "SMOKESCREEN": {
@@ -1071,6 +1285,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 20,
+   "effect": "ACCURACY_DOWN1_EFFECT",
+   "description": "Lowers the target's accuracy by 1 stage.",
    "display_name": "Smokescreen"
   },
   "CONFUSE_RAY": {
@@ -1078,6 +1294,8 @@
    "type": "GHOST",
    "accuracy": 100,
    "pp": 10,
+   "effect": "CONFUSION_EFFECT",
+   "description": "Confuses the target. For 2-5 turns it has a 50% chance each turn to hit itself instead.",
    "display_name": "Confuse Ray",
    "tm_number": "TM52"
   },
@@ -1086,6 +1304,8 @@
    "type": "WATER",
    "accuracy": 100,
    "pp": 40,
+   "effect": "DEFENSE_UP1_EFFECT",
+   "description": "Raises the user's Defense by 1 stage.",
    "display_name": "Withdraw"
   },
   "DEFENSE_CURL": {
@@ -1093,6 +1313,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 40,
+   "effect": "DEFENSE_UP1_EFFECT",
+   "description": "Raises the user's Defense by 1 stage.",
    "display_name": "Defense Curl"
   },
   "BARRIER": {
@@ -1100,6 +1322,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 100,
    "pp": 30,
+   "effect": "DEFENSE_UP2_EFFECT",
+   "description": "Raises the user's Defense by 2 stages.",
    "display_name": "Barrier"
   },
   "LIGHT_SCREEN": {
@@ -1107,6 +1331,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 100,
    "pp": 30,
+   "effect": "LIGHT_SCREEN_EFFECT",
+   "description": "Halves special damage taken for the rest of the battle.",
    "display_name": "Light Screen"
   },
   "HAZE": {
@@ -1114,6 +1340,8 @@
    "type": "ICE",
    "accuracy": 100,
    "pp": 30,
+   "effect": "HAZE_EFFECT",
+   "description": "Wipes every stat change on both sides back to neutral, and clears status.",
    "display_name": "Haze"
   },
   "REFLECT": {
@@ -1121,6 +1349,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 100,
    "pp": 20,
+   "effect": "REFLECT_EFFECT",
+   "description": "Halves physical damage taken for the rest of the battle.",
    "display_name": "Reflect",
    "tm_number": "TM33"
   },
@@ -1129,6 +1359,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 30,
+   "effect": "FOCUS_ENERGY_EFFECT",
+   "description": "Pegs the user's critical-hit rate for the rest of the battle. Vanilla's version quartered it instead -- Nemesis fixes that.",
    "display_name": "Focus Energy"
   },
   "BIDE": {
@@ -1136,6 +1368,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 10,
+   "effect": "BIDE_EFFECT",
+   "description": "The user absorbs hits for 2-3 turns, then deals back double everything it took.",
    "display_name": "Bide"
   },
   "METRONOME": {
@@ -1143,6 +1377,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 10,
+   "effect": "METRONOME_EFFECT",
+   "description": "Fires off a completely random move.",
    "display_name": "Metronome",
    "tm_number": "TM35"
   },
@@ -1151,6 +1387,8 @@
    "type": "FLYING",
    "accuracy": 100,
    "pp": 20,
+   "effect": "MIRROR_MOVE_EFFECT",
+   "description": "Uses whatever the target used last. Fails if it hasn't moved yet.",
    "display_name": "Mirror Move"
   },
   "SELFDESTRUCT": {
@@ -1158,6 +1396,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 5,
+   "effect": "EXPLODE_EFFECT",
+   "description": "Halves the target's Defense for this hit, then knocks the user out.",
    "display_name": "Selfdestruct",
    "tm_number": "TM36"
   },
@@ -1166,6 +1406,8 @@
    "type": "NORMAL",
    "accuracy": 75,
    "pp": 10,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Egg Bomb",
    "tm_number": "TM37"
   },
@@ -1174,6 +1416,8 @@
    "type": "GHOST",
    "accuracy": 100,
    "pp": 30,
+   "effect": "PARALYZE_SIDE_EFFECT2",
+   "description": "Has a 30% chance to paralyze the target.",
    "display_name": "Lick"
   },
   "SMOG": {
@@ -1181,6 +1425,8 @@
    "type": "POISON",
    "accuracy": 70,
    "pp": 20,
+   "effect": "POISON_SIDE_EFFECT2",
+   "description": "Has a 40% chance to poison the target.",
    "display_name": "Smog"
   },
   "SLUDGE": {
@@ -1188,6 +1434,8 @@
    "type": "POISON",
    "accuracy": 100,
    "pp": 20,
+   "effect": "POISON_SIDE_EFFECT2",
+   "description": "Has a 40% chance to badly poison the target -- damage that doubles every turn, not the flat kind.",
    "display_name": "Sludge"
   },
   "BONE_CLUB": {
@@ -1195,6 +1443,8 @@
    "type": "GROUND",
    "accuracy": 85,
    "pp": 20,
+   "effect": "FLINCH_SIDE_EFFECT1",
+   "description": "Has a 10% chance to make the target flinch, losing its turn -- but only if the user moves first.",
    "display_name": "Bone Club"
   },
   "FIRE_BLAST": {
@@ -1202,6 +1452,8 @@
    "type": "FIRE",
    "accuracy": 85,
    "pp": 5,
+   "effect": "BURN_SIDE_EFFECT2",
+   "description": "Has a 30% chance to burn the target, halving its Attack and costing it HP each turn.",
    "display_name": "Fire Blast",
    "tm_number": "TM38"
   },
@@ -1210,6 +1462,8 @@
    "type": "WATER",
    "accuracy": 100,
    "pp": 15,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Waterfall"
   },
   "CLAMP": {
@@ -1217,6 +1471,8 @@
    "type": "WATER",
    "accuracy": 75,
    "pp": 10,
+   "effect": "TRAPPING_EFFECT",
+   "description": "Locks the target in place for 2-5 turns, damaging it each turn. It cannot move at all while trapped -- but neither can the user.",
    "display_name": "Clamp"
   },
   "SWIFT": {
@@ -1224,6 +1480,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 20,
+   "effect": "SWIFT_EFFECT",
+   "description": "Never misses, no matter the target's evasion.",
    "display_name": "Swift",
    "tm_number": "TM39"
   },
@@ -1232,6 +1490,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 15,
+   "effect": "CHARGE_EFFECT",
+   "description": "Spends the first turn charging and strikes on the second.",
    "display_name": "Skull Bash",
    "tm_number": "TM40"
   },
@@ -1240,6 +1500,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 15,
+   "effect": "TWO_TO_FIVE_ATTACKS_EFFECT",
+   "description": "Hits 2-5 times in one turn: 3/8 odds each of 2 and 3 hits, 1/8 each of 4 and 5. Averages 3.",
    "display_name": "Spike Cannon"
   },
   "CONSTRICT": {
@@ -1247,6 +1509,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 35,
+   "effect": "SPEED_DOWN_SIDE_EFFECT",
+   "description": "Has a 33% chance to lower the target's Speed by 1 stage.",
    "display_name": "Constrict"
   },
   "AMNESIA": {
@@ -1254,6 +1518,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 100,
    "pp": 20,
+   "effect": "SPECIAL_UP2_EFFECT",
+   "description": "Raises the user's Special by 2 stages.",
    "display_name": "Amnesia"
   },
   "KINESIS": {
@@ -1261,6 +1527,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 80,
    "pp": 15,
+   "effect": "ACCURACY_DOWN1_EFFECT",
+   "description": "Lowers the target's accuracy by 1 stage.",
    "display_name": "Kinesis"
   },
   "SOFTBOILED": {
@@ -1268,6 +1536,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 10,
+   "effect": "HEAL_EFFECT",
+   "description": "Restores half the user's max HP. Rest instead heals fully and puts the user to sleep for two turns.",
    "display_name": "Softboiled",
    "tm_number": "TM41"
   },
@@ -1276,6 +1546,8 @@
    "type": "FIGHTING",
    "accuracy": 90,
    "pp": 20,
+   "effect": "JUMP_KICK_EFFECT",
+   "description": "If it misses, the user crashes and takes 1 HP of damage.",
    "display_name": "Hi Jump Kick"
   },
   "GLARE": {
@@ -1283,6 +1555,8 @@
    "type": "NORMAL",
    "accuracy": 75,
    "pp": 30,
+   "effect": "PARALYZE_EFFECT",
+   "description": "Paralyzes the target: its Speed is quartered and it loses a quarter of its turns outright.",
    "display_name": "Glare"
   },
   "DREAM_EATER": {
@@ -1290,6 +1564,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 100,
    "pp": 15,
+   "effect": "DREAM_EATER_EFFECT",
+   "description": "Only works on a sleeping target, and heals the user for half the damage dealt.",
    "display_name": "Dream Eater",
    "tm_number": "TM42"
   },
@@ -1298,6 +1574,8 @@
    "type": "POISON",
    "accuracy": 55,
    "pp": 40,
+   "effect": "POISON_EFFECT",
+   "description": "Poisons the target, costing it 1/16 of its max HP each turn. Toxic instead doubles the damage every turn.",
    "display_name": "Poison Gas"
   },
   "BARRAGE": {
@@ -1305,6 +1583,8 @@
    "type": "NORMAL",
    "accuracy": 85,
    "pp": 20,
+   "effect": "TWO_TO_FIVE_ATTACKS_EFFECT",
+   "description": "Hits 2-5 times in one turn: 3/8 odds each of 2 and 3 hits, 1/8 each of 4 and 5. Averages 3.",
    "display_name": "Barrage"
   },
   "LEECH_LIFE": {
@@ -1312,6 +1592,8 @@
    "type": "BUG",
    "accuracy": 100,
    "pp": 15,
+   "effect": "DRAIN_HP_EFFECT",
+   "description": "Heals the user for the full damage dealt, not the usual half.",
    "display_name": "Leech Life"
   },
   "LOVELY_KISS": {
@@ -1319,6 +1601,8 @@
    "type": "NORMAL",
    "accuracy": 75,
    "pp": 10,
+   "effect": "SLEEP_EFFECT",
+   "description": "Puts the target to sleep for 1-7 turns. It cannot act until it wakes.",
    "display_name": "Lovely Kiss"
   },
   "SKY_ATTACK": {
@@ -1326,6 +1610,8 @@
    "type": "FLYING",
    "accuracy": 90,
    "pp": 5,
+   "effect": "CHARGE_EFFECT",
+   "description": "Spends the first turn charging and strikes on the second.",
    "display_name": "Sky Attack",
    "tm_number": "TM43"
   },
@@ -1334,6 +1620,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 10,
+   "effect": "TRANSFORM_EFFECT",
+   "description": "Becomes a copy of the target: its stats, types and moves, each at 5 PP.",
    "display_name": "Transform"
   },
   "BUBBLE": {
@@ -1341,6 +1629,8 @@
    "type": "WATER",
    "accuracy": 100,
    "pp": 30,
+   "effect": "SPEED_DOWN_SIDE_EFFECT",
+   "description": "Has a 33% chance to lower the target's Speed by 1 stage.",
    "display_name": "Bubble"
   },
   "DIZZY_PUNCH": {
@@ -1348,6 +1638,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 10,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Dizzy Punch"
   },
   "SPORE": {
@@ -1355,6 +1647,8 @@
    "type": "GRASS",
    "accuracy": 100,
    "pp": 15,
+   "effect": "SLEEP_EFFECT",
+   "description": "Puts the target to sleep for 1-7 turns. It cannot act until it wakes.",
    "display_name": "Spore"
   },
   "FLASH": {
@@ -1362,6 +1656,8 @@
    "type": "NORMAL",
    "accuracy": 70,
    "pp": 20,
+   "effect": "ACCURACY_DOWN1_EFFECT",
+   "description": "Lowers the target's accuracy by 1 stage.",
    "display_name": "Flash",
    "tm_number": "HM05"
   },
@@ -1370,6 +1666,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 80,
    "pp": 15,
+   "effect": "SPECIAL_DAMAGE_EFFECT",
+   "description": "Deals a fixed amount of damage that ignores both Pokemon's stats and type matchups.",
    "display_name": "Psywave",
    "tm_number": "TM46"
   },
@@ -1378,6 +1676,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 40,
+   "effect": "SPLASH_EFFECT",
+   "description": "Does absolutely nothing.",
    "display_name": "Splash"
   },
   "ACID_ARMOR": {
@@ -1385,6 +1685,8 @@
    "type": "POISON",
    "accuracy": 100,
    "pp": 40,
+   "effect": "DEFENSE_UP2_EFFECT",
+   "description": "Raises the user's Defense by 2 stages.",
    "display_name": "Acid Armor"
   },
   "CRABHAMMER": {
@@ -1392,6 +1694,8 @@
    "type": "WATER",
    "accuracy": 85,
    "pp": 10,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Crabhammer"
   },
   "EXPLOSION": {
@@ -1399,6 +1703,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 5,
+   "effect": "EXPLODE_EFFECT",
+   "description": "Halves the target's Defense for this hit, then knocks the user out.",
    "display_name": "Explosion",
    "tm_number": "TM47"
   },
@@ -1407,6 +1713,8 @@
    "type": "NORMAL",
    "accuracy": 80,
    "pp": 15,
+   "effect": "TWO_TO_FIVE_ATTACKS_EFFECT",
+   "description": "Hits 2-5 times in one turn: 3/8 odds each of 2 and 3 hits, 1/8 each of 4 and 5. Averages 3.",
    "display_name": "Fury Swipes"
   },
   "BONEMERANG": {
@@ -1414,6 +1722,8 @@
    "type": "GROUND",
    "accuracy": 90,
    "pp": 10,
+   "effect": "ATTACK_TWICE_EFFECT",
+   "description": "Strikes twice in a single turn.",
    "display_name": "Bonemerang"
   },
   "REST": {
@@ -1421,6 +1731,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 100,
    "pp": 10,
+   "effect": "HEAL_EFFECT",
+   "description": "Fully restores the user's HP and cures its status, at the cost of two turns asleep.",
    "display_name": "Rest",
    "tm_number": "TM44"
   },
@@ -1429,6 +1741,8 @@
    "type": "ROCK",
    "accuracy": 90,
    "pp": 10,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Rock Slide",
    "tm_number": "TM48"
   },
@@ -1437,6 +1751,8 @@
    "type": "NORMAL",
    "accuracy": 90,
    "pp": 15,
+   "effect": "FLINCH_SIDE_EFFECT1",
+   "description": "Has a 10% chance to make the target flinch, losing its turn -- but only if the user moves first.",
    "display_name": "Hyper Fang"
   },
   "SHARPEN": {
@@ -1444,6 +1760,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 30,
+   "effect": "ATTACK_UP1_EFFECT",
+   "description": "Raises the user's Attack by 1 stage.",
    "display_name": "Sharpen"
   },
   "CONVERSION": {
@@ -1451,6 +1769,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 30,
+   "effect": "CONVERSION_EFFECT",
+   "description": "Changes the user's types to match the target's.",
    "display_name": "Conversion"
   },
   "TRI_ATTACK": {
@@ -1458,6 +1778,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 10,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Tri Attack",
    "tm_number": "TM49"
   },
@@ -1466,6 +1788,8 @@
    "type": "NORMAL",
    "accuracy": 90,
    "pp": 10,
+   "effect": "SUPER_FANG_EFFECT",
+   "description": "Halves the target's current HP, whatever that is. Ignores type matchups.",
    "display_name": "Super Fang"
   },
   "SLASH": {
@@ -1473,6 +1797,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 20,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Slash"
   },
   "SUBSTITUTE": {
@@ -1480,6 +1806,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 10,
+   "effect": "SUBSTITUTE_EFFECT",
+   "description": "Spends a quarter of the user's max HP to put up a decoy that soaks damage and blocks status.",
    "display_name": "Substitute",
    "tm_number": "TM50"
   },
@@ -1488,6 +1816,8 @@
    "type": "FLYING",
    "accuracy": 100,
    "pp": 20,
+   "effect": "DEFENSE_DOWN_SIDE_EFFECT",
+   "description": "Has a 33% chance to lower the target's Defense by 1 stage.",
    "display_name": "Dual Drill"
   },
   "HYPER_BEAMS": {
@@ -1495,6 +1825,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 1,
+   "effect": "HYPER_BEAM_EFFECT",
+   "description": "Devastating, but the user must spend the next turn recharging and cannot act.",
    "display_name": "Hyper Beams"
   },
   "METRONOME2": {
@@ -1502,6 +1834,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 10,
+   "effect": "METRONOME_EFFECT",
+   "description": "Fires off a completely random move.",
    "display_name": "Metronome2",
    "tm_number": "HM06"
   },
@@ -1510,6 +1844,8 @@
    "type": "POISON",
    "accuracy": 85,
    "pp": 1,
+   "effect": "CARRION_WIND_EFFECT",
+   "description": "Moves first, flinches the target on any hit that lands, and badly poisons it. Its single PP is deliberate.",
    "display_name": "Carrion Wind"
   },
   "BLIGHT_VOMIT": {
@@ -1517,6 +1853,8 @@
    "type": "POISON",
    "accuracy": 100,
    "pp": 15,
+   "effect": "PARALYZE_SIDE_EFFECT2",
+   "description": "Has a 30% chance to paralyze the target.",
    "display_name": "Blight Vomit"
   },
   "MIND_FEVER": {
@@ -1524,6 +1862,8 @@
    "type": "GHOST",
    "accuracy": 100,
    "pp": 1,
+   "effect": "CONFUSION_EFFECT",
+   "description": "Confuses and burns the target at once. Its single PP is deliberate -- one casting of the curse per battle.",
    "display_name": "Mind Fever"
   },
   "PHANTOM_WING": {
@@ -1531,6 +1871,8 @@
    "type": "GHOST",
    "accuracy": 100,
    "pp": 10,
+   "effect": "SPECIAL_DOWN_SIDE_EFFECT",
+   "description": "Has a 33% chance to lower the target's Special by 1 stage.",
    "display_name": "Phantom Wing"
   },
   "WEB_CANNON": {
@@ -1538,6 +1880,8 @@
    "type": "BUG",
    "accuracy": 85,
    "pp": 10,
+   "effect": "WEB_CANNON_EFFECT",
+   "description": "Deals damage, slams the target's Speed all the way down to -6, and has a 35% chance to flinch it.",
    "display_name": "Web Cannon"
   },
   "UPPERCUT": {
@@ -1545,6 +1889,8 @@
    "type": "FIGHTING",
    "accuracy": 100,
    "pp": 15,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Uppercut"
   },
   "JACKPOT": {
@@ -1552,6 +1898,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 10,
+   "effect": "JACKPOT_EFFECT",
+   "description": "Deals damage and scatters a large sum of prize money.",
    "display_name": "Jackpot"
   },
   "SUPER_INSTINCT": {
@@ -1559,6 +1907,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 20,
+   "effect": "SUPER_INSTINCT_EFFECT",
+   "description": "Raises the user's accuracy and evasion by 1 stage each.",
    "display_name": "Instinct"
   },
   "CRYSTALLIZE": {
@@ -1566,6 +1916,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 20,
+   "effect": "CRYSTALLIZE_EFFECT",
+   "description": "Raises the user's Defense by 2 stages and its Special by 1.",
    "display_name": "Crystallize"
   },
   "CHAOS_STING": {
@@ -1573,6 +1925,8 @@
    "type": "BUG",
    "accuracy": 100,
    "pp": 15,
+   "effect": "CHAOS_STING_EFFECT",
+   "description": "Has a 30% chance to inflict a random status -- anything except sleep.",
    "display_name": "Chaos Sting"
   },
   "CHOKEHOLD": {
@@ -1580,6 +1934,8 @@
    "type": "FIGHTING",
    "accuracy": 85,
    "pp": 15,
+   "effect": "TRAPPING_EFFECT",
+   "description": "Locks the target in place for 2-5 turns, damaging it each turn. It cannot move at all while trapped -- but neither can the user.",
    "display_name": "Chokehold"
   },
   "ROCK_FISTS": {
@@ -1587,6 +1943,8 @@
    "type": "ROCK",
    "accuracy": 85,
    "pp": 10,
+   "effect": "TWO_TO_FIVE_ATTACKS_EFFECT",
+   "description": "Hits 2-5 times in one turn: 3/8 odds each of 2 and 3 hits, 1/8 each of 4 and 5. Averages 3.",
    "display_name": "Rock Fists"
   },
   "HOT_OIL": {
@@ -1594,6 +1952,8 @@
    "type": "FIRE",
    "accuracy": 100,
    "pp": 10,
+   "effect": "HOT_OIL_EFFECT",
+   "description": "Deals damage and always burns the target.",
    "display_name": "Hot Oil"
   },
   "BAD_TOUCH": {
@@ -1601,6 +1961,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 10,
+   "effect": "CONFUSION_EFFECT",
+   "description": "Confuses the target. For 2-5 turns it has a 50% chance each turn to hit itself instead.",
    "display_name": "Bad Touch"
   },
   "CRUSH_COIL": {
@@ -1608,6 +1970,8 @@
    "type": "POISON",
    "accuracy": 85,
    "pp": 15,
+   "effect": "TRAPPING_EFFECT",
+   "description": "Locks the target in place for 2-5 turns, damaging it each turn. It cannot move at all while trapped -- but neither can the user.",
    "display_name": "Crush Coil"
   },
   "BLOOD_SUCK": {
@@ -1615,6 +1979,8 @@
    "type": "POISON",
    "accuracy": 100,
    "pp": 10,
+   "effect": "DRAIN_HP_EFFECT",
+   "description": "Heals the user for the full damage dealt, not the usual half.",
    "display_name": "Blood Suck"
   },
   "HURRICANE": {
@@ -1622,6 +1988,8 @@
    "type": "DRAGON",
    "accuracy": 100,
    "pp": 10,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Hurricane"
   },
   "ICE_SPIKE": {
@@ -1629,6 +1997,8 @@
    "type": "ICE",
    "accuracy": 100,
    "pp": 20,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Ice Spike"
   },
   "MIGRAIN": {
@@ -1636,6 +2006,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 100,
    "pp": 20,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Migrain"
   },
   "DIVE": {
@@ -1643,6 +2015,8 @@
    "type": "FLYING",
    "accuracy": 100,
    "pp": 20,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Dive"
   },
   "STATIC_SHOCK": {
@@ -1650,6 +2024,8 @@
    "type": "ELECTRIC",
    "accuracy": 100,
    "pp": 15,
+   "effect": "STATIC_SHOCK_EFFECT",
+   "description": "Deals damage and always paralyzes the target.",
    "display_name": "Static Shock"
   },
   "GRAVITY_SLAM": {
@@ -1657,6 +2033,8 @@
    "type": "ROCK",
    "accuracy": 100,
    "pp": 10,
+   "effect": "STATIC_SHOCK_EFFECT",
+   "description": "Deals damage and always paralyzes the target.",
    "display_name": "Gravity Slam"
   },
   "VIBRATE": {
@@ -1664,6 +2042,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 20,
+   "effect": "VIBRATE_EFFECT",
+   "description": "Raises the user's Attack and Speed by 2 stages each.",
    "display_name": "Vibrate"
   },
   "STEALTH": {
@@ -1671,6 +2051,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 15,
+   "effect": "EVASION_UP2_EFFECT",
+   "description": "Raises the user's evasion by 2 stages.",
    "display_name": "Stealth"
   },
   "TANGLE": {
@@ -1678,6 +2060,8 @@
    "type": "GRASS",
    "accuracy": 100,
    "pp": 15,
+   "effect": "TANGLE_EFFECT",
+   "description": "Deals damage and lowers the target's Speed by 3 stages.",
    "display_name": "Tangle"
   },
   "ICE_BOMB": {
@@ -1685,6 +2069,8 @@
    "type": "ICE",
    "accuracy": 100,
    "pp": 5,
+   "effect": "ICE_BOMB_EFFECT",
+   "description": "Deals damage with a 50% chance to freeze the target solid.",
    "display_name": "Ice Bomb"
   },
   "ICE_SCULPTURE": {
@@ -1692,6 +2078,8 @@
    "type": "ICE",
    "accuracy": 100,
    "pp": 10,
+   "effect": "ICE_SCULPTURE_EFFECT",
+   "description": "Puts up a frost decoy in place of the user. Anything that damages it may be frozen.",
    "display_name": "Ice Statue"
   },
   "STAMPEDE": {
@@ -1699,6 +2087,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 5,
+   "effect": "CHARGE_EFFECT",
+   "description": "Spends the first turn charging and strikes on the second.",
    "display_name": "Stampede"
   },
   "ROLL": {
@@ -1706,6 +2096,8 @@
    "type": "NORMAL",
    "accuracy": 85,
    "pp": 15,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Roll"
   },
   "VENOM_BITE": {
@@ -1713,6 +2105,8 @@
    "type": "POISON",
    "accuracy": 100,
    "pp": 25,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Venom Bite"
   },
   "MUD_SLAP": {
@@ -1720,6 +2114,8 @@
    "type": "GROUND",
    "accuracy": 100,
    "pp": 25,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Mud Slap"
   },
   "MANDIBLE_BITE": {
@@ -1727,6 +2123,8 @@
    "type": "BUG",
    "accuracy": 100,
    "pp": 25,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Bug Bite"
   },
   "PALM_STRIKE": {
@@ -1734,6 +2132,8 @@
    "type": "FIGHTING",
    "accuracy": 100,
    "pp": 25,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Palm Strike"
   },
   "SCORCH": {
@@ -1741,6 +2141,8 @@
    "type": "FIRE",
    "accuracy": 100,
    "pp": 25,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Scorch"
   },
   "SPARK": {
@@ -1748,6 +2150,8 @@
    "type": "ELECTRIC",
    "accuracy": 100,
    "pp": 25,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Spark"
   },
   "PSY_CHOP": {
@@ -1755,6 +2159,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 100,
    "pp": 25,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Psy Chop"
   },
   "DRAGON_BREATH": {
@@ -1762,6 +2168,8 @@
    "type": "DRAGON",
    "accuracy": 100,
    "pp": 25,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Dragonbreath"
   },
   "GLITTER_WING": {
@@ -1769,6 +2177,8 @@
    "type": "BUG",
    "accuracy": 100,
    "pp": 10,
+   "effect": "GLITTER_WING_EFFECT",
+   "description": "Deals damage with roughly a 30% chance to put the target to sleep.",
    "display_name": "Glitter Wing"
   },
   "TELEKINESIS": {
@@ -1776,6 +2186,8 @@
    "type": "PSYCHIC_TYPE",
    "accuracy": 85,
    "pp": 10,
+   "effect": "TWO_TO_FIVE_ATTACKS_EFFECT",
+   "description": "Hits 2-5 times in one turn: 3/8 odds each of 2 and 3 hits, 1/8 each of 4 and 5. Averages 3.",
    "display_name": "Telekinesis"
   },
   "FLAME_WHIP": {
@@ -1783,6 +2195,8 @@
    "type": "FIRE",
    "accuracy": 100,
    "pp": 20,
+   "effect": "BURN_SIDE_EFFECT2",
+   "description": "Has a 30% chance to burn the target, halving its Attack and costing it HP each turn.",
    "display_name": "Flame Whip"
   },
   "HYDRO_JET": {
@@ -1790,6 +2204,8 @@
    "type": "WATER",
    "accuracy": 100,
    "pp": 20,
+   "effect": "FLINCH_SIDE_EFFECT2",
+   "description": "Has a 30% chance to make the target flinch, losing its turn -- but only if the user moves first.",
    "display_name": "Hydro Jet"
   },
   "GIGA_DRAIN": {
@@ -1797,6 +2213,8 @@
    "type": "GRASS",
    "accuracy": 100,
    "pp": 5,
+   "effect": "DRAIN_HP_EFFECT",
+   "description": "Heals the user for the full damage dealt, not the usual half.",
    "display_name": "Giga Drain"
   },
   "GHOST_BEAM": {
@@ -1804,6 +2222,8 @@
    "type": "GHOST",
    "accuracy": 90,
    "pp": 5,
+   "effect": "HYPER_BEAM_EFFECT",
+   "description": "Devastating, but the user must spend the next turn recharging and cannot act.",
    "display_name": "Ghost Beam",
    "tm_number": "TM53"
   },
@@ -1812,6 +2232,8 @@
    "type": "GHOST",
    "accuracy": 100,
    "pp": 10,
+   "effect": "SPECIAL_DOWN_SIDE_EFFECT",
+   "description": "Has a 33% chance to lower the target's Special by 1 stage.",
    "display_name": "Shadow Punch"
   },
   "GRANIT_CLAMP": {
@@ -1819,6 +2241,8 @@
    "type": "ROCK",
    "accuracy": 100,
    "pp": 10,
+   "effect": "NO_ADDITIONAL_EFFECT",
+   "description": "Straight damage with no secondary effect.",
    "display_name": "Granit Clamp"
   },
   "CRUSH_JAW": {
@@ -1826,6 +2250,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 15,
+   "effect": "FLINCH_SIDE_EFFECT2",
+   "description": "Has a 50% chance to make the target flinch and lose its turn, if the user moves first.",
    "display_name": "Crush Jaw"
   },
   "THIRD_RAIL": {
@@ -1833,6 +2259,8 @@
    "type": "ELECTRIC",
    "accuracy": 100,
    "pp": 10,
+   "effect": "CHARGE_EFFECT",
+   "description": "Spends the first turn charging and strikes on the second.",
    "display_name": "Third Rail"
   },
   "NOVA_BLITZ": {
@@ -1840,6 +2268,8 @@
    "type": "ELECTRIC",
    "accuracy": 85,
    "pp": 20,
+   "effect": "TWO_TO_FIVE_ATTACKS_EFFECT",
+   "description": "Hits 2-5 times in one turn: 3/8 odds each of 2 and 3 hits, 1/8 each of 4 and 5. Averages 3.",
    "display_name": "Nova Blitz"
   },
   "POWER_CLAMP": {
@@ -1847,6 +2277,8 @@
    "type": "WATER",
    "accuracy": 85,
    "pp": 10,
+   "effect": "TRAPPING_EFFECT",
+   "description": "Locks the target in place for 2-5 turns, damaging it each turn. It cannot move at all while trapped -- but neither can the user.",
    "display_name": "Power Clamp"
   },
   "STRUGGLE": {
@@ -1854,6 +2286,8 @@
    "type": "NORMAL",
    "accuracy": 100,
    "pp": 10,
+   "effect": "RECOIL_EFFECT",
+   "description": "The last resort when every move is out of PP. The user takes half the damage it deals.",
    "display_name": "Struggle"
   }
  },
@@ -13055,10 +13489,10 @@
     "SURF"
    ],
    "mutagen_moveset": [
-    "SURF",
+    "POWER_CLAMP",
     "ICE_BEAM",
     "CRUSH_COIL",
-    "TOXIC",
+    "SLUDGE",
     "BARRIER"
    ],
    "final_evolution_of_self": true
@@ -13544,8 +13978,8 @@
    ],
    "mutagen_moveset": [
     "SWORDS_DANCE",
-    "RAZOR_LEAF",
-    "ACID",
+    "GIGA_DRAIN",
+    "SLUDGE",
     "STUN_SPORE",
     "SUBSTITUTE"
    ],

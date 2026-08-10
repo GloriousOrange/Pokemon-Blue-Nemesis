@@ -21,6 +21,8 @@ import pathlib
 
 from PIL import Image
 
+from move_effects import describe
+
 ROOT = pathlib.Path(__file__).resolve().parent.parent.parent
 DOCS = ROOT / "docs"
 SPRITES_FRONT = DOCS / "sprites" / "front"
@@ -112,16 +114,20 @@ def load_moves():
 
     text = (ROOT / "data/moves/moves.asm").read_text()
     rows = re.findall(
-        r"move\s+(\w+),\s*\w+,\s*(-?\d+),\s*(\w+),\s*(\d+),\s*(\d+)",
+        r"move\s+(\w+),\s*(\w+),\s*(-?\d+),\s*(\w+),\s*(\d+),\s*(\d+)",
         text,
     )
     moves = {}
-    for i, (name, power, mtype, acc, pp) in enumerate(rows, start=1):
+    for i, (name, effect, power, mtype, acc, pp) in enumerate(rows, start=1):
         moves[name] = {
             "power": int(power),
             "type": mtype,
             "accuracy": int(acc),
             "pp": int(pp),
+            "effect": effect,
+            # written in docs/data/move_effects.py, keyed by effect constant so
+            # a new move inherits the right text without touching that file
+            "description": describe(name, effect),
         }
 
     names_text = (ROOT / "data/moves/names.asm").read_text()
