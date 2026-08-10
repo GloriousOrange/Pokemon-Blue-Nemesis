@@ -327,14 +327,15 @@ VictreebelPicBack::    INCBIN "gfx/pokemon/back/victreebelb.pic"
 SECTION "Pics 6", ROMX
 ; All three new mons' pics live together in this one bank so the pic-bank
 ; selector in home/pics.asm can route index >= TYRANIS here with a single branch.
-; Currently all placeholders reusing a vanilla bird's sprite — recolor later.
 TyranisPicFront::      INCBIN "gfx/pokemon/front/tyranis.pic"   ; custom Tyranis front sprite (Pixellab)
 TyranisPicBack::       INCBIN "gfx/pokemon/back/tyranisb.pic"   ; custom Tyranis back sprite (Pixellab)
 MiasmaPicFront::       INCBIN "gfx/pokemon/front/miasma.pic"    ; custom Miasma front (Pixellab)
 MiasmaPicBack::        INCBIN "gfx/pokemon/back/miasmab.pic"    ; custom Miasma back (Pixellab)
 NocturnPicFront::      INCBIN "gfx/pokemon/front/nocturn.pic"   ; custom Nocturn front (Pixellab)
 NocturnPicBack::       INCBIN "gfx/pokemon/back/nocturnb.pic"   ; custom Nocturn back (Pixellab)
-AlakachampPicFront::   INCBIN "gfx/pokemon/front/machamp.pic"   ; Alakachamp reuses Machamp art (placeholder)
+; ALAKACHAMP keeps MACHAMP's art on purpose: the crimson palette is the whole
+; read, and generated sprites have not rendered well at this size. Not a stand-in.
+AlakachampPicFront::   INCBIN "gfx/pokemon/front/machamp.pic"
 AlakachampPicBack::    INCBIN "gfx/pokemon/back/machampb.pic"
 MewthreePicFront::     INCBIN "gfx/pokemon/front/mewthree.pic"
 MewthreePicBack::      INCBIN "gfx/pokemon/back/mewthreeb.pic"

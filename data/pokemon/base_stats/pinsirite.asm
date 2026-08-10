@@ -1,12 +1,10 @@
 	db DEX_PINSIRITE ; pokedex id
 
-; PLACEHOLDER stat line -- Josh gave no explicit numbers for PINSIRITE, only
-; the archetype ("physical wall-breaker", the Alakachamp/MewThree mould). This
-; is PINSIR's own spread, unmodified, following the pattern Josh set for
-; DIGNEMITE (explicitly "like Dugtrio's stats") and NINEFROST (its approved
-; Spc/Spd, 100/100, already matches NINETALES exactly) -- a straight recolor
-; keeps the base species' numbers unless told otherwise. Confirm or adjust.
-	db  65, 125, 100,  90,  55
+; PINSIR's spread with the Defense raised to GOLEM's 130, per Josh -- the
+; "physical wall-breaker" archetype needed the wall half to actually be there.
+; Everything else is PINSIR unchanged, matching how DIGNEMITE took DUGTRIO's
+; numbers and NINEFROST took NINETALES'.
+	db  65, 125, 130,  90,  55
 	;   hp  atk  def  spd  spc
 
 	db BUG, ROCK ; type

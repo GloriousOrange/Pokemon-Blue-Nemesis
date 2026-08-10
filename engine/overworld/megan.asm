@@ -104,9 +104,10 @@ MeganGetVisitedMask:
 	jr .shiftLoop
 
 ; 2 bytes per Megan location index: db ITEM, QUANTITY (ITEM 0 = no gift yet).
-; DRAFT of the user's gift list: list positions 1-24 mapped to indices 1-24.
-; Custom items "Fried Dragon" / "Ditto Jello" don't exist yet -> 0,0 (TODO: create
-; the items, then fill these in). Mapping needs user confirmation (esp. idx 11).
+; The user's gift list, list positions 1-24 mapped to indices 1-24.
+; "FRIED DRAGON" and "DITTO JELLO" are real, in-game items -- they are
+; FULL_RESTORE ($10) and MAX_POTION ($11) renamed in data/items/names.asm, so
+; the entries below hand out exactly what they say they do.
 MeganGiftTable:
 	db POTION,     1 ;  0 Viridian PC (placeholder; not in user's list)
 	db PP_UP,      1 ;  1 Pewter PC
