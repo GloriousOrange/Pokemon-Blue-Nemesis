@@ -216,6 +216,7 @@ MoveSoundTable:
 	db SFX_BATTLE_1E,          $00, $80 ; CRUSH_JAW (match reused Bite sfx)
 	db SFX_DAMAGE,             $10, $40 ; THIRD_RAIL (match reused DIG sfx)
 	db SFX_BATTLE_0D,          $00, $80 ; NOVA_BLITZ (match reused Thunderbolt sfx)
+	db SFX_BATTLE_0F,          $1f, $ff ; POWER_CLAMP (match reused CLAMP sfx)
 	db SFX_BATTLE_0B,          $00, $80 ; STRUGGLE
 	assert_table_length NUM_ATTACKS
 	db SFX_BATTLE_0B,          $00, $80

@@ -225,7 +225,8 @@
 	const CRUSH_JAW      ; d5 - Normal, 80 dmg, 50% flinch (Gyarados)
 	const THIRD_RAIL     ; d6 - Electric DIG: burrow a turn, erupt electrified (DIGNEMITE's STAB)
 	const NOVA_BLITZ     ; d7 - Electric, 2-5 hits of 35 (RAICHU's mutant move)
-	const STRUGGLE       ; d8
+	const POWER_CLAMP    ; d8 - Water, trapping, 50 per turn (CLOYSTER's heavy CLAMP)
+	const STRUGGLE       ; d9
 DEF NUM_ATTACKS EQU const_value - 1
 
 DEF CANNOT_MOVE EQU $ff

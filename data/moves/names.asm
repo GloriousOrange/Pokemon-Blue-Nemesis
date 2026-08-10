@@ -216,5 +216,6 @@ MoveNames::
 	li "CRUSH JAW"
 	li "THIRD RAIL"
 	li "NOVA BLITZ"
+	li "POWER CLAMP"
 	li "STRUGGLE"
 	assert_list_length NUM_ATTACKS

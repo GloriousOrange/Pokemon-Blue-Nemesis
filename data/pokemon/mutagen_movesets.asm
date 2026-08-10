@@ -99,7 +99,7 @@ MutagenMovesets::
 ; is no broader movepool to draw a curated upgrade from. Standing exclusion,
 ; see tools/mutagen_remaining.py.
 	mutagen_moveset CLEFAIRY,    SEISMIC_TOSS,   THUNDER_WAVE,  REFLECT,       METRONOME,    TOXIC
-	mutagen_moveset CLOYSTER,    CLAMP,          BLIZZARD,      EXPLOSION,     TOXIC,        REST
+	mutagen_moveset CLOYSTER,    POWER_CLAMP,    BLIZZARD,      EXPLOSION,     TOXIC,        REST
 	mutagen_moveset DEWGONG,     SURF,           ICE_BEAM,      REST,          SUBSTITUTE,   BODY_SLAM
 	mutagen_moveset DODRIO,      DRILL_PECK,     TRI_ATTACK,    AGILITY,       BODY_SLAM,    DOUBLE_EDGE
 

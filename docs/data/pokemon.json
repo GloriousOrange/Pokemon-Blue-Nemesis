@@ -1,7 +1,7 @@
 {
  "meta": {
   "num_pokemon": 159,
-  "num_moves": 216
+  "num_moves": 217
  },
  "types": [
   "NORMAL",
@@ -1842,6 +1842,13 @@
    "pp": 20,
    "display_name": "Nova Blitz"
   },
+  "POWER_CLAMP": {
+   "power": 50,
+   "type": "WATER",
+   "accuracy": 70,
+   "pp": 5,
+   "display_name": "Power Clamp"
+  },
   "STRUGGLE": {
    "power": 50,
    "type": "NORMAL",
@@ -3397,6 +3404,10 @@
      "move": "EXPLOSION"
     },
     {
+     "level": 47,
+     "move": "POWER_CLAMP"
+    },
+    {
      "level": 50,
      "move": "SPIKE_CANNON"
     }
@@ -3424,7 +3435,7 @@
     "SURF"
    ],
    "mutagen_moveset": [
-    "CLAMP",
+    "POWER_CLAMP",
     "BLIZZARD",
     "EXPLOSION",
     "TOXIC",
