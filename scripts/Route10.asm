@@ -21,6 +21,7 @@ Route10_TextPointers:
 	dw_const Route10CooltrainerF1Text,  TEXT_ROUTE10_COOLTRAINER_F1
 	dw_const Route10Hiker2Text,         TEXT_ROUTE10_HIKER2
 	dw_const Route10CooltrainerF2Text,  TEXT_ROUTE10_COOLTRAINER_F2
+	dw_const Route10AshText,            TEXT_ROUTE10_ASH
 	dw_const Route10RockTunnelSignText, TEXT_ROUTE10_ROCKTUNNEL_NORTH_SIGN
 	dw_const PokeCenterSignText,        TEXT_ROUTE10_POKECENTER_SIGN
 	dw_const Route10RockTunnelSignText, TEXT_ROUTE10_ROCKTUNNEL_SOUTH_SIGN
@@ -40,7 +41,35 @@ Route10TrainerHeader4:
 	trainer EVENT_BEAT_ROUTE_10_TRAINER_4, 2, Route10Hiker2BattleText, Route10Hiker2EndBattleText, Route10Hiker2AfterBattleText
 Route10TrainerHeader5:
 	trainer EVENT_BEAT_ROUTE_10_TRAINER_5, 2, Route10CooltrainerF2BattleText, Route10CooltrainerF2EndBattleText, Route10CooltrainerF2AfterBattleText
+Route10TrainerHeader6:
+	trainer EVENT_BEAT_ROUTE_10_ASH, 3, Route10AshBattleText, Route10AshEndBattleText, Route10AshAfterBattleText
 	db -1 ; end
+
+Route10AshText:
+	text_asm
+	ld hl, Route10TrainerHeader6
+	call TalkToTrainer
+	jp TextScriptEnd
+
+Route10AshBattleText:
+; He leads with PIKACHU because it is mon 1 of AshData #5.
+	text "PIKACHU, I choose"
+	line "you!"
+	prompt
+
+Route10AshEndBattleText:
+	text "Every time. Every"
+	line "single time."
+	prompt
+
+Route10AshAfterBattleText:
+	text "There's a tower"
+	line "south of here"
+	cont "full of graves."
+
+	para "I'm not losing"
+	line "anyone. Not one."
+	prompt
 
 Route10SuperNerd1Text:
 	text_asm

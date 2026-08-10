@@ -5,6 +5,7 @@
 	const_export ROUTE10_COOLTRAINER_F1
 	const_export ROUTE10_HIKER2
 	const_export ROUTE10_COOLTRAINER_F2
+	const_export ROUTE10_ASH
 
 Route10_Object:
 	db $2c ; border block
@@ -28,5 +29,9 @@ Route10_Object:
 	object_event  7, 25, SPRITE_COOLTRAINER_F, STAY, LEFT, TEXT_ROUTE10_COOLTRAINER_F1, OPP_JR_TRAINER_F, 7
 	object_event  3, 61, SPRITE_HIKER, STAY, DOWN, TEXT_ROUTE10_HIKER2, OPP_HIKER, 8
 	object_event  7, 54, SPRITE_COOLTRAINER_F, STAY, DOWN, TEXT_ROUTE10_COOLTRAINER_F2, OPP_JR_TRAINER_F, 8
+; Near the southern end, just north of LAVENDER TOWN. Appended last, which
+; lands him on object id 7 -- exactly where `def_trainers` has counted to after
+; the route's six, so his header and event bit line up with no juggling.
+	object_event  8, 70, SPRITE_RED, STAY, DOWN, TEXT_ROUTE10_ASH, OPP_ASH, 5
 
 	def_warps_to ROUTE_10

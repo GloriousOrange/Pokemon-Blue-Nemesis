@@ -1113,3 +1113,8 @@ AshData:
 ; caught mid-evolution -- IVYSAUR/WARTORTLE/CHARMELEON all evolve at 16.
 ; Composition is mine, not Josh's: say the word and it changes.
 	db $ff, 24, PIKACHU, 23, IVYSAUR, 23, WARTORTLE, 23, CHARMELEON, 0
+; #5 -- Route 10, just north of Lavender. The route's POKEMANIACs reach 30, so
+; 31-32 keeps him ahead. PIDGEOTTO joins here; TAUROS is held back for Victory
+; Road. Every stage is still correct at 31: IVYSAUR evolves at 32, and
+; WARTORTLE, CHARMELEON and PIDGEOTTO all at 36.
+	db $ff, 32, PIKACHU, 31, IVYSAUR, 31, WARTORTLE, 31, CHARMELEON, 31, PIDGEOTTO, 0
