@@ -214,9 +214,7 @@ function renderMoveList(entries, kind, selectionCtx) {
     right.className = "move-meta";
     // HYPER BEAM's table power is a lie -- movepool.js substitutes the real
     // figure on the Mutagenstone tab, where the level is known to be 100.
-    const power = mv.computed_power
-      ? `${mv.power}${mv.power_note === "capped" ? "*" : ""} pow`
-      : `${mv.power ?? "—"} pow`;
+    const power = `${mv.computed_power ? mv.power : mv.power ?? "—"} pow`;
     right.textContent = `${mv.type ? mv.type.replace("_TYPE", "") : "?"} · ${power} · ${mv.accuracy ?? "—"}% · ${mv.pp ?? "—"}pp`;
     content.appendChild(left);
     content.appendChild(right);
@@ -228,9 +226,9 @@ function renderMoveList(entries, kind, selectionCtx) {
     desc.className = "move-desc";
     let text = mv.description || "No description recorded for this move.";
     if (mv.computed_power) {
-      text += mv.power_note === "capped"
-        ? ` *Its power is the user's Attack + Speed, which for this species overflows the 255 ceiling at level 100 -- so it hits at the maximum 255 even before any boosts.`
-        : ` At level 100 with perfect DVs that works out to ${mv.power}, and it climbs further with Attack or Speed boosts.`;
+      text += ` Its power is not the 150 in the move table: it is the user's`
+        + ` base Attack plus base Speed, less 50 (or 30 for a Normal-type`
+        + ` user), which for this Pok\u00e9mon is ${mv.power}.`;
     }
     desc.textContent = text;
     li.appendChild(desc);

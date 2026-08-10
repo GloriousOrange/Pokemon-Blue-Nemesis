@@ -4,28 +4,21 @@
 
 // HYPER BEAM ignores the 150 in the move table. ApplyHyperBeamPower
 // (engine/battle/hyper_beam_power.asm) overwrites it every time the move is
-// loaded with the user's live Attack + Speed, minus 50 -- or minus 30 when the
-// user is NORMAL-type, so the types that naturally learn it keep an edge.
+// loaded with the user's BASE Attack + BASE Speed, minus 50 -- or minus 30 when
+// the user is NORMAL-type, so the types that naturally learn it keep an edge.
 // Floored at 1, capped at 255 because it has to fit in a power byte.
 //
-// Reading *live* stats means stat stages and badge boosts feed in, so there is
-// no single true number. What we can state exactly is the value it starts at:
-// level 100, perfect DVs, untrained -- which is what a Mutagenstone produces,
-// since the stone jumps a mon to 100 without granting any stat experience.
+// Base stats, so this is a fixed property of the species: it does not move with
+// level, DVs, stat experience, badge boosts or stat stages, and it is the same
+// number on every tab.
 const HYPER_BEAM_PENALTY_NORMAL = 30;
 const HYPER_BEAM_PENALTY_OTHER = 50;
-
-function statAt100(base) {
-  // Gen 1: ((base + DV) * 2 + sqrt(statexp)/4) * level/100 + 5, at DV 15 and
-  // zero stat exp.
-  return 2 * base + 35;
-}
 
 export function hyperBeamPower(rec) {
   const penalty = rec.types.includes("NORMAL")
     ? HYPER_BEAM_PENALTY_NORMAL
     : HYPER_BEAM_PENALTY_OTHER;
-  const raw = statAt100(rec.base_stats.atk) + statAt100(rec.base_stats.spd) - penalty;
+  const raw = rec.base_stats.atk + rec.base_stats.spd - penalty;
   return { power: Math.max(1, Math.min(255, raw)), capped: raw > 255 };
 }
 
@@ -47,8 +40,6 @@ function moveEntry(data, moveName, extra) {
 export function buildMovepool(data, speciesKey) {
   const rec = data.species[speciesKey];
 
-  // Only the Mutagenstone set is guaranteed to be at level 100, so that is the
-  // only tab where a concrete HYPER BEAM number is honest.
   const hb = hyperBeamPower(rec);
   const withHyperBeam = (mv) =>
     mv.name === "HYPER_BEAM"
@@ -56,7 +47,7 @@ export function buildMovepool(data, speciesKey) {
       : mv;
 
   const levelUp = rec.level_up_moves.map((m) =>
-    moveEntry(data, m.move, { level: m.level, base: !!m.base }));
+    withHyperBeam(moveEntry(data, m.move, { level: m.level, base: !!m.base })));
 
   const tmhmRank = (mv) => {
     const num = data.moves[mv]?.tm_number || "";
@@ -69,7 +60,7 @@ export function buildMovepool(data, speciesKey) {
       const [rb, nb] = tmhmRank(b);
       return ra - rb || na - nb;
     })
-    .map((mv) => moveEntry(data, mv));
+    .map((mv) => withHyperBeam(moveEntry(data, mv)));
 
   let mutagenNote = null;
   let mutagen = [];
