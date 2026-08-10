@@ -91,7 +91,7 @@ MutagenMovesets::
 	mutagen_moveset ARTICUNO,    BLIZZARD,       SKY_ATTACK,    HYPER_BEAM,    REFLECT,      SWIFT
 	mutagen_moveset BLASTOISE,   SURF,           ICE_BEAM,      EARTHQUAKE,    BODY_SLAM,    TOXIC
 	mutagen_moveset BUTTERFREE,  PSYCHIC_M,      MEGA_DRAIN,    SOLARBEAM,     REFLECT,      SWIFT
-	mutagen_moveset CHANSEY,     SEISMIC_TOSS,   TOXIC,         THUNDER_WAVE,  SOFTBOILED,   THUNDERBOLT
+	mutagen_moveset CHANSEY,     METRONOME2,     TOXIC,         THUNDER_WAVE,  SOFTBOILED,   THUNDERBOLT
 
 ; --- reduced 58-species list, second batch of 5 (2026-08-02) ---
 ; DITTO deliberately has no row and never will -- Josh: "it only learns moves
