@@ -5,12 +5,11 @@
 	const_export GAMECORNER_BEAUTY2
 	const_export GAMECORNER_FISHING_GURU
 	const_export GAMECORNER_MIDDLE_AGED_WOMAN
-	const_export GAMECORNER_GYM_GUIDE
+	const_export GAMECORNER_ASH
 	const_export GAMECORNER_GAMBLER
 	const_export GAMECORNER_CLERK2
 	const_export GAMECORNER_GENTLEMAN
 	const_export GAMECORNER_ROCKET
-	const_export GAMECORNER_ASH
 
 GameCorner_Object:
 	db $f ; border block
@@ -30,13 +29,13 @@ GameCorner_Object:
 	object_event  2, 13, SPRITE_BEAUTY, STAY, LEFT, TEXT_GAMECORNER_BEAUTY2
 	object_event  5, 11, SPRITE_FISHING_GURU, STAY, RIGHT, TEXT_GAMECORNER_FISHING_GURU
 	object_event  8, 11, SPRITE_MIDDLE_AGED_WOMAN, STAY, LEFT, TEXT_GAMECORNER_MIDDLE_AGED_WOMAN
-	object_event  8, 14, SPRITE_GYM_GUIDE, STAY, LEFT, TEXT_GAMECORNER_GYM_GUIDE
+; Was the GYM GUIDE -- the "Yo! CHAMP in making!" one. Replaced in place, so his
+; object index stays 7 and nothing after him renumbers. Still talk-only: no OPP_
+; class, still facing LEFT into the machine he was playing.
+	object_event  8, 14, SPRITE_RED, STAY, LEFT, TEXT_GAMECORNER_ASH
 	object_event 11, 15, SPRITE_GAMBLER, STAY, RIGHT, TEXT_GAMECORNER_GAMBLER
 	object_event 14, 11, SPRITE_CLERK, STAY, LEFT, TEXT_GAMECORNER_CLERK2
 	object_event 17, 13, SPRITE_GENTLEMAN, STAY, RIGHT, TEXT_GAMECORNER_GENTLEMAN
 	object_event  9,  5, SPRITE_ROCKET, STAY, UP, TEXT_GAMECORNER_ROCKET, OPP_ROCKET, 7
-; Not a trainer -- no OPP_ class, so he is talk-only. Standing in the middle
-; bank facing RIGHT into a machine nobody else is using.
-	object_event 11, 12, SPRITE_RED, STAY, RIGHT, TEXT_GAMECORNER_ASH
 
 	def_warps_to GAME_CORNER

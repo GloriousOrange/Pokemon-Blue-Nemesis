@@ -168,12 +168,11 @@ GameCorner_TextPointers:
 	dw_const GameCornerBeauty2Text,           TEXT_GAMECORNER_BEAUTY2
 	dw_const GameCornerFishingGuruText,       TEXT_GAMECORNER_FISHING_GURU
 	dw_const GameCornerMiddleAgedWomanText,   TEXT_GAMECORNER_MIDDLE_AGED_WOMAN
-	dw_const GameCornerGymGuideText,          TEXT_GAMECORNER_GYM_GUIDE
+	dw_const GameCornerAshText,               TEXT_GAMECORNER_ASH
 	dw_const GameCornerGamblerText,           TEXT_GAMECORNER_GAMBLER
 	dw_const GameCornerClerk2Text,            TEXT_GAMECORNER_CLERK2
 	dw_const GameCornerGentlemanText,         TEXT_GAMECORNER_GENTLEMAN
 	dw_const GameCornerRocketText,            TEXT_GAMECORNER_ROCKET
-	dw_const GameCornerAshText,               TEXT_GAMECORNER_ASH
 	dw_const GameCornerPosterText,            TEXT_GAMECORNER_POSTER
 	dw_const GameCornerRocketAfterBattleText, TEXT_GAMECORNER_ROCKET_AFTER_BATTLE
 	dw_const GameCornerRocketLetInText,       TEXT_GAMECORNER_ROCKET_LET_IN
@@ -341,24 +340,6 @@ GameCornerFishingGuruText:
 
 GameCornerMiddleAgedWomanText:
 	text_far _GameCornerMiddleAgedWomanText
-	text_end
-
-GameCornerGymGuideText:
-	text_asm
-	CheckEvent EVENT_BEAT_ERIKA
-	ld hl, GameCornerGymGuideChampInMakingText
-	jr z, .not_defeated
-	ld hl, GameCornerGymGuideTheyOfferRarePokemonText
-.not_defeated
-	call PrintText
-	jp TextScriptEnd
-
-GameCornerGymGuideChampInMakingText:
-	text_far _GameCornerGymGuideChampInMakingText
-	text_end
-
-GameCornerGymGuideTheyOfferRarePokemonText:
-	text_far _GameCornerGymGuideTheyOfferRarePokemonText
 	text_end
 
 GameCornerGamblerText:
