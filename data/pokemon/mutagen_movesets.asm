@@ -29,7 +29,7 @@ MutagenMovesets::
 ; STATIC_SHOCK stays for the guaranteed paralysis. -- Josh's call to change.
 	mutagen_moveset RAICHU,      NOVA_BLITZ,     THUNDER,       BODY_SLAM,     AGILITY,      HYPER_BEAM
 	mutagen_moveset VENUSAUR,    GIGA_DRAIN,     RAZOR_LEAF,    SLEEP_POWDER,  TOXIC,        BODY_SLAM
-	mutagen_moveset WEEZING,     SLUDGE,         BLIGHT_VOMIT,  THUNDERBOLT,   FIRE_BLAST,   TOXIC
+	mutagen_moveset WEEZING,     SLUDGE,         REST,          THUNDERBOLT,   FIRE_BLAST,   EXPLOSION
 	mutagen_moveset ALAKAZAM,    PSYCHIC_M,      RECOVER,       THUNDER_WAVE,  REFLECT,      TOXIC
 	mutagen_moveset CHARIZARD,   FLAME_WHIP,     SLASH,         EARTHQUAKE,    SWORDS_DANCE, HYPER_BEAM
 	mutagen_moveset PERSIAN,     JACKPOT,        SLASH,         HYPER_BEAM,    DOUBLE_TEAM,  THUNDERBOLT

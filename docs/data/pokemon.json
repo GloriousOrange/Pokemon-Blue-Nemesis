@@ -14470,10 +14470,10 @@
    ],
    "mutagen_moveset": [
     "SLUDGE",
-    "BLIGHT_VOMIT",
+    "REST",
     "THUNDERBOLT",
     "FIRE_BLAST",
-    "TOXIC"
+    "EXPLOSION"
    ],
    "final_evolution_of_self": true
   },
