@@ -12333,8 +12333,8 @@
    "mutagen_moveset": [
     "SURF",
     "ICE_BEAM",
-    "AGILITY",
-    "REST",
+    "MIMIC",
+    "RECOVER",
     "SUBSTITUTE"
    ],
    "final_evolution_of_self": true

@@ -153,7 +153,7 @@ MutagenMovesets::
 	mutagen_moveset SCYTHER,     SWORDS_DANCE,   FOCUS_ENERGY,  SLASH,         TWINEEDLE,    AGILITY
 
 ; --- reduced list, tenth batch of 5 (2026-08-03) ---
-	mutagen_moveset SEADRA,      SURF,           ICE_BEAM,      AGILITY,       REST,         SUBSTITUTE
+	mutagen_moveset SEADRA,      SURF,           ICE_BEAM,      MIMIC,         RECOVER,      SUBSTITUTE
 	mutagen_moveset SEAKING,     HORN_DRILL,     AGILITY,       SURF,          ICE_BEAM,     SUBSTITUTE
 	mutagen_moveset SHELLDER,    CRYSTALLIZE,    ICE_BEAM,      CLAMP,         SUBSTITUTE,   REST
 	mutagen_moveset SNORLAX,     BODY_SLAM,      AMNESIA,       REST,          EARTHQUAKE,   SUBSTITUTE
