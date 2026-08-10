@@ -977,7 +977,7 @@
    "display_name": "Razor Leaf"
   },
   "SOLARBEAM": {
-   "power": 120,
+   "power": 200,
    "type": "GRASS",
    "accuracy": 100,
    "pp": 10,
@@ -13240,7 +13240,7 @@
    "mutagen_moveset": [
     "SOLARBEAM",
     "SLEEP_POWDER",
-    "STUN_SPORE",
+    "GIGA_DRAIN",
     "REST",
     "SUBSTITUTE"
    ],

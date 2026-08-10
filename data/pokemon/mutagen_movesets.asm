@@ -160,7 +160,7 @@ MutagenMovesets::
 	mutagen_moveset STARYU,      SURF,           RECOVER,       LIGHT_SCREEN,  SWIFT,        THUNDER_WAVE
 
 ; --- reduced list, eleventh and final batch (2026-08-03) ---
-	mutagen_moveset TANGELA,     SOLARBEAM,      SLEEP_POWDER,  STUN_SPORE,    REST,         SUBSTITUTE
+	mutagen_moveset TANGELA,     SOLARBEAM,      SLEEP_POWDER,  GIGA_DRAIN,    REST,         SUBSTITUTE
 	mutagen_moveset TYRANIS,     DOUBLE_DRILL,   HYPER_BEAMS,   BODY_SLAM,     SAND_ATTACK,  SWIFT
 	mutagen_moveset VAPOREON,    SURF,           ICE_BEAM,      ACID_ARMOR,    REST,         SUBSTITUTE
 	mutagen_moveset VENOMOTH,    SLEEP_POWDER,   PSYCHIC_M,     MEGA_DRAIN,    STUN_SPORE,   SUBSTITUTE
