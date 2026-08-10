@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/psyduck.pic", 0, 1 ; sprite dimensions
 	dw PsyduckPicFront, PsyduckPicBack
 
-	db CLAMP, SCRATCH, NO_MOVE, NO_MOVE ; level 1 learnset (Clamp added for starter STAB)
+	db MIGRAIN, SCRATCH, NO_MOVE, NO_MOVE ; level 1 learnset (Migrain added for starter STAB)
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
