@@ -1930,7 +1930,7 @@
    "display_name": "Chaos Sting"
   },
   "CHOKEHOLD": {
-   "power": 20,
+   "power": 25,
    "type": "FIGHTING",
    "accuracy": 85,
    "pp": 15,

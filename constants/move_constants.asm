@@ -183,7 +183,7 @@
 	const SUPER_INSTINCT ; af - Normal, raises user's accuracy + evasion by 1 each (Hitmonlee, lv22)
 	const CRYSTALLIZE    ; b0 - Normal, raises user's Defense by 2 + Special by 1 (Beedrill, lv22)
 	const CHAOS_STING    ; b1 - Bug, 70 dmg, 30% random status (any but sleep) (Beedrill, lv38)
-	const CHOKEHOLD      ; b2 - Fighting, Wrap-style trap: 20 dmg/turn for 2-5 turns (Primeape, lv33)
+	const CHOKEHOLD      ; b2 - Fighting, Wrap-style trap: 25 dmg/turn for 2-5 turns (Primeape, lv33)
 	const ROCK_FISTS     ; b3 - Rock, multi-hit: 30 dmg x 2-5 hits (Geodude, lv28)
 	const HOT_OIL        ; b4 - Fire, 40 dmg + guaranteed burn (Magmar, lv36)
 	const BAD_TOUCH      ; b5 - Normal, always confuses, 100 acc (Drowzee, lv42)
