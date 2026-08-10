@@ -266,7 +266,13 @@ def load_pics_paths():
 
 
 def base_moves(text):
-    m = re.search(r"db ([A-Z0-9_, ]+) ;[^\n]*\n\tdb GROWTH_\w+ ; growth rate", text)
+    # Anchored on the growth-rate line that follows, but a wrapped comment can
+    # sit between the two -- PORYGON's does, and that silently produced an
+    # empty level 1 set for it. Skip any comment-only lines in between.
+    m = re.search(
+        r"db ([A-Z0-9_, ]+) ;[^\n]*\n(?:\s*;[^\n]*\n)*\s*db GROWTH_\w+ ; growth rate",
+        text,
+    )
     if not m:
         return []
     return [mv.strip() for mv in m.group(1).split(",") if mv.strip() != "NO_MOVE"]

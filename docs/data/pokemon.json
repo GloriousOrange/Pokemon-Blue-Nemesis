@@ -1259,7 +1259,7 @@
    "accuracy": 100,
    "pp": 20,
    "effect": "HEAL_EFFECT",
-   "description": "Restores half the user's max HP. Rest instead heals fully and puts the user to sleep for two turns.",
+   "description": "Restores half the user's max HP.",
    "display_name": "Recover"
   },
   "HARDEN": {
@@ -1537,7 +1537,7 @@
    "accuracy": 100,
    "pp": 10,
    "effect": "HEAL_EFFECT",
-   "description": "Restores half the user's max HP. Rest instead heals fully and puts the user to sleep for two turns.",
+   "description": "Restores half the user's max HP.",
    "display_name": "Softboiled",
    "tm_number": "TM41"
   },
@@ -4253,6 +4253,16 @@
    "ghost_sprite": "sprites/front_ghost/ditto.png",
    "ghost_eligible": true,
    "level_up_moves": [
+    {
+     "level": 1,
+     "move": "TRANSFORM",
+     "base": true
+    },
+    {
+     "level": 1,
+     "move": "TACKLE",
+     "base": true
+    },
     {
      "level": 15,
      "move": "HEADBUTT"
@@ -11614,6 +11624,26 @@
    "ghost_sprite": "sprites/front_ghost/porygon.png",
    "ghost_eligible": true,
    "level_up_moves": [
+    {
+     "level": 1,
+     "move": "TACKLE",
+     "base": true
+    },
+    {
+     "level": 1,
+     "move": "MIMIC",
+     "base": true
+    },
+    {
+     "level": 1,
+     "move": "SHARPEN",
+     "base": true
+    },
+    {
+     "level": 1,
+     "move": "CONVERSION",
+     "base": true
+    },
     {
      "level": 23,
      "move": "PSYBEAM"

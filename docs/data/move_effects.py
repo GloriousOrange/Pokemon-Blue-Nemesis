@@ -109,8 +109,9 @@ EFFECT_DESCRIPTIONS = {
     "SWIFT_EFFECT": "Never misses, no matter the target's evasion.",
 
     # --- healing and protection ---
-    "HEAL_EFFECT": "Restores half the user's max HP. Rest instead heals fully "
-                   "and puts the user to sleep for two turns.",
+    # REST shares this effect but has its own override below, so this text does
+    # not need to mention it.
+    "HEAL_EFFECT": "Restores half the user's max HP.",
     "SUBSTITUTE_EFFECT": "Spends a quarter of the user's max HP to put up a "
                          "decoy that soaks damage and blocks status.",
     "LIGHT_SCREEN_EFFECT": "Halves special damage taken for the rest of the "
