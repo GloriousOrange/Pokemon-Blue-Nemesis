@@ -227,7 +227,7 @@ function renderMoveList(entries, kind, selectionCtx) {
     let text = mv.description || "No description recorded for this move.";
     if (mv.computed_power) {
       text += ` Its power is not the 150 in the move table: it is the user's`
-        + ` base Attack plus base Speed, less 50 (or 30 for a Normal-type`
+        + ` base Attack plus base Speed, -50 (or -30 for a Normal-type`
         + ` user), which for this Pok\u00e9mon is ${mv.power}.`;
     }
     desc.textContent = text;
