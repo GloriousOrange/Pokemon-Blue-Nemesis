@@ -10,7 +10,7 @@
 	INCBIN "gfx/pokemon/front/goldeen.pic", 0, 1 ; sprite dimensions
 	dw GoldeenPicFront, GoldeenPicBack
 
-	db CLAMP, PECK, TAIL_WHIP, NO_MOVE ; level 1 learnset (Clamp added for starter STAB)
+	db BUBBLE, PECK, TAIL_WHIP, NO_MOVE ; level 1 learnset (Bubble added for starter STAB)
 	db GROWTH_MEDIUM_FAST ; growth rate
 
 	; tm/hm learnset
