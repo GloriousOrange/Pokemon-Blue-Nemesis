@@ -52,8 +52,13 @@ Route10AshText:
 	jp TextScriptEnd
 
 Route10AshBattleText:
-; He leads with PIKACHU because it is mon 1 of AshData #5.
-	text "PIKACHU, I choose"
+; Third meeting, outside LAVENDER. First time he is glad to see the player
+; rather than just eager to fight.
+	text "<PLAYER>. Good."
+	line "I needed to see"
+	cont "someone I liked."
+
+	para "PIKACHU, I choose"
 	line "you!"
 	prompt
 
@@ -67,8 +72,10 @@ Route10AshAfterBattleText:
 	line "south of here"
 	cont "full of graves."
 
-	para "I'm not losing"
-	line "anyone. Not one."
+	para "Don't go in there"
+	line "on your own."
+
+	para "I mean it."
 	prompt
 
 Route10SuperNerd1Text:

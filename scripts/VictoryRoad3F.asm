@@ -82,8 +82,15 @@ VictoryRoad3FAshText:
 	jp TextScriptEnd
 
 VictoryRoad3FAshBattleText:
-; He leads with PIKACHU because it is mon 1 of AshData #1.
-	text "PIKACHU, I choose"
+; Fourth meeting. He climbed all this way on the chance the player would.
+	text "I knew you'd get"
+	line "this far."
+
+	para "I came up here on"
+	line "the chance you"
+	cont "would."
+
+	para "PIKACHU, I choose"
 	line "you!"
 	prompt
 
@@ -101,8 +108,9 @@ VictoryRoad3FAshAfterBattleText:
 	para "But you - you're"
 	line "ready."
 
-	para "Let's rematch"
-	line "sometime."
+	para "Go on. I'll be"
+	line "right here when"
+	cont "you get back."
 	prompt
 
 VictoryRoad3F_TextPointers:

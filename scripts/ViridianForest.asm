@@ -20,23 +20,28 @@ ViridianForestAshText:
 	jp TextScriptEnd
 
 ViridianForestAshBattleText:
-; He leads with PIKACHU because it is the only mon in AshData #3.
+; First meeting of six. He does not know the player yet.
 	text "PIKACHU, I choose"
 	line "you!"
+
+	para "...Sorry. I've"
+	line "waited all day to"
+	cont "say that to"
+	cont "someone."
 	prompt
 
 ViridianForestAshEndBattleText:
 	text "We're not ready"
-	line "yet. Fine."
+	line "yet. Okay."
 	prompt
 
 ViridianForestAshAfterBattleText:
-	text "I'm going to keep"
-	line "going until no"
-	cont "one can do that."
+	text "I'm ASH. This is"
+	line "PIKACHU."
 
-	para "I'll see you"
-	line "again."
+	para "We're going to get"
+	line "better. Find us"
+	cont "again sometime?"
 	prompt
 
 ViridianForest_TextPointers:

@@ -75,32 +75,46 @@ ArchipelagoCave3FAshText:
 	jp TextScriptEnd
 
 ; He leads with RAICHU because it is mon 1 of AshData #2.
+; Last of the six meetings, and the only one the player has to go looking for.
 .ChallengeText:
-	text "RAICHU, I choose"
+	text "You found me. Of"
+	line "course you did."
+
+	para "I came down here"
+	line "to close the gap,"
+	cont "<PLAYER>."
+
+	para "You've spent this"
+	line "whole journey"
+	cont "just ahead of me."
+
+	para "RAICHU, I choose"
 	line "you!"
 	prompt
 
 .DefeatText:
-	text "I thought I was"
-	line "the prodigy."
+	text "Ha! Still you."
+	line "It's always still"
+	cont "you."
 	prompt
 
 .VictoryText:
-	text "Still the"
-	line "prodigy, then."
+	text "Finally! And no"
+	line "one here to see"
+	cont "it but us."
 	prompt
 
 .AfterText:
-	text "I still need to"
-	line "train before I"
-	cont "can challenge the"
-	cont "ELITE FOUR."
+	text "I'll keep chasing"
+	line "you. That's our"
+	cont "deal, isn't it?"
 
-	para "But you - you're"
-	line "ready."
+	para "Just don't get so"
+	line "far ahead that I"
+	cont "can't find you."
 
-	para "Let's rematch"
-	line "sometime."
+	para "Thanks for always"
+	line "turning around."
 	prompt
 
 ArchipelagoCave3F_TextPointers:

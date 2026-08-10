@@ -39,22 +39,29 @@ SSAnneBowAshText:
 	jp TextScriptEnd
 
 SSAnneBowAshBattleText:
-; He leads with PIKACHU because it is mon 1 of AshData #4.
-	text "PIKACHU, I choose"
+; Second meeting. Missable -- the ship sails -- so it leans on the forest
+; rather than on anything between.
+	text "<PLAYER>! Same"
+	line "boat as me, huh?"
+
+	para "Look who came"
+	line "along."
+
+	para "PIKACHU, I choose"
 	line "you!"
 	prompt
 
 SSAnneBowAshEndBattleText:
 	text "Closer that time."
+	line "Wasn't it?"
 	prompt
 
 SSAnneBowAshAfterBattleText:
 	text "They've all grown"
 	line "since the forest."
 
-	para "So have you."
-	line "That's the part"
-	cont "that bothers me."
+	para "So have you. I"
+	line "like that."
 	prompt
 
 SSAnneBowSuperNerdText:
