@@ -13267,11 +13267,11 @@
    "level_up_moves": [
     {
      "level": 1,
-     "move": "TACKLE"
+     "move": "STOMP"
     },
     {
      "level": 21,
-     "move": "STOMP"
+     "move": "RAGE"
     },
     {
      "level": 28,
@@ -13280,10 +13280,6 @@
     {
      "level": 35,
      "move": "LEER"
-    },
-    {
-     "level": 44,
-     "move": "RAGE"
     },
     {
      "level": 51,

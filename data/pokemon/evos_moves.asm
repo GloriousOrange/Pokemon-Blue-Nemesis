@@ -901,10 +901,11 @@ TaurosEvosMoves:
 ; Evolutions
 	db 0
 ; Learnset
-	db 21, STOMP
+; No L21 STOMP -- it is already in the level 1 learnset in base_stats, so RAGE
+; takes that slot instead of waiting until 44.
+	db 21, RAGE
 	db 28, TAIL_WHIP
 	db 35, LEER
-	db 44, RAGE
 	db 51, TAKE_DOWN
 	db 55, STAMPEDE
 	db 0
