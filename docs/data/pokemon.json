@@ -11488,7 +11488,8 @@
     "spc": 50
    },
    "types": [
-    "WATER"
+    "WATER",
+    "PSYCHIC_TYPE"
    ],
    "front_sprite": "sprites/front/psyduck.png",
    "back_sprite": "sprites/back/psyduck.png",
