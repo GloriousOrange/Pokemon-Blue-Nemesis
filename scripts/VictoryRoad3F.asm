@@ -75,6 +75,38 @@ VictoryRoad3FDefaultScript:
 	jp z, CheckFightingMapTrainers
 	ret
 
+VictoryRoad3FAshText:
+	text_asm
+	ld hl, VictoryRoad3TrainerHeader4
+	call TalkToTrainer
+	jp TextScriptEnd
+
+VictoryRoad3FAshBattleText:
+	text "ASH: You're the"
+	line "one they keep"
+	cont "talking about."
+
+	para "I came up here to"
+	line "see for myself."
+
+	para "Six of mine. All"
+	line "of yours. Now."
+	prompt
+
+VictoryRoad3FAshEndBattleText:
+	text "...so that's what"
+	line "it looks like."
+	prompt
+
+VictoryRoad3FAshAfterBattleText:
+	text "The LEAGUE is"
+	line "through there."
+
+	para "Don't lose to"
+	line "them. I'd rather"
+	cont "it was me."
+	prompt
+
 VictoryRoad3F_TextPointers:
 	def_text_pointers
 	dw_const VictoryRoad3FCooltrainerM1Text, TEXT_VICTORYROAD3F_COOLTRAINER_M1
@@ -87,6 +119,7 @@ VictoryRoad3F_TextPointers:
 	dw_const BoulderText,                    TEXT_VICTORYROAD3F_BOULDER2
 	dw_const BoulderText,                    TEXT_VICTORYROAD3F_BOULDER3
 	dw_const BoulderText,                    TEXT_VICTORYROAD3F_BOULDER4
+	dw_const VictoryRoad3FAshText,           TEXT_VICTORYROAD3F_ASH
 
 VictoryRoad3TrainerHeaders:
 	def_trainers
@@ -98,6 +131,8 @@ VictoryRoad3TrainerHeader2:
 	trainer EVENT_BEAT_VICTORY_ROAD_3_TRAINER_2, 4, VictoryRoad3FCooltrainerM2BattleText, VictoryRoad3FCooltrainerM2EndBattleText, VictoryRoad3FCooltrainerM2AfterBattleText
 VictoryRoad3TrainerHeader3:
 	trainer EVENT_BEAT_VICTORY_ROAD_3_TRAINER_3, 4, VictoryRoad3FCooltrainerF2BattleText, VictoryRoad3FCooltrainerF2EndBattleText, VictoryRoad3FCooltrainerF2AfterBattleText
+VictoryRoad3TrainerHeader4:
+	trainer EVENT_BEAT_VICTORY_ROAD_3_TRAINER_4, 2, VictoryRoad3FAshBattleText, VictoryRoad3FAshEndBattleText, VictoryRoad3FAshAfterBattleText
 	db -1 ; end
 
 VictoryRoad3FCooltrainerM1Text:

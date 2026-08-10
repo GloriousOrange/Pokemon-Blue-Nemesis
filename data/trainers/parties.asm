@@ -50,6 +50,7 @@ TrainerDataPointers:
 	dw GeneralMathusData
 	dw MeganData
 	dw GhostRocketData
+	dw AshData
 	assert_table_length NUM_TRAINERS
 
 ; if first byte != $FF, then
@@ -1093,3 +1094,9 @@ GhostRocketData:
 ; .GhostRocketCrew patch would silently never apply. Confirmed with
 ; tools/trainer_probe.py, which showed the crew loading un-ghosted.
 	db $ff, 100, RATICATE, 100, ARBOK, 100, MUK, 100, WEEZING, 100, VICTREEBEL, 100, GENGAR, 0
+
+AshData:
+; Victory Road 3F. The team Josh specified, at levels that make him the wall
+; before the League: the floor's own trainers top out around 48 and the Elite
+; Four open around 54, so he sits just above Victory Road and just under Lorelei.
+	db $ff, 52, PIKACHU, 53, VENUSAUR, 53, BLASTOISE, 53, CHARIZARD, 52, PIDGEOT, 54, TAUROS, 0

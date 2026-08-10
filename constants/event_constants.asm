@@ -593,7 +593,7 @@
 	const EVENT_BEAT_VICTORY_ROAD_3_TRAINER_1
 	const EVENT_BEAT_VICTORY_ROAD_3_TRAINER_2
 	const EVENT_BEAT_VICTORY_ROAD_3_TRAINER_3
-	const_skip
+	const EVENT_BEAT_VICTORY_ROAD_3_TRAINER_4 ; from this block's padding, no enum shift
 	const EVENT_VICTORY_ROAD_3_BOULDER_ON_SWITCH2
 
 ; Rocket Hideout events

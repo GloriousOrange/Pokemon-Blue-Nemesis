@@ -54,4 +54,5 @@ TrainerAIPointers:
 	dbw 1, GenericAI ; GENERALMATHUS
 	dbw 1, GenericAI ; MEGAN
 	dbw 1, GenericAI ; GHOST_ROCKET
+	dbw 1, GenericAI ; ASH
 	assert_table_length NUM_TRAINERS

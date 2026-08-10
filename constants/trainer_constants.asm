@@ -67,4 +67,7 @@ ENDM
 	trainer_const GHOST_ROCKET   ; $32 - the Archipelago Cave grotto encounter; its own class so the
 	                             ;       intro reads "GHOST ROCKET wants to fight!" and so the battle
 	                             ;       palette can be keyed on the class (see DeterminePaletteID)
+	trainer_const ASH            ; $33 - Victory Road 3F. Uses SPRITE_RED and AshPic,
+	                             ;       a second copy of the vanilla player front
+	                             ;       sprite placed in the Trainer Pics bank
 DEF NUM_TRAINERS EQU const_value - 1

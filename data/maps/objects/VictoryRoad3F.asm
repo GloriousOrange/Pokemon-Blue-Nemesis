@@ -9,6 +9,7 @@
 	const_export VICTORYROAD3F_BOULDER2
 	const_export VICTORYROAD3F_BOULDER3
 	const_export VICTORYROAD3F_BOULDER4
+	const_export VICTORYROAD3F_ASH
 
 VictoryRoad3F_Object:
 	db $7d ; border block
@@ -32,5 +33,9 @@ VictoryRoad3F_Object:
 	object_event 13, 12, SPRITE_BOULDER, STAY, BOULDER_MOVEMENT_BYTE_2, TEXT_VICTORYROAD3F_BOULDER2
 	object_event 24, 10, SPRITE_BOULDER, STAY, BOULDER_MOVEMENT_BYTE_2, TEXT_VICTORYROAD3F_BOULDER3
 	object_event 22, 15, SPRITE_BOULDER, STAY, BOULDER_MOVEMENT_BYTE_2, TEXT_VICTORYROAD3F_BOULDER4
+; Cell checked rather than eyeballed: reachable from the stairs up from 2F,
+; open on all four sides, and clear of every other object, warp and boulder --
+; a boulder puzzle floor is the wrong place to wedge an NPC into a corridor.
+	object_event 21,  6, SPRITE_RED, STAY, DOWN, TEXT_VICTORYROAD3F_ASH, OPP_ASH, 1
 
 	def_warps_to VICTORY_ROAD_3F

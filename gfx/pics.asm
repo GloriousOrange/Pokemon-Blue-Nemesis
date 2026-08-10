@@ -362,6 +362,12 @@ BlankPicBack::         INCBIN "gfx/player/blankb.pic"
 
 SECTION "Trainer Pics", ROMX
 
+; The same artwork as RedPicFront (the intro / name-screen / trainer-card
+; sprite), a second time in this bank. It cannot simply be pointed at:
+; _LoadTrainerPic loads a normal battle pic from BANK("Trainer Pics") and only
+; uses BANK(RedPicFront) for link battles, so the pointer alone would decode
+; whatever sits at that address in this bank. One source file, two copies.
+AshPic::           INCBIN "gfx/player/red.pic"
 YoungsterPic::     INCBIN "gfx/trainers/youngster.pic"
 BugCatcherPic::    INCBIN "gfx/trainers/bugcatcher.pic"
 LassPic::          INCBIN "gfx/trainers/lass.pic"
