@@ -1,29 +1,35 @@
 ; The Rocket guard blocking Silph Co's door (SAFFRONCITY_ROCKET8, standing at
-; (18,22) right below the door at (18,21)) vanishes once the player has the
-; Silph Scope -- reversed from vanilla, where this guard only left after
+; (18,22) right below the door at (18,21)) vanishes once the player has cleared
+; the Rocket Hideout -- reversed from vanilla, where this guard only left after
 ; rescuing Mr. Fuji in Pokemon Tower (still wired too, see
 ; scripts/PokemonTower7F.asm, and harmless to leave alongside this). This
 ; mod's Pokemon Tower is separately gated by its own opposing-faction guard
 ; (scripts/PokemonTower1F.asm) unlocked much later in the Nocturn quest, so
 ; waiting on the vanilla trigger alone would deadlock Silph Co access.
-; A _SPEEDTEST build skips the Scope check entirely and removes him up front.
+;
+; This used to test for the SILPH SCOPE in the bag, back when the Hideout's
+; Giovanni dropped it. "Swap the Master Ball and Silph Scope" (7882a156) moved
+; the Scope to Silph Co's own president on 11F and put the Master Ball in the
+; Hideout, which sealed the building shut: the only key that opened the door
+; was locked inside the building. Gate on the Hideout event instead of on an
+; item, so neither spending the Master Ball on Nocturn nor stashing it in the
+; PC can ever put the guard back.
+; A _SPEEDTEST build skips the check entirely and removes him up front.
 SaffronCity_Script:
 	call EnableAutoTextBoxDrawing
 IF DEF(_SPEEDTEST)
-; Speed-test build: the guard is gone from the moment the map loads. The
-; speed-test kit no longer carries a SILPH SCOPE (see init_player_data.asm),
-; so the check below would never pass and Silph Co would be sealed shut.
+; Speed-test build: the guard is gone from the moment the map loads, since the
+; kit starts past the Hideout without the event set.
 	ld a, TOGGLE_SAFFRON_CITY_E
 	ld [wToggleableObjectIndex], a
 	predef_jump HideObject
 ELSE
-	ld b, SILPH_SCOPE
-	call IsItemInBag
-	jr z, .noScope
+	CheckEvent EVENT_BEAT_ROCKET_HIDEOUT_GIOVANNI
+	jr z, .hideoutNotCleared
 	ld a, TOGGLE_SAFFRON_CITY_E
 	ld [wToggleableObjectIndex], a
 	predef HideObject
-.noScope
+.hideoutNotCleared
 	ret
 ENDC
 
